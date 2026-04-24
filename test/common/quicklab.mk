@@ -94,21 +94,23 @@ dev-tutorial:
 shell:
 	docker exec -it $(TESTENV)-sweave bash -l
 
+# POST merges the body into the datastore per RFC 8040 §4.4. PUT on /restconf/data
+# replaces the entire datastore and is not supported at the document root.
 .PHONY: send-config-async
 send-config-async:
-	curl -X PUT -H "Content-Type: application/yang-data+xml" -H "Async: true" -d @$(FILE) http://localhost:$(shell docker inspect -f '{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $(TESTENV)-sweave)/restconf/data
+	curl -f -X POST -H "Content-Type: application/yang-data+xml" -H "Async: true" -d @$(FILE) http://localhost:$(shell docker inspect -f '{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $(TESTENV)-sweave)/restconf/data
 
 .PHONY: send-config-wait
 send-config-wait:
-	curl -X PUT -H "Content-Type: application/yang-data+xml" -d @$(FILE) http://localhost:$(shell docker inspect -f '{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $(TESTENV)-sweave)/restconf/data
+	curl -f -X POST -H "Content-Type: application/yang-data+xml" -d @$(FILE) http://localhost:$(shell docker inspect -f '{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $(TESTENV)-sweave)/restconf/data
 
 .PHONY: send-config-json-async
 send-config-json-async:
-	curl -X PUT -H "Content-Type: application/yang-data+json" -H "Async: true" -d @$(FILE) http://localhost:$(shell docker inspect -f '{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $(TESTENV)-sweave)/restconf/data
+	curl -f -X POST -H "Content-Type: application/yang-data+json" -H "Async: true" -d @$(FILE) http://localhost:$(shell docker inspect -f '{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $(TESTENV)-sweave)/restconf/data
 
 .PHONY: send-config-json-wait
 send-config-json-wait:
-	curl -X PUT -H "Content-Type: application/yang-data+json" -d @$(FILE) http://localhost:$(shell docker inspect -f '{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $(TESTENV)-sweave)/restconf/data
+	curl -f -X POST -H "Content-Type: application/yang-data+json" -d @$(FILE) http://localhost:$(shell docker inspect -f '{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $(TESTENV)-sweave)/restconf/data
 
 .PHONY: send-config-tmf640
 send-config-tmf640:
@@ -142,6 +144,14 @@ get-tmf633-service-candidate:
 .PHONY: get-tmf633-service-specification
 get-tmf633-service-specification:
 	curl -k -sS -H "Accept: application/json" http://localhost:$(shell docker inspect -f '{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $(TESTENV)-sweave)/tmf-api/serviceCatalogManagement/v4/serviceSpecification$(if $(ID),/$(ID),) | jq '.'
+
+.PHONY: get-config-restconf
+get-config-restconf:
+	curl -f -sS -H "Accept: application/yang-data+xml" http://localhost:$(shell docker inspect -f '{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $(TESTENV)-sweave)/restconf/data
+
+.PHONY: get-config-restconf-json
+get-config-restconf-json:
+	curl -f -sS -H "Accept: application/yang-data+json" http://localhost:$(shell docker inspect -f '{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $(TESTENV)-sweave)/restconf/data | jq '.'
 
 .PHONY: get-config0 get-config1 get-config2 get-config3
 get-config0 get-config1 get-config2 get-config3:
@@ -203,7 +213,7 @@ $(addprefix resync-,$(ROUTERS_XR) $(ROUTERS_CRPD) $(ROUTERS_SRL)):
 
 .PHONY: delete-config
 delete-config:
-	curl -X DELETE http://localhost:$(shell docker inspect -f '{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $(TESTENV)-sweave)/restconf/data/netinfra:netinfra/routers=STO-CORE-1
+	curl -f -X DELETE http://localhost:$(shell docker inspect -f '{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $(TESTENV)-sweave)/restconf/data/netinfra:netinfra/router=STO-CORE-1
 
 .PHONY: $(addprefix cli-,$(ROUTERS_XR) $(ROUTERS_CRPD) $(ROUTERS_SRL) $(ROUTERS_FRR))
 $(addprefix cli-,$(ROUTERS_XR) $(ROUTERS_CRPD) $(ROUTERS_SRL) $(ROUTERS_FRR)): cli-%: platform-cli-%

@@ -352,8 +352,7 @@ actor main(env):
     "/srl_nokia-tunnel-if:tunnel-interface/vxlan-interface/ingress/vni",
 ]
 
-    # Keep only the ArcOS configuration nodes that sorespo's RFS transforms
-    # actively write to.
+    # Keep only the ArcOS configuration and state nodes used by the RFS transforms.
     arcos_paths = [
     "/arc-features:features/feature/name",
     "/arc-features:features/feature/supported",
@@ -379,6 +378,7 @@ actor main(env):
     "/oc-if:interfaces/interface/config/description",
     "/oc-if:interfaces/interface/config/mtu",
     "/oc-if:interfaces/interface/config/enabled",
+    "/oc-if:interfaces/interface/state/oper-status",
     "/oc-if:interfaces/interface/subinterfaces/subinterface/index",
     "/oc-if:interfaces/interface/subinterfaces/subinterface/config/index",
     "/oc-if:interfaces/interface/subinterfaces/subinterface/config/description",
@@ -417,6 +417,10 @@ actor main(env):
     "/oc-netinst:network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/config/peer-group",
     "/oc-netinst:network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/config/description",
     "/oc-netinst:network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/config/auth-password",
+    "/oc-netinst:network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/session-state",
+    "/oc-netinst:network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/established-transitions",
+    "/oc-netinst:network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/messages/sent/last-notification-error-code",
+    "/oc-netinst:network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/messages/received/last-notification-error-code",
     "/oc-netinst:network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/afi-safis/afi-safi/afi-safi-name",
     "/oc-netinst:network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/afi-safis/afi-safi/config/afi-safi-name",
     "/oc-netinst:network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/as-path-options/config/replace-peer-as",

@@ -10,6 +10,9 @@
             <type>CiscoIosXr_25_3_1</type>
             <role>edge</role>
             <asn>65001</asn>
+            <feature-flags>
+                <runtime-schema-fetch>true</runtime-schema-fetch>
+            </feature-flags>
         </router>
         <router>
             <name>FRA-CORE-1</name>
@@ -17,6 +20,9 @@
             <type>CiscoIosXr_25_3_1</type>
             <role>edge</role>
             <asn>65001</asn>
+            <feature-flags>
+                <runtime-schema-fetch>true</runtime-schema-fetch>
+            </feature-flags>
         </router>
         <router>
             <name>STO-CORE-1</name>

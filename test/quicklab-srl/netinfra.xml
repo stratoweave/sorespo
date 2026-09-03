@@ -10,6 +10,9 @@
             <type>NokiaSRLinux_25_3_2</type>
             <role>edge</role>
             <asn>65001</asn>
+	    <feature-flags>
+                <runtime-schema-fetch>true</runtime-schema-fetch>
+	    </feature-flags>
         </router>
         <router>
             <name>FRA-CORE-1</name>
@@ -17,6 +20,9 @@
             <type>NokiaSRLinux_25_3_2</type>
             <role>edge</role>
             <asn>65001</asn>
+	    <feature-flags>
+                <runtime-schema-fetch>true</runtime-schema-fetch>
+	    </feature-flags>
         </router>
         <router>
             <name>STO-CORE-1</name>
@@ -24,6 +30,9 @@
             <type>NokiaSRLinux_25_3_2</type>
             <role>edge</role>
             <asn>65001</asn>
+	    <feature-flags>
+                <runtime-schema-fetch>true</runtime-schema-fetch>
+	    </feature-flags>
         </router>
         <router>
             <name>LJU-CORE-1</name>
@@ -31,6 +40,9 @@
             <type>NokiaSRLinux_25_3_2</type>
             <role>edge</role>
             <asn>65001</asn>
+	    <feature-flags>
+                <runtime-schema-fetch>true</runtime-schema-fetch>
+	    </feature-flags>
         </router>
         <backbone-link>
             <left-router>AMS-CORE-1</left-router>

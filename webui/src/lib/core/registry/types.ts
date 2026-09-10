@@ -82,6 +82,11 @@ export function getRoutePathKey<TDraft>(module: ServiceModule<TDraft>, id: strin
   return id;
 }
 
+/** "VPN services" -> "VPN services", "Sites" -> "sites": lowercase a leading capital unless it starts an acronym. */
+export function lowercaseFirst(label: string): string {
+  return label.replace(/^[A-Z](?=[a-z])/, (initial) => initial.toLowerCase());
+}
+
 export function formatServiceRouteId<TDraft>(module: ServiceModule<TDraft>, id: string): string {
   return module.formatRouteId ? module.formatRouteId(id) : id;
 }

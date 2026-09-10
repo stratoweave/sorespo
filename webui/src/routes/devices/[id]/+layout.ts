@@ -1,3 +1,5 @@
+import { error } from '@sveltejs/kit';
+
 import { fetchDevice } from '$lib/core/orchestron/client';
 
 import type { DeviceInfo } from '$lib/core/orchestron/client';
@@ -15,6 +17,9 @@ export const load: LayoutLoad = async ({ params, fetch, depends }) => {
     };
   } catch (loadError) {
     const message = loadError instanceof Error ? loadError.message : 'Failed to load device.';
+    if (message.startsWith('HTTP 404')) {
+      error(404, `Unknown device: ${deviceId}`);
+    }
     return {
       deviceId,
       device: null as DeviceInfo | null,

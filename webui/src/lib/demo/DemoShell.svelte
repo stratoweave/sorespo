@@ -114,7 +114,7 @@
     padding-bottom: 56px;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 720px) {
     .demo-bar__text {
       display: none;
     }

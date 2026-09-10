@@ -41,7 +41,7 @@ async function readResponse<T>(response: Response, readBody = true): Promise<T> 
   }
 }
 
-export async function restconfRequest<T>(
+async function restconfRequest<T>(
   path: string,
   init: RequestInit & RestconfRequestOptions = {},
   fetchFn: Fetch = fetch
@@ -102,17 +102,6 @@ export function restconfPutJson<T>(path: string, body: unknown): Promise<T> {
   });
 }
 
-export function restconfPatchJson<T>(path: string, body: unknown): Promise<T> {
-  return restconfRequest<T>(path, {
-    method: 'PATCH',
-    body: JSON.stringify(body),
-    headers: ASYNC_WRITE_HEADERS,
-    accept: 'application/yang-data+json',
-    contentType: 'application/yang-data+json',
-    readBody: false
-  });
-}
-
 /**
  * Send a raw string body with a caller-chosen method + Content-Type.
  * Use this when the body is already serialized (e.g. an XML payload, or
@@ -159,7 +148,7 @@ export function getListEntryPath(root: string, key: string | string[]): string {
   return `${normalizePath(root)}=${encodeListKey(key)}`;
 }
 
-export function getListWrapperKey(restconfRoot: string): string {
+function getListWrapperKey(restconfRoot: string): string {
   const segments = normalizePath(restconfRoot).replace(/^data\//, '').split('/');
   const last = segments[segments.length - 1];
 

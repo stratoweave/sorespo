@@ -5,7 +5,7 @@ import { PUBLIC_DEMO } from '$env/static/public';
  * Vite replace the flag at build time, so demo-only branches are provably
  * dead in normal builds and get tree-shaken.
  */
-export const DEMO = PUBLIC_DEMO === '1';
+const DEMO = PUBLIC_DEMO === '1';
 
 /**
  * App-internal href for the active router mode.

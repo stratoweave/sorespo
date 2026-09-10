@@ -28,3 +28,11 @@ export function listServiceModuleMeta(): ServiceModuleMeta[] {
 export function getServiceModule(moduleId: string): AnyServiceModule | null {
   return serviceModules[moduleId as keyof typeof serviceModules] ?? null;
 }
+
+export function getServiceModuleOrThrow(moduleId: string): AnyServiceModule {
+  const module = getServiceModule(moduleId);
+  if (!module) {
+    throw new Error(`Unknown service module: ${moduleId}`);
+  }
+  return module;
+}

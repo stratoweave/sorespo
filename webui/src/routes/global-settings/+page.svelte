@@ -12,9 +12,11 @@
 
   import type { AnyServiceModule } from '$lib/core/registry/types';
   import type { GlobalSettingsDraft } from '$lib/global-settings/model';
+  import type { PageProps } from './$types';
 
-  let { data }: { data: { draft: GlobalSettingsDraft; loadError: string } } = $props();
+  let { data }: PageProps = $props();
 
+  // Initial values only; later `data` changes are handled by the effect below.
   let store = $state(
     untrack(() => new DraftStore<GlobalSettingsDraft>(data.draft, globalSettingsModule.validate))
   );

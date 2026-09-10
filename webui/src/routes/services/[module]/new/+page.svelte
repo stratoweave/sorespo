@@ -3,7 +3,7 @@
   import { untrack } from 'svelte';
 
   import { DraftStore } from '$lib/core/drafts/draft-store.svelte';
-  import { getServiceModule } from '$lib/core/registry/service-modules';
+  import { getServiceModuleOrThrow } from '$lib/core/registry/service-modules';
   import {
     formatServiceRouteId,
     getDraftKey,
@@ -20,19 +20,12 @@
   import { appHref } from '$lib/core/util/nav';
   import ServiceWorkspace from '$lib/core/workspace/ServiceWorkspace.svelte';
 
-  let {
-    data
-  }: {
-    data: {
-      moduleId: string;
-      draft: unknown;
-      cloneSourceId: string;
-      cloneError: string;
-      routeKey: string;
-    };
-  } = $props();
+  import type { PageProps } from './$types';
 
-  let serviceModule = $state(untrack(() => resolveServiceModule(data.moduleId)));
+  let { data }: PageProps = $props();
+
+  // Initial values only; later `data` changes are handled by the effect below.
+  let serviceModule = $state(untrack(() => getServiceModuleOrThrow(data.moduleId)));
   let store = $state(untrack(() => new DraftStore(data.draft, serviceModule.validate)));
   let lastRouteKey = untrack(() => data.routeKey);
 
@@ -58,18 +51,8 @@
     untrack(() => initializeModule(data.moduleId, data.draft, data.cloneError));
   });
 
-  function resolveServiceModule(moduleId: string) {
-    const module = getServiceModule(moduleId);
-
-    if (!module) {
-      throw new Error(`Unknown service module: ${moduleId}`);
-    }
-
-    return module;
-  }
-
   function initializeModule(moduleId: string, nextDraft: unknown, cloneError: string): void {
-    serviceModule = resolveServiceModule(moduleId);
+    serviceModule = getServiceModuleOrThrow(moduleId);
     store = new DraftStore(nextDraft, serviceModule.validate);
     validationActive = false;
     validationKey += 1;

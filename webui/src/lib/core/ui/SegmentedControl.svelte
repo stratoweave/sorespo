@@ -19,6 +19,7 @@
     {#each options as option}
       <button
         class:active={value === option.value}
+        aria-pressed={value === option.value}
         type="button"
         disabled={option.disabled}
         onclick={() => onchange(option.value)}
@@ -45,7 +46,8 @@
   }
 
   .segmented-group__label {
-    color: var(--text-muted);
+    color: var(--sw-text-muted);
+    font-size: 12px;
     font-weight: 600;
   }
 

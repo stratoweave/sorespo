@@ -9,7 +9,7 @@
   const escalated = $derived(draft.accesses.filter((access) => access.bgpDebugActive));
 </script>
 
-{#each escalated as access}
+{#each escalated as access (access.uid)}
   <section class="bgp-state" data-tour="site-monitoring">
     <header class="bgp-state__header">
       <span class="bgp-state__title">eBGP session · {access.siteNetworkAccessId}</span>
@@ -49,9 +49,9 @@
     display: grid;
     gap: 12px;
     padding: 14px 16px;
-    border: 1px solid rgba(245, 158, 11, 0.35);
+    border: 1px solid rgb(var(--sw-warning-rgb) / 0.35);
     border-radius: 10px;
-    background: rgba(245, 158, 11, 0.07);
+    background: rgb(var(--sw-warning-rgb) / 0.07);
   }
 
   .bgp-state__header {
@@ -74,8 +74,8 @@
     border-radius: 20px;
     font-size: 11px;
     font-weight: 600;
-    color: rgba(245, 158, 11, 0.95);
-    background: rgba(245, 158, 11, 0.14);
+    color: rgb(var(--sw-warning-rgb) / 0.95);
+    background: rgb(var(--sw-warning-rgb) / 0.14);
   }
 
   .bgp-state__grid {
@@ -109,14 +109,14 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    color: rgba(34, 197, 94, 0.95);
+    color: rgb(var(--sw-success-rgb) / 0.95);
   }
 
   .session--up {
-    color: rgba(34, 197, 94, 0.95);
+    color: rgb(var(--sw-success-rgb) / 0.95);
   }
 
   .session--down {
-    color: rgba(239, 68, 68, 0.95);
+    color: rgb(var(--sw-danger-rgb) / 0.95);
   }
 </style>

@@ -4,10 +4,7 @@
     saving?: boolean;
     deleting?: boolean;
     saveDisabled?: boolean;
-    saveLabel?: string;
     showDelete?: boolean;
-    deleteDisabled?: boolean;
-    deleteLabel?: string;
     onsave?: () => void;
     onreset?: () => void;
     ondelete?: () => void;
@@ -18,10 +15,7 @@
     saving = false,
     deleting = false,
     saveDisabled = false,
-    saveLabel = 'Save',
     showDelete = false,
-    deleteDisabled = false,
-    deleteLabel = 'Delete',
     onsave,
     onreset,
     ondelete
@@ -37,26 +31,35 @@
 
     <div class="save-bar__actions">
       {#if showDelete}
-        <button class="btn btn-danger" type="button" disabled={deleteDisabled || deleting || saving} onclick={() => ondelete?.()}>
-          {deleting ? 'Deleting...' : deleteLabel}
+        <button class="btn btn-danger" type="button" disabled={deleting || saving} onclick={() => ondelete?.()}>
+          {deleting ? 'Deleting...' : 'Delete'}
         </button>
       {/if}
       <button class="btn" type="button" disabled={!dirty || saving} onclick={() => onreset?.()}>
         Reset
       </button>
       <button class="btn btn-primary" type="button" disabled={saveDisabled || saving} onclick={() => onsave?.()}>
-        {saving ? 'Saving...' : saveLabel}
+        {saving ? 'Saving...' : 'Save'}
       </button>
     </div>
   </div>
 </div>
 
 <style>
+  .save-bar {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    background: var(--sw-bg-surface);
+    box-shadow: var(--sw-shadow-sticky);
+  }
+
   .save-bar__inner {
     display: flex;
     gap: 1rem;
     align-items: center;
     justify-content: space-between;
+    padding: 14px 20px;
   }
 
   .save-bar__status {

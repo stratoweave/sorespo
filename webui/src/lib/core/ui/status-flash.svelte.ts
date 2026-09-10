@@ -1,5 +1,5 @@
 export interface StatusMessage {
-  type: 'success' | 'error';
+  type: 'success' | 'error' | 'warning';
   text: string;
 }
 

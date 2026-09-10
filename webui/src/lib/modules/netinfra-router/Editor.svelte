@@ -123,20 +123,6 @@
 </div>
 
 <style>
-  .editor {
-    display: grid;
-    gap: 20px;
-  }
-
-  .editor__grid {
-    display: grid;
-    gap: 16px;
-  }
-
-  .editor__grid--2col {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .editor__toggles {
     display: grid;
     gap: 12px;
@@ -144,11 +130,5 @@
     border-radius: var(--sw-radius-md);
     background: var(--sw-bg-elevated);
     border: 1px solid var(--sw-border-subtle);
-  }
-
-  @media (max-width: 720px) {
-    .editor__grid--2col {
-      grid-template-columns: 1fr;
-    }
   }
 </style>

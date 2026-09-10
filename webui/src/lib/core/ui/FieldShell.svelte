@@ -19,13 +19,10 @@
     control: Snippet<[{ hasError: boolean; blur: () => void }]>;
   } = $props();
 
-  let touched = $state(false);
-
-  $effect(() => {
-    // Reset touched whenever validationKey bumps.
-    validationKey;
-    touched = false;
-  });
+  // Remember which validation round the field was touched in; a validationKey
+  // bump therefore resets "touched" without an effect.
+  let touchedKey = $state(-1);
+  let touched = $derived(touchedKey === validationKey);
 
   let visibleError = $derived(touched ? error : '');
   let metaText = $derived(visibleError || help || ' ');
@@ -41,7 +38,7 @@
       <span class="field__yang-type">{yangType}</span>
     {/if}
   </span>
-  {@render control({ hasError: !!visibleError, blur: () => (touched = true) })}
+  {@render control({ hasError: !!visibleError, blur: () => (touchedKey = validationKey) })}
   <small class:field__meta--error={!!visibleError} class="field__meta">{metaText}</small>
 </label>
 
@@ -70,7 +67,7 @@
   .field__yang-type {
     margin-left: auto;
     font-family: var(--sw-font-mono);
-    font-size: 10px;
+    font-size: 11px;
     color: var(--sw-text-muted);
     background: var(--sw-bg-deep);
     padding: 1px 6px;
@@ -124,7 +121,7 @@
   .field :global(select) {
     padding-right: 32px;
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23556677' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%237d8cac' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
   }

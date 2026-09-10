@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
 
   import {
+    approvalStatus,
     approveConfigQueueItem,
     fetchConfigQueueItem,
     isPendingQueueItem,
@@ -10,16 +11,21 @@
   } from '$lib/core/orchestron/client';
   import { queuesPoll, refreshQueues, type QueuesPollValue } from '$lib/core/orchestron/poll-store';
   import XmlDiff from '$lib/core/diff/XmlDiff.svelte';
+  import EmptyState from '$lib/core/ui/EmptyState.svelte';
+  import NavIcon from '$lib/core/ui/NavIcon.svelte';
   import SegmentedControl from '$lib/core/ui/SegmentedControl.svelte';
+  import Skeleton from '$lib/core/ui/Skeleton.svelte';
+  import StatusBanner from '$lib/core/ui/StatusBanner.svelte';
+  import StatusPill from '$lib/core/ui/StatusPill.svelte';
   import { onGlobalRefresh } from '$lib/core/util/global-refresh';
   import { LatestRequest } from '$lib/core/util/latest-request';
 
-  let allQueues: QueueItemSummary[] = $state([]);
+  let allQueues = $state.raw<QueueItemSummary[]>([]);
   let loading = $state(true);
   let error = $state('');
   let selectedDevice: string | null = $state(null);
   let selectedQueueIndex = $state(0);
-  let itemDetail: QueueItemDetail | null = $state(null);
+  let itemDetail = $state.raw<QueueItemDetail | null>(null);
   let approvingItem: string | null = $state(null);
   let diffFormat = $state('xml');
 
@@ -95,11 +101,10 @@
       }
     }
 
-    const firstDeviceId = value.queues[0].deviceId;
-    const firstItem = value.queues.find((item) => item.deviceId === firstDeviceId)!;
-    selectedDevice = firstDeviceId;
+    const firstItem = value.queues[0];
+    selectedDevice = firstItem.deviceId;
     selectedQueueIndex = 0;
-    void loadItemDetail(firstDeviceId, firstItem.queueId);
+    void loadItemDetail(firstItem.deviceId, firstItem.queueId);
   }
 
   async function selectDevice(deviceId: string, index = 0): Promise<void> {
@@ -174,42 +179,42 @@
 
 <div class="page-header">
   <div>
-    <h2>Configuration Queue</h2>
+    <h1>Configuration Queue</h1>
     <p>Review pending device approvals and apply or reject the first queued change per device.</p>
   </div>
   <div class="queue-meta">
-    <span class:warning={pendingCount > 0} class="pill">{pendingCount} pending</span>
-    <span class="pill">Auto-refresh 1s</span>
+    <StatusPill tone={pendingCount > 0 ? 'warning' : 'success'} label={`${pendingCount} pending`} />
   </div>
 </div>
 
 <div class="queue-layout">
-  <section class="card queue-layout__sidebar" data-tour="queue-list">
+  <div class="card queue-layout__sidebar" data-tour="queue-list">
     {#if loading && allQueues.length === 0}
-      <div class="loading-state">Loading queue...</div>
+      <Skeleton variant="rows" rows={3} />
     {:else if error && allQueues.length === 0}
-      <div class="error-state">{error}</div>
+      <EmptyState tone="danger" icon="alert" title="Queue unavailable" description={error} compact />
     {:else if allQueues.length === 0}
-      <div class="empty-state">No pending approvals.</div>
+      <EmptyState icon="check" title="Nothing to approve" description="All device queues are empty." compact />
     {:else}
       <div class="queue-device-list">
-        {#each deviceList as device}
+        {#each deviceList as device (device.deviceId)}
           <div class:selected={selectedDevice === device.deviceId} class="queue-device">
             <button type="button" onclick={() => selectDevice(device.deviceId, 0)}>
               <strong>{device.deviceId}</strong>
-              <span class="pill warning">{device.count}</span>
+              <StatusPill tone={device.count > 0 ? 'warning' : 'neutral'} label={String(device.count)} dot={false} />
             </button>
             {#if selectedDevice === device.deviceId}
               <div class="queue-device__items">
-                {#each device.items as item, index}
+                {#each device.items as item, index (item.queueId)}
+                  {@const status = approvalStatus(item.approved)}
                   <button
                     class:active={selectedQueueIndex === index}
                     class="queue-device__item"
                     type="button"
                     onclick={() => selectDevice(device.deviceId, index)}
                   >
-                    <span>#{item.queueId}</span>
-                    <small>{item.approved === true ? 'Approved' : item.approved === false ? 'Rejected' : 'Pending'}</small>
+                    <span class="monospace">#{item.queueId}</span>
+                    <StatusPill tone={status.tone} label={status.label} />
                   </button>
                 {/each}
               </div>
@@ -218,17 +223,17 @@
         {/each}
       </div>
     {/if}
-  </section>
+  </div>
 
-  <section class="card queue-layout__detail" data-tour="queue-detail">
+  <div class="card queue-layout__detail" data-tour="queue-detail">
     {#if error && allQueues.length > 0}
-      <div class="flash error">{error}</div>
+      <StatusBanner message={{ type: 'error', text: error }} />
     {/if}
 
     {#if selectedItem && itemDetail}
       <div class="queue-layout__detail-header">
         <div>
-          <h3>{selectedItem.deviceId}</h3>
+          <h2>{selectedItem.deviceId}</h2>
           <p>
             Queue #{selectedItem.queueId}
             {#if itemDetail.tid}
@@ -254,16 +259,19 @@
 
       <div class="queue-layout__detail-toolbar">
         <div class="queue-layout__nav">
-          <button class="btn btn-secondary" type="button" disabled={selectedQueueIndex === 0} onclick={() => navigateQueue('prev')}>
-            Previous
+          <button class="btn btn-secondary btn-sm" type="button" disabled={selectedQueueIndex === 0} onclick={() => navigateQueue('prev')}>
+            <NavIcon name="chevron-left" size={14} /> Previous
           </button>
+          <span class="queue-layout__position">
+            {selectedQueueIndex + 1} / {selectedDevice ? deviceGroups[selectedDevice]?.length ?? 1 : 1}
+          </span>
           <button
-            class="btn btn-secondary"
+            class="btn btn-secondary btn-sm"
             type="button"
             disabled={!selectedDevice || selectedQueueIndex >= (deviceGroups[selectedDevice]?.length ?? 1) - 1}
             onclick={() => navigateQueue('next')}
           >
-            Next
+            Next <NavIcon name="chevron-right" size={14} />
           </button>
         </div>
         <div class="queue-layout__actions" data-tour="queue-actions">
@@ -277,26 +285,29 @@
             {approvingItem === `${selectedItem.deviceId}:${selectedItem.queueId}` ? 'Updating...' : 'Reject'}
           </button>
           <button
-            class="btn btn-success"
+            class="btn btn-primary"
             type="button"
             disabled={selectedQueueIndex !== 0 || approvingItem === `${selectedItem.deviceId}:${selectedItem.queueId}`}
             title={selectedQueueIndex !== 0 ? 'Only the first queued change per device can be approved or rejected.' : undefined}
             onclick={() => handleDecision(true)}
           >
+            <NavIcon name="check" size={15} />
             {approvingItem === `${selectedItem.deviceId}:${selectedItem.queueId}` ? 'Updating...' : 'Approve & Apply'}
           </button>
         </div>
       </div>
 
       {#if itemDetail.config_diff}
-        <XmlDiff diff={itemDetail.config_diff} format={diffFormat} minHeight="28rem" />
+        <XmlDiff diff={itemDetail.config_diff} format={diffFormat} minHeight="28rem" maxHeight="var(--sw-code-viewer-height)" />
       {:else}
-        <div class="empty-state">No configuration diff available for this queue item.</div>
+        <EmptyState icon="file" title="No diff" description="This queue item carries no configuration diff." compact />
       {/if}
+    {:else if selectedItem}
+      <Skeleton height="28rem" />
     {:else}
-      <div class="empty-state">Select a device queue item to review its diff.</div>
+      <EmptyState icon="queue" title="Select a queue item" description="Pick a device on the left to review its pending change." />
     {/if}
-  </section>
+  </div>
 </div>
 
 <style>
@@ -314,24 +325,29 @@
 
   .queue-layout__sidebar,
   .queue-layout__detail {
-    padding: 1.2rem;
+    padding: 16px;
+  }
+
+  .queue-layout__sidebar {
+    align-self: start;
   }
 
   .queue-device-list {
     display: grid;
-    gap: 0.75rem;
+    gap: 8px;
   }
 
   .queue-device {
-    padding: 0.9rem;
-    border-radius: 1rem;
-    border: 1px solid var(--border);
-    background: var(--surface-alt);
+    padding: 10px 12px;
+    border-radius: var(--sw-radius-md);
+    border: 1px solid var(--sw-border-subtle);
+    background: var(--sw-bg-elevated);
+    transition: border-color var(--sw-dur-fast), background var(--sw-dur-fast);
   }
 
   .queue-device.selected {
-    border-color: var(--brand);
-    background: var(--brand-soft);
+    border-color: var(--sw-accent-dim);
+    background: var(--sw-accent-glow);
   }
 
   .queue-device > button {
@@ -342,14 +358,16 @@
     gap: 0.75rem;
     border: none;
     background: transparent;
-    padding: 0;
+    padding: 2px 0;
     cursor: pointer;
+    color: var(--sw-text-primary);
+    font-size: 13px;
   }
 
   .queue-device__items {
     display: grid;
-    gap: 0.45rem;
-    margin-top: 0.8rem;
+    gap: 6px;
+    margin-top: 10px;
   }
 
   .queue-device__item {
@@ -357,21 +375,23 @@
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
-    padding: 0.7rem 0.8rem;
+    padding: 8px 10px;
     border: 1px solid var(--sw-border-subtle);
-    border-radius: var(--sw-radius-md);
+    border-radius: var(--sw-radius-sm);
     background: var(--sw-bg-card);
     cursor: pointer;
     color: var(--sw-text-primary);
+    font-size: 12px;
+    transition: border-color var(--sw-dur-fast), background var(--sw-dur-fast);
+  }
+
+  .queue-device__item:hover {
+    border-color: var(--sw-border-default);
   }
 
   .queue-device__item.active {
     border-color: var(--sw-accent-dim);
     background: var(--sw-accent-glow);
-  }
-
-  .queue-device__item small {
-    color: var(--text-muted);
   }
 
   .queue-layout__detail {
@@ -388,24 +408,31 @@
     flex-wrap: wrap;
   }
 
-  .queue-layout__detail-header h3,
-  .queue-layout__detail-header p {
-    margin: 0;
+  .queue-layout__detail-header h2 {
+    font-size: 16px;
   }
 
   .queue-layout__detail-header p {
-    margin-top: 0.35rem;
-    color: var(--text-muted);
+    margin-top: 4px;
+    font-size: 13px;
+    color: var(--sw-text-muted);
   }
 
   .queue-layout__nav,
   .queue-layout__actions {
     display: flex;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 8px;
     flex-wrap: wrap;
   }
 
-  @media (max-width: 980px) {
+  .queue-layout__position {
+    font-size: 12px;
+    color: var(--sw-text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 960px) {
     .queue-layout {
       grid-template-columns: 1fr;
     }

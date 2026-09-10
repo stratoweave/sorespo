@@ -1,18 +1,23 @@
 import { createNetinfraRouterDraft } from '$lib/modules/netinfra-router/defaults';
+import { at, booleanAt, isRecord, numberAt, stringAt } from '$lib/core/util/json';
 
 import type { ServiceListItem } from '$lib/core/registry/types';
 import type { NetinfraRouterDraft } from '$lib/modules/netinfra-router/model';
 
-function getRouterEntry(input: any): any | null {
-  if (Array.isArray(input?.['netinfra:router'])) {
-    return input['netinfra:router'][0] ?? null;
-  }
+/** First entry of the list at `path`, null for an empty list, undefined when absent. */
+function firstEntry(input: unknown, ...path: string[]): unknown {
+  const list = at(input, ...path);
+  return Array.isArray(list) ? (list[0] ?? null) : undefined;
+}
 
-  if (Array.isArray(input?.['netinfra:netinfra']?.router)) {
-    return input['netinfra:netinfra'].router[0] ?? null;
-  }
+function getRouterEntry(input: unknown): unknown {
+  const bare = firstEntry(input, 'netinfra:router');
+  if (bare !== undefined) return bare;
 
-  if (input && typeof input === 'object' && 'name' in input) {
+  const nested = firstEntry(input, 'netinfra:netinfra', 'router');
+  if (nested !== undefined) return nested;
+
+  if (isRecord(input) && 'name' in input) {
     return input;
   }
 
@@ -28,29 +33,34 @@ export function parseNetinfraRouter(input: unknown): NetinfraRouterDraft {
   }
 
   return {
-    name: String(router.name ?? ''),
-    id: typeof router.id === 'number' ? router.id : router.id ? Number(router.id) : null,
-    type: String(router.type ?? ''),
-    role: String(router.role ?? ''),
-    asn: typeof router.asn === 'number' ? router.asn : router.asn ? Number(router.asn) : null,
-    mock: Boolean(router.mock ?? false),
-    approvalRequired: Boolean(router['approval-required'] ?? false),
+    name: stringAt(router, 'name'),
+    id: numberAt(router, 'id'),
+    type: stringAt(router, 'type'),
+    role: stringAt(router, 'role'),
+    asn: numberAt(router, 'asn'),
+    mock: booleanAt(router, 'mock'),
+    approvalRequired: booleanAt(router, 'approval-required'),
     featureFlags: {
-      runtimeSchemaFetch: Boolean(router['feature-flags']?.['runtime-schema-fetch'] ?? false)
+      runtimeSchemaFetch: booleanAt(router, 'feature-flags', 'runtime-schema-fetch')
     }
   };
 }
 
-export function listNetinfraRouters(input: any): ServiceListItem[] {
-  const routers = input?.['netinfra:netinfra']?.router ?? input?.['netinfra:router'] ?? [];
+export function listNetinfraRouters(input: unknown): ServiceListItem[] {
+  const routers = at(input, 'netinfra:netinfra', 'router') ?? at(input, 'netinfra:router') ?? [];
 
   if (!Array.isArray(routers)) {
     return [];
   }
 
-  return routers.map((router) => ({
-    id: String(router.name),
-    label: String(router.name),
-    description: [router.type, router.role || null, router.asn ? `AS${router.asn}` : null].filter(Boolean).join(' · ')
-  }));
+  return routers.map((router) => {
+    const asn = numberAt(router, 'asn');
+    return {
+      id: stringAt(router, 'name'),
+      label: stringAt(router, 'name'),
+      description: [stringAt(router, 'type'), stringAt(router, 'role') || null, asn ? `AS${asn}` : null]
+        .filter(Boolean)
+        .join(' · ')
+    };
+  });
 }

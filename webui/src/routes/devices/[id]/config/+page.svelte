@@ -1,18 +1,17 @@
 <script lang="ts">
-  import { browser } from '$app/environment';
+  import { onMount } from 'svelte';
 
-  import {
-    fetchDeviceRunningConfig,
-    fetchDeviceTargetConfig,
-    type DeviceInfo
-  } from '$lib/core/orchestron/client';
+  import { fetchDeviceConfig, type DeviceConfigView } from '$lib/core/orchestron/client';
   import ConfigViewerCard from '$lib/core/ui/ConfigViewerCard.svelte';
+  import EmptyState from '$lib/core/ui/EmptyState.svelte';
   import SegmentedControl from '$lib/core/ui/SegmentedControl.svelte';
   import { LatestRequest } from '$lib/core/util/latest-request';
 
-  let { data }: { data: { deviceId: string; device: DeviceInfo | null; loadError: string } } = $props();
+  import type { PageProps } from './$types';
 
-  const VIEW_OPTIONS: { value: 'running' | 'target'; label: string }[] = [
+  let { data }: PageProps = $props();
+
+  const VIEW_OPTIONS: { value: DeviceConfigView; label: string }[] = [
     { value: 'running', label: 'Running' },
     { value: 'target', label: 'Target' }
   ];
@@ -23,9 +22,7 @@
     { value: 'adata', label: 'AData' }
   ];
 
-  let lastLoadedId = $state('');
-
-  let configViewMode: 'running' | 'target' = $state('running');
+  let configViewMode = $state<DeviceConfigView>('running');
   let configFormat = $state('xml');
   let configData = $state('');
   let loadingConfig = $state(false);
@@ -36,22 +33,19 @@
 
   const configRequest = new LatestRequest();
 
-  $effect(() => {
-    if (browser && deviceId && deviceId !== lastLoadedId) {
-      lastLoadedId = deviceId;
-      loadConfigView('running');
-    }
+  // The layout remounts this page per pathname, so one initial load suffices.
+  onMount(() => {
+    void loadConfigView('running');
   });
 
-  async function loadConfigView(mode: 'running' | 'target'): Promise<void> {
+  async function loadConfigView(mode: DeviceConfigView): Promise<void> {
     const token = configRequest.begin();
     try {
       loadingConfig = true;
       configViewMode = mode;
       configData = '';
 
-      const fetcher = mode === 'running' ? fetchDeviceRunningConfig : fetchDeviceTargetConfig;
-      const result = await fetcher(data.deviceId, configFormat);
+      const result = await fetchDeviceConfig(deviceId, mode, configFormat);
       if (!configRequest.isCurrent(token)) return;
       configData = result;
     } catch (loadError) {
@@ -74,13 +68,13 @@
 
 <div class="page-header">
   <div>
-    <h2>Device Configuration</h2>
+    <h1>Device Configuration</h1>
     <p>Inspect the running or target configuration in JSON, XML, GData, or AData form.</p>
   </div>
 </div>
 
 {#if error}
-  <div class="error-state">{error}</div>
+  <EmptyState tone="danger" icon="alert" title="Device unavailable" description={error} />
 {:else if device}
   <div data-tour="config-viewer">
     <ConfigViewerCard title={device.name || device.id} loading={loadingConfig} content={configData}>

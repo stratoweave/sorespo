@@ -1,4 +1,5 @@
 import { normalizeIdentity } from '$lib/core/restconf/identity';
+import { arrayAt, at, isRecord, stringAt } from '$lib/core/util/json';
 import {
   createL3VpnSiteAccessDraft,
   createL3VpnSiteDeviceDraft,
@@ -101,54 +102,54 @@ interface BgpSessionInfo {
 
 /** Read the eBGP session telemetry the CFS layer augments onto the site
  * (sorespo-ietf-l3vpn-svc:bgp-sessions), keyed by site-network-access. */
-function parseBgpSessions(site: any): Record<string, BgpSessionInfo> {
-  const container = site?.['sorespo-ietf-l3vpn-svc:bgp-sessions'] ?? site?.['bgp-sessions'];
-  const list = container?.['bgp-session'];
+function parseBgpSessions(site: unknown): Record<string, BgpSessionInfo> {
+  const container = at(site, 'sorespo-ietf-l3vpn-svc:bgp-sessions') ?? at(site, 'bgp-sessions');
   const out: Record<string, BgpSessionInfo> = {};
-  if (Array.isArray(list)) {
-    for (const entry of list) {
-      const id = String(entry?.['site-network-access'] ?? '');
-      if (!id) continue;
-      out[id] = {
-        state: entry?.['session-state'] != null ? normalizeIdentity(entry['session-state']) : null,
-        debug: normalizeBool(entry?.['debug-active']),
-        transitions: toNumber(entry?.['established-transitions']),
-        lastEvent: entry?.['last-event'] != null ? String(entry['last-event']) : null,
-        negotiatedHoldTime: toNumber(entry?.['negotiated-hold-time']),
-        lastNotification: entry?.['last-notification'] != null ? String(entry['last-notification']) : null
-      };
-    }
+  for (const entry of arrayAt(container, 'bgp-session')) {
+    const id = stringAt(entry, 'site-network-access');
+    if (!id) continue;
+    const sessionState = at(entry, 'session-state');
+    const lastEvent = at(entry, 'last-event');
+    const lastNotification = at(entry, 'last-notification');
+    out[id] = {
+      state: sessionState != null ? normalizeIdentity(sessionState) : null,
+      debug: normalizeBool(at(entry, 'debug-active')),
+      transitions: toNumber(at(entry, 'established-transitions')),
+      lastEvent: lastEvent != null ? String(lastEvent) : null,
+      negotiatedHoldTime: toNumber(at(entry, 'negotiated-hold-time')),
+      lastNotification: lastNotification != null ? String(lastNotification) : null
+    };
   }
   return out;
 }
 
-function parseLanPrefix(input: any): L3VpnSiteLanPrefixDraft {
+function parseLanPrefix(input: unknown): L3VpnSiteLanPrefixDraft {
   const defaults = createL3VpnSiteLanPrefixDraft();
 
   return {
     ...defaults,
-    lan: String(input?.lan ?? ''),
-    lanTag: String(input?.['lan-tag'] ?? ''),
-    nextHop: String(input?.['next-hop'] ?? '')
+    lan: stringAt(input, 'lan'),
+    lanTag: stringAt(input, 'lan-tag'),
+    nextHop: stringAt(input, 'next-hop')
   };
 }
 
-function parseRoutingProtocol(input: any): L3VpnSiteRoutingProtocolDraft {
+function parseRoutingProtocol(input: unknown): L3VpnSiteRoutingProtocolDraft {
   const defaults = createL3VpnSiteRoutingProtocolDraft();
-  const type = normalizeRoutingProtocolType(input?.type);
+  const type = normalizeRoutingProtocolType(at(input, 'type'));
 
   if (type === 'bgp') {
     return {
       ...defaults,
       type,
-      bgpAutonomousSystem: toNumber(input?.bgp?.['autonomous-system']),
+      bgpAutonomousSystem: toNumber(at(input, 'bgp', 'autonomous-system')),
       // Augmented leaf — RESTCONF serves it module-prefixed.
       bgpAuthenticationKey: String(
-        input?.bgp?.['sorespo-ietf-l3vpn-svc:authentication-key'] ??
-          input?.bgp?.['authentication-key'] ??
+        at(input, 'bgp', 'sorespo-ietf-l3vpn-svc:authentication-key') ??
+          at(input, 'bgp', 'authentication-key') ??
           ''
       ),
-      addressFamilies: normalizeAddressFamilies(input?.bgp?.['address-family'])
+      addressFamilies: normalizeAddressFamilies(at(input, 'bgp', 'address-family'))
     };
   }
 
@@ -156,9 +157,9 @@ function parseRoutingProtocol(input: any): L3VpnSiteRoutingProtocolDraft {
     return {
       ...defaults,
       type,
-      ospfAreaAddress: String(input?.ospf?.['area-address'] ?? ''),
-      ospfMetric: toNumber(input?.ospf?.metric),
-      addressFamilies: normalizeAddressFamilies(input?.ospf?.['address-family'])
+      ospfAreaAddress: stringAt(input, 'ospf', 'area-address'),
+      ospfMetric: toNumber(at(input, 'ospf', 'metric')),
+      addressFamilies: normalizeAddressFamilies(at(input, 'ospf', 'address-family'))
     };
   }
 
@@ -166,7 +167,7 @@ function parseRoutingProtocol(input: any): L3VpnSiteRoutingProtocolDraft {
     return {
       ...defaults,
       type,
-      addressFamilies: normalizeAddressFamilies(input?.rip?.['address-family'])
+      addressFamilies: normalizeAddressFamilies(at(input, 'rip', 'address-family'))
     };
   }
 
@@ -174,7 +175,7 @@ function parseRoutingProtocol(input: any): L3VpnSiteRoutingProtocolDraft {
     return {
       ...defaults,
       type,
-      addressFamilies: normalizeAddressFamilies(input?.vrrp?.['address-family'])
+      addressFamilies: normalizeAddressFamilies(at(input, 'vrrp', 'address-family'))
     };
   }
 
@@ -182,12 +183,8 @@ function parseRoutingProtocol(input: any): L3VpnSiteRoutingProtocolDraft {
     return {
       ...defaults,
       type,
-      staticIpv4LanPrefixes: Array.isArray(input?.static?.['cascaded-lan-prefixes']?.['ipv4-lan-prefixes'])
-        ? input.static['cascaded-lan-prefixes']['ipv4-lan-prefixes'].map(parseLanPrefix)
-        : [],
-      staticIpv6LanPrefixes: Array.isArray(input?.static?.['cascaded-lan-prefixes']?.['ipv6-lan-prefixes'])
-        ? input.static['cascaded-lan-prefixes']['ipv6-lan-prefixes'].map(parseLanPrefix)
-        : []
+      staticIpv4LanPrefixes: arrayAt(input, 'static', 'cascaded-lan-prefixes', 'ipv4-lan-prefixes').map(parseLanPrefix),
+      staticIpv6LanPrefixes: arrayAt(input, 'static', 'cascaded-lan-prefixes', 'ipv6-lan-prefixes').map(parseLanPrefix)
     };
   }
 
@@ -198,88 +195,88 @@ function parseRoutingProtocol(input: any): L3VpnSiteRoutingProtocolDraft {
   };
 }
 
-function parseAccess(input: any): L3VpnSiteAccessDraft {
+function parseAccess(input: unknown): L3VpnSiteAccessDraft {
   const defaults = createL3VpnSiteAccessDraft();
 
   return {
     ...defaults,
-    siteNetworkAccessId: String(input?.['site-network-access-id'] ?? ''),
-    siteNetworkAccessType: normalizeAccessType(input?.['site-network-access-type']),
-    locationReference: String(input?.['location-reference'] ?? ''),
-    deviceReference: String(input?.['device-reference'] ?? ''),
-    inputBandwidth: String(input?.service?.['svc-input-bandwidth'] ?? ''),
-    outputBandwidth: String(input?.service?.['svc-output-bandwidth'] ?? ''),
-    mtu: toNumber(input?.service?.['svc-mtu']),
-    vpnId: String(input?.['vpn-attachment']?.['vpn-id'] ?? ''),
-    providerAddress: String(input?.['ip-connection']?.ipv4?.addresses?.['provider-address'] ?? ''),
-    customerAddress: String(input?.['ip-connection']?.ipv4?.addresses?.['customer-address'] ?? ''),
-    prefixLength: toNumber(input?.['ip-connection']?.ipv4?.addresses?.['prefix-length']),
-    bearerReference: String(input?.bearer?.['bearer-reference'] ?? ''),
-    routingProtocols: Array.isArray(input?.['routing-protocols']?.['routing-protocol'])
-      ? input['routing-protocols']['routing-protocol'].map(parseRoutingProtocol)
-      : []
+    siteNetworkAccessId: stringAt(input, 'site-network-access-id'),
+    siteNetworkAccessType: normalizeAccessType(at(input, 'site-network-access-type')),
+    locationReference: stringAt(input, 'location-reference'),
+    deviceReference: stringAt(input, 'device-reference'),
+    inputBandwidth: stringAt(input, 'service', 'svc-input-bandwidth'),
+    outputBandwidth: stringAt(input, 'service', 'svc-output-bandwidth'),
+    mtu: toNumber(at(input, 'service', 'svc-mtu')),
+    vpnId: stringAt(input, 'vpn-attachment', 'vpn-id'),
+    providerAddress: stringAt(input, 'ip-connection', 'ipv4', 'addresses', 'provider-address'),
+    customerAddress: stringAt(input, 'ip-connection', 'ipv4', 'addresses', 'customer-address'),
+    prefixLength: toNumber(at(input, 'ip-connection', 'ipv4', 'addresses', 'prefix-length')),
+    bearerReference: stringAt(input, 'bearer', 'bearer-reference'),
+    routingProtocols: arrayAt(input, 'routing-protocols', 'routing-protocol').map(parseRoutingProtocol)
   };
 }
 
-function parseLocation(input: any): L3VpnSiteLocationDraft {
+function parseLocation(input: unknown): L3VpnSiteLocationDraft {
   const defaults = createL3VpnSiteLocationDraft();
 
   return {
     ...defaults,
-    locationId: String(input?.['location-id'] ?? ''),
-    address: String(input?.address ?? ''),
-    postalCode: String(input?.['postal-code'] ?? ''),
-    state: String(input?.state ?? ''),
-    city: String(input?.city ?? ''),
-    countryCode: String(input?.['country-code'] ?? '')
+    locationId: stringAt(input, 'location-id'),
+    address: stringAt(input, 'address'),
+    postalCode: stringAt(input, 'postal-code'),
+    state: stringAt(input, 'state'),
+    city: stringAt(input, 'city'),
+    countryCode: stringAt(input, 'country-code')
   };
 }
 
-function parseDevice(input: any): L3VpnSiteDeviceDraft {
+function parseDevice(input: unknown): L3VpnSiteDeviceDraft {
   const defaults = createL3VpnSiteDeviceDraft();
-  const addressFamily = normalizeIdentity(input?.management?.['address-family']);
+  const addressFamily = normalizeIdentity(at(input, 'management', 'address-family'));
 
   return {
     ...defaults,
-    deviceId: String(input?.['device-id'] ?? ''),
-    location: String(input?.location ?? ''),
+    deviceId: stringAt(input, 'device-id'),
+    location: stringAt(input, 'location'),
     managementAddressFamily: L3VPN_SITE_ADDRESS_FAMILIES.includes(addressFamily as L3VpnSiteAddressFamily)
       ? (addressFamily as L3VpnSiteAddressFamily)
       : '',
-    managementAddress: String(input?.management?.address ?? '')
+    managementAddress: stringAt(input, 'management', 'address')
   };
 }
 
-function getSiteEntry(input: any): any | null {
-  if (Array.isArray(input?.['ietf-l3vpn-svc:site'])) {
-    return input['ietf-l3vpn-svc:site'][0] ?? null;
+/** First entry of the list at `path`, null for an empty list, undefined when absent. */
+function firstEntry(input: unknown, ...path: string[]): unknown {
+  const list = at(input, ...path);
+  return Array.isArray(list) ? (list[0] ?? null) : undefined;
+}
+
+const SITE_LIST_PATHS: string[][] = [
+  ['ietf-l3vpn-svc:site'],
+  ['ietf-l3vpn-svc:sites', 'site'],
+  ['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site'],
+  ['sites', 'site']
+];
+
+function getSiteEntry(input: unknown): unknown {
+  for (const path of SITE_LIST_PATHS) {
+    const entry = firstEntry(input, ...path);
+    if (entry !== undefined) return entry;
   }
 
-  if (Array.isArray(input?.['ietf-l3vpn-svc:sites']?.site)) {
-    return input['ietf-l3vpn-svc:sites'].site[0] ?? null;
-  }
-
-  if (Array.isArray(input?.['ietf-l3vpn-svc:l3vpn-svc']?.sites?.site)) {
-    return input['ietf-l3vpn-svc:l3vpn-svc'].sites.site[0] ?? null;
-  }
-
-  if (Array.isArray(input?.sites?.site)) {
-    return input.sites.site[0] ?? null;
-  }
-
-  if (input && typeof input === 'object' && 'site-id' in input) {
+  if (isRecord(input) && 'site-id' in input) {
     return input;
   }
 
   return null;
 }
 
-export function getSites(input: any): any[] {
+export function getSites(input: unknown): unknown[] {
   const sites =
-    input?.['ietf-l3vpn-svc:l3vpn-svc']?.sites?.site ??
-    input?.['ietf-l3vpn-svc:sites']?.site ??
-    input?.sites?.site ??
-    input?.['ietf-l3vpn-svc:site'] ??
+    at(input, 'ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site') ??
+    at(input, 'ietf-l3vpn-svc:sites', 'site') ??
+    at(input, 'sites', 'site') ??
+    at(input, 'ietf-l3vpn-svc:site') ??
     [];
 
   return Array.isArray(sites) ? sites : [];
@@ -293,9 +290,7 @@ export function parseL3VpnSite(input: unknown): L3VpnSiteDraft {
     return defaults;
   }
 
-  const accesses: L3VpnSiteAccessDraft[] = Array.isArray(site?.['site-network-accesses']?.['site-network-access'])
-    ? site['site-network-accesses']['site-network-access'].map(parseAccess)
-    : [];
+  const accesses: L3VpnSiteAccessDraft[] = arrayAt(site, 'site-network-accesses', 'site-network-access').map(parseAccess);
   const sessions = parseBgpSessions(site);
   for (const access of accesses) {
     const session = sessions[access.siteNetworkAccessId];
@@ -310,22 +305,20 @@ export function parseL3VpnSite(input: unknown): L3VpnSiteDraft {
   }
 
   return {
-    siteId: String(site['site-id'] ?? ''),
-    managementType: normalizeManagementType(site?.management?.type),
-    locations: Array.isArray(site?.locations?.location) ? site.locations.location.map(parseLocation) : [],
-    devices: Array.isArray(site?.devices?.device) ? site.devices.device.map(parseDevice) : [],
+    siteId: stringAt(site, 'site-id'),
+    managementType: normalizeManagementType(at(site, 'management', 'type')),
+    locations: arrayAt(site, 'locations', 'location').map(parseLocation),
+    devices: arrayAt(site, 'devices', 'device').map(parseDevice),
     accesses
   };
 }
 
 export function listL3VpnSites(input: unknown): ServiceListItem[] {
   return getSites(input).map((site) => {
-    const siteId = String(site['site-id'] ?? '');
-    const managementType = normalizeManagementType(site?.management?.type);
-    const locations = Array.isArray(site?.locations?.location) ? site.locations.location.length : 0;
-    const accesses = Array.isArray(site?.['site-network-accesses']?.['site-network-access'])
-      ? site['site-network-accesses']['site-network-access'].length
-      : 0;
+    const siteId = stringAt(site, 'site-id');
+    const managementType = normalizeManagementType(at(site, 'management', 'type'));
+    const locations = arrayAt(site, 'locations', 'location').length;
+    const accesses = arrayAt(site, 'site-network-accesses', 'site-network-access').length;
 
     return {
       id: siteId,

@@ -6,13 +6,11 @@
     value?: number | null;
     min?: number;
     max?: number;
-    step?: number;
     placeholder?: string;
     error?: string;
     help?: string;
     yangType?: string;
     required?: boolean;
-    disabled?: boolean;
     validationKey?: number;
     onchange?: (next: number | null) => void;
     ontouch?: () => void;
@@ -23,13 +21,11 @@
     value = null,
     min,
     max,
-    step = 1,
     placeholder = '',
     error = '',
     help = '',
     yangType = '',
     required = false,
-    disabled = false,
     validationKey = 0,
     onchange,
     ontouch
@@ -49,9 +45,7 @@
       value={value ?? ''}
       {min}
       {max}
-      {step}
       {placeholder}
-      {disabled}
       oninput={(event) => {
         const next = (event.currentTarget as HTMLInputElement).value;
         if (next === '') {

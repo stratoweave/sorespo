@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { browser } from '$app/environment';
   import { goto, invalidate } from '$app/navigation';
   import { onMount, untrack } from 'svelte';
 
   import { DraftStore } from '$lib/core/drafts/draft-store.svelte';
-  import { getServiceModule } from '$lib/core/registry/service-modules';
+  import { getServiceModuleOrThrow } from '$lib/core/registry/service-modules';
   import {
     formatServiceRouteId,
     getDraftKey,
@@ -25,13 +24,12 @@
   import { appHref } from '$lib/core/util/nav';
   import ServiceWorkspace from '$lib/core/workspace/ServiceWorkspace.svelte';
 
-  let {
-    data
-  }: {
-    data: { moduleId: string; serviceId: string; draft: unknown; loadError: string };
-  } = $props();
+  import type { PageProps } from './$types';
 
-  let serviceModule = $state(untrack(() => resolveServiceModule(data.moduleId)));
+  let { data }: PageProps = $props();
+
+  // Initial values only; later `data` changes are handled by the effect below.
+  let serviceModule = $state(untrack(() => getServiceModuleOrThrow(data.moduleId)));
   let store = $state(untrack(() => new DraftStore(data.draft, serviceModule.validate)));
   let saving = $state(false);
   let deleting = $state(false);
@@ -51,7 +49,6 @@
   let displayServiceId = $derived(formatServiceRouteId(serviceModule, data.serviceId));
 
   $effect(() => {
-    if (!browser) return;
     const nextData = data;
     if (nextData === lastData) return;
 
@@ -66,7 +63,7 @@
         return;
       }
 
-      serviceModule = resolveServiceModule(nextData.moduleId);
+      serviceModule = getServiceModuleOrThrow(nextData.moduleId);
       store = new DraftStore(nextData.draft, serviceModule.validate);
       saving = false;
       deleting = false;
@@ -80,16 +77,6 @@
   onMount(() =>
     onGlobalRefresh(() => invalidate(`data:service:${data.moduleId}:${data.serviceId}`))
   );
-
-  function resolveServiceModule(moduleId: string) {
-    const module = getServiceModule(moduleId);
-
-    if (!module) {
-      throw new Error(`Unknown service module: ${moduleId}`);
-    }
-
-    return module;
-  }
 
   async function handleSave(): Promise<void> {
     const key = getDraftKey(serviceModule, store.draft);

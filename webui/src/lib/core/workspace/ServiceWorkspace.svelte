@@ -3,9 +3,11 @@
 
   import PreviewPanel from '$lib/core/workspace/PreviewPanel.svelte';
   import SaveBar from '$lib/core/workspace/SaveBar.svelte';
+  import StatusBanner from '$lib/core/ui/StatusBanner.svelte';
   import ValidationPanel from '$lib/core/workspace/ValidationPanel.svelte';
 
   import type { ServiceModule } from '$lib/core/registry/types';
+  import type { StatusMessage } from '$lib/core/ui/status-flash.svelte';
   import type { ValidationResult } from '$lib/core/validation/types';
 
   interface Props {
@@ -19,13 +21,10 @@
     saving?: boolean;
     deleting?: boolean;
     saveDisabled?: boolean;
-    loading?: boolean;
     validationActive?: boolean;
     validationKey?: number;
-    statusMessage?: { type: 'success' | 'error'; text: string } | null;
+    statusMessage?: StatusMessage | null;
     showDelete?: boolean;
-    deleteDisabled?: boolean;
-    deleteLabel?: string;
     headerActions?: Snippet;
     onchange?: (next: unknown) => void;
     ontouch?: () => void;
@@ -45,13 +44,10 @@
     saving = false,
     deleting = false,
     saveDisabled = false,
-    loading = false,
     validationActive = false,
     validationKey = 0,
     statusMessage = null,
     showDelete = false,
-    deleteDisabled = false,
-    deleteLabel = 'Delete',
     headerActions,
     onchange,
     ontouch,
@@ -68,9 +64,9 @@
 </script>
 
 <div class="workspace">
-  <div class="page-header">
+  <div class="page-header page-header--flush">
     <div>
-      <h2>{title}</h2>
+      <h1>{title}</h1>
       <p>{subtitle}</p>
     </div>
     <div class="workspace__meta">
@@ -91,24 +87,19 @@
     </div>
   </div>
 
-  {#if statusMessage}
-    <div class="flash {statusMessage.type}">{statusMessage.text}</div>
-  {/if}
+  <StatusBanner message={statusMessage} />
 
-  {#if loading}
-    <div class="loading-state">Loading service data...</div>
-  {:else}
-    <div class="workspace__grid">
+  <div class="workspace__grid">
       <div class="workspace__editor-col">
         {#if StatePanel}
           <StatePanel {draft} />
         {/if}
         <section class="workspace__editor card" data-tour="workspace-editor">
         <div class="card-header">
-          <h3>Editor</h3>
+          <h2>Editor</h2>
           <span class="card-badge">{module.id}</span>
           {#if Summary}
-            <div style="margin-left: auto;">
+            <div class="push-right">
               <Summary {draft} />
             </div>
           {/if}
@@ -131,7 +122,6 @@
         <PreviewPanel {draft} {payload} {originalPayload} Preview={module.Preview} />
       </div>
     </div>
-  {/if}
 
   <SaveBar
     {dirty}
@@ -139,8 +129,6 @@
     {deleting}
     {saveDisabled}
     {showDelete}
-    {deleteDisabled}
-    {deleteLabel}
     onsave={() => onsave?.()}
     onreset={() => onreset?.()}
     ondelete={() => ondelete?.()}
@@ -185,7 +173,7 @@
     align-content: start;
   }
 
-  @media (max-width: 980px) {
+  @media (max-width: 960px) {
     .workspace__grid {
       grid-template-columns: 1fr;
     }

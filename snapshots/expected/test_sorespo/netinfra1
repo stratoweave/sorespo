@@ -44,6 +44,17 @@
           </interfaces>
         </ldp>
       </mpls>
+      <routing-policy xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-route-policy-cfg">
+        <route-policies>
+          <route-policy>
+            <route-policy-name>ACCEPT</route-policy-name>
+            <rpl-route-policy>route-policy ACCEPT
+  done
+end-policy
+</rpl-route-policy>
+          </route-policy>
+        </route-policies>
+      </routing-policy>
       <router xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-router-bgp-cfg">
         <bgp>
           <as>
@@ -149,17 +160,6 @@
           </processes>
         </isis>
       </router>
-      <routing-policy xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-route-policy-cfg">
-        <route-policies>
-          <route-policy>
-            <route-policy-name>ACCEPT</route-policy-name>
-            <rpl-route-policy>route-policy ACCEPT
-  done
-end-policy
-</rpl-route-policy>
-          </route-policy>
-        </route-policies>
-      </routing-policy>
     </config>
     <modset_id>11381456856284907834</modset_id>
   </device>
@@ -208,6 +208,17 @@ end-policy
           </interfaces>
         </ldp>
       </mpls>
+      <routing-policy xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-route-policy-cfg">
+        <route-policies>
+          <route-policy>
+            <route-policy-name>ACCEPT</route-policy-name>
+            <rpl-route-policy>route-policy ACCEPT
+  done
+end-policy
+</rpl-route-policy>
+          </route-policy>
+        </route-policies>
+      </routing-policy>
       <router xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-router-bgp-cfg">
         <bgp>
           <as>
@@ -313,17 +324,6 @@ end-policy
           </processes>
         </isis>
       </router>
-      <routing-policy xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-route-policy-cfg">
-        <route-policies>
-          <route-policy>
-            <route-policy-name>ACCEPT</route-policy-name>
-            <rpl-route-policy>route-policy ACCEPT
-  done
-end-policy
-</rpl-route-policy>
-          </route-policy>
-        </route-policies>
-      </routing-policy>
     </config>
     <modset_id>11381456856284907834</modset_id>
   </device>

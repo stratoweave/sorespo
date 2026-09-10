@@ -37,12 +37,8 @@
                                 "interface-name": "GigabitEthernet0/0/0/2"
                             },
                             {
+                                "Cisco-IOS-XR-um-if-vrf-cfg:vrf": "acme-65501",
                                 "description": "Customer VPN access SITE-1 [SNA-1-1] in VPN acme-65501",
-                                "Cisco-IOS-XR-um-l2-ethernet-cfg:encapsulation": {
-                                    "dot1q": {
-                                        "vlan-id": 100
-                                    }
-                                },
                                 "interface-name": "GigabitEthernet0/0/0/2.100",
                                 "ipv4": {
                                     "Cisco-IOS-XR-um-if-ip-address-cfg:addresses": {
@@ -52,7 +48,11 @@
                                         }
                                     }
                                 },
-                                "Cisco-IOS-XR-um-if-vrf-cfg:vrf": "acme-65501"
+                                "Cisco-IOS-XR-um-l2-ethernet-cfg:encapsulation": {
+                                    "dot1q": {
+                                        "vlan-id": 100
+                                    }
+                                }
                             },
                             {
                                 "interface-name": "Loopback0",
@@ -86,6 +86,16 @@
                                     }
                                 ]
                             }
+                        }
+                    },
+                    "Cisco-IOS-XR-um-route-policy-cfg:routing-policy": {
+                        "route-policies": {
+                            "route-policy": [
+                                {
+                                    "route-policy-name": "ACCEPT",
+                                    "rpl-route-policy": "route-policy ACCEPT\n  done\nend-policy\n"
+                                }
+                            ]
                         }
                     },
                     "Cisco-IOS-XR-um-router-bgp-cfg:router": {
@@ -299,16 +309,6 @@
                             }
                         }
                     },
-                    "Cisco-IOS-XR-um-route-policy-cfg:routing-policy": {
-                        "route-policies": {
-                            "route-policy": [
-                                {
-                                    "route-policy-name": "ACCEPT",
-                                    "rpl-route-policy": "route-policy ACCEPT\n  done\nend-policy\n"
-                                }
-                            ]
-                        }
-                    },
                     "Cisco-IOS-XR-um-vrf-cfg:vrfs": {
                         "vrf": [
                             {
@@ -400,12 +400,8 @@
                                 "interface-name": "GigabitEthernet0/0/0/3"
                             },
                             {
+                                "Cisco-IOS-XR-um-if-vrf-cfg:vrf": "acme-65501",
                                 "description": "Customer VPN access SITE-2 [SNA-2-1] in VPN acme-65501",
-                                "Cisco-IOS-XR-um-l2-ethernet-cfg:encapsulation": {
-                                    "dot1q": {
-                                        "vlan-id": 100
-                                    }
-                                },
                                 "interface-name": "GigabitEthernet0/0/0/3.100",
                                 "ipv4": {
                                     "Cisco-IOS-XR-um-if-ip-address-cfg:addresses": {
@@ -415,7 +411,11 @@
                                         }
                                     }
                                 },
-                                "Cisco-IOS-XR-um-if-vrf-cfg:vrf": "acme-65501"
+                                "Cisco-IOS-XR-um-l2-ethernet-cfg:encapsulation": {
+                                    "dot1q": {
+                                        "vlan-id": 100
+                                    }
+                                }
                             },
                             {
                                 "interface-name": "Loopback0",
@@ -452,6 +452,16 @@
                                     }
                                 ]
                             }
+                        }
+                    },
+                    "Cisco-IOS-XR-um-route-policy-cfg:routing-policy": {
+                        "route-policies": {
+                            "route-policy": [
+                                {
+                                    "route-policy-name": "ACCEPT",
+                                    "rpl-route-policy": "route-policy ACCEPT\n  done\nend-policy\n"
+                                }
+                            ]
                         }
                     },
                     "Cisco-IOS-XR-um-router-bgp-cfg:router": {
@@ -686,16 +696,6 @@
                                     }
                                 ]
                             }
-                        }
-                    },
-                    "Cisco-IOS-XR-um-route-policy-cfg:routing-policy": {
-                        "route-policies": {
-                            "route-policy": [
-                                {
-                                    "route-policy-name": "ACCEPT",
-                                    "rpl-route-policy": "route-policy ACCEPT\n  done\nend-policy\n"
-                                }
-                            ]
                         }
                     },
                     "Cisco-IOS-XR-um-vrf-cfg:vrfs": {

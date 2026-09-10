@@ -81,6 +81,9 @@ actor BBLinkTransform(path: ttt.Path,
         want.add(dst.deliver({ entry.state.subscribe(period=5.0) }))
         _subs.declare(want)
 
+    def shutdown():
+        pass
+
 
 class L3VpnVpnService(base.L3VpnVpnService):
     def transform(self, i):
@@ -164,6 +167,9 @@ actor L3VpnSiteTransform(path: ttt.Path, update_oper: proc(y_0_oper.ietf_l3vpn_s
         if len(specs) == 0:
             _oper = base.L3VpnSite.new_state(path)
             update_oper(_oper)
+
+    def shutdown():
+        pass
 
 class L3VpnSite(base.L3VpnSite):
     def transform(self, i):

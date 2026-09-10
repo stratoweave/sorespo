@@ -3,19 +3,13 @@
   color-scheme: dark;
 
   /* Brand */
-  --sw-navy:       #081020;
-  --sw-blue:       #2563eb;
-  --sw-cyan:       #22d3ee;
-  --sw-violet:     #8b5cf6;
-  --sw-fuchsia:    #a855f7;
-  --sw-paper:      #f8fbff;
-
-  /* Ink scale */
-  --sw-ink-900: #0d1730;
-  --sw-ink-800: #16223f;
-  --sw-ink-700: #233456;
-  --sw-ink-500: #7d8cac;
-  --sw-ink-300: #c7d1e4;
+  --sw-navy:          #081020;
+  --sw-navy-rgb:      8 16 32;
+  --sw-violet:        #8b5cf6;
+  --sw-violet-bright: #a78bfa;
+  --sw-paper:         #f8fbff;
+  /* Translucent lines and washes are mixed from this base. */
+  --sw-line-rgb:      226 232 240;
 
   /* Opaque surfaces keep the application chrome quiet. */
   --sw-bg-deep:        #081020;
@@ -28,9 +22,8 @@
   --sw-bg-sidebar:     #0b1424;
 
   /* Borders */
-  --sw-border-subtle:  rgba(226, 232, 240, 0.12);
-  --sw-border-default: rgba(226, 232, 240, 0.20);
-  --sw-border-focus:   #22d3ee;
+  --sw-border-subtle:  rgb(var(--sw-line-rgb) / 0.12);
+  --sw-border-default: rgb(var(--sw-line-rgb) / 0.20);
 
   /* Text */
   --sw-text-primary:   #f8fbff;
@@ -40,9 +33,11 @@
 
   /* Accent (link / touch / active nav / focus) */
   --sw-accent:             #22d3ee;
-  --sw-accent-dim:         rgba(34, 211, 238, 0.45);
-  --sw-accent-glow:        rgba(34, 211, 238, 0.10);
-  --sw-accent-glow-strong: rgba(34, 211, 238, 0.22);
+  --sw-accent-rgb:         34 211 238;
+  --sw-accent-bright:      #5ce8fa;
+  --sw-accent-dim:         rgb(var(--sw-accent-rgb) / 0.45);
+  --sw-accent-glow:        rgb(var(--sw-accent-rgb) / 0.10);
+  --sw-accent-glow-strong: rgb(var(--sw-accent-rgb) / 0.22);
 
   /* Primary action */
   --sw-primary:        #2563eb;
@@ -51,19 +46,18 @@
 
   /* Semantic */
   --sw-danger:       #ef4444;
-  --sw-danger-dim:   rgba(239, 68, 68, 0.15);
+  --sw-danger-rgb:   239 68 68;
+  --sw-danger-dim:   rgb(var(--sw-danger-rgb) / 0.15);
   --sw-success:      #22c55e;
-  --sw-success-hover: #1faa50;
-  --sw-success-dim:  rgba(34, 197, 94, 0.12);
+  --sw-success-rgb:  34 197 94;
+  --sw-success-dim:  rgb(var(--sw-success-rgb) / 0.12);
   --sw-warning:      #f59e0b;
-  --sw-warning-dim:  rgba(245, 158, 11, 0.12);
-  --sw-info:         #2563eb;
-  --sw-info-dim:     rgba(37, 99, 235, 0.15);
+  --sw-warning-rgb:  245 158 11;
+  --sw-warning-dim:  rgb(var(--sw-warning-rgb) / 0.12);
 
   /* Radii */
   --sw-radius-sm: 6px;
   --sw-radius-md: 8px;
-  --sw-radius-lg: 8px;
   --sw-radius-pill: 999px;
 
   /* Typography */
@@ -83,6 +77,10 @@
   /* Layout */
   --sw-sidebar-width: 240px;
   --sw-header-height: 60px;
+  /* Tallest a code viewer grows before scrolling inside itself. */
+  --sw-code-viewer-height: calc(100vh - 20rem);
+  /* Breakpoints (for reference; media queries cannot read custom properties):
+     narrow = 720px, medium = 960px. */
 
 }
 
@@ -334,7 +332,7 @@ th.num {
 
 .nav-badge {
   margin-left: auto;
-  background: rgba(35, 52, 86, 0.6);
+  background: var(--sw-bg-elevated);
   color: var(--sw-text-muted);
   font-family: var(--sw-font-mono);
   font-size: 11px;
@@ -415,6 +413,7 @@ a.segment:hover {
   scroll-behavior: smooth;
 }
 
+.app-content { scrollbar-width: thin; scrollbar-color: var(--sw-border-default) transparent; }
 .app-content::-webkit-scrollbar { width: 6px; }
 .app-content::-webkit-scrollbar-track { background: transparent; }
 .app-content::-webkit-scrollbar-thumb { background: var(--sw-border-default); border-radius: 3px; }
@@ -430,10 +429,15 @@ a.segment:hover {
   margin-bottom: 1.5rem;
 }
 
-.page-header h2 {
+.page-header h1 {
   font-size: 26px;
   font-weight: 600;
   letter-spacing: -0.025em;
+}
+
+/* Parent grid supplies the spacing. */
+.page-header--flush {
+  margin-bottom: 0;
 }
 
 .page-header p {
@@ -447,7 +451,7 @@ a.segment:hover {
 .card {
   background: var(--sw-bg-card);
   border: 1px solid var(--sw-border-subtle);
-  border-radius: var(--sw-radius-lg);
+  border-radius: var(--sw-radius-md);
   box-shadow: var(--sw-shadow-card);
 }
 
@@ -463,8 +467,8 @@ a.segment:hover {
   gap: 12px;
 }
 
+.card-header h2,
 .card-header h3 {
-  margin: 0;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -551,28 +555,16 @@ a.segment:hover {
   color: var(--sw-text-primary);
 }
 
-.btn-success {
-  background: var(--sw-success);
-  color: white;
-  border-color: var(--sw-success);
-}
-
-.btn-success:hover:not(:disabled) {
-  background: var(--sw-success-hover);
-  border-color: var(--sw-success-hover);
-  color: white;
-}
-
 .btn-danger {
   background: transparent;
   color: var(--sw-danger);
-  border-color: rgba(239, 68, 68, 0.3);
+  border-color: rgb(var(--sw-danger-rgb) / 0.3);
 }
 
 .btn-danger:hover:not(:disabled) {
   background: var(--sw-danger-dim);
   color: var(--sw-danger);
-  border-color: rgba(239, 68, 68, 0.5);
+  border-color: rgb(var(--sw-danger-rgb) / 0.5);
 }
 
 .btn-ghost {
@@ -617,79 +609,23 @@ a.segment:hover {
 .pill.success {
   background: var(--sw-success-dim);
   color: var(--sw-success);
-  border-color: rgba(34, 197, 94, 0.25);
+  border-color: rgb(var(--sw-success-rgb) / 0.25);
 }
 
 .pill.warning {
   background: var(--sw-warning-dim);
   color: var(--sw-warning);
-  border-color: rgba(245, 158, 11, 0.25);
+  border-color: rgb(var(--sw-warning-rgb) / 0.25);
 }
 
 .pill.danger {
   background: var(--sw-danger-dim);
   color: var(--sw-danger);
-  border-color: rgba(239, 68, 68, 0.25);
-}
-
-.pill.info {
-  background: var(--sw-info-dim);
-  color: #7aa2ff;
-  border-color: rgba(37, 99, 235, 0.35);
+  border-color: rgb(var(--sw-danger-rgb) / 0.25);
 }
 
 .pill.mono {
   font-family: var(--sw-font-mono);
-}
-
-/* ── Notification badge ── */
-.notification-badge {
-  min-width: 1.5rem;
-  padding: 0.1rem 0.45rem;
-  border-radius: 999px;
-  background: var(--sw-warning);
-  color: var(--sw-navy);
-  text-align: center;
-  font-size: 0.78rem;
-  font-weight: 700;
-}
-
-/* ── States ── */
-.empty-state,
-.loading-state,
-.error-state {
-  padding: 2rem;
-  border-radius: var(--sw-radius-lg);
-  border: 1px dashed var(--sw-border-default);
-  background: var(--sw-bg-card);
-  text-align: center;
-  color: var(--sw-text-muted);
-  font-size: 13px;
-}
-
-.error-state {
-  border-color: rgba(239, 68, 68, 0.3);
-  background: var(--sw-danger-dim);
-  color: var(--sw-danger);
-}
-
-/* ── Flash messages ── */
-.flash {
-  padding: 0.85rem 1rem;
-  border-radius: var(--sw-radius-md);
-  border: 1px solid transparent;
-}
-
-.flash.success {
-  background: var(--sw-success-dim);
-  border-color: rgba(34, 197, 94, 0.25);
-  color: var(--sw-success);
-}
-
-.flash.error {
-  background: var(--sw-danger-dim);
-  border-color: rgba(239, 68, 68, 0.25);
-  color: var(--sw-danger);
 }
 
 /* ── Metadata list ── */
@@ -769,8 +705,53 @@ pre {
   border: 0;
 }
 
+/* ── Service editor layout (shared by module editors) ── */
+.editor {
+  display: grid;
+  gap: 20px;
+}
+
+.editor__grid {
+  display: grid;
+  gap: 16px;
+}
+
+.editor__grid--2col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.editor__grid--3col {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 960px) {
+  .editor__grid--3col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .editor__grid--2col,
+  .editor__grid--3col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Service module cards (dashboard + services index) ── */
+.service-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.service-card__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 /* ── Responsive ── */
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .app-shell {
     flex-direction: column;
   }

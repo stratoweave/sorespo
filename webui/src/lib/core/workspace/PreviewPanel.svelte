@@ -20,7 +20,7 @@
 
 <section class="preview-panel card">
   <div class="card-header">
-    <h4>Preview</h4>
+    <h2>Preview</h2>
     <span class="card-badge push-right">RESTCONF payload</span>
   </div>
 
@@ -28,7 +28,7 @@
     {#if diffEntries.length > 0}
       <div class="preview-panel__section">
         <div class="preview-panel__section-header">
-          <h5>Changes</h5>
+          <h3>Changes</h3>
           <span class="preview-panel__count">{diffEntries.length}</span>
         </div>
         <DiffView entries={diffEntries} />
@@ -58,7 +58,7 @@
     gap: 8px;
   }
 
-  .preview-panel__section-header h5 {
+  .preview-panel__section-header h3 {
     margin: 0;
     font-size: 12px;
     font-weight: 600;

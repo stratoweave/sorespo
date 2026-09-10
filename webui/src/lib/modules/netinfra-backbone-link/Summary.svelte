@@ -41,12 +41,12 @@
   }
 
   .summary__pill.status--up {
-    color: rgba(34, 197, 94, 0.95);
-    background: rgba(34, 197, 94, 0.12);
+    color: rgb(var(--sw-success-rgb) / 0.95);
+    background: rgb(var(--sw-success-rgb) / 0.12);
   }
 
   .summary__pill.status--down {
-    color: rgba(239, 68, 68, 0.95);
-    background: rgba(239, 68, 68, 0.12);
+    color: rgb(var(--sw-danger-rgb) / 0.95);
+    background: rgb(var(--sw-danger-rgb) / 0.12);
   }
 </style>

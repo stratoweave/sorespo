@@ -4,14 +4,14 @@
   import NavIcon, { type NavIconName } from '$lib/core/ui/NavIcon.svelte';
 
   let {
-    icon = 'inbox',
+    icon,
     title,
     description = '',
     tone = 'neutral',
     compact = false,
     action
   }: {
-    icon?: NavIconName;
+    icon: NavIconName;
     title: string;
     description?: string;
     tone?: 'neutral' | 'danger';
@@ -39,7 +39,7 @@
     justify-items: center;
     gap: 12px;
     padding: 40px 24px;
-    border-radius: var(--sw-radius-lg);
+    border-radius: var(--sw-radius-md);
     border: 1px dashed var(--sw-border-default);
     background: var(--sw-bg-card);
     text-align: center;
@@ -88,13 +88,13 @@
   }
 
   .empty--danger {
-    border-color: rgba(239, 68, 68, 0.35);
+    border-color: rgb(var(--sw-danger-rgb) / 0.35);
     background: var(--sw-danger-dim);
   }
 
   .empty--danger .empty__icon {
     color: var(--sw-danger);
-    background: rgba(239, 68, 68, 0.15);
+    background: rgb(var(--sw-danger-rgb) / 0.15);
   }
 
   .empty--danger .empty__copy p {

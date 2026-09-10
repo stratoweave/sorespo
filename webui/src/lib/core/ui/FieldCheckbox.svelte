@@ -4,7 +4,6 @@
     checked?: boolean;
     help?: string;
     error?: string;
-    disabled?: boolean;
     onchange?: (next: boolean) => void;
   }
 
@@ -13,12 +12,10 @@
     checked = false,
     help = '',
     error = '',
-    disabled = false,
     onchange
   }: Props = $props();
 
   function toggle(): void {
-    if (disabled) return;
     onchange?.(!checked);
   }
 
@@ -36,7 +33,6 @@
       type="button"
       class="toggle"
       class:on={checked}
-      class:disabled
       role="switch"
       aria-checked={checked}
       aria-label={label}
@@ -106,10 +102,6 @@
     box-shadow: 0 0 8px var(--sw-accent-glow-strong);
   }
 
-  .toggle.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
 
   .field-toggle__label {
     font-size: 13px;

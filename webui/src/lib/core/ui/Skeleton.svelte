@@ -9,7 +9,7 @@
     height = '120px',
     width = '100%'
   }: {
-    variant?: 'block' | 'rows' | 'text' | 'cards';
+    variant?: 'block' | 'rows' | 'text';
     rows?: number;
     height?: string;
     width?: string;
@@ -24,15 +24,6 @@
         <span class="skeleton skeleton--bar" style="width: 16%"></span>
         <span class="skeleton skeleton--bar" style="width: 22%"></span>
         <span class="skeleton skeleton--bar push-right" style="width: 10%"></span>
-      </div>
-    {/each}
-  </div>
-{:else if variant === 'cards'}
-  <div class="skeleton-cards" aria-busy="true" aria-label="Loading">
-    {#each Array.from({ length: rows }) as _}
-      <div class="card skeleton-card">
-        <span class="skeleton skeleton--bar" style="width: 55%"></span>
-        <span class="skeleton skeleton--bar" style="width: 35%; height: 10px"></span>
       </div>
     {/each}
   </div>
@@ -61,7 +52,7 @@
   }
 
   .skeleton--block {
-    border-radius: var(--sw-radius-lg);
+    border-radius: var(--sw-radius-md);
   }
 
   .skeleton-rows {
@@ -81,15 +72,4 @@
     border-bottom: none;
   }
 
-  .skeleton-cards {
-    display: grid;
-    gap: 12px;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  }
-
-  .skeleton-card {
-    display: grid;
-    gap: 10px;
-    padding: 16px;
-  }
 </style>

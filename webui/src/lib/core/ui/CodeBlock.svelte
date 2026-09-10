@@ -7,14 +7,12 @@
     lines = undefined,
     minHeight = '',
     maxHeight = '',
-    lineNumbers = true,
     label = 'Code'
   }: {
     content?: string;
     lines?: CodeLine[];
     minHeight?: string;
     maxHeight?: string;
-    lineNumbers?: boolean;
     label?: string;
   } = $props();
 
@@ -65,7 +63,7 @@
           class="code__line"
           class:code__line--add={line.kind === 'add'}
           class:code__line--remove={line.kind === 'remove'}
-        >{#if lineNumbers}<span class="code__gutter" aria-hidden="true">{index + 1}</span>{/if}<span class="code__text">{#each line.segments as segment}{#if segment.kind}<span class:diff-add={segment.kind === 'add'} class:diff-remove={segment.kind === 'remove'}>{segment.text}</span>{:else}{segment.text}{/if}{/each}{#if line.segments.length === 0}{' '}{/if}</span></div>{/each}</pre>
+        ><span class="code__gutter" aria-hidden="true">{index + 1}</span><span class="code__text">{#each line.segments as segment}{#if segment.kind}<span class:diff-add={segment.kind === 'add'} class:diff-remove={segment.kind === 'remove'}>{segment.text}</span>{:else}{segment.text}{/if}{/each}{#if line.segments.length === 0}{' '}{/if}</span></div>{/each}</pre>
     {/if}
   </div>
 </div>
@@ -177,12 +175,12 @@
   }
 
   .code__line--add {
-    background: rgba(34, 197, 94, 0.07);
+    background: rgb(var(--sw-success-rgb) / 0.07);
     box-shadow: inset 2px 0 0 var(--sw-success);
   }
 
   .code__line--remove {
-    background: rgba(239, 68, 68, 0.09);
+    background: rgb(var(--sw-danger-rgb) / 0.09);
     box-shadow: inset 2px 0 0 var(--sw-danger);
   }
 

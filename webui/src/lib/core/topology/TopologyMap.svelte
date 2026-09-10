@@ -46,14 +46,14 @@
       >
         <defs>
           <radialGradient id="topology-ring-grad" cx="50%" cy="50%" r="50%">
-            <stop offset="60%" stop-color="rgba(34, 211, 238, 0)"></stop>
-            <stop offset="85%" stop-color="rgba(34, 211, 238, 0.55)"></stop>
-            <stop offset="100%" stop-color="rgba(34, 211, 238, 0)"></stop>
+            <stop offset="60%" stop-color="rgb(var(--sw-accent-rgb) / 0)"></stop>
+            <stop offset="85%" stop-color="rgb(var(--sw-accent-rgb) / 0.55)"></stop>
+            <stop offset="100%" stop-color="rgb(var(--sw-accent-rgb) / 0)"></stop>
           </radialGradient>
         </defs>
 
         <g class="topology__links">
-          {#each graph.links as link}
+          {#each graph.links as link (link.id)}
             {#if link.geometry}
               {@const geometry = link.geometry}
               {@const deltaX = geometry.rightX - geometry.leftX}
@@ -104,8 +104,8 @@
         </g>
 
         <g class="topology__attachment-links">
-          {#each graph.routers as router}
-            {#each router.attachments as attachment}
+          {#each graph.routers as router (router.name)}
+            {#each router.attachments as attachment (attachment.key)}
               {@const deltaX = attachment.x - router.x}
               {@const deltaY = attachment.y - router.y}
               {@const length = Math.hypot(deltaX, deltaY) || 1}
@@ -130,7 +130,7 @@
         </g>
 
         <g class="topology__routers">
-          {#each graph.routers as router}
+          {#each graph.routers as router (router.name)}
             <a href={appHref(`/devices/${encodeURIComponent(router.name)}`)}>
               <g
                 class="topology__router"
@@ -156,8 +156,8 @@
         </g>
 
         <g class="topology__sites">
-          {#each graph.routers as router}
-            {#each router.attachments as attachment}
+          {#each graph.routers as router (router.name)}
+            {#each router.attachments as attachment (attachment.key)}
               <a href={appHref(`/services/l3vpn-site/${encodeURIComponent(attachment.siteId)}`)}>
                 <g
                   class="topology__site"
@@ -208,11 +208,11 @@
   {#if graph.orphanSiteAttachments.length > 0}
     <div class="card topology__orphans">
       <div class="card-header">
-        <h4>Unmapped Site Attachments</h4>
+        <h3 class="topology__orphans-title">Unmapped Site Attachments</h3>
         <span class="card-badge">{graph.orphanSiteAttachments.length}</span>
       </div>
       <div class="card-body topology__orphan-list">
-        {#each graph.orphanSiteAttachments as attachment}
+        {#each graph.orphanSiteAttachments as attachment (attachment.key)}
           <a class="topology__orphan-item" href={appHref(`/services/l3vpn-site/${encodeURIComponent(attachment.siteId)}`)}>
             <strong>{attachment.siteId}</strong>
             <span>{attachment.vpnIds[0] || 'No vpn-id'}</span>
@@ -247,11 +247,11 @@
   .topology__canvas-wrap {
     overflow: auto;
     padding: 0;
-    background-color: rgba(8, 16, 32, 0.55);
+    background-color: rgb(var(--sw-navy-rgb) / 0.55);
     background-image:
-      radial-gradient(600px 320px at 50% 50%, rgba(34, 211, 238, 0.10), transparent 70%),
-      linear-gradient(rgba(226, 232, 240, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(226, 232, 240, 0.04) 1px, transparent 1px);
+      radial-gradient(600px 320px at 50% 50%, rgb(var(--sw-accent-rgb) / 0.10), transparent 70%),
+      linear-gradient(rgb(var(--sw-line-rgb) / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--sw-line-rgb) / 0.04) 1px, transparent 1px);
     background-size: auto, 32px 32px, 32px 32px;
   }
 
@@ -269,19 +269,19 @@
   }
 
   .topology__link {
-    stroke: rgba(226, 232, 240, 0.20);
+    stroke: rgb(var(--sw-line-rgb) / 0.20);
     stroke-width: 1.5;
     transition: stroke 0.15s ease, stroke-width 0.15s ease;
     pointer-events: none;
   }
 
   .topology__link--up {
-    stroke: rgba(34, 197, 94, 0.85);
+    stroke: rgb(var(--sw-success-rgb) / 0.85);
     stroke-width: 2;
   }
 
   .topology__link--down {
-    stroke: rgba(239, 68, 68, 0.9);
+    stroke: rgb(var(--sw-danger-rgb) / 0.9);
     stroke-width: 2;
   }
 
@@ -301,7 +301,7 @@
   }
 
   .topology__link-label-bg {
-    fill: rgba(8, 16, 32, 0.92);
+    fill: rgb(var(--sw-navy-rgb) / 0.92);
     stroke: var(--sw-border-default);
     stroke-width: 1;
     transition: stroke 0.15s ease;
@@ -316,19 +316,19 @@
   }
 
   .topology__attachment-link {
-    stroke: rgba(226, 232, 240, 0.20);
+    stroke: rgb(var(--sw-line-rgb) / 0.20);
     stroke-width: 1;
     stroke-dasharray: 2 3;
   }
 
   .topology__attachment-link--established {
-    stroke: rgba(34, 197, 94, 0.85);
+    stroke: rgb(var(--sw-success-rgb) / 0.85);
     stroke-width: 1.6;
     stroke-dasharray: none;
   }
 
   .topology__attachment-link--down {
-    stroke: rgba(239, 68, 68, 0.9);
+    stroke: rgb(var(--sw-danger-rgb) / 0.9);
     stroke-width: 1.6;
     stroke-dasharray: none;
   }
@@ -343,7 +343,7 @@
   }
 
   .topology__router-core {
-    fill: rgba(8, 16, 32, 0.92);
+    fill: rgb(var(--sw-navy-rgb) / 0.92);
     stroke: var(--sw-accent);
     stroke-width: 1.4;
     transition: transform 0.15s ease, stroke 0.15s ease;
@@ -351,14 +351,14 @@
 
   .topology__router-core-inner {
     fill: none;
-    stroke: rgba(34, 211, 238, 0.25);
+    stroke: rgb(var(--sw-accent-rgb) / 0.25);
     stroke-width: 1;
     pointer-events: none;
   }
 
   .topology__router:hover .topology__router-core {
     transform: scale(1.03);
-    stroke: #5ce8fa;
+    stroke: var(--sw-accent-bright);
   }
 
   .topology__router--approval .topology__router-core {
@@ -366,7 +366,7 @@
   }
 
   .topology__router--approval .topology__router-core-inner {
-    stroke: rgba(245, 158, 11, 0.25);
+    stroke: rgb(var(--sw-warning-rgb) / 0.25);
   }
 
   .topology__router-name {
@@ -388,28 +388,28 @@
   }
 
   .topology__site-card {
-    fill: rgba(8, 16, 32, 0.92);
+    fill: rgb(var(--sw-navy-rgb) / 0.92);
     stroke: var(--sw-violet);
     stroke-width: 1.1;
     transition: stroke 0.15s ease;
   }
 
   .topology__site:hover .topology__site-card {
-    stroke: #a78bfa;
+    stroke: var(--sw-violet-bright);
   }
 
   .topology__site--established .topology__site-card {
-    stroke: rgba(34, 197, 94, 0.9);
+    stroke: rgb(var(--sw-success-rgb) / 0.9);
   }
 
   .topology__site--down .topology__site-card {
-    stroke: rgba(239, 68, 68, 0.95);
+    stroke: rgb(var(--sw-danger-rgb) / 0.95);
     stroke-width: 1.6;
   }
 
   .topology__site-debug-dot {
     fill: var(--sw-warning);
-    stroke: rgba(8, 16, 32, 0.92);
+    stroke: rgb(var(--sw-navy-rgb) / 0.92);
     stroke-width: 2;
   }
 
@@ -436,7 +436,7 @@
 
   .topology__site-count-bg {
     fill: var(--sw-warning);
-    stroke: rgba(8, 16, 32, 0.92);
+    stroke: rgb(var(--sw-navy-rgb) / 0.92);
     stroke-width: 2;
   }
 
@@ -449,6 +449,10 @@
 
   .topology__orphans {
     overflow: hidden;
+  }
+
+  .topology__orphans-title {
+    font-size: 14px;
   }
 
   .topology__orphan-list {

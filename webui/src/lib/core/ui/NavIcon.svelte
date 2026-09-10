@@ -8,9 +8,7 @@
     | 'services'
     | 'settings'
     | 'refresh'
-    | 'inbox'
     | 'search'
-    | 'plus'
     | 'check'
     | 'alert'
     | 'copy'
@@ -64,14 +62,9 @@
     <circle cx="16" cy="18" r="3" />
   {:else if name === 'refresh'}
     <path d="M20 4v5h-5M4 20v-5h5M20 9a8 8 0 0 0-14-3M4 15a8 8 0 0 0 14 3" />
-  {:else if name === 'inbox'}
-    <path d="M3 13h5l2 3h4l2-3h5" />
-    <path d="M5 5h14l2 8v6H3v-6z" />
   {:else if name === 'search'}
     <circle cx="11" cy="11" r="6.5" />
     <path d="m20 20-4.2-4.2" />
-  {:else if name === 'plus'}
-    <path d="M12 5v14M5 12h14" />
   {:else if name === 'check'}
     <path d="m5 12.5 4.5 4.5L19 7.5" />
   {:else if name === 'alert'}

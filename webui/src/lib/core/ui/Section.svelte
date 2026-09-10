@@ -6,26 +6,22 @@
     description?: string;
     yangPath?: string;
     children?: Snippet;
-    actions?: Snippet;
   }
 
-  let { title = '', description = '', yangPath = '', children, actions }: Props = $props();
+  let { title = '', description = '', yangPath = '', children }: Props = $props();
 </script>
 
 <section class="section">
   <header class="section__header">
     <div class="section__title-group">
-      <h4>{title}</h4>
+      <h3>{title}</h3>
       {#if description}
         <p>{description}</p>
       {/if}
     </div>
-    <div class="section__meta">
-      {#if yangPath}
-        <span class="section__yang-path">{yangPath}</span>
-      {/if}
-      {@render actions?.()}
-    </div>
+    {#if yangPath}
+      <span class="section__yang-path">{yangPath}</span>
+    {/if}
   </header>
 
   <div class="section__content">
@@ -51,20 +47,14 @@
     gap: 1rem;
   }
 
-  .section__title-group h4 {
-    margin: 0;
+  .section__title-group h3 {
+    font-size: 14px;
   }
 
   .section__title-group p {
     margin: 4px 0 0;
     font-size: 12px;
     color: var(--sw-text-secondary);
-  }
-
-  .section__meta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
   }
 
   .section__yang-path {

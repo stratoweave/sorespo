@@ -12,7 +12,7 @@
 
 {#if entries.length > 0}
   <ul class="diff">
-    {#each entries as entry}
+    {#each entries as entry (entry.path)}
       <li class="diff__entry diff__entry--{entry.kind}">
         <span class="diff__marker" aria-hidden="true">
           {#if entry.kind === 'added'}+{:else if entry.kind === 'removed'}−{:else}~{/if}
@@ -115,7 +115,7 @@
   .diff__before {
     color: var(--sw-danger);
     text-decoration: line-through;
-    text-decoration-color: rgba(239, 68, 68, 0.4);
+    text-decoration-color: rgb(var(--sw-danger-rgb) / 0.4);
   }
 
   .diff__after {

@@ -33,13 +33,14 @@
   );
 </script>
 
-<span class="live live--{status}" {title} aria-live="polite">
+<span class="live live--{status}" {title}>
   <span class="live__dot" aria-hidden="true"></span>
-  <span class="live__label">
+  <!-- Only the status word is announced; the ticking age is decorative. -->
+  <span class="live__label" aria-live="polite">
     {#if status === 'error'}Disconnected{:else if status === 'live'}Live{:else}Connecting{/if}
   </span>
   {#if status === 'live' && ageLabel}
-    <span class="live__age">{ageLabel}</span>
+    <span class="live__age" aria-hidden="true">{ageLabel}</span>
   {/if}
 </span>
 
@@ -67,13 +68,13 @@
 
   .live--live .live__dot {
     background: var(--sw-success);
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+    box-shadow: 0 0 0 0 rgb(var(--sw-success-rgb) / 0.5);
     animation: live-pulse 2s ease-out infinite;
   }
 
   .live--error {
     color: var(--sw-danger);
-    border-color: rgba(239, 68, 68, 0.3);
+    border-color: rgb(var(--sw-danger-rgb) / 0.3);
     background: var(--sw-danger-dim);
   }
 
@@ -87,12 +88,12 @@
   }
 
   @keyframes live-pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.45); }
-    70%  { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    0%   { box-shadow: 0 0 0 0 rgb(var(--sw-success-rgb) / 0.45); }
+    70%  { box-shadow: 0 0 0 6px rgb(var(--sw-success-rgb) / 0); }
+    100% { box-shadow: 0 0 0 0 rgb(var(--sw-success-rgb) / 0); }
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 720px) {
     .live__age { display: none; }
   }
 </style>

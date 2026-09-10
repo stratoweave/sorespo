@@ -162,24 +162,3 @@
 
 </div>
 
-<style>
-  .editor {
-    display: grid;
-    gap: 20px;
-  }
-
-  .editor__grid {
-    display: grid;
-    gap: 16px;
-  }
-
-  .editor__grid--2col {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @media (max-width: 720px) {
-    .editor__grid--2col {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

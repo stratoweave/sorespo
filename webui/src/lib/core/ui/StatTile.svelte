@@ -1,7 +1,7 @@
 <script lang="ts">
   import { appHref } from '$lib/core/util/nav';
 
-  import type { StatusTone } from '$lib/core/ui/StatusPill.svelte';
+  import type { StatusTone } from '$lib/core/ui/tones';
 
   let {
     label,

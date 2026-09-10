@@ -15,6 +15,7 @@
   let query = $state('');
   let selectedIndex = $state(0);
   let inputEl: HTMLInputElement | null = $state(null);
+  let dialog: HTMLDialogElement | null = $state(null);
   let staticEntries: PaletteEntry[] = $state([]);
   let dynamicEntries: PaletteEntry[] = $state([]);
   let loading = $state(false);
@@ -31,6 +32,8 @@
     return Array.from(map.entries());
   });
   let flat = $derived(groups.flatMap(([, items]) => items));
+  // Clamp instead of writing back: the raw index may point past a shrunken result set.
+  let activeIndex = $derived(Math.min(selectedIndex, Math.max(0, flat.length - 1)));
 
   const entriesRequest = new LatestRequest();
 
@@ -55,9 +58,11 @@
   });
 
   $effect(() => {
-    // Keep selectedIndex in bounds when filtered results shrink.
-    if (selectedIndex >= flat.length) {
-      selectedIndex = Math.max(0, flat.length - 1);
+    if (!dialog) return;
+    if (open && !dialog.open) {
+      dialog.showModal();
+    } else if (!open && dialog.open) {
+      dialog.close();
     }
   });
 
@@ -68,17 +73,17 @@
       return;
     }
     if (event.key === 'ArrowDown') {
-      selectedIndex = Math.min(selectedIndex + 1, flat.length - 1);
+      selectedIndex = Math.min(activeIndex + 1, flat.length - 1);
       event.preventDefault();
       return;
     }
     if (event.key === 'ArrowUp') {
-      selectedIndex = Math.max(0, selectedIndex - 1);
+      selectedIndex = Math.max(0, activeIndex - 1);
       event.preventDefault();
       return;
     }
     if (event.key === 'Enter') {
-      const entry = flat[selectedIndex];
+      const entry = flat[activeIndex];
       if (entry) select(entry);
       event.preventDefault();
     }
@@ -88,12 +93,26 @@
     open = false;
     void goto(appHref(entry.href));
   }
+
+  function handleCancel(event: Event): void {
+    event.preventDefault();
+    open = false;
+  }
+
+  function handleBackdropClick(event: MouseEvent): void {
+    if (event.target === dialog) open = false;
+  }
 </script>
 
-{#if open}
-  <div class="cmdk-overlay">
-    <button class="cmdk-scrim" type="button" aria-label="Close palette" onclick={() => (open = false)}></button>
-    <div class="cmdk-panel card" role="dialog" aria-modal="true" aria-label="Command palette">
+<dialog
+  bind:this={dialog}
+  class="cmdk-overlay"
+  aria-label="Command palette"
+  oncancel={handleCancel}
+  onclick={handleBackdropClick}
+>
+  {#if open}
+    <div class="cmdk-panel card">
       <div class="cmdk-search">
         <span class="cmdk-prompt" aria-hidden="true">⌘</span>
         <input
@@ -123,7 +142,7 @@
                 {@const index = flat.indexOf(entry)}
                 <button
                   class="cmdk-entry"
-                  class:cmdk-entry--selected={index === selectedIndex}
+                  class:cmdk-entry--selected={index === activeIndex}
                   onmouseenter={() => (selectedIndex = index)}
                   onclick={() => select(entry)}
                   type="button"
@@ -145,25 +164,34 @@
         <span><kbd>esc</kbd> close</span>
       </div>
     </div>
-  </div>
-{/if}
+  {/if}
+</dialog>
 
 <style>
   .cmdk-overlay {
     position: fixed;
     inset: 0;
-    z-index: 1000;
-    display: grid;
-    place-items: start center;
-    padding: 10vh 1.25rem 0;
+    margin: 0;
+    padding: 12vh 1rem 1rem;
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
   }
 
-  .cmdk-scrim {
-    position: absolute;
-    inset: 0;
-    border: 0;
-    background: rgba(10, 14, 20, 0.72);
-    cursor: default;
+  .cmdk-overlay[open] {
+    display: flex;
+  }
+
+  .cmdk-overlay::backdrop {
+    background: rgb(var(--sw-navy-rgb) / 0.7);
+    backdrop-filter: blur(2px);
   }
 
   .cmdk-panel {

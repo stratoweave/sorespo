@@ -19,13 +19,10 @@
     control: Snippet<[{ hasError: boolean; blur: () => void }]>;
   } = $props();
 
-  let touched = $state(false);
-
-  $effect(() => {
-    // Reset touched whenever validationKey bumps.
-    validationKey;
-    touched = false;
-  });
+  // Remember which validation round the field was touched in; a validationKey
+  // bump therefore resets "touched" without an effect.
+  let touchedKey = $state(-1);
+  let touched = $derived(touchedKey === validationKey);
 
   let visibleError = $derived(touched ? error : '');
   let metaText = $derived(visibleError || help || ' ');
@@ -41,7 +38,7 @@
       <span class="field__yang-type">{yangType}</span>
     {/if}
   </span>
-  {@render control({ hasError: !!visibleError, blur: () => (touched = true) })}
+  {@render control({ hasError: !!visibleError, blur: () => (touchedKey = validationKey) })}
   <small class:field__meta--error={!!visibleError} class="field__meta">{metaText}</small>
 </label>
 

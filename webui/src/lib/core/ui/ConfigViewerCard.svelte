@@ -20,7 +20,7 @@
 <div class="card config-page">
   <div class="config-page__header">
     {#if title}
-      <h3>{title}</h3>
+      <h2>{title}</h2>
     {/if}
     <div class="config-page__controls">
       {@render controls()}
@@ -31,7 +31,7 @@
     {#if loading}
       <Skeleton height="26rem" />
     {:else}
-      <CodeBlock {content} minHeight="26rem" maxHeight="calc(100vh - 280px)" label="Configuration" />
+      <CodeBlock {content} minHeight="26rem" maxHeight="var(--sw-code-viewer-height)" label="Configuration" />
     {/if}
   </div>
 </div>
@@ -56,6 +56,10 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem;
+  }
+
+  .config-page__header h2 {
+    font-size: 16px;
   }
 
   .config-page__controls {

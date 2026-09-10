@@ -425,6 +425,9 @@ actor BBInterfaceTransform(path, update_oper: proc(?y_2_oper.stratoweave_rfs__rf
             }))
         _subs.declare(want)
 
+    def shutdown():
+        pass
+
 
 class IbgpNeighbor(base.IbgpNeighbor):
     def transform(self, i, di):
@@ -746,3 +749,6 @@ actor EbgpCustomerTransform(path, update_oper: proc(?y_2_oper.stratoweave_rfs__r
         _addr = conf.address
         _vrf = conf.vrf
         declare()
+
+    def shutdown():
+        pass

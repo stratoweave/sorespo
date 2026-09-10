@@ -116,6 +116,9 @@ actor BBLinkTransform(path: ttt.Path,
         }))
         _subs.declare(want)
 
+    def shutdown():
+        pass
+
 
 class IbgpFullmesh(base.IbgpFullmesh):
     def transform(self, i):
@@ -202,6 +205,9 @@ actor L3VpnTransform(path: ttt.Path,
         if len(specs) == 0:
             _oper = base.L3Vpn.new_state(path)
             update_oper(_oper)
+
+    def shutdown():
+        pass
 
 
 class L3Vpn(base.L3Vpn):

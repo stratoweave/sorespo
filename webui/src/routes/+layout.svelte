@@ -1,16 +1,9 @@
 <script lang="ts">
-  import '@fontsource/inter/400.css';
-  import '@fontsource/inter/500.css';
-  import '@fontsource/inter/600.css';
-  import '@fontsource/inter/700.css';
-  import '@fontsource/jetbrains-mono/400.css';
-  import '@fontsource/jetbrains-mono/500.css';
-  import '@fontsource/jetbrains-mono/600.css';
+  import '$lib/fonts.css';
   import '../app.css';
 
   import { PUBLIC_DEMO } from '$env/static/public';
   import { invalidateAll } from '$app/navigation';
-  import { asset } from '$app/paths';
   import { page } from '$app/state';
   import { onMount, type Component, type Snippet } from 'svelte';
 
@@ -22,6 +15,10 @@
   import LiveIndicator from '$lib/core/ui/LiveIndicator.svelte';
   import NavIcon from '$lib/core/ui/NavIcon.svelte';
   import { appHref, appPathname } from '$lib/core/util/nav';
+
+  // Imported (not served from static/) so Vite inlines it as a data URI —
+  // the embedded asset set must be text-only; see vite assetsInlineLimit.
+  import logoUrl from '$lib/assets/stratoweave-logo.png';
 
   let { children }: { children?: Snippet } = $props();
 
@@ -141,7 +138,7 @@
       <a class="logo-link" href={appHref('/')} aria-label="StratoWeave — go to dashboard">
         <img
           class="logo-img"
-          src={asset('/stratoweave-logo.png')}
+          src={logoUrl}
           alt="StratoWeave — Orchestration Platform"
           width="286"
           height="53"

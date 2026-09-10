@@ -1,6 +1,7 @@
 import { writable, type Readable } from 'svelte/store';
 
 import { fetchAllDeviceQueues, type QueueItemSummary } from '$lib/core/orchestron/client';
+import { startPolling } from '$lib/core/util/poll';
 
 export interface QueuesPollValue {
   queues: QueueItemSummary[];
@@ -16,7 +17,7 @@ const POLL_INTERVAL_MS = 1000;
 const internal = writable<QueuesPollValue>(INITIAL);
 let current = INITIAL;
 let subscriberCount = 0;
-let timer: ReturnType<typeof setInterval> | null = null;
+let stopPolling: (() => void) | null = null;
 let inFlight: Promise<void> | null = null;
 
 function fetchOnce(): Promise<void> {
@@ -37,25 +38,14 @@ function fetchOnce(): Promise<void> {
   return inFlight;
 }
 
-function tick(): void {
-  if (typeof document !== 'undefined' && document.visibilityState === 'hidden') return;
-  void fetchOnce();
-}
-
-function handleVisibilityChange(): void {
-  if (document.visibilityState === 'visible') {
-    void fetchOnce();
-  }
-}
-
+/**
+ * Shared 1 s poll of every device queue. Polling starts with the first
+ * subscriber and stops with the last; on the server nothing is fetched.
+ */
 export const queuesPoll: Readable<QueuesPollValue> = {
   subscribe(run, invalidate) {
     if (subscriberCount === 0) {
-      tick();
-      timer = setInterval(tick, POLL_INTERVAL_MS);
-      if (typeof document !== 'undefined') {
-        document.addEventListener('visibilitychange', handleVisibilityChange);
-      }
+      stopPolling = startPolling(fetchOnce, POLL_INTERVAL_MS);
     }
     subscriberCount++;
 
@@ -64,13 +54,8 @@ export const queuesPoll: Readable<QueuesPollValue> = {
     return () => {
       subscriberCount--;
       if (subscriberCount === 0) {
-        if (timer !== null) {
-          clearInterval(timer);
-          timer = null;
-        }
-        if (typeof document !== 'undefined') {
-          document.removeEventListener('visibilitychange', handleVisibilityChange);
-        }
+        stopPolling?.();
+        stopPolling = null;
       }
       unsub();
     };

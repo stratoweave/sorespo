@@ -1,4 +1,4 @@
-import { fetchDevices, type QueueItemSummary } from '$lib/core/orchestron/client';
+import { type QueueItemSummary, approvalStatus, fetchDevices } from '$lib/core/orchestron/client';
 import { listServiceModules, listServiceModuleMeta } from '$lib/core/registry/service-modules';
 import { formatServiceRouteId } from '$lib/core/registry/types';
 import { restconfGetJson } from '$lib/core/restconf/client';
@@ -54,7 +54,7 @@ export async function fetchDynamicEntries(
           category: 'Devices',
           label: device.name,
           description: device.id === device.name ? undefined : device.id,
-          href: `/devices/${device.id}`,
+          href: `/devices/${encodeURIComponent(device.id)}`,
           keywords: device.id
         });
       }
@@ -91,8 +91,7 @@ export async function fetchDynamicEntries(
   await Promise.all([deviceEntriesPromise, ...servicePromises]);
 
   for (const item of queues) {
-    const status =
-      item.approved === true ? 'Approved' : item.approved === false ? 'Rejected' : 'Pending';
+    const status = approvalStatus(item.approved).label;
     entries.push({
       id: `queue:${item.deviceId}:${item.queueId}`,
       category: 'Config Queue',

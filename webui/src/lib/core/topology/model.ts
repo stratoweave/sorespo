@@ -21,7 +21,7 @@ export interface NetinfraBackboneLinkApi {
   };
 }
 
-export type LinkStatus = 'up' | 'down' | 'unknown';
+type LinkStatus = 'up' | 'down' | 'unknown';
 
 export interface NetinfraPayload {
   'netinfra:netinfra'?: {
@@ -30,7 +30,7 @@ export interface NetinfraPayload {
   };
 }
 
-export interface L3VpnSiteAccessApi {
+interface L3VpnSiteAccessApi {
   'site-network-access-id'?: string;
   bearer?: {
     'bearer-reference'?: string;
@@ -40,7 +40,7 @@ export interface L3VpnSiteAccessApi {
   };
 }
 
-export interface L3VpnBgpSessionApi {
+interface L3VpnBgpSessionApi {
   'site-network-access'?: string;
   'session-state'?: string;
   'debug-active'?: boolean;
@@ -74,14 +74,14 @@ export interface L3VpnSitesPayload {
   };
 }
 
-export interface TopologyLinkLabel {
+interface TopologyLinkLabel {
   x: number;
   y: number;
   width: number;
   interfaceLine: string;
 }
 
-export interface TopologyLinkGeometry {
+interface TopologyLinkGeometry {
   leftX: number;
   leftY: number;
   rightX: number;
@@ -100,7 +100,7 @@ export interface TopologyLink {
   geometry: TopologyLinkGeometry | null;
 }
 
-export type BgpSessionStatus = 'established' | 'down' | 'unknown';
+type BgpSessionStatus = 'established' | 'down' | 'unknown';
 
 export interface TopologySiteAttachment {
   key: string;
@@ -155,11 +155,11 @@ interface SiteAttachmentGroup {
 export const TOPOLOGY_ROUTER_RADIUS = 42;
 export const TOPOLOGY_SITE_CARD_WIDTH = 154;
 export const TOPOLOGY_SITE_CARD_HEIGHT = 58;
-export const TOPOLOGY_SITE_CARD_GAP = 28;
+const TOPOLOGY_SITE_CARD_GAP = 28;
 export const TOPOLOGY_LINK_LABEL_HEIGHT = 56;
-export const TOPOLOGY_LINK_LABEL_MIN_WIDTH = 140;
-export const TOPOLOGY_LINK_LABEL_MAX_WIDTH = 260;
-export const TOPOLOGY_VIEW_PADDING = 48;
+const TOPOLOGY_LINK_LABEL_MIN_WIDTH = 140;
+const TOPOLOGY_LINK_LABEL_MAX_WIDTH = 260;
+const TOPOLOGY_VIEW_PADDING = 48;
 
 export function parseLinkStatus(value: unknown): LinkStatus {
   if (value === 'up') return 'up';
@@ -168,7 +168,7 @@ export function parseLinkStatus(value: unknown): LinkStatus {
 }
 
 /** Map a BGP neighbor session-state to a simple up/down/unknown status. */
-export function bgpSessionStatus(state: string | undefined | null): BgpSessionStatus {
+function bgpSessionStatus(state: string | undefined | null): BgpSessionStatus {
   if (!state) return 'unknown';
   return state === 'established' ? 'established' : 'down';
 }
@@ -288,7 +288,7 @@ const LINK_LABEL_SEPARATOR = ' ↔ ';
  * letters and keep the numeric port suffix ("GigabitEthernet0/0/0/0" → "Gi0/0/0/0"),
  * ellipsis-truncating the tail as a fallback.
  */
-export function shortenInterfaceName(name: string, maxChars: number): string {
+function shortenInterfaceName(name: string, maxChars: number): string {
   const trimmed = name.trim();
   if (trimmed.length <= maxChars) {
     return trimmed;
@@ -537,7 +537,10 @@ export function buildTopologyGraph(
   const routerMap = new Map(routers.map((router) => [router.name, router]));
   const orphanSiteAttachments: TopologySiteAttachment[] = [];
 
-  const attachmentGroups = buildSiteAttachmentGroups(getL3VpnSites(l3vpnSitesPayload));
+  // getSites walks untyped JSON; the topology model owns the wire shape it expects.
+  const attachmentGroups = buildSiteAttachmentGroups(
+    getL3VpnSites(l3vpnSitesPayload) as L3VpnSiteApi[]
+  );
 
   for (const group of attachmentGroups) {
     const attachment: TopologySiteAttachment = {

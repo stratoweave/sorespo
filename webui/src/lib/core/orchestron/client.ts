@@ -1,5 +1,7 @@
 import { demoFetch } from '$lib/demo/gate';
 
+import type { StatusTone } from '$lib/core/ui/tones';
+
 const API_BASE = '/api';
 
 export interface DeviceSummary {
@@ -58,6 +60,33 @@ export interface QueueItemSummary {
   approved?: boolean | null;
 }
 
+/** Shapes as the orchestrator serializes them (snake_case, `approved` as a Python str). */
+interface DeviceInfoWire {
+  name?: string;
+  type?: string;
+  approval_required?: boolean;
+  addresses?: DeviceAddress[];
+  username?: string;
+  has_running_config?: boolean;
+  has_target_config?: boolean;
+  queue_length?: number;
+  pending_approvals?: number;
+  feature_flags?: Record<string, boolean>;
+  modules?: DeviceModuleInfo[];
+}
+
+interface QueueItemWire {
+  queue_id: string | number;
+  device_txid?: string;
+  approved?: unknown;
+}
+
+interface ConfigQueueWire {
+  devices?: { device_id: string; items?: QueueItemWire[] }[];
+}
+
+type QueueItemDetailWire = Omit<QueueItemDetail, 'approved'> & { approved?: unknown };
+
 // The backend serializes `approved` with Python str(): "True", "False" or "null".
 function parseApproved(value: unknown): boolean | null {
   if (value === true || value === 'True') return true;
@@ -67,6 +96,13 @@ function parseApproved(value: unknown): boolean | null {
 
 export function isPendingQueueItem(item: Pick<QueueItemSummary, 'approved'>): boolean {
   return item.approved !== true && item.approved !== false;
+}
+
+/** Display tone and label for a queue item's approval state. */
+export function approvalStatus(approved: boolean | null | undefined): { tone: StatusTone; label: string } {
+  if (approved === true) return { tone: 'success', label: 'Approved' };
+  if (approved === false) return { tone: 'danger', label: 'Rejected' };
+  return { tone: 'warning', label: 'Pending' };
 }
 
 export interface ConfigLogEntry {
@@ -108,8 +144,8 @@ export async function fetchDevices(fetchFn: Fetch = fetch): Promise<DeviceSummar
 
   const summaries = await Promise.allSettled(
     deviceNames.map(async (name) => {
-      const info = await apiRequest<any>(`/device/${encodeURIComponent(name)}/info`, {}, fetchFn);
-      const firstAddr = Array.isArray(info.addresses) && info.addresses.length > 0 ? info.addresses[0] : null;
+      const info = await apiRequest<DeviceInfoWire>(`/device/${encodeURIComponent(name)}/info`, {}, fetchFn);
+      const firstAddr = info.addresses?.[0] ?? null;
       const address = firstAddr
         ? `${firstAddr.address}${firstAddr.port ? `:${firstAddr.port}` : ''}`
         : undefined;
@@ -143,13 +179,13 @@ export async function fetchDevices(fetchFn: Fetch = fetch): Promise<DeviceSummar
 }
 
 export async function fetchDevice(deviceId: string, fetchFn: Fetch = fetch): Promise<DeviceInfo> {
-  const info = await apiRequest<any>(`/device/${encodeURIComponent(deviceId)}/info`, {}, fetchFn);
+  const info = await apiRequest<DeviceInfoWire>(`/device/${encodeURIComponent(deviceId)}/info`, {}, fetchFn);
   return {
     id: deviceId,
     name: info.name || deviceId,
     type: info.type,
     approvalRequired: Boolean(info.approval_required),
-    addresses: info.addresses || [],
+    addresses: info.addresses ?? [],
     username: info.username,
     hasRunningConfig: info.has_running_config,
     hasTargetConfig: info.has_target_config,
@@ -175,7 +211,7 @@ export async function fetchConfigQueueItem(
   queueId: string,
   format = 'xml'
 ): Promise<QueueItemDetail> {
-  const detail = await apiRequest<any>(
+  const detail = await apiRequest<QueueItemDetailWire | null>(
     `/device/${encodeURIComponent(deviceId)}/q/${encodeURIComponent(queueId)}?format=${format}`
   );
   return { ...(detail ?? {}), approved: parseApproved(detail?.approved) };
@@ -200,7 +236,7 @@ export async function approveConfigQueueItem(
 }
 
 export async function fetchAllDeviceQueues(): Promise<QueueItemSummary[]> {
-  const response = await apiRequest<any>('/config-queue');
+  const response = await apiRequest<ConfigQueueWire>('/config-queue');
   const items: QueueItemSummary[] = [];
 
   for (const device of response.devices ?? []) {
@@ -217,32 +253,18 @@ export async function fetchAllDeviceQueues(): Promise<QueueItemSummary[]> {
   return items;
 }
 
-export async function fetchDeviceRunningConfig(deviceId: string, format = 'json'): Promise<string> {
-  const response = await (demoFetch ?? fetch)(
-    `${API_BASE}/device/${encodeURIComponent(deviceId)}/running?format=${format}`
-  );
-  if (!response.ok) {
-    throw new Error('Failed to fetch running config');
-  }
-  return response.text();
-}
+export type DeviceConfigView = 'running' | 'target';
 
-export async function fetchDeviceTargetConfig(deviceId: string, format = 'json'): Promise<string> {
+export async function fetchDeviceConfig(
+  deviceId: string,
+  view: DeviceConfigView,
+  format = 'json'
+): Promise<string> {
   const response = await (demoFetch ?? fetch)(
-    `${API_BASE}/device/${encodeURIComponent(deviceId)}/target?format=${format}`
+    `${API_BASE}/device/${encodeURIComponent(deviceId)}/${view}?format=${format}`
   );
   if (!response.ok) {
-    throw new Error('Failed to fetch target config');
-  }
-  return response.text();
-}
-
-export async function fetchDeviceConfigDiff(deviceId: string, format = 'json'): Promise<string> {
-  const response = await (demoFetch ?? fetch)(
-    `${API_BASE}/device/${encodeURIComponent(deviceId)}/diff?format=${format}`
-  );
-  if (!response.ok) {
-    throw new Error('Failed to fetch config diff');
+    throw new Error(`Failed to fetch ${view} config (HTTP ${response.status})`);
   }
   return response.text();
 }

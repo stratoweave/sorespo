@@ -8,7 +8,7 @@ import {
 // tids are assigned when the demo state is materialized (see ../state.ts); log
 // timestamps are `now - ageSeconds` so the history always looks recent.
 
-export interface QueueSeed {
+interface QueueSeed {
   diffXml: string;
 }
 
@@ -20,7 +20,7 @@ export const INITIAL_QUEUE: Record<string, QueueSeed[]> = {
   'LJU-CORE-1': [{ diffXml: subinterfaceRemoveDiff('ethernet-1/4', '300') }]
 };
 
-export interface LogSeed {
+interface LogSeed {
   event: string;
   ageSeconds: number;
   conf_diff?: string;

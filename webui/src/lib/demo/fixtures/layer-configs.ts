@@ -9,7 +9,7 @@ import {
 // demo state so edits show up when re-inspecting; the intermediate layers are
 // representative static content.
 
-export interface LayerContext {
+interface LayerContext {
   /** Wrapped CFS payloads exactly as served over RESTCONF. */
   netinfra: Record<string, unknown>;
   l3vpn: Record<string, unknown>;

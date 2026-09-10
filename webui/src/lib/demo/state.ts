@@ -9,14 +9,14 @@ import {
 } from '$lib/demo/fixtures/netinfra';
 import { INITIAL_LOG, INITIAL_QUEUE } from '$lib/demo/fixtures/seed';
 
-export interface DemoQueueItem {
+interface DemoQueueItem {
   queueId: string;
   tid: string;
   deviceTxid: string;
   diffXml: string;
 }
 
-export interface DemoLogEntry {
+interface DemoLogEntry {
   event: string;
   timestamp: string;
   conf_diff?: string;

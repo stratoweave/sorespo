@@ -1,4 +1,5 @@
 import { parseLinkStatus } from '$lib/core/topology/model';
+import { at, isRecord, stringAt } from '$lib/core/util/json';
 import { createNetinfraBackboneLinkDraft } from '$lib/modules/netinfra-backbone-link/defaults';
 import {
   formatNetinfraBackboneLinkEndpoints,
@@ -8,16 +9,20 @@ import {
 import type { ServiceListItem } from '$lib/core/registry/types';
 import type { NetinfraBackboneLinkDraft } from '$lib/modules/netinfra-backbone-link/model';
 
-function getBackboneLinkEntry(input: any): any | null {
-  if (Array.isArray(input?.['netinfra:backbone-link'])) {
-    return input['netinfra:backbone-link'][0] ?? null;
-  }
+/** First entry of the list at `path`, null for an empty list, undefined when absent. */
+function firstEntry(input: unknown, ...path: string[]): unknown {
+  const list = at(input, ...path);
+  return Array.isArray(list) ? (list[0] ?? null) : undefined;
+}
 
-  if (Array.isArray(input?.['netinfra:netinfra']?.['backbone-link'])) {
-    return input['netinfra:netinfra']['backbone-link'][0] ?? null;
-  }
+function getBackboneLinkEntry(input: unknown): unknown {
+  const bare = firstEntry(input, 'netinfra:backbone-link');
+  if (bare !== undefined) return bare;
 
-  if (input && typeof input === 'object' && 'left-router' in input) {
+  const nested = firstEntry(input, 'netinfra:netinfra', 'backbone-link');
+  if (nested !== undefined) return nested;
+
+  if (isRecord(input) && 'left-router' in input) {
     return input;
   }
 
@@ -33,17 +38,17 @@ export function parseNetinfraBackboneLink(input: unknown): NetinfraBackboneLinkD
   }
 
   return {
-    leftRouter: String(backboneLink['left-router'] ?? ''),
-    leftInterface: String(backboneLink['left-interface'] ?? ''),
-    rightRouter: String(backboneLink['right-router'] ?? ''),
-    rightInterface: String(backboneLink['right-interface'] ?? ''),
-    linkStatus: parseLinkStatus(backboneLink['state']?.['link-status'])
+    leftRouter: stringAt(backboneLink, 'left-router'),
+    leftInterface: stringAt(backboneLink, 'left-interface'),
+    rightRouter: stringAt(backboneLink, 'right-router'),
+    rightInterface: stringAt(backboneLink, 'right-interface'),
+    linkStatus: parseLinkStatus(at(backboneLink, 'state', 'link-status'))
   };
 }
 
-export function listNetinfraBackboneLinks(input: any): ServiceListItem[] {
+export function listNetinfraBackboneLinks(input: unknown): ServiceListItem[] {
   const backboneLinks =
-    input?.['netinfra:netinfra']?.['backbone-link'] ?? input?.['netinfra:backbone-link'] ?? [];
+    at(input, 'netinfra:netinfra', 'backbone-link') ?? at(input, 'netinfra:backbone-link') ?? [];
 
   if (!Array.isArray(backboneLinks)) {
     return [];

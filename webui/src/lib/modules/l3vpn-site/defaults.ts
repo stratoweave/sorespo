@@ -1,3 +1,5 @@
+import { newDraftUid } from '$lib/core/drafts/uid';
+
 import type {
   L3VpnSiteAccessDraft,
   L3VpnSiteDeviceDraft,
@@ -9,6 +11,7 @@ import type {
 
 export function createL3VpnSiteLocationDraft(): L3VpnSiteLocationDraft {
   return {
+    uid: newDraftUid(),
     locationId: '',
     address: '',
     postalCode: '',
@@ -20,6 +23,7 @@ export function createL3VpnSiteLocationDraft(): L3VpnSiteLocationDraft {
 
 export function createL3VpnSiteDeviceDraft(): L3VpnSiteDeviceDraft {
   return {
+    uid: newDraftUid(),
     deviceId: '',
     location: '',
     managementAddressFamily: '',
@@ -29,6 +33,7 @@ export function createL3VpnSiteDeviceDraft(): L3VpnSiteDeviceDraft {
 
 export function createL3VpnSiteLanPrefixDraft(): L3VpnSiteLanPrefixDraft {
   return {
+    uid: newDraftUid(),
     lan: '',
     lanTag: '',
     nextHop: ''
@@ -37,6 +42,7 @@ export function createL3VpnSiteLanPrefixDraft(): L3VpnSiteLanPrefixDraft {
 
 export function createL3VpnSiteRoutingProtocolDraft(): L3VpnSiteRoutingProtocolDraft {
   return {
+    uid: newDraftUid(),
     type: 'bgp',
     addressFamilies: ['ipv4'],
     bgpAutonomousSystem: null,
@@ -50,6 +56,7 @@ export function createL3VpnSiteRoutingProtocolDraft(): L3VpnSiteRoutingProtocolD
 
 export function createL3VpnSiteAccessDraft(): L3VpnSiteAccessDraft {
   return {
+    uid: newDraftUid(),
     siteNetworkAccessId: '',
     siteNetworkAccessType: 'point-to-point',
     locationReference: '',

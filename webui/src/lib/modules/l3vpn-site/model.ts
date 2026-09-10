@@ -9,6 +9,8 @@ export type L3VpnSiteAddressFamily = (typeof L3VPN_SITE_ADDRESS_FAMILIES)[number
 export type L3VpnSiteRoutingProtocolType = (typeof L3VPN_SITE_ROUTING_PROTOCOL_TYPES)[number];
 
 export interface L3VpnSiteLocationDraft {
+  /** Client-only row identity for keyed lists; never serialized. */
+  uid: number;
   locationId: string;
   address: string;
   postalCode: string;
@@ -18,6 +20,8 @@ export interface L3VpnSiteLocationDraft {
 }
 
 export interface L3VpnSiteDeviceDraft {
+  /** Client-only row identity for keyed lists; never serialized. */
+  uid: number;
   deviceId: string;
   location: string;
   managementAddressFamily: L3VpnSiteAddressFamily | '';
@@ -25,12 +29,16 @@ export interface L3VpnSiteDeviceDraft {
 }
 
 export interface L3VpnSiteLanPrefixDraft {
+  /** Client-only row identity for keyed lists; never serialized. */
+  uid: number;
   lan: string;
   lanTag: string;
   nextHop: string;
 }
 
 export interface L3VpnSiteRoutingProtocolDraft {
+  /** Client-only row identity for keyed lists; never serialized. */
+  uid: number;
   type: L3VpnSiteRoutingProtocolType;
   addressFamilies: L3VpnSiteAddressFamily[];
   bgpAutonomousSystem: number | null;
@@ -42,6 +50,8 @@ export interface L3VpnSiteRoutingProtocolDraft {
 }
 
 export interface L3VpnSiteAccessDraft {
+  /** Client-only row identity for keyed lists; never serialized. */
+  uid: number;
   siteNetworkAccessId: string;
   siteNetworkAccessType: L3VpnSiteAccessType;
   locationReference: string;
@@ -86,7 +96,7 @@ export function formatL3VpnSiteManagementType(value: string): string {
   }
 }
 
-export function formatL3VpnSiteAccessType(value: string): string {
+function formatL3VpnSiteAccessType(value: string): string {
   switch (value) {
     case 'multipoint':
       return 'Multipoint';
@@ -114,7 +124,7 @@ export function formatL3VpnSiteRoutingProtocolType(value: string): string {
   }
 }
 
-export function formatL3VpnSiteAddressFamily(value: string): string {
+function formatL3VpnSiteAddressFamily(value: string): string {
   return value === 'ipv6' ? 'IPv6' : 'IPv4';
 }
 

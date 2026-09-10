@@ -1,21 +1,19 @@
+import { at, isRecord, stringAt } from '$lib/core/util/json';
 import { createGlobalSettingsDraft } from '$lib/global-settings/defaults';
 
 import type { GlobalSettingsDraft } from '$lib/global-settings/model';
 
-function getSettingsEntry(input: any): any | null {
-  if (input?.['netinfra:global-settings'] && typeof input['netinfra:global-settings'] === 'object') {
-    return input['netinfra:global-settings'];
-  }
+function getSettingsEntry(input: unknown): unknown {
+  const prefixed = at(input, 'netinfra:global-settings');
+  if (isRecord(prefixed)) return prefixed;
 
-  if (input?.['global-settings'] && typeof input['global-settings'] === 'object') {
-    return input['global-settings'];
-  }
+  const bare = at(input, 'global-settings');
+  if (isRecord(bare)) return bare;
 
-  if (input?.['netinfra:netinfra']?.['global-settings']) {
-    return input['netinfra:netinfra']['global-settings'];
-  }
+  const nested = at(input, 'netinfra:netinfra', 'global-settings');
+  if (nested) return nested;
 
-  if (input && typeof input === 'object' && 'ibgp-authentication-key' in input) {
+  if (isRecord(input) && 'ibgp-authentication-key' in input) {
     return input;
   }
 
@@ -31,6 +29,6 @@ export function parseGlobalSettings(input: unknown): GlobalSettingsDraft {
   }
 
   return {
-    ibgpAuthenticationKey: String(entry['ibgp-authentication-key'] ?? '')
+    ibgpAuthenticationKey: stringAt(entry, 'ibgp-authentication-key')
   };
 }

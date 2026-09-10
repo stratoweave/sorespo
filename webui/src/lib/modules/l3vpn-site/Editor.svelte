@@ -253,6 +253,7 @@
     yangPath="ietf-l3vpn-svc:site/locations/location"
   >
     <ListEditor
+      getItemKey={(item) => item.uid}
       title="Site locations"
       description="The YANG model exposes locations as a list; add as many as the site needs."
       items={draft.locations}
@@ -340,6 +341,7 @@
       yangPath="ietf-l3vpn-svc:site/devices/device"
     >
       <ListEditor
+        getItemKey={(item) => item.uid}
         title="Site devices"
         description="These entries are referenced by access device references."
         items={draft.devices}
@@ -416,6 +418,7 @@
     yangPath="ietf-l3vpn-svc:site/site-network-accesses/site-network-access"
   >
     <ListEditor
+      getItemKey={(item) => item.uid}
       title="Accesses"
       description="The editor keeps site-network-access as a real list, not a single collapsed access."
       items={draft.accesses}
@@ -494,7 +497,7 @@
 
           <div class="editor__subsection">
             <div class="editor__subsection-header">
-              <h6>Service Parameters</h6>
+              <h5>Service Parameters</h5>
               <span class="editor__yang-path">service/*</span>
             </div>
 
@@ -538,7 +541,7 @@
 
           <div class="editor__subsection">
             <div class="editor__subsection-header">
-              <h6>Attachment And Addressing</h6>
+              <h5>Attachment And Addressing</h5>
               <span class="editor__yang-path">vpn-attachment | ip-connection | bearer</span>
             </div>
 
@@ -592,11 +595,12 @@
 
           <div class="editor__subsection">
             <div class="editor__subsection-header">
-              <h6>Routing Protocols</h6>
+              <h5>Routing Protocols</h5>
               <span class="editor__yang-path">routing-protocols/routing-protocol</span>
             </div>
 
             <ListEditor
+              getItemKey={(item) => item.uid}
               title="Routing protocol list"
               description="The YANG list is keyed by protocol type, so each type should appear at most once per access."
               items={item.routingProtocols}
@@ -727,11 +731,12 @@
                     {#each STATIC_LAN_PREFIX_FAMILIES as family}
                       <div class="editor__subsection">
                         <div class="editor__subsection-header">
-                          <h6>Static {family.label} LAN Prefixes</h6>
+                          <h5>Static {family.label} LAN Prefixes</h5>
                           <span class="editor__yang-path">{family.yangPath}</span>
                         </div>
 
                         <ListEditor
+                          getItemKey={(item) => item.uid}
                           title={`${family.label} LAN prefixes`}
                           description="Repeatable static LAN prefix rows."
                           items={protocol[family.key]}
@@ -815,24 +820,6 @@
 </div>
 
 <style>
-  .editor {
-    display: grid;
-    gap: 20px;
-  }
-
-  .editor__grid {
-    display: grid;
-    gap: 16px;
-  }
-
-  .editor__grid--2col {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .editor__grid--3col {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .editor__subsection {
     display: grid;
     gap: 12px;
@@ -849,7 +836,7 @@
     gap: 12px;
   }
 
-  .editor__subsection-header h6 {
+  .editor__subsection-header h5 {
     margin: 0;
     font-size: 12px;
     font-weight: 600;
@@ -899,15 +886,7 @@
     color: var(--sw-danger);
   }
 
-  @media (max-width: 980px) {
-    .editor__grid--3col {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
   @media (max-width: 720px) {
-    .editor__grid--2col,
-    .editor__grid--3col,
     .editor__toggle-grid {
       grid-template-columns: 1fr;
     }

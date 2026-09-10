@@ -8,6 +8,8 @@
     addLabel?: string;
     emptyLabel?: string;
     getItemLabel?: (item: T, index: number) => string;
+    /** Stable identity for each row; defaults to the index. */
+    getItemKey?: (item: T, index: number) => string | number;
     onadd?: () => void;
     onremove?: (index: number) => void;
     row?: Snippet<[T, number]>;
@@ -20,6 +22,7 @@
     addLabel = 'Add item',
     emptyLabel = 'No items configured yet.',
     getItemLabel = (_item, index) => `Item ${index + 1}`,
+    getItemKey = (_item, index) => index,
     onadd,
     onremove,
     row
@@ -29,7 +32,7 @@
 <div class="list-editor">
   <div class="list-editor__header">
     <div class="list-editor__copy">
-      <h5>{title}</h5>
+      <h4>{title}</h4>
       {#if description}
         <p>{description}</p>
       {/if}
@@ -44,10 +47,10 @@
     <div class="list-editor__empty">{emptyLabel}</div>
   {:else}
     <div class="list-editor__items">
-      {#each items as item, index}
+      {#each items as item, index (getItemKey(item, index))}
         <article class="card list-editor__item">
           <div class="card-header list-editor__item-header">
-            <h5>{getItemLabel(item, index)}</h5>
+            <h4>{getItemLabel(item, index)}</h4>
             <button class="btn btn-danger btn-sm" type="button" onclick={() => onremove?.(index)}>
               Remove
             </button>
@@ -80,7 +83,7 @@
     gap: 4px;
   }
 
-  .list-editor__copy h5 {
+  .list-editor__copy h4 {
     margin: 0;
     font-size: 13px;
     font-weight: 600;
@@ -118,7 +121,7 @@
     gap: 12px;
   }
 
-  .list-editor__item-header h5 {
+  .list-editor__item-header h4 {
     margin: 0;
     font-size: 13px;
     font-weight: 600;

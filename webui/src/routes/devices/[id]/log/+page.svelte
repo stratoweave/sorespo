@@ -1,69 +1,51 @@
 <script lang="ts">
-  import { browser } from '$app/environment';
   import { onMount } from 'svelte';
 
-  import {
-    fetchDeviceConfigLog,
-    type ConfigLogEntry,
-    type DeviceInfo
-  } from '$lib/core/orchestron/client';
+  import { fetchDeviceConfigLog, type ConfigLogEntry } from '$lib/core/orchestron/client';
   import CodeBlock from '$lib/core/ui/CodeBlock.svelte';
   import EmptyState from '$lib/core/ui/EmptyState.svelte';
   import SegmentedControl from '$lib/core/ui/SegmentedControl.svelte';
   import Skeleton from '$lib/core/ui/Skeleton.svelte';
   import StatusPill from '$lib/core/ui/StatusPill.svelte';
   import { onGlobalRefresh } from '$lib/core/util/global-refresh';
+  import { startPolling } from '$lib/core/util/poll';
 
-  let {
-    data
-  }: { data: { deviceId: string; device: DeviceInfo | null; loadError: string } } = $props();
+  import type { StatusTone } from '$lib/core/ui/tones';
+  import type { PageProps } from './$types';
 
-  let lastLoadedId = $state('');
+  let { data }: PageProps = $props();
 
-  let configLog: ConfigLogEntry[] = $state([]);
+  let configLog = $state.raw<ConfigLogEntry[]>([]);
   let selectedEntry: ConfigLogEntry | null = $state(null);
   let selectedIndex = $state(-1);
   let configFormat = $state('xml');
   let loadingLog = $state(false);
-  let pollHandle: ReturnType<typeof setInterval> | null = null;
 
   let device = $derived(data.device);
   let deviceId = $derived(data.deviceId);
   let error = $derived(data.loadError);
 
-  $effect(() => {
-    if (browser && deviceId && deviceId !== lastLoadedId) {
-      lastLoadedId = deviceId;
-      loadLog(false, deviceId);
-    }
-  });
+  const LOG_POLL_MS = 1000;
 
+  // The layout remounts this page per pathname, so the poller is per device.
   onMount(() => {
+    void loadLog(false);
     const offRefresh = onGlobalRefresh(() => loadLog());
-
-    pollHandle = setInterval(() => {
-      if (document.visibilityState === 'hidden') return;
-      if (!loadingLog) {
-        loadLog(true);
-      }
-    }, 1000);
+    const stopPolling = startPolling(() => loadLog(true), LOG_POLL_MS, { immediate: false });
 
     return () => {
       offRefresh();
-      if (pollHandle) {
-        clearInterval(pollHandle);
-      }
+      stopPolling();
     };
   });
 
-  async function loadLog(silent = false, requestId = data.deviceId): Promise<void> {
+  async function loadLog(silent = false): Promise<void> {
     try {
       if (!silent) {
         loadingLog = true;
       }
 
-      const response = await fetchDeviceConfigLog(requestId, configFormat);
-      if (requestId !== data.deviceId) return;
+      const response = await fetchDeviceConfigLog(deviceId, configFormat);
       const nextLog = response.log || [];
       const previousTimestamp = selectedEntry?.timestamp;
 
@@ -83,13 +65,12 @@
         selectEntry(0);
       }
     } catch (loadError) {
-      if (requestId !== data.deviceId) return;
       if (!silent) {
         console.error('Failed to load config log:', loadError);
         configLog = [];
       }
     } finally {
-      if (!silent && requestId === data.deviceId) {
+      if (!silent) {
         loadingLog = false;
       }
     }
@@ -120,21 +101,21 @@
     }).format(date);
   }
 
-  function eventTone(event: string): 'success' | 'danger' | 'info' {
+  function eventTone(event: string): StatusTone {
     switch (event) {
       case 'sent':
         return 'success';
       case 'failed':
         return 'danger';
       default:
-        return 'info';
+        return 'neutral';
     }
   }
 </script>
 
 <div class="page-header">
   <div>
-    <h2>Configuration log</h2>
+    <h1>Configuration log</h1>
     <p>Delivery history for {device?.name || deviceId}. Updates live.</p>
   </div>
 </div>
@@ -145,7 +126,7 @@
   <div class="log-layout">
     <section class="card log-layout__sidebar" data-tour="log-history">
       <div class="log-layout__sidebar-header">
-        <h3>History</h3>
+        <h2>History</h2>
         <span class="pill">{configLog.length} entr{configLog.length === 1 ? 'y' : 'ies'}</span>
       </div>
       <div class="log-layout__list">
@@ -154,7 +135,7 @@
         {:else if configLog.length === 0}
           <EmptyState icon="history" title="No entries yet" description="Configuration pushes to this device will appear here." compact />
         {:else}
-          {#each configLog as entry, index}
+          {#each configLog as entry, index (`${index}:${entry.timestamp}`)}
             <button class:selected={selectedIndex === index} class="log-entry" type="button" onclick={() => selectEntry(index)}>
               <StatusPill tone={eventTone(entry.event)} label={entry.event} />
               <small class="monospace">{formatTimestamp(entry.timestamp)}</small>
@@ -167,7 +148,7 @@
     <section class="card log-layout__detail">
       <div class="log-layout__detail-header">
         <div>
-          <h3>Entry detail</h3>
+          <h2>Entry detail</h2>
           <p>XML is the only format the current backend renders reliably.</p>
         </div>
         <SegmentedControl
@@ -188,7 +169,7 @@
           <span class="pill mono">{formatTimestamp(selectedEntry.timestamp)}</span>
         </div>
         {#if selectedEntry.conf_diff}
-          <CodeBlock content={selectedEntry.conf_diff} minHeight="28rem" maxHeight="calc(100vh - 320px)" label="Diff" />
+          <CodeBlock content={selectedEntry.conf_diff} minHeight="28rem" maxHeight="var(--sw-code-viewer-height)" label="Diff" />
         {:else}
           <EmptyState icon="file" title="No diff" description="This entry carries no configuration diff." compact />
         {/if}
@@ -216,6 +197,11 @@
     gap: 1rem;
     align-content: start;
     align-self: start;
+  }
+
+  .log-layout__sidebar-header h2,
+  .log-layout__detail-header h2 {
+    font-size: 15px;
   }
 
   .log-layout__sidebar-header,

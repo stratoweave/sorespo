@@ -58,7 +58,7 @@
 
 <div class="page-header">
   <div>
-    <h2>Layer Configuration</h2>
+    <h1>Layer Configuration</h1>
     <p>Inspect the rendered system configuration at each transformation layer (CFS → Device) in XML, JSON, or AData form.</p>
   </div>
 </div>

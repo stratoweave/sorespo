@@ -2,6 +2,9 @@
   import ConfirmDialog from '$lib/core/ui/ConfirmDialog.svelte';
   import SegmentedControl from '$lib/core/ui/SegmentedControl.svelte';
   import { restconfRaw } from '$lib/core/restconf/client';
+  import StatusBanner from '$lib/core/ui/StatusBanner.svelte';
+
+  import type { StatusMessage } from '$lib/core/ui/status-flash.svelte';
 
   type Format = 'json' | 'xml';
 
@@ -12,7 +15,7 @@
   let applying = $state(false);
   let confirmOpen = $state(false);
   let dragging = $state(false);
-  let statusMessage = $state<{ type: 'success' | 'error' | 'warning'; text: string } | null>(null);
+  let statusMessage = $state<StatusMessage | null>(null);
 
   let canApply = $derived(!applying && body.trim().length > 0);
   let charCount = $derived(body.length);
@@ -129,9 +132,9 @@
 </script>
 
 <div class="page">
-  <header class="page-header">
+  <div class="page-header page-header--flush">
     <div>
-      <h2>Apply CFS Config</h2>
+      <h1>Apply CFS Config</h1>
       <p class="page-header__desc">
         Applies the body through <code>/restconf/data</code>. Paste a JSON or XML payload, or
         drop a file onto the editor.
@@ -145,11 +148,9 @@
         {applying ? 'Applying…' : 'Apply'}
       </button>
     </div>
-  </header>
+  </div>
 
-  {#if statusMessage}
-    <div class="status-banner status-banner--{statusMessage.type}">{statusMessage.text}</div>
-  {/if}
+  <StatusBanner message={statusMessage} />
 
   <div class="toolbar">
     <SegmentedControl
@@ -169,19 +170,15 @@
     <span class="toolbar__meta toolbar__count">{charCount.toLocaleString()} chars</span>
   </div>
 
-  <div
-    class="dropzone"
-    class:dragging
-    data-tour="configure-editor"
-    role="textbox"
-    tabindex="-1"
-    ondragover={handleDragOver}
-    ondragleave={handleDragLeave}
-    ondrop={handleDrop}
-  >
+  <label class="sr-only" for="cfs-payload">Configuration payload</label>
+  <div class="dropzone" class:dragging data-tour="configure-editor">
     <textarea
+      id="cfs-payload"
       class="editor"
       bind:value={body}
+      ondragover={handleDragOver}
+      ondragleave={handleDragLeave}
+      ondrop={handleDrop}
       placeholder={format === 'xml'
         ? '<l3vpn-svc xmlns="urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc">\n  ...\n</l3vpn-svc>'
         : '{\n  "ietf-l3vpn-svc:l3vpn-svc": {\n    ...\n  }\n}'}
@@ -210,14 +207,6 @@
     gap: 16px;
   }
 
-  .page-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
   .page-header__desc {
     margin: 4px 0 0;
     color: var(--sw-text-secondary);
@@ -233,28 +222,6 @@
   .page-actions {
     display: flex;
     gap: 8px;
-  }
-
-  .status-banner {
-    padding: 10px 14px;
-    border-radius: 6px;
-    font-size: 13px;
-    word-break: break-word;
-  }
-
-  .status-banner--success {
-    background: var(--sw-success-dim);
-    color: var(--sw-success);
-  }
-
-  .status-banner--error {
-    background: var(--sw-danger-dim);
-    color: var(--sw-danger);
-  }
-
-  .status-banner--warning {
-    background: var(--sw-warning-dim);
-    color: var(--sw-warning);
   }
 
   .toolbar {
@@ -277,15 +244,17 @@
   .dropzone {
     position: relative;
     border: 1px solid var(--sw-border-subtle);
-    border-radius: var(--sw-radius-lg, 8px);
+    border-radius: var(--sw-radius-md);
     background: var(--sw-bg-card);
     overflow: hidden;
-    box-shadow: var(--sw-shadow-card, 0 1px 2px rgba(0, 0, 0, 0.2));
+    box-shadow: var(--sw-shadow-card);
     transition: border-color 120ms ease;
   }
 
-  .dropzone.dragging {
+  .dropzone.dragging,
+  .dropzone:focus-within {
     border-color: var(--sw-accent);
+    box-shadow: 0 0 0 3px var(--sw-accent-glow);
   }
 
   .editor {

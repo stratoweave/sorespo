@@ -8,8 +8,9 @@
   import { appHref } from '$lib/core/util/nav';
 
   import type { DeviceSummary } from '$lib/core/orchestron/client';
+  import type { PageProps } from './$types';
 
-  let { data }: { data: { devices: DeviceSummary[]; loadError: string } } = $props();
+  let { data }: PageProps = $props();
 
   let searchQuery = $state('');
 
@@ -24,7 +25,7 @@
 
 <div class="page-header">
   <div>
-    <h2>Devices</h2>
+    <h1>Devices</h1>
     <p>{devices.length} managed device{devices.length === 1 ? '' : 's'}</p>
   </div>
 
@@ -51,10 +52,10 @@
   </EmptyState>
 {:else}
   <div class="device-grid" data-tour="device-grid">
-    {#each filteredDevices as device}
+    {#each filteredDevices as device (device.id)}
       <a class="device-card card" href={appHref(`/devices/${encodeURIComponent(device.id)}`)}>
         <div class="device-card__header">
-          <h3>{device.name}</h3>
+          <h2>{device.name}</h2>
           <DeviceConfigStatus hasRunningConfig={device.hasRunningConfig} />
         </div>
         <div class="device-card__meta">
@@ -127,7 +128,7 @@
     gap: 8px;
   }
 
-  .device-card__header h3 {
+  .device-card__header h2 {
     font-size: 15px;
     overflow-wrap: anywhere;
   }
@@ -147,7 +148,7 @@
     color: var(--sw-warning);
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 720px) {
     .device-search {
       width: 100%;
       min-width: 0;

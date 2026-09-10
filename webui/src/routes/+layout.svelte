@@ -1,4 +1,11 @@
 <script lang="ts">
+  import '@fontsource/inter/400.css';
+  import '@fontsource/inter/500.css';
+  import '@fontsource/inter/600.css';
+  import '@fontsource/inter/700.css';
+  import '@fontsource/jetbrains-mono/400.css';
+  import '@fontsource/jetbrains-mono/500.css';
+  import '@fontsource/jetbrains-mono/600.css';
   import '../app.css';
 
   import { PUBLIC_DEMO } from '$env/static/public';
@@ -108,6 +115,10 @@
   }
 
   let currentPathname = $derived(appPathname(page.url));
+
+  function ariaCurrent(active: boolean): 'page' | undefined {
+    return active ? 'page' : undefined;
+  }
   let breadcrumbs = $derived(getBreadcrumbs(currentPathname));
   let pageTitle = $derived(
     breadcrumbs
@@ -142,6 +153,7 @@
         <a
           class="nav-item"
           class:active={currentPathname === '/'}
+          aria-current={ariaCurrent(currentPathname === '/')}
           href={appHref('/')}
           data-tour="nav-dashboard"
         >
@@ -151,6 +163,7 @@
         <a
           class="nav-item"
           class:active={currentPathname.startsWith('/devices')}
+          aria-current={ariaCurrent(currentPathname.startsWith('/devices'))}
           href={appHref('/devices')}
           data-tour="nav-devices"
         >
@@ -164,6 +177,7 @@
         <a
           class="nav-item"
           class:active={currentPathname.startsWith('/operations/config-queue')}
+          aria-current={ariaCurrent(currentPathname.startsWith('/operations/config-queue'))}
           href={appHref('/operations/config-queue')}
           data-tour="nav-queue"
         >
@@ -176,6 +190,7 @@
         <a
           class="nav-item"
           class:active={currentPathname.startsWith('/configure')}
+          aria-current={ariaCurrent(currentPathname.startsWith('/configure'))}
           href={appHref('/configure')}
           data-tour="nav-configure"
         >
@@ -185,6 +200,7 @@
         <a
           class="nav-item"
           class:active={currentPathname.startsWith('/layers')}
+          aria-current={ariaCurrent(currentPathname.startsWith('/layers'))}
           href={appHref('/layers')}
           data-tour="nav-layers"
         >
@@ -198,6 +214,7 @@
         <a
           class="nav-item"
           class:active={currentPathname.startsWith('/services')}
+          aria-current={ariaCurrent(currentPathname.startsWith('/services'))}
           href={appHref('/services')}
           data-tour="nav-services"
         >
@@ -206,10 +223,11 @@
         </a>
 
         <div class="nav-subsection">
-          {#each serviceModules as serviceModule}
+          {#each serviceModules as serviceModule (serviceModule.id)}
             <a
               class="nav-item nav-item--sub"
               class:active={currentPathname.startsWith(`/services/${serviceModule.id}`)}
+              aria-current={ariaCurrent(currentPathname.startsWith(`/services/${serviceModule.id}`))}
               href={appHref(`/services/${serviceModule.id}`)}
             >
               {serviceModule.title}
@@ -219,6 +237,7 @@
           <a
             class="nav-item nav-item--sub"
             class:active={currentPathname.startsWith('/global-settings')}
+            aria-current={ariaCurrent(currentPathname.startsWith('/global-settings'))}
             href={appHref('/global-settings')}
             data-tour="nav-global-settings"
           >
@@ -308,7 +327,7 @@
     color: var(--sw-text-muted);
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 960px) {
     .nav-subsection {
       display: contents;
     }

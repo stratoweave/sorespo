@@ -1,35 +1,35 @@
 <script lang="ts">
-  import { browser } from '$app/environment';
   import { invalidate } from '$app/navigation';
   import { onMount } from 'svelte';
 
   import {
+    approvalStatus,
     approveConfigQueueItem,
     fetchConfigQueueItem,
     fetchDeviceConfigQueue,
     resyncDevice,
-    type DeviceInfo,
     type QueueItemDetail
   } from '$lib/core/orchestron/client';
   import XmlDiff from '$lib/core/diff/XmlDiff.svelte';
   import EmptyState from '$lib/core/ui/EmptyState.svelte';
   import NavIcon from '$lib/core/ui/NavIcon.svelte';
   import Skeleton from '$lib/core/ui/Skeleton.svelte';
+  import StatusBanner from '$lib/core/ui/StatusBanner.svelte';
   import StatusPill from '$lib/core/ui/StatusPill.svelte';
   import { onGlobalRefresh } from '$lib/core/util/global-refresh';
   import { appHref } from '$lib/core/util/nav';
 
-  let {
-    data
-  }: { data: { deviceId: string; device: DeviceInfo | null; loadError: string } } = $props();
+  import type { StatusMessage } from '$lib/core/ui/status-flash.svelte';
+  import type { PageProps } from './$types';
 
-  let lastLoadedId = $state('');
+  let { data }: PageProps = $props();
 
-  let configQueue: Record<string, { tid?: string }> = $state({});
+  // The layout remounts this page per pathname, so one load per device suffices.
+  let configQueue = $state.raw<Record<string, { tid?: string }>>({});
   let selectedQueueItem: string | null = $state(null);
-  let queueItemDetail: QueueItemDetail | null = $state(null);
+  let queueItemDetail = $state.raw<QueueItemDetail | null>(null);
   let resyncing = $state(false);
-  let message: { type: 'success' | 'error'; text: string } | null = $state(null);
+  let message = $state<StatusMessage | null>(null);
   let loadingQueue = $state(false);
   let approvingItem: string | null = $state(null);
 
@@ -38,39 +38,28 @@
   let error = $derived(data.loadError);
   let queueEntries = $derived(Object.entries(configQueue));
 
-  $effect(() => {
-    if (browser && deviceId && deviceId !== lastLoadedId) {
-      lastLoadedId = deviceId;
-      loadConfigQueue(deviceId);
-    }
+  onMount(() => {
+    void loadConfigQueue();
+    return onGlobalRefresh(() => {
+      invalidate(`data:device:${data.deviceId}`);
+      void loadConfigQueue();
+    });
   });
 
-  onMount(() =>
-    onGlobalRefresh(() => {
-      invalidate(`data:device:${data.deviceId}`);
-      loadConfigQueue();
-    })
-  );
-
-  async function loadConfigQueue(requestId = data.deviceId): Promise<void> {
+  async function loadConfigQueue(): Promise<void> {
     try {
       loadingQueue = true;
-      const queue = await fetchDeviceConfigQueue(requestId);
-      if (requestId !== data.deviceId) return;
-      configQueue = queue;
+      configQueue = await fetchDeviceConfigQueue(deviceId);
 
       if (selectedQueueItem && !configQueue[selectedQueueItem]) {
         selectedQueueItem = null;
         queueItemDetail = null;
       }
     } catch (loadError) {
-      if (requestId !== data.deviceId) return;
       console.error('Failed to load config queue:', loadError);
       configQueue = {};
     } finally {
-      if (requestId === data.deviceId) {
-        loadingQueue = false;
-      }
+      loadingQueue = false;
     }
   }
 
@@ -131,25 +120,20 @@
     }
   }
 
-  function approvalLabel(approved: boolean | null | undefined): { tone: 'success' | 'danger' | 'warning'; label: string } {
-    if (approved === true) return { tone: 'success', label: 'Approved' };
-    if (approved === false) return { tone: 'danger', label: 'Rejected' };
-    return { tone: 'warning', label: 'Pending approval' };
-  }
 </script>
 
 <div class="device-detail">
   {#if error}
-    <div class="page-header">
+    <div class="page-header page-header--flush">
       <div>
-        <h2>Device</h2>
+        <h1>Device</h1>
       </div>
     </div>
     <EmptyState tone="danger" icon="alert" title="Device unavailable" description={error} />
   {:else if device}
-    <div class="page-header">
+    <div class="page-header page-header--flush">
       <div class="device-detail__title">
-        <h2>{device.name || device.id}</h2>
+        <h1>{device.name || device.id}</h1>
         <div class="device-detail__subtitle">
           {#if device.type}
             <span>{device.type}</span>
@@ -166,10 +150,10 @@
       </div>
 
       <div class="device-detail__actions" data-tour="device-actions">
-        <a class="btn btn-secondary" href={appHref(`/devices/${deviceId}/config`)}>
+        <a class="btn btn-secondary" href={appHref(`/devices/${encodeURIComponent(deviceId)}/config`)}>
           <NavIcon name="file" size={15} /> Configuration
         </a>
-        <a class="btn btn-secondary" href={appHref(`/devices/${deviceId}/log`)}>
+        <a class="btn btn-secondary" href={appHref(`/devices/${encodeURIComponent(deviceId)}/log`)}>
           <NavIcon name="history" size={15} /> Log
         </a>
         <button class="btn btn-primary" type="button" disabled={resyncing} onclick={handleResync}>
@@ -178,13 +162,11 @@
       </div>
     </div>
 
-    {#if message}
-      <div class="flash {message.type}">{message.text}</div>
-    {/if}
+    <StatusBanner {message} />
 
     <div class="device-detail__grid">
       <section class="panel">
-        <h4>Device information</h4>
+        <h2>Device information</h2>
         <dl class="meta-list">
           <div>
             <dt>ID</dt>
@@ -204,7 +186,7 @@
             <div>
               <dt>Addresses</dt>
               <dd class="monospace">
-                {#each device.addresses as address}
+                {#each device.addresses as address (address.name)}
                   <div>{address.name}: {address.address}:{address.port}</div>
                 {/each}
               </dd>
@@ -214,7 +196,7 @@
       </section>
 
       <section class="panel">
-        <h4>Status</h4>
+        <h2>Status</h2>
         <dl class="meta-list">
           <div>
             <dt>Running config</dt>
@@ -248,10 +230,10 @@
       </section>
 
       <section class="panel">
-        <h4>Feature flags</h4>
+        <h2>Feature flags</h2>
         {#if device.featureFlags && Object.keys(device.featureFlags).length > 0}
           <ul class="flag-list">
-            {#each Object.entries(device.featureFlags) as [flag, enabled]}
+            {#each Object.entries(device.featureFlags) as [flag, enabled] (flag)}
               <li>
                 <span class="monospace">{flag}</span>
                 <StatusPill tone={enabled ? 'success' : 'neutral'} label={enabled ? 'Enabled' : 'Disabled'} dot={enabled} />
@@ -266,7 +248,7 @@
 
     <section class="card" data-tour="device-queue">
       <div class="card-header">
-        <h3>Configuration queue</h3>
+        <h2>Configuration queue</h2>
         <span class="card-badge push-right">{queueEntries.length} item{queueEntries.length === 1 ? '' : 's'}</span>
       </div>
 
@@ -278,7 +260,7 @@
         {:else}
           <div class="queue-layout">
             <div class="queue-layout__list">
-              {#each queueEntries as [queueId, item], index}
+              {#each queueEntries as [queueId, item], index (queueId)}
                 <div class:selected={selectedQueueItem === queueId} class="queue-card">
                   <div class="queue-card__header">
                     <strong>Queue #{queueId}</strong>
@@ -306,13 +288,13 @@
 
             <div class="queue-layout__detail">
               {#if selectedQueueItem && queueItemDetail}
-                {@const status = approvalLabel(queueItemDetail.approved)}
+                {@const status = approvalStatus(queueItemDetail.approved)}
                 <div class="queue-layout__detail-header">
-                  <h5>Queue item {selectedQueueItem}</h5>
+                  <h3>Queue item {selectedQueueItem}</h3>
                   <StatusPill tone={status.tone} label={status.label} />
                 </div>
                 {#if queueItemDetail.config_diff}
-                  <XmlDiff diff={queueItemDetail.config_diff} minHeight="16rem" maxHeight="40rem" />
+                  <XmlDiff diff={queueItemDetail.config_diff} minHeight="16rem" maxHeight="var(--sw-code-viewer-height)" />
                 {:else}
                   <EmptyState icon="file" title="No diff" description="This queue item carries no configuration diff." compact />
                 {/if}
@@ -327,7 +309,7 @@
 
     <section class="card" data-tour="device-modules">
       <div class="card-header">
-        <h3>YANG modules</h3>
+        <h2>YANG modules</h2>
         <span class="card-badge push-right">{device.modules?.length ?? 0} module{device.modules?.length === 1 ? '' : 's'}</span>
       </div>
 
@@ -336,14 +318,14 @@
           <table>
             <thead>
               <tr>
-                <th>Module</th>
-                <th>Namespace</th>
-                <th>Revision</th>
-                <th class="num">Features</th>
+                <th scope="col">Module</th>
+                <th scope="col">Namespace</th>
+                <th scope="col">Revision</th>
+                <th scope="col" class="num">Features</th>
               </tr>
             </thead>
             <tbody>
-              {#each device.modules as moduleInfo}
+              {#each device.modules as moduleInfo (`${moduleInfo.name}@${moduleInfo.revision ?? ''}`)}
                 <tr>
                   <td class="monospace">{moduleInfo.name}</td>
                   <td class="module-table__ns" title={moduleInfo.namespace}>{moduleInfo.namespace}</td>
@@ -370,7 +352,6 @@
   }
 
   .device-detail :global(.page-header) {
-    margin-bottom: 0;
     align-items: center;
   }
 
@@ -400,8 +381,17 @@
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
 
-  .device-detail__grid h4 {
+  .device-detail__grid h2,
+  .device-detail :global(.card-header h2) {
+    font-size: 14px;
+  }
+
+  .device-detail__grid h2 {
     margin-bottom: 14px;
+  }
+
+  .queue-layout__detail-header h3 {
+    font-size: 13px;
   }
 
   .num-inline {

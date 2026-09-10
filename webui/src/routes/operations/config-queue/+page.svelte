@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
 
   import {
+    approvalStatus,
     approveConfigQueueItem,
     fetchConfigQueueItem,
     isPendingQueueItem,
@@ -14,16 +15,17 @@
   import NavIcon from '$lib/core/ui/NavIcon.svelte';
   import SegmentedControl from '$lib/core/ui/SegmentedControl.svelte';
   import Skeleton from '$lib/core/ui/Skeleton.svelte';
+  import StatusBanner from '$lib/core/ui/StatusBanner.svelte';
   import StatusPill from '$lib/core/ui/StatusPill.svelte';
   import { onGlobalRefresh } from '$lib/core/util/global-refresh';
   import { LatestRequest } from '$lib/core/util/latest-request';
 
-  let allQueues: QueueItemSummary[] = $state([]);
+  let allQueues = $state.raw<QueueItemSummary[]>([]);
   let loading = $state(true);
   let error = $state('');
   let selectedDevice: string | null = $state(null);
   let selectedQueueIndex = $state(0);
-  let itemDetail: QueueItemDetail | null = $state(null);
+  let itemDetail = $state.raw<QueueItemDetail | null>(null);
   let approvingItem: string | null = $state(null);
   let diffFormat = $state('xml');
 
@@ -99,11 +101,10 @@
       }
     }
 
-    const firstDeviceId = value.queues[0].deviceId;
-    const firstItem = value.queues.find((item) => item.deviceId === firstDeviceId)!;
-    selectedDevice = firstDeviceId;
+    const firstItem = value.queues[0];
+    selectedDevice = firstItem.deviceId;
     selectedQueueIndex = 0;
-    void loadItemDetail(firstDeviceId, firstItem.queueId);
+    void loadItemDetail(firstItem.deviceId, firstItem.queueId);
   }
 
   async function selectDevice(deviceId: string, index = 0): Promise<void> {
@@ -161,12 +162,6 @@
     }
   }
 
-  function approvalStatus(approved: boolean | null | undefined): { tone: 'success' | 'danger' | 'warning'; label: string } {
-    if (approved === true) return { tone: 'success', label: 'Approved' };
-    if (approved === false) return { tone: 'danger', label: 'Rejected' };
-    return { tone: 'warning', label: 'Pending' };
-  }
-
   async function navigateQueue(direction: 'prev' | 'next'): Promise<void> {
     if (!selectedDevice || !deviceGroups[selectedDevice]) {
       return;
@@ -184,7 +179,7 @@
 
 <div class="page-header">
   <div>
-    <h2>Configuration Queue</h2>
+    <h1>Configuration Queue</h1>
     <p>Review pending device approvals and apply or reject the first queued change per device.</p>
   </div>
   <div class="queue-meta">
@@ -193,7 +188,7 @@
 </div>
 
 <div class="queue-layout">
-  <section class="card queue-layout__sidebar" data-tour="queue-list">
+  <div class="card queue-layout__sidebar" data-tour="queue-list">
     {#if loading && allQueues.length === 0}
       <Skeleton variant="rows" rows={3} />
     {:else if error && allQueues.length === 0}
@@ -202,7 +197,7 @@
       <EmptyState icon="check" title="Nothing to approve" description="All device queues are empty." compact />
     {:else}
       <div class="queue-device-list">
-        {#each deviceList as device}
+        {#each deviceList as device (device.deviceId)}
           <div class:selected={selectedDevice === device.deviceId} class="queue-device">
             <button type="button" onclick={() => selectDevice(device.deviceId, 0)}>
               <strong>{device.deviceId}</strong>
@@ -210,7 +205,7 @@
             </button>
             {#if selectedDevice === device.deviceId}
               <div class="queue-device__items">
-                {#each device.items as item, index}
+                {#each device.items as item, index (item.queueId)}
                   {@const status = approvalStatus(item.approved)}
                   <button
                     class:active={selectedQueueIndex === index}
@@ -228,17 +223,17 @@
         {/each}
       </div>
     {/if}
-  </section>
+  </div>
 
-  <section class="card queue-layout__detail" data-tour="queue-detail">
+  <div class="card queue-layout__detail" data-tour="queue-detail">
     {#if error && allQueues.length > 0}
-      <div class="flash error">{error}</div>
+      <StatusBanner message={{ type: 'error', text: error }} />
     {/if}
 
     {#if selectedItem && itemDetail}
       <div class="queue-layout__detail-header">
         <div>
-          <h3>{selectedItem.deviceId}</h3>
+          <h2>{selectedItem.deviceId}</h2>
           <p>
             Queue #{selectedItem.queueId}
             {#if itemDetail.tid}
@@ -303,7 +298,7 @@
       </div>
 
       {#if itemDetail.config_diff}
-        <XmlDiff diff={itemDetail.config_diff} format={diffFormat} minHeight="28rem" maxHeight="calc(100vh - 340px)" />
+        <XmlDiff diff={itemDetail.config_diff} format={diffFormat} minHeight="28rem" maxHeight="var(--sw-code-viewer-height)" />
       {:else}
         <EmptyState icon="file" title="No diff" description="This queue item carries no configuration diff." compact />
       {/if}
@@ -312,7 +307,7 @@
     {:else}
       <EmptyState icon="queue" title="Select a queue item" description="Pick a device on the left to review its pending change." />
     {/if}
-  </section>
+  </div>
 </div>
 
 <style>
@@ -413,6 +408,10 @@
     flex-wrap: wrap;
   }
 
+  .queue-layout__detail-header h2 {
+    font-size: 16px;
+  }
+
   .queue-layout__detail-header p {
     margin-top: 4px;
     font-size: 13px;
@@ -433,7 +432,7 @@
     font-variant-numeric: tabular-nums;
   }
 
-  @media (max-width: 980px) {
+  @media (max-width: 960px) {
     .queue-layout {
       grid-template-columns: 1fr;
     }

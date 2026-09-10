@@ -7,23 +7,16 @@
   import { getListEntryPath, restconfDelete } from '$lib/core/restconf/client';
   import ConfirmDialog from '$lib/core/ui/ConfirmDialog.svelte';
   import EmptyState from '$lib/core/ui/EmptyState.svelte';
+  import StatusBanner from '$lib/core/ui/StatusBanner.svelte';
+  import StatusPill from '$lib/core/ui/StatusPill.svelte';
   import { StatusFlash } from '$lib/core/ui/status-flash.svelte';
+  import { listItemTone } from '$lib/core/ui/tones';
   import { onGlobalRefresh } from '$lib/core/util/global-refresh';
   import { appHref } from '$lib/core/util/nav';
 
-  import type { ServiceListItem } from '$lib/core/registry/types';
+  import type { PageProps } from './$types';
 
-  let {
-    data
-  }: {
-    data: {
-      moduleId: string;
-      title: string;
-      description: string;
-      items: ServiceListItem[];
-      loadError: string;
-    };
-  } = $props();
+  let { data }: PageProps = $props();
 
   let removingId = $state('');
   const status = new StatusFlash();
@@ -69,7 +62,7 @@
 {#if serviceModule}
   <div class="page-header">
     <div>
-      <h2>{serviceModule.title}</h2>
+      <h1>{serviceModule.title}</h1>
       <p>{serviceModule.description}</p>
     </div>
     <div>
@@ -77,11 +70,9 @@
     </div>
   </div>
 
-  {#if status.message}
-    <div class:service-status--error={status.message.type === 'error'} class:service-status--success={status.message.type === 'success'} class="service-status">
-      {status.message.text}
-    </div>
-  {/if}
+  <div class="service-status">
+    <StatusBanner message={status.message} />
+  </div>
 
   {#if error}
     <EmptyState tone="danger" icon="alert" title="Could not load {serviceModule.collectionLabel.toLowerCase()}" description={error} />
@@ -95,22 +86,16 @@
     </EmptyState>
   {:else}
     <div class="service-list" data-tour="service-list">
-      {#each items as item}
+      {#each items as item (item.id)}
         <article class="card service-list__item">
           <a class="service-list__link" href={appHref(`/services/${serviceModule.id}/${encodeURIComponent(item.id)}`)}>
             <div class="service-list__copy">
               <div class="service-list__heading">
-                <h3>{item.label}</h3>
+                <h2>{item.label}</h2>
                 {#if item.badges && item.badges.length > 0}
                   <div class="service-list__badges">
-                    {#each item.badges as badge}
-                      <span
-                        class="pill service-list__badge"
-                        class:service-list__badge--up={badge.tone === 'up'}
-                        class:service-list__badge--down={badge.tone === 'down'}
-                        class:service-list__badge--unknown={badge.tone === 'unknown'}
-                        title={badge.title ?? ''}
-                      >{badge.text}</span>
+                    {#each item.badges as badge (badge.text)}
+                      <StatusPill tone={listItemTone(badge.tone)} label={badge.text} title={badge.title ?? ''} mono />
                     {/each}
                   </div>
                 {/if}
@@ -152,24 +137,8 @@
 {/if}
 
 <style>
-  .service-status {
+  .service-status:not(:empty) {
     margin-bottom: 1rem;
-    padding: 0.9rem 1rem;
-    border-radius: var(--sw-radius-md);
-    border: 1px solid var(--sw-border-default);
-    background: var(--sw-bg-card);
-  }
-
-  .service-status--success {
-    border-color: rgba(34, 197, 94, 0.24);
-    background: var(--sw-success-dim);
-    color: var(--sw-success);
-  }
-
-  .service-status--error {
-    border-color: rgba(239, 68, 68, 0.28);
-    background: var(--sw-danger-dim);
-    color: var(--sw-danger);
   }
 
   .service-list {
@@ -204,7 +173,7 @@
     min-width: 0;
   }
 
-  .service-list__copy h3 {
+  .service-list__copy h2 {
     font-size: 15px;
   }
 
@@ -228,26 +197,6 @@
     gap: 6px;
   }
 
-  .service-list__badge {
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    font-size: 11px;
-    font-family: var(--sw-font-mono);
-  }
-
-  .service-list__badge--up {
-    color: rgba(34, 197, 94, 0.95);
-    background: rgba(34, 197, 94, 0.12);
-  }
-
-  .service-list__badge--down {
-    color: rgba(239, 68, 68, 0.95);
-    background: rgba(239, 68, 68, 0.12);
-  }
-
-  .service-list__badge--unknown {
-    color: var(--sw-text-muted);
-  }
 
   .service-list__id-pill {
     padding: 5px 10px;

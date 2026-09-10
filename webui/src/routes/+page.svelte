@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
 
   import { listServiceModules } from '$lib/core/registry/service-modules';
+  import { lowercaseFirst } from '$lib/core/registry/types';
   import { fetchDevices, isPendingQueueItem, type DeviceSummary } from '$lib/core/orchestron/client';
   import { queuesPoll } from '$lib/core/orchestron/poll-store';
   import TopologyMap from '$lib/core/topology/TopologyMap.svelte';
@@ -13,20 +14,23 @@
   import StatTile from '$lib/core/ui/StatTile.svelte';
   import StatusPill from '$lib/core/ui/StatusPill.svelte';
   import { onGlobalRefresh } from '$lib/core/util/global-refresh';
+  import { LatestRequest } from '$lib/core/util/latest-request';
   import { appHref } from '$lib/core/util/nav';
+  import { startPolling } from '$lib/core/util/poll';
 
   import type { L3VpnSitesPayload, NetinfraPayload, TopologyGraph } from '$lib/core/topology/model';
 
   const modules = listServiceModules();
 
-  let devices: DeviceSummary[] = $state([]);
+  // Wholesale-replaced on every poll; raw state skips deep proxying.
+  let devices = $state.raw<DeviceSummary[]>([]);
   let loadingDevices = $state(true);
   let loadError = $state('');
-  let topologyGraph = $state<TopologyGraph | null>(null);
+  let topologyGraph = $state.raw<TopologyGraph | null>(null);
   let loadingTopology = $state(true);
   let topologyError = $state('');
   let topologyNote = $state('');
-  let serviceCounts: Record<string, number | null> = $state({});
+  let serviceCounts = $state.raw<Record<string, number | null>>({});
   let loadingCounts = $state(true);
 
   let pendingApprovals = $derived($queuesPoll.queues.filter(isPendingQueueItem).length);
@@ -50,8 +54,11 @@
     }
   }
 
+  const topologyRequest = new LatestRequest();
+
   async function loadTopology(): Promise<void> {
     const isInitialLoad = topologyGraph === null;
+    const token = topologyRequest.begin();
     try {
       if (isInitialLoad) {
         loadingTopology = true;
@@ -62,6 +69,7 @@
         restconfGetJson<NetinfraPayload>('data/netinfra:netinfra'),
         restconfGetJson<L3VpnSitesPayload>('data/ietf-l3vpn-svc:l3vpn-svc/sites')
       ]);
+      if (!topologyRequest.isCurrent(token)) return;
 
       if (netinfraResult.status !== 'fulfilled') {
         const message = netinfraResult.reason instanceof Error
@@ -88,7 +96,7 @@
           : 'L3VPN overlay unavailable.';
       }
     } finally {
-      loadingTopology = false;
+      if (topologyRequest.isCurrent(token)) loadingTopology = false;
     }
   }
 
@@ -129,36 +137,10 @@
       loadServiceCounts();
     });
 
-    let refreshTimer: ReturnType<typeof setInterval> | null = null;
-    const startTopologyRefresh = () => {
-      if (refreshTimer !== null) {
-        return;
-      }
-      refreshTimer = setInterval(() => {
-        if (typeof document !== 'undefined' && document.visibilityState !== 'visible') {
-          return;
-        }
-        loadTopology();
-      }, TOPOLOGY_REFRESH_MS);
-    };
-    const stopTopologyRefresh = () => {
-      if (refreshTimer !== null) {
-        clearInterval(refreshTimer);
-        refreshTimer = null;
-      }
-    };
-    startTopologyRefresh();
-
-    const handleVisibility = () => {
-      if (document.visibilityState === 'visible') {
-        loadTopology();
-      }
-    };
-    document.addEventListener('visibilitychange', handleVisibility);
+    const stopTopologyRefresh = startPolling(loadTopology, TOPOLOGY_REFRESH_MS, { immediate: false });
 
     return () => {
       offRefresh();
-      document.removeEventListener('visibilitychange', handleVisibility);
       stopTopologyRefresh();
     };
   });
@@ -171,9 +153,9 @@
 </script>
 
 <div class="overview">
-  <div class="page-header">
+  <div class="page-header page-header--flush">
     <div>
-      <h2>Overview</h2>
+      <h1>Overview</h1>
       <p>Live view of devices, backbone links, and pending changes.</p>
     </div>
   </div>
@@ -214,7 +196,7 @@
 
   <section class="overview__section" data-tour="topology">
     <div class="section-head">
-      <h3>Network Topology</h3>
+      <h2>Network Topology</h2>
     </div>
 
     {#if loadingTopology}
@@ -234,7 +216,7 @@
 
   <section class="overview__section" data-tour="devices-table">
     <div class="section-head">
-      <h3>Devices</h3>
+      <h2>Devices</h2>
       <a class="btn btn-secondary btn-sm" href={appHref('/devices')}>View all devices</a>
     </div>
 
@@ -250,18 +232,18 @@
           <table>
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Address</th>
-                <th>User</th>
-                <th class="num">Queue</th>
-                <th class="num">Pending</th>
-                <th>Approval</th>
-                <th>Status</th>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Address</th>
+                <th scope="col">User</th>
+                <th scope="col" class="num">Queue</th>
+                <th scope="col" class="num">Pending</th>
+                <th scope="col">Approval</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
-              {#each devices as device}
+              {#each devices as device (device.id)}
                 <tr>
                   <td><a class="device-table__name" href={appHref(`/devices/${encodeURIComponent(device.id)}`)}>{device.name}</a></td>
                   <td>{device.type ?? '—'}</td>
@@ -290,15 +272,15 @@
 
   <section class="overview__section" data-tour="service-cards">
     <div class="section-head">
-      <h3>Services</h3>
+      <h2>Services</h2>
       <a class="btn btn-secondary btn-sm" href={appHref('/services')}>View all services</a>
     </div>
 
     <div class="service-grid">
-      {#each modules as module}
+      {#each modules as module (module.id)}
         <article class="service-card card">
           <div class="card-header">
-            <h4>{module.title}</h4>
+            <h3>{module.title}</h3>
           </div>
 
           <div class="card-body">
@@ -313,7 +295,7 @@
 
             <div class="service-card__actions">
               <a class="btn btn-primary btn-sm" href={appHref(`/services/${module.id}/new`)}>Create new</a>
-              <a class="btn btn-secondary btn-sm" href={appHref(`/services/${module.id}`)}>View {module.collectionLabel.replace(/^[A-Z](?=[a-z])/, (initial) => initial.toLowerCase())}</a>
+              <a class="btn btn-secondary btn-sm" href={appHref(`/services/${module.id}`)}>View {lowercaseFirst(module.collectionLabel)}</a>
             </div>
           </div>
         </article>
@@ -326,10 +308,6 @@
   .overview {
     display: grid;
     gap: 24px;
-  }
-
-  .overview :global(.page-header) {
-    margin-bottom: 0;
   }
 
   .stat-grid {
@@ -348,6 +326,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
+  }
+
+  .section-head h2 {
+    font-size: 16px;
   }
 
   .device-table {
@@ -369,12 +351,6 @@
     font-weight: 600;
   }
 
-  .service-grid {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  }
-
   .service-card__count {
     display: flex;
     align-items: baseline;
@@ -393,12 +369,6 @@
   .service-card__count span {
     font-size: 13px;
     color: var(--sw-text-secondary);
-  }
-
-  .service-card__actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
   }
 
   @media (max-width: 720px) {

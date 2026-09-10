@@ -302,6 +302,6 @@
     border-radius: 4px;
     background: var(--sw-bg-deep);
     font-family: var(--sw-font-mono);
-    font-size: 10px;
+    font-size: 11px;
   }
 </style>

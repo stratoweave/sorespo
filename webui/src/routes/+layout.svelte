@@ -12,6 +12,7 @@
   import { queuesPoll, refreshQueues } from '$lib/core/orchestron/poll-store';
   import { getServiceModule, listServiceModuleMeta } from '$lib/core/registry/service-modules';
   import { formatServiceRouteId } from '$lib/core/registry/types';
+  import LiveIndicator from '$lib/core/ui/LiveIndicator.svelte';
   import NavIcon from '$lib/core/ui/NavIcon.svelte';
   import { appHref, appPathname } from '$lib/core/util/nav';
 
@@ -246,6 +247,7 @@
       </nav>
 
       <div class="header-actions">
+        <LiveIndicator />
         <button class="btn btn-ghost btn-sm cmdk-trigger" type="button" onclick={() => (paletteOpen = true)} aria-label="Open command palette">
           Search <kbd>⌘K</kbd>
         </button>
@@ -256,7 +258,11 @@
     </header>
 
     <main class="app-content">
-      {@render children?.()}
+      {#key currentPathname}
+        <div class="page-enter">
+          {@render children?.()}
+        </div>
+      {/key}
     </main>
   </div>
 </div>
@@ -298,7 +304,7 @@
     border-radius: 4px;
     background: var(--sw-bg-card);
     font-family: var(--sw-font-mono);
-    font-size: 10px;
+    font-size: 11px;
     color: var(--sw-text-muted);
   }
 

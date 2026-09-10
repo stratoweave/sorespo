@@ -11,8 +11,8 @@
 
 <section class="validation-panel card">
   <div class="card-header">
-    <h4 style="margin:0; font-size:14px; font-weight:600;">Validation</h4>
-    <span class:success={active && validation.ok} class:danger={active && !validation.ok} class="pill" style="margin-left:auto;">
+    <h4>Validation</h4>
+    <span class:success={active && validation.ok} class:danger={active && !validation.ok} class="pill push-right">
       <span class="dot"></span>
       {#if !active}
         Awaiting input

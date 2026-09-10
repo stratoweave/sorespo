@@ -6,6 +6,7 @@
   import { formatServiceRouteId, getRoutePathKey } from '$lib/core/registry/types';
   import { getListEntryPath, restconfDelete } from '$lib/core/restconf/client';
   import ConfirmDialog from '$lib/core/ui/ConfirmDialog.svelte';
+  import EmptyState from '$lib/core/ui/EmptyState.svelte';
   import { StatusFlash } from '$lib/core/ui/status-flash.svelte';
   import { onGlobalRefresh } from '$lib/core/util/global-refresh';
   import { appHref } from '$lib/core/util/nav';
@@ -83,11 +84,15 @@
   {/if}
 
   {#if error}
-    <div class="error-state">{error}</div>
+    <EmptyState tone="danger" icon="alert" title="Could not load {serviceModule.collectionLabel.toLowerCase()}" description={error} />
   {:else if !serviceModule.list}
-    <div class="empty-state">This module does not expose a collection view yet.</div>
+    <EmptyState icon="services" title="No collection view" description="This module does not expose a collection view yet." />
   {:else if items.length === 0}
-    <div class="empty-state">No existing {serviceModule.collectionLabel.toLowerCase()} were returned by RESTCONF.</div>
+    <EmptyState icon="services" title="No {serviceModule.collectionLabel.toLowerCase()} yet" description="Create the first one to see it listed here.">
+      {#snippet action()}
+        <a class="btn btn-primary btn-sm" href={appHref(`/services/${serviceModule.id}/new`)}>Create {serviceModule.collectionLabel.toLowerCase().replace(/s$/, '')}</a>
+      {/snippet}
+    </EmptyState>
   {:else}
     <div class="service-list" data-tour="service-list">
       {#each items as item}
@@ -176,7 +181,12 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1.2rem;
+    padding: 14px 18px;
+    transition: border-color var(--sw-dur-fast);
+  }
+
+  .service-list__item:hover {
+    border-color: var(--sw-border-default);
   }
 
   .service-list__link {
@@ -194,14 +204,14 @@
     min-width: 0;
   }
 
-  .service-list__copy h3,
-  .service-list__copy p {
-    margin: 0;
+  .service-list__copy h3 {
+    font-size: 15px;
   }
 
   .service-list__copy p {
     margin-top: 0.35rem;
-    color: var(--text-muted);
+    font-size: 13px;
+    color: var(--sw-text-muted);
   }
 
   .service-list__heading {

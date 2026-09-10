@@ -7,7 +7,11 @@
     type ConfigLogEntry,
     type DeviceInfo
   } from '$lib/core/orchestron/client';
+  import CodeBlock from '$lib/core/ui/CodeBlock.svelte';
+  import EmptyState from '$lib/core/ui/EmptyState.svelte';
   import SegmentedControl from '$lib/core/ui/SegmentedControl.svelte';
+  import Skeleton from '$lib/core/ui/Skeleton.svelte';
+  import StatusPill from '$lib/core/ui/StatusPill.svelte';
   import { onGlobalRefresh } from '$lib/core/util/global-refresh';
 
   let {
@@ -116,27 +120,27 @@
     }).format(date);
   }
 
-  function getEventColor(event: string): string {
+  function eventTone(event: string): 'success' | 'danger' | 'info' {
     switch (event) {
       case 'sent':
-        return 'var(--success)';
+        return 'success';
       case 'failed':
-        return 'var(--danger)';
+        return 'danger';
       default:
-        return 'var(--brand)';
+        return 'info';
     }
   }
 </script>
 
 <div class="page-header">
   <div>
-    <h2>Configuration Log</h2>
-    <p>Watch configuration delivery history with live polling every second.</p>
+    <h2>Configuration log</h2>
+    <p>Delivery history for {device?.name || deviceId}. Updates live.</p>
   </div>
 </div>
 
 {#if error}
-  <div class="error-state">{error}</div>
+  <EmptyState tone="danger" icon="alert" title="Device unavailable" description={error} />
 {:else if device}
   <div class="log-layout">
     <section class="card log-layout__sidebar" data-tour="log-history">
@@ -145,13 +149,15 @@
         <span class="pill">{configLog.length} entr{configLog.length === 1 ? 'y' : 'ies'}</span>
       </div>
       <div class="log-layout__list">
-        {#if configLog.length === 0}
-          <div class="empty-state">No configuration changes logged.</div>
+        {#if loadingLog && configLog.length === 0}
+          <Skeleton variant="rows" rows={4} />
+        {:else if configLog.length === 0}
+          <EmptyState icon="history" title="No entries yet" description="Configuration pushes to this device will appear here." compact />
         {:else}
           {#each configLog as entry, index}
             <button class:selected={selectedIndex === index} class="log-entry" type="button" onclick={() => selectEntry(index)}>
-              <span style={`color: ${getEventColor(entry.event)}`}>{entry.event}</span>
-              <small>{formatTimestamp(entry.timestamp)}</small>
+              <StatusPill tone={eventTone(entry.event)} label={entry.event} />
+              <small class="monospace">{formatTimestamp(entry.timestamp)}</small>
             </button>
           {/each}
         {/if}
@@ -161,8 +167,8 @@
     <section class="card log-layout__detail">
       <div class="log-layout__detail-header">
         <div>
-          <h3>Entry Detail</h3>
-          <p>Auto-refresh is active. XML remains the only reliable format in the current backend.</p>
+          <h3>Entry detail</h3>
+          <p>XML is the only format the current backend renders reliably.</p>
         </div>
         <SegmentedControl
           ariaLabel="Diff format"
@@ -178,16 +184,16 @@
 
       {#if selectedEntry}
         <div class="log-layout__detail-meta">
-          <span class="pill">{selectedEntry.event}</span>
-          <span class="pill">{formatTimestamp(selectedEntry.timestamp)}</span>
+          <StatusPill tone={eventTone(selectedEntry.event)} label={selectedEntry.event} />
+          <span class="pill mono">{formatTimestamp(selectedEntry.timestamp)}</span>
         </div>
         {#if selectedEntry.conf_diff}
-          <pre>{selectedEntry.conf_diff}</pre>
+          <CodeBlock content={selectedEntry.conf_diff} minHeight="28rem" maxHeight="calc(100vh - 320px)" label="Diff" />
         {:else}
-          <div class="empty-state">No configuration diff available for this entry.</div>
+          <EmptyState icon="file" title="No diff" description="This entry carries no configuration diff." compact />
         {/if}
       {:else}
-        <div class="empty-state">Select a log entry to inspect its diff.</div>
+        <EmptyState icon="history" title="Select an entry" description="Pick a log entry on the left to inspect its diff." />
       {/if}
     </section>
   </div>
@@ -202,13 +208,14 @@
 
   .log-layout__sidebar,
   .log-layout__detail {
-    padding: 1.2rem;
+    padding: 16px;
   }
 
   .log-layout__sidebar {
     display: grid;
     gap: 1rem;
     align-content: start;
+    align-self: start;
   }
 
   .log-layout__sidebar-header,
@@ -219,40 +226,44 @@
     gap: 1rem;
   }
 
-  .log-layout__sidebar-header h3,
-  .log-layout__detail-header h3,
   .log-layout__detail-header p {
-    margin: 0;
-  }
-
-  .log-layout__detail-header p {
-    margin-top: 0.35rem;
-    color: var(--text-muted);
+    margin-top: 4px;
+    font-size: 13px;
+    color: var(--sw-text-muted);
   }
 
   .log-layout__list {
     display: grid;
-    gap: 0.65rem;
+    gap: 6px;
   }
 
   .log-entry {
-    display: grid;
-    gap: 0.25rem;
-    padding: 0.9rem;
-    border: 1px solid var(--border);
-    border-radius: 1rem;
-    background: var(--surface-alt);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--sw-border-subtle);
+    border-radius: var(--sw-radius-md);
+    background: var(--sw-bg-elevated);
     text-align: left;
     cursor: pointer;
+    color: var(--sw-text-primary);
+    transition: border-color var(--sw-dur-fast), background var(--sw-dur-fast);
+  }
+
+  .log-entry:hover {
+    border-color: var(--sw-border-default);
   }
 
   .log-entry.selected {
-    border-color: var(--brand);
-    background: var(--brand-soft);
+    border-color: var(--sw-accent-dim);
+    background: var(--sw-accent-glow);
   }
 
   .log-entry small {
-    color: var(--text-muted);
+    font-size: 12px;
+    color: var(--sw-text-muted);
   }
 
   .log-layout__detail {
@@ -264,17 +275,6 @@
     display: flex;
     gap: 0.6rem;
     flex-wrap: wrap;
-  }
-
-  .log-layout__detail pre {
-    margin: 0;
-    padding: 1rem;
-    min-height: 28rem;
-    overflow: auto;
-    border-radius: var(--sw-radius-md);
-    background: var(--sw-bg-deep);
-    border: 1px solid var(--sw-border-subtle);
-    color: var(--sw-text-secondary);
   }
 
   @media (max-width: 960px) {

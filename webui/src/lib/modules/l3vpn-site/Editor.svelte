@@ -858,7 +858,7 @@
 
   .editor__yang-path {
     font-family: var(--sw-font-mono);
-    font-size: 10px;
+    font-size: 11px;
     color: var(--sw-text-muted);
     background: var(--sw-bg-deep);
     padding: 2px 8px;

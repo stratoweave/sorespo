@@ -16,14 +16,14 @@
     <article class="service-card card">
       <div class="card-header">
         <h3>{module.title}</h3>
-        <span class="card-badge" style="margin-left:auto;">{module.collectionLabel}</span>
+        <span class="card-badge push-right">{module.collectionLabel}</span>
       </div>
 
       <div class="card-body">
         <p class="service-card__desc">{module.description}</p>
 
         <div class="service-card__actions">
-          <a class="btn btn-primary" href={appHref(`/services/${module.id}/new`)}>+ Create new</a>
+          <a class="btn btn-primary" href={appHref(`/services/${module.id}/new`)}>Create new</a>
           <a class="btn btn-secondary" href={appHref(`/services/${module.id}`)}>View {module.collectionLabel.replace(/^[A-Z](?=[a-z])/, (initial) => initial.toLowerCase())}</a>
         </div>
       </div>

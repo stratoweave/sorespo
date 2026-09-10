@@ -1,6 +1,9 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
 
+  import CodeBlock from '$lib/core/ui/CodeBlock.svelte';
+  import Skeleton from '$lib/core/ui/Skeleton.svelte';
+
   let {
     title,
     controls,
@@ -26,9 +29,9 @@
 
   <div class="config-page__content">
     {#if loading}
-      <div class="loading-state">Loading configuration...</div>
+      <Skeleton height="26rem" />
     {:else}
-      <pre>{content}</pre>
+      <CodeBlock {content} minHeight="26rem" maxHeight="calc(100vh - 280px)" label="Configuration" />
     {/if}
   </div>
 </div>
@@ -36,33 +39,29 @@
 <style>
   .config-page {
     display: grid;
-    gap: 1.25rem;
-    padding: 1.5rem;
+    gap: 1rem;
+    padding: 1.25rem;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .config-page__content {
+    min-width: 0;
+    max-width: 100%;
   }
 
   .config-page__header {
-    display: grid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 1rem;
-  }
-
-  .config-page__header h3 {
-    margin: 0;
   }
 
   .config-page__controls {
     display: flex;
     gap: 1.25rem;
     flex-wrap: wrap;
-  }
-
-  .config-page__content pre {
-    margin: 0;
-    padding: 1rem;
-    min-height: 26rem;
-    overflow: auto;
-    border-radius: var(--sw-radius-md);
-    background: var(--sw-bg-deep);
-    border: 1px solid var(--sw-border-subtle);
-    color: var(--sw-text-secondary);
+    margin-left: auto;
   }
 </style>

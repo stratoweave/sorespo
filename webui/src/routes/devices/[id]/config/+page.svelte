@@ -7,6 +7,7 @@
     type DeviceInfo
   } from '$lib/core/orchestron/client';
   import ConfigViewerCard from '$lib/core/ui/ConfigViewerCard.svelte';
+  import EmptyState from '$lib/core/ui/EmptyState.svelte';
   import SegmentedControl from '$lib/core/ui/SegmentedControl.svelte';
   import { LatestRequest } from '$lib/core/util/latest-request';
 
@@ -80,7 +81,7 @@
 </div>
 
 {#if error}
-  <div class="error-state">{error}</div>
+  <EmptyState tone="danger" icon="alert" title="Device unavailable" description={error} />
 {:else if device}
   <div data-tour="config-viewer">
     <ConfigViewerCard title={device.name || device.id} loading={loadingConfig} content={configData}>

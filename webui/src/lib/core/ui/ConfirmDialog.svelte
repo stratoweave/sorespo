@@ -80,6 +80,10 @@
     cursor: default;
   }
 
+  .confirm-dialog__scrim {
+    animation: confirm-fade var(--sw-dur-base) var(--sw-ease);
+  }
+
   .confirm-dialog__panel {
     position: relative;
     z-index: 1;
@@ -88,6 +92,17 @@
     border: 1px solid var(--sw-border-default);
     background: var(--sw-bg-surface);
     box-shadow: var(--sw-shadow-elevated);
+    animation: confirm-pop var(--sw-dur-base) var(--sw-ease);
+  }
+
+  @keyframes confirm-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes confirm-pop {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to   { opacity: 1; transform: none; }
   }
 
   .confirm-dialog__body {

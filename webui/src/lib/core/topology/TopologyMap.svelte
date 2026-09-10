@@ -379,7 +379,7 @@
 
   .topology__router-name tspan:last-child {
     fill: var(--sw-text-muted);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 500;
   }
 
@@ -415,7 +415,7 @@
 
   .topology__site-debug-text {
     fill: var(--sw-navy);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 800;
     pointer-events: none;
   }
@@ -430,7 +430,7 @@
 
   .topology__site-text tspan:last-child {
     fill: var(--sw-text-secondary);
-    font-size: 10px;
+    font-size: 11px;
     font-family: var(--sw-font-mono);
   }
 
@@ -442,7 +442,7 @@
 
   .topology__site-count {
     fill: var(--sw-navy);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     pointer-events: none;
   }

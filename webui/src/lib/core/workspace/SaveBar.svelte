@@ -52,11 +52,20 @@
 </div>
 
 <style>
+  .save-bar {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    background: var(--sw-bg-surface);
+    box-shadow: var(--sw-shadow-sticky);
+  }
+
   .save-bar__inner {
     display: flex;
     gap: 1rem;
     align-items: center;
     justify-content: space-between;
+    padding: 14px 20px;
   }
 
   .save-bar__status {

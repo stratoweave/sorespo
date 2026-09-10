@@ -3,6 +3,7 @@
 
   import PreviewPanel from '$lib/core/workspace/PreviewPanel.svelte';
   import SaveBar from '$lib/core/workspace/SaveBar.svelte';
+  import Skeleton from '$lib/core/ui/Skeleton.svelte';
   import ValidationPanel from '$lib/core/workspace/ValidationPanel.svelte';
 
   import type { ServiceModule } from '$lib/core/registry/types';
@@ -96,7 +97,7 @@
   {/if}
 
   {#if loading}
-    <div class="loading-state">Loading service data...</div>
+    <Skeleton height="28rem" />
   {:else}
     <div class="workspace__grid">
       <div class="workspace__editor-col">
@@ -108,7 +109,7 @@
           <h3>Editor</h3>
           <span class="card-badge">{module.id}</span>
           {#if Summary}
-            <div style="margin-left: auto;">
+            <div class="push-right">
               <Summary {draft} />
             </div>
           {/if}

@@ -12,6 +12,10 @@
     type QueueItemDetail
   } from '$lib/core/orchestron/client';
   import XmlDiff from '$lib/core/diff/XmlDiff.svelte';
+  import EmptyState from '$lib/core/ui/EmptyState.svelte';
+  import NavIcon from '$lib/core/ui/NavIcon.svelte';
+  import Skeleton from '$lib/core/ui/Skeleton.svelte';
+  import StatusPill from '$lib/core/ui/StatusPill.svelte';
   import { onGlobalRefresh } from '$lib/core/util/global-refresh';
   import { appHref } from '$lib/core/util/nav';
 
@@ -32,6 +36,7 @@
   let device = $derived(data.device);
   let deviceId = $derived(data.deviceId);
   let error = $derived(data.loadError);
+  let queueEntries = $derived(Object.entries(configQueue));
 
   $effect(() => {
     if (browser && deviceId && deviceId !== lastLoadedId) {
@@ -125,148 +130,168 @@
       resyncing = false;
     }
   }
+
+  function approvalLabel(approved: boolean | null | undefined): { tone: 'success' | 'danger' | 'warning'; label: string } {
+    if (approved === true) return { tone: 'success', label: 'Approved' };
+    if (approved === false) return { tone: 'danger', label: 'Rejected' };
+    return { tone: 'warning', label: 'Pending approval' };
+  }
 </script>
 
 <div class="device-detail">
-  <div class="page-header">
-    <div>
-      <a class="back-link" href={appHref('/devices')}>← Back to Devices</a>
-      <h2>Device Detail</h2>
-      <p>Inspect device metadata, queue state, and supported YANG modules.</p>
-    </div>
-  </div>
-
   {#if error}
-    <div class="error-state">{error}</div>
-  {:else if device}
-    <div class="card device-detail__content">
-      <div class="device-detail__header">
-        <div>
-          <h3>{device.name || device.id}</h3>
-          <p class="monospace">{device.id}</p>
-        </div>
-        {#if device.approvalRequired}
-          <span class="pill warning">Approval Required</span>
-        {/if}
+    <div class="page-header">
+      <div>
+        <h2>Device</h2>
       </div>
-
-      {#if message}
-        <div class="flash {message.type}">{message.text}</div>
-      {/if}
+    </div>
+    <EmptyState tone="danger" icon="alert" title="Device unavailable" description={error} />
+  {:else if device}
+    <div class="page-header">
+      <div class="device-detail__title">
+        <h2>{device.name || device.id}</h2>
+        <div class="device-detail__subtitle">
+          {#if device.type}
+            <span>{device.type}</span>
+          {/if}
+          {#if device.name && device.name !== device.id}
+            <span class="monospace">{device.id}</span>
+          {/if}
+          {#if device.approvalRequired}
+            <StatusPill tone="warning" label="Approval required" />
+          {:else}
+            <StatusPill tone="neutral" label="Auto-approve" dot={false} />
+          {/if}
+        </div>
+      </div>
 
       <div class="device-detail__actions" data-tour="device-actions">
+        <a class="btn btn-secondary" href={appHref(`/devices/${deviceId}/config`)}>
+          <NavIcon name="file" size={15} /> Configuration
+        </a>
+        <a class="btn btn-secondary" href={appHref(`/devices/${deviceId}/log`)}>
+          <NavIcon name="history" size={15} /> Log
+        </a>
         <button class="btn btn-primary" type="button" disabled={resyncing} onclick={handleResync}>
-          {resyncing ? 'Resyncing...' : 'Resync'}
+          <NavIcon name="refresh" size={15} /> {resyncing ? 'Resyncing...' : 'Resync'}
         </button>
-        <a class="btn btn-secondary" href={appHref(`/devices/${deviceId}/config`)}>View Configuration</a>
-        <a class="btn btn-secondary" href={appHref(`/devices/${deviceId}/log`)}>Configuration Log</a>
       </div>
+    </div>
 
-      <div class="device-detail__grid">
-        <section class="panel">
-          <h4>Device Information</h4>
-          <dl class="meta-list">
-            <div>
-              <dt>ID</dt>
-              <dd class="monospace">{device.id}</dd>
-            </div>
-            <div>
-              <dt>Device Type</dt>
-              <dd>{device.type || 'Unknown'}</dd>
-            </div>
-            {#if device.username}
-              <div>
-                <dt>Username</dt>
-                <dd>{device.username}</dd>
-              </div>
-            {/if}
-            <div>
-              <dt>Approval Required</dt>
-              <dd>{device.approvalRequired ? 'Yes' : 'No'}</dd>
-            </div>
-            {#if device.addresses?.length}
-              <div>
-                <dt>Addresses</dt>
-                <dd>
-                  {#each device.addresses as address}
-                    <div>{address.name}: {address.address}:{address.port}</div>
-                  {/each}
-                </dd>
-              </div>
-            {/if}
-          </dl>
-        </section>
+    {#if message}
+      <div class="flash {message.type}">{message.text}</div>
+    {/if}
 
-        <section class="panel">
-          <h4>Device Status</h4>
-          <dl class="meta-list">
+    <div class="device-detail__grid">
+      <section class="panel">
+        <h4>Device information</h4>
+        <dl class="meta-list">
+          <div>
+            <dt>ID</dt>
+            <dd class="monospace">{device.id}</dd>
+          </div>
+          <div>
+            <dt>Type</dt>
+            <dd>{device.type || 'Unknown'}</dd>
+          </div>
+          {#if device.username}
             <div>
-              <dt>Has Running Config</dt>
-              <dd>{device.hasRunningConfig ? 'Yes' : 'No'}</dd>
+              <dt>Username</dt>
+              <dd>{device.username}</dd>
             </div>
-            <div>
-              <dt>Has Target Config</dt>
-              <dd>{device.hasTargetConfig ? 'Yes' : 'No'}</dd>
-            </div>
-            {#if device.queueLength}
-              <div>
-                <dt>Queue Length</dt>
-                <dd>{device.queueLength}</dd>
-              </div>
-            {/if}
-            {#if device.pendingApprovals}
-              <div>
-                <dt>Pending Approvals</dt>
-                <dd>{device.pendingApprovals}</dd>
-              </div>
-            {/if}
-          </dl>
-        </section>
-
-        <section class="panel">
-          <h4>Feature Flags</h4>
-          {#if device.featureFlags && Object.keys(device.featureFlags).length > 0}
-            <dl class="meta-list">
-              {#each Object.entries(device.featureFlags) as [flag, enabled]}
-                <div>
-                  <dt>{flag.replace(/_/g, ' ')}</dt>
-                  <dd>{enabled ? 'Enabled' : 'Disabled'}</dd>
-                </div>
-              {/each}
-            </dl>
-          {:else}
-            <p class="device-detail__muted">No feature flags configured.</p>
           {/if}
-        </section>
+          {#if device.addresses?.length}
+            <div>
+              <dt>Addresses</dt>
+              <dd class="monospace">
+                {#each device.addresses as address}
+                  <div>{address.name}: {address.address}:{address.port}</div>
+                {/each}
+              </dd>
+            </div>
+          {/if}
+        </dl>
+      </section>
+
+      <section class="panel">
+        <h4>Status</h4>
+        <dl class="meta-list">
+          <div>
+            <dt>Running config</dt>
+            <dd>
+              {#if device.hasRunningConfig}
+                <StatusPill tone="success" label="Present" />
+              {:else}
+                <StatusPill tone="danger" label="Missing" />
+              {/if}
+            </dd>
+          </div>
+          <div>
+            <dt>Target config</dt>
+            <dd>
+              {#if device.hasTargetConfig}
+                <StatusPill tone="success" label="Present" />
+              {:else}
+                <StatusPill tone="neutral" label="None" />
+              {/if}
+            </dd>
+          </div>
+          <div>
+            <dt>Queue length</dt>
+            <dd class="num-inline">{device.queueLength ?? 0}</dd>
+          </div>
+          <div>
+            <dt>Pending approvals</dt>
+            <dd class="num-inline" class:attention={(device.pendingApprovals ?? 0) > 0}>{device.pendingApprovals ?? 0}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="panel">
+        <h4>Feature flags</h4>
+        {#if device.featureFlags && Object.keys(device.featureFlags).length > 0}
+          <ul class="flag-list">
+            {#each Object.entries(device.featureFlags) as [flag, enabled]}
+              <li>
+                <span class="monospace">{flag}</span>
+                <StatusPill tone={enabled ? 'success' : 'neutral'} label={enabled ? 'Enabled' : 'Disabled'} dot={enabled} />
+              </li>
+            {/each}
+          </ul>
+        {:else}
+          <p class="text-muted">No feature flags configured.</p>
+        {/if}
+      </section>
+    </div>
+
+    <section class="card" data-tour="device-queue">
+      <div class="card-header">
+        <h3>Configuration queue</h3>
+        <span class="card-badge push-right">{queueEntries.length} item{queueEntries.length === 1 ? '' : 's'}</span>
       </div>
 
-      <section class="panel" data-tour="device-queue">
-        <div class="device-detail__section-header">
-          <h4>Configuration Queue</h4>
-          <span class="pill">{Object.keys(configQueue).length} item{Object.keys(configQueue).length === 1 ? '' : 's'}</span>
-        </div>
-
-        {#if loadingQueue}
-          <div class="loading-state">Loading queue...</div>
-        {:else if Object.keys(configQueue).length === 0}
-          <div class="empty-state">No items in this device queue.</div>
+      <div class="card-body">
+        {#if loadingQueue && queueEntries.length === 0}
+          <Skeleton variant="rows" rows={2} />
+        {:else if queueEntries.length === 0}
+          <EmptyState icon="check" title="Queue is empty" description="No configuration changes are waiting for this device." compact />
         {:else}
           <div class="queue-layout">
             <div class="queue-layout__list">
-              {#each Object.entries(configQueue) as [queueId, item], index}
+              {#each queueEntries as [queueId, item], index}
                 <div class:selected={selectedQueueItem === queueId} class="queue-card">
                   <div class="queue-card__header">
                     <strong>Queue #{queueId}</strong>
                     {#if item.tid}
-                      <span class="pill monospace" title="Transaction ID">{item.tid}</span>
+                      <StatusPill tone="neutral" label={item.tid} mono dot={false} title="Transaction ID" />
                     {/if}
                   </div>
                   <div class="queue-card__actions">
-                    <button class="btn btn-secondary" type="button" onclick={() => viewQueueItem(queueId)}>
-                      View details
+                    <button class="btn btn-secondary btn-sm" type="button" onclick={() => viewQueueItem(queueId)}>
+                      View diff
                     </button>
                     <button
-                      class="btn btn-success"
+                      class="btn btn-primary btn-sm"
                       type="button"
                       disabled={index !== 0 || approvingItem === queueId}
                       title={index !== 0 ? 'Only the first queued change per device can be approved.' : undefined}
@@ -279,159 +304,157 @@
               {/each}
             </div>
 
-            <div class="queue-layout__detail panel">
+            <div class="queue-layout__detail">
               {#if selectedQueueItem && queueItemDetail}
-                <h5>Queue Item {selectedQueueItem}</h5>
-                <p class="device-detail__muted">
-                  Status: {queueItemDetail.approved === true
-                    ? 'Approved'
-                    : queueItemDetail.approved === false
-                      ? 'Rejected'
-                      : 'Pending approval'}
-                </p>
+                {@const status = approvalLabel(queueItemDetail.approved)}
+                <div class="queue-layout__detail-header">
+                  <h5>Queue item {selectedQueueItem}</h5>
+                  <StatusPill tone={status.tone} label={status.label} />
+                </div>
                 {#if queueItemDetail.config_diff}
-                  <XmlDiff diff={queueItemDetail.config_diff} />
+                  <XmlDiff diff={queueItemDetail.config_diff} minHeight="16rem" maxHeight="40rem" />
                 {:else}
-                  <p class="device-detail__muted">No configuration diff available for this item.</p>
+                  <EmptyState icon="file" title="No diff" description="This queue item carries no configuration diff." compact />
                 {/if}
               {:else}
-                <div class="empty-state">Select a queue item to inspect its diff.</div>
+                <EmptyState icon="file" title="Select a queue item" description="Pick an item on the left to inspect its diff." compact />
               {/if}
             </div>
           </div>
         {/if}
-      </section>
+      </div>
+    </section>
 
-      <section class="panel" data-tour="device-modules">
-        <div class="device-detail__section-header">
-          <h4>YANG Modules</h4>
-          <span class="pill">{device.modules?.length ?? 0} module{device.modules?.length === 1 ? '' : 's'}</span>
-        </div>
+    <section class="card" data-tour="device-modules">
+      <div class="card-header">
+        <h3>YANG modules</h3>
+        <span class="card-badge push-right">{device.modules?.length ?? 0} module{device.modules?.length === 1 ? '' : 's'}</span>
+      </div>
 
-        {#if device.modules?.length}
-          <div class="module-table-wrap">
-            <table class="module-table">
-              <thead>
+      {#if device.modules?.length}
+        <div class="card-body no-pad module-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Namespace</th>
+                <th>Revision</th>
+                <th class="num">Features</th>
+              </tr>
+            </thead>
+            <tbody>
+              {#each device.modules as moduleInfo}
                 <tr>
-                  <th>Module Name</th>
-                  <th>Namespace</th>
-                  <th>Revision</th>
-                  <th>Features</th>
+                  <td class="monospace">{moduleInfo.name}</td>
+                  <td class="module-table__ns" title={moduleInfo.namespace}>{moduleInfo.namespace}</td>
+                  <td class="monospace">{moduleInfo.revision || '—'}</td>
+                  <td class="num">{moduleInfo.features?.length ?? 0}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {#each device.modules as moduleInfo}
-                  <tr>
-                    <td class="monospace">{moduleInfo.name}</td>
-                    <td title={moduleInfo.namespace}>{moduleInfo.namespace}</td>
-                    <td>{moduleInfo.revision || '-'}</td>
-                    <td>{moduleInfo.features?.length ? `${moduleInfo.features.length} feature(s)` : '-'}</td>
-                  </tr>
-                {/each}
-              </tbody>
-            </table>
-          </div>
-        {:else}
-          <div class="empty-state">No YANG modules reported by the device.</div>
-        {/if}
-      </section>
-    </div>
+              {/each}
+            </tbody>
+          </table>
+        </div>
+      {:else}
+        <div class="card-body">
+          <EmptyState icon="layers" title="No YANG modules" description="The device did not report any supported modules." compact />
+        </div>
+      {/if}
+    </section>
   {/if}
 </div>
 
 <style>
-  .back-link {
-    display: inline-block;
-    margin-bottom: 0.75rem;
-    color: var(--brand);
-    text-decoration: none;
-  }
-
   .device-detail {
     display: grid;
-    gap: 1rem;
+    gap: 20px;
   }
 
-  .device-detail__content {
+  .device-detail :global(.page-header) {
+    margin-bottom: 0;
+    align-items: center;
+  }
+
+  .device-detail__title {
     display: grid;
-    gap: 1.5rem;
-    padding: 1.5rem;
+    gap: 6px;
   }
 
-  .device-detail__header {
+  .device-detail__subtitle {
     display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .device-detail__header h3,
-  .device-detail__header p {
-    margin: 0;
-  }
-
-  .device-detail__header p {
-    margin-top: 0.25rem;
-    color: var(--text-muted);
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    font-size: 13px;
+    color: var(--sw-text-secondary);
   }
 
   .device-detail__actions {
     display: flex;
-    gap: 0.75rem;
+    gap: 8px;
     flex-wrap: wrap;
   }
 
   .device-detail__grid {
     display: grid;
-    gap: 1rem;
+    gap: 16px;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
 
-  .device-detail__grid h4,
-  .queue-layout__detail h5 {
-    margin: 0 0 1rem;
+  .device-detail__grid h4 {
+    margin-bottom: 14px;
   }
 
-  .device-detail__muted {
+  .num-inline {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .attention {
+    color: var(--sw-warning);
+    font-weight: 600;
+  }
+
+  .flag-list {
+    list-style: none;
     margin: 0;
-    color: var(--text-muted);
+    padding: 0;
+    display: grid;
+    gap: 8px;
   }
 
-  .device-detail__section-header {
+  .flag-list li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .device-detail__section-header h4 {
-    margin: 0;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--sw-text-secondary);
   }
 
   .queue-layout {
     display: grid;
-    gap: 1rem;
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr);
+    gap: 16px;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
   }
 
   .queue-layout__list {
     display: grid;
-    gap: 0.8rem;
+    gap: 10px;
+    align-content: start;
   }
 
   .queue-card {
-    padding: 1rem;
-    border: 1px solid var(--border);
-    border-radius: 1rem;
-    background: var(--surface-alt);
+    display: grid;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 1px solid var(--sw-border-subtle);
+    border-radius: var(--sw-radius-md);
+    background: var(--sw-bg-elevated);
+    transition: border-color var(--sw-dur-fast), background var(--sw-dur-fast);
   }
 
   .queue-card.selected {
-    border-color: var(--brand);
-    background: var(--brand-soft);
+    border-color: var(--sw-accent-dim);
+    background: var(--sw-accent-glow);
   }
 
   .queue-card__header,
@@ -439,39 +462,41 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.75rem;
+    gap: 10px;
+  }
+
+  .queue-card__header strong {
+    font-size: 13px;
   }
 
   .queue-card__actions {
-    margin-top: 0.8rem;
     flex-wrap: wrap;
   }
 
   .queue-layout__detail {
-    min-height: 18rem;
+    display: grid;
+    gap: 12px;
+    align-content: start;
+    min-width: 0;
+  }
+
+  .queue-layout__detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
   }
 
   .module-table-wrap {
     overflow: auto;
   }
 
-  .module-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .module-table th,
-  .module-table td {
-    padding: 0.9rem 0.8rem;
-    border-bottom: 1px solid var(--border);
-    text-align: left;
-    vertical-align: top;
-  }
-
-  .module-table th {
-    color: var(--text-muted);
-    font-weight: 700;
-    font-size: 0.92rem;
+  .module-table__ns {
+    max-width: 420px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--sw-text-secondary);
   }
 
   @media (max-width: 960px) {

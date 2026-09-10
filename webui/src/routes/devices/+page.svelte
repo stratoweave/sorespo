@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
 
   import DeviceConfigStatus from '$lib/core/ui/DeviceConfigStatus.svelte';
+  import EmptyState from '$lib/core/ui/EmptyState.svelte';
   import { onGlobalRefresh } from '$lib/core/util/global-refresh';
   import { appHref } from '$lib/core/util/nav';
 
@@ -24,6 +25,7 @@
 <div class="page-header">
   <div>
     <h2>Devices</h2>
+    <p>{devices.length} managed device{devices.length === 1 ? '' : 's'}</p>
   </div>
 
   <label>
@@ -38,11 +40,15 @@
 </div>
 
 {#if error}
-  <div class="error-state">{error}</div>
+  <EmptyState tone="danger" icon="alert" title="Devices unavailable" description={error} />
 {:else if devices.length === 0}
-  <div class="empty-state">No devices found.</div>
+  <EmptyState icon="devices" title="No devices" description="No managed devices were returned by the orchestrator." />
 {:else if filteredDevices.length === 0}
-  <div class="empty-state">No devices match "{searchQuery}".</div>
+  <EmptyState icon="search" title="No matches" description={`No device name contains "${searchQuery}".`} compact>
+    {#snippet action()}
+      <button class="btn btn-secondary btn-sm" type="button" onclick={() => (searchQuery = '')}>Clear search</button>
+    {/snippet}
+  </EmptyState>
 {:else}
   <div class="device-grid" data-tour="device-grid">
     {#each filteredDevices as device}
@@ -51,8 +57,21 @@
           <h3>{device.name}</h3>
           <DeviceConfigStatus hasRunningConfig={device.hasRunningConfig} />
         </div>
-        {#if device.id !== device.name}
-          <p class="device-card__id">{device.id}</p>
+        <div class="device-card__meta">
+          {#if device.type}
+            <span>{device.type}</span>
+          {/if}
+          {#if device.address}
+            <span class="monospace">{device.address}</span>
+          {/if}
+          {#if device.id !== device.name}
+            <span class="monospace">{device.id}</span>
+          {/if}
+        </div>
+        {#if (device.pendingApprovals ?? 0) > 0}
+          <span class="device-card__pending">
+            {device.pendingApprovals} pending approval{device.pendingApprovals === 1 ? '' : 's'}
+          </span>
         {/if}
       </a>
     {/each}
@@ -89,19 +108,15 @@
 
   .device-card {
     display: grid;
-    gap: 6px;
+    gap: 8px;
     padding: 16px;
     text-decoration: none;
-    transition: background-color 0.15s;
+    transition: background-color var(--sw-dur-fast), border-color var(--sw-dur-fast);
   }
 
   .device-card:hover {
     background: var(--sw-bg-hover);
-  }
-
-  .device-card:focus-visible {
-    outline: 2px solid var(--sw-accent);
-    outline-offset: 2px;
+    border-color: var(--sw-border-default);
   }
 
   .device-card__header {
@@ -113,18 +128,23 @@
   }
 
   .device-card__header h3 {
-    margin: 0;
     font-size: 15px;
-    font-weight: 600;
     overflow-wrap: anywhere;
   }
 
-  .device-card__id {
-    margin: 0;
-    font-family: var(--sw-font-mono);
+  .device-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
     font-size: 12px;
     color: var(--sw-text-muted);
     overflow-wrap: anywhere;
+  }
+
+  .device-card__pending {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--sw-warning);
   }
 
   @media (max-width: 640px) {

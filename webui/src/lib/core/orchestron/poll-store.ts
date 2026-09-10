@@ -6,9 +6,11 @@ export interface QueuesPollValue {
   queues: QueueItemSummary[];
   error: string | null;
   loaded: boolean;
+  /** Wall-clock time (ms) of the last successful fetch, or null before the first one. */
+  updatedAt: number | null;
 }
 
-const INITIAL: QueuesPollValue = { queues: [], error: null, loaded: false };
+const INITIAL: QueuesPollValue = { queues: [], error: null, loaded: false, updatedAt: null };
 const POLL_INTERVAL_MS = 1000;
 
 const internal = writable<QueuesPollValue>(INITIAL);
@@ -22,7 +24,7 @@ function fetchOnce(): Promise<void> {
     inFlight = (async () => {
       try {
         const queues = await fetchAllDeviceQueues();
-        current = { queues, error: null, loaded: true };
+        current = { queues, error: null, loaded: true, updatedAt: Date.now() };
       } catch (error) {
         const message = error instanceof Error ? error.message : 'Failed to load queue data.';
         current = { ...current, error: message };

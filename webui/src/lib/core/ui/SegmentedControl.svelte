@@ -45,7 +45,8 @@
   }
 
   .segmented-group__label {
-    color: var(--text-muted);
+    color: var(--sw-text-muted);
+    font-size: 12px;
     font-weight: 600;
   }
 

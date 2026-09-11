@@ -2,7 +2,7 @@ import { demoFetch } from '$lib/demo/gate';
 
 import type { StatusTone } from '$lib/core/ui/tones';
 
-const API_BASE = '/api';
+const API_BASE = '';
 
 export interface DeviceSummary {
   id: string;

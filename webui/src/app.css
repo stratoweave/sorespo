@@ -93,6 +93,15 @@
   padding: 0;
 }
 
+/* The reset above also zeroes the `margin: auto` the UA stylesheet gives
+   <dialog>, which is what centers an open modal against its `inset: 0`.
+   Without this every showModal() dialog sits in the top-left corner. A dialog
+   that positions itself (the command palette) overrides this from its own
+   component styles. */
+dialog:modal {
+  margin: auto;
+}
+
 html,
 body {
   height: 100%;
@@ -246,7 +255,9 @@ th.num {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 220px;
+  /* The logo is 1732x397, so this width sets its height to ~44px and keeps
+     it clear of the 60px header's edges. */
+  max-width: 190px;
   border-radius: var(--sw-radius-md);
   transition: opacity 0.15s ease;
 }

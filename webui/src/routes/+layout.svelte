@@ -18,7 +18,7 @@
 
   // Imported (not served from static/) so Vite inlines it as a data URI —
   // the embedded asset set must be text-only; see vite assetsInlineLimit.
-  import logoUrl from '$lib/assets/stratoweave-logo.png';
+  import logoUrl from '$lib/assets/stratoweave-logo.svg';
 
   let { children }: { children?: Snippet } = $props();
 
@@ -140,8 +140,8 @@
           class="logo-img"
           src={logoUrl}
           alt="StratoWeave — Orchestration Platform"
-          width="286"
-          height="53"
+          width="1732"
+          height="397"
         />
       </a>
     </div>

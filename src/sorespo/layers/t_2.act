@@ -22,7 +22,7 @@ def EbgpCustomerTransformCtor(params: ttt.TransformActorParams) -> ttt.Transform
     def update_oper_type_wrapper(oper: ?y_2_oper.stratoweave_rfs__rfs__ebgp_customer_entry):
         params.update_oper(oper.to_gdata() if oper is not None else None)
     act = rfs.EbgpCustomerTransform(params.path, update_oper_type_wrapper, params.dev!)
-    return ttt.TransformActor(lambda c, m: act.on_conf(stratoweave_rfs__rfs__ebgp_customer_entry.from_gdata(c)),
+    return ttt.TransformActor(lambda c, l, m: act.on_conf(stratoweave_rfs__rfs__ebgp_customer_entry.from_gdata(c)),
                               lambda m: act.shutdown())
 
 
@@ -30,5 +30,5 @@ def BBInterfaceTransformCtor(params: ttt.TransformActorParams) -> ttt.TransformA
     def update_oper_type_wrapper(oper: ?y_2_oper.stratoweave_rfs__rfs__backbone_interface_entry):
         params.update_oper(oper.to_gdata() if oper is not None else None)
     act = rfs.BBInterfaceTransform(params.path, update_oper_type_wrapper, params.dev!)
-    return ttt.TransformActor(lambda c, m: act.on_conf(stratoweave_rfs__rfs__backbone_interface_entry.from_gdata(c)),
+    return ttt.TransformActor(lambda c, l, m: act.on_conf(stratoweave_rfs__rfs__backbone_interface_entry.from_gdata(c)),
                               lambda m: act.shutdown())

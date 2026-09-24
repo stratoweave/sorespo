@@ -1,16 +1,24 @@
 name: Advance stable branch
 
 on:
-  schedule:
-    # weekday mornings
-    - cron: '17 5 * * 1-5'
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: write
 
+# Run one at a time. Parallel runs could finish out of order, and then the push
+# of the older commit fails as non-fast-forward. A run still waiting to start is
+# replaced when a newer commit arrives.
+concurrency:
+  group: advance-stable
+  cancel-in-progress: false
+
 jobs:
   advance:
+    # workflow_dispatch can pick any branch, but only main may reach stable
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - id: setup-acton
@@ -20,7 +28,6 @@ jobs:
       - name: "Check out main"
         uses: actions/checkout@v4
         with:
-          ref: main
           fetch-depth: 0
       - run: make build
       - run: make test

@@ -26,6 +26,10 @@ Head over to our [tutorials](https://www.stratoweave.org/tutorials) to get start
 running the SORESPO network and/or making your first changes to the code in
 minutes!
 
+The default `stable` branch works with the *stable* Acton release, while
+development happens on `main`. See [development](docs/development.md) for how
+the two branches relate and how to contribute.
+
 ## SORESPO Services
 
 Today, SORESPO delivers an **IP core network, offering Layer 3 VPN services**.

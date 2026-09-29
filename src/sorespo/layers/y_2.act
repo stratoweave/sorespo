@@ -91,7 +91,8 @@ SRC_DNODE_CHILD_10: DContainer = DContainer(module='stratoweave-rfs', namespace=
 ])
 
 SRC_DNODE_CHILD_11: DContainer = DContainer(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='debug', config=True, presence=False, children=[
-    DLeaf(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='connection', config=True, default='false', mandatory=False, type=DTypeBoolean(name='boolean', description=None, reference=None, exts=[], builtin_type='boolean', default=None))
+    DLeaf(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='connection', config=True, default='false', mandatory=False, type=DTypeBoolean(name='boolean', description=None, reference=None, exts=[], builtin_type='boolean', default=None)),
+    DLeaf(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='log-level', config=True, description='Log level for this device. Overrides the log.device.level system\nsetting. When connection is true, the device logs at trace.', mandatory=False, type=DTypeEnum(name='enumeration', description=None, reference=None, exts=[], builtin_type='enumeration', default=None, name_to_val={'off':0, 'error':1, 'warning':2, 'info':3, 'debug':4, 'trace':5}))
 ])
 
 SRC_DNODE_CHILD_12: DContainer = DContainer(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='feature-flags', config=True, presence=False, children=[
@@ -675,6 +676,19 @@ SRC_YANG_2: str = r"""module stratoweave-rfs {
       leaf connection {
         type boolean;
         default "false";
+      }
+      leaf log-level {
+        description
+          "Log level for this device. Overrides the log.device.level system
+           setting. When connection is true, the device logs at trace.";
+        type enumeration {
+          enum off;
+          enum error;
+          enum warning;
+          enum info;
+          enum debug;
+          enum trace;
+        }
       }
     }
 
@@ -2332,7 +2346,7 @@ class stratoweave_rfs__device__address__initial_credentials(yadata.MKeyedList[(u
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_rfs__device__address__initial_credentials_entry]:
         if n is not None:
-            return [stratoweave_rfs__device__address__initial_credentials_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_rfs__device__address__initial_credentials_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_rfs__device__address__initial_credentials:
@@ -2390,7 +2404,7 @@ class stratoweave_rfs__device__address(yadata.MKeyedList[str, stratoweave_rfs__d
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_rfs__device__address_entry]:
         if n is not None:
-            return [stratoweave_rfs__device__address_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_rfs__device__address_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_rfs__device__address:
@@ -2443,7 +2457,7 @@ class stratoweave_rfs__device__credentials__key(yadata.MKeyedList[str, stratowea
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_rfs__device__credentials__key_entry]:
         if n is not None:
-            return [stratoweave_rfs__device__credentials__key_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_rfs__device__credentials__key_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_rfs__device__credentials__key:
@@ -2521,7 +2535,7 @@ class stratoweave_rfs__device__initial_credentials(yadata.MKeyedList[(username: 
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_rfs__device__initial_credentials_entry]:
         if n is not None:
-            return [stratoweave_rfs__device__initial_credentials_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_rfs__device__initial_credentials_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_rfs__device__initial_credentials:
@@ -2582,7 +2596,7 @@ class stratoweave_rfs__device__mock__software(yadata.MNode):
 
     mut def __init__(self, upgrade_duration: ?u64, failure: ?str=None, running_release: ?str) -> None:
         self.upgrade_duration = upgrade_duration
-        self.failure = failure if failure is not None else "none"
+        self.failure = failure if failure is not None else 'none'
         self.running_release = running_release
 
     mut def to_gdata(self) -> ygdata.Node:
@@ -2643,7 +2657,7 @@ class stratoweave_rfs__device__mock__module(yadata.MKeyedList[str, stratoweave_r
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_rfs__device__mock__module_entry]:
         if n is not None:
-            return [stratoweave_rfs__device__mock__module_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_rfs__device__mock__module_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_rfs__device__mock__module:
@@ -2685,9 +2699,11 @@ class stratoweave_rfs__device__mock(yadata.MNode):
 _breaker15: None = None
 class stratoweave_rfs__device__debug(yadata.MNode):
     connection: bool
+    log_level: ?str
 
-    mut def __init__(self, connection: ?bool=None) -> None:
+    mut def __init__(self, connection: ?bool=None, log_level: ?str) -> None:
         self.connection = connection if connection is not None else False
+        self.log_level = log_level
 
     mut def to_gdata(self) -> ygdata.Node:
         return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['stratoweave-rfs:device', 'debug'])
@@ -2695,7 +2711,7 @@ class stratoweave_rfs__device__debug(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> stratoweave_rfs__device__debug:
         if n is not None:
-            return stratoweave_rfs__device__debug(connection=n.get_opt_bool(ygdata.Id(NS_stratoweave_rfs, 'connection')))
+            return stratoweave_rfs__device__debug(connection=n.get_opt_bool(ygdata.Id(NS_stratoweave_rfs, 'connection')), log_level=n.get_opt_str(ygdata.Id(NS_stratoweave_rfs, 'log-level')))
         return stratoweave_rfs__device__debug()
 
     mut def copy(self) -> stratoweave_rfs__device__debug:
@@ -2763,7 +2779,7 @@ class stratoweave_rfs__device__software__veto(yadata.MKeyedList[str, stratoweave
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_rfs__device__software__veto_entry]:
         if n is not None:
-            return [stratoweave_rfs__device__software__veto_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_rfs__device__software__veto_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_rfs__device__software__veto:
@@ -2874,7 +2890,7 @@ class stratoweave_rfs__device(yadata.MKeyedList[str, stratoweave_rfs__device_ent
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_rfs__device_entry]:
         if n is not None:
-            return [stratoweave_rfs__device_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_rfs__device_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_rfs__device:
@@ -2994,7 +3010,7 @@ class stratoweave_rfs__rfs__backbone_interface(yadata.MKeyedList[str, stratoweav
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_rfs__rfs__backbone_interface_entry]:
         if n is not None:
-            return [stratoweave_rfs__rfs__backbone_interface_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_rfs__rfs__backbone_interface_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_rfs__rfs__backbone_interface:
@@ -3053,7 +3069,7 @@ class stratoweave_rfs__rfs__ibgp_neighbor(yadata.MKeyedList[str, stratoweave_rfs
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_rfs__rfs__ibgp_neighbor_entry]:
         if n is not None:
-            return [stratoweave_rfs__rfs__ibgp_neighbor_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_rfs__rfs__ibgp_neighbor_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_rfs__rfs__ibgp_neighbor:
@@ -3115,7 +3131,7 @@ class stratoweave_rfs__rfs__vrf(yadata.MKeyedList[str, stratoweave_rfs__rfs__vrf
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_rfs__rfs__vrf_entry]:
         if n is not None:
-            return [stratoweave_rfs__rfs__vrf_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_rfs__rfs__vrf_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_rfs__rfs__vrf:
@@ -3179,7 +3195,7 @@ class stratoweave_rfs__rfs__vrf_interface(yadata.MKeyedList[str, stratoweave_rfs
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_rfs__rfs__vrf_interface_entry]:
         if n is not None:
-            return [stratoweave_rfs__rfs__vrf_interface_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_rfs__rfs__vrf_interface_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_rfs__rfs__vrf_interface:
@@ -3244,7 +3260,7 @@ class stratoweave_rfs__rfs__ebgp_customer(yadata.MKeyedList[(vrf: str, address: 
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_rfs__rfs__ebgp_customer_entry]:
         if n is not None:
-            return [stratoweave_rfs__rfs__ebgp_customer_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_rfs__rfs__ebgp_customer_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_rfs__rfs__ebgp_customer:
@@ -3306,7 +3322,7 @@ class stratoweave_rfs__rfs(yadata.MKeyedList[str, stratoweave_rfs__rfs_entry]):
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_rfs__rfs_entry]:
         if n is not None:
-            return [stratoweave_rfs__rfs_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_rfs__rfs_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_rfs__rfs:

@@ -34061,7 +34061,7 @@ class srl_nokia_interfaces__interface__subinterface__ipv4__address(yadata.MKeyed
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_interfaces__interface__subinterface__ipv4__address_entry]:
         if n is not None:
-            return [srl_nokia_interfaces__interface__subinterface__ipv4__address_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_interfaces__interface__subinterface__ipv4__address_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_interfaces__interface__subinterface__ipv4__address:
@@ -34121,9 +34121,9 @@ class srl_nokia_interfaces__interface__subinterface__ipv6(yadata.MNode):
 
 _breaker7: None = None
 class srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged(yadata.MNode):
-    vlan_id: ?value
+    vlan_id: ?atom
 
-    mut def __init__(self, vlan_id: ?value) -> None:
+    mut def __init__(self, vlan_id: ?atom) -> None:
         self.vlan_id = vlan_id
 
     mut def to_gdata(self) -> ygdata.Node:
@@ -34132,7 +34132,7 @@ class srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged(
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged:
         if n is not None:
-            return srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged(vlan_id=n.get_opt_value(ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan-id')))
+            return srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged(vlan_id=n.get_opt_atom(ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan-id')))
         return None
 
     mut def copy(self) -> srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged:
@@ -34150,7 +34150,7 @@ class srl_nokia_interfaces__interface__subinterface__vlan__encap(yadata.MNode):
     mut def __init__(self, single_tagged: ?srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged=None) -> None:
         self.single_tagged = single_tagged
 
-    mut def create_single_tagged(self, vlan_id: ?value=None) -> srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged:
+    mut def create_single_tagged(self, vlan_id: ?atom=None) -> srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged:
         existing = self.single_tagged
         if existing is not None:
             if vlan_id is not None:
@@ -34244,7 +34244,7 @@ class srl_nokia_interfaces__interface__subinterface(yadata.MKeyedList[u64, srl_n
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_interfaces__interface__subinterface_entry]:
         if n is not None:
-            return [srl_nokia_interfaces__interface__subinterface_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_interfaces__interface__subinterface_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_interfaces__interface__subinterface:
@@ -34311,7 +34311,7 @@ class srl_nokia_interfaces__interface(yadata.MKeyedList[str, srl_nokia_interface
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_interfaces__interface_entry]:
         if n is not None:
-            return [srl_nokia_interfaces__interface_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_interfaces__interface_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_interfaces__interface:
@@ -34360,7 +34360,7 @@ class srl_nokia_network_instance__network_instance__interface(yadata.MKeyedList[
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_network_instance__network_instance__interface_entry]:
         if n is not None:
-            return [srl_nokia_network_instance__network_instance__interface_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_network_instance__network_instance__interface_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__interface:
@@ -34409,7 +34409,7 @@ class srl_nokia_network_instance__network_instance__vxlan_interface(yadata.MKeye
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_network_instance__network_instance__vxlan_interface_entry]:
         if n is not None:
-            return [srl_nokia_network_instance__network_instance__vxlan_interface_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_network_instance__network_instance__vxlan_interface_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__vxlan_interface:
@@ -34470,7 +34470,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_ins
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_entry]:
         if n is not None:
-            return [srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance:
@@ -34568,7 +34568,7 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance__i
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry]:
         if n is not None:
-            return [srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level:
@@ -34631,7 +34631,7 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance__i
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry]:
         if n is not None:
-            return [srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__isis__instance__interface:
@@ -34694,7 +34694,7 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance(ya
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_network_instance__network_instance__protocols__isis__instance_entry]:
         if n is not None:
-            return [srl_nokia_network_instance__network_instance__protocols__isis__instance_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_network_instance__network_instance__protocols__isis__instance_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__isis__instance:
@@ -34794,7 +34794,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi(yad
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry]:
         if n is not None:
-            return [srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi:
@@ -34870,7 +34870,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__group(yadata
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_network_instance__network_instance__protocols__bgp__group_entry]:
         if n is not None:
-            return [srl_nokia_network_instance__network_instance__protocols__bgp__group_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_network_instance__network_instance__protocols__bgp__group_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp__group:
@@ -35045,7 +35045,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor(yad
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry]:
         if n is not None:
-            return [srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor:
@@ -35153,7 +35153,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_inst
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_entry]:
         if n is not None:
-            return [srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance:
@@ -35307,7 +35307,7 @@ class srl_nokia_network_instance__network_instance(yadata.MKeyedList[str, srl_no
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_network_instance__network_instance_entry]:
         if n is not None:
-            return [srl_nokia_network_instance__network_instance_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_network_instance__network_instance_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance:
@@ -35383,7 +35383,7 @@ class srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface(yadata.MKey
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry]:
         if n is not None:
-            return [srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface:
@@ -35434,7 +35434,7 @@ class srl_nokia_tunnel_interfaces__tunnel_interface(yadata.MKeyedList[str, srl_n
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[srl_nokia_tunnel_interfaces__tunnel_interface_entry]:
         if n is not None:
-            return [srl_nokia_tunnel_interfaces__tunnel_interface_entry.from_gdata(e) for e in n.elements]
+            return [srl_nokia_tunnel_interfaces__tunnel_interface_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> srl_nokia_tunnel_interfaces__tunnel_interface:
@@ -35490,7 +35490,8 @@ def _one(n: ?ygdata.Node, what: str) -> ygdata.Node:
     """The one entry of a list on a delivery's spine."""
     if isinstance(n, ygdata.List):
         if len(n.elements) == 1:
-            return n.elements[0]
+            for e in n.elements.values():
+                return e
     raise ValueError("a rooted delivery without its " + what + " entry")
 
 def _present(n: ?ygdata.Node) -> ?ygdata.Node:

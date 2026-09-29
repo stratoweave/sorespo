@@ -375470,7 +375470,7 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import_
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import__route_target__two_byte_as_route_targets__two_byte_as_route_target_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import__route_target__two_byte_as_route_targets__two_byte_as_route_target_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import__route_target__two_byte_as_route_targets__two_byte_as_route_target_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import__route_target__two_byte_as_route_targets__two_byte_as_route_target:
@@ -375586,7 +375586,7 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export_
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export__route_target__two_byte_as_route_targets__two_byte_as_route_target_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export__route_target__two_byte_as_route_targets__two_byte_as_route_target_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export__route_target__two_byte_as_route_targets__two_byte_as_route_target_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export__route_target__two_byte_as_route_targets__two_byte_as_route_target:
@@ -375780,7 +375780,7 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf(yadata.MKeyedList[str, Cisco_IOS_XR_um_
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf:
@@ -376017,7 +376017,7 @@ class Cisco_IOS_XR_um_interface_cfg__um_interface_cfg_interfaces__interface(yada
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_interface_cfg__um_interface_cfg_interfaces__interface_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_interface_cfg__um_interface_cfg_interfaces__interface_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_interface_cfg__um_interface_cfg_interfaces__interface_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_interface_cfg__um_interface_cfg_interfaces__interface:
@@ -376087,7 +376087,7 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__nets__net_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__nets__net_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__nets__net_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__nets__net:
@@ -376161,7 +376161,7 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family__metric_levels__metric_level_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family__metric_levels__metric_level_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family__metric_levels__metric_level_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family__metric_levels__metric_level:
@@ -376235,7 +376235,7 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family:
@@ -376319,7 +376319,7 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface:
@@ -376445,7 +376445,7 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__address_families__address_family_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__address_families__address_family_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__address_families__address_family_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__address_families__address_family:
@@ -376525,7 +376525,7 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process:
@@ -376664,7 +376664,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor:
@@ -376755,7 +376755,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family:
@@ -376793,12 +376793,12 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
 _breaker56: None = None
 class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry(yadata.MNode):
     neighbor_group_name: str
-    remote_as: ?value
+    remote_as: ?atom
     password: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password
     update_source: ?str
     address_families: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families
 
-    mut def __init__(self, neighbor_group_name: str, remote_as: ?value, password: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password=None, update_source: ?str, address_families: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families=None) -> None:
+    mut def __init__(self, neighbor_group_name: str, remote_as: ?atom, password: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password=None, update_source: ?str, address_families: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families=None) -> None:
         self.neighbor_group_name = neighbor_group_name
         self.remote_as = remote_as
         self.password = password if password is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password()
@@ -376810,7 +376810,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry:
-        return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry(neighbor_group_name=n.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-group-name')), remote_as=n.get_opt_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'remote-as')), password=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'password'))), update_source=n.get_opt_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'update-source')), address_families=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))))
+        return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry(neighbor_group_name=n.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-group-name')), remote_as=n.get_opt_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'remote-as')), password=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'password'))), update_source=n.get_opt_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'update-source')), address_families=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))))
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry:
         """Create a deep copy of this adata object"""
@@ -376821,7 +376821,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
     mut def __init__(self, elements: list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry]=[]) -> None:
         yadata.MKeyedList.__init__(self, lambda e: e.neighbor_group_name, elements)
 
-    mut def create(self, key: str, remote_as: ?value=None, update_source: ?str=None) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry:
+    mut def create(self, key: str, remote_as: ?atom=None, update_source: ?str=None) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry:
         e = self.get(key)
         if e is not None:
             if remote_as is not None:
@@ -376837,7 +376837,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group:
@@ -376907,7 +376907,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family:
@@ -376965,10 +376965,10 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp(yad
 
 _breaker63: None = None
 class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as(yadata.MNode):
-    two_byte_as_number: ?value
+    two_byte_as_number: ?atom
     asn2_index: ?u64
 
-    mut def __init__(self, two_byte_as_number: ?value, asn2_index: ?u64) -> None:
+    mut def __init__(self, two_byte_as_number: ?atom, asn2_index: ?u64) -> None:
         self.two_byte_as_number = two_byte_as_number
         self.asn2_index = asn2_index
 
@@ -376978,7 +376978,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as:
         if n is not None:
-            return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as(two_byte_as_number=n.get_opt_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'two-byte-as-number')), asn2_index=n.get_opt_u64(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'asn2-index')))
+            return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as(two_byte_as_number=n.get_opt_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'two-byte-as-number')), asn2_index=n.get_opt_u64(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'asn2-index')))
         return None
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as:
@@ -376996,7 +376996,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     mut def __init__(self, two_byte_as: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as=None) -> None:
         self.two_byte_as = two_byte_as
 
-    mut def create_two_byte_as(self, two_byte_as_number: ?value=None, asn2_index: ?u64=None) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as:
+    mut def create_two_byte_as(self, two_byte_as_number: ?atom=None, asn2_index: ?u64=None) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as:
         existing = self.two_byte_as
         if existing is not None:
             if two_byte_as_number is not None:
@@ -377057,7 +377057,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family:
@@ -377263,7 +377263,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family:
@@ -377301,13 +377301,13 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
 _breaker76: None = None
 class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry(yadata.MNode):
     address: str
-    remote_as: ?value
+    remote_as: ?atom
     description: ?str
     password: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password
     timers: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers
     address_families: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families
 
-    mut def __init__(self, address: str, remote_as: ?value, description: ?str, password: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password=None, timers: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers=None, address_families: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families=None) -> None:
+    mut def __init__(self, address: str, remote_as: ?atom, description: ?str, password: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password=None, timers: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers=None, address_families: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families=None) -> None:
         self.address = address
         self.remote_as = remote_as
         self.description = description
@@ -377320,7 +377320,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry:
-        return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry(address=n.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')), remote_as=n.get_opt_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'remote-as')), description=n.get_opt_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'description')), password=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'password'))), timers=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'timers'))), address_families=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))))
+        return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry(address=n.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')), remote_as=n.get_opt_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'remote-as')), description=n.get_opt_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'description')), password=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'password'))), timers=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'timers'))), address_families=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))))
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry:
         """Create a deep copy of this adata object"""
@@ -377331,7 +377331,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     mut def __init__(self, elements: list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry]=[]) -> None:
         yadata.MKeyedList.__init__(self, lambda e: e.address, elements)
 
-    mut def create(self, key: str, remote_as: ?value=None, description: ?str=None) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry:
+    mut def create(self, key: str, remote_as: ?atom=None, description: ?str=None) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry:
         e = self.get(key)
         if e is not None:
             if remote_as is not None:
@@ -377347,7 +377347,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor:
@@ -377423,7 +377423,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf:
@@ -377460,14 +377460,14 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs(ya
 
 _breaker82: None = None
 class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry(yadata.MNode):
-    as_number: value
+    as_number: atom
     neighbors: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors
     neighbor_groups: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups
     address_families: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families
     bgp: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp
     vrfs: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
 
-    mut def __init__(self, as_number: value, neighbors: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors=None, neighbor_groups: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups=None, address_families: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families=None, bgp: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp=None, vrfs: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs=None) -> None:
+    mut def __init__(self, as_number: atom, neighbors: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors=None, neighbor_groups: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups=None, address_families: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families=None, bgp: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp=None, vrfs: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs=None) -> None:
         self.as_number = as_number
         self.neighbors = neighbors if neighbors is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors()
         self.neighbor_groups = neighbor_groups if neighbor_groups is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups()
@@ -377480,33 +377480,18 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry(ya
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry:
-        return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry(as_number=n.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), neighbors=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbors'))), neighbor_groups=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-groups'))), address_families=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))), bgp=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'bgp'))), vrfs=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrfs'))))
+        return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry(as_number=n.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), neighbors=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbors'))), neighbor_groups=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-groups'))), address_families=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))), bgp=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'bgp'))), vrfs=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrfs'))))
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry:
         """Create a deep copy of this adata object"""
         return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry.from_gdata(self.to_gdata())
 
 _breaker83: None = None
-class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as(yadata.MList[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry]):
+class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as(yadata.MKeyedList[atom, Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry]):
     mut def __init__(self, elements: list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry]=[]) -> None:
-        self._elements = elements
+        yadata.MKeyedList.__init__(self, lambda e: e.as_number, elements)
 
-    pure def get(self, key: value) -> ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry:
-        as_number = key
-        for e in self:
-            e_as_number = e.as_number
-            as_number_match = False
-            if isinstance(e_as_number, u64) and isinstance(as_number, u64):
-                if e_as_number == as_number:
-                    as_number_match = True
-            elif isinstance(e_as_number, str) and isinstance(as_number, str):
-                if e_as_number == as_number:
-                    as_number_match = True
-            if not as_number_match:
-                continue
-            return e
-
-    mut def create(self, key: value) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry:
+    mut def create(self, key: atom) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry:
         e = self.get(key)
         if e is not None:
             return e
@@ -377518,7 +377503,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as(yadata.M
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as:
@@ -377613,7 +377598,7 @@ class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies__route_po
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies__route_policy_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies__route_policy_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies__route_policy_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies__route_policy:
@@ -377704,7 +377689,7 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family(
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family:
@@ -377774,7 +377759,7 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface(yadata.MKey
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface:
@@ -377924,7 +377909,7 @@ class Cisco_IOS_XR_pfi_im_cmd_oper__pfi_im_cmd_oper_interfaces__interface_xr__in
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_pfi_im_cmd_oper__pfi_im_cmd_oper_interfaces__interface_xr__interface_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_pfi_im_cmd_oper__pfi_im_cmd_oper_interfaces__interface_xr__interface_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_pfi_im_cmd_oper__pfi_im_cmd_oper_interfaces__interface_xr__interface_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_pfi_im_cmd_oper__pfi_im_cmd_oper_interfaces__interface_xr__interface:
@@ -378035,7 +378020,7 @@ class Cisco_IOS_XR_ipv4_bgp_oper__bgp__instances__instance__instance_active__vrf
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_ipv4_bgp_oper__bgp__instances__instance__instance_active__vrfs__vrf__neighbors__neighbor_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_ipv4_bgp_oper__bgp__instances__instance__instance_active__vrfs__vrf__neighbors__neighbor_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_ipv4_bgp_oper__bgp__instances__instance__instance_active__vrfs__vrf__neighbors__neighbor_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_ipv4_bgp_oper__bgp__instances__instance__instance_active__vrfs__vrf__neighbors__neighbor:
@@ -378107,7 +378092,7 @@ class Cisco_IOS_XR_ipv4_bgp_oper__bgp__instances__instance__instance_active__vrf
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_ipv4_bgp_oper__bgp__instances__instance__instance_active__vrfs__vrf_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_ipv4_bgp_oper__bgp__instances__instance__instance_active__vrfs__vrf_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_ipv4_bgp_oper__bgp__instances__instance__instance_active__vrfs__vrf_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_ipv4_bgp_oper__bgp__instances__instance__instance_active__vrfs__vrf:
@@ -378200,7 +378185,7 @@ class Cisco_IOS_XR_ipv4_bgp_oper__bgp__instances__instance(yadata.MKeyedList[str
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_ipv4_bgp_oper__bgp__instances__instance_entry]:
         if n is not None:
-            return [Cisco_IOS_XR_ipv4_bgp_oper__bgp__instances__instance_entry.from_gdata(e) for e in n.elements]
+            return [Cisco_IOS_XR_ipv4_bgp_oper__bgp__instances__instance_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> Cisco_IOS_XR_ipv4_bgp_oper__bgp__instances__instance:
@@ -378308,7 +378293,8 @@ def _one(n: ?ygdata.Node, what: str) -> ygdata.Node:
     """The one entry of a list on a delivery's spine."""
     if isinstance(n, ygdata.List):
         if len(n.elements) == 1:
-            return n.elements[0]
+            for e in n.elements.values():
+                return e
     raise ValueError("a rooted delivery without its " + what + " entry")
 
 def _present(n: ?ygdata.Node) -> ?ygdata.Node:
@@ -379967,8 +379953,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router_subs(Subscripti
         return ygdata.Dst(lambda n, err: Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router_deliver(cb, n, err), root=self.filt())
 
 _breaker162: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor__use_deliver(cb: action(?(as__as_number: value, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor__use, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, neighbor_address: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor__use_deliver(cb: action(?(as__as_number: atom, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor__use, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, neighbor_address: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor__use = None
     if n is not None:
         try:
@@ -379978,7 +379964,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neig
             c4 = _at(e3, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbors'))
             e5 = _one(_at(c4, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor')), 'neighbor')
             c6 = _at(e5, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'use'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), neighbor_address=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), neighbor_address=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')))
             here = _present(c6)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor__use.from_gdata(here)
@@ -379998,7 +379984,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         direct: list[SubscriptionNode] = [self.neighbor_group]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor__use, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor__use, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
@@ -380021,8 +380007,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         return direct
 
 _breaker164: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor_deliver(cb: action(?(as__as_number: value, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, neighbor_address: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor_deliver(cb: action(?(as__as_number: atom, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, neighbor_address: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor_entry = None
     if n is not None:
         try:
@@ -380031,7 +380017,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neig
             e3 = _one(_at(c2, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as')), 'as')
             c4 = _at(e3, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbors'))
             e5 = _one(_at(c4, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor')), 'neighbor')
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), neighbor_address=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), neighbor_address=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')))
             here = _present(e5)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor_entry.from_gdata(here)
@@ -380057,7 +380043,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         base_path = self._path!.parent
         return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor_entry_subs(SubscriptionPath(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(as__as_number: value, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor_entry, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
@@ -380068,8 +380054,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         return direct
 
 _breaker165: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors_deliver(cb: action(?(as__as_number: value), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors_deliver(cb: action(?(as__as_number: atom), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors = None
     if n is not None:
         try:
@@ -380077,7 +380063,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neig
             c2 = _at(c1, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'bgp'))
             e3 = _one(_at(c2, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as')), 'as')
             c4 = _at(e3, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbors'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')))
             here = _present(c4)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors.from_gdata(here)
@@ -380097,15 +380083,15 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         direct: list[SubscriptionNode] = [self.neighbor]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
         return ygdata.Dst(lambda n, err: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors_deliver(cb, n, err), root=self.filt())
 
 _breaker166: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password_deliver(cb: action(?(as__as_number: value, neighbor_group_neighbor_group_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, neighbor_group_neighbor_group_name: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password_deliver(cb: action(?(as__as_number: atom, neighbor_group_neighbor_group_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, neighbor_group_neighbor_group_name: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password = None
     if n is not None:
         try:
@@ -380115,7 +380101,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neig
             c4 = _at(e3, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-groups'))
             e5 = _one(_at(c4, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-group')), 'neighbor-group')
             c6 = _at(e5, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'password'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), neighbor_group_neighbor_group_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-group-name')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), neighbor_group_neighbor_group_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-group-name')))
             here = _present(c6)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password.from_gdata(here)
@@ -380135,7 +380121,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         direct: list[SubscriptionNode] = [self.encrypted]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value, neighbor_group_neighbor_group_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, neighbor_group_neighbor_group_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
@@ -380154,8 +380140,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         return direct
 
 _breaker168: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family_deliver(cb: action(?(as__as_number: value, neighbor_group_neighbor_group_name: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, neighbor_group_neighbor_group_name: str, address_family_af_name: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family_deliver(cb: action(?(as__as_number: atom, neighbor_group_neighbor_group_name: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, neighbor_group_neighbor_group_name: str, address_family_af_name: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family_entry = None
     if n is not None:
         try:
@@ -380166,7 +380152,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neig
             e5 = _one(_at(c4, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-group')), 'neighbor-group')
             c6 = _at(e5, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))
             e7 = _one(_at(c6, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-family')), 'address-family')
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), neighbor_group_neighbor_group_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-group-name')), address_family_af_name=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'af-name')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), neighbor_group_neighbor_group_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-group-name')), address_family_af_name=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'af-name')))
             here = _present(e7)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family_entry.from_gdata(here)
@@ -380188,7 +380174,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         base_path = self._path!.parent
         return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family_entry_subs(SubscriptionPath(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-family'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(as__as_number: value, neighbor_group_neighbor_group_name: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family_entry, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, neighbor_group_neighbor_group_name: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
@@ -380199,8 +380185,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         return direct
 
 _breaker169: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families_deliver(cb: action(?(as__as_number: value, neighbor_group_neighbor_group_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, neighbor_group_neighbor_group_name: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families_deliver(cb: action(?(as__as_number: atom, neighbor_group_neighbor_group_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, neighbor_group_neighbor_group_name: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families = None
     if n is not None:
         try:
@@ -380210,7 +380196,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neig
             c4 = _at(e3, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-groups'))
             e5 = _one(_at(c4, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-group')), 'neighbor-group')
             c6 = _at(e5, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), neighbor_group_neighbor_group_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-group-name')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), neighbor_group_neighbor_group_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-group-name')))
             here = _present(c6)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families.from_gdata(here)
@@ -380230,7 +380216,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         direct: list[SubscriptionNode] = [self.address_family]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value, neighbor_group_neighbor_group_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, neighbor_group_neighbor_group_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
@@ -380257,8 +380243,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         return direct
 
 _breaker171: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_deliver(cb: action(?(as__as_number: value, neighbor_group_neighbor_group_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, neighbor_group_neighbor_group_name: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_deliver(cb: action(?(as__as_number: atom, neighbor_group_neighbor_group_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, neighbor_group_neighbor_group_name: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry = None
     if n is not None:
         try:
@@ -380267,7 +380253,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neig
             e3 = _one(_at(c2, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as')), 'as')
             c4 = _at(e3, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-groups'))
             e5 = _one(_at(c4, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-group')), 'neighbor-group')
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), neighbor_group_neighbor_group_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-group-name')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), neighbor_group_neighbor_group_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-group-name')))
             here = _present(e5)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry.from_gdata(here)
@@ -380297,7 +380283,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         base_path = self._path!.parent
         return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry_subs(SubscriptionPath(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-group'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(as__as_number: value, neighbor_group_neighbor_group_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, neighbor_group_neighbor_group_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
@@ -380308,8 +380294,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         return direct
 
 _breaker172: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups_deliver(cb: action(?(as__as_number: value), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups_deliver(cb: action(?(as__as_number: atom), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups = None
     if n is not None:
         try:
@@ -380317,7 +380303,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neig
             c2 = _at(c1, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'bgp'))
             e3 = _one(_at(c2, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as')), 'as')
             c4 = _at(e3, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor-groups'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')))
             here = _present(c4)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups.from_gdata(here)
@@ -380337,7 +380323,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         direct: list[SubscriptionNode] = [self.neighbor_group]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
@@ -380356,8 +380342,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address
         return direct
 
 _breaker174: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family_deliver(cb: action(?(as__as_number: value, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, address_family_af_name: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family_deliver(cb: action(?(as__as_number: atom, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, address_family_af_name: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family_entry = None
     if n is not None:
         try:
@@ -380366,7 +380352,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__addr
             e3 = _one(_at(c2, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as')), 'as')
             c4 = _at(e3, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))
             e5 = _one(_at(c4, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-family')), 'address-family')
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), address_family_af_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'af-name')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), address_family_af_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'af-name')))
             here = _present(e5)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family_entry.from_gdata(here)
@@ -380388,7 +380374,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address
         base_path = self._path!.parent
         return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family_entry_subs(SubscriptionPath(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-family'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(as__as_number: value, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family_entry, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
@@ -380399,8 +380385,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address
         return direct
 
 _breaker175: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families_deliver(cb: action(?(as__as_number: value), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families_deliver(cb: action(?(as__as_number: atom), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families = None
     if n is not None:
         try:
@@ -380408,7 +380394,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__addr
             c2 = _at(c1, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'bgp'))
             e3 = _one(_at(c2, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as')), 'as')
             c4 = _at(e3, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')))
             here = _present(c4)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families.from_gdata(here)
@@ -380428,15 +380414,15 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address
         direct: list[SubscriptionNode] = [self.address_family]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
         return ygdata.Dst(lambda n, err: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families_deliver(cb, n, err), root=self.filt())
 
 _breaker176: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp_deliver(cb: action(?(as__as_number: value), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp_deliver(cb: action(?(as__as_number: atom), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp = None
     if n is not None:
         try:
@@ -380444,7 +380430,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp_
             c2 = _at(c1, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'bgp'))
             e3 = _one(_at(c2, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as')), 'as')
             c4 = _at(e3, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'bgp'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')))
             here = _present(c4)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp.from_gdata(here)
@@ -380464,15 +380450,15 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp_sub
         direct: list[SubscriptionNode] = [self.router_id]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
         return ygdata.Dst(lambda n, err: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp_deliver(cb, n, err), root=self.filt())
 
 _breaker177: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as_deliver(cb: action(?(as__as_number: value, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, vrf_vrf_name: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as_deliver(cb: action(?(as__as_number: atom, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, vrf_vrf_name: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as = None
     if n is not None:
         try:
@@ -380483,7 +380469,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
             e5 = _one(_at(c4, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf')), 'vrf')
             c6 = _at(e5, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'rd'))
             c7 = _at(c6, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'two-byte-as'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')))
             here = _present(c7)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as.from_gdata(here)
@@ -380505,15 +380491,15 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         direct: list[SubscriptionNode] = [self.two_byte_as_number, self.asn2_index]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
         return ygdata.Dst(lambda n, err: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as_deliver(cb, n, err), root=self.filt())
 
 _breaker178: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd_deliver(cb: action(?(as__as_number: value, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, vrf_vrf_name: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd_deliver(cb: action(?(as__as_number: atom, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, vrf_vrf_name: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd = None
     if n is not None:
         try:
@@ -380523,7 +380509,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
             c4 = _at(e3, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrfs'))
             e5 = _one(_at(c4, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf')), 'vrf')
             c6 = _at(e5, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'rd'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')))
             here = _present(c6)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd.from_gdata(here)
@@ -380543,7 +380529,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         direct: list[SubscriptionNode] = [self.two_byte_as]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
@@ -380562,8 +380548,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         return direct
 
 _breaker180: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family_deliver(cb: action(?(as__as_number: value, vrf_vrf_name: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, vrf_vrf_name: str, address_family_af_name: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family_deliver(cb: action(?(as__as_number: atom, vrf_vrf_name: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, vrf_vrf_name: str, address_family_af_name: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family_entry = None
     if n is not None:
         try:
@@ -380574,7 +380560,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
             e5 = _one(_at(c4, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf')), 'vrf')
             c6 = _at(e5, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))
             e7 = _one(_at(c6, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-family')), 'address-family')
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), address_family_af_name=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'af-name')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), address_family_af_name=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'af-name')))
             here = _present(e7)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family_entry.from_gdata(here)
@@ -380596,7 +380582,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         base_path = self._path!.parent
         return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family_entry_subs(SubscriptionPath(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-family'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(as__as_number: value, vrf_vrf_name: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family_entry, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, vrf_vrf_name: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
@@ -380607,8 +380593,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         return direct
 
 _breaker181: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families_deliver(cb: action(?(as__as_number: value, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, vrf_vrf_name: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families_deliver(cb: action(?(as__as_number: atom, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, vrf_vrf_name: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families = None
     if n is not None:
         try:
@@ -380618,7 +380604,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
             c4 = _at(e3, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrfs'))
             e5 = _one(_at(c4, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf')), 'vrf')
             c6 = _at(e5, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')))
             here = _present(c6)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families.from_gdata(here)
@@ -380638,15 +380624,15 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         direct: list[SubscriptionNode] = [self.address_family]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
         return ygdata.Dst(lambda n, err: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families_deliver(cb, n, err), root=self.filt())
 
 _breaker182: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password_deliver(cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password_deliver(cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password = None
     if n is not None:
         try:
@@ -380658,7 +380644,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
             c6 = _at(e5, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbors'))
             e7 = _one(_at(c6, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor')), 'neighbor')
             c8 = _at(e7, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'password'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')))
             here = _present(c8)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password.from_gdata(here)
@@ -380678,15 +380664,15 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         direct: list[SubscriptionNode] = [self.encrypted]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
         return ygdata.Dst(lambda n, err: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password_deliver(cb, n, err), root=self.filt())
 
 _breaker183: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers__holdtime_deliver(cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers__holdtime, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers__holdtime_deliver(cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers__holdtime, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers__holdtime = None
     if n is not None:
         try:
@@ -380699,7 +380685,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
             e7 = _one(_at(c6, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor')), 'neighbor')
             c8 = _at(e7, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'timers'))
             c9 = _at(c8, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'holdtime'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')))
             here = _present(c9)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers__holdtime.from_gdata(here)
@@ -380719,15 +380705,15 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         direct: list[SubscriptionNode] = [self.holdtime_number]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers__holdtime, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers__holdtime, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
         return ygdata.Dst(lambda n, err: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers__holdtime_deliver(cb, n, err), root=self.filt())
 
 _breaker184: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers_deliver(cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers_deliver(cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers = None
     if n is not None:
         try:
@@ -380739,7 +380725,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
             c6 = _at(e5, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbors'))
             e7 = _one(_at(c6, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor')), 'neighbor')
             c8 = _at(e7, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'timers'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')))
             here = _present(c8)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers.from_gdata(here)
@@ -380761,15 +380747,15 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         direct: list[SubscriptionNode] = [self.keepalive_interval, self.holdtime]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
         return ygdata.Dst(lambda n, err: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers_deliver(cb, n, err), root=self.filt())
 
 _breaker185: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__route_policy_deliver(cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__route_policy, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__route_policy_deliver(cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__route_policy, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__route_policy = None
     if n is not None:
         try:
@@ -380783,7 +380769,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
             c8 = _at(e7, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))
             e9 = _one(_at(c8, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-family')), 'address-family')
             c10 = _at(e9, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'route-policy'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')), address_family_af_name=e9.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'af-name')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')), address_family_af_name=e9.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'af-name')))
             here = _present(c10)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__route_policy.from_gdata(here)
@@ -380805,15 +380791,15 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         direct: list[SubscriptionNode] = [self.out, self.in_]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__route_policy, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__route_policy, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
         return ygdata.Dst(lambda n, err: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__route_policy_deliver(cb, n, err), root=self.filt())
 
 _breaker186: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__as_override_deliver(cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__as_override, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__as_override_deliver(cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__as_override, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__as_override = None
     if n is not None:
         try:
@@ -380827,7 +380813,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
             c8 = _at(e7, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))
             e9 = _one(_at(c8, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-family')), 'address-family')
             c10 = _at(e9, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-override'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')), address_family_af_name=e9.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'af-name')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')), address_family_af_name=e9.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'af-name')))
             here = _present(c10)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__as_override.from_gdata(here)
@@ -380845,7 +380831,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         direct: list[SubscriptionNode] = []
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__as_override, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__as_override, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
@@ -380868,8 +380854,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         return direct
 
 _breaker188: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family_deliver(cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family_deliver(cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family_entry = None
     if n is not None:
         try:
@@ -380882,7 +380868,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
             e7 = _one(_at(c6, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor')), 'neighbor')
             c8 = _at(e7, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))
             e9 = _one(_at(c8, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-family')), 'address-family')
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')), address_family_af_name=e9.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'af-name')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')), address_family_af_name=e9.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'af-name')))
             here = _present(e9)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family_entry.from_gdata(here)
@@ -380908,7 +380894,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         base_path = self._path!.parent
         return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family_entry_subs(SubscriptionPath(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-family'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family_entry, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str, address_family_af_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
@@ -380919,8 +380905,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         return direct
 
 _breaker189: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families_deliver(cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families_deliver(cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families = None
     if n is not None:
         try:
@@ -380932,7 +380918,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
             c6 = _at(e5, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbors'))
             e7 = _one(_at(c6, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor')), 'neighbor')
             c8 = _at(e7, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address-families'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')))
             here = _present(c8)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families.from_gdata(here)
@@ -380952,7 +380938,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         direct: list[SubscriptionNode] = [self.address_family]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
@@ -380981,8 +380967,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         return direct
 
 _breaker191: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_deliver(cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_deliver(cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry = None
     if n is not None:
         try:
@@ -380993,7 +380979,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
             e5 = _one(_at(c4, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf')), 'vrf')
             c6 = _at(e5, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbors'))
             e7 = _one(_at(c6, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor')), 'neighbor')
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')), neighbor_address=e7.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'address')))
             here = _present(e7)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry.from_gdata(here)
@@ -381025,7 +381011,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         base_path = self._path!.parent
         return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry_subs(SubscriptionPath(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbor'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(as__as_number: value, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, vrf_vrf_name: str, neighbor_address: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
@@ -381036,8 +381022,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         return direct
 
 _breaker192: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors_deliver(cb: action(?(as__as_number: value, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, vrf_vrf_name: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors_deliver(cb: action(?(as__as_number: atom, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, vrf_vrf_name: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors = None
     if n is not None:
         try:
@@ -381047,7 +381033,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
             c4 = _at(e3, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrfs'))
             e5 = _one(_at(c4, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf')), 'vrf')
             c6 = _at(e5, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'neighbors'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')))
             here = _present(c6)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors.from_gdata(here)
@@ -381067,7 +381053,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         direct: list[SubscriptionNode] = [self.neighbor]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
@@ -381092,8 +381078,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         return direct
 
 _breaker194: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf_deliver(cb: action(?(as__as_number: value, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value, vrf_vrf_name: str) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf_deliver(cb: action(?(as__as_number: atom, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom, vrf_vrf_name: str) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf_entry = None
     if n is not None:
         try:
@@ -381102,7 +381088,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
             e3 = _one(_at(c2, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as')), 'as')
             c4 = _at(e3, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrfs'))
             e5 = _one(_at(c4, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf')), 'vrf')
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')), vrf_vrf_name=e5.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf-name')))
             here = _present(e5)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf_entry.from_gdata(here)
@@ -381130,7 +381116,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         base_path = self._path!.parent
         return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf_entry_subs(SubscriptionPath(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrf'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(as__as_number: value, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf_entry, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom, vrf_vrf_name: str), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
@@ -381141,8 +381127,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         return direct
 
 _breaker195: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs_deliver(cb: action(?(as__as_number: value), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs_deliver(cb: action(?(as__as_number: atom), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs = None
     if n is not None:
         try:
@@ -381150,7 +381136,7 @@ proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs
             c2 = _at(c1, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'bgp'))
             e3 = _one(_at(c2, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as')), 'as')
             c4 = _at(e3, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrfs'))
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')))
             here = _present(c4)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs.from_gdata(here)
@@ -381170,7 +381156,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs_su
         direct: list[SubscriptionNode] = [self.vrf]
         return direct
 
-    def dst(self, cb: action(?(as__as_number: value), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
@@ -381199,15 +381185,15 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry_su
         return direct
 
 _breaker197: None = None
-proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_deliver(cb: action(?(as__as_number: value), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(as__as_number: value) = None
+proc def Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_deliver(cb: action(?(as__as_number: atom), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
+    keys: ?(as__as_number: atom) = None
     inst: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry = None
     if n is not None:
         try:
             c1 = _at(n, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'router'))
             c2 = _at(c1, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'bgp'))
             e3 = _one(_at(c2, ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as')), 'as')
-            keys = (as__as_number=e3.get_value(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')))
+            keys = (as__as_number=e3.get_atom(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number')))
             here = _present(e3)
             if here is not None:
                 inst = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry.from_gdata(here)
@@ -381232,14 +381218,14 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_subs(Sub
         self.bgp = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp_subs(SubscriptionPath(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'bgp'), parent=path))
         self.vrfs = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs_subs(SubscriptionPath(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'vrfs'), parent=path))
 
-    pure def entry(self, as_number: value) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry_subs:
+    pure def entry(self, as_number: atom) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry_subs:
         predicates = [
             ygdata.FNode(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as-number'), value_match=as_number),
         ]
         base_path = self._path!.parent
         return Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry_subs(SubscriptionPath(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'as'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(as__as_number: value), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry, ?Exception) -> None) -> ygdata.Dst:
+    def dst(self, cb: action(?(as__as_number: atom), ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""

@@ -6992,7 +6992,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__feature__constraint(yadata.MK
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__feature__constraint_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__feature__constraint_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__feature__constraint_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__feature__constraint:
@@ -7049,7 +7049,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__feature__featureCharacteristi
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__feature__featureCharacteristic__characteristicRelationship_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__feature__featureCharacteristic__characteristicRelationship_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__feature__featureCharacteristic__characteristicRelationship_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__feature__featureCharacteristic__characteristicRelationship:
@@ -7107,7 +7107,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__feature__featureCharacteristi
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__feature__featureCharacteristic_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__feature__featureCharacteristic_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__feature__featureCharacteristic_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__feature__featureCharacteristic:
@@ -7193,7 +7193,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__feature__featureRelationship(
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__feature__featureRelationship_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__feature__featureRelationship_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__feature__featureRelationship_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__feature__featureRelationship:
@@ -7263,7 +7263,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__feature(yadata.MKeyedList[str
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__feature_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__feature_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__feature_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__feature:
@@ -7328,7 +7328,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__note(yadata.MKeyedList[str, s
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__note_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__note_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__note_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__note:
@@ -7396,7 +7396,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__place(yadata.MKeyedList[str, 
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__place_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__place_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__place_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__place:
@@ -7464,7 +7464,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__relatedEntity(yadata.MKeyedLi
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__relatedEntity_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__relatedEntity_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__relatedEntity_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__relatedEntity:
@@ -7532,7 +7532,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__relatedParty(yadata.MKeyedLis
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__relatedParty_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__relatedParty_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__relatedParty_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__relatedParty:
@@ -7589,7 +7589,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__serviceCharacteristic__charac
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__serviceCharacteristic__characteristicRelationship_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__serviceCharacteristic__characteristicRelationship_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__serviceCharacteristic__characteristicRelationship_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__serviceCharacteristic__characteristicRelationship:
@@ -7647,7 +7647,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__serviceCharacteristic(yadata.
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__serviceCharacteristic_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__serviceCharacteristic_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__serviceCharacteristic_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__serviceCharacteristic:
@@ -7719,7 +7719,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__serviceOrderItem(yadata.MKeye
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__serviceOrderItem_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__serviceOrderItem_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__serviceOrderItem_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__serviceOrderItem:
@@ -7776,7 +7776,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceR
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceRelationshipCharacteristic__characteristicRelationship_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceRelationshipCharacteristic__characteristicRelationship_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceRelationshipCharacteristic__characteristicRelationship_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceRelationshipCharacteristic__characteristicRelationship:
@@ -7834,7 +7834,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceR
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceRelationshipCharacteristic_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceRelationshipCharacteristic_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceRelationshipCharacteristic_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceRelationshipCharacteristic:
@@ -7892,7 +7892,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship(yadata.MK
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship:
@@ -7988,7 +7988,7 @@ class stratoweave_tmf__tmf_store__tmf640__service__supportingResource(yadata.MKe
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service__supportingResource_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service__supportingResource_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service__supportingResource_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service__supportingResource:
@@ -8120,7 +8120,7 @@ class stratoweave_tmf__tmf_store__tmf640__service(yadata.MKeyedList[str, stratow
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[stratoweave_tmf__tmf_store__tmf640__service_entry]:
         if n is not None:
-            return [stratoweave_tmf__tmf_store__tmf640__service_entry.from_gdata(e) for e in n.elements]
+            return [stratoweave_tmf__tmf_store__tmf640__service_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> stratoweave_tmf__tmf_store__tmf640__service:
@@ -8211,7 +8211,7 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__cloud
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__cloud_identifier_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__cloud_identifier_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__cloud_identifier_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__cloud_identifier:
@@ -8260,7 +8260,7 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__encry
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__encryption_profile_identifier_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__encryption_profile_identifier_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__encryption_profile_identifier_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__encryption_profile_identifier:
@@ -8309,7 +8309,7 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__qos_p
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__qos_profile_identifier_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__qos_profile_identifier_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__qos_profile_identifier_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__qos_profile_identifier:
@@ -8358,7 +8358,7 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__bfd_p
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__bfd_profile_identifier_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__bfd_profile_identifier_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__bfd_profile_identifier_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__bfd_profile_identifier:
@@ -8509,7 +8509,7 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__clou
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__cloud_access_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__cloud_access_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__cloud_access_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__cloud_access:
@@ -8637,7 +8637,7 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_gr
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping__groups__group_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping__groups__group_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping__groups__group_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping__groups__group:
@@ -8714,7 +8714,7 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_gr
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping:
@@ -8880,7 +8880,7 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__extranet_vpns__extra
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__extranet_vpns__extranet_vpn_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__extranet_vpns__extranet_vpn_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__extranet_vpns__extranet_vpn_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__extranet_vpns__extranet_vpn:
@@ -8968,7 +8968,7 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service(yadata.MKeyedList[str
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service:
@@ -9058,7 +9058,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__locations__location(yadata.MKeyedL
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__locations__location_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__locations__location_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__locations__location_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__locations__location:
@@ -9157,7 +9157,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__devices__device(yadata.MKeyedList[
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__devices__device_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__devices__device_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__devices__device_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__devices__device:
@@ -9227,7 +9227,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_diversity__groups__group(yada
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_diversity__groups__group_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_diversity__groups__group_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_diversity__groups__group_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_diversity__groups__group:
@@ -9345,7 +9345,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries_
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries__filters__filter_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries__filters__filter_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries__filters__filter_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries__filters__filter:
@@ -9419,7 +9419,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries_
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries__vpn_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries__vpn_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries__vpn_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries__vpn:
@@ -9472,7 +9472,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries(
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries:
@@ -9523,7 +9523,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy(yadata.MK
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy:
@@ -9597,7 +9597,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__maximum_routes__address_family(yad
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__maximum_routes__address_family_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__maximum_routes__address_family_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__maximum_routes__address_family_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__maximum_routes__address_family:
@@ -9784,9 +9784,9 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_p
     l4_src_port_range: ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow__l4_src_port_range
     l4_dst_port: ?u64
     l4_dst_port_range: ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow__l4_dst_port_range
-    protocol_field: ?value
+    protocol_field: ?atom
 
-    mut def __init__(self, dscp: ?u64, dot1p: ?u64, ipv4_src_prefix: ?str, ipv6_src_prefix: ?str, ipv4_dst_prefix: ?str, ipv6_dst_prefix: ?str, l4_src_port: ?u64, target_sites: ?list[str]=None, l4_src_port_range: ?ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow__l4_src_port_range=None, l4_dst_port: ?u64, l4_dst_port_range: ?ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow__l4_dst_port_range=None, protocol_field: ?value) -> None:
+    mut def __init__(self, dscp: ?u64, dot1p: ?u64, ipv4_src_prefix: ?str, ipv6_src_prefix: ?str, ipv4_dst_prefix: ?str, ipv6_dst_prefix: ?str, l4_src_port: ?u64, target_sites: ?list[str]=None, l4_src_port_range: ?ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow__l4_src_port_range=None, l4_dst_port: ?u64, l4_dst_port_range: ?ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow__l4_dst_port_range=None, protocol_field: ?atom) -> None:
         self.dscp = dscp
         self.dot1p = dot1p
         self.ipv4_src_prefix = ipv4_src_prefix
@@ -9806,7 +9806,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_p
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow:
         if n is not None:
-            return ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow(dscp=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'dscp')), dot1p=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'dot1p')), ipv4_src_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv4-src-prefix')), ipv6_src_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv6-src-prefix')), ipv4_dst_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv4-dst-prefix')), ipv6_dst_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv6-dst-prefix')), l4_src_port=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-src-port')), target_sites=n.get_opt_strs(ygdata.Id(NS_ietf_l3vpn_svc, 'target-sites')), l4_src_port_range=ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow__l4_src_port_range.from_gdata(n.get_opt_cnt(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-src-port-range'))), l4_dst_port=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-dst-port')), l4_dst_port_range=ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow__l4_dst_port_range.from_gdata(n.get_opt_cnt(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-dst-port-range'))), protocol_field=n.get_opt_value(ygdata.Id(NS_ietf_l3vpn_svc, 'protocol-field')))
+            return ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow(dscp=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'dscp')), dot1p=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'dot1p')), ipv4_src_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv4-src-prefix')), ipv6_src_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv6-src-prefix')), ipv4_dst_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv4-dst-prefix')), ipv6_dst_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv6-dst-prefix')), l4_src_port=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-src-port')), target_sites=n.get_opt_strs(ygdata.Id(NS_ietf_l3vpn_svc, 'target-sites')), l4_src_port_range=ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow__l4_src_port_range.from_gdata(n.get_opt_cnt(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-src-port-range'))), l4_dst_port=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-dst-port')), l4_dst_port_range=ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow__l4_dst_port_range.from_gdata(n.get_opt_cnt(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-dst-port-range'))), protocol_field=n.get_opt_atom(ygdata.Id(NS_ietf_l3vpn_svc, 'protocol-field')))
         return ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow()
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow:
@@ -9859,7 +9859,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_p
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule:
@@ -10013,7 +10013,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes__class_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes__class_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes__class_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes__class:
@@ -10099,7 +10099,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__carrierscarrier(yadata.MN
     signalling_type: str
 
     mut def __init__(self, signalling_type: ?str=None) -> None:
-        self.signalling_type = signalling_type if signalling_type is not None else "bgp"
+        self.signalling_type = signalling_type if signalling_type is not None else 'bgp'
 
     mut def to_gdata(self) -> ygdata.Node:
         return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'carrierscarrier'])
@@ -10145,9 +10145,9 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__multicast(yadata.MNode):
     protocol_type: str
 
     mut def __init__(self, multicast_site_type: ?str=None, multicast_address_family: ?ietf_l3vpn_svc__l3vpn_svc__sites__site__service__multicast__multicast_address_family=None, protocol_type: ?str=None) -> None:
-        self.multicast_site_type = multicast_site_type if multicast_site_type is not None else "source-receiver"
+        self.multicast_site_type = multicast_site_type if multicast_site_type is not None else 'source-receiver'
         self.multicast_address_family = multicast_address_family if multicast_address_family is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__service__multicast__multicast_address_family()
-        self.protocol_type = protocol_type if protocol_type is not None else "both"
+        self.protocol_type = protocol_type if protocol_type is not None else 'both'
 
     mut def to_gdata(self) -> ygdata.Node:
         return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'multicast'])
@@ -10248,7 +10248,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protoco
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__ospf__sham_links__sham_link_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__ospf__sham_links__sham_link_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__ospf__sham_links__sham_link_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__ospf__sham_links__sham_link:
@@ -10380,7 +10380,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protoco
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv4_lan_prefixes_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv4_lan_prefixes_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv4_lan_prefixes_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv4_lan_prefixes:
@@ -10435,7 +10435,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protoco
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv6_lan_prefixes_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv6_lan_prefixes_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv6_lan_prefixes_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv6_lan_prefixes:
@@ -10633,7 +10633,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protoco
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol:
@@ -10703,7 +10703,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__groups__group_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__groups__group_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__groups__group_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__groups__group:
@@ -10773,7 +10773,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints__constraint__target__group_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints__constraint__target__group_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints__constraint__target__group_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints__constraint__target__group:
@@ -10849,7 +10849,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints__constraint_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints__constraint_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints__constraint_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints__constraint:
@@ -10998,7 +10998,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__provider_dhcp__customer_addresses__address_group_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__provider_dhcp__customer_addresses__address_group_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__provider_dhcp__customer_addresses__address_group_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__provider_dhcp__customer_addresses__address_group:
@@ -11201,7 +11201,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__provider_dhcp__customer_addresses__address_group_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__provider_dhcp__customer_addresses__address_group_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__provider_dhcp__customer_addresses__address_group_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__provider_dhcp__customer_addresses__address_group:
@@ -11584,9 +11584,9 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     l4_src_port_range: ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow__l4_src_port_range
     l4_dst_port: ?u64
     l4_dst_port_range: ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow__l4_dst_port_range
-    protocol_field: ?value
+    protocol_field: ?atom
 
-    mut def __init__(self, dscp: ?u64, dot1p: ?u64, ipv4_src_prefix: ?str, ipv6_src_prefix: ?str, ipv4_dst_prefix: ?str, ipv6_dst_prefix: ?str, l4_src_port: ?u64, target_sites: ?list[str]=None, l4_src_port_range: ?ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow__l4_src_port_range=None, l4_dst_port: ?u64, l4_dst_port_range: ?ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow__l4_dst_port_range=None, protocol_field: ?value) -> None:
+    mut def __init__(self, dscp: ?u64, dot1p: ?u64, ipv4_src_prefix: ?str, ipv6_src_prefix: ?str, ipv4_dst_prefix: ?str, ipv6_dst_prefix: ?str, l4_src_port: ?u64, target_sites: ?list[str]=None, l4_src_port_range: ?ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow__l4_src_port_range=None, l4_dst_port: ?u64, l4_dst_port_range: ?ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow__l4_dst_port_range=None, protocol_field: ?atom) -> None:
         self.dscp = dscp
         self.dot1p = dot1p
         self.ipv4_src_prefix = ipv4_src_prefix
@@ -11606,7 +11606,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow:
         if n is not None:
-            return ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow(dscp=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'dscp')), dot1p=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'dot1p')), ipv4_src_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv4-src-prefix')), ipv6_src_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv6-src-prefix')), ipv4_dst_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv4-dst-prefix')), ipv6_dst_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv6-dst-prefix')), l4_src_port=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-src-port')), target_sites=n.get_opt_strs(ygdata.Id(NS_ietf_l3vpn_svc, 'target-sites')), l4_src_port_range=ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow__l4_src_port_range.from_gdata(n.get_opt_cnt(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-src-port-range'))), l4_dst_port=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-dst-port')), l4_dst_port_range=ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow__l4_dst_port_range.from_gdata(n.get_opt_cnt(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-dst-port-range'))), protocol_field=n.get_opt_value(ygdata.Id(NS_ietf_l3vpn_svc, 'protocol-field')))
+            return ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow(dscp=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'dscp')), dot1p=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'dot1p')), ipv4_src_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv4-src-prefix')), ipv6_src_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv6-src-prefix')), ipv4_dst_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv4-dst-prefix')), ipv6_dst_prefix=n.get_opt_str(ygdata.Id(NS_ietf_l3vpn_svc, 'ipv6-dst-prefix')), l4_src_port=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-src-port')), target_sites=n.get_opt_strs(ygdata.Id(NS_ietf_l3vpn_svc, 'target-sites')), l4_src_port_range=ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow__l4_src_port_range.from_gdata(n.get_opt_cnt(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-src-port-range'))), l4_dst_port=n.get_opt_u64(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-dst-port')), l4_dst_port_range=ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow__l4_dst_port_range.from_gdata(n.get_opt_cnt(ygdata.Id(NS_ietf_l3vpn_svc, 'l4-dst-port-range'))), protocol_field=n.get_opt_atom(ygdata.Id(NS_ietf_l3vpn_svc, 'protocol-field')))
         return ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow()
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow:
@@ -11659,7 +11659,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule:
@@ -11813,7 +11813,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile__classes__class_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile__classes__class_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile__classes__class_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile__classes__class:
@@ -11899,7 +11899,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     signalling_type: str
 
     mut def __init__(self, signalling_type: ?str=None) -> None:
-        self.signalling_type = signalling_type if signalling_type is not None else "bgp"
+        self.signalling_type = signalling_type if signalling_type is not None else 'bgp'
 
     mut def to_gdata(self) -> ygdata.Node:
         return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'carrierscarrier'])
@@ -11945,9 +11945,9 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     protocol_type: str
 
     mut def __init__(self, multicast_site_type: ?str=None, multicast_address_family: ?ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__multicast__multicast_address_family=None, protocol_type: ?str=None) -> None:
-        self.multicast_site_type = multicast_site_type if multicast_site_type is not None else "source-receiver"
+        self.multicast_site_type = multicast_site_type if multicast_site_type is not None else 'source-receiver'
         self.multicast_address_family = multicast_address_family if multicast_address_family is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__multicast__multicast_address_family()
-        self.protocol_type = protocol_type if protocol_type is not None else "both"
+        self.protocol_type = protocol_type if protocol_type is not None else 'both'
 
     mut def to_gdata(self) -> ygdata.Node:
         return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'multicast'])
@@ -12033,7 +12033,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__ospf__sham_links__sham_link_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__ospf__sham_links__sham_link_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__ospf__sham_links__sham_link_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__ospf__sham_links__sham_link:
@@ -12167,7 +12167,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv4_lan_prefixes_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv4_lan_prefixes_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv4_lan_prefixes_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv4_lan_prefixes:
@@ -12222,7 +12222,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv6_lan_prefixes_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv6_lan_prefixes_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv6_lan_prefixes_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv6_lan_prefixes:
@@ -12422,7 +12422,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol:
@@ -12567,7 +12567,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access:
@@ -12672,7 +12672,7 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site(yadata.MKeyedList[str, ietf_l3vpn_s
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[ietf_l3vpn_svc__l3vpn_svc__sites__site_entry]:
         if n is not None:
-            return [ietf_l3vpn_svc__l3vpn_svc__sites__site_entry.from_gdata(e) for e in n.elements]
+            return [ietf_l3vpn_svc__l3vpn_svc__sites__site_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> ietf_l3vpn_svc__l3vpn_svc__sites__site:
@@ -12811,7 +12811,7 @@ class netinfra__netinfra__router(yadata.MKeyedList[str, netinfra__netinfra__rout
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[netinfra__netinfra__router_entry]:
         if n is not None:
-            return [netinfra__netinfra__router_entry.from_gdata(e) for e in n.elements]
+            return [netinfra__netinfra__router_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> netinfra__netinfra__router:
@@ -12866,7 +12866,7 @@ class netinfra__netinfra__backbone_link(yadata.MKeyedList[(left_router: str, lef
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[netinfra__netinfra__backbone_link_entry]:
         if n is not None:
-            return [netinfra__netinfra__backbone_link_entry.from_gdata(e) for e in n.elements]
+            return [netinfra__netinfra__backbone_link_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> netinfra__netinfra__backbone_link:

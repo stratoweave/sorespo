@@ -962,7 +962,7 @@ class netinfra_inter__netinfra__router__l3vpn_vrf(yadata.MKeyedList[str, netinfr
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[netinfra_inter__netinfra__router__l3vpn_vrf_entry]:
         if n is not None:
-            return [netinfra_inter__netinfra__router__l3vpn_vrf_entry.from_gdata(e) for e in n.elements]
+            return [netinfra_inter__netinfra__router__l3vpn_vrf_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> netinfra_inter__netinfra__router__l3vpn_vrf:
@@ -1037,7 +1037,7 @@ class netinfra_inter__netinfra__router(yadata.MKeyedList[str, netinfra_inter__ne
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[netinfra_inter__netinfra__router_entry]:
         if n is not None:
-            return [netinfra_inter__netinfra__router_entry.from_gdata(e) for e in n.elements]
+            return [netinfra_inter__netinfra__router_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> netinfra_inter__netinfra__router:
@@ -1092,7 +1092,7 @@ class netinfra_inter__netinfra__backbone_link(yadata.MKeyedList[(left_router: st
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[netinfra_inter__netinfra__backbone_link_entry]:
         if n is not None:
-            return [netinfra_inter__netinfra__backbone_link_entry.from_gdata(e) for e in n.elements]
+            return [netinfra_inter__netinfra__backbone_link_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> netinfra_inter__netinfra__backbone_link:
@@ -1145,7 +1145,7 @@ class netinfra_inter__netinfra__ibgp_fullmesh__router(yadata.MKeyedList[str, net
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[netinfra_inter__netinfra__ibgp_fullmesh__router_entry]:
         if n is not None:
-            return [netinfra_inter__netinfra__ibgp_fullmesh__router_entry.from_gdata(e) for e in n.elements]
+            return [netinfra_inter__netinfra__ibgp_fullmesh__router_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> netinfra_inter__netinfra__ibgp_fullmesh__router:
@@ -1200,7 +1200,7 @@ class netinfra_inter__netinfra__ibgp_fullmesh(yadata.MKeyedList[u64, netinfra_in
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[netinfra_inter__netinfra__ibgp_fullmesh_entry]:
         if n is not None:
-            return [netinfra_inter__netinfra__ibgp_fullmesh_entry.from_gdata(e) for e in n.elements]
+            return [netinfra_inter__netinfra__ibgp_fullmesh_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> netinfra_inter__netinfra__ibgp_fullmesh:
@@ -1336,7 +1336,7 @@ class l3vpn_inter__l3vpns__l3vpn__endpoint(yadata.MKeyedList[(device: str, inter
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[l3vpn_inter__l3vpns__l3vpn__endpoint_entry]:
         if n is not None:
-            return [l3vpn_inter__l3vpns__l3vpn__endpoint_entry.from_gdata(e) for e in n.elements]
+            return [l3vpn_inter__l3vpns__l3vpn__endpoint_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> l3vpn_inter__l3vpns__l3vpn__endpoint:
@@ -1391,7 +1391,7 @@ class l3vpn_inter__l3vpns__l3vpn(yadata.MKeyedList[str, l3vpn_inter__l3vpns__l3v
     @staticmethod
     mut def from_gdata(n: ?ygdata.List) -> list[l3vpn_inter__l3vpns__l3vpn_entry]:
         if n is not None:
-            return [l3vpn_inter__l3vpns__l3vpn_entry.from_gdata(e) for e in n.elements]
+            return [l3vpn_inter__l3vpns__l3vpn_entry.from_gdata(e) for e in n.entries()]
         return []
 
     mut def copy(self) -> l3vpn_inter__l3vpns__l3vpn:

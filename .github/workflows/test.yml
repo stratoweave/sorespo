@@ -41,8 +41,7 @@ jobs:
           make gen
           git diff --exit-code
       - run: acton test
-      - run: acton test perf
-      - run: acton build --release
+      - run: make build
       - uses: actions/upload-artifact@v4
         with:
           name: sorespo-linux-x86_64

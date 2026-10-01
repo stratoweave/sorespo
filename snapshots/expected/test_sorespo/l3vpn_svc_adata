@@ -1,4 +1,6 @@
 # device AMS-CORE-1
+# YANG module (prefix) and namespace:
+#   Cisco-IOS-XR-um-hostname-cfg (um-hostname-cfg)  http://cisco.com/ns/yang/Cisco-IOS-XR-um-hostname-cfg
 # Top node: /
 AMS_CORE_1 = root()
 
@@ -168,10 +170,12 @@ interface_element_3 = ldp.interfaces.interface.create('GigabitEthernet0/0/0/0')
 # List /mpls/ldp/interfaces/interface element: 'GigabitEthernet0/0/0/1'
 interface_element_3 = ldp.interfaces.interface.create('GigabitEthernet0/0/0/1')
 
-# Container: /hostname
+# Container: /hostname (Cisco-IOS-XR-um-hostname-cfg)
 AMS_CORE_1.hostname.system_network_name = 'AMS-CORE-1'
 
 # device FRA-CORE-1
+# YANG module (prefix) and namespace:
+#   Cisco-IOS-XR-um-hostname-cfg (um-hostname-cfg)  http://cisco.com/ns/yang/Cisco-IOS-XR-um-hostname-cfg
 # Top node: /
 FRA_CORE_1 = root()
 
@@ -359,7 +363,7 @@ interface_element_3 = ldp.interfaces.interface.create('GigabitEthernet0/0/0/1')
 # List /mpls/ldp/interfaces/interface element: 'GigabitEthernet0/0/0/2'
 interface_element_3 = ldp.interfaces.interface.create('GigabitEthernet0/0/0/2')
 
-# Container: /hostname
+# Container: /hostname (Cisco-IOS-XR-um-hostname-cfg)
 FRA_CORE_1.hostname.system_network_name = 'FRA-CORE-1'
 
 # device LJU-CORE-1

@@ -1,4 +1,6 @@
 # device AMS-CORE-1
+# YANG module (prefix) and namespace:
+#   Cisco-IOS-XR-um-hostname-cfg (um-hostname-cfg)  http://cisco.com/ns/yang/Cisco-IOS-XR-um-hostname-cfg
 # Top node: /
 AMS_CORE_1 = root()
 
@@ -53,5 +55,5 @@ as__element.bgp.router_id = '10.0.0.1'
 # List /routing-policy/route-policies/route-policy element: 'ACCEPT'
 route_policy_element = AMS_CORE_1.routing_policy.route_policies.route_policy.create('ACCEPT', rpl_route_policy='route-policy ACCEPT\n  done\nend-policy\n')
 
-# Container: /hostname
+# Container: /hostname (Cisco-IOS-XR-um-hostname-cfg)
 AMS_CORE_1.hostname.system_network_name = 'AMS-CORE-1'

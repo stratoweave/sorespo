@@ -74711,8 +74711,8 @@ class junos_conf_root__configuration__system__services__netconf(yadata.MNode):
         self.rfc_compliant = rfc_compliant
         self.yang_compliant = yang_compliant
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'system', 'services', 'netconf'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'system', 'services', 'netconf'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__system__services__netconf:
@@ -74732,8 +74732,8 @@ class junos_conf_root__configuration__system__services(yadata.MNode):
     mut def __init__(self, netconf: ?junos_conf_root__configuration__system__services__netconf=None) -> None:
         self.netconf = netconf if netconf is not None else junos_conf_root__configuration__system__services__netconf()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'system', 'services'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'system', 'services'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__system__services:
@@ -74766,8 +74766,8 @@ class junos_conf_root__configuration__system(yadata.MNode):
         self.services = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'system'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'system'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__system:
@@ -74787,8 +74787,8 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__inet_
     mut def __init__(self, name: str) -> None:
         self.name = name
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit', 'family', 'inet', 'address'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit', 'family', 'inet', 'address'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry:
@@ -74836,8 +74836,8 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__inet(
     mut def __init__(self, address: list[junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry]=[]) -> None:
         self.address = junos_conf_root__configuration__interfaces__interface__unit__family__inet__address(elements=address)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit', 'family', 'inet'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit', 'family', 'inet'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__interfaces__interface__unit__family__inet:
@@ -74860,8 +74860,8 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__inet6
     mut def __init__(self, name: str) -> None:
         self.name = name
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit', 'family', 'inet6', 'address'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit', 'family', 'inet6', 'address'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry:
@@ -74909,8 +74909,8 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__inet6
     mut def __init__(self, address: list[junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry]=[]) -> None:
         self.address = junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address(elements=address)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit', 'family', 'inet6'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit', 'family', 'inet6'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__interfaces__interface__unit__family__inet6:
@@ -74933,8 +74933,8 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__iso__
     mut def __init__(self, name: str) -> None:
         self.name = name
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit', 'family', 'iso', 'address'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit', 'family', 'iso', 'address'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry:
@@ -74982,8 +74982,8 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__iso(y
     mut def __init__(self, address: list[junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry]=[]) -> None:
         self.address = junos_conf_root__configuration__interfaces__interface__unit__family__iso__address(elements=address)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit', 'family', 'iso'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit', 'family', 'iso'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__interfaces__interface__unit__family__iso:
@@ -75034,8 +75034,8 @@ class junos_conf_root__configuration__interfaces__interface__unit__family(yadata
         self.iso = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit', 'family'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit', 'family'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__interfaces__interface__unit__family:
@@ -75069,8 +75069,8 @@ class junos_conf_root__configuration__interfaces__interface__unit_entry(yadata.M
         self.mtu = mtu
         self.mac = mac
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface', 'unit'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__interfaces__interface__unit_entry:
@@ -75140,8 +75140,8 @@ class junos_conf_root__configuration__interfaces__interface_entry(yadata.MNode):
         self.native_vlan_id = native_vlan_id
         self.unit = junos_conf_root__configuration__interfaces__interface__unit(elements=unit)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces', 'interface'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__interfaces__interface_entry:
@@ -75197,8 +75197,8 @@ class junos_conf_root__configuration__interfaces(yadata.MNode):
     mut def __init__(self, interface: list[junos_conf_root__configuration__interfaces__interface_entry]=[]) -> None:
         self.interface = junos_conf_root__configuration__interfaces__interface(elements=interface)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'interfaces'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__interfaces:
@@ -75220,8 +75220,8 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
         self.ttl = ttl
         self.no_nexthop_change = no_nexthop_change
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'protocols', 'bgp', 'group', 'neighbor', 'multihop'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'protocols', 'bgp', 'group', 'neighbor', 'multihop'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop:
@@ -75270,8 +75270,8 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
         self.multihop = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'protocols', 'bgp', 'group', 'neighbor'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'protocols', 'bgp', 'group', 'neighbor'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry:
@@ -75339,8 +75339,8 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
         self.export = export if export is not None else []
         self.neighbor = junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor(elements=neighbor)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'protocols', 'bgp', 'group'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'protocols', 'bgp', 'group'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_entry:
@@ -75390,8 +75390,8 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
     mut def __init__(self, group: list[junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_entry]=[]) -> None:
         self.group = junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group(elements=group)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'protocols', 'bgp'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'protocols', 'bgp'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance__protocols__bgp:
@@ -75411,8 +75411,8 @@ class junos_conf_root__configuration__routing_instances__instance__protocols(yad
     mut def __init__(self, bgp: ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp=None) -> None:
         self.bgp = bgp if bgp is not None else junos_conf_root__configuration__routing_instances__instance__protocols__bgp()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'protocols'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'protocols'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance__protocols:
@@ -75440,8 +75440,8 @@ class junos_conf_root__configuration__routing_instances__instance__interface_ent
         self.multicast = multicast
         self.primary = primary
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'interface'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'interface'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance__interface_entry:
@@ -75497,8 +75497,8 @@ class junos_conf_root__configuration__routing_instances__instance__route_disting
     mut def __init__(self, rd_type: ?str) -> None:
         self.rd_type = rd_type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'route-distinguisher'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'route-distinguisher'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance__route_distinguisher:
@@ -75524,8 +75524,8 @@ class junos_conf_root__configuration__routing_instances__instance__vrf_target(ya
         self.export = export
         self.auto = auto
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'vrf-target'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'vrf-target'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance__vrf_target:
@@ -75544,8 +75544,8 @@ class junos_conf_root__configuration__routing_instances__instance__vrf_table_lab
     mut def __init__(self) -> None:
         pass
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'vrf-table-label'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance', 'vrf-table-label'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__routing_instances__instance__vrf_table_label:
@@ -75588,8 +75588,8 @@ class junos_conf_root__configuration__routing_instances__instance_entry(yadata.M
         self.vrf_table_label = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances', 'instance'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance_entry:
@@ -75639,8 +75639,8 @@ class junos_conf_root__configuration__routing_instances(yadata.MNode):
     mut def __init__(self, instance: list[junos_conf_root__configuration__routing_instances__instance_entry]=[]) -> None:
         self.instance = junos_conf_root__configuration__routing_instances__instance(elements=instance)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-instances'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__routing_instances:
@@ -75660,8 +75660,8 @@ class junos_conf_root__configuration__routing_options__autonomous_system(yadata.
     mut def __init__(self, as_number: ?str) -> None:
         self.as_number = as_number
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-options', 'autonomous-system'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-options', 'autonomous-system'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__routing_options__autonomous_system:
@@ -75681,8 +75681,8 @@ class junos_conf_root__configuration__routing_options(yadata.MNode):
     mut def __init__(self, autonomous_system: ?junos_conf_root__configuration__routing_options__autonomous_system=None) -> None:
         self.autonomous_system = autonomous_system if autonomous_system is not None else junos_conf_root__configuration__routing_options__autonomous_system()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-options'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'routing-options'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__routing_options:
@@ -75701,8 +75701,8 @@ class junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__u
     mut def __init__(self) -> None:
         pass
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family', 'inet-vpn', 'unicast'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family', 'inet-vpn', 'unicast'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast:
@@ -75733,8 +75733,8 @@ class junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn(ya
         self.unicast = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family', 'inet-vpn'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family', 'inet-vpn'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn:
@@ -75753,8 +75753,8 @@ class junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__
     mut def __init__(self) -> None:
         pass
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family', 'inet6-vpn', 'unicast'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family', 'inet6-vpn', 'unicast'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast:
@@ -75785,8 +75785,8 @@ class junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn(y
         self.unicast = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family', 'inet6-vpn'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family', 'inet6-vpn'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn:
@@ -75805,8 +75805,8 @@ class junos_conf_root__configuration__protocols__bgp__group__family__evpn__signa
     mut def __init__(self) -> None:
         pass
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family', 'evpn', 'signaling'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family', 'evpn', 'signaling'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling:
@@ -75837,8 +75837,8 @@ class junos_conf_root__configuration__protocols__bgp__group__family__evpn(yadata
         self.signaling = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family', 'evpn'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family', 'evpn'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__bgp__group__family__evpn:
@@ -75857,8 +75857,8 @@ class junos_conf_root__configuration__protocols__bgp__group__family__route_targe
     mut def __init__(self) -> None:
         pass
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family', 'route-target'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family', 'route-target'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__protocols__bgp__group__family__route_target:
@@ -75895,8 +75895,8 @@ class junos_conf_root__configuration__protocols__bgp__group__family(yadata.MNode
         self.route_target = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'family'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__bgp__group__family:
@@ -75920,8 +75920,8 @@ class junos_conf_root__configuration__protocols__bgp__group__neighbor_entry(yada
         self.description = description
         self.passive = passive
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'neighbor'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group', 'neighbor'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__bgp__group__neighbor_entry:
@@ -75997,8 +75997,8 @@ class junos_conf_root__configuration__protocols__bgp__group_entry(yadata.MNode):
         self.tcp_mss = tcp_mss
         self.neighbor = junos_conf_root__configuration__protocols__bgp__group__neighbor(elements=neighbor)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp', 'group'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__bgp__group_entry:
@@ -76066,8 +76066,8 @@ class junos_conf_root__configuration__protocols__bgp(yadata.MNode):
         self.group = junos_conf_root__configuration__protocols__bgp__group(elements=group)
         self.log_updown = log_updown
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'bgp'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__bgp:
@@ -76089,8 +76089,8 @@ class junos_conf_root__configuration__protocols__isis__interface__ldp_synchroniz
         self.disable = disable
         self.hold_time = hold_time
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'isis', 'interface', 'ldp-synchronization'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'isis', 'interface', 'ldp-synchronization'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization:
@@ -76117,8 +76117,8 @@ class junos_conf_root__configuration__protocols__isis__interface__level_entry(ya
         self.disable = disable
         self.metric = metric
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'isis', 'interface', 'level'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'isis', 'interface', 'level'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__isis__interface__level_entry:
@@ -76172,8 +76172,8 @@ class junos_conf_root__configuration__protocols__isis__interface__passive(yadata
         self.remote_node_iso = remote_node_iso
         self.remote_node_id = remote_node_id
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'isis', 'interface', 'passive'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'isis', 'interface', 'passive'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__protocols__isis__interface__passive:
@@ -76196,8 +76196,8 @@ class junos_conf_root__configuration__protocols__isis__interface__family_entry(y
     mut def __init__(self, name: str) -> None:
         self.name = name
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'isis', 'interface', 'family'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'isis', 'interface', 'family'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__isis__interface__family_entry:
@@ -76281,8 +76281,8 @@ class junos_conf_root__configuration__protocols__isis__interface_entry(yadata.MN
         self.passive = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'isis', 'interface'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'isis', 'interface'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__isis__interface_entry:
@@ -76348,8 +76348,8 @@ class junos_conf_root__configuration__protocols__isis__level_entry(yadata.MNode)
         self.no_psnp_authentication = no_psnp_authentication
         self.wide_metrics_only = wide_metrics_only
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'isis', 'level'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'isis', 'level'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__isis__level_entry:
@@ -76415,8 +76415,8 @@ class junos_conf_root__configuration__protocols__isis(yadata.MNode):
         self.level = junos_conf_root__configuration__protocols__isis__level(elements=level)
         self.lsp_lifetime = lsp_lifetime
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'isis'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'isis'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__isis:
@@ -76440,8 +76440,8 @@ class junos_conf_root__configuration__protocols__ldp__transport_address(yadata.M
         self.interface = interface
         self.address = address
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'ldp', 'transport-address'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'ldp', 'transport-address'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__ldp__transport_address:
@@ -76465,8 +76465,8 @@ class junos_conf_root__configuration__protocols__ldp__interface__transport_addre
         self.interface = interface
         self.address = address
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'ldp', 'interface', 'transport-address'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'ldp', 'interface', 'transport-address'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__ldp__interface__transport_address:
@@ -76494,8 +76494,8 @@ class junos_conf_root__configuration__protocols__ldp__interface_entry(yadata.MNo
         self.hold_time = hold_time
         self.transport_address = transport_address if transport_address is not None else junos_conf_root__configuration__protocols__ldp__interface__transport_address()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'ldp', 'interface'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'ldp', 'interface'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__ldp__interface_entry:
@@ -76553,8 +76553,8 @@ class junos_conf_root__configuration__protocols__ldp(yadata.MNode):
         self.transport_address = transport_address if transport_address is not None else junos_conf_root__configuration__protocols__ldp__transport_address()
         self.interface = junos_conf_root__configuration__protocols__ldp__interface(elements=interface)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'ldp'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'ldp'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__ldp:
@@ -76576,8 +76576,8 @@ class junos_conf_root__configuration__protocols__mpls__interface_entry(yadata.MN
         self.name = name
         self.disable = disable
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'mpls', 'interface'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'mpls', 'interface'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__mpls__interface_entry:
@@ -76629,8 +76629,8 @@ class junos_conf_root__configuration__protocols__mpls(yadata.MNode):
         self.no_propagate_ttl = no_propagate_ttl
         self.interface = junos_conf_root__configuration__protocols__mpls__interface(elements=interface)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'mpls'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols', 'mpls'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__mpls:
@@ -76656,8 +76656,8 @@ class junos_conf_root__configuration__protocols(yadata.MNode):
         self.ldp = ldp if ldp is not None else junos_conf_root__configuration__protocols__ldp()
         self.mpls = mpls if mpls is not None else junos_conf_root__configuration__protocols__mpls()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration', 'protocols'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols:
@@ -76689,8 +76689,8 @@ class junos_conf_root__configuration(yadata.MNode):
         self.routing_options = routing_options if routing_options is not None else junos_conf_root__configuration__routing_options()
         self.protocols = protocols if protocols is not None else junos_conf_root__configuration__protocols()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['junos-conf-root:configuration'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration:
@@ -76710,8 +76710,8 @@ class root(yadata.MNode):
     mut def __init__(self, configuration: ?junos_conf_root__configuration=None) -> None:
         self.configuration = configuration if configuration is not None else junos_conf_root__configuration()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True)
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> root:

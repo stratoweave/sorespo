@@ -6954,8 +6954,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__feature__constraint_entry(yad
         self.type = type
         self.referredType = referredType
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'feature', 'constraint'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'feature', 'constraint'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__feature__constraint_entry:
@@ -7017,8 +7017,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__feature__featureCharacteristi
         self.relationshipType = relationshipType
         self.type = type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'feature', 'featureCharacteristic', 'characteristicRelationship'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'feature', 'featureCharacteristic', 'characteristicRelationship'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__feature__featureCharacteristic__characteristicRelationship_entry:
@@ -7076,8 +7076,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__feature__featureCharacteristi
         self.characteristicRelationship = stratoweave_tmf__tmf_store__tmf640__service__feature__featureCharacteristic__characteristicRelationship(elements=characteristicRelationship)
         self.type = type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'feature', 'featureCharacteristic'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'feature', 'featureCharacteristic'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__feature__featureCharacteristic_entry:
@@ -7133,8 +7133,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__feature__featureRelationship_
         self.startDateTime = startDateTime
         self.type = type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'feature', 'featureRelationship', 'validFor'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'feature', 'featureRelationship', 'validFor'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__feature__featureRelationship__validFor:
@@ -7162,8 +7162,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__feature__featureRelationship_
         self.validFor = validFor if validFor is not None else stratoweave_tmf__tmf_store__tmf640__service__feature__featureRelationship__validFor()
         self.type = type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'feature', 'featureRelationship'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'feature', 'featureRelationship'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__feature__featureRelationship_entry:
@@ -7231,8 +7231,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__feature_entry(yadata.MNode):
         self.featureRelationship = stratoweave_tmf__tmf_store__tmf640__service__feature__featureRelationship(elements=featureRelationship)
         self.type = type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'feature'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'feature'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__feature_entry:
@@ -7296,8 +7296,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__note_entry(yadata.MNode):
         self.text = text
         self.type = type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'note'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'note'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__note_entry:
@@ -7363,8 +7363,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__place_entry(yadata.MNode):
         self.type = type
         self.referredType = referredType
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'place'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'place'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__place_entry:
@@ -7432,8 +7432,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__relatedEntity_entry(yadata.MN
         self.type = type
         self.referredType = referredType
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'relatedEntity'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'relatedEntity'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__relatedEntity_entry:
@@ -7501,8 +7501,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__relatedParty_entry(yadata.MNo
         self.type = type
         self.referredType = referredType
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'relatedParty'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'relatedParty'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__relatedParty_entry:
@@ -7564,8 +7564,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__serviceCharacteristic__charac
         self.relationshipType = relationshipType
         self.type = type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'serviceCharacteristic', 'characteristicRelationship'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'serviceCharacteristic', 'characteristicRelationship'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__serviceCharacteristic__characteristicRelationship_entry:
@@ -7623,8 +7623,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__serviceCharacteristic_entry(y
         self.characteristicRelationship = stratoweave_tmf__tmf_store__tmf640__service__serviceCharacteristic__characteristicRelationship(elements=characteristicRelationship)
         self.type = type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'serviceCharacteristic'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'serviceCharacteristic'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__serviceCharacteristic_entry:
@@ -7688,8 +7688,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__serviceOrderItem_entry(yadata
         self.type = type
         self.referredType = referredType
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'serviceOrderItem'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'serviceOrderItem'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__serviceOrderItem_entry:
@@ -7753,8 +7753,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceR
         self.relationshipType = relationshipType
         self.type = type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'serviceRelationship', 'ServiceRelationshipCharacteristic', 'characteristicRelationship'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'serviceRelationship', 'ServiceRelationshipCharacteristic', 'characteristicRelationship'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceRelationshipCharacteristic__characteristicRelationship_entry:
@@ -7812,8 +7812,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceR
         self.characteristicRelationship = stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceRelationshipCharacteristic__characteristicRelationship(elements=characteristicRelationship)
         self.type = type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'serviceRelationship', 'ServiceRelationshipCharacteristic'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'serviceRelationship', 'ServiceRelationshipCharacteristic'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceRelationshipCharacteristic_entry:
@@ -7871,8 +7871,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship_entry(yad
         self.ServiceRelationshipCharacteristic = stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship__ServiceRelationshipCharacteristic(elements=ServiceRelationshipCharacteristic)
         self.type = type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'serviceRelationship'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'serviceRelationship'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__serviceRelationship_entry:
@@ -7934,8 +7934,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__serviceSpecification(yadata.M
         self.type = type
         self.referredType = referredType
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'serviceSpecification'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'serviceSpecification'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__serviceSpecification:
@@ -7963,8 +7963,8 @@ class stratoweave_tmf__tmf_store__tmf640__service__supportingResource_entry(yada
         self.type = type
         self.referredType = referredType
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'supportingResource'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service', 'supportingResource'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service__supportingResource_entry:
@@ -8072,8 +8072,8 @@ class stratoweave_tmf__tmf_store__tmf640__service_entry(yadata.MNode):
         self.supportingService = supportingService if supportingService is not None else []
         self.type = type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640__service_entry:
@@ -8151,8 +8151,8 @@ class stratoweave_tmf__tmf_store__tmf640(yadata.MNode):
     mut def __init__(self, service: list[stratoweave_tmf__tmf_store__tmf640__service_entry]=[]) -> None:
         self.service = stratoweave_tmf__tmf_store__tmf640__service(elements=service)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store', 'tmf640'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> stratoweave_tmf__tmf_store__tmf640:
@@ -8172,8 +8172,8 @@ class stratoweave_tmf__tmf_store(yadata.MNode):
     mut def __init__(self, tmf640: ?stratoweave_tmf__tmf_store__tmf640=None) -> None:
         self.tmf640 = tmf640 if tmf640 is not None else stratoweave_tmf__tmf_store__tmf640()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['stratoweave-tmf:tmf-store'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> stratoweave_tmf__tmf_store:
@@ -8193,8 +8193,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__cloud
     mut def __init__(self, id: str) -> None:
         self.id = id
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-profiles', 'valid-provider-identifiers', 'cloud-identifier'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-profiles', 'valid-provider-identifiers', 'cloud-identifier'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__cloud_identifier_entry:
@@ -8242,8 +8242,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__encry
     mut def __init__(self, id: str) -> None:
         self.id = id
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-profiles', 'valid-provider-identifiers', 'encryption-profile-identifier'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-profiles', 'valid-provider-identifiers', 'encryption-profile-identifier'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__encryption_profile_identifier_entry:
@@ -8291,8 +8291,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__qos_p
     mut def __init__(self, id: str) -> None:
         self.id = id
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-profiles', 'valid-provider-identifiers', 'qos-profile-identifier'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-profiles', 'valid-provider-identifiers', 'qos-profile-identifier'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__qos_profile_identifier_entry:
@@ -8340,8 +8340,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__bfd_p
     mut def __init__(self, id: str) -> None:
         self.id = id
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-profiles', 'valid-provider-identifiers', 'bfd-profile-identifier'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-profiles', 'valid-provider-identifiers', 'bfd-profile-identifier'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__bfd_profile_identifier_entry:
@@ -8395,8 +8395,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers(yadata
         self.qos_profile_identifier = ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__qos_profile_identifier(elements=qos_profile_identifier)
         self.bfd_profile_identifier = ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers__bfd_profile_identifier(elements=bfd_profile_identifier)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-profiles', 'valid-provider-identifiers'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-profiles', 'valid-provider-identifiers'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers:
@@ -8416,8 +8416,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_profiles(yadata.MNode):
     mut def __init__(self, valid_provider_identifiers: ?ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers=None) -> None:
         self.valid_provider_identifiers = valid_provider_identifiers if valid_provider_identifiers is not None else ietf_l3vpn_svc__l3vpn_svc__vpn_profiles__valid_provider_identifiers()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-profiles'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-profiles'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_profiles:
@@ -8439,8 +8439,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__clou
         self.enabled = enabled
         self.nat44_customer_address = nat44_customer_address
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'cloud-accesses', 'cloud-access', 'address-translation', 'nat44'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'cloud-accesses', 'cloud-access', 'address-translation', 'nat44'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__cloud_access__address_translation__nat44:
@@ -8460,8 +8460,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__clou
     mut def __init__(self, nat44: ?ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__cloud_access__address_translation__nat44=None) -> None:
         self.nat44 = nat44 if nat44 is not None else ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__cloud_access__address_translation__nat44()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'cloud-accesses', 'cloud-access', 'address-translation'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'cloud-accesses', 'cloud-access', 'address-translation'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__cloud_access__address_translation:
@@ -8489,8 +8489,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__clou
         self.deny_site = deny_site if deny_site is not None else []
         self.address_translation = address_translation if address_translation is not None else ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__cloud_access__address_translation()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'cloud-accesses', 'cloud-access'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'cloud-accesses', 'cloud-access'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__cloud_access_entry:
@@ -8540,8 +8540,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses(yadat
     mut def __init__(self, cloud_access: list[ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__cloud_access_entry]=[]) -> None:
         self.cloud_access = ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses__cloud_access(elements=cloud_access)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'cloud-accesses'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'cloud-accesses'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__cloud_accesses:
@@ -8561,8 +8561,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__customer_
     mut def __init__(self, tree_flavor: ?list[Identityref]=None) -> None:
         self.tree_flavor = tree_flavor if tree_flavor is not None else []
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'customer-tree-flavors'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'customer-tree-flavors'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__customer_tree_flavors:
@@ -8586,8 +8586,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_gr
         self.rp_redundancy = rp_redundancy
         self.optimal_traffic_delivery = optimal_traffic_delivery
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp', 'rp-group-mappings', 'rp-group-mapping', 'provider-managed'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp', 'rp-group-mappings', 'rp-group-mapping', 'provider-managed'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping__provider_managed:
@@ -8613,8 +8613,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_gr
         self.group_start = group_start
         self.group_end = group_end
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp', 'rp-group-mappings', 'rp-group-mapping', 'groups', 'group'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp', 'rp-group-mappings', 'rp-group-mapping', 'groups', 'group'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping__groups__group_entry:
@@ -8668,8 +8668,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_gr
     mut def __init__(self, group: list[ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping__groups__group_entry]=[]) -> None:
         self.group = ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping__groups__group(elements=group)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp', 'rp-group-mappings', 'rp-group-mapping', 'groups'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp', 'rp-group-mappings', 'rp-group-mapping', 'groups'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping__groups:
@@ -8695,8 +8695,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_gr
         self.rp_address = rp_address
         self.groups = groups if groups is not None else ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping__groups()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp', 'rp-group-mappings', 'rp-group-mapping'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp', 'rp-group-mappings', 'rp-group-mapping'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping_entry:
@@ -8746,8 +8746,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_gr
     mut def __init__(self, rp_group_mapping: list[ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping_entry]=[]) -> None:
         self.rp_group_mapping = ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings__rp_group_mapping(elements=rp_group_mapping)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp', 'rp-group-mappings'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp', 'rp-group-mappings'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings:
@@ -8767,8 +8767,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_di
     mut def __init__(self, bsr_candidate_address: ?list[str]=None) -> None:
         self.bsr_candidate_address = bsr_candidate_address if bsr_candidate_address is not None else []
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp', 'rp-discovery', 'bsr-candidates'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp', 'rp-discovery', 'bsr-candidates'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_discovery__bsr_candidates:
@@ -8790,8 +8790,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_di
         self.rp_discovery_type = rp_discovery_type
         self.bsr_candidates = bsr_candidates if bsr_candidates is not None else ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_discovery__bsr_candidates()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp', 'rp-discovery'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp', 'rp-discovery'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_discovery:
@@ -8813,8 +8813,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp(yadata
         self.rp_group_mappings = rp_group_mappings if rp_group_mappings is not None else ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_group_mappings()
         self.rp_discovery = rp_discovery if rp_discovery is not None else ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp__rp_discovery()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast', 'rp'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp:
@@ -8838,8 +8838,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast(yadata.MNo
         self.customer_tree_flavors = customer_tree_flavors if customer_tree_flavors is not None else ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__customer_tree_flavors()
         self.rp = rp if rp is not None else ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast__rp()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'multicast'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__multicast:
@@ -8861,8 +8861,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__extranet_vpns__extra
         self.vpn_id = vpn_id
         self.local_sites_role = local_sites_role
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'extranet-vpns', 'extranet-vpn'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'extranet-vpns', 'extranet-vpn'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__extranet_vpns__extranet_vpn_entry:
@@ -8912,8 +8912,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__extranet_vpns(yadata
     mut def __init__(self, extranet_vpn: list[ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__extranet_vpns__extranet_vpn_entry]=[]) -> None:
         self.extranet_vpn = ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__extranet_vpns__extranet_vpn(elements=extranet_vpn)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'extranet-vpns'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service', 'extranet-vpns'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__extranet_vpns:
@@ -8945,8 +8945,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service_entry(yadata.MNode):
         self.carrierscarrier = carrierscarrier
         self.extranet_vpns = extranet_vpns if extranet_vpns is not None else ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service__extranet_vpns()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service_entry:
@@ -9000,8 +9000,8 @@ class ietf_l3vpn_svc__l3vpn_svc__vpn_services(yadata.MNode):
     mut def __init__(self, vpn_service: list[ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service_entry]=[]) -> None:
         self.vpn_service = ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service(elements=vpn_service)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__vpn_services:
@@ -9031,8 +9031,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__locations__location_entry(yadata.M
         self.city = city
         self.country_code = country_code
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'locations', 'location'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'locations', 'location'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__locations__location_entry:
@@ -9090,8 +9090,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__locations(yadata.MNode):
     mut def __init__(self, location: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__locations__location_entry]=[]) -> None:
         self.location = ietf_l3vpn_svc__l3vpn_svc__sites__site__locations__location(elements=location)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'locations'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'locations'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__locations:
@@ -9113,8 +9113,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__devices__device__management(yadata
         self.address_family = address_family
         self.address = address
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'devices', 'device', 'management'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'devices', 'device', 'management'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__devices__device__management:
@@ -9138,8 +9138,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__devices__device_entry(yadata.MNode
         self.location = location
         self.management = management if management is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__devices__device__management()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'devices', 'device'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'devices', 'device'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__devices__device_entry:
@@ -9189,8 +9189,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__devices(yadata.MNode):
     mut def __init__(self, device: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__devices__device_entry]=[]) -> None:
         self.device = ietf_l3vpn_svc__l3vpn_svc__sites__site__devices__device(elements=device)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'devices'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'devices'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__devices:
@@ -9210,8 +9210,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_diversity__groups__group_entr
     mut def __init__(self, group_id: str) -> None:
         self.group_id = group_id
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-diversity', 'groups', 'group'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-diversity', 'groups', 'group'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_diversity__groups__group_entry:
@@ -9259,8 +9259,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_diversity__groups(yadata.MNod
     mut def __init__(self, group: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_diversity__groups__group_entry]=[]) -> None:
         self.group = ietf_l3vpn_svc__l3vpn_svc__sites__site__site_diversity__groups__group(elements=group)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-diversity', 'groups'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-diversity', 'groups'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_diversity__groups:
@@ -9280,8 +9280,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_diversity(yadata.MNode):
     mut def __init__(self, groups: ?ietf_l3vpn_svc__l3vpn_svc__sites__site__site_diversity__groups=None) -> None:
         self.groups = groups if groups is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_diversity__groups()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-diversity'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-diversity'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_diversity:
@@ -9301,8 +9301,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__management(yadata.MNode):
     mut def __init__(self, type: ?Identityref) -> None:
         self.type = type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'management'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'management'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__management:
@@ -9328,8 +9328,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries_
         self.ipv4_lan_prefix = ipv4_lan_prefix if ipv4_lan_prefix is not None else []
         self.ipv6_lan_prefix = ipv6_lan_prefix if ipv6_lan_prefix is not None else []
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'vpn-policies', 'vpn-policy', 'entries', 'filters', 'filter'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'vpn-policies', 'vpn-policy', 'entries', 'filters', 'filter'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries__filters__filter_entry:
@@ -9377,8 +9377,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries_
     mut def __init__(self, filter: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries__filters__filter_entry]=[]) -> None:
         self.filter = ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries__filters__filter(elements=filter)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'vpn-policies', 'vpn-policy', 'entries', 'filters'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'vpn-policies', 'vpn-policy', 'entries', 'filters'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries__filters:
@@ -9400,8 +9400,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries_
         self.vpn_id = vpn_id
         self.site_role = site_role
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'vpn-policies', 'vpn-policy', 'entries', 'vpn'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'vpn-policies', 'vpn-policy', 'entries', 'vpn'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries__vpn_entry:
@@ -9455,8 +9455,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries_
         self.filters = filters if filters is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries__filters()
         self.vpn = ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries__vpn(elements=vpn)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'vpn-policies', 'vpn-policy', 'entries'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'vpn-policies', 'vpn-policy', 'entries'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries_entry:
@@ -9506,8 +9506,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy_entry(yad
         self.vpn_policy_id = vpn_policy_id
         self.entries = ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy__entries(elements=entries)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'vpn-policies', 'vpn-policy'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'vpn-policies', 'vpn-policy'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy_entry:
@@ -9555,8 +9555,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies(yadata.MNode):
     mut def __init__(self, vpn_policy: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy_entry]=[]) -> None:
         self.vpn_policy = ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies__vpn_policy(elements=vpn_policy)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'vpn-policies'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'vpn-policies'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__vpn_policies:
@@ -9578,8 +9578,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__maximum_routes__address_family_ent
         self.af = af
         self.maximum_routes = maximum_routes
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'maximum-routes', 'address-family'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'maximum-routes', 'address-family'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__maximum_routes__address_family_entry:
@@ -9629,8 +9629,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__maximum_routes(yadata.MNode):
     mut def __init__(self, address_family: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__maximum_routes__address_family_entry]=[]) -> None:
         self.address_family = ietf_l3vpn_svc__l3vpn_svc__sites__site__maximum_routes__address_family(elements=address_family)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'maximum-routes'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'maximum-routes'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__maximum_routes:
@@ -9649,8 +9649,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__security__authentication(yadata.MN
     mut def __init__(self) -> None:
         pass
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'security', 'authentication'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'security', 'authentication'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__security__authentication:
@@ -9674,8 +9674,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__security__encryption__encryption_p
         self.algorithm = algorithm
         self.preshared_key = preshared_key
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'security', 'encryption', 'encryption-profile'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'security', 'encryption', 'encryption-profile'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__security__encryption__encryption_profile:
@@ -9699,8 +9699,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__security__encryption(yadata.MNode)
         self.layer = layer
         self.encryption_profile = encryption_profile if encryption_profile is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__security__encryption__encryption_profile()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'security', 'encryption'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'security', 'encryption'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__security__encryption:
@@ -9722,8 +9722,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__security(yadata.MNode):
         self.authentication = authentication if authentication is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__security__authentication()
         self.encryption = encryption if encryption is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__security__encryption()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'security'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'security'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__security:
@@ -9745,8 +9745,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_p
         self.lower_port = lower_port
         self.upper_port = upper_port
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-classification-policy', 'rule', 'match-flow', 'l4-src-port-range'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-classification-policy', 'rule', 'match-flow', 'l4-src-port-range'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow__l4_src_port_range:
@@ -9768,8 +9768,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_p
         self.lower_port = lower_port
         self.upper_port = upper_port
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-classification-policy', 'rule', 'match-flow', 'l4-dst-port-range'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-classification-policy', 'rule', 'match-flow', 'l4-dst-port-range'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow__l4_dst_port_range:
@@ -9811,8 +9811,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_p
         self.l4_dst_port_range = l4_dst_port_range if l4_dst_port_range is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow__l4_dst_port_range()
         self.protocol_field = protocol_field
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-classification-policy', 'rule', 'match-flow'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-classification-policy', 'rule', 'match-flow'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule__match_flow:
@@ -9838,8 +9838,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_p
         self.match_application = match_application
         self.target_class_id = target_class_id
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-classification-policy', 'rule'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-classification-policy', 'rule'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule_entry:
@@ -9891,8 +9891,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_p
     mut def __init__(self, rule: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule_entry]=[]) -> None:
         self.rule = ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy__rule(elements=rule)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-classification-policy'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-classification-policy'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy:
@@ -9914,8 +9914,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes
         self.use_lowest_latency = use_lowest_latency
         self.latency_boundary = latency_boundary
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-profile', 'classes', 'class', 'latency'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-profile', 'classes', 'class', 'latency'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes__class__latency:
@@ -9937,8 +9937,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes
         self.use_lowest_jitter = use_lowest_jitter
         self.latency_boundary = latency_boundary
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-profile', 'classes', 'class', 'jitter'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-profile', 'classes', 'class', 'jitter'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes__class__jitter:
@@ -9960,8 +9960,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes
         self.guaranteed_bw_percent = guaranteed_bw_percent
         self.end_to_end = end_to_end
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-profile', 'classes', 'class', 'bandwidth'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-profile', 'classes', 'class', 'bandwidth'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes__class__bandwidth:
@@ -9991,8 +9991,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes
         self.jitter = jitter if jitter is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes__class__jitter()
         self.bandwidth = bandwidth if bandwidth is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes__class__bandwidth()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-profile', 'classes', 'class'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-profile', 'classes', 'class'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes__class_entry:
@@ -10044,8 +10044,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes
     mut def __init__(self, class: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes__class_entry]=[]) -> None:
         self.class = ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes__class(elements=class)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-profile', 'classes'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-profile', 'classes'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes:
@@ -10067,8 +10067,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile(yadata.M
         self.profile = profile
         self.classes = classes if classes is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile__classes()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-profile'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos', 'qos-profile'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile:
@@ -10090,8 +10090,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos(yadata.MNode):
         self.qos_classification_policy = qos_classification_policy if qos_classification_policy is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_classification_policy()
         self.qos_profile = qos_profile if qos_profile is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos__qos_profile()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'qos'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__qos:
@@ -10111,8 +10111,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__carrierscarrier(yadata.MN
     mut def __init__(self, signalling_type: ?str) -> None:
         self.signalling_type = signalling_type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'carrierscarrier'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'carrierscarrier'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__carrierscarrier:
@@ -10134,8 +10134,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__multicast__multicast_addr
         self.ipv4 = ipv4
         self.ipv6 = ipv6
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'multicast', 'multicast-address-family'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'multicast', 'multicast-address-family'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__multicast__multicast_address_family:
@@ -10159,8 +10159,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service__multicast(yadata.MNode):
         self.multicast_address_family = multicast_address_family if multicast_address_family is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__service__multicast__multicast_address_family()
         self.protocol_type = protocol_type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'multicast'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service', 'multicast'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service__multicast:
@@ -10184,8 +10184,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__service(yadata.MNode):
         self.carrierscarrier = carrierscarrier if carrierscarrier is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__service__carrierscarrier()
         self.multicast = multicast if multicast is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__service__multicast()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'service'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__service:
@@ -10205,8 +10205,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__traffic_protection(yadata.MNode):
     mut def __init__(self, enabled: ?bool) -> None:
         self.enabled = enabled
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'traffic-protection'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'traffic-protection'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__traffic_protection:
@@ -10228,8 +10228,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protoco
         self.target_site = target_site
         self.metric = metric
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'ospf', 'sham-links', 'sham-link'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'ospf', 'sham-links', 'sham-link'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__ospf__sham_links__sham_link_entry:
@@ -10279,8 +10279,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protoco
     mut def __init__(self, sham_link: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__ospf__sham_links__sham_link_entry]=[]) -> None:
         self.sham_link = ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__ospf__sham_links__sham_link(elements=sham_link)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'ospf', 'sham-links'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'ospf', 'sham-links'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__ospf__sham_links:
@@ -10306,8 +10306,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protoco
         self.metric = metric
         self.sham_links = sham_links if sham_links is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__ospf__sham_links()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'ospf'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'ospf'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__ospf:
@@ -10332,8 +10332,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protoco
         self.autonomous_system = autonomous_system
         self.address_family = address_family if address_family is not None else []
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'bgp'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'bgp'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__bgp:
@@ -10360,8 +10360,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protoco
         self.next_hop = next_hop
         self.lan_tag = lan_tag
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'static', 'cascaded-lan-prefixes', 'ipv4-lan-prefixes'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'static', 'cascaded-lan-prefixes', 'ipv4-lan-prefixes'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv4_lan_prefixes_entry:
@@ -10415,8 +10415,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protoco
         self.next_hop = next_hop
         self.lan_tag = lan_tag
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'static', 'cascaded-lan-prefixes', 'ipv6-lan-prefixes'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'static', 'cascaded-lan-prefixes', 'ipv6-lan-prefixes'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv6_lan_prefixes_entry:
@@ -10468,8 +10468,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protoco
         self.ipv4_lan_prefixes = ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv4_lan_prefixes(elements=ipv4_lan_prefixes)
         self.ipv6_lan_prefixes = ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv6_lan_prefixes(elements=ipv6_lan_prefixes)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'static', 'cascaded-lan-prefixes'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'static', 'cascaded-lan-prefixes'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static__cascaded_lan_prefixes:
@@ -10489,8 +10489,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protoco
     mut def __init__(self, cascaded_lan_prefixes: ?ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static__cascaded_lan_prefixes=None) -> None:
         self.cascaded_lan_prefixes = cascaded_lan_prefixes if cascaded_lan_prefixes is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static__cascaded_lan_prefixes()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'static'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'static'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__static:
@@ -10513,8 +10513,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protoco
     mut def __init__(self, address_family: ?list[str]=None) -> None:
         self.address_family = address_family if address_family is not None else []
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'rip'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'rip'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__rip:
@@ -10537,8 +10537,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protoco
     mut def __init__(self, address_family: ?list[str]=None) -> None:
         self.address_family = address_family if address_family is not None else []
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'vrrp'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol', 'vrrp'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol__vrrp:
@@ -10617,8 +10617,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protoco
         self.vrrp = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols', 'routing-protocol'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol_entry:
@@ -10666,8 +10666,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols(yadata.MNode):
     mut def __init__(self, routing_protocol: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol_entry]=[]) -> None:
         self.routing_protocol = ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols__routing_protocol(elements=routing_protocol)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'routing-protocols'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols:
@@ -10687,8 +10687,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, group_id: str) -> None:
         self.group_id = group_id
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'access-diversity', 'groups', 'group'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'access-diversity', 'groups', 'group'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__groups__group_entry:
@@ -10736,8 +10736,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, group: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__groups__group_entry]=[]) -> None:
         self.group = ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__groups__group(elements=group)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'access-diversity', 'groups'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'access-diversity', 'groups'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__groups:
@@ -10757,8 +10757,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, group_id: str) -> None:
         self.group_id = group_id
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'access-diversity', 'constraints', 'constraint', 'target', 'group'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'access-diversity', 'constraints', 'constraint', 'target', 'group'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints__constraint__target__group_entry:
@@ -10810,8 +10810,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.all_other_accesses = all_other_accesses
         self.all_other_groups = all_other_groups
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'access-diversity', 'constraints', 'constraint', 'target'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'access-diversity', 'constraints', 'constraint', 'target'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints__constraint__target:
@@ -10833,8 +10833,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.constraint_type = constraint_type
         self.target = target if target is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints__constraint__target()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'access-diversity', 'constraints', 'constraint'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'access-diversity', 'constraints', 'constraint'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints__constraint_entry:
@@ -10882,8 +10882,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, constraint: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints__constraint_entry]=[]) -> None:
         self.constraint = ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints__constraint(elements=constraint)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'access-diversity', 'constraints'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'access-diversity', 'constraints'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints:
@@ -10905,8 +10905,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.groups = groups if groups is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__groups()
         self.constraints = constraints if constraints is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity__constraints()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'access-diversity'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'access-diversity'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__access_diversity:
@@ -10928,8 +10928,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.requested_type = requested_type
         self.strict = strict
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'bearer', 'requested-type'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'bearer', 'requested-type'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__bearer__requested_type:
@@ -10953,8 +10953,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.always_on = always_on
         self.bearer_reference = bearer_reference
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'bearer'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'bearer'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__bearer:
@@ -10978,8 +10978,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.start_address = start_address
         self.end_address = end_address
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv4', 'provider-dhcp', 'customer-addresses', 'address-group'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv4', 'provider-dhcp', 'customer-addresses', 'address-group'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__provider_dhcp__customer_addresses__address_group_entry:
@@ -11031,8 +11031,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, address_group: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__provider_dhcp__customer_addresses__address_group_entry]=[]) -> None:
         self.address_group = ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__provider_dhcp__customer_addresses__address_group(elements=address_group)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv4', 'provider-dhcp', 'customer-addresses'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv4', 'provider-dhcp', 'customer-addresses'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__provider_dhcp__customer_addresses:
@@ -11058,8 +11058,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.number_of_dynamic_address = number_of_dynamic_address
         self.customer_addresses = customer_addresses if customer_addresses is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__provider_dhcp__customer_addresses()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv4', 'provider-dhcp'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv4', 'provider-dhcp'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__provider_dhcp:
@@ -11079,8 +11079,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, server_ip_address: ?list[str]=None) -> None:
         self.server_ip_address = server_ip_address if server_ip_address is not None else []
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv4', 'dhcp-relay', 'customer-dhcp-servers'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv4', 'dhcp-relay', 'customer-dhcp-servers'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__dhcp_relay__customer_dhcp_servers:
@@ -11104,8 +11104,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.prefix_length = prefix_length
         self.customer_dhcp_servers = customer_dhcp_servers if customer_dhcp_servers is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__dhcp_relay__customer_dhcp_servers()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv4', 'dhcp-relay'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv4', 'dhcp-relay'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__dhcp_relay:
@@ -11129,8 +11129,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.customer_address = customer_address
         self.prefix_length = prefix_length
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv4', 'addresses'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv4', 'addresses'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__addresses:
@@ -11156,8 +11156,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.dhcp_relay = dhcp_relay if dhcp_relay is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__dhcp_relay()
         self.addresses = addresses if addresses is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4__addresses()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv4'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv4'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv4:
@@ -11181,8 +11181,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.start_address = start_address
         self.end_address = end_address
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv6', 'provider-dhcp', 'customer-addresses', 'address-group'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv6', 'provider-dhcp', 'customer-addresses', 'address-group'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__provider_dhcp__customer_addresses__address_group_entry:
@@ -11234,8 +11234,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, address_group: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__provider_dhcp__customer_addresses__address_group_entry]=[]) -> None:
         self.address_group = ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__provider_dhcp__customer_addresses__address_group(elements=address_group)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv6', 'provider-dhcp', 'customer-addresses'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv6', 'provider-dhcp', 'customer-addresses'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__provider_dhcp__customer_addresses:
@@ -11261,8 +11261,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.number_of_dynamic_address = number_of_dynamic_address
         self.customer_addresses = customer_addresses if customer_addresses is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__provider_dhcp__customer_addresses()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv6', 'provider-dhcp'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv6', 'provider-dhcp'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__provider_dhcp:
@@ -11282,8 +11282,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, server_ip_address: ?list[str]=None) -> None:
         self.server_ip_address = server_ip_address if server_ip_address is not None else []
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv6', 'dhcp-relay', 'customer-dhcp-servers'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv6', 'dhcp-relay', 'customer-dhcp-servers'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__dhcp_relay__customer_dhcp_servers:
@@ -11307,8 +11307,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.prefix_length = prefix_length
         self.customer_dhcp_servers = customer_dhcp_servers if customer_dhcp_servers is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__dhcp_relay__customer_dhcp_servers()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv6', 'dhcp-relay'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv6', 'dhcp-relay'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__dhcp_relay:
@@ -11332,8 +11332,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.customer_address = customer_address
         self.prefix_length = prefix_length
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv6', 'addresses'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv6', 'addresses'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__addresses:
@@ -11359,8 +11359,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.dhcp_relay = dhcp_relay if dhcp_relay is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__dhcp_relay()
         self.addresses = addresses if addresses is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6__addresses()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv6'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'ipv6'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6:
@@ -11384,8 +11384,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.fixed_value = fixed_value
         self.profile_name = profile_name
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'oam', 'bfd'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'oam', 'bfd'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__oam__bfd:
@@ -11405,8 +11405,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, bfd: ?ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__oam__bfd=None) -> None:
         self.bfd = bfd if bfd is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__oam__bfd()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'oam'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection', 'oam'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__oam:
@@ -11430,8 +11430,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.ipv6 = ipv6 if ipv6 is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__ipv6()
         self.oam = oam if oam is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection__oam()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'ip-connection'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__ip_connection:
@@ -11450,8 +11450,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self) -> None:
         pass
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'security', 'authentication'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'security', 'authentication'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__security__authentication:
@@ -11475,8 +11475,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.algorithm = algorithm
         self.preshared_key = preshared_key
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'security', 'encryption', 'encryption-profile'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'security', 'encryption', 'encryption-profile'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__security__encryption__encryption_profile:
@@ -11500,8 +11500,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.layer = layer
         self.encryption_profile = encryption_profile if encryption_profile is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__security__encryption__encryption_profile()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'security', 'encryption'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'security', 'encryption'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__security__encryption:
@@ -11523,8 +11523,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.authentication = authentication if authentication is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__security__authentication()
         self.encryption = encryption if encryption is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__security__encryption()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'security'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'security'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__security:
@@ -11546,8 +11546,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.lower_port = lower_port
         self.upper_port = upper_port
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-classification-policy', 'rule', 'match-flow', 'l4-src-port-range'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-classification-policy', 'rule', 'match-flow', 'l4-src-port-range'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow__l4_src_port_range:
@@ -11569,8 +11569,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.lower_port = lower_port
         self.upper_port = upper_port
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-classification-policy', 'rule', 'match-flow', 'l4-dst-port-range'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-classification-policy', 'rule', 'match-flow', 'l4-dst-port-range'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow__l4_dst_port_range:
@@ -11612,8 +11612,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.l4_dst_port_range = l4_dst_port_range if l4_dst_port_range is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow__l4_dst_port_range()
         self.protocol_field = protocol_field
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-classification-policy', 'rule', 'match-flow'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-classification-policy', 'rule', 'match-flow'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule__match_flow:
@@ -11639,8 +11639,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.match_application = match_application
         self.target_class_id = target_class_id
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-classification-policy', 'rule'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-classification-policy', 'rule'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule_entry:
@@ -11692,8 +11692,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, rule: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule_entry]=[]) -> None:
         self.rule = ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy__rule(elements=rule)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-classification-policy'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-classification-policy'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy:
@@ -11715,8 +11715,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.use_lowest_latency = use_lowest_latency
         self.latency_boundary = latency_boundary
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-profile', 'classes', 'class', 'latency'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-profile', 'classes', 'class', 'latency'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile__classes__class__latency:
@@ -11738,8 +11738,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.use_lowest_jitter = use_lowest_jitter
         self.latency_boundary = latency_boundary
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-profile', 'classes', 'class', 'jitter'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-profile', 'classes', 'class', 'jitter'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile__classes__class__jitter:
@@ -11761,8 +11761,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.guaranteed_bw_percent = guaranteed_bw_percent
         self.end_to_end = end_to_end
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-profile', 'classes', 'class', 'bandwidth'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-profile', 'classes', 'class', 'bandwidth'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile__classes__class__bandwidth:
@@ -11792,8 +11792,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.jitter = jitter if jitter is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile__classes__class__jitter()
         self.bandwidth = bandwidth if bandwidth is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile__classes__class__bandwidth()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-profile', 'classes', 'class'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-profile', 'classes', 'class'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile__classes__class_entry:
@@ -11845,8 +11845,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, class: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile__classes__class_entry]=[]) -> None:
         self.class = ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile__classes__class(elements=class)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-profile', 'classes'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-profile', 'classes'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile__classes:
@@ -11868,8 +11868,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.profile = profile
         self.classes = classes if classes is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile__classes()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-profile'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos', 'qos-profile'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile:
@@ -11891,8 +11891,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.qos_classification_policy = qos_classification_policy if qos_classification_policy is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_classification_policy()
         self.qos_profile = qos_profile if qos_profile is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos__qos_profile()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'qos'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__qos:
@@ -11912,8 +11912,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, signalling_type: ?str) -> None:
         self.signalling_type = signalling_type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'carrierscarrier'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'carrierscarrier'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__carrierscarrier:
@@ -11935,8 +11935,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.ipv4 = ipv4
         self.ipv6 = ipv6
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'multicast', 'multicast-address-family'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'multicast', 'multicast-address-family'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__multicast__multicast_address_family:
@@ -11960,8 +11960,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.multicast_address_family = multicast_address_family if multicast_address_family is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__multicast__multicast_address_family()
         self.protocol_type = protocol_type
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'multicast'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service', 'multicast'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__multicast:
@@ -11991,8 +11991,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.carrierscarrier = carrierscarrier if carrierscarrier is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__carrierscarrier()
         self.multicast = multicast if multicast is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service__multicast()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'service'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service:
@@ -12014,8 +12014,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.target_site = target_site
         self.metric = metric
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'ospf', 'sham-links', 'sham-link'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'ospf', 'sham-links', 'sham-link'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__ospf__sham_links__sham_link_entry:
@@ -12065,8 +12065,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, sham_link: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__ospf__sham_links__sham_link_entry]=[]) -> None:
         self.sham_link = ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__ospf__sham_links__sham_link(elements=sham_link)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'ospf', 'sham-links'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'ospf', 'sham-links'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__ospf__sham_links:
@@ -12092,8 +12092,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.metric = metric
         self.sham_links = sham_links if sham_links is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__ospf__sham_links()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'ospf'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'ospf'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__ospf:
@@ -12120,8 +12120,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.address_family = address_family if address_family is not None else []
         self.authentication_key = authentication_key
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'bgp'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'bgp'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__bgp:
@@ -12148,8 +12148,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.next_hop = next_hop
         self.lan_tag = lan_tag
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'static', 'cascaded-lan-prefixes', 'ipv4-lan-prefixes'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'static', 'cascaded-lan-prefixes', 'ipv4-lan-prefixes'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv4_lan_prefixes_entry:
@@ -12203,8 +12203,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.next_hop = next_hop
         self.lan_tag = lan_tag
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'static', 'cascaded-lan-prefixes', 'ipv6-lan-prefixes'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'static', 'cascaded-lan-prefixes', 'ipv6-lan-prefixes'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv6_lan_prefixes_entry:
@@ -12256,8 +12256,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.ipv4_lan_prefixes = ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv4_lan_prefixes(elements=ipv4_lan_prefixes)
         self.ipv6_lan_prefixes = ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static__cascaded_lan_prefixes__ipv6_lan_prefixes(elements=ipv6_lan_prefixes)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'static', 'cascaded-lan-prefixes'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'static', 'cascaded-lan-prefixes'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static__cascaded_lan_prefixes:
@@ -12277,8 +12277,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, cascaded_lan_prefixes: ?ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static__cascaded_lan_prefixes=None) -> None:
         self.cascaded_lan_prefixes = cascaded_lan_prefixes if cascaded_lan_prefixes is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static__cascaded_lan_prefixes()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'static'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'static'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__static:
@@ -12301,8 +12301,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, address_family: ?list[str]=None) -> None:
         self.address_family = address_family if address_family is not None else []
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'rip'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'rip'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__rip:
@@ -12325,8 +12325,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, address_family: ?list[str]=None) -> None:
         self.address_family = address_family if address_family is not None else []
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'vrrp'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol', 'vrrp'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol__vrrp:
@@ -12407,8 +12407,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.vrrp = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols', 'routing-protocol'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol_entry:
@@ -12456,8 +12456,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, routing_protocol: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol_entry]=[]) -> None:
         self.routing_protocol = ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols__routing_protocol(elements=routing_protocol)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'routing-protocols'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__routing_protocols:
@@ -12477,8 +12477,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
     mut def __init__(self, access_priority: ?u64) -> None:
         self.access_priority = access_priority
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'availability'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'availability'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__availability:
@@ -12502,8 +12502,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.vpn_id = vpn_id
         self.site_role = site_role
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'vpn-attachment'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access', 'vpn-attachment'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__vpn_attachment:
@@ -12545,8 +12545,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_networ
         self.availability = availability if availability is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__availability()
         self.vpn_attachment = vpn_attachment if vpn_attachment is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__vpn_attachment()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses', 'site-network-access'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access_entry:
@@ -12600,8 +12600,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses(yadata.MNode
     mut def __init__(self, site_network_access: list[ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access_entry]=[]) -> None:
         self.site_network_access = ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access(elements=site_network_access)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site', 'site-network-accesses'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses:
@@ -12649,8 +12649,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites__site_entry(yadata.MNode):
         self.routing_protocols = routing_protocols if routing_protocols is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__routing_protocols()
         self.site_network_accesses = site_network_accesses if site_network_accesses is not None else ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites__site_entry:
@@ -12704,8 +12704,8 @@ class ietf_l3vpn_svc__l3vpn_svc__sites(yadata.MNode):
     mut def __init__(self, site: list[ietf_l3vpn_svc__l3vpn_svc__sites__site_entry]=[]) -> None:
         self.site = ietf_l3vpn_svc__l3vpn_svc__sites__site(elements=site)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc__sites:
@@ -12729,8 +12729,8 @@ class ietf_l3vpn_svc__l3vpn_svc(yadata.MNode):
         self.vpn_services = vpn_services if vpn_services is not None else ietf_l3vpn_svc__l3vpn_svc__vpn_services()
         self.sites = sites if sites is not None else ietf_l3vpn_svc__l3vpn_svc__sites()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['ietf-l3vpn-svc:l3vpn-svc'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ietf_l3vpn_svc__l3vpn_svc:
@@ -12750,8 +12750,8 @@ class netinfra__netinfra__router__feature_flags(yadata.MNode):
     mut def __init__(self, runtime_schema_fetch: ?bool) -> None:
         self.runtime_schema_fetch = runtime_schema_fetch
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['netinfra:netinfra', 'router', 'feature-flags'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['netinfra:netinfra', 'router', 'feature-flags'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> netinfra__netinfra__router__feature_flags:
@@ -12785,8 +12785,8 @@ class netinfra__netinfra__router_entry(yadata.MNode):
         self.approval_required = approval_required
         self.feature_flags = feature_flags if feature_flags is not None else netinfra__netinfra__router__feature_flags()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['netinfra:netinfra', 'router'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['netinfra:netinfra', 'router'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> netinfra__netinfra__router_entry:
@@ -12852,8 +12852,8 @@ class netinfra__netinfra__backbone_link_entry(yadata.MNode):
         self.right_router = right_router
         self.right_interface = right_interface
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['netinfra:netinfra', 'backbone-link'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['netinfra:netinfra', 'backbone-link'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> netinfra__netinfra__backbone_link_entry:
@@ -12901,8 +12901,8 @@ class netinfra__netinfra__global_settings(yadata.MNode):
     mut def __init__(self, ibgp_authentication_key: ?str) -> None:
         self.ibgp_authentication_key = ibgp_authentication_key
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['netinfra:netinfra', 'global-settings'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['netinfra:netinfra', 'global-settings'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> netinfra__netinfra__global_settings:
@@ -12926,8 +12926,8 @@ class netinfra__netinfra(yadata.MNode):
         self.backbone_link = netinfra__netinfra__backbone_link(elements=backbone_link)
         self.global_settings = global_settings if global_settings is not None else netinfra__netinfra__global_settings()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['netinfra:netinfra'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['netinfra:netinfra'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> netinfra__netinfra:
@@ -12951,8 +12951,8 @@ class root(yadata.MNode):
         self.l3vpn_svc = l3vpn_svc if l3vpn_svc is not None else ietf_l3vpn_svc__l3vpn_svc()
         self.netinfra = netinfra if netinfra is not None else netinfra__netinfra()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True)
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> root:

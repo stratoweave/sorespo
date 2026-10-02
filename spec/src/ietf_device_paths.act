@@ -1,0 +1,48 @@
+"""The supported configuration subset of the published device models.
+
+Filter the compiled schema, never the downloaded YANG definitions. Unsupported
+input therefore fails at the translation boundary rather than being discarded.
+"""
+
+def paths() -> list[str]:
+    interface = "/interfaces/interface"
+    protocol = "/routing/control-plane-protocols/control-plane-protocol"
+    bgp = protocol + "/bgp"
+    isis = protocol + "/isis"
+    ldp = protocol + "/mpls-ldp"
+    ni = "/network-instances/network-instance"
+    key = "/key-chains/key-chain"
+    result = ["/system", "/routing-policy"]
+    result.extend([interface + "/" + p for p in [
+        "name", "description", "type", "parent-interface", "bind-ni-name",
+        "ipv4/address/ip", "ipv4/address/prefix-length",
+        "encapsulation/dot1q-vlan/outer-tag/tag-type",
+        "encapsulation/dot1q-vlan/outer-tag/vlan-id"]])
+    result.extend([protocol + "/" + p for p in ["type", "name"]])
+    result.extend([isis + "/" + p for p in [
+        "level-type", "system-id", "area-address", "lsp-lifetime", "metric-type/value",
+        "interfaces/interface/name", "interfaces/interface/level-type",
+        "interfaces/interface/passive", "interfaces/interface/interface-type",
+        "interfaces/interface/metric/level-2/value"]])
+    result.extend(["/routing/mpls/interfaces/interface/" + p for p in ["name", "mpls-enabled"]])
+    result.extend([ldp + "/" + p for p in [
+        "global/address-families/ipv4/enabled",
+        "discovery/interfaces/interface/name",
+        "discovery/interfaces/interface/address-families/ipv4/enabled"]])
+    result.extend([bgp + "/global/" + p for p in ["as", "identifier", "afi-safis/afi-safi/name", "afi-safis/afi-safi/enabled"]])
+    for collection, key_name in [("peer-groups/peer-group", "name"), ("neighbors/neighbor", "neighbor-key")]:
+        base = bgp + "/" + collection
+        result.append(base + "/" + key_name)
+        result.extend([base + "/" + p for p in [
+            "peer-as", "description", "transport/local-address", "transport/passive-mode",
+            "timers/hold-time", "timers/keepalive", "logging-options/log-neighbor-state-changes",
+            "transport/secure-session/enabled", "transport/secure-session/options/md5-keychain",
+            "as-path-options/replace-peer-as", "apply-policy/import-policy", "apply-policy/export-policy",
+            "afi-safis/afi-safi/name", "afi-safis/afi-safi/enabled",
+            "afi-safis/afi-safi/apply-policy/import-policy", "afi-safis/afi-safi/apply-policy/export-policy"]])
+    result.extend([bgp + "/neighbors/neighbor/" + p for p in ["remote-address", "peer-group"]])
+    result.extend([ni + "/" + p for p in [
+        "name", "vpn/route-distinguisher", "vpn/label-allocation",
+        "vpn/address-family/name", "vpn/address-family/import-route-target", "vpn/address-family/export-route-target"]])
+    result.extend([key + "/" + p for p in ["name", "key/key-id", "key/crypto-algorithm", "key/key-string/keystring"]])
+    return result

@@ -1,0 +1,368 @@
+import testing
+import yang.gdata as g
+from stratoweave.device_translation import merge, render
+import stratoweave.ttt as ttt
+from stratoweave.adapters.adapter import ModCap
+import sorespo.rfs as rfs
+import sorespo.layers.y_2 as inputs
+import sorespo.devices.ietf_dm as m
+import sorespo.devices.CiscoIosXr_25_3_1 as x
+import sorespo.devices.JuniperCRPD_24_4R1_9 as j
+import sorespo.translations.ietf_xr25 as xr
+import sorespo.translations.ietf_crpd24 as junos
+import sorespo.translations.model_translations as mappings
+
+
+mut def xr_network(tree: m.root) -> x.root:
+    return x.root.from_gdata(mappings.xr_network_config(tree).to_gdata())
+
+
+mut def junos_network(tree: m.root) -> j.root:
+    return j.root.from_gdata(mappings.junos_network_config(tree).to_gdata())
+
+
+proc def fixture(t: testing.SyncT, is_junos: bool) -> m.root:
+    module = "junos-conf-root" if is_junos else "Cisco-IOS-XR-um-hostname-cfg"
+    di = ttt.DeviceInfo("pe-1", {module: ModCap(module, "test")})
+    port = "eth1" if is_junos else "GigabitEthernet0/0/0/0"
+    access = "eth2" if is_junos else "GigabitEthernet0/0/0/1"
+    base = inputs.stratoweave_rfs__rfs__base_config(role="PE", ipv4_address="10.0.0.1", ipv6_address="2001:db8::1", asn=65000, ibgp_authentication_key="fixture-ibgp")
+    backbone = inputs.stratoweave_rfs__rfs__backbone_interface_entry(name=port, ipv4_address="10.0.1.1", ipv4_prefix_length=30,
+        remote=inputs.stratoweave_rfs__rfs__backbone_interface__remote(device="pe-2", interface="peer-port"))
+    ibgp = inputs.stratoweave_rfs__rfs__ibgp_neighbor_entry(address="10.0.0.2", asn=65000, description="peer PE")
+    vrf = inputs.stratoweave_rfs__rfs__vrf_entry(name="blue", id=100, router_id=1, asn=65000)
+    attachment = inputs.stratoweave_rfs__rfs__vrf_interface_entry(name="{access}.100", description="Customer", vrf="blue", ipv4_address="192.0.2.1", ipv4_prefix_length=30)
+    ebgp = inputs.stratoweave_rfs__rfs__ebgp_customer_entry(vrf="blue", address="192.0.2.2", local_asn=65000, peer_asn=65100, description="CE", authentication_key="fixture-ebgp")
+    # Exercise cross-RFS references and merging, with consumers before providers.
+    parts = [rfs.EbgpCustomer(t.log_handler).transform(ebgp, di),
+             rfs.VrfInterface(t.log_handler).transform(attachment, di),
+             rfs.IbgpNeighbor(t.log_handler).transform(ibgp, di),
+             rfs.Vrf(t.log_handler).transform(vrf, di),
+             rfs.BBInterface(t.log_handler).transform(backbone, di),
+             rfs.BaseConfig(t.log_handler).transform(base, di)]
+    for part in parts:
+        node = part.to_gdata()
+        if isinstance(node, g.Container):
+            for root in node.children:
+                testing.assertTrue(root.q.startswith("urn:ietf:params:xml:ns:yang:"))
+    return m.root.from_gdata(merge(parts).to_gdata())
+
+
+proc def _test_xr_network_rfs(t: testing.SyncT):
+    intent = fixture(t, False)
+    before = intent.to_gdata()
+    result = render(before, x.SRC_DNODE, [mappings.xr_system, mappings.xr_routing_policy, mappings.xr_network])
+    native = x.root.from_gdata(result)
+    testing.assertEqual(native.to_gdata(), result)
+    testing.assertEqual(intent.to_gdata(), before)
+    testing.assertEqual(native.hostname.system_network_name, "pe-1")
+    loopback = native.interfaces.interface.get("Loopback0")!
+    testing.assertEqual(loopback.ipv4.addresses.address!.address, "10.0.0.1")
+    testing.assertEqual(loopback.ipv4.addresses.address!.netmask, "255.255.255.255")
+    attachment = native.interfaces.interface.get("GigabitEthernet0/0/0/1.100")!
+    testing.assertEqual(attachment.vrf, "blue")
+    testing.assertEqual(attachment.encapsulation.dot1q.vlan_id, u64(100))
+    isis = native.um_router_isis_cfg_router.isis.processes.process.get("1")!
+    testing.assertEqual(isis.is_type, "level-2-only")
+    testing.assertTrue(isis.nets.net.get("49.0001.0100.0000.0001.00") is not None)
+    testing.assertEqual(isis.interfaces.interface.get("Loopback0")!.state, "passive")
+    testing.assertTrue(native.mpls.ldp!.interfaces.interface.get("GigabitEthernet0/0/0/0") is not None)
+    bgp = native.um_router_bgp_cfg_router.bgp.as_.get(u64(65000))!
+    testing.assertEqual(bgp.bgp.router_id, "10.0.0.1")
+    group = bgp.neighbor_groups.neighbor_group.get("IPV4-IBGP")!
+    testing.assertEqual(group.update_source, "Loopback0")
+    testing.assertTrue(group.password.encrypted is not None)
+    testing.assertEqual(bgp.neighbors.neighbor.get("10.0.0.2")!.use.neighbor_group, "IPV4-IBGP")
+    peer = bgp.vrfs.vrf.get("blue")!.neighbors.neighbor.get("192.0.2.2")!
+    testing.assertEqual(peer.remote_as, u64(65100))
+    testing.assertEqual(peer.timers.keepalive_interval, u64(1))
+    af = peer.address_families.address_family.get("ipv4-unicast")!
+    testing.assertEqual(af.route_policy.in_, "ACCEPT")
+    testing.assertEqual(af.route_policy.out, "ACCEPT")
+    testing.assertTrue(af.as_override is not None)
+    testing.assertFalse("urn:ietf:params:xml:ns:yang:" in result.to_xmlstr())
+
+
+proc def _test_junos_network_rfs(t: testing.SyncT):
+    intent = fixture(t, True)
+    before = intent.to_gdata()
+    result = render(before, j.SRC_DNODE, [mappings.junos_system, mappings.junos_routing_policy, mappings.junos_network])
+    native = j.root.from_gdata(result)
+    testing.assertEqual(native.to_gdata(), result)
+    testing.assertEqual(intent.to_gdata(), before)
+    config = native.configuration
+    testing.assertEqual(config.system.host_name, "pe-1")
+    testing.assertEqual(config.system.services!.netconf.rfc_compliant, True)
+    loopback = config.interfaces.interface.get("lo0")!
+    testing.assertEqual(loopback.description, "ROLE: PE")
+    testing.assertTrue(loopback.unit.get("0")!.family.iso!.address.get("49.0001.0100.0000.0001.00") is not None)
+    testing.assertEqual(config.interfaces.interface.get("eth2")!.unit.get("100")!.vlan_id, "100")
+    testing.assertEqual(config.protocols.isis.lsp_lifetime, u64(65535))
+    testing.assertTrue(config.protocols.isis.interface.get("lo0.0")!.passive is not None)
+    testing.assertTrue(config.protocols.mpls.interface.get("eth1") is not None)
+    testing.assertTrue(config.protocols.ldp.interface.get("eth1") is not None)
+    group = config.protocols.bgp.group.get("IPV4-IBGP")!
+    testing.assertEqual(group.local_address, "10.0.0.1")
+    testing.assertEqual(group.type, "internal")
+    testing.assertEqual(group.hold_time, u64(90))
+    testing.assertTrue(group.family.route_target is not None)
+    testing.assertTrue(group.authentication_key!.startswith("$9$"))
+    instance = config.routing_instances.instance.get("blue")!
+    testing.assertEqual(instance.route_distinguisher.rd_type, "65000:1001")
+    testing.assertEqual(instance.vrf_target.community, "target:65000:100")
+    testing.assertTrue(instance.vrf_table_label is not None)
+    testing.assertTrue(instance.interface.get("eth2.100") is not None)
+    customer = instance.protocols.bgp.group.get("customer")!
+    testing.assertEqual(customer.passive, True)
+    testing.assertEqual(customer.import, ["ACCEPT"])
+    testing.assertEqual(customer.export, [])
+    peer = customer.neighbor.get("192.0.2.2")!
+    testing.assertEqual(peer.peer_as, "65100")
+    testing.assertEqual(peer.hold_time, u64(3))
+    testing.assertEqual(peer.as_override, True)
+    testing.assertFalse("urn:ietf:params:xml:ns:yang:" in result.to_xmlstr())
+
+
+def rejects(fn, tree: m.root, message: str):
+    try:
+        fn(tree)
+    except ValueError as exc:
+        testing.assertTrue(message in str(exc), "Unexpected failure: {exc}")
+        return
+    testing.assertTrue(False, "Expected rejection: {message}")
+
+
+proc def _test_network_references_and_unsupported_inputs(t: testing.SyncT):
+    intent = m.root()
+    intent.network_instances.network_instance.create("blue")
+    rejects(xr_network, intent, "Network instances require VPN attributes")
+    rejects(junos_network, intent, "Network instances require VPN attributes")
+    intent = fixture(t, False)
+    interface = intent.interfaces.interface.get("GigabitEthernet0/0/0/1.100")!
+    interface.parent_interface = "missing"
+    rejects(xr_network, intent, "Missing parent")
+    rejects(junos_network, intent, "Missing parent")
+    intent = fixture(t, False)
+    group = intent.routing.control_plane_protocols.control_plane_protocol.get((m.ietf_bgp_bgp, "default"))!.bgp.peer_groups.peer_group.get("IPV4-IBGP")!
+    group.transport.secure_session.options.md5_keychain = "missing"
+    rejects(xr_network, intent, "exactly one key")
+    intent = fixture(t, False)
+    vpn = intent.network_instances.network_instance.get("blue")!.vpn!
+    vpn.route_distinguisher = "65000:1001"
+    rejects(xr_network, intent, "type-0 RD/RT")
+    intent = fixture(t, False)
+    tag = intent.interfaces.interface.get("GigabitEthernet0/0/0/1.100")!.encapsulation.dot1q_vlan.outer_tag
+    tag.tag_type = m.ieee802_dot1q_types_s_vlan
+    rejects(xr_network, intent, "single C-VLAN")
+    intent = fixture(t, False)
+    interface = intent.interfaces.interface.get("GigabitEthernet0/0/0/0")!
+    interface.create_ipv4().address.create("10.0.2.1", prefix_length=30)
+    rejects(xr_network, intent, "exactly one IPv4 address")
+
+
+proc def _test_junos_neighbor_policy_scope(t: testing.SyncT):
+    for reverse in [False, True]:
+        intent = fixture(t, True)
+        bgp = intent.routing.control_plane_protocols.control_plane_protocol.get((m.ietf_bgp_bgp, "blue"))!.bgp
+        first = bgp.neighbors.neighbor.get("192.0.2.2")!
+        second = bgp.neighbors.neighbor.create("second", remote_address="192.0.2.6", peer_group="customer", peer_as=65200)
+        af = second.afi_safis.afi_safi.create(m.iana_bgp_afi_safi_types_ipv4_unicast, enabled=True)
+        if reverse:
+            first_af = first.afi_safis.afi_safi.get(m.iana_bgp_afi_safi_types_ipv4_unicast)!
+            first_af.apply_policy.import_policy = []
+            af.apply_policy.import_policy.append("ACCEPT")
+        rejects(junos_network, intent, "identical policies")
+
+
+proc def _test_network_vrf_contexts_do_not_leak(t: testing.SyncT):
+    for is_junos in [False, True]:
+        intent = fixture(t, is_junos)
+        instance = intent.network_instances.network_instance.create("green")
+        vpn = instance.create_vpn(route_distinguisher="0:65000:2001")
+        af = vpn.address_family.create("ipv4-unicast")
+        af.import_route_target.append("0:65000:200")
+        af.export_route_target.append("0:65000:200")
+        bgp = intent.routing.control_plane_protocols.control_plane_protocol.create((m.ietf_bgp_bgp, "green")).bgp
+        bgp.create_global(as_=65000)
+        bgp.peer_groups.peer_group.create("customer")
+        peer = bgp.neighbors.neighbor.create("same-address", remote_address="192.0.2.2", peer_as=65200, peer_group="customer")
+        peer.afi_safis.afi_safi.create(m.iana_bgp_afi_safi_types_ipv4_unicast, enabled=True)
+        if is_junos:
+            junos_vrfs = junos_network(intent).configuration.routing_instances.instance
+            testing.assertEqual(junos_vrfs.get("blue")!.protocols.bgp.group.get("customer")!.neighbor.get("192.0.2.2")!.peer_as, "65100")
+            testing.assertEqual(junos_vrfs.get("green")!.protocols.bgp.group.get("customer")!.neighbor.get("192.0.2.2")!.peer_as, "65200")
+        else:
+            xr_vrfs = xr_network(intent).um_router_bgp_cfg_router.bgp.as_.get(u64(65000))!.vrfs.vrf
+            testing.assertEqual(xr_vrfs.get("blue")!.neighbors.neighbor.get("192.0.2.2")!.remote_as, u64(65100))
+            testing.assertEqual(xr_vrfs.get("green")!.neighbors.neighbor.get("192.0.2.2")!.remote_as, u64(65200))
+
+
+proc def _test_bgp_instance_names(t: testing.SyncT):
+    for name in ["missing", "", "vrf:blue"]:
+        intent = m.root()
+        intent.network_instances.network_instance.create("blue").create_vpn()
+        intent.routing.control_plane_protocols.control_plane_protocol.create((m.ietf_bgp_bgp, name)).bgp.create_global(as_=65000)
+        rejects(xr_network, intent, "must be 'default' or match a network instance")
+        rejects(junos_network, intent, "must be 'default' or match a network instance")
+    intent = m.root()
+    intent.network_instances.network_instance.create("default").create_vpn()
+    rejects(xr_network, intent, "'default' is reserved")
+    rejects(junos_network, intent, "'default' is reserved")
+    intent = m.root()
+    intent.network_instances.network_instance.create("blue").create_vpn(route_distinguisher="0:65000:1001")
+    intent.routing.control_plane_protocols.control_plane_protocol.create((m.ietf_bgp_bgp, "default")).bgp.create_global(as_=65000)
+    rejects(xr_network, intent, "BGP instance named after the VRF")
+    rejects(junos_network, intent, "BGP instance named after the VRF")
+
+
+proc def _test_bgp_family_default_is_not_enabled(t: testing.SyncT):
+    for is_junos in [False, True]:
+        for enabled in [None, False]:
+            intent = fixture(t, is_junos)
+            group = intent.routing.control_plane_protocols.control_plane_protocol.get((m.ietf_bgp_bgp, "default"))!.bgp.peer_groups.peer_group.get("IPV4-IBGP")!
+            family = group.afi_safis.afi_safi.get(m.iana_bgp_afi_safi_types_l3vpn_ipv4_unicast)!
+            family.enabled = enabled
+            if is_junos:
+                rejects(junos_network, intent, "explicit enabled=true")
+            else:
+                rejects(xr_network, intent, "explicit enabled=true")
+
+
+proc def _test_junos_bgp_contributions_merge_conflicts(t: testing.SyncT):
+    for reverse in [False, True]:
+        intent = m.root()
+        intent.network_instances.network_instance.create("blue").create_vpn()
+        instances = [("default", u64(65000)), ("blue", u64(65100))]
+        if reverse:
+            instances.reverse()
+        for name, asn in instances:
+            intent.routing.control_plane_protocols.control_plane_protocol.create((m.ietf_bgp_bgp, name)).bgp.create_global(as_=asn)
+        protocols = intent.routing.control_plane_protocols.control_plane_protocol
+        global_protocol = protocols.get((m.ietf_bgp_bgp, "default"))!
+        vrf_protocol = protocols.get((m.ietf_bgp_bgp, "blue"))!
+        before = intent.to_gdata()
+        global_native = junos.bgp(intent, global_protocol)
+        vrf_native = junos.bgp(intent, vrf_protocol)
+        testing.assertEqual(global_native.configuration.routing_options.autonomous_system.as_number, "65000")
+        testing.assertEqual(vrf_native.configuration.routing_options.autonomous_system.as_number, "65100")
+        global_native.configuration.routing_options.autonomous_system.as_number = "65200"
+        testing.assertEqual(vrf_native.configuration.routing_options.autonomous_system.as_number, "65100")
+        testing.assertEqual(junos.bgp(intent, global_protocol).configuration.routing_options.autonomous_system.as_number, "65000")
+        message = ""
+        try:
+            render(before, j.SRC_DNODE, [mappings.junos_network])
+        except ValueError as error:
+            message = str(error)
+        for expected in ["Model translation ietf-network", "Cannot merge leaves with different values", "routing-options", "autonomous-system", "as-number", "65000", "65100"]:
+            testing.assertTrue(expected in message, "Unexpected conflict: {message}")
+        testing.assertEqual(intent.to_gdata(), before)
+        vrf_global = vrf_protocol.bgp.global!
+        vrf_global.as_ = 65000
+        native = junos_network(intent)
+        testing.assertEqual(native.configuration.routing_options.autonomous_system.as_number, "65000")
+        testing.assertTrue(native.configuration.routing_instances.instance.get("blue") is not None)
+
+
+proc def _test_xr_bgp_contributions_use_native_as_keys(t: testing.SyncT):
+    intent = m.root()
+    intent.network_instances.network_instance.create("blue").create_vpn(route_distinguisher="0:65000:1001")
+    protocols = intent.routing.control_plane_protocols.control_plane_protocol
+    global_protocol = protocols.create((m.ietf_bgp_bgp, "default"))
+    global_protocol.bgp.create_global(as_=65000, identifier="10.0.0.1")
+    vrf_protocol = protocols.create((m.ietf_bgp_bgp, "blue"))
+    vrf_protocol.bgp.create_global(as_=65100)
+    before = intent.to_gdata()
+    global_native = xr.bgp(intent, global_protocol)
+    vrf_native = xr.bgp(intent, vrf_protocol)
+    testing.assertEqual(len(global_native.um_router_bgp_cfg_router.bgp.as_), 1)
+    testing.assertTrue(global_native.um_router_bgp_cfg_router.bgp.as_.get(u64(65100)) is None)
+    testing.assertEqual(len(vrf_native.um_router_bgp_cfg_router.bgp.as_), 1)
+    testing.assertTrue(vrf_native.um_router_bgp_cfg_router.bgp.as_.get(u64(65000)) is None)
+    native = x.root.from_gdata(render(before, x.SRC_DNODE, [mappings.xr_network]))
+    asns = native.um_router_bgp_cfg_router.bgp.as_
+    testing.assertEqual(len(asns), 2)
+    testing.assertEqual(asns.get(u64(65000))!.bgp.router_id, "10.0.0.1")
+    testing.assertTrue(asns.get(u64(65100))!.vrfs.vrf.get("blue") is not None)
+    testing.assertEqual(intent.to_gdata(), before)
+
+
+def rejects_merge(fn, tree: m.root, path: str):
+    message = ""
+    try:
+        fn(tree)
+    except ValueError as error:
+        message = str(error)
+    # Native empty leaves encode false as explicit absence, which conflicts
+    # with a present leaf through the same merge path.
+    testing.assertTrue("Cannot merge leaves with different values" in message or "Cannot merge nodes of different types" in message, "Unexpected conflict: {message}")
+    testing.assertTrue(path in message, "Missing native path {path}: {message}")
+
+
+proc def _test_crpd_shared_leaf_contributions(t: testing.SyncT):
+    intent = m.root()
+    protocol = intent.routing.control_plane_protocols.control_plane_protocol.create((m.ietf_bgp_bgp, "default"))
+    protocol.bgp.create_global(as_=65000)
+    for name, enabled in [("a", True), ("b", False)]:
+        group = protocol.bgp.peer_groups.peer_group.create(name, peer_as=65000)
+        group.logging_options.log_neighbor_state_changes = enabled
+    rejects_merge(junos_network, intent, "log-updown")
+    group = protocol.bgp.peer_groups.peer_group.get("b")!
+    group.logging_options.log_neighbor_state_changes = True
+    testing.assertEqual(junos_network(intent).configuration.protocols.bgp.log_updown, True)
+
+    intent = m.root()
+    vpn = intent.network_instances.network_instance.create("blue").create_vpn()
+    family = vpn.address_family.create("ipv4-unicast")
+    family.import_route_target.append("0:65000:1")
+    family.export_route_target.append("0:65000:2")
+    rejects_merge(junos_network, intent, "vrf-target")
+    family.export_route_target = ["0:65000:1"]
+    testing.assertEqual(junos_network(intent).configuration.routing_instances.instance.get("blue")!.vrf_target.community, "target:65000:1")
+
+    intent = m.root()
+    intent.interfaces.interface.create("Loopback0", type=m.iana_if_type_softwareLoopback, description="first")
+    second = intent.interfaces.interface.create("lo0", type=m.iana_if_type_softwareLoopback, description="second")
+    rejects_merge(junos_network, intent, "description")
+    second.description = "first"
+    testing.assertEqual(len(junos_network(intent).configuration.interfaces.interface), 1)
+    isis = intent.routing.control_plane_protocols.control_plane_protocol.create((m.ietf_isis_isis, "1")).isis
+    isis.interfaces.interface.create("Loopback0").metric.level_2.value = 10
+    isis.interfaces.interface.create("lo0").metric.level_2.value = 20
+    rejects_merge(junos_network, intent, "metric")
+
+
+proc def _test_neighbor_contributions_merge_at_native_keys(t: testing.SyncT):
+    intent = m.root()
+    intent.network_instances.network_instance.create("blue").create_vpn()
+    bgp = intent.routing.control_plane_protocols.control_plane_protocol.create((m.ietf_bgp_bgp, "blue")).bgp
+    bgp.create_global(as_=65000)
+    bgp.peer_groups.peer_group.create("customer")
+    bgp.neighbors.neighbor.create("192.0.2.2", remote_address="192.0.2.2", peer_as=65100, peer_group="customer")
+    second = bgp.neighbors.neighbor.create("192.0.2.3", remote_address="192.0.2.2", peer_as=65200, peer_group="customer")
+    rejects_merge(xr_network, intent, "remote-as")
+    rejects_merge(junos_network, intent, "peer-as")
+    second.peer_as = 65100
+    testing.assertEqual(len(xr_network(intent).um_router_bgp_cfg_router.bgp.as_.get(u64(65000))!.vrfs.vrf.get("blue")!.neighbors.neighbor), 1)
+    testing.assertEqual(len(junos_network(intent).configuration.routing_instances.instance.get("blue")!.protocols.bgp.group.get("customer")!.neighbor), 1)
+    for peer in bgp.neighbors.neighbor:
+        family = peer.afi_safis.afi_safi.create(m.iana_bgp_afi_safi_types_ipv4_unicast, enabled=True)
+        family.apply_policy.import_policy.append("ACCEPT")
+    group = junos_network(intent).configuration.routing_instances.instance.get("blue")!.protocols.bgp.group.get("customer")!
+    testing.assertEqual(group.import, ["ACCEPT"])
+
+
+proc def _test_protocol_contributions_merge_at_native_scope(t: testing.SyncT):
+    intent = m.root()
+    protocols = intent.routing.control_plane_protocols.control_plane_protocol
+    first = protocols.create((m.ietf_isis_isis, "one")).isis
+    second = protocols.create((m.ietf_isis_isis, "two")).isis
+    first.lsp_lifetime = 1000
+    second.lsp_lifetime = 2000
+    rejects_merge(junos_network, intent, "lsp-lifetime")
+    second.lsp_lifetime = 1000
+    testing.assertEqual(junos_network(intent).configuration.protocols.isis.lsp_lifetime, u64(1000))
+    first.lsp_lifetime = None
+    second.lsp_lifetime = None
+    first.level_type = "level-2"
+    second.level_type = "level-2"
+    testing.assertEqual(len(xr_network(intent).um_router_isis_cfg_router.isis.processes.process), 2)

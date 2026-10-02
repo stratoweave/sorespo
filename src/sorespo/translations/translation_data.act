@@ -1,0 +1,135 @@
+# SPDX-License-Identifier: BSD-3-Clause
+"""Typed YANG value helpers and supported-feature checks for the mappings."""
+from yang.identityref import Identityref
+import sorespo.devices.ietf_dm as ietf_dm
+from sorespo.devices.ietf_dm import ietf_routing_policy__routing_policy__defined_sets__prefix_sets__prefix_set__prefixes__prefix_list_entry as PrefixEntry
+
+RP_NS = ietf_dm.NS_ietf_routing_policy
+SYS_NS = ietf_dm.NS_ietf_system
+
+
+def required(val: ?str, path: str) -> str:
+    if val is not None:
+        if val:
+            return val
+    raise ValueError("Missing required translation input {path}")
+
+
+def community_values(members: list[atom]) -> list[str]:
+    """Canonical AS:value form, including IANA well-known community identities."""
+    result = []
+    for val in members:
+        if isinstance(val, Identityref):
+            # Values are specified in the imported model's descriptions.
+            known = {"no-export": "65535:65281", "no-advertise": "65535:65282", "no-export-subconfed": "65535:65283", "no-peer": "65535:65284"}
+            if val.ns != ietf_dm.NS_iana_bgp_community_types or val.val not in known:
+                raise ValueError("Unsupported community identity {val}")
+            result.append(known[val.val])
+        elif isinstance(val, u64) or isinstance(val, int):
+            number = int(str(val))
+            if number < 0 or number > 4294967295:
+                raise ValueError("Community value is outside uint32: {number}")
+            result.append("{number // 65536}:{number % 65536}")
+        else:
+            result.append(str(val))
+    return result
+
+
+def reject_present(fields: list[(str, bool)], path: str):
+    for name, present in fields:
+        if present:
+            raise ValueError("Unsupported translation input {path}/{name}")
+
+
+def policy_input(tree: ietf_dm.root) -> ietf_dm.ietf_routing_policy__routing_policy:
+    """Reject unimplemented fields even when called directly with adata."""
+    source = tree.routing_policy
+    sets = source.defined_sets
+    reject_present([
+        ("neighbor-sets", len(sets.neighbor_sets.neighbor_set) > 0),
+        ("bgp-defined-sets/ext-community-sets", len(sets.bgp_defined_sets.ext_community_sets.ext_community_set) > 0),
+        ("bgp-defined-sets/ipv6-ext-community-sets", len(sets.bgp_defined_sets.ipv6_ext_community_sets.ipv6_ext_community_set) > 0),
+        ("bgp-defined-sets/large-community-sets", len(sets.bgp_defined_sets.large_community_sets.large_community_set) > 0),
+        ("bgp-defined-sets/next-hop-sets", len(sets.bgp_defined_sets.next_hop_sets.next_hop_set) > 0),
+    ], "/routing-policy/defined-sets")
+    for policy in source.policy_definitions.policy_definition:
+        for statement in policy.statements.statement:
+            path = "/routing-policy/policy-definitions/policy-definition[{policy.name}]/statements/statement[{statement.name}]"
+            c = statement.conditions
+            reject_present([
+                ("match-neighbor-set", c.match_neighbor_set.neighbor_set is not None),
+                ("match-route-type", bool(c.match_route_type.route_type)),
+            ], path + "/conditions")
+            b = c.bgp_conditions
+            reject_present([
+                ("med", b.med.value is not None or b.med.eq is not None or b.med.lt_or_eq is not None or b.med.gt_or_eq is not None),
+                ("origin-eq", b.origin_eq is not None),
+                ("match-neighbor", bool(b.match_neighbor.neighbor_eq) or b.match_neighbor.match_set_options is not None),
+                ("match-afi-safi", bool(b.match_afi_safi.afi_safi_in) or b.match_afi_safi.match_set_options is not None),
+                ("local-pref", b.local_pref.value is not None or b.local_pref.eq is not None or b.local_pref.lt_or_eq is not None or b.local_pref.gt_or_eq is not None),
+                ("route-type", b.route_type is not None),
+                ("community-count", b.community_count.value is not None or b.community_count.eq is not None or b.community_count.lt_or_eq is not None or b.community_count.gt_or_eq is not None),
+                ("extended-community-count", b.extended_community_count.value is not None or b.extended_community_count.eq is not None or b.extended_community_count.lt_or_eq is not None or b.extended_community_count.gt_or_eq is not None),
+                ("as-path-length", b.as_path_length.value is not None or b.as_path_length.eq is not None or b.as_path_length.lt_or_eq is not None or b.as_path_length.gt_or_eq is not None),
+                ("match-ext-community-set", b.match_ext_community_set.ext_community_set is not None or b.match_ext_community_set.ext_community_match_kind is not None or b.match_ext_community_set.match_set_options is not None),
+                ("match-ipv6-ext-community-set", b.match_ipv6_ext_community_set.ipv6_ext_community_set is not None or b.match_ipv6_ext_community_set.ipv6_ext_community_match_kind is not None or b.match_ipv6_ext_community_set.match_set_options is not None),
+                ("match-large-community-set", b.match_large_community_set.large_community_set is not None or b.match_large_community_set.match_set_options is not None),
+                ("match-next-hop-set", b.match_next_hop_set.next_hop_set is not None or b.match_next_hop_set.match_set_options is not None),
+            ], path + "/conditions/bgp-conditions")
+            a = statement.actions
+            reject_present([
+                ("set-metric", a.set_metric.metric is not None or a.set_metric.metric_modification is not None),
+                ("set-metric-type", a.set_metric_type.metric_type is not None),
+                ("set-route-level", a.set_route_level.route_level is not None),
+                ("set-route-preference", a.set_route_preference is not None),
+                ("set-tag", a.set_tag is not None), ("set-application-tag", a.set_application_tag is not None),
+            ], path + "/actions")
+            ba = a.bgp_actions
+            reject_present([
+                ("set-as-path-prepend", ba.set_as_path_prepend.repeat_n is not None or ba.set_as_path_prepend.asn is not None or ba.set_as_path_prepend.use_last_as is not None),
+                ("set-ext-community", ba.set_ext_community.options is not None or bool(ba.set_ext_community.community) or ba.set_ext_community.ext_community_set_ref is not None),
+                ("set-ipv6-ext-community", ba.set_ipv6_ext_community.options is not None or bool(ba.set_ipv6_ext_community.community) or ba.set_ipv6_ext_community.ipv6_ext_community_set_ref is not None),
+                ("set-large-community", ba.set_large_community.options is not None or bool(ba.set_large_community.community) or ba.set_large_community.large_community_set_ref is not None),
+            ], path + "/actions/bgp-actions")
+    return source
+
+
+def system_input(tree: ietf_dm.root, network_services: bool) -> ietf_dm.ietf_system__system:
+    source = tree.system
+    dns = source.dns_resolver
+    radius = source.radius
+    auth = source.authentication
+    reject_present([
+        ("contact", source.contact is not None), ("location", source.location is not None),
+        ("clock", source.clock.timezone_name is not None or source.clock.timezone_utc_offset is not None),
+        ("radius", len(radius.server) > 0 or radius.options.timeout is not None or radius.options.attempts is not None),
+        ("authentication", len(auth.user) > 0 or bool(auth.user_authentication_order)),
+        ("dns-resolver/search", bool(dns.search)),
+        ("dns-resolver/options", dns.options.timeout is not None or dns.options.attempts is not None),
+        ("ntp", not network_services and source.ntp is not None),
+        ("dns-resolver", not network_services and len(dns.server) > 0),
+    ], "/system")
+    return source
+
+
+def prefix_lengths(entry: PrefixEntry, mode: str) -> (str, int, int, int, int):
+    prefix = entry.ip_prefix
+    address, separator, length = prefix.rpartition("/")
+    if not separator or mode not in ["ipv4", "ipv6"]:
+        raise ValueError("Invalid prefix or address family: {prefix}, {mode}")
+    width = 32 if mode == "ipv4" else 128
+    if (":" in address) != (mode == "ipv6"):
+        raise ValueError("Prefix {prefix} does not match {mode}")
+    base = int(length)
+    lower = int(entry.mask_length_lower)
+    upper = int(entry.mask_length_upper)
+    if not (0 <= base and base <= lower and lower <= upper and upper <= width):
+        raise ValueError("Invalid prefix length range {prefix}: {lower}..{upper}")
+    return prefix, base, lower, upper, width
+
+
+def match_mode(options: ?str) -> str:
+    mode = options if options is not None else "any"
+    if mode not in ["any", "all", "invert"]:
+        raise ValueError("Unsupported match-set-options {mode}")
+    return mode

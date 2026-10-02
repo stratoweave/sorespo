@@ -1,0 +1,507 @@
+# SPDX-License-Identifier: BSD-3-Clause
+"""IETF system, policy, and network configuration to Junos cRPD 24.4."""
+from rtrsecrets.junos import junos_encrypt
+import sorespo.devices.ietf_dm as ietf_dm
+from sorespo.devices.ietf_dm import ietf_routing__routing__control_plane_protocols__control_plane_protocol_entry as Protocol
+import sorespo.devices.JuniperCRPD_24_4R1_9 as crpd24
+from sorespo.devices.ietf_dm import ietf_interfaces__interfaces__interface_entry as Interface
+from sorespo.devices.ietf_dm import ietf_network_instance__network_instances__network_instance_entry as NetworkInstance
+from sorespo.devices.ietf_dm import ietf_routing__routing__mpls__interfaces__interface_entry as MplsInterface
+from sorespo.devices.ietf_dm import ietf_routing__routing__control_plane_protocols__control_plane_protocol__bgp__peer_groups__peer_group_entry as PeerGroup
+from sorespo.devices.ietf_dm import ietf_routing__routing__control_plane_protocols__control_plane_protocol__bgp__neighbors__neighbor_entry as Neighbor
+from sorespo.devices.ietf_dm import ietf_routing_policy__routing_policy__defined_sets__prefix_sets__prefix_set_entry as PrefixSet
+from sorespo.devices.ietf_dm import ietf_routing_policy__routing_policy__defined_sets__bgp_defined_sets__community_sets__community_set_entry as CommunitySet
+from sorespo.devices.ietf_dm import ietf_routing_policy__routing_policy__defined_sets__bgp_defined_sets__as_path_sets__as_path_set_entry as AsPathSet
+from sorespo.devices.ietf_dm import ietf_routing_policy__routing_policy__policy_definitions__policy_definition_entry as Policy
+from sorespo.devices.ietf_dm import ietf_routing__routing__control_plane_protocols__control_plane_protocol__isis__interfaces__interface_entry as IsisInterface
+from sorespo.devices.ietf_dm import ietf_routing__routing__control_plane_protocols__control_plane_protocol__mpls_ldp__discovery__interfaces__interface_entry as LdpInterface
+import sorespo.translations.network_data as n
+import sorespo.translations.translation_data as d
+
+
+mut def prefix_set(item: PrefixSet) -> crpd24.root:
+    native = crpd24.root()
+    dest = native.configuration.policy_options
+    prefix_set = dest.route_filter_list.create(item.name)
+    for entry in item.prefixes.prefix_list:
+        prefix, base, lower, upper, width = d.prefix_lengths(entry, item.mode)
+        choice = "prefix-length-range"
+        argument = "/{lower}-/{upper}"
+        if base == lower and lower == upper:
+            choice = "exact"
+            argument = ""
+        elif base == lower and upper == width:
+            choice = "orlonger"
+            argument = ""
+        prefix_set.rf_list.create((address=prefix, choice_ident=choice, choice_value=argument))
+    return native
+
+
+mut def as_path_set(item: AsPathSet) -> crpd24.root:
+    native = crpd24.root()
+    dest = native.configuration.policy_options
+    group = dest.as_path_group.create(item.name)
+    for member in item.member:
+        group.as_path.create(member, path=member)
+    return native
+
+
+mut def community_set(tree: ietf_dm.root, item: CommunitySet) -> crpd24.root:
+    native = crpd24.root()
+    dest = native.configuration.policy_options
+    match_type = item.junos_match_type if item.junos_match_type is not None else "regular"
+    if match_type not in ["regular", "inverted", "both"]:
+        raise ValueError("Invalid junos-match-type {match_type}")
+    for inverted in [False, True]:
+        if match_type == "both" or match_type == ("inverted" if inverted else "regular"):
+            name = item.name + ("-INVERTED" if inverted else "")
+            # Aliases are policy symbols: merging members could silently
+            # change the referenced set without producing a scalar conflict.
+            sets = tree.routing_policy.defined_sets.bgp_defined_sets.community_sets.community_set
+            if inverted:
+                other = sets.get(name)
+                if other is not None and other!.junos_match_type != "inverted":
+                    raise ValueError("Generated Junos community name collision: {name}")
+            elif name.endswith("-INVERTED"):
+                other = sets.get(name[:-len("-INVERTED")])
+                if other is not None and other!.junos_match_type in ["inverted", "both"]:
+                    raise ValueError("Generated Junos community name collision: {name}")
+            community = dest.community.create(name)
+            community.members = d.community_values(item.member)
+            if inverted:
+                community.invert_match = True
+    return native
+
+
+mut def routing_policy(tree: ietf_dm.root, item: Policy) -> crpd24.root:
+    native = crpd24.root()
+    dest = native.configuration.policy_options
+    source = tree.routing_policy
+    tags = source.defined_sets.tag_sets.tag_set
+    communities = source.defined_sets.bgp_defined_sets.community_sets.community_set
+    policy_names = {p.name for p in source.policy_definitions.policy_definition}
+    policy = dest.policy_statement.create(item.name)
+    for statement in item.statements.statement:
+        term = policy.term.create(statement.name)
+        conditions = statement.conditions
+        if conditions.call_policy is not None:
+            term.from.policy.append(conditions.call_policy!)
+        if conditions.source_protocol is not None:
+            protocol = conditions.source_protocol!.val
+            if protocol not in ["direct", "static", "bgp", "ospf", "isis"]:
+                raise ValueError("Unsupported Junos source-protocol {protocol}")
+            term.from.protocol.append(protocol)
+        if conditions.match_interface.interface is not None:
+            term.from.interface.append(conditions.match_interface.interface!)
+        for ref, options, field, prefix in [
+            (conditions.match_prefix_set.prefix_set, conditions.match_prefix_set.match_set_options, "prefix-set", "NOT-PREFIX-SET-"),
+            (conditions.bgp_conditions.match_as_path_set.as_path_set, conditions.bgp_conditions.match_as_path_set.match_set_options, "as-path-set", "NOT-AS-PATH-SET-")]:
+            if ref is not None:
+                mode = d.match_mode(options)
+                if mode == "all":
+                    raise ValueError("Junos does not support all for {field}")
+                if mode == "invert":
+                    helper = prefix + ref
+                    if helper in policy_names:
+                        raise ValueError("Generated Junos policy name collision: {helper}")
+                    term.from.policy.append(helper)
+                elif field == "prefix-set":
+                    term.from.route_filter_list.create(ref)
+                else:
+                    term.from.as_path_group.append(ref)
+        match = conditions.match_tag_set
+        if match.tag_set is not None:
+            tag = tags.get(match.tag_set!)
+            if tag is None:
+                raise ValueError("Unknown tag-set {match.tag_set}")
+            if len(tag!.tag_value) != 1 or d.match_mode(match.match_set_options) != "any":
+                raise ValueError("Junos supports exactly one tag and any matching per tag-set")
+            term.from.tag.append(u64(str(tag!.tag_value[0])))
+        community_match = conditions.bgp_conditions.match_community_set
+        if community_match.community_set is not None:
+            name = community_match.community_set!
+            mode = d.match_mode(community_match.match_set_options)
+            community_set = communities.get(name)
+            if community_set is None:
+                raise ValueError("Unknown community-set {name}")
+            if mode == "any" and len(community_set!.member) > 1:
+                raise ValueError("Junos any community matching supports at most one member")
+            native_name = name + ("-INVERTED" if mode == "invert" else "")
+            match_type = community_set!.junos_match_type if community_set!.junos_match_type is not None else "regular"
+            required_type = "inverted" if mode == "invert" else "regular"
+            if match_type not in [required_type, "both"]:
+                raise ValueError("Community {native_name} requires the corresponding junos-match-type")
+            term.from.community.append(native_name)
+        actions = statement.actions
+        bgp = actions.bgp_actions
+        if bgp.set_route_origin is not None:
+            term.then.origin = bgp.set_route_origin!
+        if bgp.set_local_pref is not None:
+            term.then.local_preference.local_preference = bgp.set_local_pref!
+        if bgp.set_next_hop is not None:
+            hop = bgp.set_next_hop!
+            if hop == "self":
+                term.then.next_hop.self_ = True
+            else:
+                term.then.next_hop.address = hop
+        if bgp.set_med is not None:
+            metric = str(bgp.set_med!)
+            if metric == "igp":
+                term.then.metric.create_igp()
+            elif metric.startswith("+"):
+                term.then.metric.add = u64(metric[1:])
+            elif metric.startswith("-"):
+                term.then.metric.subtract = u64(metric[1:])
+            else:
+                term.then.metric.metric = u64(metric)
+        community = bgp.set_community
+        if community.community:
+            raise ValueError("Junos set-community requires community-set-ref; inline communities are unsupported")
+        if community.community_set_ref is not None:
+            option = d.required(community.options, "set-community/options")
+            operations = {"add": "add", "replace": "set", "remove": "delete"}
+            if option not in operations:
+                raise ValueError("Unsupported set-community option {option}")
+            term.then.community.create((choice_ident=operations[option], choice_value="", community_name=community.community_set_ref!))
+        result = actions.policy_result if actions.policy_result is not None else "next-statement"
+        if result == "accept-route":
+            term.then.accept = True
+        elif result == "reject-route":
+            term.then.reject = True
+        elif result != "next-statement":
+            raise ValueError("Unsupported policy-result {result}")
+    return native
+
+
+mut def policy_helper(field: str, name: str) -> crpd24.root:
+    native = crpd24.root()
+    dest = native.configuration.policy_options
+    helper = ("NOT-PREFIX-SET-" if field == "prefix-set" else "NOT-AS-PATH-SET-") + name
+    policy = dest.policy_statement.create(helper)
+    term = policy.term.create("REJECT-" + name)
+    if field == "prefix-set":
+        term.from.route_filter_list.create(name)
+    else:
+        term.from.as_path_group.append(name)
+    term.then.reject = True
+    policy.term.create("ACCEPT-ALL-OTHERS").then.accept = True
+    return native
+
+
+mut def system(tree: ietf_dm.root) -> crpd24.root:
+    source = d.system_input(tree, network_services=False)
+    target = crpd24.root()
+    target.configuration.system.host_name = source.hostname
+    return target
+
+
+mut def interface(interface: Interface) -> crpd24.root:
+    native = crpd24.root()
+    config = native.configuration
+    parent, unit_name = interface.name, "0"
+    if interface.parent_interface is not None:
+        parent, separator, unit_name = interface.name.rpartition(".")
+        if not separator or parent != interface.parent_interface or not n.digits(unit_name):
+            raise ValueError("Subinterface {interface.name} must use parent.<unit> naming")
+    elif interface.type == ietf_dm.iana_if_type_softwareLoopback and interface.name == "Loopback0":
+        parent = "lo0"
+    target = config.interfaces.interface.create(parent)
+    logical = interface.ipv4 is not None or interface.parent_interface is not None
+    if logical and interface.type != ietf_dm.iana_if_type_softwareLoopback:
+        target.unit.create(unit_name, description=interface.description)
+    else:
+        target.description = interface.description
+    if interface.ipv4 is not None:
+        unit = target.unit.create(unit_name)
+        for address in interface.ipv4!.address:
+            unit.family.create_inet().address.create("{address.ip}/{address.prefix_length!}")
+    tag = interface.encapsulation.dot1q_vlan.outer_tag
+    if tag.vlan_id is not None:
+        target.unit.create(unit_name, vlan_id=str(tag.vlan_id!))
+    if interface.bind_ni_name is not None:
+        config.routing_instances.instance.create(interface.bind_ni_name!).interface.create("{parent}.{unit_name}")
+    return native
+
+
+mut def vpn(instance: NetworkInstance) -> crpd24.root:
+    native = crpd24.root()
+    config = native.configuration
+    target = config.routing_instances.instance.create(instance.name, instance_type="vrf")
+    vpn = instance.vpn!
+    if vpn.route_distinguisher is not None:
+        asn, number = n.vpn_numbers(vpn.route_distinguisher!)
+        target.route_distinguisher.rd_type = "{asn}:{number}"
+    if vpn.label_allocation is not None:
+        if vpn.label_allocation != "per-vrf":
+            raise ValueError("Unsupported Junos label allocation mode")
+        target.create_vrf_table_label()
+    for family in vpn.address_family:
+        if len(family.import_route_target) != 1 or len(family.export_route_target) != 1:
+            raise ValueError("Junos VRFs currently require one import and one export RT")
+    return native
+
+
+mut def vpn_target(instance: NetworkInstance, value: str) -> crpd24.root:
+    native = crpd24.root()
+    target = native.configuration.routing_instances.instance.create(instance.name)
+    asn, number = n.vpn_numbers(value)
+    target.vrf_target.community = "target:{asn}:{number}"
+    return native
+
+
+mut def mpls_interface(tree: ietf_dm.root, interface: MplsInterface) -> crpd24.root:
+    native = crpd24.root()
+    config = native.configuration
+    if interface.mpls_enabled != True:
+        raise ValueError("Disabling MPLS interfaces is not implemented")
+    modeled = tree.interfaces.interface.get(interface.name)
+    if modeled is None:
+        raise ValueError("Missing interface {interface.name}")
+    name = modeled!.name
+    if modeled!.parent_interface is not None:
+        parent, separator, unit = name.rpartition(".")
+        if not separator or parent != modeled!.parent_interface or not n.digits(unit):
+            raise ValueError("Subinterface {name} must use parent.<unit> naming")
+    elif modeled!.type == ietf_dm.iana_if_type_softwareLoopback:
+        name = ("lo0" if name == "Loopback0" else name) + ".0"
+    # cRPD physical Linux interfaces have no unit suffix.
+    config.protocols.mpls.interface.create(name)
+    return native
+
+
+mut def isis(tree: ietf_dm.root, protocol: Protocol) -> crpd24.root:
+    native = crpd24.root()
+    config = native.configuration
+    source = protocol.isis
+    target = config.protocols.isis
+    target.lsp_lifetime = source.lsp_lifetime
+    if source.level_type is not None:
+        target.level.create(1, disable=True)
+    if source.metric_type.value is not None:
+        target.level.create(2, wide_metrics_only=True)
+    addresses = n.net_addresses(protocol)
+    loopbacks = [interface for interface in tree.interfaces.interface if interface.type == ietf_dm.iana_if_type_softwareLoopback]
+    if addresses:
+        if len(loopbacks) != 1:
+            raise ValueError("Junos IS-IS NET requires exactly one modeled loopback")
+        interface = loopbacks[0]
+        parent, unit = interface.name, "0"
+        if interface.parent_interface is not None:
+            parent, separator, unit = interface.name.rpartition(".")
+            if not separator or parent != interface.parent_interface or not n.digits(unit):
+                raise ValueError("Subinterface {interface.name} must use parent.<unit> naming")
+        elif interface.name == "Loopback0":
+            parent = "lo0"
+        iso = config.interfaces.interface.create(parent).unit.create(unit).family.create_iso()
+        for address in addresses:
+            iso.address.create(address)
+    return native
+
+
+mut def isis_interface(tree: ietf_dm.root, protocol: Protocol, interface: IsisInterface) -> crpd24.root:
+    native = crpd24.root()
+    config = native.configuration
+    target = config.protocols.isis
+    modeled = tree.interfaces.interface.get(interface.name)
+    if modeled is None:
+        raise ValueError("Missing interface {interface.name}")
+    name = modeled!.name
+    if modeled!.parent_interface is not None:
+        parent, separator, unit = name.rpartition(".")
+        if not separator or parent != modeled!.parent_interface or not n.digits(unit):
+            raise ValueError("Subinterface {name} must use parent.<unit> naming")
+    elif modeled!.type == ietf_dm.iana_if_type_softwareLoopback:
+        name = ("lo0" if name == "Loopback0" else name) + ".0"
+    ti = target.interface.create(name)
+    if interface.passive is not None:
+        if interface.passive != True:
+            raise ValueError("Explicit active IS-IS interfaces are not implemented")
+        ti.create_passive()
+    if interface.interface_type is not None:
+        ti.point_to_point = True
+    if interface.level_type is not None:
+        ti.level.create(1, disable=True)
+    if interface.metric.level_2.value is not None:
+        ti.level.create(2, metric=interface.metric.level_2.value)
+    return native
+
+
+mut def ldp(tree: ietf_dm.root, protocol: Protocol) -> crpd24.root:
+    native = crpd24.root()
+    source = protocol.mpls_ldp
+    if source.global.address_families.ipv4 is not None and source.global.address_families.ipv4!.enabled == False:
+        raise ValueError("Disabling LDP IPv4 is not implemented")
+    return native
+
+
+mut def ldp_interface(tree: ietf_dm.root, protocol: Protocol, interface: LdpInterface) -> crpd24.root:
+    native = crpd24.root()
+    config = native.configuration
+    if interface.address_families.ipv4 is None or interface.address_families.ipv4!.enabled == False:
+        raise ValueError("LDP interfaces require IPv4 enabled")
+    modeled = tree.interfaces.interface.get(interface.name)
+    if modeled is None:
+        raise ValueError("Missing interface {interface.name}")
+    name = modeled!.name
+    if modeled!.parent_interface is not None:
+        parent, separator, unit = name.rpartition(".")
+        if not separator or parent != modeled!.parent_interface or not n.digits(unit):
+            raise ValueError("Subinterface {name} must use parent.<unit> naming")
+    elif modeled!.type == ietf_dm.iana_if_type_softwareLoopback:
+        name = ("lo0" if name == "Loopback0" else name) + ".0"
+    config.protocols.ldp.interface.create(name)
+    return native
+
+
+mut def bgp(tree: ietf_dm.root, protocol: Protocol) -> crpd24.root:
+    native = crpd24.root()
+    source = protocol.bgp
+    asn = n.as_number(protocol)
+    config = native.configuration
+    config.routing_options.autonomous_system.as_number = str(asn)
+    if source.global!.identifier is not None:
+        raise ValueError("Explicit Junos BGP router-id is not implemented")
+    instance = protocol.name
+    if instance == "default":
+        # Required platform behavior for the registered cRPD NETCONF target.
+        services = config.system.create_services()
+        services.netconf.rfc_compliant = True
+        services.netconf.yang_compliant = True
+        if len(source.global!.afi_safis.afi_safi) > 0:
+            raise ValueError("Junos global BGP families must be configured on peer-groups")
+        return native
+    config.routing_instances.instance.create(instance)
+    for family in source.global!.afi_safis.afi_safi:
+        n.enabled_family(family.enabled)
+        if family.name != ietf_dm.iana_bgp_afi_safi_types_ipv4_unicast or family.enabled == False:
+            raise ValueError("Junos VRF BGP currently supports IPv4 unicast")
+    return native
+
+
+mut def bgp_peer_group(tree: ietf_dm.root, protocol: Protocol, group: PeerGroup) -> crpd24.root:
+    native = crpd24.root()
+    asn = n.as_number(protocol)
+    config = native.configuration
+    instance = protocol.name
+    if instance == "default":
+        target = config.protocols.bgp
+        if group.peer_as != asn:
+            raise ValueError("Junos global peer-groups currently support iBGP only")
+        d.reject_present([
+            ("keepalive", group.timers.keepalive is not None),
+            ("passive-mode", group.transport.passive_mode is not None),
+            ("replace-peer-as", group.as_path_options.replace_peer_as is not None),
+            ("import-policy", bool(group.apply_policy.import_policy)),
+        ], "Junos global BGP peer-group")
+        source_address = group.transport.local_address
+        if source_address is not None:
+            interface = tree.interfaces.interface.get(source_address!)
+            if interface is None:
+                # A transport local-address can be an IP or an interface ref.
+                if ":" not in source_address! and not (len(source_address!.split(".")) == 4 and all([n.digits(p) for p in source_address!.split(".")])):
+                    raise ValueError("Missing BGP source interface {source_address}")
+            else:
+                ipv4 = interface!.ipv4
+                if ipv4 is None or len(ipv4!.address) != 1:
+                    raise ValueError("BGP source interface requires exactly one IPv4 address")
+                for address in ipv4!.address:
+                    source_address = address.ip
+        ng = target.group.create(group.name, type="internal", description=group.description,
+            local_address=source_address, hold_time=group.timers.hold_time)
+        ng.export.extend(group.apply_policy.export_policy)
+        logging = group.logging_options.log_neighbor_state_changes
+        if logging is not None:
+            target.log_updown = logging
+        security = group.transport.secure_session
+        key = n.password(tree, security.enabled, security.options.md5_keychain)
+        if key is not None:
+            ng.authentication_key = junos_encrypt(key, "4")
+        for family in group.afi_safis.afi_safi:
+            n.enabled_family(family.enabled)
+            if family.enabled == False or family.apply_policy.import_policy or family.apply_policy.export_policy:
+                raise ValueError("Junos peer-group family disable/policies are not implemented")
+            if family.name == ietf_dm.iana_bgp_afi_safi_types_l3vpn_ipv4_unicast:
+                ng.family.inet_vpn.create_unicast()
+            elif family.name == ietf_dm.iana_bgp_afi_safi_types_l3vpn_ipv6_unicast:
+                ng.family.inet6_vpn.create_unicast()
+            elif family.name == ietf_dm.stratoweave_network_route_target_constraints:
+                ng.family.create_route_target()
+            else:
+                raise ValueError("Unsupported Junos BGP family {family.name}")
+        return native
+    target = config.routing_instances.instance.create(instance).protocols.bgp
+    d.reject_present([
+        ("peer-as", group.peer_as is not None), ("description", group.description is not None),
+        ("timers", group.timers.hold_time is not None or group.timers.keepalive is not None),
+        ("local-address", group.transport.local_address is not None),
+        ("security", group.transport.secure_session.enabled is not None),
+        ("logging", group.logging_options.log_neighbor_state_changes is not None),
+        ("replace-peer-as", group.as_path_options.replace_peer_as is not None),
+        ("afi-safis", len(group.afi_safis.afi_safi) > 0),
+    ], "Junos VRF BGP group")
+    ng = target.group.create(group.name, passive=group.transport.passive_mode)
+    # Neighbor policies map to a group-wide leaf-list. Ordinary list merging
+    # cannot reject policies that would unintentionally affect other peers.
+    imports = group.apply_policy.import_policy
+    exports = group.apply_policy.export_policy
+    selected: ?(list[str], list[str]) = None
+    for peer in protocol.bgp.neighbors.neighbor:
+        if peer.peer_group == group.name:
+            for neighbor_family in peer.afi_safis.afi_safi:
+                requested_imports = neighbor_family.apply_policy.import_policy
+                requested_exports = neighbor_family.apply_policy.export_policy
+                requested = (requested_imports, requested_exports)
+                if selected is not None and selected != requested:
+                    raise ValueError("Junos neighbors in one group must use identical policies")
+                if (imports and imports != requested_imports) or (exports and exports != requested_exports):
+                    raise ValueError("Junos neighbors in one group must use identical policies")
+                selected = requested
+    if selected is not None:
+        imports, exports = selected!
+    ng.import.extend(imports)
+    ng.export.extend(exports)
+    return native
+
+
+mut def bgp_neighbor(tree: ietf_dm.root, protocol: Protocol, peer: Neighbor) -> crpd24.root:
+    native = crpd24.root()
+    config = native.configuration
+    instance = protocol.name
+    if instance == "default":
+        target = config.protocols.bgp
+        d.reject_present([
+            ("peer-as", peer.peer_as is not None),
+            ("local-address", peer.transport.local_address is not None),
+            ("security", peer.transport.secure_session.enabled is not None),
+            ("timers", peer.timers.hold_time is not None or peer.timers.keepalive is not None),
+            ("replace-peer-as", peer.as_path_options.replace_peer_as is not None),
+            ("logging", peer.logging_options.log_neighbor_state_changes is not None),
+            ("afi-safis", len(peer.afi_safis.afi_safi) > 0),
+            ("apply-policy", bool(peer.apply_policy.import_policy) or bool(peer.apply_policy.export_policy)),
+        ], "Junos global BGP neighbor")
+        group_name = d.required(peer.peer_group, "BGP neighbor/peer-group")
+        target.group.create(group_name).neighbor.create(peer.remote_address!, description=peer.description, passive=peer.transport.passive_mode)
+        return native
+    target = config.routing_instances.instance.create(instance).protocols.bgp
+    d.reject_present([
+        ("local-address", peer.transport.local_address is not None),
+        ("passive-mode", peer.transport.passive_mode is not None),
+        ("logging", peer.logging_options.log_neighbor_state_changes is not None),
+        ("keepalive", peer.timers.keepalive is not None),
+        ("apply-policy", bool(peer.apply_policy.import_policy) or bool(peer.apply_policy.export_policy)),
+    ], "Junos VRF BGP neighbor")
+    group_name = d.required(peer.peer_group, "VRF BGP neighbor/peer-group")
+    ng = target.group.create(group_name)
+    nb = ng.neighbor.create(peer.remote_address!, description=peer.description,
+        hold_time=peer.timers.hold_time, as_override=peer.as_path_options.replace_peer_as)
+    if peer.peer_as is not None:
+        nb.peer_as = str(peer.peer_as!)
+    security = peer.transport.secure_session
+    key = n.password(tree, security.enabled, security.options.md5_keychain)
+    if key is not None:
+        nb.authentication_key = junos_encrypt(key, "4")
+    for family in peer.afi_safis.afi_safi:
+        n.enabled_family(family.enabled)
+        if family.name != ietf_dm.iana_bgp_afi_safi_types_ipv4_unicast or family.enabled == False:
+            raise ValueError("Junos VRF neighbors currently support IPv4 unicast")
+    return native

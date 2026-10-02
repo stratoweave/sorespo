@@ -26,8 +26,14 @@ import sorespo.layers.y_0_oper as y_0_oper
 import stratoweave.device_schema as swds
 import sorespo.devices.CiscoIosXr_25_3_1 as dev_CiscoIosXr_25_3_1
 import sorespo.devices.CiscoIosXr_25_3_1_oper as dev_CiscoIosXr_25_3_1_oper
+from sorespo.translations.model_translations import xr_system as translation_CiscoIosXr_25_3_1_0
+from sorespo.translations.model_translations import xr_routing_policy as translation_CiscoIosXr_25_3_1_1
+from sorespo.translations.model_translations import xr_network as translation_CiscoIosXr_25_3_1_2
 import sorespo.devices.JuniperCRPD_24_4R1_9 as dev_JuniperCRPD_24_4R1_9
 import sorespo.devices.JuniperCRPD_24_4R1_9_oper as dev_JuniperCRPD_24_4R1_9_oper
+from sorespo.translations.model_translations import junos_system as translation_JuniperCRPD_24_4R1_9_0
+from sorespo.translations.model_translations import junos_routing_policy as translation_JuniperCRPD_24_4R1_9_1
+from sorespo.translations.model_translations import junos_network as translation_JuniperCRPD_24_4R1_9_2
 import sorespo.devices.NokiaSRLinux_25_3_2 as dev_NokiaSRLinux_25_3_2
 import sorespo.devices.NokiaSRLinux_25_3_2_oper as dev_NokiaSRLinux_25_3_2_oper
 
@@ -229,8 +235,25 @@ generated_device_types: dict[str, swdev.DeviceType] = {
                     '/ipv4-bgp-oper:bgp/instances/instance/instance-active/vrfs/vrf/neighbors/neighbor/reset-reason',
                     '/ipv4-bgp-oper:bgp/instances/instance/instance-active/vrfs/vrf/neighbors/neighbor/last-notify-error-code',
                     '/ipv4-bgp-oper:bgp/instances/instance/instance-active/vrfs/vrf/neighbors/neighbor/last-notify-error-subcode',
+                    '/um-route-policy-cfg:routing-policy/sets/prefix-sets/prefix-set/set-name',
+                    '/um-route-policy-cfg:routing-policy/sets/prefix-sets/prefix-set/rpl-prefix-set',
+                    '/um-route-policy-cfg:routing-policy/sets/tag-sets/tag-set/set-name',
+                    '/um-route-policy-cfg:routing-policy/sets/tag-sets/tag-set/rpl-tag-set',
+                    '/um-route-policy-cfg:routing-policy/sets/community-sets/community-set/set-name',
+                    '/um-route-policy-cfg:routing-policy/sets/community-sets/community-set/rpl-community-set',
+                    '/um-route-policy-cfg:routing-policy/sets/as-path-sets/as-path-set/set-name',
+                    '/um-route-policy-cfg:routing-policy/sets/as-path-sets/as-path-set/rplas-path-set',
+                    '/um-ntp-cfg:ntp/peer-server/ipv4/ipv4-peer-server/address',
+                    '/um-ntp-cfg:ntp/peer-server/ipv4/ipv4-peer-server/type',
+                    '/um-ntp-cfg:ntp/peer-server/ipv6/ipv6-peer-server/address',
+                    '/um-ntp-cfg:ntp/peer-server/ipv6/ipv6-peer-server/type',
+                    '/um-ntp-cfg:ntp/peer-server/ipv6/ipv6-peer-server/ipv6-address',
+                    '/um-domain-cfg:domain/name-servers/name-server/order',
+                    '/um-domain-cfg:domain/name-servers/name-server/address',
+                    '/um-domain-cfg:domain/lookup/source-interface',
                 ]),
             ],
+            model_translations=[translation_CiscoIosXr_25_3_1_0, translation_CiscoIosXr_25_3_1_1, translation_CiscoIosXr_25_3_1_2],
         ),
     "JuniperCRPD_24_4R1_9": swdev.DeviceType(name="JuniperCRPD_24_4R1_9",
             adapter_type=swna.NetconfAdapter,
@@ -341,12 +364,45 @@ generated_device_types: dict[str, swdev.DeviceType] = {
                     '/jc:configuration/system/services/netconf/rfc-compliant',
                     '/jc:configuration/system/services/netconf/yang-compliant',
                     '/jc:configuration/version',
+                    '/jc:configuration/policy-options/route-filter-list/name',
+                    '/jc:configuration/policy-options/route-filter-list/rf_list/address',
+                    '/jc:configuration/policy-options/route-filter-list/rf_list/choice-ident',
+                    '/jc:configuration/policy-options/route-filter-list/rf_list/choice-value',
+                    '/jc:configuration/policy-options/as-path-group/name',
+                    '/jc:configuration/policy-options/as-path-group/as-path/name',
+                    '/jc:configuration/policy-options/as-path-group/as-path/path',
+                    '/jc:configuration/policy-options/community/name',
+                    '/jc:configuration/policy-options/community/members',
+                    '/jc:configuration/policy-options/community/invert-match',
+                    '/jc:configuration/policy-options/policy-statement/name',
+                    '/jc:configuration/policy-options/policy-statement/term/name',
+                    '/jc:configuration/policy-options/policy-statement/term/from/policy',
+                    '/jc:configuration/policy-options/policy-statement/term/from/protocol',
+                    '/jc:configuration/policy-options/policy-statement/term/from/interface',
+                    '/jc:configuration/policy-options/policy-statement/term/from/route-filter-list/name',
+                    '/jc:configuration/policy-options/policy-statement/term/from/tag',
+                    '/jc:configuration/policy-options/policy-statement/term/from/community',
+                    '/jc:configuration/policy-options/policy-statement/term/from/as-path-group',
+                    '/jc:configuration/policy-options/policy-statement/term/then/origin',
+                    '/jc:configuration/policy-options/policy-statement/term/then/local-preference/local-preference',
+                    '/jc:configuration/policy-options/policy-statement/term/then/next-hop/self',
+                    '/jc:configuration/policy-options/policy-statement/term/then/next-hop/address',
+                    '/jc:configuration/policy-options/policy-statement/term/then/metric/metric',
+                    '/jc:configuration/policy-options/policy-statement/term/then/metric/add',
+                    '/jc:configuration/policy-options/policy-statement/term/then/metric/subtract',
+                    '/jc:configuration/policy-options/policy-statement/term/then/metric/igp',
+                    '/jc:configuration/policy-options/policy-statement/term/then/community/choice-ident',
+                    '/jc:configuration/policy-options/policy-statement/term/then/community/choice-value',
+                    '/jc:configuration/policy-options/policy-statement/term/then/community/community-name',
+                    '/jc:configuration/policy-options/policy-statement/term/then/accept',
+                    '/jc:configuration/policy-options/policy-statement/term/then/reject',
                 ]),
                 swds.remove_list_user_order([
                     '/jc:configuration/protocols/bgp/group/neighbor',
                     '/jc:configuration/protocols/mpls/interface',
                 ]),
             ],
+            model_translations=[translation_JuniperCRPD_24_4R1_9_0, translation_JuniperCRPD_24_4R1_9_1, translation_JuniperCRPD_24_4R1_9_2],
         ),
     "NokiaSRLinux_25_3_2": swdev.DeviceType(name="NokiaSRLinux_25_3_2",
             adapter_type=swna.NetconfAdapter,

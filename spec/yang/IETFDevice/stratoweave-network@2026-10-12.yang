@@ -1,0 +1,68 @@
+module stratoweave-network {
+  yang-version 1.1;
+  namespace "https://stratoweave.org/yang/stratoweave-network";
+  prefix swdev;
+
+  import ietf-network-instance { prefix ni; }
+  import ietf-routing-types { prefix rt-types; }
+  import iana-bgp-afi-safi-types { prefix bt; }
+
+  organization "StratoWeave";
+  description
+    "Small device-intent extensions to published IETF models. Routing
+     protocols remain in the standard routing tree, avoiding a dependency
+     on dynamic schema mount. BGP protocol instances use the network
+     instance name; the name 'default' is reserved for global BGP.
+     IS-IS and LDP operate in the default routing instance.";
+  revision 2026-10-12 {
+    description "Initial device translation extensions.";
+  }
+
+  identity route-target-constraints {
+    base bt:afi-safi-type;
+    description "IPv4 Route Target Constraints, AFI 1 / SAFI 132.";
+    reference "RFC 4684: Constrained Route Distribution for BGP/MPLS IP VPNs";
+  }
+
+  augment "/ni:network-instances/ni:network-instance/ni:root-type" {
+    case l3vpn {
+      container vpn {
+        presence "This network instance is a BGP/MPLS L3VPN VRF.";
+        leaf route-distinguisher {
+          type rt-types:route-distinguisher;
+          description "Route distinguisher assigned to this VRF.";
+        }
+        list address-family {
+          key "name";
+          leaf name {
+            type enumeration {
+              enum ipv4-unicast;
+              enum ipv6-unicast;
+            }
+            description "VPN address family.";
+          }
+          leaf-list import-route-target {
+            type rt-types:route-target;
+            description "Route targets accepted by this VRF.";
+          }
+          leaf-list export-route-target {
+            type rt-types:route-target;
+            description "Route targets attached to exported routes.";
+          }
+          description "Per-address-family VPN membership.";
+        }
+        leaf label-allocation {
+          type enumeration {
+            enum per-vrf;
+          }
+          description "Explicit request for one MPLS label per VRF.";
+        }
+        description
+          "Device-level VPN attributes for a non-mounted L3VPN VRF.
+           This container selects the network instance's root type.
+           BGP protocols remain in /routing and use this network
+           instance's name as their protocol instance name.";
+      }
+    }
+  }
+}

@@ -1,0 +1,135 @@
+# SPDX-License-Identifier: BSD-3-Clause
+"""StratoWeave registration; mapping modules have no StratoWeave dependency."""
+from stratoweave.device_translation import adata_translation, merge
+from yang.adata import MNode
+from yang.gdata import Id
+import sorespo.devices.ietf_dm as ietf_dm
+import sorespo.translations.translation_data as data
+import sorespo.translations.network_data as network_data
+import sorespo.translations.ietf_xr25 as xr
+import sorespo.translations.ietf_crpd24 as junos
+
+
+mut def xr_network_config(tree: ietf_dm.root) -> MNode:
+    network_data.validate(tree)
+    parts: list[MNode] = []
+    for interface in tree.interfaces.interface:
+        parts.append(xr.interface(interface))
+    for instance in tree.network_instances.network_instance:
+        parts.append(xr.vpn(instance))
+    for interface in tree.routing.mpls.interfaces.interface:
+        parts.append(xr.mpls_interface(tree, interface))
+    for protocol in tree.routing.control_plane_protocols.control_plane_protocol:
+        if protocol.type == ietf_dm.ietf_bgp_bgp:
+            parts.append(xr.bgp(tree, protocol))
+            for group in protocol.bgp.peer_groups.peer_group:
+                parts.append(xr.bgp_peer_group(tree, protocol, group))
+            for peer in protocol.bgp.neighbors.neighbor:
+                parts.append(xr.bgp_neighbor(tree, protocol, peer))
+        elif protocol.type == ietf_dm.ietf_isis_isis:
+            parts.append(xr.isis(tree, protocol))
+            for interface in protocol.isis.interfaces.interface:
+                parts.append(xr.isis_interface(tree, protocol, interface))
+        elif protocol.type == ietf_dm.ietf_mpls_ldp_mpls_ldp:
+            parts.append(xr.ldp(tree, protocol))
+            for interface in protocol.mpls_ldp.discovery.interfaces.interface:
+                parts.append(xr.ldp_interface(tree, protocol, interface))
+    return merge(parts)
+
+
+mut def junos_network_config(tree: ietf_dm.root) -> MNode:
+    network_data.validate(tree)
+    parts: list[MNode] = []
+    for interface in tree.interfaces.interface:
+        parts.append(junos.interface(interface))
+    for instance in tree.network_instances.network_instance:
+        parts.append(junos.vpn(instance))
+        for family in instance.vpn!.address_family:
+            for value in family.import_route_target + family.export_route_target:
+                parts.append(junos.vpn_target(instance, value))
+    for interface in tree.routing.mpls.interfaces.interface:
+        parts.append(junos.mpls_interface(tree, interface))
+    for protocol in tree.routing.control_plane_protocols.control_plane_protocol:
+        if protocol.type == ietf_dm.ietf_bgp_bgp:
+            parts.append(junos.bgp(tree, protocol))
+            for group in protocol.bgp.peer_groups.peer_group:
+                parts.append(junos.bgp_peer_group(tree, protocol, group))
+            for peer in protocol.bgp.neighbors.neighbor:
+                parts.append(junos.bgp_neighbor(tree, protocol, peer))
+        elif protocol.type == ietf_dm.ietf_isis_isis:
+            parts.append(junos.isis(tree, protocol))
+            for interface in protocol.isis.interfaces.interface:
+                parts.append(junos.isis_interface(tree, protocol, interface))
+        elif protocol.type == ietf_dm.ietf_mpls_ldp_mpls_ldp:
+            parts.append(junos.ldp(tree, protocol))
+            for interface in protocol.mpls_ldp.discovery.interfaces.interface:
+                parts.append(junos.ldp_interface(tree, protocol, interface))
+    return merge(parts)
+
+
+mut def xr_system_config(tree: ietf_dm.root) -> MNode:
+    parts: list[MNode] = [xr.system(tree)]
+    ntp = tree.system.ntp
+    if ntp is not None:
+        for server in ntp.server:
+            parts.append(xr.ntp_server(server, ntp.enabled is None or ntp.enabled == True))
+    for server in tree.system.dns_resolver.server:
+        parts.append(xr.dns_server(server))
+    return merge(parts)
+
+
+mut def xr_routing_policy_config(tree: ietf_dm.root) -> MNode:
+    source = data.policy_input(tree)
+    parts: list[MNode] = []
+    for item in source.defined_sets.prefix_sets.prefix_set:
+        parts.append(xr.prefix_set(item))
+    for item in source.defined_sets.tag_sets.tag_set:
+        parts.append(xr.tag_set(item))
+    for item in source.defined_sets.bgp_defined_sets.community_sets.community_set:
+        parts.append(xr.community_set(item))
+    for item in source.defined_sets.bgp_defined_sets.as_path_sets.as_path_set:
+        parts.append(xr.as_path_set(item))
+    for item in source.policy_definitions.policy_definition:
+        parts.append(xr.routing_policy(item))
+    return merge(parts)
+
+
+mut def junos_routing_policy_config(tree: ietf_dm.root) -> MNode:
+    source = data.policy_input(tree)
+    parts: list[MNode] = []
+    for item in source.defined_sets.prefix_sets.prefix_set:
+        parts.append(junos.prefix_set(item))
+    for item in source.defined_sets.bgp_defined_sets.as_path_sets.as_path_set:
+        parts.append(junos.as_path_set(item))
+    for item in source.defined_sets.bgp_defined_sets.community_sets.community_set:
+        parts.append(junos.community_set(tree, item))
+    helpers: list[(str, str)] = []
+    for item in source.policy_definitions.policy_definition:
+        parts.append(junos.routing_policy(tree, item))
+        for statement in item.statements.statement:
+            conditions = statement.conditions
+            for ref, options, field in [
+                (conditions.match_prefix_set.prefix_set, conditions.match_prefix_set.match_set_options, "prefix-set"),
+                (conditions.bgp_conditions.match_as_path_set.as_path_set, conditions.bgp_conditions.match_as_path_set.match_set_options, "as-path-set")]:
+                if ref is not None and data.match_mode(options) == "invert":
+                    key = (field, ref!)
+                    if key not in helpers:
+                        helpers.append(key)
+    for field, name in helpers:
+        parts.append(junos.policy_helper(field, name))
+    return merge(parts)
+
+
+xr_system = adata_translation("ietf-system", ietf_dm.SRC_DNODE, [Id(data.SYS_NS, "system")], ietf_dm.root.from_gdata, xr_system_config)
+xr_routing_policy = adata_translation("ietf-routing-policy", ietf_dm.SRC_DNODE, [Id(data.RP_NS, "routing-policy")], ietf_dm.root.from_gdata, xr_routing_policy_config)
+junos_system = adata_translation("ietf-system", ietf_dm.SRC_DNODE, [Id(data.SYS_NS, "system")], ietf_dm.root.from_gdata, junos.system)
+junos_routing_policy = adata_translation("ietf-routing-policy", ietf_dm.SRC_DNODE, [Id(data.RP_NS, "routing-policy")], ietf_dm.root.from_gdata, junos_routing_policy_config)
+
+# These models reference each other and share /routing. Pass all four roots
+# together, once, after the RFS contributions have merged.
+network_roots = [Id(ietf_dm.NS_ietf_interfaces, "interfaces"),
+                 Id(ietf_dm.NS_ietf_routing, "routing"),
+                 Id(ietf_dm.NS_ietf_network_instance, "network-instances"),
+                 Id(ietf_dm.NS_ietf_key_chain, "key-chains")]
+xr_network = adata_translation("ietf-network", ietf_dm.SRC_DNODE, network_roots, ietf_dm.root.from_gdata, xr_network_config)
+junos_network = adata_translation("ietf-network", ietf_dm.SRC_DNODE, network_roots, ietf_dm.root.from_gdata, junos_network_config)

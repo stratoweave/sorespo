@@ -1,0 +1,333 @@
+# SPDX-License-Identifier: BSD-3-Clause
+import testing
+import yang.gdata as g
+import yang.adata
+from stratoweave.device_translation import render, merge
+import sorespo.translations.model_translations as mappings
+import sorespo.translations.ietf_xr25 as xr
+import sorespo.translations.ietf_crpd24 as junos
+import sorespo.translations.translation_data as d
+import sorespo.devices.ietf_dm as ietf_dm
+import sorespo.devices.CiscoIosXr_25_3_1 as x
+import sorespo.devices.JuniperCRPD_24_4R1_9 as j
+
+
+mut def xr_policy_config(tree: ietf_dm.root) -> x.root:
+    return x.root.from_gdata(mappings.xr_routing_policy_config(tree).to_gdata())
+
+
+mut def junos_policy_config(tree: ietf_dm.root) -> j.root:
+    return j.root.from_gdata(mappings.junos_routing_policy_config(tree).to_gdata())
+
+
+mut def xr_system_config(tree: ietf_dm.root) -> x.root:
+    return x.root.from_gdata(mappings.xr_system_config(tree).to_gdata())
+
+
+mut def policy_fixture() -> ietf_dm.root:
+    root = ietf_dm.root()
+    rp = root.routing_policy
+    ps = rp.defined_sets.prefix_sets.prefix_set.create((name="PFX", mode="ipv4"))
+    ps.prefixes.prefix_list.create((ip_prefix="10.0.0.0/8", mask_length_lower=16, mask_length_upper=24))
+    rp.defined_sets.tag_sets.tag_set.create("TAG").tag_value.append(u64(42))
+    community = rp.defined_sets.bgp_defined_sets.community_sets.community_set.create("COMM", junos_match_type="both")
+    community.member.append("65000:10")
+    rp.defined_sets.bgp_defined_sets.as_path_sets.as_path_set.create("AS").member.append("^65000$")
+    child = rp.policy_definitions.policy_definition.create("CHILD", ios_xr_policy_type="both")
+    child.statements.statement.create("accept").actions.policy_result = "accept-route"
+    policy = rp.policy_definitions.policy_definition.create("MAIN")
+    stmt = policy.statements.statement.create("z-first")
+    stmt.conditions.call_policy = "CHILD"
+    stmt.conditions.source_protocol = ietf_dm.ietf_routing_direct
+    stmt.conditions.match_prefix_set.prefix_set = "PFX"
+    stmt.conditions.match_prefix_set.match_set_options = "invert"
+    stmt.conditions.match_tag_set.tag_set = "TAG"
+    stmt.conditions.bgp_conditions.match_community_set.community_set = "COMM"
+    stmt.conditions.bgp_conditions.match_community_set.match_set_options = "invert"
+    stmt.conditions.bgp_conditions.match_as_path_set.as_path_set = "AS"
+    stmt.conditions.bgp_conditions.match_as_path_set.match_set_options = "invert"
+    bgp = stmt.actions.bgp_actions
+    bgp.set_route_origin = "igp"
+    bgp.set_local_pref = 0
+    bgp.set_next_hop = "self"
+    bgp.set_med = u64(0)
+    bgp.set_community.options = "add"
+    bgp.set_community.community_set_ref = "COMM"
+    stmt.actions.policy_result = "accept-route"
+    policy.statements.statement.create("a-last").actions.policy_result = "reject-route"
+    return root
+
+
+mut def xr_render(root: ietf_dm.root) -> g.Node:
+    result = render(root.to_gdata(), x.SRC_DNODE, [mappings.xr_system, mappings.xr_routing_policy])
+    # Round-trip against the transport bindings, including scalar types.
+    testing.assertEqual(x.root.from_gdata(result).to_gdata(), result)
+    testing.assertFalse(d.RP_NS in result.to_xmlstr())
+    testing.assertFalse(d.SYS_NS in result.to_xmlstr())
+    return result
+
+
+mut def junos_render(root: ietf_dm.root) -> g.Node:
+    result = render(root.to_gdata(), j.SRC_DNODE, [mappings.junos_system, mappings.junos_routing_policy])
+    testing.assertEqual(j.root.from_gdata(result).to_gdata(), result)
+    testing.assertFalse(d.RP_NS in result.to_xmlstr())
+    testing.assertFalse(d.SYS_NS in result.to_xmlstr())
+    return result
+
+
+def _test_xr_nso_policy_fixture():
+    root = policy_fixture()
+    result = x.root.from_gdata(xr_render(root))
+    policies = result.routing_policy.route_policies.route_policy
+    expected = """route-policy MAIN
+  if (apply CHILD-HIERARCHICAL) and (protocol is connected) and (not destination in PFX) and (tag in TAG) and (not as-path in AS) and (not community matches-any COMM) then
+    set origin igp
+    set local-preference 0
+    set next-hop self
+    set med 0
+    set community COMM additive
+    done
+  endif
+  drop
+end-policy
+"""
+    testing.assertEqual(policies.get("MAIN")!.rpl_route_policy, expected)
+    testing.assertEqual(policies.get("CHILD-HIERARCHICAL")!.rpl_route_policy, "route-policy CHILD-HIERARCHICAL\n  pass\n  done\nend-policy\n")
+    testing.assertEqual(result.routing_policy.sets.prefix_sets.prefix_set.get("PFX")!.rpl_prefix_set, "prefix-set PFX\n  10.0.0.0/8 ge 16 le 24\nend-set\n")
+    testing.assertEqual(xr_render(root), xr_render(root))
+
+
+def _test_junos_nso_policy_fixture_and_order():
+    result = j.root.from_gdata(junos_render(policy_fixture()))
+    policies = result.configuration.policy_options.policy_statement
+    testing.assertEqual([t.name for t in policies.get("MAIN")!.term], ["z-first", "a-last"])
+    term = policies.get("MAIN")!.term.get("z-first")!
+    testing.assertEqual(term.from.policy, ["CHILD", "NOT-PREFIX-SET-PFX", "NOT-AS-PATH-SET-AS"])
+    testing.assertEqual(term.from.community, ["COMM-INVERTED"])
+    testing.assertEqual(term.from.tag, [u64(42)])
+    testing.assertEqual(term.then.local_preference.local_preference, u64(0))
+    testing.assertEqual(term.then.metric.metric, u64(0))
+    testing.assertTrue(term.then.next_hop.self_!)
+    for name in ["NOT-PREFIX-SET-PFX", "NOT-AS-PATH-SET-AS"]:
+        helper = policies.get(name)!
+        testing.assertEqual([t.name for t in helper.term], ["REJECT-" + ("PFX" if name == "NOT-PREFIX-SET-PFX" else "AS"), "ACCEPT-ALL-OTHERS"])
+        testing.assertTrue(helper.term.get("ACCEPT-ALL-OTHERS")!.then.accept!)
+    testing.assertTrue(result.configuration.policy_options.community.get("COMM-INVERTED")!.invert_match!)
+
+
+def _test_typed_mappings_match_registered_output():
+    source = policy_fixture()
+    source.system.hostname = "typed-router"
+    original = source.to_gdata()
+    xr_system = xr_system_config(source)
+    xr_policy = xr_policy_config(source)
+    junos_system = junos.system(source)
+    junos_policy = junos_policy_config(source)
+    # These are vendor bindings, ready for ordinary typed field access.
+    testing.assertEqual(xr_system.hostname.system_network_name, "typed-router")
+    testing.assertEqual(junos_system.configuration.system.host_name, "typed-router")
+    testing.assertEqual([t.name for t in junos_policy.configuration.policy_options.policy_statement.get("MAIN")!.term], ["z-first", "a-last"])
+    testing.assertEqual(merge([xr_system, xr_policy]).to_gdata(), xr_render(source))
+    testing.assertEqual(merge([junos_system, junos_policy]).to_gdata(), junos_render(source))
+    testing.assertEqual(source.to_gdata(), original)
+    xr_system.hostname.system_network_name = "local-change"
+    junos_system.configuration.system.host_name = "local-change"
+    testing.assertEqual(xr_system_config(source).hostname.system_network_name, "typed-router")
+    testing.assertEqual(junos.system(source).configuration.system.host_name, "typed-router")
+
+
+def _test_prefix_length_cases():
+    cases: list[(str, str, u64, u64, str, str)] = [
+        ("ipv4", "10.0.0.1/32", 32, 32, "10.0.0.1", "exact"),
+        ("ipv6", "2001:db8::1/128", 128, 128, "2001:db8::1", "exact"),
+        ("ipv4", "10.0.0.0/8", 8, 8, "10.0.0.0/8", "exact"),
+        ("ipv4", "10.0.0.0/8", 8, 32, "10.0.0.0/8 le 32", "orlonger"),
+        ("ipv4", "10.0.0.0/8", 16, 32, "10.0.0.0/8 ge 16", "prefix-length-range"),
+        ("ipv4", "10.0.0.0/8", 24, 24, "10.0.0.0/8 eq 24", "prefix-length-range"),
+        ("ipv6", "2001:db8::/32", 48, 64, "2001:db8::/32 ge 48 le 64", "prefix-length-range")]
+    for mode, prefix, lower, upper, rpl, choice in cases:
+        root = ietf_dm.root()
+        root.routing_policy.defined_sets.prefix_sets.prefix_set.create((name="P", mode=mode)).prefixes.prefix_list.create((ip_prefix=prefix, mask_length_lower=lower, mask_length_upper=upper))
+        xrconf = x.root.from_gdata(xr_render(root))
+        testing.assertEqual(xrconf.routing_policy.sets.prefix_sets.prefix_set.get("P")!.rpl_prefix_set, "prefix-set P\n  {rpl}\nend-set\n")
+        jconf = j.root.from_gdata(junos_render(root))
+        testing.assertEqual([e.choice_ident for e in jconf.configuration.policy_options.route_filter_list.get("P")!.rf_list], [choice])
+
+
+def _test_system_and_native_coexistence():
+    root = ietf_dm.root()
+    root.system.hostname = "router"
+    xrconf = x.root()
+    xrconf.interfaces.interface.create("Loopback0", description="native")
+    combined = merge([root, xrconf]).to_gdata()
+    result = render(combined, x.SRC_DNODE, [mappings.xr_system])
+    native = x.root.from_gdata(result)
+    testing.assertEqual(native.hostname.system_network_name, "router")
+    testing.assertEqual(native.interfaces.interface.get("Loopback0")!.description, "native")
+    testing.assertEqual(j.root.from_gdata(junos_render(root)).configuration.system.host_name, "router")
+    ntp = root.system.create_ntp(enabled=True)
+    ntp.server.create("v4").udp.address = "192.0.2.1"
+    ntp.server.create("v6").udp.address = "2001:db8::1"
+    root.system.dns_resolver.server.create("dns").udp_and_tcp.address = "2001:db8::53"
+    result = xr_render(root)
+    testing.assertTrue("ipv4-peer-server" in result.to_xmlstr())
+    testing.assertTrue("ipv6-peer-server" in result.to_xmlstr())
+    testing.assertTrue("Loopback0" in result.to_xmlstr())
+    ntp.enabled = False
+    testing.assertFalse("ipv6-peer-server" in xr_render(root).to_xmlstr())
+    root.system.ntp = None
+    root = ietf_dm.root()
+    root.system.hostname = "router"
+    testing.assertEqual(xr_render(root), xr_system_config(root).to_gdata())
+
+
+mut def rejects(mapper: mut(ietf_dm.root) -> yang.adata.MNode, root: ietf_dm.root, fragment: str):
+    message = ""
+    try:
+        mapper(root)
+    except Exception as error:
+        message = str(error)
+    testing.assertTrue(fragment in message)
+
+
+def _test_unsupported_system_features():
+    root = ietf_dm.root()
+    root.system.create_ntp(enabled=True)
+    rejects(junos.system, root, "ntp")
+    root = ietf_dm.root()
+    root.system.dns_resolver.server.create("dns").udp_and_tcp.address = "192.0.2.53"
+    rejects(junos.system, root, "dns-resolver")
+    dns = root.system.dns_resolver.server.get("dns")!
+    dns.udp_and_tcp.port = 5353
+    rejects(xr_system_config, root, "port 53")
+    root = ietf_dm.root()
+    root.system.authentication.user.create("alice")
+    rejects(xr_system_config, root, "authentication")
+    rejects(junos.system, root, "authentication")
+    root = ietf_dm.root()
+    root.system.create_ntp().server.create("n", prefer=True).udp.address = "192.0.2.1"
+    rejects(xr_system_config, root, "plain servers")
+
+
+def _test_unsupported_policy_features():
+    root = policy_fixture()
+    stmt = root.routing_policy.policy_definitions.policy_definition.get("MAIN")!.statements.statement.get("z-first")!
+    stmt.conditions.match_prefix_set.match_set_options = "all"
+    rejects(xr_policy_config, root, "all")
+    rejects(junos_policy_config, root, "all")
+    stmt.conditions.match_prefix_set.match_set_options = "any"
+    stmt.actions.bgp_actions.set_community.community_set_ref = None
+    stmt.actions.bgp_actions.set_community.community.append("65000:2")
+    rejects(junos_policy_config, root, "inline")
+    testing.assertTrue("set community (65000:2) additive" in xr_policy_config(root).to_gdata().to_xmlstr())
+    stmt.actions.bgp_actions.set_community.community = []
+    root.routing_policy.defined_sets.tag_sets.tag_set.get("TAG")!.tag_value.append(u64(43))
+    rejects(junos_policy_config, root, "one tag")
+    root = policy_fixture()
+    root.routing_policy.policy_definitions.policy_definition.create("NOT-PREFIX-SET-PFX")
+    rejects(junos_policy_config, root, "collision")
+    for reverse in [False, True]:
+        root = ietf_dm.root()
+        communities = root.routing_policy.defined_sets.bgp_defined_sets.community_sets.community_set
+        names = ["COMM", "COMM-INVERTED"]
+        if reverse:
+            names.reverse()
+        for name in names:
+            communities.create(name, junos_match_type="both").member.append("65000:10")
+        rejects(junos_policy_config, root, "community name collision")
+        alias = communities.get("COMM-INVERTED")!
+        alias.junos_match_type = "inverted"
+        testing.assertEqual(len(junos_policy_config(root).configuration.policy_options.community), 3)
+    root = ietf_dm.root()
+    root.routing_policy.defined_sets.prefix_sets.prefix_set.create((name="bad", mode="ipv4")).prefixes.prefix_list.create((ip_prefix="10.0.0.0/8", mask_length_lower=7, mask_length_upper=16))
+    rejects(xr_policy_config, root, "Invalid prefix length")
+    rejects(junos_policy_config, root, "Invalid prefix length")
+
+
+def _test_typed_unsupported_fields_preserve_presence():
+    root = policy_fixture()
+    stmt = root.routing_policy.policy_definitions.policy_definition.get("MAIN")!.statements.statement.get("z-first")!
+    stmt.conditions.bgp_conditions.med.value = 0
+    rejects(xr_policy_config, root, "/conditions/bgp-conditions/med")
+    rejects(junos_policy_config, root, "/conditions/bgp-conditions/med")
+    stmt.conditions.bgp_conditions.med.value = None
+    stmt.conditions.bgp_conditions.community_count.eq = False
+    rejects(xr_policy_config, root, "/conditions/bgp-conditions/community-count")
+    rejects(junos_policy_config, root, "/conditions/bgp-conditions/community-count")
+    stmt.conditions.bgp_conditions.community_count.eq = None
+    stmt.conditions.bgp_conditions.local_pref.value = 0
+    rejects(xr_policy_config, root, "/conditions/bgp-conditions/local-pref")
+    rejects(junos_policy_config, root, "/conditions/bgp-conditions/local-pref")
+    stmt.conditions.bgp_conditions.local_pref.value = None
+    stmt.conditions.bgp_conditions.extended_community_count.eq = False
+    rejects(xr_policy_config, root, "/conditions/bgp-conditions/extended-community-count")
+    rejects(junos_policy_config, root, "/conditions/bgp-conditions/extended-community-count")
+    stmt.conditions.bgp_conditions.extended_community_count.eq = None
+    stmt.actions.bgp_actions.set_as_path_prepend.use_last_as = False
+    rejects(xr_policy_config, root, "/actions/bgp-actions/set-as-path-prepend")
+    rejects(junos_policy_config, root, "/actions/bgp-actions/set-as-path-prepend")
+    stmt.actions.bgp_actions.set_as_path_prepend.use_last_as = None
+    stmt.actions.bgp_actions.set_large_community.community.append("65000:1:2")
+    rejects(xr_policy_config, root, "/actions/bgp-actions/set-large-community")
+    rejects(junos_policy_config, root, "/actions/bgp-actions/set-large-community")
+    stmt.actions.bgp_actions.set_large_community.community = []
+    stmt.actions.set_tag = u64(0)
+    rejects(xr_policy_config, root, "/actions/set-tag")
+    rejects(junos_policy_config, root, "/actions/set-tag")
+    root = ietf_dm.root()
+    root.system.dns_resolver.options.timeout = 0
+    rejects(xr_system_config, root, "/system/dns-resolver/options")
+    rejects(junos.system, root, "/system/dns-resolver/options")
+    # Empty keyed entries are still configured data.
+    root = ietf_dm.root()
+    root.routing_policy.defined_sets.neighbor_sets.neighbor_set.create("unsupported")
+    rejects(xr_policy_config, root, "/routing-policy/defined-sets/neighbor-sets")
+    rejects(junos_policy_config, root, "/routing-policy/defined-sets/neighbor-sets")
+    root = ietf_dm.root()
+    root.routing_policy.defined_sets.bgp_defined_sets.next_hop_sets.next_hop_set.create("unsupported")
+    rejects(xr_policy_config, root, "/routing-policy/defined-sets/bgp-defined-sets/next-hop-sets")
+    rejects(junos_policy_config, root, "/routing-policy/defined-sets/bgp-defined-sets/next-hop-sets")
+
+
+def _test_community_numeric_and_identity_values():
+    # The source union accepts uint32 and identityref as well as AS:value.
+    testing.assertEqual(d.community_values([u64(4259840010), ietf_dm.iana_bgp_community_types_no_export]), ["65000:10", "65535:65281"])
+    root = ietf_dm.root()
+    root.routing_policy.defined_sets.bgp_defined_sets.community_sets.community_set.create("NUMERIC").member.append(u64(4259840010))
+    root.routing_policy.defined_sets.bgp_defined_sets.community_sets.community_set.create("WELL-KNOWN").member.append(ietf_dm.iana_bgp_community_types_no_export)
+    xrconf = x.root.from_gdata(xr_render(root))
+    testing.assertEqual(xrconf.routing_policy.sets.community_sets.community_set.get("NUMERIC")!.rpl_community_set, "community-set NUMERIC\n  65000:10\nend-set\n")
+    testing.assertEqual(xrconf.routing_policy.sets.community_sets.community_set.get("WELL-KNOWN")!.rpl_community_set, "community-set WELL-KNOWN\n  65535:65281\nend-set\n")
+    jconf = j.root.from_gdata(junos_render(root))
+    testing.assertEqual(jconf.configuration.policy_options.community.get("NUMERIC")!.members, ["65000:10"])
+    testing.assertEqual(jconf.configuration.policy_options.community.get("WELL-KNOWN")!.members, ["65535:65281"])
+
+
+def _test_policy_contributions_merge_at_native_paths():
+    root = ietf_dm.root()
+    sets = root.routing_policy.defined_sets.prefix_sets.prefix_set
+    ipv4 = sets.create((name="PFX", mode="ipv4"))
+    ipv4.prefixes.prefix_list.create((ip_prefix="10.0.0.0/8", mask_length_lower=16, mask_length_upper=24))
+    ipv6 = sets.create((name="PFX", mode="ipv6"))
+    ipv6.prefixes.prefix_list.create((ip_prefix="2001:db8::/32", mask_length_lower=48, mask_length_upper=64))
+    rejects(xr_policy_config, root, "Cannot merge leaves with different values")
+    rejects(xr_policy_config, root, "rpl-prefix-set")
+    native = junos_policy_config(root)
+    testing.assertEqual(len(native.configuration.policy_options.route_filter_list.get("PFX")!.rf_list), 2)
+    root = ietf_dm.root()
+    policies = root.routing_policy.policy_definitions.policy_definition
+    policies.create("P", ios_xr_policy_type="both").statements.statement.create("accept").actions.policy_result = "accept-route"
+    policies.create("P-HIERARCHICAL").statements.statement.create("reject").actions.policy_result = "reject-route"
+    rejects(xr_policy_config, root, "rpl-route-policy")
+
+
+def _test_policy_helpers_are_contributed_once():
+    root = policy_fixture()
+    other = root.routing_policy.policy_definitions.policy_definition.create("OTHER")
+    condition = other.statements.statement.create("match").conditions.bgp_conditions.match_as_path_set
+    condition.as_path_set = "AS"
+    condition.match_set_options = "invert"
+    native = junos_policy_config(root)
+    policies = native.configuration.policy_options.policy_statement
+    testing.assertEqual(policies.get("NOT-AS-PATH-SET-AS")!.term.get("REJECT-AS")!.from.as_path_group, ["AS"])
+    testing.assertEqual(policies.get("OTHER")!.term.get("match")!.from.policy, ["NOT-AS-PATH-SET-AS"])

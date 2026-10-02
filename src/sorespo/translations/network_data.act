@@ -1,0 +1,146 @@
+"""IETF network input validation and value parsing."""
+import sorespo.devices.ietf_dm as m
+from sorespo.devices.ietf_dm import ietf_routing__routing__control_plane_protocols__control_plane_protocol_entry as Protocol
+import sorespo.translations.translation_data as d
+
+
+def as_number(protocol: Protocol) -> u64:
+    global_config = protocol.bgp.global
+    if global_config is None or global_config!.as_ is None:
+        raise ValueError("BGP instance {protocol.name} requires a local AS")
+    return global_config!.as_!
+
+
+def vpn_numbers(value: str) -> (u64, u64):
+    parts = value.split(":")
+    if len(parts) != 3 or parts[0] != "0":
+        raise ValueError("Translation supports type-0 RD/RT values, got {value}")
+    asn, number = int(parts[1]), int(parts[2])
+    if not (0 <= asn and asn <= 65535 and 0 <= number and number <= 4294967295):
+        raise ValueError("RD/RT value outside type-0 range: {value}")
+    return u64(asn), u64(number)
+
+
+def net_addresses(protocol: Protocol) -> list[str]:
+    system_id = protocol.isis.system_id
+    areas = protocol.isis.area_address
+    if system_id is None:
+        if areas:
+            raise ValueError("IS-IS area addresses require a system-id")
+        return []
+    if not areas:
+        raise ValueError("IS-IS system-id requires an area address")
+    return ["{area}.{system_id}.00" for area in areas]
+
+
+def password(tree: m.root, enabled: ?bool, reference: ?str) -> ?str:
+    if reference is None:
+        if enabled == True:
+            raise ValueError("Enabled BGP session security requires an MD5 key-chain")
+        return None
+    if enabled != True:
+        raise ValueError("BGP MD5 key-chain requires secure-session/enabled=true")
+    chain = tree.key_chains.key_chain.get(reference!)
+    if chain is None or len(chain!.key) != 1:
+        raise ValueError("BGP MD5 requires a key-chain with exactly one key")
+    for key in chain!.key:
+        if key.crypto_algorithm != m.ietf_key_chain_md5:
+            raise ValueError("BGP MD5 key-chain requires the md5 algorithm")
+        return d.required(key.key_string.keystring, "key-chain/key/key-string")
+    raise ValueError("Empty BGP key-chain")
+
+
+def enabled_family(enabled: ?bool):
+    # The BGP draft defaults enabled to false. A keyed entry alone must never
+    # turn a family on in the native output.
+    if enabled != True:
+        raise ValueError("BGP address families require explicit enabled=true")
+
+
+def validate(tree: m.root):
+    instances = tree.network_instances.network_instance
+    used_keys: set[str] = set()
+    for interface in tree.interfaces.interface:
+        if interface.bind_ni_name is not None and instances.get(interface.bind_ni_name!) is None:
+            raise ValueError("Unknown interface network-instance {interface.bind_ni_name}")
+        if interface.parent_interface is not None:
+            if tree.interfaces.interface.get(interface.parent_interface!) is None:
+                raise ValueError("Missing parent interface {interface.parent_interface}")
+            if interface.type != m.iana_if_type_l2vlan:
+                raise ValueError("VLAN subinterfaces require type l2vlan")
+            parent, separator, unit = interface.name.rpartition(".")
+            if not separator or parent != interface.parent_interface or not digits(unit):
+                raise ValueError("Subinterface {interface.name} must use parent.<unit> naming")
+        tag = interface.encapsulation.dot1q_vlan.outer_tag
+        if tag.vlan_id is not None or tag.tag_type is not None:
+            if interface.parent_interface is None or tag.tag_type != m.ieee802_dot1q_types_c_vlan or tag.vlan_id is None:
+                raise ValueError("Only explicit single C-VLAN subinterfaces are supported")
+        if interface.parent_interface is not None and tag.vlan_id is None:
+            raise ValueError("VLAN subinterface requires a VLAN ID")
+        if interface.ipv4 is not None:
+            for address in interface.ipv4!.address:
+                if address.prefix_length is None:
+                    raise ValueError("IPv4 address requires a prefix length")
+                if address.prefix_length! > 32:
+                    raise ValueError("Invalid IPv4 prefix length {address.prefix_length!}")
+    for instance in instances:
+        if instance.name == "default":
+            raise ValueError("Network instance name 'default' is reserved for global BGP")
+        if instance.vpn is None:
+            raise ValueError("Network instances require VPN attributes")
+        vpn = instance.vpn!
+        if vpn.route_distinguisher is not None:
+            vpn_numbers(vpn.route_distinguisher!)
+            if tree.routing.control_plane_protocols.control_plane_protocol.get((m.ietf_bgp_bgp, instance.name)) is None:
+                raise ValueError("VPN route distinguisher requires a BGP instance named after the VRF")
+        for family in vpn.address_family:
+            if family.name != "ipv4-unicast":
+                raise ValueError("Only IPv4 VRF address families are supported")
+            for target in family.import_route_target + family.export_route_target:
+                vpn_numbers(target)
+    for protocol in tree.routing.control_plane_protocols.control_plane_protocol:
+        # Only BGP names select a VRF. IS-IS and LDP names identify global processes.
+        context = protocol.name if protocol.type == m.ietf_bgp_bgp else "default"
+        if context != "default" and instances.get(context) is None:
+            raise ValueError("BGP instance name must be 'default' or match a network instance: {context}")
+        if protocol.type == m.ietf_bgp_bgp:
+            as_number(protocol)
+            groups = protocol.bgp.peer_groups.peer_group
+            for group in groups:
+                security = group.transport.secure_session
+                password(tree, security.enabled, security.options.md5_keychain)
+                if security.options.md5_keychain is not None:
+                    used_keys.add(security.options.md5_keychain!)
+            for neighbor in protocol.bgp.neighbors.neighbor:
+                if neighbor.remote_address is None:
+                    raise ValueError("BGP neighbor requires remote-address")
+                if context != "default" and neighbor.peer_as is None:
+                    raise ValueError("VRF BGP neighbors require a peer-as")
+                if neighbor.peer_group is not None and groups.get(neighbor.peer_group!) is None:
+                    raise ValueError("Unknown BGP peer-group {neighbor.peer_group}")
+                security = neighbor.transport.secure_session
+                password(tree, security.enabled, security.options.md5_keychain)
+                if security.options.md5_keychain is not None:
+                    used_keys.add(security.options.md5_keychain!)
+        elif protocol.type == m.ietf_isis_isis:
+            if protocol.isis.level_type not in [None, "level-2"] or protocol.isis.metric_type.value not in [None, "wide-only"]:
+                raise ValueError("Only level-2 wide-metric IS-IS is supported")
+            net_addresses(protocol)
+            for interface in protocol.isis.interfaces.interface:
+                if tree.interfaces.interface.get(interface.name) is None:
+                    raise ValueError("Missing IS-IS interface {interface.name}")
+                if interface.level_type not in [None, "level-2"] or interface.interface_type not in [None, "point-to-point"]:
+                    raise ValueError("Unsupported IS-IS interface mode")
+        elif protocol.type == m.ietf_mpls_ldp_mpls_ldp:
+            for interface in protocol.mpls_ldp.discovery.interfaces.interface:
+                if tree.interfaces.interface.get(interface.name) is None:
+                    raise ValueError("Missing LDP interface {interface.name}")
+        else:
+            raise ValueError("Unsupported routing protocol {protocol.type}")
+    for chain in tree.key_chains.key_chain:
+        if chain.name not in used_keys:
+            raise ValueError("Unreferenced key-chain {chain.name}; only BGP MD5 keys are supported")
+
+
+def digits(value: str) -> bool:
+    return bool(value) and all([c in "0123456789" for c in value])

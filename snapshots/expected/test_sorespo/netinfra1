@@ -2,416 +2,482 @@
   <device>
     <name>AMS-CORE-1</name>
     <config>
-      <hostname xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-hostname-cfg">
-        <system-network-name>AMS-CORE-1</system-network-name>
-      </hostname>
-      <interfaces xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-interface-cfg">
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
         <interface>
-          <interface-name>GigabitEthernet0/0/0/0</interface-name>
+          <name>GigabitEthernet0/0/0/0</name>
           <description>Link to FRA-CORE-1 [GigabitEthernet0/0/0/0]</description>
-          <ipv4>
-            <addresses xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-if-ip-address-cfg">
-              <address>
-                <address>10.0.7.1</address>
-                <netmask>255.255.255.252</netmask>
-              </address>
-            </addresses>
+          <type xmlns:iana-if-type="urn:ietf:params:xml:ns:yang:iana-if-type">iana-if-type:ethernetCsmacd</type>
+          <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+            <address>
+              <ip>10.0.7.1</ip>
+              <prefix-length>30</prefix-length>
+            </address>
           </ipv4>
         </interface>
         <interface>
-          <interface-name>Loopback0</interface-name>
-          <ipv4>
-            <addresses xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-if-ip-address-cfg">
-              <address>
-                <address>10.0.0.1</address>
-                <netmask>255.255.255.255</netmask>
-              </address>
-            </addresses>
+          <name>Loopback0</name>
+          <type xmlns:iana-if-type="urn:ietf:params:xml:ns:yang:iana-if-type">iana-if-type:softwareLoopback</type>
+          <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+            <address>
+              <ip>10.0.0.1</ip>
+              <prefix-length>32</prefix-length>
+            </address>
           </ipv4>
         </interface>
       </interfaces>
-      <mpls xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-mpls-ldp-cfg">
-        <ldp>
-          <address-families>
-            <address-family>
-              <af-name>ipv4</af-name>
-            </address-family>
-          </address-families>
+      <key-chains xmlns="urn:ietf:params:xml:ns:yang:ietf-key-chain">
+        <key-chain>
+          <name>ibgp</name>
+          <key>
+            <key-id>1</key-id>
+            <crypto-algorithm xmlns:ietf-key-chain="urn:ietf:params:xml:ns:yang:ietf-key-chain">ietf-key-chain:md5</crypto-algorithm>
+            <key-string>
+              <keystring>ibgp-authentication-key</keystring>
+            </key-string>
+          </key>
+        </key-chain>
+      </key-chains>
+      <routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing">
+        <mpls xmlns="urn:ietf:params:xml:ns:yang:ietf-mpls">
           <interfaces>
             <interface>
-              <interface-name>GigabitEthernet0/0/0/0</interface-name>
+              <name>GigabitEthernet0/0/0/0</name>
+              <mpls-enabled>true</mpls-enabled>
             </interface>
           </interfaces>
-        </ldp>
-      </mpls>
-      <routing-policy xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-route-policy-cfg">
-        <route-policies>
-          <route-policy>
-            <route-policy-name>ACCEPT</route-policy-name>
-            <rpl-route-policy>route-policy ACCEPT
-  done
-end-policy
-</rpl-route-policy>
-          </route-policy>
-        </route-policies>
-      </routing-policy>
-      <router xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-router-bgp-cfg">
-        <bgp>
-          <as>
-            <as-number>65001</as-number>
-            <address-families>
-              <address-family>
-                <af-name>vpnv4-unicast</af-name>
-              </address-family>
-              <address-family>
-                <af-name>vpnv6-unicast</af-name>
-              </address-family>
-            </address-families>
-            <bgp>
-              <router-id>10.0.0.1</router-id>
+        </mpls>
+        <control-plane-protocols>
+          <control-plane-protocol>
+            <type xmlns:ietf-bgp="urn:ietf:params:xml:ns:yang:ietf-bgp">ietf-bgp:bgp</type>
+            <name>default</name>
+            <bgp xmlns="urn:ietf:params:xml:ns:yang:ietf-bgp">
+              <global>
+                <afi-safis>
+                  <afi-safi>
+                    <name xmlns:iana-bgp-afi-safi-types="urn:ietf:params:xml:ns:yang:iana-bgp-afi-safi-types">iana-bgp-afi-safi-types:l3vpn-ipv4-unicast</name>
+                    <enabled>true</enabled>
+                  </afi-safi>
+                  <afi-safi>
+                    <name xmlns:iana-bgp-afi-safi-types="urn:ietf:params:xml:ns:yang:iana-bgp-afi-safi-types">iana-bgp-afi-safi-types:l3vpn-ipv6-unicast</name>
+                    <enabled>true</enabled>
+                  </afi-safi>
+                </afi-safis>
+                <as>65001</as>
+                <identifier>10.0.0.1</identifier>
+              </global>
+              <neighbors>
+                <neighbor>
+                  <neighbor-key>10.0.0.2</neighbor-key>
+                  <description>FRA-CORE-1</description>
+                  <peer-group>IPV4-IBGP</peer-group>
+                  <remote-address>10.0.0.2</remote-address>
+                </neighbor>
+                <neighbor>
+                  <neighbor-key>10.0.0.3</neighbor-key>
+                  <description>STO-CORE-1</description>
+                  <peer-group>IPV4-IBGP</peer-group>
+                  <remote-address>10.0.0.3</remote-address>
+                </neighbor>
+              </neighbors>
+              <peer-groups>
+                <peer-group>
+                  <name>IPV4-IBGP</name>
+                  <afi-safis>
+                    <afi-safi>
+                      <name xmlns:iana-bgp-afi-safi-types="urn:ietf:params:xml:ns:yang:iana-bgp-afi-safi-types">iana-bgp-afi-safi-types:l3vpn-ipv4-unicast</name>
+                      <enabled>true</enabled>
+                    </afi-safi>
+                    <afi-safi>
+                      <name xmlns:iana-bgp-afi-safi-types="urn:ietf:params:xml:ns:yang:iana-bgp-afi-safi-types">iana-bgp-afi-safi-types:l3vpn-ipv6-unicast</name>
+                      <enabled>true</enabled>
+                    </afi-safi>
+                  </afi-safis>
+                  <peer-as>65001</peer-as>
+                  <transport>
+                    <local-address>Loopback0</local-address>
+                    <secure-session>
+                      <enabled>true</enabled>
+                      <options>
+                        <md5-keychain>ibgp</md5-keychain>
+                      </options>
+                    </secure-session>
+                  </transport>
+                </peer-group>
+              </peer-groups>
             </bgp>
-            <neighbor-groups>
-              <neighbor-group>
-                <neighbor-group-name>IPV4-IBGP</neighbor-group-name>
-                <address-families>
-                  <address-family>
-                    <af-name>vpnv4-unicast</af-name>
-                  </address-family>
-                  <address-family>
-                    <af-name>vpnv6-unicast</af-name>
-                  </address-family>
-                </address-families>
-                <password>
-                  <encrypted>045209011F6C4D5B1D11001906020F053E222B267E3E270A</encrypted>
-                </password>
-                <remote-as>65001</remote-as>
-                <update-source>Loopback0</update-source>
-              </neighbor-group>
-            </neighbor-groups>
-            <neighbors>
-              <neighbor>
-                <address>10.0.0.2</address>
-                <description>FRA-CORE-1</description>
-                <use>
-                  <neighbor-group>IPV4-IBGP</neighbor-group>
-                </use>
-              </neighbor>
-              <neighbor>
-                <address>10.0.0.3</address>
-                <description>STO-CORE-1</description>
-                <use>
-                  <neighbor-group>IPV4-IBGP</neighbor-group>
-                </use>
-              </neighbor>
-            </neighbors>
-          </as>
-        </bgp>
-      </router>
-      <router xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-router-isis-cfg">
-        <isis>
-          <processes>
-            <process>
-              <process-id>1</process-id>
-              <address-families>
-                <address-family>
-                  <af-name>ipv4</af-name>
-                  <saf-name>unicast</saf-name>
-                  <metric-style>
-                    <wide/>
-                  </metric-style>
-                </address-family>
-              </address-families>
+          </control-plane-protocol>
+          <control-plane-protocol>
+            <type xmlns:ietf-isis="urn:ietf:params:xml:ns:yang:ietf-isis">ietf-isis:isis</type>
+            <name>1</name>
+            <isis xmlns="urn:ietf:params:xml:ns:yang:ietf-isis">
+              <area-address>49.0001</area-address>
               <interfaces>
                 <interface>
-                  <interface-name>GigabitEthernet0/0/0/0</interface-name>
-                  <address-families>
-                    <address-family>
-                      <af-name>ipv4</af-name>
-                      <saf-name>unicast</saf-name>
-                      <metric-levels>
-                        <metric-level>
-                          <level-number>2</level-number>
-                          <default-metric>5000</default-metric>
-                        </metric-level>
-                      </metric-levels>
-                    </address-family>
-                  </address-families>
-                  <circuit-type>level-2-only</circuit-type>
-                  <point-to-point/>
+                  <name>GigabitEthernet0/0/0/0</name>
+                  <interface-type>point-to-point</interface-type>
+                  <level-type>level-2</level-type>
+                  <metric>
+                    <level-2>
+                      <value>5000</value>
+                    </level-2>
+                  </metric>
                 </interface>
                 <interface>
-                  <interface-name>Loopback0</interface-name>
-                  <address-families>
-                    <address-family>
-                      <af-name>ipv4</af-name>
-                      <saf-name>unicast</saf-name>
-                    </address-family>
-                  </address-families>
-                  <state>passive</state>
+                  <name>Loopback0</name>
+                  <passive>true</passive>
                 </interface>
               </interfaces>
-              <is-type>level-2-only</is-type>
-              <nets>
-                <net>
-                  <net-id>49.0001.0100.0000.0001.00</net-id>
-                </net>
-              </nets>
-            </process>
-          </processes>
-        </isis>
-      </router>
+              <level-type>level-2</level-type>
+              <metric-type>
+                <value>wide-only</value>
+              </metric-type>
+              <system-id>0100.0000.0001</system-id>
+            </isis>
+          </control-plane-protocol>
+          <control-plane-protocol>
+            <type xmlns:ietf-mpls-ldp="urn:ietf:params:xml:ns:yang:ietf-mpls-ldp">ietf-mpls-ldp:mpls-ldp</type>
+            <name>ldp</name>
+            <mpls-ldp xmlns="urn:ietf:params:xml:ns:yang:ietf-mpls-ldp">
+              <discovery>
+                <interfaces>
+                  <interface>
+                    <name>GigabitEthernet0/0/0/0</name>
+                    <address-families>
+                      <ipv4>
+                        <enabled>true</enabled>
+                      </ipv4>
+                    </address-families>
+                  </interface>
+                </interfaces>
+              </discovery>
+              <global>
+                <address-families>
+                  <ipv4>
+                    <enabled>true</enabled>
+                  </ipv4>
+                </address-families>
+              </global>
+            </mpls-ldp>
+          </control-plane-protocol>
+        </control-plane-protocols>
+      </routing>
+      <routing-policy xmlns="urn:ietf:params:xml:ns:yang:ietf-routing-policy">
+        <policy-definitions>
+          <policy-definition>
+            <name>ACCEPT</name>
+            <statements>
+              <statement>
+                <name>accept</name>
+                <actions>
+                  <policy-result>accept-route</policy-result>
+                </actions>
+              </statement>
+            </statements>
+          </policy-definition>
+        </policy-definitions>
+      </routing-policy>
+      <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
+        <hostname>AMS-CORE-1</hostname>
+      </system>
     </config>
-    <modset_id>11381456856284907834</modset_id>
+    <modset_id>CiscoIosXr_25_3_1:2:11381456856284907834</modset_id>
   </device>
   <device>
     <name>FRA-CORE-1</name>
     <config>
-      <hostname xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-hostname-cfg">
-        <system-network-name>FRA-CORE-1</system-network-name>
-      </hostname>
-      <interfaces xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-interface-cfg">
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
         <interface>
-          <interface-name>GigabitEthernet0/0/0/0</interface-name>
+          <name>GigabitEthernet0/0/0/0</name>
           <description>Link to AMS-CORE-1 [GigabitEthernet0/0/0/0]</description>
-          <ipv4>
-            <addresses xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-if-ip-address-cfg">
-              <address>
-                <address>10.0.7.2</address>
-                <netmask>255.255.255.252</netmask>
-              </address>
-            </addresses>
+          <type xmlns:iana-if-type="urn:ietf:params:xml:ns:yang:iana-if-type">iana-if-type:ethernetCsmacd</type>
+          <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+            <address>
+              <ip>10.0.7.2</ip>
+              <prefix-length>30</prefix-length>
+            </address>
           </ipv4>
         </interface>
         <interface>
-          <interface-name>Loopback0</interface-name>
-          <ipv4>
-            <addresses xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-if-ip-address-cfg">
-              <address>
-                <address>10.0.0.2</address>
-                <netmask>255.255.255.255</netmask>
-              </address>
-            </addresses>
+          <name>Loopback0</name>
+          <type xmlns:iana-if-type="urn:ietf:params:xml:ns:yang:iana-if-type">iana-if-type:softwareLoopback</type>
+          <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+            <address>
+              <ip>10.0.0.2</ip>
+              <prefix-length>32</prefix-length>
+            </address>
           </ipv4>
         </interface>
       </interfaces>
-      <mpls xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-mpls-ldp-cfg">
-        <ldp>
-          <address-families>
-            <address-family>
-              <af-name>ipv4</af-name>
-            </address-family>
-          </address-families>
+      <key-chains xmlns="urn:ietf:params:xml:ns:yang:ietf-key-chain">
+        <key-chain>
+          <name>ibgp</name>
+          <key>
+            <key-id>1</key-id>
+            <crypto-algorithm xmlns:ietf-key-chain="urn:ietf:params:xml:ns:yang:ietf-key-chain">ietf-key-chain:md5</crypto-algorithm>
+            <key-string>
+              <keystring>ibgp-authentication-key</keystring>
+            </key-string>
+          </key>
+        </key-chain>
+      </key-chains>
+      <routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing">
+        <mpls xmlns="urn:ietf:params:xml:ns:yang:ietf-mpls">
           <interfaces>
             <interface>
-              <interface-name>GigabitEthernet0/0/0/0</interface-name>
+              <name>GigabitEthernet0/0/0/0</name>
+              <mpls-enabled>true</mpls-enabled>
             </interface>
           </interfaces>
-        </ldp>
-      </mpls>
-      <routing-policy xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-route-policy-cfg">
-        <route-policies>
-          <route-policy>
-            <route-policy-name>ACCEPT</route-policy-name>
-            <rpl-route-policy>route-policy ACCEPT
-  done
-end-policy
-</rpl-route-policy>
-          </route-policy>
-        </route-policies>
-      </routing-policy>
-      <router xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-router-bgp-cfg">
-        <bgp>
-          <as>
-            <as-number>65001</as-number>
-            <address-families>
-              <address-family>
-                <af-name>vpnv4-unicast</af-name>
-              </address-family>
-              <address-family>
-                <af-name>vpnv6-unicast</af-name>
-              </address-family>
-            </address-families>
-            <bgp>
-              <router-id>10.0.0.2</router-id>
+        </mpls>
+        <control-plane-protocols>
+          <control-plane-protocol>
+            <type xmlns:ietf-bgp="urn:ietf:params:xml:ns:yang:ietf-bgp">ietf-bgp:bgp</type>
+            <name>default</name>
+            <bgp xmlns="urn:ietf:params:xml:ns:yang:ietf-bgp">
+              <global>
+                <afi-safis>
+                  <afi-safi>
+                    <name xmlns:iana-bgp-afi-safi-types="urn:ietf:params:xml:ns:yang:iana-bgp-afi-safi-types">iana-bgp-afi-safi-types:l3vpn-ipv4-unicast</name>
+                    <enabled>true</enabled>
+                  </afi-safi>
+                  <afi-safi>
+                    <name xmlns:iana-bgp-afi-safi-types="urn:ietf:params:xml:ns:yang:iana-bgp-afi-safi-types">iana-bgp-afi-safi-types:l3vpn-ipv6-unicast</name>
+                    <enabled>true</enabled>
+                  </afi-safi>
+                </afi-safis>
+                <as>65001</as>
+                <identifier>10.0.0.2</identifier>
+              </global>
+              <neighbors>
+                <neighbor>
+                  <neighbor-key>10.0.0.1</neighbor-key>
+                  <description>AMS-CORE-1</description>
+                  <peer-group>IPV4-IBGP</peer-group>
+                  <remote-address>10.0.0.1</remote-address>
+                </neighbor>
+                <neighbor>
+                  <neighbor-key>10.0.0.3</neighbor-key>
+                  <description>STO-CORE-1</description>
+                  <peer-group>IPV4-IBGP</peer-group>
+                  <remote-address>10.0.0.3</remote-address>
+                </neighbor>
+              </neighbors>
+              <peer-groups>
+                <peer-group>
+                  <name>IPV4-IBGP</name>
+                  <afi-safis>
+                    <afi-safi>
+                      <name xmlns:iana-bgp-afi-safi-types="urn:ietf:params:xml:ns:yang:iana-bgp-afi-safi-types">iana-bgp-afi-safi-types:l3vpn-ipv4-unicast</name>
+                      <enabled>true</enabled>
+                    </afi-safi>
+                    <afi-safi>
+                      <name xmlns:iana-bgp-afi-safi-types="urn:ietf:params:xml:ns:yang:iana-bgp-afi-safi-types">iana-bgp-afi-safi-types:l3vpn-ipv6-unicast</name>
+                      <enabled>true</enabled>
+                    </afi-safi>
+                  </afi-safis>
+                  <peer-as>65001</peer-as>
+                  <transport>
+                    <local-address>Loopback0</local-address>
+                    <secure-session>
+                      <enabled>true</enabled>
+                      <options>
+                        <md5-keychain>ibgp</md5-keychain>
+                      </options>
+                    </secure-session>
+                  </transport>
+                </peer-group>
+              </peer-groups>
             </bgp>
-            <neighbor-groups>
-              <neighbor-group>
-                <neighbor-group-name>IPV4-IBGP</neighbor-group-name>
-                <address-families>
-                  <address-family>
-                    <af-name>vpnv4-unicast</af-name>
-                  </address-family>
-                  <address-family>
-                    <af-name>vpnv6-unicast</af-name>
-                  </address-family>
-                </address-families>
-                <password>
-                  <encrypted>045209011F6C4D5B1D11001906020F053E222B267E3E270A</encrypted>
-                </password>
-                <remote-as>65001</remote-as>
-                <update-source>Loopback0</update-source>
-              </neighbor-group>
-            </neighbor-groups>
-            <neighbors>
-              <neighbor>
-                <address>10.0.0.1</address>
-                <description>AMS-CORE-1</description>
-                <use>
-                  <neighbor-group>IPV4-IBGP</neighbor-group>
-                </use>
-              </neighbor>
-              <neighbor>
-                <address>10.0.0.3</address>
-                <description>STO-CORE-1</description>
-                <use>
-                  <neighbor-group>IPV4-IBGP</neighbor-group>
-                </use>
-              </neighbor>
-            </neighbors>
-          </as>
-        </bgp>
-      </router>
-      <router xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-router-isis-cfg">
-        <isis>
-          <processes>
-            <process>
-              <process-id>1</process-id>
-              <address-families>
-                <address-family>
-                  <af-name>ipv4</af-name>
-                  <saf-name>unicast</saf-name>
-                  <metric-style>
-                    <wide/>
-                  </metric-style>
-                </address-family>
-              </address-families>
+          </control-plane-protocol>
+          <control-plane-protocol>
+            <type xmlns:ietf-isis="urn:ietf:params:xml:ns:yang:ietf-isis">ietf-isis:isis</type>
+            <name>1</name>
+            <isis xmlns="urn:ietf:params:xml:ns:yang:ietf-isis">
+              <area-address>49.0001</area-address>
               <interfaces>
                 <interface>
-                  <interface-name>GigabitEthernet0/0/0/0</interface-name>
-                  <address-families>
-                    <address-family>
-                      <af-name>ipv4</af-name>
-                      <saf-name>unicast</saf-name>
-                      <metric-levels>
-                        <metric-level>
-                          <level-number>2</level-number>
-                          <default-metric>5000</default-metric>
-                        </metric-level>
-                      </metric-levels>
-                    </address-family>
-                  </address-families>
-                  <circuit-type>level-2-only</circuit-type>
-                  <point-to-point/>
+                  <name>GigabitEthernet0/0/0/0</name>
+                  <interface-type>point-to-point</interface-type>
+                  <level-type>level-2</level-type>
+                  <metric>
+                    <level-2>
+                      <value>5000</value>
+                    </level-2>
+                  </metric>
                 </interface>
                 <interface>
-                  <interface-name>Loopback0</interface-name>
-                  <address-families>
-                    <address-family>
-                      <af-name>ipv4</af-name>
-                      <saf-name>unicast</saf-name>
-                    </address-family>
-                  </address-families>
-                  <state>passive</state>
+                  <name>Loopback0</name>
+                  <passive>true</passive>
                 </interface>
               </interfaces>
-              <is-type>level-2-only</is-type>
-              <nets>
-                <net>
-                  <net-id>49.0001.0100.0000.0002.00</net-id>
-                </net>
-              </nets>
-            </process>
-          </processes>
-        </isis>
-      </router>
+              <level-type>level-2</level-type>
+              <metric-type>
+                <value>wide-only</value>
+              </metric-type>
+              <system-id>0100.0000.0002</system-id>
+            </isis>
+          </control-plane-protocol>
+          <control-plane-protocol>
+            <type xmlns:ietf-mpls-ldp="urn:ietf:params:xml:ns:yang:ietf-mpls-ldp">ietf-mpls-ldp:mpls-ldp</type>
+            <name>ldp</name>
+            <mpls-ldp xmlns="urn:ietf:params:xml:ns:yang:ietf-mpls-ldp">
+              <discovery>
+                <interfaces>
+                  <interface>
+                    <name>GigabitEthernet0/0/0/0</name>
+                    <address-families>
+                      <ipv4>
+                        <enabled>true</enabled>
+                      </ipv4>
+                    </address-families>
+                  </interface>
+                </interfaces>
+              </discovery>
+              <global>
+                <address-families>
+                  <ipv4>
+                    <enabled>true</enabled>
+                  </ipv4>
+                </address-families>
+              </global>
+            </mpls-ldp>
+          </control-plane-protocol>
+        </control-plane-protocols>
+      </routing>
+      <routing-policy xmlns="urn:ietf:params:xml:ns:yang:ietf-routing-policy">
+        <policy-definitions>
+          <policy-definition>
+            <name>ACCEPT</name>
+            <statements>
+              <statement>
+                <name>accept</name>
+                <actions>
+                  <policy-result>accept-route</policy-result>
+                </actions>
+              </statement>
+            </statements>
+          </policy-definition>
+        </policy-definitions>
+      </routing-policy>
+      <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
+        <hostname>FRA-CORE-1</hostname>
+      </system>
     </config>
-    <modset_id>11381456856284907834</modset_id>
+    <modset_id>CiscoIosXr_25_3_1:2:11381456856284907834</modset_id>
   </device>
   <device>
     <name>STO-CORE-1</name>
     <config>
-      <configuration xmlns="http://yang.juniper.net/junos/conf/root">
-        <interfaces>
-          <interface>
-            <name>lo0</name>
-            <description>ROLE: edge</description>
-            <unit>
-              <name>0</name>
-              <family>
-                <inet>
-                  <address>
-                    <name>10.0.0.3/32</name>
-                  </address>
-                </inet>
-                <iso>
-                  <address>
-                    <name>49.0001.0100.0000.0003.00</name>
-                  </address>
-                </iso>
-              </family>
-            </unit>
-          </interface>
-        </interfaces>
-        <protocols>
-          <bgp>
-            <group>
-              <name>IPV4-IBGP</name>
-              <authentication-key>$9$4TaGiq.5/9pmfp0B1yr4aZGkP6/t1Ic36eWL7sYoJGDjq5Qn/Cumfu1RSledbs24Zmfz</authentication-key>
-              <family>
-                <inet-vpn>
-                  <unicast/>
-                </inet-vpn>
-                <inet6-vpn>
-                  <unicast/>
-                </inet6-vpn>
-                <route-target/>
-              </family>
-              <hold-time>90</hold-time>
-              <local-address>10.0.0.3</local-address>
-              <neighbor>
-                <name>10.0.0.1</name>
-                <description>AMS-CORE-1</description>
-              </neighbor>
-              <neighbor>
-                <name>10.0.0.2</name>
-                <description>FRA-CORE-1</description>
-              </neighbor>
-              <type>internal</type>
-            </group>
-            <log-updown/>
-          </bgp>
-          <isis>
-            <interface>
-              <name>lo0.0</name>
-              <passive/>
-            </interface>
-            <level>
-              <name>1</name>
-              <disable/>
-            </level>
-            <level>
-              <name>2</name>
-              <wide-metrics-only/>
-            </level>
-            <lsp-lifetime>65535</lsp-lifetime>
-          </isis>
-        </protocols>
-        <routing-options>
-          <autonomous-system>
-            <as-number>65001</as-number>
-          </autonomous-system>
-        </routing-options>
-        <system>
-          <host-name>STO-CORE-1</host-name>
-          <services>
-            <netconf>
-              <rfc-compliant/>
-              <yang-compliant/>
-            </netconf>
-          </services>
-        </system>
-      </configuration>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>Loopback0</name>
+          <description>ROLE: edge</description>
+          <type xmlns:iana-if-type="urn:ietf:params:xml:ns:yang:iana-if-type">iana-if-type:softwareLoopback</type>
+          <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+            <address>
+              <ip>10.0.0.3</ip>
+              <prefix-length>32</prefix-length>
+            </address>
+          </ipv4>
+        </interface>
+      </interfaces>
+      <key-chains xmlns="urn:ietf:params:xml:ns:yang:ietf-key-chain">
+        <key-chain>
+          <name>ibgp</name>
+          <key>
+            <key-id>1</key-id>
+            <crypto-algorithm xmlns:ietf-key-chain="urn:ietf:params:xml:ns:yang:ietf-key-chain">ietf-key-chain:md5</crypto-algorithm>
+            <key-string>
+              <keystring>ibgp-authentication-key</keystring>
+            </key-string>
+          </key>
+        </key-chain>
+      </key-chains>
+      <routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing">
+        <control-plane-protocols>
+          <control-plane-protocol>
+            <type xmlns:ietf-bgp="urn:ietf:params:xml:ns:yang:ietf-bgp">ietf-bgp:bgp</type>
+            <name>default</name>
+            <bgp xmlns="urn:ietf:params:xml:ns:yang:ietf-bgp">
+              <global>
+                <as>65001</as>
+              </global>
+              <neighbors>
+                <neighbor>
+                  <neighbor-key>10.0.0.1</neighbor-key>
+                  <description>AMS-CORE-1</description>
+                  <peer-group>IPV4-IBGP</peer-group>
+                  <remote-address>10.0.0.1</remote-address>
+                </neighbor>
+                <neighbor>
+                  <neighbor-key>10.0.0.2</neighbor-key>
+                  <description>FRA-CORE-1</description>
+                  <peer-group>IPV4-IBGP</peer-group>
+                  <remote-address>10.0.0.2</remote-address>
+                </neighbor>
+              </neighbors>
+              <peer-groups>
+                <peer-group>
+                  <name>IPV4-IBGP</name>
+                  <afi-safis>
+                    <afi-safi>
+                      <name xmlns:iana-bgp-afi-safi-types="urn:ietf:params:xml:ns:yang:iana-bgp-afi-safi-types">iana-bgp-afi-safi-types:l3vpn-ipv4-unicast</name>
+                      <enabled>true</enabled>
+                    </afi-safi>
+                    <afi-safi>
+                      <name xmlns:iana-bgp-afi-safi-types="urn:ietf:params:xml:ns:yang:iana-bgp-afi-safi-types">iana-bgp-afi-safi-types:l3vpn-ipv6-unicast</name>
+                      <enabled>true</enabled>
+                    </afi-safi>
+                    <afi-safi>
+                      <name xmlns:stratoweave-network="https://stratoweave.org/yang/stratoweave-network">stratoweave-network:route-target-constraints</name>
+                      <enabled>true</enabled>
+                    </afi-safi>
+                  </afi-safis>
+                  <logging-options>
+                    <log-neighbor-state-changes>true</log-neighbor-state-changes>
+                  </logging-options>
+                  <peer-as>65001</peer-as>
+                  <timers>
+                    <hold-time>90</hold-time>
+                  </timers>
+                  <transport>
+                    <local-address>Loopback0</local-address>
+                    <secure-session>
+                      <enabled>true</enabled>
+                      <options>
+                        <md5-keychain>ibgp</md5-keychain>
+                      </options>
+                    </secure-session>
+                  </transport>
+                </peer-group>
+              </peer-groups>
+            </bgp>
+          </control-plane-protocol>
+          <control-plane-protocol>
+            <type xmlns:ietf-isis="urn:ietf:params:xml:ns:yang:ietf-isis">ietf-isis:isis</type>
+            <name>1</name>
+            <isis xmlns="urn:ietf:params:xml:ns:yang:ietf-isis">
+              <area-address>49.0001</area-address>
+              <interfaces>
+                <interface>
+                  <name>Loopback0</name>
+                  <passive>true</passive>
+                </interface>
+              </interfaces>
+              <level-type>level-2</level-type>
+              <lsp-lifetime>65535</lsp-lifetime>
+              <metric-type>
+                <value>wide-only</value>
+              </metric-type>
+              <system-id>0100.0000.0003</system-id>
+            </isis>
+          </control-plane-protocol>
+        </control-plane-protocols>
+      </routing>
+      <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
+        <hostname>STO-CORE-1</hostname>
+      </system>
     </config>
-    <modset_id>14788252965532328984</modset_id>
+    <modset_id>JuniperCRPD_24_4R1_9:2:14788252965532328984</modset_id>
   </device>
 </devices>

@@ -1,0 +1,44 @@
+Published modules downloaded on 2026-10-12 without schema edits.
+Draft modules are pinned by revision and content hash. IEEE module revision: 2023-10-26.
+The local stratoweave-network module is an explicitly separate augmentation.
+
+ietf-ip@2018-02-22.yang
+  https://www.ietf.org/ietf-ftp/yang/rfcmod/ietf-ip@2018-02-22.yang
+  SHA256 b624c84a66c128ae69ab107a5179ca8e20e693fb57dbe5cb56c3db2ebb18c894
+
+iana-if-type@2014-05-08.yang
+  https://raw.githubusercontent.com/YangModels/yang/main/standard/ietf/RFC/iana-if-type@2014-05-08.yang
+  SHA256 e3b33c79dc9090ceb732155dc554e9975d1220a411c184cbe635216d9720820e
+
+ietf-network-instance@2019-01-21.yang
+  https://www.ietf.org/ietf-ftp/yang/rfcmod/ietf-network-instance@2019-01-21.yang
+  SHA256 347ae9aa1c85c8d78076c60e9ddaa8b823053cb49d14aa1dca502e76f86ae678
+
+ietf-yang-schema-mount@2019-01-14.yang
+  https://www.ietf.org/ietf-ftp/yang/rfcmod/ietf-yang-schema-mount@2019-01-14.yang
+  SHA256 3de4d3517243aa805a49d88b42cfd8e4ada59b9500852fb3a4aab8ae7fcdb997
+
+ietf-isis@2022-10-19.yang
+  https://www.ietf.org/ietf-ftp/yang/rfcmod/ietf-isis@2022-10-19.yang
+  SHA256 4560179d295c4aa90df15de360f45a29caaa6c349e7b7cb1d0949028eacf108c
+
+ietf-mpls@2020-12-18.yang
+  https://www.ietf.org/ietf-ftp/yang/rfcmod/ietf-mpls@2020-12-18.yang
+  SHA256 564cbbaca14f07026399365efbe7fce7e229bfcfd2960bb437828edaa5a856de
+
+ietf-mpls-ldp@2022-03-14.yang
+  https://www.ietf.org/ietf-ftp/yang/rfcmod/ietf-mpls-ldp@2022-03-14.yang
+  SHA256 e27acf068302e65686b19b07479f94c72c15d43cd401fd89509d82a1f5b1458e
+
+ietf-if-extensions@2025-08-07.yang
+  https://www.ietf.org/ietf-ftp/yang/draftmod/ietf-if-extensions@2025-08-07.yang
+  SHA256 8acce1e0dc374d5905d4ddb934cc2fd99406f7160276b2735359bf52ad0e5e77
+
+ietf-if-vlan-encapsulation@2026-07-06.yang
+  https://www.ietf.org/ietf-ftp/yang/draftmod/ietf-if-vlan-encapsulation@2026-07-06.yang
+  SHA256 cd2ae512a75aaa2a10a484b1a6a7880fb7b5de6345d7cd4abfe345c0e4e8d7f7
+
+ieee802-dot1q-types.yang
+  https://raw.githubusercontent.com/YangModels/yang/main/standard/ieee/published/802.1/ieee802-dot1q-types.yang
+  SHA256 019af9e03c5ac6e3e91eeb5a8ae76249cfd5f1d9435fb59c1514774a3dbf52d3
+

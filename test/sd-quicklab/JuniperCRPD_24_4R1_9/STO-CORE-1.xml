@@ -185,6 +185,15 @@
       </interface>
     </mpls>
   </protocols>
+  <policy-options>
+    <policy-statement>
+      <name>ACCEPT</name>
+      <term>
+        <name>accept</name>
+        <then><accept/></then>
+      </term>
+    </policy-statement>
+  </policy-options>
   <routing-instances>
     <instance>
       <name>acme-65501</name>
@@ -196,6 +205,7 @@
         <bgp>
           <group>
             <name>customer</name>
+            <import>ACCEPT</import>
             <neighbor>
               <name>10.203.1.2</name>
               <as-override/>

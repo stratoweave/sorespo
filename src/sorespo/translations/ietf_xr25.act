@@ -1,0 +1,426 @@
+# SPDX-License-Identifier: BSD-3-Clause
+"""IETF system, policy, and network configuration to IOS-XR 25.3.1."""
+from yang.identityref import Identityref
+from rtrsecrets.cisco import cisco_type7_encrypt
+from sorespo.devices.ietf_dm import ietf_routing_policy__routing_policy__policy_definitions__policy_definition_entry as Policy
+from sorespo.devices.ietf_dm import ietf_routing_policy__routing_policy__defined_sets__prefix_sets__prefix_set__prefixes__prefix_list_entry as PrefixEntry
+import sorespo.devices.ietf_dm as ietf_dm
+from sorespo.devices.ietf_dm import ietf_routing__routing__control_plane_protocols__control_plane_protocol_entry as Protocol
+import sorespo.devices.CiscoIosXr_25_3_1 as xr25
+from sorespo.devices.ietf_dm import ietf_interfaces__interfaces__interface_entry as Interface
+from sorespo.devices.ietf_dm import ietf_network_instance__network_instances__network_instance_entry as NetworkInstance
+from sorespo.devices.ietf_dm import ietf_routing__routing__mpls__interfaces__interface_entry as MplsInterface
+from sorespo.devices.ietf_dm import ietf_routing__routing__control_plane_protocols__control_plane_protocol__bgp__peer_groups__peer_group_entry as PeerGroup
+from sorespo.devices.ietf_dm import ietf_routing__routing__control_plane_protocols__control_plane_protocol__bgp__neighbors__neighbor_entry as Neighbor
+from sorespo.devices.ietf_dm import ietf_routing_policy__routing_policy__defined_sets__prefix_sets__prefix_set_entry as PrefixSet
+from sorespo.devices.ietf_dm import ietf_routing_policy__routing_policy__defined_sets__tag_sets__tag_set_entry as TagSet
+from sorespo.devices.ietf_dm import ietf_routing_policy__routing_policy__defined_sets__bgp_defined_sets__community_sets__community_set_entry as CommunitySet
+from sorespo.devices.ietf_dm import ietf_routing_policy__routing_policy__defined_sets__bgp_defined_sets__as_path_sets__as_path_set_entry as AsPathSet
+from sorespo.devices.ietf_dm import ietf_system__system__ntp__server_entry as NtpServer
+from sorespo.devices.ietf_dm import ietf_system__system__dns_resolver__server_entry as DnsServer
+from sorespo.devices.ietf_dm import ietf_routing__routing__control_plane_protocols__control_plane_protocol__isis__interfaces__interface_entry as IsisInterface
+from sorespo.devices.ietf_dm import ietf_routing__routing__control_plane_protocols__control_plane_protocol__mpls_ldp__discovery__interfaces__interface_entry as LdpInterface
+import sorespo.translations.network_data as n
+import sorespo.translations.translation_data as d
+
+
+def identifier(name: str) -> str:
+    if not name or any([c in name for c in [" ", "\t", "\n", "\r", "'", '"', ",", "(", ")"]]):
+        raise ValueError("Invalid IOS-XR policy identifier {name}")
+    return name
+
+
+def regex_value(pattern: str) -> str:
+    if any([c in pattern for c in ["'", "\n", "\r"]]):
+        raise ValueError("Unsupported quote or newline in IOS-XR regular expression")
+    return "ios-regex '{pattern}'"
+
+
+def set_body(kind: str, name: str, members: list[str]) -> str:
+    return "{kind} {identifier(name)}\n" + ",\n".join(["  {m}" for m in members]) + "\nend-set\n"
+
+
+def prefix_member(entry: PrefixEntry, mode: str) -> str:
+    prefix, base, lower, upper, width = d.prefix_lengths(entry, mode)
+    if base == width:
+        return prefix.split("/")[0]
+    if base == lower and lower == upper:
+        return prefix
+    if base == lower:
+        return "{prefix} le {upper}"
+    if upper == width:
+        return "{prefix} ge {lower}"
+    if lower == upper:
+        return "{prefix} eq {lower}"
+    return "{prefix} ge {lower} le {upper}"
+
+
+def policy_body(policy: Policy, hierarchical: bool=False) -> str:
+    name = identifier(policy.name)
+    suffix = "-HIERARCHICAL" if hierarchical else ""
+    lines = ["route-policy {name}{suffix}"]
+    for statement in policy.statements.statement:
+        conditions: list[str] = []
+        c = statement.conditions
+        if c.call_policy is not None:
+            conditions.append("(apply {identifier(c.call_policy!)}-HIERARCHICAL)")
+        if c.source_protocol is not None:
+            protocol = c.source_protocol!.val
+            if protocol != "direct":
+                raise ValueError("IOS-XR translation supports only direct source-protocol, got {protocol}")
+            conditions.append("(protocol is connected)")
+        if c.match_interface.interface is not None:
+            raise ValueError("IOS-XR match-interface translation is unsupported")
+        for ref, options, field, expression in [
+            (c.match_prefix_set.prefix_set, c.match_prefix_set.match_set_options, "prefix-set", "destination in"),
+            (c.match_tag_set.tag_set, c.match_tag_set.match_set_options, "tag-set", "tag in"),
+            (c.bgp_conditions.match_as_path_set.as_path_set, c.bgp_conditions.match_as_path_set.match_set_options, "as-path-set", "as-path in")]:
+            if ref is not None:
+                mode = d.match_mode(options)
+                if mode == "all":
+                    raise ValueError("IOS-XR does not support all for {field}")
+                negate = "not " if mode == "invert" else ""
+                conditions.append("({negate}{expression} {identifier(ref)})")
+        match = c.bgp_conditions.match_community_set
+        if match.community_set is not None:
+            mode = d.match_mode(match.match_set_options)
+            op = "matches-every" if mode == "all" else "matches-any"
+            negate = "not " if mode == "invert" else ""
+            conditions.append("({negate}community {op} {identifier(match.community_set!)})")
+        pad = "    " if conditions else "  "
+        if conditions:
+            lines.append("  if " + " and ".join(conditions) + " then")
+        actions = statement.actions
+        bgp = actions.bgp_actions
+        assignments: list[(?atom, str, str)] = [
+            (bgp.set_route_origin, "set-route-origin", "origin"),
+            (bgp.set_local_pref, "set-local-pref", "local-preference"),
+            (bgp.set_next_hop, "set-next-hop", "next-hop"),
+            (bgp.set_med, "set-med", "med")]
+        for value, source, target in assignments:
+            if value is not None:
+                val = str(value)
+                if source == "set-med" and val == "igp":
+                    val = "igp-cost"
+                if any([c in val for c in ["\n", "\r"]]):
+                    raise ValueError("Invalid IOS-XR action {source}")
+                lines.append("{pad}set {target} {val}")
+        community = bgp.set_community
+        ref = community.community_set_ref
+        members = d.community_values(community.community)
+        if ref or members:
+            if ref and members:
+                raise ValueError("set-community must use a reference or inline members")
+            value = identifier(ref!) if ref else "(" + ", ".join([identifier(m) for m in members]) + ")"
+            op = d.required(community.options, "set-community/options")
+            if op == "add":
+                lines.append("{pad}set community {value} additive")
+            elif op == "replace":
+                lines.append("{pad}set community {value}")
+            elif op == "remove":
+                lines.append("{pad}delete community in {value}")
+            else:
+                raise ValueError("Unsupported set-community option {op}")
+        result = actions.policy_result if actions.policy_result is not None else "next-statement"
+        if result == "accept-route":
+            if hierarchical:
+                lines.append("{pad}pass")
+            lines.append("{pad}done")
+        elif result == "reject-route":
+            lines.append("{pad}" + ("done" if hierarchical else "drop"))
+        elif result != "next-statement":
+            raise ValueError("Unsupported policy-result {result}")
+        if conditions:
+            lines.append("  endif")
+    return "\n".join(lines + ["end-policy", ""])
+
+
+mut def prefix_set(item: PrefixSet) -> xr25.root:
+    native = xr25.root()
+    name = item.name
+    members = [prefix_member(e, item.mode) for e in item.prefixes.prefix_list]
+    native.routing_policy.sets.prefix_sets.prefix_set.create(name, set_body("prefix-set", name, members))
+    return native
+
+
+mut def tag_set(item: TagSet) -> xr25.root:
+    native = xr25.root()
+    name = item.name
+    native.routing_policy.sets.tag_sets.tag_set.create(name, set_body("tag-set", name, [str(value) for value in item.tag_value]))
+    return native
+
+
+mut def community_set(item: CommunitySet) -> xr25.root:
+    native = xr25.root()
+    name = item.name
+    members = [m if all([c.isdecimal() or c == ":" for c in m]) else regex_value(m) for m in d.community_values(item.member)]
+    native.routing_policy.sets.community_sets.community_set.create(name, set_body("community-set", name, members))
+    return native
+
+
+mut def as_path_set(item: AsPathSet) -> xr25.root:
+    native = xr25.root()
+    name = item.name
+    native.routing_policy.sets.as_path_sets.as_path_set.create(name, set_body("as-path-set", name, [regex_value(m) for m in item.member]))
+    return native
+
+
+mut def routing_policy(p: Policy) -> xr25.root:
+    native = xr25.root()
+    policy_type = p.ios_xr_policy_type if p.ios_xr_policy_type is not None else "regular"
+    if policy_type not in ["regular", "hierarchical", "both"]:
+        raise ValueError("Invalid ios-xr-policy-type {policy_type}")
+    for hierarchical in [False, True]:
+        if policy_type == "both" or policy_type == ("hierarchical" if hierarchical else "regular"):
+            name = p.name + ("-HIERARCHICAL" if hierarchical else "")
+            native.routing_policy.route_policies.route_policy.create(name, policy_body(p, hierarchical))
+    return native
+
+
+mut def system(tree: ietf_dm.root) -> xr25.root:
+    native = xr25.root()
+    source = d.system_input(tree, network_services=True)
+    native.hostname.system_network_name = source.hostname
+    return native
+
+
+mut def ntp_server(server: NtpServer, enabled: bool) -> xr25.root:
+    native = xr25.root()
+    if (server.association_type is not None and server.association_type != "server") or (server.udp.port is not None and server.udp.port != 123) or server.iburst == True or server.prefer == True:
+        raise ValueError("IOS-XR NTP translation supports plain servers on port 123")
+    address = d.required(server.udp.address, "ntp/server[{server.name}]/udp/address")
+    if enabled:
+        if ":" in address:
+            native.ntp.peer_server.ipv6.ipv6_peer_server.create((address=address, type="server"), ipv6_address=address)
+        else:
+            native.ntp.peer_server.ipv4.ipv4_peer_server.create((address=address, type="server"))
+    return native
+
+
+mut def dns_server(server: DnsServer) -> xr25.root:
+    native = xr25.root()
+    if server.udp_and_tcp.port is not None and server.udp_and_tcp.port != 53:
+        raise ValueError("IOS-XR DNS translation supports port 53 only")
+    address = d.required(server.udp_and_tcp.address, "dns-resolver/server[{server.name}]/udp-and-tcp/address")
+    native.domain.name_servers.name_server.create((order=0, address=address))
+    native.domain.lookup.source_interface = "Loopback0"
+    return native
+
+
+def family_name(name: Identityref, enabled: ?bool) -> str:
+    n.enabled_family(enabled)
+    names = {ietf_dm.iana_bgp_afi_safi_types_ipv4_unicast: "ipv4-unicast",
+             ietf_dm.iana_bgp_afi_safi_types_l3vpn_ipv4_unicast: "vpnv4-unicast",
+             ietf_dm.iana_bgp_afi_safi_types_l3vpn_ipv6_unicast: "vpnv6-unicast"}
+    if name not in names:
+        raise ValueError("Unsupported IOS-XR BGP family {name}")
+    return names[name]
+
+
+mut def interface(interface: Interface) -> xr25.root:
+    native = xr25.root()
+    target = native.interfaces.interface.create(interface.name, description=interface.description, vrf=interface.bind_ni_name)
+    if interface.ipv4 is not None:
+        if len(interface.ipv4!.address) != 1:
+            raise ValueError("IOS-XR interfaces currently require exactly one IPv4 address")
+        for address in interface.ipv4!.address:
+            length: int = int(address.prefix_length!)
+            if length < 0 or length > 32:
+                raise ValueError("Invalid IPv4 prefix length {length}")
+            bits: str = ("1" * length).ljust(32, "0")
+            mask: str = ".".join([str(int(bits[pos:pos + 8], 2)) for pos in range(0, 32, 8)])
+            target.ipv4.addresses.create_address(address.ip, mask)
+    tag = interface.encapsulation.dot1q_vlan.outer_tag
+    if tag.vlan_id is not None:
+        target.encapsulation.dot1q.vlan_id = tag.vlan_id
+    return native
+
+
+mut def vpn(instance: NetworkInstance) -> xr25.root:
+    native = xr25.root()
+    vpn = instance.vpn!
+    if vpn.label_allocation is not None:
+        raise ValueError("IOS-XR per-VRF label allocation is not implemented")
+    target = native.vrfs.vrf.create(instance.name)
+    for family in vpn.address_family:
+        af = target.address_family.ipv4.create_unicast()
+        for value in family.import_route_target:
+            asn, number = n.vpn_numbers(value)
+            af.import.route_target.two_byte_as_route_targets.two_byte_as_route_target.create((asn, number, "disable"))
+        for value in family.export_route_target:
+            asn, number = n.vpn_numbers(value)
+            af.export.route_target.two_byte_as_route_targets.two_byte_as_route_target.create((asn, number, "disable"))
+    return native
+
+
+mut def mpls_interface(tree: ietf_dm.root, interface: MplsInterface) -> xr25.root:
+    native = xr25.root()
+    ldp_interfaces = {entry.name for protocol in tree.routing.control_plane_protocols.control_plane_protocol if protocol.type == ietf_dm.ietf_mpls_ldp_mpls_ldp for entry in protocol.mpls_ldp.discovery.interfaces.interface}
+    if interface.mpls_enabled != True or interface.name not in ldp_interfaces:
+        raise ValueError("IOS-XR MPLS interfaces currently require enabled LDP")
+    return native
+
+
+mut def isis(tree: ietf_dm.root, protocol: Protocol) -> xr25.root:
+    native = xr25.root()
+    source = protocol.isis
+    if source.lsp_lifetime is not None:
+        raise ValueError("IOS-XR IS-IS LSP lifetime is not implemented")
+    target = native.um_router_isis_cfg_router.isis.processes.process.create(protocol.name)
+    if source.level_type is not None:
+        target.is_type = "level-2-only"
+    for address in n.net_addresses(protocol):
+        target.nets.net.create(address)
+    if source.metric_type.value is not None:
+        target.address_families.address_family.create(("ipv4", "unicast")).metric_style.create_wide()
+    return native
+
+
+mut def isis_interface(tree: ietf_dm.root, protocol: Protocol, interface: IsisInterface) -> xr25.root:
+    native = xr25.root()
+    target = native.um_router_isis_cfg_router.isis.processes.process.create(protocol.name)
+    ti = target.interfaces.interface.create(interface.name)
+    if interface.passive is not None:
+        if interface.passive != True:
+            raise ValueError("Explicit active IS-IS interfaces are not implemented")
+        ti.state = "passive"
+    if interface.level_type is not None:
+        ti.circuit_type = "level-2-only"
+    if interface.interface_type is not None:
+        ti.point_to_point = True
+    af = ti.address_families.address_family.create(("ipv4", "unicast"))
+    if interface.metric.level_2.value is not None:
+        af.metric_levels.metric_level.create(2, default_metric=interface.metric.level_2.value)
+    return native
+
+
+mut def ldp(tree: ietf_dm.root, protocol: Protocol) -> xr25.root:
+    native = xr25.root()
+    source = protocol.mpls_ldp
+    target = native.mpls.create_ldp()
+    if source.global.address_families.ipv4 is not None:
+        if source.global.address_families.ipv4!.enabled == False:
+            raise ValueError("Disabling LDP IPv4 is not implemented")
+        target.address_families.address_family.create("ipv4")
+    return native
+
+
+mut def ldp_interface(tree: ietf_dm.root, protocol: Protocol, interface: LdpInterface) -> xr25.root:
+    native = xr25.root()
+    target = native.mpls.create_ldp()
+    if interface.address_families.ipv4 is None or interface.address_families.ipv4!.enabled == False:
+        raise ValueError("LDP interfaces require IPv4 enabled")
+    target.interfaces.interface.create(interface.name)
+    return native
+
+
+mut def bgp(tree: ietf_dm.root, protocol: Protocol) -> xr25.root:
+    native = xr25.root()
+    source = protocol.bgp
+    asn = n.as_number(protocol)
+    target = native.um_router_bgp_cfg_router.bgp.as_.create(asn)
+    instance_name = protocol.name
+    if instance_name == "default":
+        target.bgp.router_id = source.global!.identifier
+        for family in source.global!.afi_safis.afi_safi:
+            target.address_families.address_family.create(family_name(family.name, family.enabled))
+        return native
+    ni = tree.network_instances.network_instance.get(instance_name)!
+    vrf = target.vrfs.vrf.create(instance_name)
+    rd = ni.vpn!.route_distinguisher
+    if rd is not None:
+        asn, number = n.vpn_numbers(rd)
+        vrf.rd.create_two_byte_as(asn, number)
+    if source.global!.identifier is not None:
+        raise ValueError("IOS-XR per-VRF BGP router-id is not implemented")
+    for family in source.global!.afi_safis.afi_safi:
+        if family.name != ietf_dm.iana_bgp_afi_safi_types_ipv4_unicast:
+            raise ValueError("IOS-XR VRF BGP currently supports IPv4 unicast")
+        vrf.address_families.address_family.create(family_name(family.name, family.enabled))
+    return native
+
+
+mut def bgp_peer_group(tree: ietf_dm.root, protocol: Protocol, group: PeerGroup) -> xr25.root:
+    native = xr25.root()
+    target = native.um_router_bgp_cfg_router.bgp.as_.create(n.as_number(protocol))
+    if protocol.name == "default":
+        d.reject_present([
+            ("description", group.description is not None),
+            ("timers", group.timers.hold_time is not None or group.timers.keepalive is not None),
+            ("passive-mode", group.transport.passive_mode is not None),
+            ("logging-options", group.logging_options.log_neighbor_state_changes is not None),
+            ("replace-peer-as", group.as_path_options.replace_peer_as is not None),
+            ("apply-policy", bool(group.apply_policy.import_policy) or bool(group.apply_policy.export_policy)),
+        ], "IOS-XR BGP peer-group")
+        if group.transport.local_address is not None and tree.interfaces.interface.get(group.transport.local_address!) is None:
+            raise ValueError("IOS-XR BGP update-source requires a modeled interface reference")
+        ng = target.neighbor_groups.neighbor_group.create(group.name, remote_as=group.peer_as, update_source=group.transport.local_address)
+        security = group.transport.secure_session
+        key = n.password(tree, security.enabled, security.options.md5_keychain)
+        if key is not None:
+            ng.password.encrypted = cisco_type7_encrypt(key, 4)
+        for family in group.afi_safis.afi_safi:
+            if family.apply_policy.import_policy or family.apply_policy.export_policy:
+                raise ValueError("IOS-XR peer-group AF policies are not implemented")
+            ng.address_families.address_family.create(family_name(family.name, family.enabled))
+        return native
+    d.reject_present([
+        ("peer-as", group.peer_as is not None), ("description", group.description is not None),
+        ("timers", group.timers.hold_time is not None or group.timers.keepalive is not None),
+        ("transport", group.transport.local_address is not None or group.transport.passive_mode is not None or group.transport.secure_session.enabled is not None),
+        ("logging", group.logging_options.log_neighbor_state_changes is not None),
+        ("replace-peer-as", group.as_path_options.replace_peer_as is not None),
+        ("afi-safis", len(group.afi_safis.afi_safi) > 0),
+        ("apply-policy", bool(group.apply_policy.import_policy) or bool(group.apply_policy.export_policy)),
+    ], "IOS-XR VRF peer-group")
+    return native
+
+
+mut def bgp_neighbor(tree: ietf_dm.root, protocol: Protocol, peer: Neighbor) -> xr25.root:
+    native = xr25.root()
+    target = native.um_router_bgp_cfg_router.bgp.as_.create(n.as_number(protocol))
+    if protocol.name == "default":
+        d.reject_present([
+            ("peer-as", peer.peer_as is not None),
+            ("transport", peer.transport.local_address is not None or peer.transport.passive_mode is not None or peer.transport.secure_session.enabled is not None),
+            ("timers", peer.timers.hold_time is not None or peer.timers.keepalive is not None),
+            ("replace-peer-as", peer.as_path_options.replace_peer_as is not None),
+            ("logging", peer.logging_options.log_neighbor_state_changes is not None),
+            ("afi-safis", len(peer.afi_safis.afi_safi) > 0),
+            ("apply-policy", bool(peer.apply_policy.import_policy) or bool(peer.apply_policy.export_policy)),
+        ], "IOS-XR global BGP neighbor")
+        nb = target.neighbors.neighbor.create(peer.remote_address!, description=peer.description)
+        nb.use.neighbor_group = d.required(peer.peer_group, "BGP neighbor/peer-group")
+        return native
+    vrf = target.vrfs.vrf.create(protocol.name)
+    d.reject_present([
+        ("local-address", peer.transport.local_address is not None),
+        ("passive-mode", peer.transport.passive_mode is not None),
+        ("logging", peer.logging_options.log_neighbor_state_changes is not None),
+        ("apply-policy", bool(peer.apply_policy.import_policy) or bool(peer.apply_policy.export_policy)),
+    ], "IOS-XR VRF BGP neighbor")
+    nb = vrf.neighbors.neighbor.create(peer.remote_address!, remote_as=peer.peer_as, description=peer.description)
+    security = peer.transport.secure_session
+    key = n.password(tree, security.enabled, security.options.md5_keychain)
+    if key is not None:
+        nb.password.encrypted = cisco_type7_encrypt(key, 4)
+    nb.timers.keepalive_interval = peer.timers.keepalive
+    if peer.timers.hold_time is not None:
+        nb.timers.create_holdtime(holdtime_number=peer.timers.hold_time)
+    if peer.as_path_options.replace_peer_as is not None and len(peer.afi_safis.afi_safi) == 0:
+        raise ValueError("AS override requires an explicit neighbor address family")
+    for family in peer.afi_safis.afi_safi:
+        if family.name != ietf_dm.iana_bgp_afi_safi_types_ipv4_unicast:
+            raise ValueError("IOS-XR VRF neighbors currently support IPv4 unicast")
+        af = nb.address_families.address_family.create(family_name(family.name, family.enabled))
+        imports: list[str] = family.apply_policy.import_policy
+        exports: list[str] = family.apply_policy.export_policy
+        if len(imports) > 1 or len(exports) > 1:
+            raise ValueError("IOS-XR supports one policy per BGP direction")
+        af.route_policy.in_ = imports[0] if imports else None
+        af.route_policy.out = exports[0] if exports else None
+        if peer.as_path_options.replace_peer_as == True:
+            af.create_as_override()
+        elif peer.as_path_options.replace_peer_as == False:
+            raise ValueError("Explicitly disabling AS override is not implemented")
+    return native

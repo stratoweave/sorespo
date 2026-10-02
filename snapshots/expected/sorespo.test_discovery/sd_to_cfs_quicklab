@@ -179,7 +179,21 @@ no diff
 no diff
 
 # device LJU-CORE-1
-no diff
+<configuration xmlns="http://yang.juniper.net/junos/conf/root">
+  <interfaces>
+    <interface>
+      <name>eth3</name>
+      <description>Customer VPN access SITE-4 [SNA-4-1] in VPN acme-65501</description>
+    </interface>
+  </interfaces>
+</configuration>
 
 # device STO-CORE-1
-no diff
+<configuration xmlns="http://yang.juniper.net/junos/conf/root">
+  <interfaces>
+    <interface>
+      <name>eth4</name>
+      <description>Customer VPN access SITE-3 [SNA-3-1] in VPN acme-65501</description>
+    </interface>
+  </interfaces>
+</configuration>

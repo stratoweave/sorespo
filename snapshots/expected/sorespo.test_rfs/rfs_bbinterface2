@@ -1,44 +1,68 @@
-<configuration xmlns="http://yang.juniper.net/junos/conf/root">
-  <interfaces>
-    <interface>
-      <name>eth1</name>
-      <unit>
-        <name>0</name>
-        <description>Link to FRA-CORE-1 [GigabitEthernet0/0/0/1]</description>
-        <family>
-          <inet>
-            <address>
-              <name>10.0.20.2/30/30</name>
-            </address>
-          </inet>
-        </family>
-      </unit>
-    </interface>
-  </interfaces>
-  <protocols>
-    <isis>
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+  <interface>
+    <name>eth1</name>
+    <description>Link to FRA-CORE-1 [GigabitEthernet0/0/0/1]</description>
+    <type xmlns:iana-if-type="urn:ietf:params:xml:ns:yang:iana-if-type">iana-if-type:ethernetCsmacd</type>
+    <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+      <address>
+        <ip>10.0.20.2</ip>
+        <prefix-length>30</prefix-length>
+      </address>
+    </ipv4>
+  </interface>
+</interfaces>
+<routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing">
+  <control-plane-protocols>
+    <control-plane-protocol>
+      <type xmlns:ietf-isis="urn:ietf:params:xml:ns:yang:ietf-isis">ietf-isis:isis</type>
+      <name>1</name>
+      <isis xmlns="urn:ietf:params:xml:ns:yang:ietf-isis">
+        <interfaces>
+          <interface>
+            <name>eth1</name>
+            <level-type>level-2</level-type>
+            <interface-type>point-to-point</interface-type>
+            <metric>
+              <level-2>
+                <value>5000</value>
+              </level-2>
+            </metric>
+          </interface>
+        </interfaces>
+      </isis>
+    </control-plane-protocol>
+    <control-plane-protocol>
+      <type xmlns:ietf-mpls-ldp="urn:ietf:params:xml:ns:yang:ietf-mpls-ldp">ietf-mpls-ldp:mpls-ldp</type>
+      <name>ldp</name>
+      <mpls-ldp xmlns="urn:ietf:params:xml:ns:yang:ietf-mpls-ldp">
+        <global>
+          <address-families>
+            <ipv4>
+              <enabled>true</enabled>
+            </ipv4>
+          </address-families>
+        </global>
+        <discovery>
+          <interfaces>
+            <interface>
+              <name>eth1</name>
+              <address-families>
+                <ipv4>
+                  <enabled>true</enabled>
+                </ipv4>
+              </address-families>
+            </interface>
+          </interfaces>
+        </discovery>
+      </mpls-ldp>
+    </control-plane-protocol>
+  </control-plane-protocols>
+  <mpls xmlns="urn:ietf:params:xml:ns:yang:ietf-mpls">
+    <interfaces>
       <interface>
         <name>eth1</name>
-        <level>
-          <name>1</name>
-          <disable/>
-        </level>
-        <level>
-          <name>2</name>
-          <metric>5000</metric>
-        </level>
-        <point-to-point/>
+        <mpls-enabled>true</mpls-enabled>
       </interface>
-    </isis>
-    <ldp>
-      <interface>
-        <name>eth1</name>
-      </interface>
-    </ldp>
-    <mpls>
-      <interface>
-        <name>eth1</name>
-      </interface>
-    </mpls>
-  </protocols>
-</configuration>
+    </interfaces>
+  </mpls>
+</routing>

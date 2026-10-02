@@ -1,10 +1,24 @@
 import file
 import process
+import yang
 
 import stratoweave.build
 import stratoweave.device_schema as swds
 import stratoweave.swyang as swyang
 import tmf.tmf_yang as tmf_yang
+import ietf_device_paths
+
+def write_generated(fc: file.FileCap, path: str, content: str):
+    try:
+        old = file.ReadFile(file.ReadFileCap(fc), path).read().decode()
+        if old == content:
+            return
+    except FileNotFoundError:
+        pass
+    output = file.WriteFile(file.WriteFileCap(fc), path)
+    await async output.write(content.encode())
+    await async output.close()
+
 
 actor main(env):
     fc = file.FileCap(env.cap)
@@ -175,6 +189,25 @@ actor main(env):
     "/ipv4-bgp-oper:bgp/instances/instance/instance-active/vrfs/vrf/neighbors/neighbor/last-notify-error-subcode",
 ]
 
+    xr_paths.extend([
+        "/um-route-policy-cfg:routing-policy/sets/prefix-sets/prefix-set/set-name",
+        "/um-route-policy-cfg:routing-policy/sets/prefix-sets/prefix-set/rpl-prefix-set",
+        "/um-route-policy-cfg:routing-policy/sets/tag-sets/tag-set/set-name",
+        "/um-route-policy-cfg:routing-policy/sets/tag-sets/tag-set/rpl-tag-set",
+        "/um-route-policy-cfg:routing-policy/sets/community-sets/community-set/set-name",
+        "/um-route-policy-cfg:routing-policy/sets/community-sets/community-set/rpl-community-set",
+        "/um-route-policy-cfg:routing-policy/sets/as-path-sets/as-path-set/set-name",
+        "/um-route-policy-cfg:routing-policy/sets/as-path-sets/as-path-set/rplas-path-set",
+        "/um-ntp-cfg:ntp/peer-server/ipv4/ipv4-peer-server/address",
+        "/um-ntp-cfg:ntp/peer-server/ipv4/ipv4-peer-server/type",
+        "/um-ntp-cfg:ntp/peer-server/ipv6/ipv6-peer-server/address",
+        "/um-ntp-cfg:ntp/peer-server/ipv6/ipv6-peer-server/type",
+        "/um-ntp-cfg:ntp/peer-server/ipv6/ipv6-peer-server/ipv6-address",
+        "/um-domain-cfg:domain/name-servers/name-server/order",
+        "/um-domain-cfg:domain/name-servers/name-server/address",
+        "/um-domain-cfg:domain/lookup/source-interface",
+    ])
+
     # Keep only the cRPD configuration nodes that sorespo's RFS transforms
     # actively write to.
     crpd_paths = [
@@ -283,6 +316,41 @@ actor main(env):
     "/jc:configuration/version",
 ]
 
+    crpd_paths.extend([
+        "/jc:configuration/policy-options/route-filter-list/name",
+        "/jc:configuration/policy-options/route-filter-list/rf_list/address",
+        "/jc:configuration/policy-options/route-filter-list/rf_list/choice-ident",
+        "/jc:configuration/policy-options/route-filter-list/rf_list/choice-value",
+        "/jc:configuration/policy-options/as-path-group/name",
+        "/jc:configuration/policy-options/as-path-group/as-path/name",
+        "/jc:configuration/policy-options/as-path-group/as-path/path",
+        "/jc:configuration/policy-options/community/name",
+        "/jc:configuration/policy-options/community/members",
+        "/jc:configuration/policy-options/community/invert-match",
+        "/jc:configuration/policy-options/policy-statement/name",
+        "/jc:configuration/policy-options/policy-statement/term/name",
+        "/jc:configuration/policy-options/policy-statement/term/from/policy",
+        "/jc:configuration/policy-options/policy-statement/term/from/protocol",
+        "/jc:configuration/policy-options/policy-statement/term/from/interface",
+        "/jc:configuration/policy-options/policy-statement/term/from/route-filter-list/name",
+        "/jc:configuration/policy-options/policy-statement/term/from/tag",
+        "/jc:configuration/policy-options/policy-statement/term/from/community",
+        "/jc:configuration/policy-options/policy-statement/term/from/as-path-group",
+        "/jc:configuration/policy-options/policy-statement/term/then/origin",
+        "/jc:configuration/policy-options/policy-statement/term/then/local-preference/local-preference",
+        "/jc:configuration/policy-options/policy-statement/term/then/next-hop/self",
+        "/jc:configuration/policy-options/policy-statement/term/then/next-hop/address",
+        "/jc:configuration/policy-options/policy-statement/term/then/metric/metric",
+        "/jc:configuration/policy-options/policy-statement/term/then/metric/add",
+        "/jc:configuration/policy-options/policy-statement/term/then/metric/subtract",
+        "/jc:configuration/policy-options/policy-statement/term/then/metric/igp",
+        "/jc:configuration/policy-options/policy-statement/term/then/community/choice-ident",
+        "/jc:configuration/policy-options/policy-statement/term/then/community/choice-value",
+        "/jc:configuration/policy-options/policy-statement/term/then/community/community-name",
+        "/jc:configuration/policy-options/policy-statement/term/then/accept",
+        "/jc:configuration/policy-options/policy-statement/term/then/reject",
+    ])
+
     # Keep only the SRL configuration nodes that sorespo's RFS transforms
     # actively write to.
     srl_paths = [
@@ -372,6 +440,18 @@ actor main(env):
     ]
 
     try:
+        ietf_dm = stratoweave.build.Layer.from_dir(fc, "yang/IETFDevice")
+        # RFC 8960's active-route RPC references a label directly below rib,
+        # although the label is below routes/route. This unused RPC is removed
+        # by the configuration filter; preserve the published module verbatim.
+        ietf_dm_root = yang.compile(ietf_dm.models, allow_failure=[
+            "/routing/ribs/rib/active-route/input/destination-address"
+        ])
+        swds.filter_schema(ietf_device_paths.paths()).apply(ietf_dm_root)
+        ietf_dm_root.rpcs = []
+        ietf_dm_layer = stratoweave.build.CompiledLayer(ietf_dm_root, ietf_dm.models)
+        write_generated(fc, "../src/sorespo/devices/ietf_dm.act", ietf_dm_layer.print(loose=True, gen_json=False))
+
         cfs_layer = stratoweave.build.Layer.from_dir(fc, "yang/cfs")
         cfs_layer.models.extend([
             swyang.stratoweave,
@@ -391,10 +471,12 @@ actor main(env):
             rfs_layer,
         ], [
             stratoweave.build.DeviceType.from_dir(fc, "CiscoIosXr_25_3_1", "yang/CiscoIosXr_25_3_1",
+                model_translations=["sorespo.translations.model_translations.xr_system", "sorespo.translations.model_translations.xr_routing_policy", "sorespo.translations.model_translations.xr_network"],
                 transforms=[
                     swds.filter_schema(xr_paths),
                 ]),
             stratoweave.build.DeviceType.from_dir(fc, "JuniperCRPD_24_4R1_9", "yang/JuniperCRPD_24_4R1_9",
+                model_translations=["sorespo.translations.model_translations.junos_system", "sorespo.translations.model_translations.junos_routing_policy", "sorespo.translations.model_translations.junos_network"],
                 transforms=[
                     swds.filter_schema(crpd_paths),
                     swds.remove_list_user_order(crpd_order_paths),

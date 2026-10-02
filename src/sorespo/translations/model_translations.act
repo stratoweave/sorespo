@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: BSD-3-Clause
+"""StratoWeave registration; mapping modules have no StratoWeave dependency."""
+from stratoweave.device_translation import adata_translation
+from yang.gdata import Id
+import sorespo.devices.ietf_dm as ietf_dm
+import sorespo.translations.translation_data as data
+import sorespo.translations.ietf_iosxr as xr
+import sorespo.translations.ietf_junos as junos
+import sorespo.translations.ietf_iosxr_network as xr_net
+import sorespo.translations.ietf_junos_network as junos_net
+
+xr_system = adata_translation("ietf-system", ietf_dm.SRC_DNODE, [Id(data.SYS_NS, "system")], ietf_dm.root.from_gdata, xr.system)
+xr_routing_policy = adata_translation("ietf-routing-policy", ietf_dm.SRC_DNODE, [Id(data.RP_NS, "routing-policy")], ietf_dm.root.from_gdata, xr.routing_policy)
+junos_system = adata_translation("ietf-system", ietf_dm.SRC_DNODE, [Id(data.SYS_NS, "system")], ietf_dm.root.from_gdata, junos.system)
+junos_routing_policy = adata_translation("ietf-routing-policy", ietf_dm.SRC_DNODE, [Id(data.RP_NS, "routing-policy")], ietf_dm.root.from_gdata, junos.routing_policy)
+
+# These models reference each other and share /routing. Pass all four roots
+# together, once, after the RFS contributions have merged.
+network_roots = [Id(ietf_dm.NS_ietf_interfaces, "interfaces"),
+                 Id(ietf_dm.NS_ietf_routing, "routing"),
+                 Id(ietf_dm.NS_ietf_network_instance, "network-instances"),
+                 Id(ietf_dm.NS_ietf_key_chain, "key-chains")]
+xr_network = adata_translation("ietf-network", ietf_dm.SRC_DNODE, network_roots, ietf_dm.root.from_gdata, xr_net.network)
+junos_network = adata_translation("ietf-network", ietf_dm.SRC_DNODE, network_roots, ietf_dm.root.from_gdata, junos_net.network)

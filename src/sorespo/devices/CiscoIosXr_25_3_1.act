@@ -2454,11 +2454,336 @@ class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies(yadata.MN
 
 
 _breaker89: None = None
+class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set_entry(yadata.MNode):
+    set_name: str
+    rpl_prefix_set: ?str
+
+    mut def __init__(self, set_name: str, rpl_prefix_set: ?str) -> None:
+        self.set_name = set_name
+        self.rpl_prefix_set = rpl_prefix_set
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy', 'sets', 'prefix-sets', 'prefix-set'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set_entry:
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set_entry(set_name=n.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'set-name')), rpl_prefix_set=n.get_opt_str(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'rpl-prefix-set')))
+
+    mut def copy(self) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set_entry:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set_entry.from_gdata(self.to_gdata())
+
+_breaker90: None = None
+class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set(yadata.MKeyedList[str, Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set_entry]):
+    mut def __init__(self, elements: list[Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set_entry]=[]) -> None:
+        yadata.MKeyedList.__init__(self, lambda e: e.set_name, elements)
+
+    mut def create(self, key: str, rpl_prefix_set: ?str=None) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set_entry:
+        e = self.get(key)
+        if e is not None:
+            if rpl_prefix_set is not None:
+                e.rpl_prefix_set = rpl_prefix_set
+            return e
+        set_name = key
+        res = Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set_entry(set_name=set_name, rpl_prefix_set=rpl_prefix_set)
+        self._append(res)
+        return res
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set_entry]:
+        if n is not None:
+            return [Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set_entry.from_gdata(e) for e in n.entries()]
+        return []
+
+    mut def copy(self) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set:
+        """Create a deep copy of this list object"""
+        # Copy each element in the list
+        copied_elements = []
+        for e in self:
+            ce = e.copy()
+            if ce is not None:
+                copied_elements.append(ce)
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set(elements=copied_elements)
+
+
+_breaker91: None = None
+class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets(yadata.MNode):
+    prefix_set: Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set
+
+    mut def __init__(self, prefix_set: list[Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set_entry]=[]) -> None:
+        self.prefix_set = Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set(elements=prefix_set)
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy', 'sets', 'prefix-sets'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets:
+        if n is not None:
+            return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets(prefix_set=Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets__prefix_set.from_gdata(n.get_opt_list(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'prefix-set'))))
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets()
+
+    mut def copy(self) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets.from_gdata(self.to_gdata())
+
+
+_breaker92: None = None
+class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set_entry(yadata.MNode):
+    set_name: str
+    rpl_community_set: ?str
+
+    mut def __init__(self, set_name: str, rpl_community_set: ?str) -> None:
+        self.set_name = set_name
+        self.rpl_community_set = rpl_community_set
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy', 'sets', 'community-sets', 'community-set'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set_entry:
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set_entry(set_name=n.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'set-name')), rpl_community_set=n.get_opt_str(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'rpl-community-set')))
+
+    mut def copy(self) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set_entry:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set_entry.from_gdata(self.to_gdata())
+
+_breaker93: None = None
+class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set(yadata.MKeyedList[str, Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set_entry]):
+    mut def __init__(self, elements: list[Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set_entry]=[]) -> None:
+        yadata.MKeyedList.__init__(self, lambda e: e.set_name, elements)
+
+    mut def create(self, key: str, rpl_community_set: ?str=None) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set_entry:
+        e = self.get(key)
+        if e is not None:
+            if rpl_community_set is not None:
+                e.rpl_community_set = rpl_community_set
+            return e
+        set_name = key
+        res = Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set_entry(set_name=set_name, rpl_community_set=rpl_community_set)
+        self._append(res)
+        return res
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set_entry]:
+        if n is not None:
+            return [Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set_entry.from_gdata(e) for e in n.entries()]
+        return []
+
+    mut def copy(self) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set:
+        """Create a deep copy of this list object"""
+        # Copy each element in the list
+        copied_elements = []
+        for e in self:
+            ce = e.copy()
+            if ce is not None:
+                copied_elements.append(ce)
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set(elements=copied_elements)
+
+
+_breaker94: None = None
+class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets(yadata.MNode):
+    community_set: Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set
+
+    mut def __init__(self, community_set: list[Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set_entry]=[]) -> None:
+        self.community_set = Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set(elements=community_set)
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy', 'sets', 'community-sets'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets:
+        if n is not None:
+            return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets(community_set=Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets__community_set.from_gdata(n.get_opt_list(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'community-set'))))
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets()
+
+    mut def copy(self) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets.from_gdata(self.to_gdata())
+
+
+_breaker95: None = None
+class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set_entry(yadata.MNode):
+    set_name: str
+    rplas_path_set: ?str
+
+    mut def __init__(self, set_name: str, rplas_path_set: ?str) -> None:
+        self.set_name = set_name
+        self.rplas_path_set = rplas_path_set
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy', 'sets', 'as-path-sets', 'as-path-set'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set_entry:
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set_entry(set_name=n.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'set-name')), rplas_path_set=n.get_opt_str(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'rplas-path-set')))
+
+    mut def copy(self) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set_entry:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set_entry.from_gdata(self.to_gdata())
+
+_breaker96: None = None
+class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set(yadata.MKeyedList[str, Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set_entry]):
+    mut def __init__(self, elements: list[Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set_entry]=[]) -> None:
+        yadata.MKeyedList.__init__(self, lambda e: e.set_name, elements)
+
+    mut def create(self, key: str, rplas_path_set: ?str=None) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set_entry:
+        e = self.get(key)
+        if e is not None:
+            if rplas_path_set is not None:
+                e.rplas_path_set = rplas_path_set
+            return e
+        set_name = key
+        res = Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set_entry(set_name=set_name, rplas_path_set=rplas_path_set)
+        self._append(res)
+        return res
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set_entry]:
+        if n is not None:
+            return [Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set_entry.from_gdata(e) for e in n.entries()]
+        return []
+
+    mut def copy(self) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set:
+        """Create a deep copy of this list object"""
+        # Copy each element in the list
+        copied_elements = []
+        for e in self:
+            ce = e.copy()
+            if ce is not None:
+                copied_elements.append(ce)
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set(elements=copied_elements)
+
+
+_breaker97: None = None
+class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets(yadata.MNode):
+    as_path_set: Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set
+
+    mut def __init__(self, as_path_set: list[Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set_entry]=[]) -> None:
+        self.as_path_set = Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set(elements=as_path_set)
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy', 'sets', 'as-path-sets'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets:
+        if n is not None:
+            return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets(as_path_set=Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets__as_path_set.from_gdata(n.get_opt_list(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'as-path-set'))))
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets()
+
+    mut def copy(self) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets.from_gdata(self.to_gdata())
+
+
+_breaker98: None = None
+class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set_entry(yadata.MNode):
+    set_name: str
+    rpl_tag_set: ?str
+
+    mut def __init__(self, set_name: str, rpl_tag_set: ?str) -> None:
+        self.set_name = set_name
+        self.rpl_tag_set = rpl_tag_set
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy', 'sets', 'tag-sets', 'tag-set'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set_entry:
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set_entry(set_name=n.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'set-name')), rpl_tag_set=n.get_opt_str(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'rpl-tag-set')))
+
+    mut def copy(self) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set_entry:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set_entry.from_gdata(self.to_gdata())
+
+_breaker99: None = None
+class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set(yadata.MKeyedList[str, Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set_entry]):
+    mut def __init__(self, elements: list[Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set_entry]=[]) -> None:
+        yadata.MKeyedList.__init__(self, lambda e: e.set_name, elements)
+
+    mut def create(self, key: str, rpl_tag_set: ?str=None) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set_entry:
+        e = self.get(key)
+        if e is not None:
+            if rpl_tag_set is not None:
+                e.rpl_tag_set = rpl_tag_set
+            return e
+        set_name = key
+        res = Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set_entry(set_name=set_name, rpl_tag_set=rpl_tag_set)
+        self._append(res)
+        return res
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set_entry]:
+        if n is not None:
+            return [Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set_entry.from_gdata(e) for e in n.entries()]
+        return []
+
+    mut def copy(self) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set:
+        """Create a deep copy of this list object"""
+        # Copy each element in the list
+        copied_elements = []
+        for e in self:
+            ce = e.copy()
+            if ce is not None:
+                copied_elements.append(ce)
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set(elements=copied_elements)
+
+
+_breaker100: None = None
+class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets(yadata.MNode):
+    tag_set: Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set
+
+    mut def __init__(self, tag_set: list[Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set_entry]=[]) -> None:
+        self.tag_set = Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set(elements=tag_set)
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy', 'sets', 'tag-sets'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets:
+        if n is not None:
+            return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets(tag_set=Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets__tag_set.from_gdata(n.get_opt_list(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'tag-set'))))
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets()
+
+    mut def copy(self) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets.from_gdata(self.to_gdata())
+
+
+_breaker101: None = None
+class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets(yadata.MNode):
+    prefix_sets: Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets
+    community_sets: Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets
+    as_path_sets: Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets
+    tag_sets: Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets
+
+    mut def __init__(self, prefix_sets: ?Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets=None, community_sets: ?Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets=None, as_path_sets: ?Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets=None, tag_sets: ?Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets=None) -> None:
+        self.prefix_sets = prefix_sets if prefix_sets is not None else Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets()
+        self.community_sets = community_sets if community_sets is not None else Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets()
+        self.as_path_sets = as_path_sets if as_path_sets is not None else Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets()
+        self.tag_sets = tag_sets if tag_sets is not None else Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets()
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy', 'sets'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets:
+        if n is not None:
+            return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets(prefix_sets=Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__prefix_sets.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'prefix-sets'))), community_sets=Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__community_sets.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'community-sets'))), as_path_sets=Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__as_path_sets.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'as-path-sets'))), tag_sets=Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets__tag_sets.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'tag-sets'))))
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets()
+
+    mut def copy(self) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets.from_gdata(self.to_gdata())
+
+
+_breaker102: None = None
 class Cisco_IOS_XR_um_route_policy_cfg__routing_policy(yadata.MNode):
     route_policies: Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies
+    sets: Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets
 
-    mut def __init__(self, route_policies: ?Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies=None) -> None:
+    mut def __init__(self, route_policies: ?Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies=None, sets: ?Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets=None) -> None:
         self.route_policies = route_policies if route_policies is not None else Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies()
+        self.sets = sets if sets is not None else Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets()
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
         return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy'], prev=prev)
@@ -2466,7 +2791,7 @@ class Cisco_IOS_XR_um_route_policy_cfg__routing_policy(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy:
         if n is not None:
-            return Cisco_IOS_XR_um_route_policy_cfg__routing_policy(route_policies=Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'route-policies'))))
+            return Cisco_IOS_XR_um_route_policy_cfg__routing_policy(route_policies=Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'route-policies'))), sets=Cisco_IOS_XR_um_route_policy_cfg__routing_policy__sets.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'sets'))))
         return Cisco_IOS_XR_um_route_policy_cfg__routing_policy()
 
     mut def copy(self) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy:
@@ -2474,7 +2799,199 @@ class Cisco_IOS_XR_um_route_policy_cfg__routing_policy(yadata.MNode):
         return Cisco_IOS_XR_um_route_policy_cfg__routing_policy.from_gdata(self.to_gdata())
 
 
-_breaker90: None = None
+_breaker103: None = None
+class Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server_entry(yadata.MNode):
+    address: str
+    type: str
+
+    mut def __init__(self, address: str, type: str) -> None:
+        self.address = address
+        self.type = type
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-ntp-cfg:ntp', 'peer-server', 'ipv4', 'ipv4-peer-server'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server_entry:
+        return Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server_entry(address=n.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_ntp_cfg, 'address')), type=n.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_ntp_cfg, 'type')))
+
+    mut def copy(self) -> Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server_entry:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server_entry.from_gdata(self.to_gdata())
+
+_breaker104: None = None
+class Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server(yadata.MKeyedList[(address: str, type: str), Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server_entry]):
+    mut def __init__(self, elements: list[Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server_entry]=[]) -> None:
+        yadata.MKeyedList.__init__(self, lambda e: (address=e.address, type=e.type), elements)
+
+    mut def create(self, key: (address: str, type: str)) -> Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server_entry:
+        e = self.get(key)
+        if e is not None:
+            return e
+        (address=address, type=type) = key
+        res = Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server_entry(address=address, type=type)
+        self._append(res)
+        return res
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server_entry]:
+        if n is not None:
+            return [Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server_entry.from_gdata(e) for e in n.entries()]
+        return []
+
+    mut def copy(self) -> Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server:
+        """Create a deep copy of this list object"""
+        # Copy each element in the list
+        copied_elements = []
+        for e in self:
+            ce = e.copy()
+            if ce is not None:
+                copied_elements.append(ce)
+        return Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server(elements=copied_elements)
+
+
+_breaker105: None = None
+class Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4(yadata.MNode):
+    ipv4_peer_server: Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server
+
+    mut def __init__(self, ipv4_peer_server: list[Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server_entry]=[]) -> None:
+        self.ipv4_peer_server = Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server(elements=ipv4_peer_server)
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-ntp-cfg:ntp', 'peer-server', 'ipv4'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4:
+        if n is not None:
+            return Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4(ipv4_peer_server=Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4__ipv4_peer_server.from_gdata(n.get_opt_list(ygdata.Id(NS_Cisco_IOS_XR_um_ntp_cfg, 'ipv4-peer-server'))))
+        return Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4()
+
+    mut def copy(self) -> Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4.from_gdata(self.to_gdata())
+
+
+_breaker106: None = None
+class Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server_entry(yadata.MNode):
+    address: str
+    type: str
+    ipv6_address: ?str
+
+    mut def __init__(self, address: str, type: str, ipv6_address: ?str) -> None:
+        self.address = address
+        self.type = type
+        self.ipv6_address = ipv6_address
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-ntp-cfg:ntp', 'peer-server', 'ipv6', 'ipv6-peer-server'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server_entry:
+        return Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server_entry(address=n.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_ntp_cfg, 'address')), type=n.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_ntp_cfg, 'type')), ipv6_address=n.get_opt_str(ygdata.Id(NS_Cisco_IOS_XR_um_ntp_cfg, 'ipv6-address')))
+
+    mut def copy(self) -> Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server_entry:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server_entry.from_gdata(self.to_gdata())
+
+_breaker107: None = None
+class Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server(yadata.MKeyedList[(address: str, type: str), Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server_entry]):
+    mut def __init__(self, elements: list[Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server_entry]=[]) -> None:
+        yadata.MKeyedList.__init__(self, lambda e: (address=e.address, type=e.type), elements)
+
+    mut def create(self, key: (address: str, type: str), ipv6_address: ?str=None) -> Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server_entry:
+        e = self.get(key)
+        if e is not None:
+            if ipv6_address is not None:
+                e.ipv6_address = ipv6_address
+            return e
+        (address=address, type=type) = key
+        res = Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server_entry(address=address, type=type, ipv6_address=ipv6_address)
+        self._append(res)
+        return res
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server_entry]:
+        if n is not None:
+            return [Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server_entry.from_gdata(e) for e in n.entries()]
+        return []
+
+    mut def copy(self) -> Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server:
+        """Create a deep copy of this list object"""
+        # Copy each element in the list
+        copied_elements = []
+        for e in self:
+            ce = e.copy()
+            if ce is not None:
+                copied_elements.append(ce)
+        return Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server(elements=copied_elements)
+
+
+_breaker108: None = None
+class Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6(yadata.MNode):
+    ipv6_peer_server: Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server
+
+    mut def __init__(self, ipv6_peer_server: list[Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server_entry]=[]) -> None:
+        self.ipv6_peer_server = Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server(elements=ipv6_peer_server)
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-ntp-cfg:ntp', 'peer-server', 'ipv6'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6:
+        if n is not None:
+            return Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6(ipv6_peer_server=Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6__ipv6_peer_server.from_gdata(n.get_opt_list(ygdata.Id(NS_Cisco_IOS_XR_um_ntp_cfg, 'ipv6-peer-server'))))
+        return Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6()
+
+    mut def copy(self) -> Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6.from_gdata(self.to_gdata())
+
+
+_breaker109: None = None
+class Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server(yadata.MNode):
+    ipv4: Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4
+    ipv6: Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6
+
+    mut def __init__(self, ipv4: ?Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4=None, ipv6: ?Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6=None) -> None:
+        self.ipv4 = ipv4 if ipv4 is not None else Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4()
+        self.ipv6 = ipv6 if ipv6 is not None else Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6()
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-ntp-cfg:ntp', 'peer-server'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server:
+        if n is not None:
+            return Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server(ipv4=Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv4.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_ntp_cfg, 'ipv4'))), ipv6=Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server__ipv6.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_ntp_cfg, 'ipv6'))))
+        return Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server()
+
+    mut def copy(self) -> Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server.from_gdata(self.to_gdata())
+
+
+_breaker110: None = None
+class Cisco_IOS_XR_um_ntp_cfg__ntp(yadata.MNode):
+    peer_server: Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server
+
+    mut def __init__(self, peer_server: ?Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server=None) -> None:
+        self.peer_server = peer_server if peer_server is not None else Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server()
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-ntp-cfg:ntp'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_ntp_cfg__ntp:
+        if n is not None:
+            return Cisco_IOS_XR_um_ntp_cfg__ntp(peer_server=Cisco_IOS_XR_um_ntp_cfg__ntp__peer_server.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_ntp_cfg, 'peer-server'))))
+        return Cisco_IOS_XR_um_ntp_cfg__ntp()
+
+    mut def copy(self) -> Cisco_IOS_XR_um_ntp_cfg__ntp:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_ntp_cfg__ntp.from_gdata(self.to_gdata())
+
+
+_breaker111: None = None
 class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family_entry(yadata.MNode):
     af_name: str
 
@@ -2492,7 +3009,7 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family_
         """Create a deep copy of this adata object"""
         return Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family_entry.from_gdata(self.to_gdata())
 
-_breaker91: None = None
+_breaker112: None = None
 class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family(yadata.MKeyedList[str, Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family_entry]):
     mut def __init__(self, elements: list[Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family_entry]=[]) -> None:
         yadata.MKeyedList.__init__(self, lambda e: e.af_name, elements)
@@ -2523,7 +3040,7 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family(
         return Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family(elements=copied_elements)
 
 
-_breaker92: None = None
+_breaker113: None = None
 class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families(yadata.MNode):
     address_family: Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family
 
@@ -2544,7 +3061,7 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families(yadata.MNode):
         return Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families.from_gdata(self.to_gdata())
 
 
-_breaker93: None = None
+_breaker114: None = None
 class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface_entry(yadata.MNode):
     interface_name: str
 
@@ -2562,7 +3079,7 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface_entry(yadat
         """Create a deep copy of this adata object"""
         return Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface_entry.from_gdata(self.to_gdata())
 
-_breaker94: None = None
+_breaker115: None = None
 class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface(yadata.MKeyedList[str, Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface_entry]):
     mut def __init__(self, elements: list[Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface_entry]=[]) -> None:
         yadata.MKeyedList.__init__(self, lambda e: e.interface_name, elements)
@@ -2593,7 +3110,7 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface(yadata.MKey
         return Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface(elements=copied_elements)
 
 
-_breaker95: None = None
+_breaker116: None = None
 class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces(yadata.MNode):
     interface: Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface
 
@@ -2614,7 +3131,7 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces(yadata.MNode):
         return Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces.from_gdata(self.to_gdata())
 
 
-_breaker96: None = None
+_breaker117: None = None
 class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp(yadata.MNode):
     address_families: Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families
     interfaces: Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces
@@ -2640,7 +3157,7 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp(yadata.MNode):
         raise Exception('Unreachable in Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp.copy()')
 
 
-_breaker97: None = None
+_breaker118: None = None
 class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls(yadata.MNode):
     ldp: ?Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp
 
@@ -2669,7 +3186,7 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls(yadata.MNode):
         return Cisco_IOS_XR_um_mpls_ldp_cfg__mpls.from_gdata(self.to_gdata())
 
 
-_breaker98: None = None
+_breaker119: None = None
 class Cisco_IOS_XR_um_hostname_cfg__hostname(yadata.MNode):
     system_network_name: ?str
 
@@ -2690,24 +3207,144 @@ class Cisco_IOS_XR_um_hostname_cfg__hostname(yadata.MNode):
         return Cisco_IOS_XR_um_hostname_cfg__hostname.from_gdata(self.to_gdata())
 
 
-_breaker99: None = None
+_breaker120: None = None
+class Cisco_IOS_XR_um_domain_cfg__domain__lookup(yadata.MNode):
+    source_interface: ?str
+
+    mut def __init__(self, source_interface: ?str) -> None:
+        self.source_interface = source_interface
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-domain-cfg:domain', 'lookup'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_domain_cfg__domain__lookup:
+        if n is not None:
+            return Cisco_IOS_XR_um_domain_cfg__domain__lookup(source_interface=n.get_opt_str(ygdata.Id(NS_Cisco_IOS_XR_um_domain_cfg, 'source-interface')))
+        return Cisco_IOS_XR_um_domain_cfg__domain__lookup()
+
+    mut def copy(self) -> Cisco_IOS_XR_um_domain_cfg__domain__lookup:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_domain_cfg__domain__lookup.from_gdata(self.to_gdata())
+
+
+_breaker121: None = None
+class Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server_entry(yadata.MNode):
+    order: u64
+    address: str
+
+    mut def __init__(self, order: u64, address: str) -> None:
+        self.order = order
+        self.address = address
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-domain-cfg:domain', 'name-servers', 'name-server'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server_entry:
+        return Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server_entry(order=n.get_u64(ygdata.Id(NS_Cisco_IOS_XR_um_domain_cfg, 'order')), address=n.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_domain_cfg, 'address')))
+
+    mut def copy(self) -> Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server_entry:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server_entry.from_gdata(self.to_gdata())
+
+_breaker122: None = None
+class Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server(yadata.MKeyedList[(order: u64, address: str), Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server_entry]):
+    mut def __init__(self, elements: list[Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server_entry]=[]) -> None:
+        yadata.MKeyedList.__init__(self, lambda e: (order=e.order, address=e.address), elements)
+
+    mut def create(self, key: (order: u64, address: str)) -> Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server_entry:
+        e = self.get(key)
+        if e is not None:
+            return e
+        (order=order, address=address) = key
+        res = Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server_entry(order=order, address=address)
+        self._append(res)
+        return res
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.List) -> list[Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server_entry]:
+        if n is not None:
+            return [Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server_entry.from_gdata(e) for e in n.entries()]
+        return []
+
+    mut def copy(self) -> Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server:
+        """Create a deep copy of this list object"""
+        # Copy each element in the list
+        copied_elements = []
+        for e in self:
+            ce = e.copy()
+            if ce is not None:
+                copied_elements.append(ce)
+        return Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server(elements=copied_elements)
+
+
+_breaker123: None = None
+class Cisco_IOS_XR_um_domain_cfg__domain__name_servers(yadata.MNode):
+    name_server: Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server
+
+    mut def __init__(self, name_server: list[Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server_entry]=[]) -> None:
+        self.name_server = Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server(elements=name_server)
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-domain-cfg:domain', 'name-servers'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_domain_cfg__domain__name_servers:
+        if n is not None:
+            return Cisco_IOS_XR_um_domain_cfg__domain__name_servers(name_server=Cisco_IOS_XR_um_domain_cfg__domain__name_servers__name_server.from_gdata(n.get_opt_list(ygdata.Id(NS_Cisco_IOS_XR_um_domain_cfg, 'name-server'))))
+        return Cisco_IOS_XR_um_domain_cfg__domain__name_servers()
+
+    mut def copy(self) -> Cisco_IOS_XR_um_domain_cfg__domain__name_servers:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_domain_cfg__domain__name_servers.from_gdata(self.to_gdata())
+
+
+_breaker124: None = None
+class Cisco_IOS_XR_um_domain_cfg__domain(yadata.MNode):
+    lookup: Cisco_IOS_XR_um_domain_cfg__domain__lookup
+    name_servers: Cisco_IOS_XR_um_domain_cfg__domain__name_servers
+
+    mut def __init__(self, lookup: ?Cisco_IOS_XR_um_domain_cfg__domain__lookup=None, name_servers: ?Cisco_IOS_XR_um_domain_cfg__domain__name_servers=None) -> None:
+        self.lookup = lookup if lookup is not None else Cisco_IOS_XR_um_domain_cfg__domain__lookup()
+        self.name_servers = name_servers if name_servers is not None else Cisco_IOS_XR_um_domain_cfg__domain__name_servers()
+
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-domain-cfg:domain'], prev=prev)
+
+    @staticmethod
+    mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_domain_cfg__domain:
+        if n is not None:
+            return Cisco_IOS_XR_um_domain_cfg__domain(lookup=Cisco_IOS_XR_um_domain_cfg__domain__lookup.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_domain_cfg, 'lookup'))), name_servers=Cisco_IOS_XR_um_domain_cfg__domain__name_servers.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_domain_cfg, 'name-servers'))))
+        return Cisco_IOS_XR_um_domain_cfg__domain()
+
+    mut def copy(self) -> Cisco_IOS_XR_um_domain_cfg__domain:
+        """Create a deep copy of this adata object"""
+        return Cisco_IOS_XR_um_domain_cfg__domain.from_gdata(self.to_gdata())
+
+
+_breaker125: None = None
 class root(yadata.MNode):
     vrfs: Cisco_IOS_XR_um_vrf_cfg__vrfs
     interfaces: Cisco_IOS_XR_um_interface_cfg__interfaces
     um_router_isis_cfg_router: Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router
     um_router_bgp_cfg_router: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router
     routing_policy: Cisco_IOS_XR_um_route_policy_cfg__routing_policy
+    ntp: Cisco_IOS_XR_um_ntp_cfg__ntp
     mpls: Cisco_IOS_XR_um_mpls_ldp_cfg__mpls
     hostname: Cisco_IOS_XR_um_hostname_cfg__hostname
+    domain: Cisco_IOS_XR_um_domain_cfg__domain
 
-    mut def __init__(self, vrfs: ?Cisco_IOS_XR_um_vrf_cfg__vrfs=None, interfaces: ?Cisco_IOS_XR_um_interface_cfg__interfaces=None, um_router_isis_cfg_router: ?Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router=None, um_router_bgp_cfg_router: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router=None, routing_policy: ?Cisco_IOS_XR_um_route_policy_cfg__routing_policy=None, mpls: ?Cisco_IOS_XR_um_mpls_ldp_cfg__mpls=None, hostname: ?Cisco_IOS_XR_um_hostname_cfg__hostname=None) -> None:
+    mut def __init__(self, vrfs: ?Cisco_IOS_XR_um_vrf_cfg__vrfs=None, interfaces: ?Cisco_IOS_XR_um_interface_cfg__interfaces=None, um_router_isis_cfg_router: ?Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router=None, um_router_bgp_cfg_router: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router=None, routing_policy: ?Cisco_IOS_XR_um_route_policy_cfg__routing_policy=None, ntp: ?Cisco_IOS_XR_um_ntp_cfg__ntp=None, mpls: ?Cisco_IOS_XR_um_mpls_ldp_cfg__mpls=None, hostname: ?Cisco_IOS_XR_um_hostname_cfg__hostname=None, domain: ?Cisco_IOS_XR_um_domain_cfg__domain=None) -> None:
         self.vrfs = vrfs if vrfs is not None else Cisco_IOS_XR_um_vrf_cfg__vrfs()
         self.interfaces = interfaces if interfaces is not None else Cisco_IOS_XR_um_interface_cfg__interfaces()
         self.um_router_isis_cfg_router = um_router_isis_cfg_router if um_router_isis_cfg_router is not None else Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router()
         self.um_router_bgp_cfg_router = um_router_bgp_cfg_router if um_router_bgp_cfg_router is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router()
         self.routing_policy = routing_policy if routing_policy is not None else Cisco_IOS_XR_um_route_policy_cfg__routing_policy()
+        self.ntp = ntp if ntp is not None else Cisco_IOS_XR_um_ntp_cfg__ntp()
         self.mpls = mpls if mpls is not None else Cisco_IOS_XR_um_mpls_ldp_cfg__mpls()
         self.hostname = hostname if hostname is not None else Cisco_IOS_XR_um_hostname_cfg__hostname()
+        self.domain = domain if domain is not None else Cisco_IOS_XR_um_domain_cfg__domain()
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
         return yadata.from_adata(SRC_DNODE, self, loose=True, prev=prev)
@@ -2715,7 +3352,7 @@ class root(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> root:
         if n is not None:
-            return root(vrfs=Cisco_IOS_XR_um_vrf_cfg__vrfs.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_vrf_cfg, 'vrfs'))), interfaces=Cisco_IOS_XR_um_interface_cfg__interfaces.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_interface_cfg, 'interfaces'))), um_router_isis_cfg_router=Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_isis_cfg, 'router'))), um_router_bgp_cfg_router=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'router'))), routing_policy=Cisco_IOS_XR_um_route_policy_cfg__routing_policy.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'routing-policy'))), mpls=Cisco_IOS_XR_um_mpls_ldp_cfg__mpls.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_mpls_ldp_cfg, 'mpls'))), hostname=Cisco_IOS_XR_um_hostname_cfg__hostname.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_hostname_cfg, 'hostname'))))
+            return root(vrfs=Cisco_IOS_XR_um_vrf_cfg__vrfs.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_vrf_cfg, 'vrfs'))), interfaces=Cisco_IOS_XR_um_interface_cfg__interfaces.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_interface_cfg, 'interfaces'))), um_router_isis_cfg_router=Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_isis_cfg, 'router'))), um_router_bgp_cfg_router=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'router'))), routing_policy=Cisco_IOS_XR_um_route_policy_cfg__routing_policy.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'routing-policy'))), ntp=Cisco_IOS_XR_um_ntp_cfg__ntp.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_ntp_cfg, 'ntp'))), mpls=Cisco_IOS_XR_um_mpls_ldp_cfg__mpls.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_mpls_ldp_cfg, 'mpls'))), hostname=Cisco_IOS_XR_um_hostname_cfg__hostname.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_hostname_cfg, 'hostname'))), domain=Cisco_IOS_XR_um_domain_cfg__domain.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_domain_cfg, 'domain'))))
         return root()
 
     mut def copy(self) -> root:

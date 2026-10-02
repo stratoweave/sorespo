@@ -28,3 +28,6 @@ its base branch to `main` and comments in the PR with an explanation.
 
 Note: Since these automated workflows run off the default (`stable`) branch, the
 effects of changes to the workflows are not visible until merged to `stable`.
+
+See [Device model translation](model-translation.md) for shared IETF bindings,
+adapter registrations, mixed native/standard RFS output and mapping restrictions.

@@ -1,0 +1,47 @@
+// Ported from nso-ts; NSO mounting and service annotations removed.
+module ietf-routing-policy-stratoweave {
+  yang-version 1.1;
+  namespace "https://stratoweave.org/yang/ietf-routing-policy-stratoweave";
+  prefix ts-rt-pol;
+
+
+  import ietf-routing-policy {
+      prefix rt-pol;
+  }
+
+  import ietf-bgp-policy {
+    prefix bp;
+  }
+
+
+  revision 2026-10-12 {
+    description
+      "Support child policies on IOS XR.";
+  }
+
+  augment "/rt-pol:routing-policy/rt-pol:policy-definitions/rt-pol:policy-definition" {
+    leaf ios-xr-policy-type {
+      description
+        "Set-up the policy on IOS-XR to work correctly as a hierarchical-policy that can be referenced through 'call-policy'.";
+      type enumeration {
+        enum "regular";
+        enum "hierarchical";
+        enum "both";
+      }
+      default "regular";
+    }
+  }
+
+  augment "/rt-pol:routing-policy/rt-pol:defined-sets/bp:bgp-defined-sets/bp:community-sets/bp:community-set" {
+    leaf junos-match-type {
+      description
+        "Set-up the community on JUNOS to support inverse matching.";
+      type enumeration {
+        enum "regular";
+        enum "inverted";
+        enum "both";
+      }
+      default "regular";
+    }
+  }
+}

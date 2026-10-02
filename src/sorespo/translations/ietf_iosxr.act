@@ -1,0 +1,181 @@
+# SPDX-License-Identifier: BSD-3-Clause
+"""IETF configuration to IOS-XR UM models. No orchestration dependencies."""
+import sorespo.devices.ietf_dm as ietf_dm
+from sorespo.devices.ietf_dm import ietf_routing_policy__routing_policy__policy_definitions__policy_definition_entry as Policy
+from sorespo.devices.ietf_dm import ietf_routing_policy__routing_policy__defined_sets__prefix_sets__prefix_set__prefixes__prefix_list_entry as PrefixEntry
+import sorespo.translations.translation_data as d
+
+import sorespo.devices.CiscoIosXr_25_3_1 as x
+
+
+def identifier(name: str) -> str:
+    if not name or any([c in name for c in [" ", "\t", "\n", "\r", "'", '"', ",", "(", ")"]]):
+        raise ValueError("Invalid IOS-XR policy identifier {name}")
+    return name
+
+
+def regex_value(pattern: str) -> str:
+    if any([c in pattern for c in ["'", "\n", "\r"]]):
+        raise ValueError("Unsupported quote or newline in IOS-XR regular expression")
+    return "ios-regex '{pattern}'"
+
+
+def set_body(kind: str, name: str, members: list[str]) -> str:
+    return "{kind} {identifier(name)}\n" + ",\n".join(["  {m}" for m in members]) + "\nend-set\n"
+
+
+def prefix_member(entry: PrefixEntry, mode: str) -> str:
+    prefix, base, lower, upper, width = d.prefix_lengths(entry, mode)
+    if base == width:
+        return prefix.split("/")[0]
+    if base == lower and lower == upper:
+        return prefix
+    if base == lower:
+        return "{prefix} le {upper}"
+    if upper == width:
+        return "{prefix} ge {lower}"
+    if lower == upper:
+        return "{prefix} eq {lower}"
+    return "{prefix} ge {lower} le {upper}"
+
+
+def policy_body(policy: Policy, hierarchical: bool=False) -> str:
+    name = identifier(policy.name)
+    suffix = "-HIERARCHICAL" if hierarchical else ""
+    lines = ["route-policy {name}{suffix}"]
+    for statement in policy.statements.statement:
+        conditions: list[str] = []
+        c = statement.conditions
+        if c.call_policy is not None:
+            conditions.append("(apply {identifier(c.call_policy!)}-HIERARCHICAL)")
+        if c.source_protocol is not None:
+            protocol = c.source_protocol!.val
+            if protocol != "direct":
+                raise ValueError("IOS-XR translation supports only direct source-protocol, got {protocol}")
+            conditions.append("(protocol is connected)")
+        if c.match_interface.interface is not None:
+            raise ValueError("IOS-XR match-interface translation is unsupported")
+        for ref, options, field, expression in [
+            (c.match_prefix_set.prefix_set, c.match_prefix_set.match_set_options, "prefix-set", "destination in"),
+            (c.match_tag_set.tag_set, c.match_tag_set.match_set_options, "tag-set", "tag in"),
+            (c.bgp_conditions.match_as_path_set.as_path_set, c.bgp_conditions.match_as_path_set.match_set_options, "as-path-set", "as-path in")]:
+            if ref is not None:
+                mode = d.match_mode(options)
+                if mode == "all":
+                    raise ValueError("IOS-XR does not support all for {field}")
+                negate = "not " if mode == "invert" else ""
+                conditions.append("({negate}{expression} {identifier(ref)})")
+        match = c.bgp_conditions.match_community_set
+        if match.community_set is not None:
+            mode = d.match_mode(match.match_set_options)
+            op = "matches-every" if mode == "all" else "matches-any"
+            negate = "not " if mode == "invert" else ""
+            conditions.append("({negate}community {op} {identifier(match.community_set!)})")
+        pad = "    " if conditions else "  "
+        if conditions:
+            lines.append("  if " + " and ".join(conditions) + " then")
+        actions = statement.actions
+        bgp = actions.bgp_actions
+        assignments: list[(?atom, str, str)] = [
+            (bgp.set_route_origin, "set-route-origin", "origin"),
+            (bgp.set_local_pref, "set-local-pref", "local-preference"),
+            (bgp.set_next_hop, "set-next-hop", "next-hop"),
+            (bgp.set_med, "set-med", "med")]
+        for value, source, target in assignments:
+            if value is not None:
+                val = str(value)
+                if source == "set-med" and val == "igp":
+                    val = "igp-cost"
+                if any([c in val for c in ["\n", "\r"]]):
+                    raise ValueError("Invalid IOS-XR action {source}")
+                lines.append("{pad}set {target} {val}")
+        community = bgp.set_community
+        ref = community.community_set_ref
+        members = d.community_values(community.community)
+        if ref or members:
+            if ref and members:
+                raise ValueError("set-community must use a reference or inline members")
+            value = identifier(ref!) if ref else "(" + ", ".join([identifier(m) for m in members]) + ")"
+            op = d.required(community.options, "set-community/options")
+            if op == "add":
+                lines.append("{pad}set community {value} additive")
+            elif op == "replace":
+                lines.append("{pad}set community {value}")
+            elif op == "remove":
+                lines.append("{pad}delete community in {value}")
+            else:
+                raise ValueError("Unsupported set-community option {op}")
+        result = actions.policy_result if actions.policy_result is not None else "next-statement"
+        if result == "accept-route":
+            if hierarchical:
+                lines.append("{pad}pass")
+            lines.append("{pad}done")
+        elif result == "reject-route":
+            lines.append("{pad}" + ("done" if hierarchical else "drop"))
+        elif result != "next-statement":
+            raise ValueError("Unsupported policy-result {result}")
+        if conditions:
+            lines.append("  endif")
+    return "\n".join(lines + ["end-policy", ""])
+
+
+mut def routing_policy(tree: ietf_dm.root) -> x.root:
+    policy = d.policy_input(tree)
+    target = x.root()
+    native = target.routing_policy
+    prefix_names = set()
+    for p in policy.defined_sets.prefix_sets.prefix_set:
+        name = p.name
+        if name in prefix_names:
+            raise ValueError("IOS-XR prefix-set names must be unique across address families: {name}")
+        prefix_names.add(name)
+        members = [prefix_member(e, p.mode) for e in p.prefixes.prefix_list]
+        native.sets.prefix_sets.prefix_set.create(name, set_body("prefix-set", name, members))
+    for item in policy.defined_sets.tag_sets.tag_set:
+        name = item.name
+        native.sets.tag_sets.tag_set.create(name, set_body("tag-set", name, [str(value) for value in item.tag_value]))
+    for item in policy.defined_sets.bgp_defined_sets.community_sets.community_set:
+        name = item.name
+        members = [m if all([c.isdecimal() or c == ":" for c in m]) else regex_value(m) for m in d.community_values(item.member)]
+        native.sets.community_sets.community_set.create(name, set_body("community-set", name, members))
+    for item in policy.defined_sets.bgp_defined_sets.as_path_sets.as_path_set:
+        name = item.name
+        native.sets.as_path_sets.as_path_set.create(name, set_body("as-path-set", name, [regex_value(m) for m in item.member]))
+    names = set()
+    for p in policy.policy_definitions.policy_definition:
+        policy_type = p.ios_xr_policy_type if p.ios_xr_policy_type is not None else "regular"
+        if policy_type not in ["regular", "hierarchical", "both"]:
+            raise ValueError("Invalid ios-xr-policy-type {policy_type}")
+        for hierarchical in [False, True]:
+            if policy_type == "both" or policy_type == ("hierarchical" if hierarchical else "regular"):
+                name = p.name + ("-HIERARCHICAL" if hierarchical else "")
+                if name in names:
+                    raise ValueError("Generated IOS-XR policy name collision: {name}")
+                names.add(name)
+                native.route_policies.route_policy.create(name, policy_body(p, hierarchical))
+    return target
+
+
+mut def system(tree: ietf_dm.root) -> x.root:
+    source = d.system_input(tree, network_services=True)
+    target = x.root()
+    target.hostname.system_network_name = source.hostname
+    ntp = source.ntp
+    if ntp is not None:
+        enabled = ntp.enabled is None or ntp.enabled == True
+        for server in ntp.server:
+            if (server.association_type is not None and server.association_type != "server") or (server.udp.port is not None and server.udp.port != 123) or server.iburst == True or server.prefer == True:
+                raise ValueError("IOS-XR NTP translation supports plain servers on port 123")
+            address = d.required(server.udp.address, "ntp/server[{server.name}]/udp/address")
+            if enabled:
+                if ":" in address:
+                    target.ntp.peer_server.ipv6.ipv6_peer_server.create((address=address, type="server"), ipv6_address=address)
+                else:
+                    target.ntp.peer_server.ipv4.ipv4_peer_server.create((address=address, type="server"))
+    for server in source.dns_resolver.server:
+        if server.udp_and_tcp.port is not None and server.udp_and_tcp.port != 53:
+            raise ValueError("IOS-XR DNS translation supports port 53 only")
+        address = d.required(server.udp_and_tcp.address, "dns-resolver/server[{server.name}]/udp-and-tcp/address")
+        target.domain.name_servers.name_server.create((order=0, address=address))
+        target.domain.lookup.source_interface = "Loopback0"
+    return target

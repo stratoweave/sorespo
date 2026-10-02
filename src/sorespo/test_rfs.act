@@ -29,7 +29,7 @@ proc def _test_rfs_bbinterface1(t: testing.SyncT):
 proc def _test_rfs_bbinterface2(t: testing.SyncT):
     xmlin = """<backbone-interface xmlns="http://example.com/sorespo-rfs">
   <name>eth1</name>
-  <ipv4-address>10.0.20.2/30</ipv4-address>
+  <ipv4-address>10.0.20.2</ipv4-address>
   <ipv4-prefix-length>30</ipv4-prefix-length>
   <remote>
       <device>FRA-CORE-1</device>

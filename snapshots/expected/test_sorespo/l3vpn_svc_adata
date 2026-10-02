@@ -405,7 +405,7 @@ inet = unit_element.family.create_inet()
 address_element = inet.address.create('10.0.31.2/30')
 
 # List /configuration/interfaces/interface element: 'eth3'
-interface_element = LJU_CORE_1.configuration.interfaces.interface.create('eth3', description='Customer VPN access SITE-4 [SNA-4-1] in VPN acme-65501')
+interface_element = LJU_CORE_1.configuration.interfaces.interface.create('eth3', description='Customer access port')
 
 # List /configuration/interfaces/interface[name='eth3']/unit element: '100'
 unit_element = interface_element.unit.create('100', description='Customer VPN access SITE-4 [SNA-4-1] in VPN acme-65501', vlan_id='100')
@@ -434,11 +434,21 @@ iso = unit_element.family.create_iso()
 # List /configuration/interfaces/interface[name='lo0']/unit[name='0']/family/iso/address element: '49.0001.0100.0000.0004.00'
 address_element_2 = iso.address.create('49.0001.0100.0000.0004.00')
 
+# List /configuration/policy-options/policy-statement element: 'ACCEPT'
+policy_statement_element = LJU_CORE_1.configuration.policy_options.policy_statement.create('ACCEPT')
+
+# List /configuration/policy-options/policy-statement[name='ACCEPT']/term element: 'accept'
+term_element = policy_statement_element.term.create('accept')
+
+# Container: /configuration/policy-options/policy-statement[name='ACCEPT']/term[name='accept']/then
+term_element.then.accept = True
+
 # List /configuration/routing-instances/instance element: 'acme-65501'
 instance_element = LJU_CORE_1.configuration.routing_instances.instance.create('acme-65501', instance_type='vrf')
 
 # List /configuration/routing-instances/instance[name='acme-65501']/protocols/bgp/group element: 'customer'
 group_element = instance_element.protocols.bgp.group.create('customer', passive=True)
+group_element.import = ['ACCEPT']
 
 # List /configuration/routing-instances/instance[name='acme-65501']/protocols/bgp/group[name='customer']/neighbor element: '10.204.1.2'
 neighbor_element = group_element.neighbor.create('10.204.1.2', description='Customer eBGP SITE-4 [SNA-4-1] in VPN acme-65501 to 10.204.1.2', hold_time=u64(3), authentication_key='$9$4TaJDkqf36AoJ5Q3npuhSrlWxaJGk.57-.P', peer_as='65501', as_override=True)
@@ -578,7 +588,7 @@ inet = unit_element.family.create_inet()
 address_element = inet.address.create('10.0.31.1/30')
 
 # List /configuration/interfaces/interface element: 'eth4'
-interface_element = STO_CORE_1.configuration.interfaces.interface.create('eth4', description='Customer VPN access SITE-3 [SNA-3-1] in VPN acme-65501')
+interface_element = STO_CORE_1.configuration.interfaces.interface.create('eth4', description='Customer access port')
 
 # List /configuration/interfaces/interface[name='eth4']/unit element: '100'
 unit_element = interface_element.unit.create('100', description='Customer VPN access SITE-3 [SNA-3-1] in VPN acme-65501', vlan_id='100')
@@ -607,11 +617,21 @@ iso = unit_element.family.create_iso()
 # List /configuration/interfaces/interface[name='lo0']/unit[name='0']/family/iso/address element: '49.0001.0100.0000.0003.00'
 address_element_2 = iso.address.create('49.0001.0100.0000.0003.00')
 
+# List /configuration/policy-options/policy-statement element: 'ACCEPT'
+policy_statement_element = STO_CORE_1.configuration.policy_options.policy_statement.create('ACCEPT')
+
+# List /configuration/policy-options/policy-statement[name='ACCEPT']/term element: 'accept'
+term_element = policy_statement_element.term.create('accept')
+
+# Container: /configuration/policy-options/policy-statement[name='ACCEPT']/term[name='accept']/then
+term_element.then.accept = True
+
 # List /configuration/routing-instances/instance element: 'acme-65501'
 instance_element = STO_CORE_1.configuration.routing_instances.instance.create('acme-65501', instance_type='vrf')
 
 # List /configuration/routing-instances/instance[name='acme-65501']/protocols/bgp/group element: 'customer'
 group_element = instance_element.protocols.bgp.group.create('customer', passive=True)
+group_element.import = ['ACCEPT']
 
 # List /configuration/routing-instances/instance[name='acme-65501']/protocols/bgp/group[name='customer']/neighbor element: '10.203.1.2'
 neighbor_element = group_element.neighbor.create('10.203.1.2', description='Customer eBGP SITE-3 [SNA-3-1] in VPN acme-65501 to 10.203.1.2', hold_time=u64(3), authentication_key='$9$4TaJDkqf36AoJ5Q3npuhSrlWxaJGk.57-.P', peer_as='65501', as_override=True)

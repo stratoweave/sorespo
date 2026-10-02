@@ -1,0 +1,158 @@
+# SPDX-License-Identifier: BSD-3-Clause
+"""IETF configuration to cRPD 24.4. Depends only on YANG data and bindings."""
+import sorespo.devices.ietf_dm as ietf_dm
+import sorespo.devices.JuniperCRPD_24_4R1_9 as j
+import sorespo.translations.translation_data as d
+
+
+mut def routing_policy(tree: ietf_dm.root) -> j.root:
+    source = d.policy_input(tree)
+    target = j.root()
+    dest = target.configuration.policy_options
+    prefixes = source.defined_sets.prefix_sets.prefix_set
+    tags = source.defined_sets.tag_sets.tag_set
+    communities = source.defined_sets.bgp_defined_sets.community_sets.community_set
+    aspaths = source.defined_sets.bgp_defined_sets.as_path_sets.as_path_set
+    policies = source.policy_definitions.policy_definition
+    community_names = set()
+    for item in prefixes:
+        prefix_set = dest.route_filter_list.create(item.name)
+        for entry in item.prefixes.prefix_list:
+            prefix, base, lower, upper, width = d.prefix_lengths(entry, item.mode)
+            choice = "prefix-length-range"
+            argument = "/{lower}-/{upper}"
+            if base == lower and lower == upper:
+                choice = "exact"
+                argument = ""
+            elif base == lower and upper == width:
+                choice = "orlonger"
+                argument = ""
+            prefix_set.rf_list.create((address=prefix, choice_ident=choice, choice_value=argument))
+    for item in aspaths:
+        group = dest.as_path_group.create(item.name)
+        for member in item.member:
+            group.as_path.create(member, path=member)
+    for item in communities:
+        match_type = item.junos_match_type if item.junos_match_type is not None else "regular"
+        if match_type not in ["regular", "inverted", "both"]:
+            raise ValueError("Invalid junos-match-type {match_type}")
+        for inverted in [False, True]:
+            if match_type == "both" or match_type == ("inverted" if inverted else "regular"):
+                name = item.name + ("-INVERTED" if inverted else "")
+                if name in community_names:
+                    raise ValueError("Generated Junos community name collision: {name}")
+                community_names.add(name)
+                community = dest.community.create(name)
+                community.members = d.community_values(item.member)
+                if inverted:
+                    community.invert_match = True
+    policy_names = {p.name for p in policies}
+    helpers: dict[str, (str, str)] = {}
+    for item in policies:
+        policy = dest.policy_statement.create(item.name)
+        for statement in item.statements.statement:
+            term = policy.term.create(statement.name)
+            conditions = statement.conditions
+            if conditions.call_policy is not None:
+                term.from.policy.append(conditions.call_policy!)
+            if conditions.source_protocol is not None:
+                protocol = conditions.source_protocol!.val
+                if protocol not in ["direct", "static", "bgp", "ospf", "isis"]:
+                    raise ValueError("Unsupported Junos source-protocol {protocol}")
+                term.from.protocol.append(protocol)
+            if conditions.match_interface.interface is not None:
+                term.from.interface.append(conditions.match_interface.interface!)
+            for ref, options, field, prefix in [
+                (conditions.match_prefix_set.prefix_set, conditions.match_prefix_set.match_set_options, "prefix-set", "NOT-PREFIX-SET-"),
+                (conditions.bgp_conditions.match_as_path_set.as_path_set, conditions.bgp_conditions.match_as_path_set.match_set_options, "as-path-set", "NOT-AS-PATH-SET-")]:
+                if ref is not None:
+                    mode = d.match_mode(options)
+                    if mode == "all":
+                        raise ValueError("Junos does not support all for {field}")
+                    if mode == "invert":
+                        helper = prefix + ref
+                        if helper in policy_names:
+                            raise ValueError("Generated Junos policy name collision: {helper}")
+                        helpers[helper] = (field, ref)
+                        term.from.policy.append(helper)
+                    elif field == "prefix-set":
+                        term.from.route_filter_list.create(ref)
+                    else:
+                        term.from.as_path_group.append(ref)
+            match = conditions.match_tag_set
+            if match.tag_set is not None:
+                tag = tags.get(match.tag_set!)
+                if tag is None:
+                    raise ValueError("Unknown tag-set {match.tag_set}")
+                if len(tag!.tag_value) != 1 or d.match_mode(match.match_set_options) != "any":
+                    raise ValueError("Junos supports exactly one tag and any matching per tag-set")
+                term.from.tag.append(u64(str(tag!.tag_value[0])))
+            community_match = conditions.bgp_conditions.match_community_set
+            if community_match.community_set is not None:
+                name = community_match.community_set!
+                mode = d.match_mode(community_match.match_set_options)
+                community_set = communities.get(name)
+                if community_set is None:
+                    raise ValueError("Unknown community-set {name}")
+                if mode == "any" and len(community_set!.member) > 1:
+                    raise ValueError("Junos any community matching supports at most one member")
+                native_name = name + ("-INVERTED" if mode == "invert" else "")
+                if native_name not in community_names:
+                    raise ValueError("Community {native_name} requires the corresponding junos-match-type")
+                term.from.community.append(native_name)
+            actions = statement.actions
+            bgp = actions.bgp_actions
+            if bgp.set_route_origin is not None:
+                term.then.origin = bgp.set_route_origin!
+            if bgp.set_local_pref is not None:
+                term.then.local_preference.local_preference = bgp.set_local_pref!
+            if bgp.set_next_hop is not None:
+                hop = bgp.set_next_hop!
+                if hop == "self":
+                    term.then.next_hop.self_ = True
+                else:
+                    term.then.next_hop.address = hop
+            if bgp.set_med is not None:
+                metric = str(bgp.set_med!)
+                if metric == "igp":
+                    term.then.metric.create_igp()
+                elif metric.startswith("+"):
+                    term.then.metric.add = u64(metric[1:])
+                elif metric.startswith("-"):
+                    term.then.metric.subtract = u64(metric[1:])
+                else:
+                    term.then.metric.metric = u64(metric)
+            community = bgp.set_community
+            if community.community:
+                raise ValueError("Junos set-community requires community-set-ref; inline communities are unsupported")
+            if community.community_set_ref is not None:
+                option = d.required(community.options, "set-community/options")
+                operations = {"add": "add", "replace": "set", "remove": "delete"}
+                if option not in operations:
+                    raise ValueError("Unsupported set-community option {option}")
+                term.then.community.create((choice_ident=operations[option], choice_value="", community_name=community.community_set_ref!))
+            result = actions.policy_result if actions.policy_result is not None else "next-statement"
+            if result == "accept-route":
+                term.then.accept = True
+            elif result == "reject-route":
+                term.then.reject = True
+            elif result != "next-statement":
+                raise ValueError("Unsupported policy-result {result}")
+    for helper, pair in helpers.items():
+        field, name = pair
+        policy = dest.policy_statement.create(helper)
+        term = policy.term.create("REJECT-" + name)
+        if field == "prefix-set":
+            term.from.route_filter_list.create(name)
+        else:
+            term.from.as_path_group.append(name)
+        term.then.reject = True
+        policy.term.create("ACCEPT-ALL-OTHERS").then.accept = True
+    return target
+
+
+mut def system(tree: ietf_dm.root) -> j.root:
+    source = d.system_input(tree, network_services=False)
+    target = j.root()
+    target.configuration.system.host_name = source.hostname
+    return target

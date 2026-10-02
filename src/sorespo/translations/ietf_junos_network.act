@@ -1,0 +1,208 @@
+"""Published IETF network intent to the supported Junos cRPD configuration."""
+from rtrsecrets.junos import junos_encrypt
+import sorespo.devices.ietf_dm as m
+from sorespo.devices.ietf_dm import ietf_routing__routing__control_plane_protocols__control_plane_protocol_entry as Protocol
+import sorespo.devices.JuniperCRPD_24_4R1_9 as j
+import sorespo.translations.network_data as n
+import sorespo.translations.translation_data as d
+
+
+mut def network(tree: m.root) -> j.root:
+    n.validate(tree)
+    native = j.root()
+    config = native.configuration
+    for interface in tree.interfaces.interface:
+        parent, unit_name = n.interface_unit(interface)
+        target = config.interfaces.interface.create(parent)
+        logical = interface.ipv4 is not None or interface.parent_interface is not None
+        if logical and interface.type != m.iana_if_type_softwareLoopback:
+            target.unit.create(unit_name, description=interface.description)
+        else:
+            target.description = interface.description
+        if interface.ipv4 is not None:
+            unit = target.unit.create(unit_name)
+            for address in interface.ipv4!.address:
+                unit.family.create_inet().address.create("{address.ip}/{address.prefix_length!}")
+        tag = interface.encapsulation.dot1q_vlan.outer_tag
+        if tag.vlan_id is not None:
+            target.unit.create(unit_name, vlan_id=str(tag.vlan_id!))
+        if interface.bind_ni_name is not None:
+            config.routing_instances.instance.create(interface.bind_ni_name!).interface.create("{parent}.{unit_name}")
+    for instance in tree.network_instances.network_instance:
+        target = config.routing_instances.instance.create(instance.name, instance_type="vrf")
+        vpn = instance.vpn!
+        if vpn.route_distinguisher is not None:
+            target.route_distinguisher.rd_type = n.vpn_text(vpn.route_distinguisher!)
+        if vpn.label_allocation is not None:
+            if vpn.label_allocation != "per-vrf":
+                raise ValueError("Unsupported Junos label allocation mode")
+            target.create_vrf_table_label()
+        for family in vpn.address_family:
+            if len(family.import_route_target) != 1 or family.import_route_target != family.export_route_target:
+                raise ValueError("Junos VRFs currently require one matching import/export RT")
+            target.vrf_target.community = "target:{n.vpn_text(family.import_route_target[0])}"
+    for interface in tree.routing.mpls.interfaces.interface:
+        if interface.mpls_enabled != True:
+            raise ValueError("Disabling MPLS interfaces is not implemented")
+        config.protocols.mpls.interface.create(n.junos_interface(tree, interface.name))
+    for protocol in tree.routing.control_plane_protocols.control_plane_protocol:
+        if protocol.type == m.ietf_bgp_bgp:
+            bgp(tree, protocol, native)
+        elif protocol.type == m.ietf_isis_isis:
+            source = protocol.isis
+            target = config.protocols.isis
+            target.lsp_lifetime = source.lsp_lifetime
+            if source.level_type is not None:
+                target.level.create(1, disable=True)
+            if source.metric_type.value is not None:
+                target.level.create(2, wide_metrics_only=True)
+            addresses = n.net_addresses(protocol)
+            loopbacks = [interface for interface in tree.interfaces.interface if interface.type == m.iana_if_type_softwareLoopback]
+            if addresses:
+                if len(loopbacks) != 1:
+                    raise ValueError("Junos IS-IS NET requires exactly one modeled loopback")
+                parent, unit = n.interface_unit(loopbacks[0])
+                iso = config.interfaces.interface.create(parent).unit.create(unit).family.create_iso()
+                for address in addresses:
+                    iso.address.create(address)
+            for interface in source.interfaces.interface:
+                ti = target.interface.create(n.junos_interface(tree, interface.name))
+                if interface.passive is not None:
+                    if interface.passive != True:
+                        raise ValueError("Explicit active IS-IS interfaces are not implemented")
+                    ti.create_passive()
+                if interface.interface_type is not None:
+                    ti.point_to_point = True
+                if interface.level_type is not None:
+                    ti.level.create(1, disable=True)
+                if interface.metric.level_2.value is not None:
+                    ti.level.create(2, metric=interface.metric.level_2.value)
+        elif protocol.type == m.ietf_mpls_ldp_mpls_ldp:
+            source = protocol.mpls_ldp
+            if source.global.address_families.ipv4 is not None and source.global.address_families.ipv4!.enabled == False:
+                raise ValueError("Disabling LDP IPv4 is not implemented")
+            for interface in source.discovery.interfaces.interface:
+                if interface.address_families.ipv4 is None or interface.address_families.ipv4!.enabled == False:
+                    raise ValueError("LDP interfaces require IPv4 enabled")
+                config.protocols.ldp.interface.create(n.junos_interface(tree, interface.name))
+    return native
+
+
+mut def bgp(tree: m.root, protocol: Protocol, native: j.root):
+    source = protocol.bgp
+    asn = n.as_number(protocol)
+    config = native.configuration
+    existing_as = config.routing_options.autonomous_system.as_number
+    if existing_as is not None and existing_as != str(asn):
+        raise ValueError("Different local BGP AS values across VRFs are not implemented")
+    config.routing_options.autonomous_system.as_number = str(asn)
+    if source.global!.identifier is not None:
+        raise ValueError("Explicit Junos BGP router-id is not implemented")
+    instance = protocol.name
+    if instance == "default":
+        # Required platform behavior for the registered cRPD NETCONF target.
+        services = config.system.create_services()
+        services.netconf.rfc_compliant = True
+        services.netconf.yang_compliant = True
+        if len(source.global!.afi_safis.afi_safi) > 0:
+            raise ValueError("Junos global BGP families must be configured on peer-groups")
+        target = config.protocols.bgp
+        for group in source.peer_groups.peer_group:
+            if group.peer_as != asn:
+                raise ValueError("Junos global peer-groups currently support iBGP only")
+            d.reject_present([
+                ("keepalive", group.timers.keepalive is not None),
+                ("passive-mode", group.transport.passive_mode is not None),
+                ("replace-peer-as", group.as_path_options.replace_peer_as is not None),
+                ("import-policy", bool(group.apply_policy.import_policy)),
+            ], "Junos global BGP peer-group")
+            ng = target.group.create(group.name, type="internal", description=group.description,
+                local_address=n.source_address(tree, group.transport.local_address), hold_time=group.timers.hold_time)
+            ng.export.extend(group.apply_policy.export_policy)
+            logging = group.logging_options.log_neighbor_state_changes
+            if logging is not None:
+                if target.log_updown is not None and target.log_updown != logging:
+                    raise ValueError("Conflicting Junos BGP logging settings")
+                target.log_updown = logging
+            security = group.transport.secure_session
+            key = n.password(tree, security.enabled, security.options.md5_keychain)
+            if key is not None:
+                ng.authentication_key = junos_encrypt(key, "4")
+            for family in group.afi_safis.afi_safi:
+                n.enabled_family(family.enabled)
+                if family.enabled == False or family.apply_policy.import_policy or family.apply_policy.export_policy:
+                    raise ValueError("Junos peer-group family disable/policies are not implemented")
+                if family.name == m.iana_bgp_afi_safi_types_l3vpn_ipv4_unicast:
+                    ng.family.inet_vpn.create_unicast()
+                elif family.name == m.iana_bgp_afi_safi_types_l3vpn_ipv6_unicast:
+                    ng.family.inet6_vpn.create_unicast()
+                elif family.name == m.stratoweave_network_route_target_constraints:
+                    ng.family.create_route_target()
+                else:
+                    raise ValueError("Unsupported Junos BGP family {family.name}")
+        for peer in source.neighbors.neighbor:
+            d.reject_present([
+                ("peer-as", peer.peer_as is not None),
+                ("local-address", peer.transport.local_address is not None),
+                ("security", peer.transport.secure_session.enabled is not None),
+                ("timers", peer.timers.hold_time is not None or peer.timers.keepalive is not None),
+                ("replace-peer-as", peer.as_path_options.replace_peer_as is not None),
+                ("logging", peer.logging_options.log_neighbor_state_changes is not None),
+                ("afi-safis", len(peer.afi_safis.afi_safi) > 0),
+                ("apply-policy", bool(peer.apply_policy.import_policy) or bool(peer.apply_policy.export_policy)),
+            ], "Junos global BGP neighbor")
+            group_name = d.required(peer.peer_group, "BGP neighbor/peer-group")
+            target.group.create(group_name).neighbor.create(peer.remote_address!, description=peer.description, passive=peer.transport.passive_mode)
+        return
+    target = config.routing_instances.instance.create(instance).protocols.bgp
+    for family in source.global!.afi_safis.afi_safi:
+        n.enabled_family(family.enabled)
+        if family.name != m.iana_bgp_afi_safi_types_ipv4_unicast or family.enabled == False:
+            raise ValueError("Junos VRF BGP currently supports IPv4 unicast")
+    for group in source.peer_groups.peer_group:
+        d.reject_present([
+            ("peer-as", group.peer_as is not None), ("description", group.description is not None),
+            ("timers", group.timers.hold_time is not None or group.timers.keepalive is not None),
+            ("local-address", group.transport.local_address is not None),
+            ("security", group.transport.secure_session.enabled is not None),
+            ("logging", group.logging_options.log_neighbor_state_changes is not None),
+            ("replace-peer-as", group.as_path_options.replace_peer_as is not None),
+            ("afi-safis", len(group.afi_safis.afi_safi) > 0),
+        ], "Junos VRF BGP group")
+        ng = target.group.create(group.name, passive=group.transport.passive_mode)
+        ng.import.extend(group.apply_policy.import_policy)
+        ng.export.extend(group.apply_policy.export_policy)
+    peer_policies: dict[str, (list[str], list[str])] = {}
+    for peer in source.neighbors.neighbor:
+        d.reject_present([
+            ("local-address", peer.transport.local_address is not None),
+            ("passive-mode", peer.transport.passive_mode is not None),
+            ("logging", peer.logging_options.log_neighbor_state_changes is not None),
+            ("keepalive", peer.timers.keepalive is not None),
+            ("apply-policy", bool(peer.apply_policy.import_policy) or bool(peer.apply_policy.export_policy)),
+        ], "Junos VRF BGP neighbor")
+        group_name = d.required(peer.peer_group, "VRF BGP neighbor/peer-group")
+        ng = target.group.create(group_name)
+        nb = ng.neighbor.create(peer.remote_address!, description=peer.description,
+            hold_time=peer.timers.hold_time, as_override=peer.as_path_options.replace_peer_as)
+        if peer.peer_as is not None:
+            nb.peer_as = str(peer.peer_as!)
+        security = peer.transport.secure_session
+        key = n.password(tree, security.enabled, security.options.md5_keychain)
+        if key is not None:
+            nb.authentication_key = junos_encrypt(key, "4")
+        for family in peer.afi_safis.afi_safi:
+            n.enabled_family(family.enabled)
+            if family.name != m.iana_bgp_afi_safi_types_ipv4_unicast or family.enabled == False:
+                raise ValueError("Junos VRF neighbors currently support IPv4 unicast")
+            # The selected Junos model attaches policy at the group. Reject
+            # differing neighbor policies instead of widening their scope.
+            requested_pair = (family.apply_policy.import_policy, family.apply_policy.export_policy)
+            if group_name in peer_policies and peer_policies[group_name] != requested_pair:
+                raise ValueError("Junos neighbors in one group must use identical policies")
+            peer_policies[group_name] = requested_pair
+            for existing, requested in [(ng.import, family.apply_policy.import_policy), (ng.export, family.apply_policy.export_policy)]:
+                if existing and existing != requested:
+                    raise ValueError("Junos neighbors in one group must use identical policies")
+                if not existing:
+                    existing.extend(requested)

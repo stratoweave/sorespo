@@ -3,1330 +3,1602 @@
         "device": [
             {
                 "config": {
-                    "Cisco-IOS-XR-um-hostname-cfg:hostname": {
-                        "system-network-name": "AMS-CORE-1"
-                    },
-                    "Cisco-IOS-XR-um-interface-cfg:interfaces": {
+                    "ietf-interfaces:interfaces": {
                         "interface": [
                             {
                                 "description": "Link to FRA-CORE-1 [GigabitEthernet0/0/0/0]",
-                                "interface-name": "GigabitEthernet0/0/0/0",
-                                "ipv4": {
-                                    "Cisco-IOS-XR-um-if-ip-address-cfg:addresses": {
-                                        "address": {
-                                            "address": "10.0.7.1",
-                                            "netmask": "255.255.255.252"
+                                "name": "GigabitEthernet0/0/0/0",
+                                "type": "iana-if-type:ethernetCsmacd",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.0.7.1",
+                                            "prefix-length": 30
                                         }
-                                    }
+                                    ]
                                 }
                             },
                             {
                                 "description": "Link to STO-CORE-1 [eth1]",
-                                "interface-name": "GigabitEthernet0/0/0/1",
-                                "ipv4": {
-                                    "Cisco-IOS-XR-um-if-ip-address-cfg:addresses": {
-                                        "address": {
-                                            "address": "10.0.20.1",
-                                            "netmask": "255.255.255.252"
+                                "name": "GigabitEthernet0/0/0/1",
+                                "type": "iana-if-type:ethernetCsmacd",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.0.20.1",
+                                            "prefix-length": 30
                                         }
-                                    }
+                                    ]
                                 }
                             },
                             {
                                 "description": "Customer access port",
-                                "interface-name": "GigabitEthernet0/0/0/2"
+                                "name": "GigabitEthernet0/0/0/2",
+                                "type": "iana-if-type:ethernetCsmacd"
                             },
                             {
-                                "Cisco-IOS-XR-um-if-vrf-cfg:vrf": "acme-65501",
-                                "description": "Customer VPN access SITE-1 [SNA-1-1] in VPN acme-65501",
-                                "interface-name": "GigabitEthernet0/0/0/2.100",
-                                "ipv4": {
-                                    "Cisco-IOS-XR-um-if-ip-address-cfg:addresses": {
-                                        "address": {
-                                            "address": "10.201.1.1",
-                                            "netmask": "255.255.255.252"
+                                "ietf-if-extensions:encapsulation": {
+                                    "ietf-if-vlan-encapsulation:dot1q-vlan": {
+                                        "outer-tag": {
+                                            "tag-type": "ieee802-dot1q-types:c-vlan",
+                                            "vlan-id": 100
                                         }
                                     }
                                 },
-                                "Cisco-IOS-XR-um-l2-ethernet-cfg:encapsulation": {
-                                    "dot1q": {
-                                        "vlan-id": 100
-                                    }
-                                }
+                                "ietf-if-extensions:parent-interface": "GigabitEthernet0/0/0/2",
+                                "description": "Customer VPN access SITE-1 [SNA-1-1] in VPN acme-65501",
+                                "name": "GigabitEthernet0/0/0/2.100",
+                                "type": "iana-if-type:l2vlan",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.201.1.1",
+                                            "prefix-length": 30
+                                        }
+                                    ]
+                                },
+                                "ietf-network-instance:bind-ni-name": "acme-65501"
                             },
                             {
-                                "interface-name": "Loopback0",
-                                "ipv4": {
-                                    "Cisco-IOS-XR-um-if-ip-address-cfg:addresses": {
-                                        "address": {
-                                            "address": "10.0.0.1",
-                                            "netmask": "255.255.255.255"
+                                "name": "Loopback0",
+                                "type": "iana-if-type:softwareLoopback",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.0.0.1",
+                                            "prefix-length": 32
                                         }
-                                    }
+                                    ]
                                 }
                             }
                         ]
                     },
-                    "Cisco-IOS-XR-um-mpls-ldp-cfg:mpls": {
-                        "ldp": {
-                            "address-families": {
-                                "address-family": [
+                    "ietf-key-chain:key-chains": {
+                        "key-chain": [
+                            {
+                                "key": [
                                     {
-                                        "af-name": "ipv4"
+                                        "crypto-algorithm": "ietf-key-chain:md5",
+                                        "key-id": 1,
+                                        "key-string": {
+                                            "keystring": "acme-bgp-md5"
+                                        }
                                     }
-                                ]
+                                ],
+                                "name": "ebgp:acme-65501:10.201.1.2"
                             },
+                            {
+                                "key": [
+                                    {
+                                        "crypto-algorithm": "ietf-key-chain:md5",
+                                        "key-id": 1,
+                                        "key-string": {
+                                            "keystring": "ibgp-authentication-key"
+                                        }
+                                    }
+                                ],
+                                "name": "ibgp"
+                            }
+                        ]
+                    },
+                    "ietf-network-instance:network-instances": {
+                        "network-instance": [
+                            {
+                                "stratoweave-network:vpn": {
+                                    "address-family": [
+                                        {
+                                            "export-route-target": [
+                                                "0:65001:65501"
+                                            ],
+                                            "import-route-target": [
+                                                "0:65001:65501"
+                                            ],
+                                            "name": "ipv4-unicast"
+                                        }
+                                    ],
+                                    "route-distinguisher": "0:65001:655011"
+                                },
+                                "name": "acme-65501"
+                            }
+                        ]
+                    },
+                    "ietf-routing:routing": {
+                        "ietf-mpls:mpls": {
                             "interfaces": {
                                 "interface": [
                                     {
-                                        "interface-name": "GigabitEthernet0/0/0/0"
+                                        "mpls-enabled": true,
+                                        "name": "GigabitEthernet0/0/0/0"
                                     },
                                     {
-                                        "interface-name": "GigabitEthernet0/0/0/1"
+                                        "mpls-enabled": true,
+                                        "name": "GigabitEthernet0/0/0/1"
                                     }
                                 ]
                             }
-                        }
-                    },
-                    "Cisco-IOS-XR-um-route-policy-cfg:routing-policy": {
-                        "route-policies": {
-                            "route-policy": [
+                        },
+                        "control-plane-protocols": {
+                            "control-plane-protocol": [
                                 {
-                                    "route-policy-name": "ACCEPT",
-                                    "rpl-route-policy": "route-policy ACCEPT\n  done\nend-policy\n"
-                                }
-                            ]
-                        }
-                    },
-                    "Cisco-IOS-XR-um-router-bgp-cfg:router": {
-                        "bgp": {
-                            "as": [
-                                {
-                                    "address-families": {
-                                        "address-family": [
-                                            {
-                                                "af-name": "vpnv4-unicast"
+                                    "ietf-bgp:bgp": {
+                                        "global": {
+                                            "afi-safis": {
+                                                "afi-safi": [
+                                                    {
+                                                        "enabled": true,
+                                                        "name": "iana-bgp-afi-safi-types:ipv4-unicast"
+                                                    }
+                                                ]
                                             },
-                                            {
-                                                "af-name": "vpnv6-unicast"
-                                            }
-                                        ]
-                                    },
-                                    "as-number": 65001,
-                                    "bgp": {
-                                        "router-id": "10.0.0.1"
-                                    },
-                                    "neighbor-groups": {
-                                        "neighbor-group": [
-                                            {
-                                                "address-families": {
-                                                    "address-family": [
-                                                        {
-                                                            "af-name": "vpnv4-unicast"
-                                                        },
-                                                        {
-                                                            "af-name": "vpnv6-unicast"
-                                                        }
-                                                    ]
-                                                },
-                                                "neighbor-group-name": "IPV4-IBGP",
-                                                "password": {
-                                                    "encrypted": "045209011F6C4D5B1D11001906020F053E222B267E3E270A"
-                                                },
-                                                "remote-as": 65001,
-                                                "update-source": "Loopback0"
-                                            }
-                                        ]
-                                    },
-                                    "neighbors": {
-                                        "neighbor": [
-                                            {
-                                                "address": "10.0.0.2",
-                                                "description": "FRA-CORE-1",
-                                                "use": {
-                                                    "neighbor-group": "IPV4-IBGP"
-                                                }
-                                            },
-                                            {
-                                                "address": "10.0.0.3",
-                                                "description": "STO-CORE-1",
-                                                "use": {
-                                                    "neighbor-group": "IPV4-IBGP"
-                                                }
-                                            },
-                                            {
-                                                "address": "10.0.0.4",
-                                                "description": "LJU-CORE-1",
-                                                "use": {
-                                                    "neighbor-group": "IPV4-IBGP"
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    "vrfs": {
-                                        "vrf": [
-                                            {
-                                                "address-families": {
-                                                    "address-family": [
-                                                        {
-                                                            "af-name": "ipv4-unicast"
-                                                        }
-                                                    ]
-                                                },
-                                                "neighbors": {
-                                                    "neighbor": [
-                                                        {
-                                                            "address": "10.201.1.2",
-                                                            "address-families": {
-                                                                "address-family": [
-                                                                    {
-                                                                        "af-name": "ipv4-unicast",
-                                                                        "as-override": {},
-                                                                        "route-policy": {
-                                                                            "in": "ACCEPT",
-                                                                            "out": "ACCEPT"
-                                                                        }
-                                                                    }
-                                                                ]
-                                                            },
-                                                            "description": "Customer eBGP SITE-1 [SNA-1-1] in VPN acme-65501 to 10.201.1.2",
-                                                            "password": {
-                                                                "encrypted": "045A080B0A6C4E491954081347"
-                                                            },
-                                                            "remote-as": 65501,
-                                                            "timers": {
-                                                                "holdtime": {
-                                                                    "holdtime-number": 3
+                                            "as": 65001
+                                        },
+                                        "neighbors": {
+                                            "neighbor": [
+                                                {
+                                                    "afi-safis": {
+                                                        "afi-safi": [
+                                                            {
+                                                                "apply-policy": {
+                                                                    "export-policy": [
+                                                                        "ACCEPT"
+                                                                    ],
+                                                                    "import-policy": [
+                                                                        "ACCEPT"
+                                                                    ]
                                                                 },
-                                                                "keepalive-interval": 1
+                                                                "enabled": true,
+                                                                "name": "iana-bgp-afi-safi-types:ipv4-unicast"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "as-path-options": {
+                                                        "replace-peer-as": true
+                                                    },
+                                                    "description": "Customer eBGP SITE-1 [SNA-1-1] in VPN acme-65501 to 10.201.1.2",
+                                                    "neighbor-key": "10.201.1.2",
+                                                    "peer-as": 65501,
+                                                    "peer-group": "customer",
+                                                    "remote-address": "10.201.1.2",
+                                                    "timers": {
+                                                        "hold-time": 3,
+                                                        "keepalive": 1
+                                                    },
+                                                    "transport": {
+                                                        "secure-session": {
+                                                            "enabled": true,
+                                                            "options": {
+                                                                "md5-keychain": "ebgp:acme-65501:10.201.1.2"
                                                             }
                                                         }
-                                                    ]
-                                                },
-                                                "rd": {
-                                                    "two-byte-as": {
-                                                        "asn2-index": 655011,
-                                                        "two-byte-as-number": 65001
                                                     }
-                                                },
-                                                "vrf-name": "acme-65501"
-                                            }
-                                        ]
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "Cisco-IOS-XR-um-router-isis-cfg:router": {
-                        "isis": {
-                            "processes": {
-                                "process": [
-                                    {
-                                        "address-families": {
-                                            "address-family": [
-                                                {
-                                                    "af-name": "ipv4",
-                                                    "metric-style": {
-                                                        "wide": {}
-                                                    },
-                                                    "saf-name": "unicast"
                                                 }
                                             ]
                                         },
+                                        "peer-groups": {
+                                            "peer-group": [
+                                                {
+                                                    "name": "customer"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "name": "acme-65501",
+                                    "type": "ietf-bgp:bgp"
+                                },
+                                {
+                                    "ietf-bgp:bgp": {
+                                        "global": {
+                                            "afi-safis": {
+                                                "afi-safi": [
+                                                    {
+                                                        "enabled": true,
+                                                        "name": "iana-bgp-afi-safi-types:l3vpn-ipv4-unicast"
+                                                    },
+                                                    {
+                                                        "enabled": true,
+                                                        "name": "iana-bgp-afi-safi-types:l3vpn-ipv6-unicast"
+                                                    }
+                                                ]
+                                            },
+                                            "as": 65001,
+                                            "identifier": "10.0.0.1"
+                                        },
+                                        "neighbors": {
+                                            "neighbor": [
+                                                {
+                                                    "description": "FRA-CORE-1",
+                                                    "neighbor-key": "10.0.0.2",
+                                                    "peer-group": "IPV4-IBGP",
+                                                    "remote-address": "10.0.0.2"
+                                                },
+                                                {
+                                                    "description": "STO-CORE-1",
+                                                    "neighbor-key": "10.0.0.3",
+                                                    "peer-group": "IPV4-IBGP",
+                                                    "remote-address": "10.0.0.3"
+                                                },
+                                                {
+                                                    "description": "LJU-CORE-1",
+                                                    "neighbor-key": "10.0.0.4",
+                                                    "peer-group": "IPV4-IBGP",
+                                                    "remote-address": "10.0.0.4"
+                                                }
+                                            ]
+                                        },
+                                        "peer-groups": {
+                                            "peer-group": [
+                                                {
+                                                    "afi-safis": {
+                                                        "afi-safi": [
+                                                            {
+                                                                "enabled": true,
+                                                                "name": "iana-bgp-afi-safi-types:l3vpn-ipv4-unicast"
+                                                            },
+                                                            {
+                                                                "enabled": true,
+                                                                "name": "iana-bgp-afi-safi-types:l3vpn-ipv6-unicast"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "IPV4-IBGP",
+                                                    "peer-as": 65001,
+                                                    "transport": {
+                                                        "local-address": "Loopback0",
+                                                        "secure-session": {
+                                                            "enabled": true,
+                                                            "options": {
+                                                                "md5-keychain": "ibgp"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "name": "default",
+                                    "type": "ietf-bgp:bgp"
+                                },
+                                {
+                                    "ietf-isis:isis": {
+                                        "area-address": [
+                                            "49.0001"
+                                        ],
                                         "interfaces": {
                                             "interface": [
                                                 {
-                                                    "address-families": {
-                                                        "address-family": [
-                                                            {
-                                                                "af-name": "ipv4",
-                                                                "metric-levels": {
-                                                                    "metric-level": [
-                                                                        {
-                                                                            "default-metric": 5000,
-                                                                            "level-number": 2
-                                                                        }
-                                                                    ]
-                                                                },
-                                                                "saf-name": "unicast"
-                                                            }
-                                                        ]
+                                                    "interface-type": "point-to-point",
+                                                    "level-type": "level-2",
+                                                    "metric": {
+                                                        "level-2": {
+                                                            "value": 5000
+                                                        }
                                                     },
-                                                    "circuit-type": "level-2-only",
-                                                    "interface-name": "GigabitEthernet0/0/0/0",
-                                                    "point-to-point": [
-                                                        null
-                                                    ]
+                                                    "name": "GigabitEthernet0/0/0/0"
                                                 },
                                                 {
-                                                    "address-families": {
-                                                        "address-family": [
-                                                            {
-                                                                "af-name": "ipv4",
-                                                                "metric-levels": {
-                                                                    "metric-level": [
-                                                                        {
-                                                                            "default-metric": 5000,
-                                                                            "level-number": 2
-                                                                        }
-                                                                    ]
-                                                                },
-                                                                "saf-name": "unicast"
-                                                            }
-                                                        ]
+                                                    "interface-type": "point-to-point",
+                                                    "level-type": "level-2",
+                                                    "metric": {
+                                                        "level-2": {
+                                                            "value": 5000
+                                                        }
                                                     },
-                                                    "circuit-type": "level-2-only",
-                                                    "interface-name": "GigabitEthernet0/0/0/1",
-                                                    "point-to-point": [
-                                                        null
-                                                    ]
+                                                    "name": "GigabitEthernet0/0/0/1"
                                                 },
                                                 {
-                                                    "address-families": {
-                                                        "address-family": [
-                                                            {
-                                                                "af-name": "ipv4",
-                                                                "saf-name": "unicast"
-                                                            }
-                                                        ]
-                                                    },
-                                                    "interface-name": "Loopback0",
-                                                    "state": "passive"
+                                                    "name": "Loopback0",
+                                                    "passive": true
                                                 }
                                             ]
                                         },
-                                        "is-type": "level-2-only",
-                                        "nets": {
-                                            "net": [
-                                                {
-                                                    "net-id": "49.0001.0100.0000.0001.00"
-                                                }
-                                            ]
+                                        "level-type": "level-2",
+                                        "metric-type": {
+                                            "value": "wide-only"
                                         },
-                                        "process-id": "1"
-                                    }
-                                ]
-                            }
-                        }
-                    },
-                    "Cisco-IOS-XR-um-vrf-cfg:vrfs": {
-                        "vrf": [
-                            {
-                                "address-family": {
-                                    "ipv4": {
-                                        "unicast": {
-                                            "Cisco-IOS-XR-um-router-bgp-cfg:export": {
-                                                "route-target": {
-                                                    "two-byte-as-route-targets": {
-                                                        "two-byte-as-route-target": [
-                                                            {
-                                                                "asn2-index": 65501,
-                                                                "stitching": "disable",
-                                                                "two-byte-as-number": 65001
+                                        "system-id": "0100.0000.0001"
+                                    },
+                                    "name": "1",
+                                    "type": "ietf-isis:isis"
+                                },
+                                {
+                                    "ietf-mpls-ldp:mpls-ldp": {
+                                        "discovery": {
+                                            "interfaces": {
+                                                "interface": [
+                                                    {
+                                                        "address-families": {
+                                                            "ipv4": {
+                                                                "enabled": true
                                                             }
-                                                        ]
-                                                    }
-                                                }
-                                            },
-                                            "Cisco-IOS-XR-um-router-bgp-cfg:import": {
-                                                "route-target": {
-                                                    "two-byte-as-route-targets": {
-                                                        "two-byte-as-route-target": [
-                                                            {
-                                                                "asn2-index": 65501,
-                                                                "stitching": "disable",
-                                                                "two-byte-as-number": 65001
+                                                        },
+                                                        "name": "GigabitEthernet0/0/0/0"
+                                                    },
+                                                    {
+                                                        "address-families": {
+                                                            "ipv4": {
+                                                                "enabled": true
                                                             }
-                                                        ]
+                                                        },
+                                                        "name": "GigabitEthernet0/0/0/1"
                                                     }
+                                                ]
+                                            }
+                                        },
+                                        "global": {
+                                            "address-families": {
+                                                "ipv4": {
+                                                    "enabled": true
                                                 }
                                             }
                                         }
+                                    },
+                                    "name": "ldp",
+                                    "type": "ietf-mpls-ldp:mpls-ldp"
+                                }
+                            ]
+                        }
+                    },
+                    "ietf-routing-policy:routing-policy": {
+                        "policy-definitions": {
+                            "policy-definition": [
+                                {
+                                    "name": "ACCEPT",
+                                    "statements": {
+                                        "statement": [
+                                            {
+                                                "actions": {
+                                                    "policy-result": "accept-route"
+                                                },
+                                                "name": "accept"
+                                            }
+                                        ]
                                     }
-                                },
-                                "vrf-name": "acme-65501"
-                            }
-                        ]
+                                }
+                            ]
+                        }
+                    },
+                    "ietf-system:system": {
+                        "hostname": "AMS-CORE-1"
                     }
                 },
-                "modset_id": "11381456856284907834",
+                "modset_id": "CiscoIosXr_25_3_1:2:11381456856284907834",
                 "name": "AMS-CORE-1"
             },
             {
                 "config": {
-                    "Cisco-IOS-XR-um-hostname-cfg:hostname": {
-                        "system-network-name": "FRA-CORE-1"
-                    },
-                    "Cisco-IOS-XR-um-interface-cfg:interfaces": {
+                    "ietf-interfaces:interfaces": {
                         "interface": [
                             {
                                 "description": "Link to AMS-CORE-1 [GigabitEthernet0/0/0/0]",
-                                "interface-name": "GigabitEthernet0/0/0/0",
-                                "ipv4": {
-                                    "Cisco-IOS-XR-um-if-ip-address-cfg:addresses": {
-                                        "address": {
-                                            "address": "10.0.7.2",
-                                            "netmask": "255.255.255.252"
+                                "name": "GigabitEthernet0/0/0/0",
+                                "type": "iana-if-type:ethernetCsmacd",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.0.7.2",
+                                            "prefix-length": 30
                                         }
-                                    }
+                                    ]
                                 }
                             },
                             {
                                 "description": "Link to STO-CORE-1 [eth2]",
-                                "interface-name": "GigabitEthernet0/0/0/1",
-                                "ipv4": {
-                                    "Cisco-IOS-XR-um-if-ip-address-cfg:addresses": {
-                                        "address": {
-                                            "address": "10.0.25.1",
-                                            "netmask": "255.255.255.252"
+                                "name": "GigabitEthernet0/0/0/1",
+                                "type": "iana-if-type:ethernetCsmacd",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.0.25.1",
+                                            "prefix-length": 30
                                         }
-                                    }
+                                    ]
                                 }
                             },
                             {
                                 "description": "Link to LJU-CORE-1 [eth1]",
-                                "interface-name": "GigabitEthernet0/0/0/2",
-                                "ipv4": {
-                                    "Cisco-IOS-XR-um-if-ip-address-cfg:addresses": {
-                                        "address": {
-                                            "address": "10.0.18.1",
-                                            "netmask": "255.255.255.252"
+                                "name": "GigabitEthernet0/0/0/2",
+                                "type": "iana-if-type:ethernetCsmacd",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.0.18.1",
+                                            "prefix-length": 30
                                         }
-                                    }
+                                    ]
                                 }
                             },
                             {
                                 "description": "Customer access port",
-                                "interface-name": "GigabitEthernet0/0/0/3"
+                                "name": "GigabitEthernet0/0/0/3",
+                                "type": "iana-if-type:ethernetCsmacd"
                             },
                             {
-                                "Cisco-IOS-XR-um-if-vrf-cfg:vrf": "acme-65501",
-                                "description": "Customer VPN access SITE-2 [SNA-2-1] in VPN acme-65501",
-                                "interface-name": "GigabitEthernet0/0/0/3.100",
-                                "ipv4": {
-                                    "Cisco-IOS-XR-um-if-ip-address-cfg:addresses": {
-                                        "address": {
-                                            "address": "10.202.1.1",
-                                            "netmask": "255.255.255.252"
+                                "ietf-if-extensions:encapsulation": {
+                                    "ietf-if-vlan-encapsulation:dot1q-vlan": {
+                                        "outer-tag": {
+                                            "tag-type": "ieee802-dot1q-types:c-vlan",
+                                            "vlan-id": 100
                                         }
                                     }
                                 },
-                                "Cisco-IOS-XR-um-l2-ethernet-cfg:encapsulation": {
-                                    "dot1q": {
-                                        "vlan-id": 100
-                                    }
-                                }
+                                "ietf-if-extensions:parent-interface": "GigabitEthernet0/0/0/3",
+                                "description": "Customer VPN access SITE-2 [SNA-2-1] in VPN acme-65501",
+                                "name": "GigabitEthernet0/0/0/3.100",
+                                "type": "iana-if-type:l2vlan",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.202.1.1",
+                                            "prefix-length": 30
+                                        }
+                                    ]
+                                },
+                                "ietf-network-instance:bind-ni-name": "acme-65501"
                             },
                             {
-                                "interface-name": "Loopback0",
-                                "ipv4": {
-                                    "Cisco-IOS-XR-um-if-ip-address-cfg:addresses": {
-                                        "address": {
-                                            "address": "10.0.0.2",
-                                            "netmask": "255.255.255.255"
+                                "name": "Loopback0",
+                                "type": "iana-if-type:softwareLoopback",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.0.0.2",
+                                            "prefix-length": 32
                                         }
-                                    }
+                                    ]
                                 }
                             }
                         ]
                     },
-                    "Cisco-IOS-XR-um-mpls-ldp-cfg:mpls": {
-                        "ldp": {
-                            "address-families": {
-                                "address-family": [
+                    "ietf-key-chain:key-chains": {
+                        "key-chain": [
+                            {
+                                "key": [
                                     {
-                                        "af-name": "ipv4"
+                                        "crypto-algorithm": "ietf-key-chain:md5",
+                                        "key-id": 1,
+                                        "key-string": {
+                                            "keystring": "acme-bgp-md5"
+                                        }
                                     }
-                                ]
+                                ],
+                                "name": "ebgp:acme-65501:10.202.1.2"
                             },
+                            {
+                                "key": [
+                                    {
+                                        "crypto-algorithm": "ietf-key-chain:md5",
+                                        "key-id": 1,
+                                        "key-string": {
+                                            "keystring": "ibgp-authentication-key"
+                                        }
+                                    }
+                                ],
+                                "name": "ibgp"
+                            }
+                        ]
+                    },
+                    "ietf-network-instance:network-instances": {
+                        "network-instance": [
+                            {
+                                "stratoweave-network:vpn": {
+                                    "address-family": [
+                                        {
+                                            "export-route-target": [
+                                                "0:65001:65501"
+                                            ],
+                                            "import-route-target": [
+                                                "0:65001:65501"
+                                            ],
+                                            "name": "ipv4-unicast"
+                                        }
+                                    ],
+                                    "route-distinguisher": "0:65001:655012"
+                                },
+                                "name": "acme-65501"
+                            }
+                        ]
+                    },
+                    "ietf-routing:routing": {
+                        "ietf-mpls:mpls": {
                             "interfaces": {
                                 "interface": [
                                     {
-                                        "interface-name": "GigabitEthernet0/0/0/0"
+                                        "mpls-enabled": true,
+                                        "name": "GigabitEthernet0/0/0/0"
                                     },
                                     {
-                                        "interface-name": "GigabitEthernet0/0/0/1"
+                                        "mpls-enabled": true,
+                                        "name": "GigabitEthernet0/0/0/1"
                                     },
                                     {
-                                        "interface-name": "GigabitEthernet0/0/0/2"
+                                        "mpls-enabled": true,
+                                        "name": "GigabitEthernet0/0/0/2"
                                     }
                                 ]
                             }
-                        }
-                    },
-                    "Cisco-IOS-XR-um-route-policy-cfg:routing-policy": {
-                        "route-policies": {
-                            "route-policy": [
+                        },
+                        "control-plane-protocols": {
+                            "control-plane-protocol": [
                                 {
-                                    "route-policy-name": "ACCEPT",
-                                    "rpl-route-policy": "route-policy ACCEPT\n  done\nend-policy\n"
-                                }
-                            ]
-                        }
-                    },
-                    "Cisco-IOS-XR-um-router-bgp-cfg:router": {
-                        "bgp": {
-                            "as": [
-                                {
-                                    "address-families": {
-                                        "address-family": [
-                                            {
-                                                "af-name": "vpnv4-unicast"
+                                    "ietf-bgp:bgp": {
+                                        "global": {
+                                            "afi-safis": {
+                                                "afi-safi": [
+                                                    {
+                                                        "enabled": true,
+                                                        "name": "iana-bgp-afi-safi-types:ipv4-unicast"
+                                                    }
+                                                ]
                                             },
-                                            {
-                                                "af-name": "vpnv6-unicast"
-                                            }
-                                        ]
-                                    },
-                                    "as-number": 65001,
-                                    "bgp": {
-                                        "router-id": "10.0.0.2"
-                                    },
-                                    "neighbor-groups": {
-                                        "neighbor-group": [
-                                            {
-                                                "address-families": {
-                                                    "address-family": [
-                                                        {
-                                                            "af-name": "vpnv4-unicast"
-                                                        },
-                                                        {
-                                                            "af-name": "vpnv6-unicast"
-                                                        }
-                                                    ]
-                                                },
-                                                "neighbor-group-name": "IPV4-IBGP",
-                                                "password": {
-                                                    "encrypted": "045209011F6C4D5B1D11001906020F053E222B267E3E270A"
-                                                },
-                                                "remote-as": 65001,
-                                                "update-source": "Loopback0"
-                                            }
-                                        ]
-                                    },
-                                    "neighbors": {
-                                        "neighbor": [
-                                            {
-                                                "address": "10.0.0.1",
-                                                "description": "AMS-CORE-1",
-                                                "use": {
-                                                    "neighbor-group": "IPV4-IBGP"
-                                                }
-                                            },
-                                            {
-                                                "address": "10.0.0.3",
-                                                "description": "STO-CORE-1",
-                                                "use": {
-                                                    "neighbor-group": "IPV4-IBGP"
-                                                }
-                                            },
-                                            {
-                                                "address": "10.0.0.4",
-                                                "description": "LJU-CORE-1",
-                                                "use": {
-                                                    "neighbor-group": "IPV4-IBGP"
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    "vrfs": {
-                                        "vrf": [
-                                            {
-                                                "address-families": {
-                                                    "address-family": [
-                                                        {
-                                                            "af-name": "ipv4-unicast"
-                                                        }
-                                                    ]
-                                                },
-                                                "neighbors": {
-                                                    "neighbor": [
-                                                        {
-                                                            "address": "10.202.1.2",
-                                                            "address-families": {
-                                                                "address-family": [
-                                                                    {
-                                                                        "af-name": "ipv4-unicast",
-                                                                        "as-override": {},
-                                                                        "route-policy": {
-                                                                            "in": "ACCEPT",
-                                                                            "out": "ACCEPT"
-                                                                        }
-                                                                    }
-                                                                ]
-                                                            },
-                                                            "description": "Customer eBGP SITE-2 [SNA-2-1] in VPN acme-65501 to 10.202.1.2",
-                                                            "password": {
-                                                                "encrypted": "045A080B0A6C4E491954081347"
-                                                            },
-                                                            "remote-as": 65501,
-                                                            "timers": {
-                                                                "holdtime": {
-                                                                    "holdtime-number": 3
+                                            "as": 65001
+                                        },
+                                        "neighbors": {
+                                            "neighbor": [
+                                                {
+                                                    "afi-safis": {
+                                                        "afi-safi": [
+                                                            {
+                                                                "apply-policy": {
+                                                                    "export-policy": [
+                                                                        "ACCEPT"
+                                                                    ],
+                                                                    "import-policy": [
+                                                                        "ACCEPT"
+                                                                    ]
                                                                 },
-                                                                "keepalive-interval": 1
+                                                                "enabled": true,
+                                                                "name": "iana-bgp-afi-safi-types:ipv4-unicast"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "as-path-options": {
+                                                        "replace-peer-as": true
+                                                    },
+                                                    "description": "Customer eBGP SITE-2 [SNA-2-1] in VPN acme-65501 to 10.202.1.2",
+                                                    "neighbor-key": "10.202.1.2",
+                                                    "peer-as": 65501,
+                                                    "peer-group": "customer",
+                                                    "remote-address": "10.202.1.2",
+                                                    "timers": {
+                                                        "hold-time": 3,
+                                                        "keepalive": 1
+                                                    },
+                                                    "transport": {
+                                                        "secure-session": {
+                                                            "enabled": true,
+                                                            "options": {
+                                                                "md5-keychain": "ebgp:acme-65501:10.202.1.2"
                                                             }
                                                         }
-                                                    ]
-                                                },
-                                                "rd": {
-                                                    "two-byte-as": {
-                                                        "asn2-index": 655012,
-                                                        "two-byte-as-number": 65001
                                                     }
-                                                },
-                                                "vrf-name": "acme-65501"
-                                            }
-                                        ]
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "Cisco-IOS-XR-um-router-isis-cfg:router": {
-                        "isis": {
-                            "processes": {
-                                "process": [
-                                    {
-                                        "address-families": {
-                                            "address-family": [
-                                                {
-                                                    "af-name": "ipv4",
-                                                    "metric-style": {
-                                                        "wide": {}
-                                                    },
-                                                    "saf-name": "unicast"
                                                 }
                                             ]
                                         },
+                                        "peer-groups": {
+                                            "peer-group": [
+                                                {
+                                                    "name": "customer"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "name": "acme-65501",
+                                    "type": "ietf-bgp:bgp"
+                                },
+                                {
+                                    "ietf-bgp:bgp": {
+                                        "global": {
+                                            "afi-safis": {
+                                                "afi-safi": [
+                                                    {
+                                                        "enabled": true,
+                                                        "name": "iana-bgp-afi-safi-types:l3vpn-ipv4-unicast"
+                                                    },
+                                                    {
+                                                        "enabled": true,
+                                                        "name": "iana-bgp-afi-safi-types:l3vpn-ipv6-unicast"
+                                                    }
+                                                ]
+                                            },
+                                            "as": 65001,
+                                            "identifier": "10.0.0.2"
+                                        },
+                                        "neighbors": {
+                                            "neighbor": [
+                                                {
+                                                    "description": "AMS-CORE-1",
+                                                    "neighbor-key": "10.0.0.1",
+                                                    "peer-group": "IPV4-IBGP",
+                                                    "remote-address": "10.0.0.1"
+                                                },
+                                                {
+                                                    "description": "STO-CORE-1",
+                                                    "neighbor-key": "10.0.0.3",
+                                                    "peer-group": "IPV4-IBGP",
+                                                    "remote-address": "10.0.0.3"
+                                                },
+                                                {
+                                                    "description": "LJU-CORE-1",
+                                                    "neighbor-key": "10.0.0.4",
+                                                    "peer-group": "IPV4-IBGP",
+                                                    "remote-address": "10.0.0.4"
+                                                }
+                                            ]
+                                        },
+                                        "peer-groups": {
+                                            "peer-group": [
+                                                {
+                                                    "afi-safis": {
+                                                        "afi-safi": [
+                                                            {
+                                                                "enabled": true,
+                                                                "name": "iana-bgp-afi-safi-types:l3vpn-ipv4-unicast"
+                                                            },
+                                                            {
+                                                                "enabled": true,
+                                                                "name": "iana-bgp-afi-safi-types:l3vpn-ipv6-unicast"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "IPV4-IBGP",
+                                                    "peer-as": 65001,
+                                                    "transport": {
+                                                        "local-address": "Loopback0",
+                                                        "secure-session": {
+                                                            "enabled": true,
+                                                            "options": {
+                                                                "md5-keychain": "ibgp"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "name": "default",
+                                    "type": "ietf-bgp:bgp"
+                                },
+                                {
+                                    "ietf-isis:isis": {
+                                        "area-address": [
+                                            "49.0001"
+                                        ],
                                         "interfaces": {
                                             "interface": [
                                                 {
-                                                    "address-families": {
-                                                        "address-family": [
-                                                            {
-                                                                "af-name": "ipv4",
-                                                                "metric-levels": {
-                                                                    "metric-level": [
-                                                                        {
-                                                                            "default-metric": 5000,
-                                                                            "level-number": 2
-                                                                        }
-                                                                    ]
-                                                                },
-                                                                "saf-name": "unicast"
-                                                            }
-                                                        ]
+                                                    "interface-type": "point-to-point",
+                                                    "level-type": "level-2",
+                                                    "metric": {
+                                                        "level-2": {
+                                                            "value": 5000
+                                                        }
                                                     },
-                                                    "circuit-type": "level-2-only",
-                                                    "interface-name": "GigabitEthernet0/0/0/0",
-                                                    "point-to-point": [
-                                                        null
-                                                    ]
+                                                    "name": "GigabitEthernet0/0/0/0"
                                                 },
                                                 {
-                                                    "address-families": {
-                                                        "address-family": [
-                                                            {
-                                                                "af-name": "ipv4",
-                                                                "metric-levels": {
-                                                                    "metric-level": [
-                                                                        {
-                                                                            "default-metric": 5000,
-                                                                            "level-number": 2
-                                                                        }
-                                                                    ]
-                                                                },
-                                                                "saf-name": "unicast"
-                                                            }
-                                                        ]
+                                                    "interface-type": "point-to-point",
+                                                    "level-type": "level-2",
+                                                    "metric": {
+                                                        "level-2": {
+                                                            "value": 5000
+                                                        }
                                                     },
-                                                    "circuit-type": "level-2-only",
-                                                    "interface-name": "GigabitEthernet0/0/0/1",
-                                                    "point-to-point": [
-                                                        null
-                                                    ]
+                                                    "name": "GigabitEthernet0/0/0/1"
                                                 },
                                                 {
-                                                    "address-families": {
-                                                        "address-family": [
-                                                            {
-                                                                "af-name": "ipv4",
-                                                                "metric-levels": {
-                                                                    "metric-level": [
-                                                                        {
-                                                                            "default-metric": 5000,
-                                                                            "level-number": 2
-                                                                        }
-                                                                    ]
-                                                                },
-                                                                "saf-name": "unicast"
-                                                            }
-                                                        ]
+                                                    "interface-type": "point-to-point",
+                                                    "level-type": "level-2",
+                                                    "metric": {
+                                                        "level-2": {
+                                                            "value": 5000
+                                                        }
                                                     },
-                                                    "circuit-type": "level-2-only",
-                                                    "interface-name": "GigabitEthernet0/0/0/2",
-                                                    "point-to-point": [
-                                                        null
-                                                    ]
+                                                    "name": "GigabitEthernet0/0/0/2"
                                                 },
                                                 {
-                                                    "address-families": {
-                                                        "address-family": [
-                                                            {
-                                                                "af-name": "ipv4",
-                                                                "saf-name": "unicast"
-                                                            }
-                                                        ]
-                                                    },
-                                                    "interface-name": "Loopback0",
-                                                    "state": "passive"
+                                                    "name": "Loopback0",
+                                                    "passive": true
                                                 }
                                             ]
                                         },
-                                        "is-type": "level-2-only",
-                                        "nets": {
-                                            "net": [
-                                                {
-                                                    "net-id": "49.0001.0100.0000.0002.00"
-                                                }
-                                            ]
+                                        "level-type": "level-2",
+                                        "metric-type": {
+                                            "value": "wide-only"
                                         },
-                                        "process-id": "1"
-                                    }
-                                ]
-                            }
-                        }
-                    },
-                    "Cisco-IOS-XR-um-vrf-cfg:vrfs": {
-                        "vrf": [
-                            {
-                                "address-family": {
-                                    "ipv4": {
-                                        "unicast": {
-                                            "Cisco-IOS-XR-um-router-bgp-cfg:export": {
-                                                "route-target": {
-                                                    "two-byte-as-route-targets": {
-                                                        "two-byte-as-route-target": [
-                                                            {
-                                                                "asn2-index": 65501,
-                                                                "stitching": "disable",
-                                                                "two-byte-as-number": 65001
+                                        "system-id": "0100.0000.0002"
+                                    },
+                                    "name": "1",
+                                    "type": "ietf-isis:isis"
+                                },
+                                {
+                                    "ietf-mpls-ldp:mpls-ldp": {
+                                        "discovery": {
+                                            "interfaces": {
+                                                "interface": [
+                                                    {
+                                                        "address-families": {
+                                                            "ipv4": {
+                                                                "enabled": true
                                                             }
-                                                        ]
-                                                    }
-                                                }
-                                            },
-                                            "Cisco-IOS-XR-um-router-bgp-cfg:import": {
-                                                "route-target": {
-                                                    "two-byte-as-route-targets": {
-                                                        "two-byte-as-route-target": [
-                                                            {
-                                                                "asn2-index": 65501,
-                                                                "stitching": "disable",
-                                                                "two-byte-as-number": 65001
+                                                        },
+                                                        "name": "GigabitEthernet0/0/0/0"
+                                                    },
+                                                    {
+                                                        "address-families": {
+                                                            "ipv4": {
+                                                                "enabled": true
                                                             }
-                                                        ]
+                                                        },
+                                                        "name": "GigabitEthernet0/0/0/1"
+                                                    },
+                                                    {
+                                                        "address-families": {
+                                                            "ipv4": {
+                                                                "enabled": true
+                                                            }
+                                                        },
+                                                        "name": "GigabitEthernet0/0/0/2"
                                                     }
+                                                ]
+                                            }
+                                        },
+                                        "global": {
+                                            "address-families": {
+                                                "ipv4": {
+                                                    "enabled": true
                                                 }
                                             }
                                         }
+                                    },
+                                    "name": "ldp",
+                                    "type": "ietf-mpls-ldp:mpls-ldp"
+                                }
+                            ]
+                        }
+                    },
+                    "ietf-routing-policy:routing-policy": {
+                        "policy-definitions": {
+                            "policy-definition": [
+                                {
+                                    "name": "ACCEPT",
+                                    "statements": {
+                                        "statement": [
+                                            {
+                                                "actions": {
+                                                    "policy-result": "accept-route"
+                                                },
+                                                "name": "accept"
+                                            }
+                                        ]
                                     }
-                                },
-                                "vrf-name": "acme-65501"
-                            }
-                        ]
+                                }
+                            ]
+                        }
+                    },
+                    "ietf-system:system": {
+                        "hostname": "FRA-CORE-1"
                     }
                 },
-                "modset_id": "11381456856284907834",
+                "modset_id": "CiscoIosXr_25_3_1:2:11381456856284907834",
                 "name": "FRA-CORE-1"
             },
             {
                 "config": {
-                    "junos-conf-root:configuration": {
-                        "interfaces": {
-                            "interface": [
-                                {
-                                    "name": "eth1",
-                                    "unit": [
+                    "ietf-interfaces:interfaces": {
+                        "interface": [
+                            {
+                                "description": "ROLE: edge",
+                                "name": "Loopback0",
+                                "type": "iana-if-type:softwareLoopback",
+                                "ietf-ip:ipv4": {
+                                    "address": [
                                         {
-                                            "description": "Link to FRA-CORE-1 [GigabitEthernet0/0/0/2]",
-                                            "family": {
-                                                "inet": {
-                                                    "address": [
-                                                        {
-                                                            "name": "10.0.18.2/30"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            "name": "0"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "name": "eth2",
-                                    "unit": [
-                                        {
-                                            "description": "Link to STO-CORE-1 [eth3]",
-                                            "family": {
-                                                "inet": {
-                                                    "address": [
-                                                        {
-                                                            "name": "10.0.31.2/30"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            "name": "0"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "description": "Customer VPN access SITE-4 [SNA-4-1] in VPN acme-65501",
-                                    "name": "eth3",
-                                    "unit": [
-                                        {
-                                            "description": "Customer VPN access SITE-4 [SNA-4-1] in VPN acme-65501",
-                                            "family": {
-                                                "inet": {
-                                                    "address": [
-                                                        {
-                                                            "name": "10.204.1.1/30"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            "name": "100",
-                                            "vlan-id": "100"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "description": "ROLE: edge",
-                                    "name": "lo0",
-                                    "unit": [
-                                        {
-                                            "family": {
-                                                "inet": {
-                                                    "address": [
-                                                        {
-                                                            "name": "10.0.0.4/32"
-                                                        }
-                                                    ]
-                                                },
-                                                "iso": {
-                                                    "address": [
-                                                        {
-                                                            "name": "49.0001.0100.0000.0004.00"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            "name": "0"
+                                            "ip": "10.0.0.4",
+                                            "prefix-length": 32
                                         }
                                     ]
                                 }
-                            ]
-                        },
-                        "protocols": {
-                            "bgp": {
-                                "group": [
+                            },
+                            {
+                                "description": "Link to FRA-CORE-1 [GigabitEthernet0/0/0/2]",
+                                "name": "eth1",
+                                "type": "iana-if-type:ethernetCsmacd",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.0.18.2",
+                                            "prefix-length": 30
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "description": "Link to STO-CORE-1 [eth3]",
+                                "name": "eth2",
+                                "type": "iana-if-type:ethernetCsmacd",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.0.31.2",
+                                            "prefix-length": 30
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "description": "Customer access port",
+                                "name": "eth3",
+                                "type": "iana-if-type:ethernetCsmacd"
+                            },
+                            {
+                                "ietf-if-extensions:encapsulation": {
+                                    "ietf-if-vlan-encapsulation:dot1q-vlan": {
+                                        "outer-tag": {
+                                            "tag-type": "ieee802-dot1q-types:c-vlan",
+                                            "vlan-id": 100
+                                        }
+                                    }
+                                },
+                                "ietf-if-extensions:parent-interface": "eth3",
+                                "description": "Customer VPN access SITE-4 [SNA-4-1] in VPN acme-65501",
+                                "name": "eth3.100",
+                                "type": "iana-if-type:l2vlan",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.204.1.1",
+                                            "prefix-length": 30
+                                        }
+                                    ]
+                                },
+                                "ietf-network-instance:bind-ni-name": "acme-65501"
+                            }
+                        ]
+                    },
+                    "ietf-key-chain:key-chains": {
+                        "key-chain": [
+                            {
+                                "key": [
                                     {
-                                        "authentication-key": "$9$4TaGiq.5/9pmfp0B1yr4aZGkP6/t1Ic36eWL7sYoJGDjq5Qn/Cumfu1RSledbs24Zmfz",
-                                        "family": {
-                                            "inet-vpn": {
-                                                "unicast": {}
-                                            },
-                                            "inet6-vpn": {
-                                                "unicast": {}
-                                            },
-                                            "route-target": {}
-                                        },
-                                        "hold-time": 90,
-                                        "local-address": "10.0.0.4",
-                                        "name": "IPV4-IBGP",
-                                        "neighbor": [
-                                            {
-                                                "description": "AMS-CORE-1",
-                                                "name": "10.0.0.1"
-                                            },
-                                            {
-                                                "description": "FRA-CORE-1",
-                                                "name": "10.0.0.2"
-                                            },
-                                            {
-                                                "description": "STO-CORE-1",
-                                                "name": "10.0.0.3"
-                                            }
-                                        ],
-                                        "type": "internal"
+                                        "crypto-algorithm": "ietf-key-chain:md5",
+                                        "key-id": 1,
+                                        "key-string": {
+                                            "keystring": "acme-bgp-md5"
+                                        }
                                     }
                                 ],
-                                "log-updown": [
-                                    null
-                                ]
+                                "name": "ebgp:acme-65501:10.204.1.2"
                             },
-                            "isis": {
+                            {
+                                "key": [
+                                    {
+                                        "crypto-algorithm": "ietf-key-chain:md5",
+                                        "key-id": 1,
+                                        "key-string": {
+                                            "keystring": "ibgp-authentication-key"
+                                        }
+                                    }
+                                ],
+                                "name": "ibgp"
+                            }
+                        ]
+                    },
+                    "ietf-network-instance:network-instances": {
+                        "network-instance": [
+                            {
+                                "stratoweave-network:vpn": {
+                                    "address-family": [
+                                        {
+                                            "export-route-target": [
+                                                "0:65001:65501"
+                                            ],
+                                            "import-route-target": [
+                                                "0:65001:65501"
+                                            ],
+                                            "name": "ipv4-unicast"
+                                        }
+                                    ],
+                                    "label-allocation": "per-vrf",
+                                    "route-distinguisher": "0:65001:655014"
+                                },
+                                "name": "acme-65501"
+                            }
+                        ]
+                    },
+                    "ietf-routing:routing": {
+                        "ietf-mpls:mpls": {
+                            "interfaces": {
                                 "interface": [
                                     {
-                                        "level": [
-                                            {
-                                                "disable": [
-                                                    null
-                                                ],
-                                                "name": 1
-                                            },
-                                            {
-                                                "metric": 5000,
-                                                "name": 2
-                                            }
-                                        ],
-                                        "name": "eth1",
-                                        "point-to-point": [
-                                            null
-                                        ]
-                                    },
-                                    {
-                                        "level": [
-                                            {
-                                                "disable": [
-                                                    null
-                                                ],
-                                                "name": 1
-                                            },
-                                            {
-                                                "metric": 5000,
-                                                "name": 2
-                                            }
-                                        ],
-                                        "name": "eth2",
-                                        "point-to-point": [
-                                            null
-                                        ]
-                                    },
-                                    {
-                                        "name": "lo0.0",
-                                        "passive": {}
-                                    }
-                                ],
-                                "level": [
-                                    {
-                                        "disable": [
-                                            null
-                                        ],
-                                        "name": 1
-                                    },
-                                    {
-                                        "name": 2,
-                                        "wide-metrics-only": [
-                                            null
-                                        ]
-                                    }
-                                ],
-                                "lsp-lifetime": 65535
-                            },
-                            "ldp": {
-                                "interface": [
-                                    {
+                                        "mpls-enabled": true,
                                         "name": "eth1"
                                     },
                                     {
-                                        "name": "eth2"
-                                    }
-                                ]
-                            },
-                            "mpls": {
-                                "interface": [
-                                    {
-                                        "name": "eth1"
-                                    },
-                                    {
+                                        "mpls-enabled": true,
                                         "name": "eth2"
                                     }
                                 ]
                             }
                         },
-                        "routing-instances": {
-                            "instance": [
+                        "control-plane-protocols": {
+                            "control-plane-protocol": [
                                 {
-                                    "instance-type": "vrf",
-                                    "interface": [
-                                        {
-                                            "name": "eth3.100"
-                                        }
-                                    ],
-                                    "name": "acme-65501",
-                                    "protocols": {
-                                        "bgp": {
-                                            "group": [
+                                    "ietf-bgp:bgp": {
+                                        "global": {
+                                            "afi-safis": {
+                                                "afi-safi": [
+                                                    {
+                                                        "enabled": true,
+                                                        "name": "iana-bgp-afi-safi-types:ipv4-unicast"
+                                                    }
+                                                ]
+                                            },
+                                            "as": 65001
+                                        },
+                                        "neighbors": {
+                                            "neighbor": [
+                                                {
+                                                    "afi-safis": {
+                                                        "afi-safi": [
+                                                            {
+                                                                "apply-policy": {
+                                                                    "import-policy": [
+                                                                        "ACCEPT"
+                                                                    ]
+                                                                },
+                                                                "enabled": true,
+                                                                "name": "iana-bgp-afi-safi-types:ipv4-unicast"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "as-path-options": {
+                                                        "replace-peer-as": true
+                                                    },
+                                                    "description": "Customer eBGP SITE-4 [SNA-4-1] in VPN acme-65501 to 10.204.1.2",
+                                                    "neighbor-key": "10.204.1.2",
+                                                    "peer-as": 65501,
+                                                    "peer-group": "customer",
+                                                    "remote-address": "10.204.1.2",
+                                                    "timers": {
+                                                        "hold-time": 3
+                                                    },
+                                                    "transport": {
+                                                        "secure-session": {
+                                                            "enabled": true,
+                                                            "options": {
+                                                                "md5-keychain": "ebgp:acme-65501:10.204.1.2"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "peer-groups": {
+                                            "peer-group": [
                                                 {
                                                     "name": "customer",
-                                                    "neighbor": [
-                                                        {
-                                                            "as-override": [
-                                                                null
-                                                            ],
-                                                            "authentication-key": "$9$4TaJDkqf36AoJ5Q3npuhSrlWxaJGk.57-.P",
-                                                            "description": "Customer eBGP SITE-4 [SNA-4-1] in VPN acme-65501 to 10.204.1.2",
-                                                            "hold-time": 3,
-                                                            "name": "10.204.1.2",
-                                                            "peer-as": "65501"
-                                                        }
-                                                    ],
-                                                    "passive": [
-                                                        null
-                                                    ]
+                                                    "transport": {
+                                                        "passive-mode": true
+                                                    }
                                                 }
                                             ]
                                         }
                                     },
-                                    "route-distinguisher": {
-                                        "rd-type": "65001:655014"
+                                    "name": "acme-65501",
+                                    "type": "ietf-bgp:bgp"
+                                },
+                                {
+                                    "ietf-bgp:bgp": {
+                                        "global": {
+                                            "as": 65001
+                                        },
+                                        "neighbors": {
+                                            "neighbor": [
+                                                {
+                                                    "description": "AMS-CORE-1",
+                                                    "neighbor-key": "10.0.0.1",
+                                                    "peer-group": "IPV4-IBGP",
+                                                    "remote-address": "10.0.0.1"
+                                                },
+                                                {
+                                                    "description": "FRA-CORE-1",
+                                                    "neighbor-key": "10.0.0.2",
+                                                    "peer-group": "IPV4-IBGP",
+                                                    "remote-address": "10.0.0.2"
+                                                },
+                                                {
+                                                    "description": "STO-CORE-1",
+                                                    "neighbor-key": "10.0.0.3",
+                                                    "peer-group": "IPV4-IBGP",
+                                                    "remote-address": "10.0.0.3"
+                                                }
+                                            ]
+                                        },
+                                        "peer-groups": {
+                                            "peer-group": [
+                                                {
+                                                    "afi-safis": {
+                                                        "afi-safi": [
+                                                            {
+                                                                "enabled": true,
+                                                                "name": "iana-bgp-afi-safi-types:l3vpn-ipv4-unicast"
+                                                            },
+                                                            {
+                                                                "enabled": true,
+                                                                "name": "iana-bgp-afi-safi-types:l3vpn-ipv6-unicast"
+                                                            },
+                                                            {
+                                                                "enabled": true,
+                                                                "name": "stratoweave-network:route-target-constraints"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "logging-options": {
+                                                        "log-neighbor-state-changes": true
+                                                    },
+                                                    "name": "IPV4-IBGP",
+                                                    "peer-as": 65001,
+                                                    "timers": {
+                                                        "hold-time": 90
+                                                    },
+                                                    "transport": {
+                                                        "local-address": "Loopback0",
+                                                        "secure-session": {
+                                                            "enabled": true,
+                                                            "options": {
+                                                                "md5-keychain": "ibgp"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
                                     },
-                                    "vrf-table-label": {},
-                                    "vrf-target": {
-                                        "community": "target:65001:65501"
+                                    "name": "default",
+                                    "type": "ietf-bgp:bgp"
+                                },
+                                {
+                                    "ietf-isis:isis": {
+                                        "area-address": [
+                                            "49.0001"
+                                        ],
+                                        "interfaces": {
+                                            "interface": [
+                                                {
+                                                    "name": "Loopback0",
+                                                    "passive": true
+                                                },
+                                                {
+                                                    "interface-type": "point-to-point",
+                                                    "level-type": "level-2",
+                                                    "metric": {
+                                                        "level-2": {
+                                                            "value": 5000
+                                                        }
+                                                    },
+                                                    "name": "eth1"
+                                                },
+                                                {
+                                                    "interface-type": "point-to-point",
+                                                    "level-type": "level-2",
+                                                    "metric": {
+                                                        "level-2": {
+                                                            "value": 5000
+                                                        }
+                                                    },
+                                                    "name": "eth2"
+                                                }
+                                            ]
+                                        },
+                                        "level-type": "level-2",
+                                        "lsp-lifetime": 65535,
+                                        "metric-type": {
+                                            "value": "wide-only"
+                                        },
+                                        "system-id": "0100.0000.0004"
+                                    },
+                                    "name": "1",
+                                    "type": "ietf-isis:isis"
+                                },
+                                {
+                                    "ietf-mpls-ldp:mpls-ldp": {
+                                        "discovery": {
+                                            "interfaces": {
+                                                "interface": [
+                                                    {
+                                                        "address-families": {
+                                                            "ipv4": {
+                                                                "enabled": true
+                                                            }
+                                                        },
+                                                        "name": "eth1"
+                                                    },
+                                                    {
+                                                        "address-families": {
+                                                            "ipv4": {
+                                                                "enabled": true
+                                                            }
+                                                        },
+                                                        "name": "eth2"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "global": {
+                                            "address-families": {
+                                                "ipv4": {
+                                                    "enabled": true
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "name": "ldp",
+                                    "type": "ietf-mpls-ldp:mpls-ldp"
+                                }
+                            ]
+                        }
+                    },
+                    "ietf-routing-policy:routing-policy": {
+                        "policy-definitions": {
+                            "policy-definition": [
+                                {
+                                    "name": "ACCEPT",
+                                    "statements": {
+                                        "statement": [
+                                            {
+                                                "actions": {
+                                                    "policy-result": "accept-route"
+                                                },
+                                                "name": "accept"
+                                            }
+                                        ]
                                     }
                                 }
                             ]
-                        },
-                        "routing-options": {
-                            "autonomous-system": {
-                                "as-number": "65001"
-                            }
-                        },
-                        "system": {
-                            "host-name": "LJU-CORE-1",
-                            "services": {
-                                "netconf": {
-                                    "rfc-compliant": [
-                                        null
-                                    ],
-                                    "yang-compliant": [
-                                        null
-                                    ]
-                                }
-                            }
                         }
+                    },
+                    "ietf-system:system": {
+                        "hostname": "LJU-CORE-1"
                     }
                 },
-                "modset_id": "14788252965532328984",
+                "modset_id": "JuniperCRPD_24_4R1_9:2:14788252965532328984",
                 "name": "LJU-CORE-1"
             },
             {
                 "config": {
-                    "junos-conf-root:configuration": {
-                        "interfaces": {
-                            "interface": [
-                                {
-                                    "name": "eth1",
-                                    "unit": [
+                    "ietf-interfaces:interfaces": {
+                        "interface": [
+                            {
+                                "description": "ROLE: edge",
+                                "name": "Loopback0",
+                                "type": "iana-if-type:softwareLoopback",
+                                "ietf-ip:ipv4": {
+                                    "address": [
                                         {
-                                            "description": "Link to AMS-CORE-1 [GigabitEthernet0/0/0/1]",
-                                            "family": {
-                                                "inet": {
-                                                    "address": [
-                                                        {
-                                                            "name": "10.0.20.2/30"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            "name": "0"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "name": "eth2",
-                                    "unit": [
-                                        {
-                                            "description": "Link to FRA-CORE-1 [GigabitEthernet0/0/0/1]",
-                                            "family": {
-                                                "inet": {
-                                                    "address": [
-                                                        {
-                                                            "name": "10.0.25.2/30"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            "name": "0"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "name": "eth3",
-                                    "unit": [
-                                        {
-                                            "description": "Link to LJU-CORE-1 [eth2]",
-                                            "family": {
-                                                "inet": {
-                                                    "address": [
-                                                        {
-                                                            "name": "10.0.31.1/30"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            "name": "0"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "description": "Customer VPN access SITE-3 [SNA-3-1] in VPN acme-65501",
-                                    "name": "eth4",
-                                    "unit": [
-                                        {
-                                            "description": "Customer VPN access SITE-3 [SNA-3-1] in VPN acme-65501",
-                                            "family": {
-                                                "inet": {
-                                                    "address": [
-                                                        {
-                                                            "name": "10.203.1.1/30"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            "name": "100",
-                                            "vlan-id": "100"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "description": "ROLE: edge",
-                                    "name": "lo0",
-                                    "unit": [
-                                        {
-                                            "family": {
-                                                "inet": {
-                                                    "address": [
-                                                        {
-                                                            "name": "10.0.0.3/32"
-                                                        }
-                                                    ]
-                                                },
-                                                "iso": {
-                                                    "address": [
-                                                        {
-                                                            "name": "49.0001.0100.0000.0003.00"
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            "name": "0"
+                                            "ip": "10.0.0.3",
+                                            "prefix-length": 32
                                         }
                                     ]
                                 }
-                            ]
-                        },
-                        "protocols": {
-                            "bgp": {
-                                "group": [
+                            },
+                            {
+                                "description": "Link to AMS-CORE-1 [GigabitEthernet0/0/0/1]",
+                                "name": "eth1",
+                                "type": "iana-if-type:ethernetCsmacd",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.0.20.2",
+                                            "prefix-length": 30
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "description": "Link to FRA-CORE-1 [GigabitEthernet0/0/0/1]",
+                                "name": "eth2",
+                                "type": "iana-if-type:ethernetCsmacd",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.0.25.2",
+                                            "prefix-length": 30
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "description": "Link to LJU-CORE-1 [eth2]",
+                                "name": "eth3",
+                                "type": "iana-if-type:ethernetCsmacd",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.0.31.1",
+                                            "prefix-length": 30
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "description": "Customer access port",
+                                "name": "eth4",
+                                "type": "iana-if-type:ethernetCsmacd"
+                            },
+                            {
+                                "ietf-if-extensions:encapsulation": {
+                                    "ietf-if-vlan-encapsulation:dot1q-vlan": {
+                                        "outer-tag": {
+                                            "tag-type": "ieee802-dot1q-types:c-vlan",
+                                            "vlan-id": 100
+                                        }
+                                    }
+                                },
+                                "ietf-if-extensions:parent-interface": "eth4",
+                                "description": "Customer VPN access SITE-3 [SNA-3-1] in VPN acme-65501",
+                                "name": "eth4.100",
+                                "type": "iana-if-type:l2vlan",
+                                "ietf-ip:ipv4": {
+                                    "address": [
+                                        {
+                                            "ip": "10.203.1.1",
+                                            "prefix-length": 30
+                                        }
+                                    ]
+                                },
+                                "ietf-network-instance:bind-ni-name": "acme-65501"
+                            }
+                        ]
+                    },
+                    "ietf-key-chain:key-chains": {
+                        "key-chain": [
+                            {
+                                "key": [
                                     {
-                                        "authentication-key": "$9$4TaGiq.5/9pmfp0B1yr4aZGkP6/t1Ic36eWL7sYoJGDjq5Qn/Cumfu1RSledbs24Zmfz",
-                                        "family": {
-                                            "inet-vpn": {
-                                                "unicast": {}
-                                            },
-                                            "inet6-vpn": {
-                                                "unicast": {}
-                                            },
-                                            "route-target": {}
-                                        },
-                                        "hold-time": 90,
-                                        "local-address": "10.0.0.3",
-                                        "name": "IPV4-IBGP",
-                                        "neighbor": [
-                                            {
-                                                "description": "AMS-CORE-1",
-                                                "name": "10.0.0.1"
-                                            },
-                                            {
-                                                "description": "FRA-CORE-1",
-                                                "name": "10.0.0.2"
-                                            },
-                                            {
-                                                "description": "LJU-CORE-1",
-                                                "name": "10.0.0.4"
-                                            }
-                                        ],
-                                        "type": "internal"
+                                        "crypto-algorithm": "ietf-key-chain:md5",
+                                        "key-id": 1,
+                                        "key-string": {
+                                            "keystring": "acme-bgp-md5"
+                                        }
                                     }
                                 ],
-                                "log-updown": [
-                                    null
-                                ]
+                                "name": "ebgp:acme-65501:10.203.1.2"
                             },
-                            "isis": {
+                            {
+                                "key": [
+                                    {
+                                        "crypto-algorithm": "ietf-key-chain:md5",
+                                        "key-id": 1,
+                                        "key-string": {
+                                            "keystring": "ibgp-authentication-key"
+                                        }
+                                    }
+                                ],
+                                "name": "ibgp"
+                            }
+                        ]
+                    },
+                    "ietf-network-instance:network-instances": {
+                        "network-instance": [
+                            {
+                                "stratoweave-network:vpn": {
+                                    "address-family": [
+                                        {
+                                            "export-route-target": [
+                                                "0:65001:65501"
+                                            ],
+                                            "import-route-target": [
+                                                "0:65001:65501"
+                                            ],
+                                            "name": "ipv4-unicast"
+                                        }
+                                    ],
+                                    "label-allocation": "per-vrf",
+                                    "route-distinguisher": "0:65001:655013"
+                                },
+                                "name": "acme-65501"
+                            }
+                        ]
+                    },
+                    "ietf-routing:routing": {
+                        "ietf-mpls:mpls": {
+                            "interfaces": {
                                 "interface": [
                                     {
-                                        "level": [
-                                            {
-                                                "disable": [
-                                                    null
-                                                ],
-                                                "name": 1
-                                            },
-                                            {
-                                                "metric": 5000,
-                                                "name": 2
-                                            }
-                                        ],
-                                        "name": "eth1",
-                                        "point-to-point": [
-                                            null
-                                        ]
-                                    },
-                                    {
-                                        "level": [
-                                            {
-                                                "disable": [
-                                                    null
-                                                ],
-                                                "name": 1
-                                            },
-                                            {
-                                                "metric": 5000,
-                                                "name": 2
-                                            }
-                                        ],
-                                        "name": "eth2",
-                                        "point-to-point": [
-                                            null
-                                        ]
-                                    },
-                                    {
-                                        "level": [
-                                            {
-                                                "disable": [
-                                                    null
-                                                ],
-                                                "name": 1
-                                            },
-                                            {
-                                                "metric": 5000,
-                                                "name": 2
-                                            }
-                                        ],
-                                        "name": "eth3",
-                                        "point-to-point": [
-                                            null
-                                        ]
-                                    },
-                                    {
-                                        "name": "lo0.0",
-                                        "passive": {}
-                                    }
-                                ],
-                                "level": [
-                                    {
-                                        "disable": [
-                                            null
-                                        ],
-                                        "name": 1
-                                    },
-                                    {
-                                        "name": 2,
-                                        "wide-metrics-only": [
-                                            null
-                                        ]
-                                    }
-                                ],
-                                "lsp-lifetime": 65535
-                            },
-                            "ldp": {
-                                "interface": [
-                                    {
+                                        "mpls-enabled": true,
                                         "name": "eth1"
                                     },
                                     {
+                                        "mpls-enabled": true,
                                         "name": "eth2"
                                     },
                                     {
-                                        "name": "eth3"
-                                    }
-                                ]
-                            },
-                            "mpls": {
-                                "interface": [
-                                    {
-                                        "name": "eth1"
-                                    },
-                                    {
-                                        "name": "eth2"
-                                    },
-                                    {
+                                        "mpls-enabled": true,
                                         "name": "eth3"
                                     }
                                 ]
                             }
                         },
-                        "routing-instances": {
-                            "instance": [
+                        "control-plane-protocols": {
+                            "control-plane-protocol": [
                                 {
-                                    "instance-type": "vrf",
-                                    "interface": [
-                                        {
-                                            "name": "eth4.100"
-                                        }
-                                    ],
-                                    "name": "acme-65501",
-                                    "protocols": {
-                                        "bgp": {
-                                            "group": [
+                                    "ietf-bgp:bgp": {
+                                        "global": {
+                                            "afi-safis": {
+                                                "afi-safi": [
+                                                    {
+                                                        "enabled": true,
+                                                        "name": "iana-bgp-afi-safi-types:ipv4-unicast"
+                                                    }
+                                                ]
+                                            },
+                                            "as": 65001
+                                        },
+                                        "neighbors": {
+                                            "neighbor": [
+                                                {
+                                                    "afi-safis": {
+                                                        "afi-safi": [
+                                                            {
+                                                                "apply-policy": {
+                                                                    "import-policy": [
+                                                                        "ACCEPT"
+                                                                    ]
+                                                                },
+                                                                "enabled": true,
+                                                                "name": "iana-bgp-afi-safi-types:ipv4-unicast"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "as-path-options": {
+                                                        "replace-peer-as": true
+                                                    },
+                                                    "description": "Customer eBGP SITE-3 [SNA-3-1] in VPN acme-65501 to 10.203.1.2",
+                                                    "neighbor-key": "10.203.1.2",
+                                                    "peer-as": 65501,
+                                                    "peer-group": "customer",
+                                                    "remote-address": "10.203.1.2",
+                                                    "timers": {
+                                                        "hold-time": 3
+                                                    },
+                                                    "transport": {
+                                                        "secure-session": {
+                                                            "enabled": true,
+                                                            "options": {
+                                                                "md5-keychain": "ebgp:acme-65501:10.203.1.2"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "peer-groups": {
+                                            "peer-group": [
                                                 {
                                                     "name": "customer",
-                                                    "neighbor": [
-                                                        {
-                                                            "as-override": [
-                                                                null
-                                                            ],
-                                                            "authentication-key": "$9$4TaJDkqf36AoJ5Q3npuhSrlWxaJGk.57-.P",
-                                                            "description": "Customer eBGP SITE-3 [SNA-3-1] in VPN acme-65501 to 10.203.1.2",
-                                                            "hold-time": 3,
-                                                            "name": "10.203.1.2",
-                                                            "peer-as": "65501"
-                                                        }
-                                                    ],
-                                                    "passive": [
-                                                        null
-                                                    ]
+                                                    "transport": {
+                                                        "passive-mode": true
+                                                    }
                                                 }
                                             ]
                                         }
                                     },
-                                    "route-distinguisher": {
-                                        "rd-type": "65001:655013"
+                                    "name": "acme-65501",
+                                    "type": "ietf-bgp:bgp"
+                                },
+                                {
+                                    "ietf-bgp:bgp": {
+                                        "global": {
+                                            "as": 65001
+                                        },
+                                        "neighbors": {
+                                            "neighbor": [
+                                                {
+                                                    "description": "AMS-CORE-1",
+                                                    "neighbor-key": "10.0.0.1",
+                                                    "peer-group": "IPV4-IBGP",
+                                                    "remote-address": "10.0.0.1"
+                                                },
+                                                {
+                                                    "description": "FRA-CORE-1",
+                                                    "neighbor-key": "10.0.0.2",
+                                                    "peer-group": "IPV4-IBGP",
+                                                    "remote-address": "10.0.0.2"
+                                                },
+                                                {
+                                                    "description": "LJU-CORE-1",
+                                                    "neighbor-key": "10.0.0.4",
+                                                    "peer-group": "IPV4-IBGP",
+                                                    "remote-address": "10.0.0.4"
+                                                }
+                                            ]
+                                        },
+                                        "peer-groups": {
+                                            "peer-group": [
+                                                {
+                                                    "afi-safis": {
+                                                        "afi-safi": [
+                                                            {
+                                                                "enabled": true,
+                                                                "name": "iana-bgp-afi-safi-types:l3vpn-ipv4-unicast"
+                                                            },
+                                                            {
+                                                                "enabled": true,
+                                                                "name": "iana-bgp-afi-safi-types:l3vpn-ipv6-unicast"
+                                                            },
+                                                            {
+                                                                "enabled": true,
+                                                                "name": "stratoweave-network:route-target-constraints"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "logging-options": {
+                                                        "log-neighbor-state-changes": true
+                                                    },
+                                                    "name": "IPV4-IBGP",
+                                                    "peer-as": 65001,
+                                                    "timers": {
+                                                        "hold-time": 90
+                                                    },
+                                                    "transport": {
+                                                        "local-address": "Loopback0",
+                                                        "secure-session": {
+                                                            "enabled": true,
+                                                            "options": {
+                                                                "md5-keychain": "ibgp"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
                                     },
-                                    "vrf-table-label": {},
-                                    "vrf-target": {
-                                        "community": "target:65001:65501"
+                                    "name": "default",
+                                    "type": "ietf-bgp:bgp"
+                                },
+                                {
+                                    "ietf-isis:isis": {
+                                        "area-address": [
+                                            "49.0001"
+                                        ],
+                                        "interfaces": {
+                                            "interface": [
+                                                {
+                                                    "name": "Loopback0",
+                                                    "passive": true
+                                                },
+                                                {
+                                                    "interface-type": "point-to-point",
+                                                    "level-type": "level-2",
+                                                    "metric": {
+                                                        "level-2": {
+                                                            "value": 5000
+                                                        }
+                                                    },
+                                                    "name": "eth1"
+                                                },
+                                                {
+                                                    "interface-type": "point-to-point",
+                                                    "level-type": "level-2",
+                                                    "metric": {
+                                                        "level-2": {
+                                                            "value": 5000
+                                                        }
+                                                    },
+                                                    "name": "eth2"
+                                                },
+                                                {
+                                                    "interface-type": "point-to-point",
+                                                    "level-type": "level-2",
+                                                    "metric": {
+                                                        "level-2": {
+                                                            "value": 5000
+                                                        }
+                                                    },
+                                                    "name": "eth3"
+                                                }
+                                            ]
+                                        },
+                                        "level-type": "level-2",
+                                        "lsp-lifetime": 65535,
+                                        "metric-type": {
+                                            "value": "wide-only"
+                                        },
+                                        "system-id": "0100.0000.0003"
+                                    },
+                                    "name": "1",
+                                    "type": "ietf-isis:isis"
+                                },
+                                {
+                                    "ietf-mpls-ldp:mpls-ldp": {
+                                        "discovery": {
+                                            "interfaces": {
+                                                "interface": [
+                                                    {
+                                                        "address-families": {
+                                                            "ipv4": {
+                                                                "enabled": true
+                                                            }
+                                                        },
+                                                        "name": "eth1"
+                                                    },
+                                                    {
+                                                        "address-families": {
+                                                            "ipv4": {
+                                                                "enabled": true
+                                                            }
+                                                        },
+                                                        "name": "eth2"
+                                                    },
+                                                    {
+                                                        "address-families": {
+                                                            "ipv4": {
+                                                                "enabled": true
+                                                            }
+                                                        },
+                                                        "name": "eth3"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "global": {
+                                            "address-families": {
+                                                "ipv4": {
+                                                    "enabled": true
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "name": "ldp",
+                                    "type": "ietf-mpls-ldp:mpls-ldp"
+                                }
+                            ]
+                        }
+                    },
+                    "ietf-routing-policy:routing-policy": {
+                        "policy-definitions": {
+                            "policy-definition": [
+                                {
+                                    "name": "ACCEPT",
+                                    "statements": {
+                                        "statement": [
+                                            {
+                                                "actions": {
+                                                    "policy-result": "accept-route"
+                                                },
+                                                "name": "accept"
+                                            }
+                                        ]
                                     }
                                 }
                             ]
-                        },
-                        "routing-options": {
-                            "autonomous-system": {
-                                "as-number": "65001"
-                            }
-                        },
-                        "system": {
-                            "host-name": "STO-CORE-1",
-                            "services": {
-                                "netconf": {
-                                    "rfc-compliant": [
-                                        null
-                                    ],
-                                    "yang-compliant": [
-                                        null
-                                    ]
-                                }
-                            }
                         }
+                    },
+                    "ietf-system:system": {
+                        "hostname": "STO-CORE-1"
                     }
                 },
-                "modset_id": "14788252965532328984",
+                "modset_id": "JuniperCRPD_24_4R1_9:2:14788252965532328984",
                 "name": "STO-CORE-1"
             }
         ]

@@ -32,22 +32,22 @@ class Tmf640Store(ttt.TransformFunction):
         """Return the modeled input type for this transform"""
         return stratoweave_tmf__tmf_store__tmf640__service_entry
 
-    mut def transform_wrapper(self, i: ygdata.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_wrapper(self, i: ygdata.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from gdata to
         modeled input and back to gdata
         """
         modeled_input = stratoweave_tmf__tmf_store__tmf640__service_entry.from_gdata(i)
 
-        return self.transform(modeled_input).to_gdata(), None
+        return self.transform(modeled_input).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
-    mut def transform_xml(self, i: xml.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_xml(self, i: xml.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from XML to
         modeled input and return gdata
         """
         gdata_input = yxml.from_xml(SRC_DNODE, i, loose=False, root_path=['stratoweave-tmf:tmf-store', 'tmf640', 'service'])
         modeled_input = stratoweave_tmf__tmf_store__tmf640__service_entry.from_gdata(gdata_input)
 
-        return self.transform(modeled_input).to_gdata(), None
+        return self.transform(modeled_input).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
 class L3VpnVpnService(ttt.TransformFunction):
     transform: mut(ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service_entry) -> yadata.MNode
@@ -57,22 +57,22 @@ class L3VpnVpnService(ttt.TransformFunction):
         """Return the modeled input type for this transform"""
         return ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service_entry
 
-    mut def transform_wrapper(self, i: ygdata.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_wrapper(self, i: ygdata.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from gdata to
         modeled input and back to gdata
         """
         modeled_input = ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service_entry.from_gdata(i)
 
-        return self.transform(modeled_input).to_gdata(), None
+        return self.transform(modeled_input).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
-    mut def transform_xml(self, i: xml.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_xml(self, i: xml.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from XML to
         modeled input and return gdata
         """
         gdata_input = yxml.from_xml(SRC_DNODE, i, loose=False, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'vpn-services', 'vpn-service'])
         modeled_input = ietf_l3vpn_svc__l3vpn_svc__vpn_services__vpn_service_entry.from_gdata(gdata_input)
 
-        return self.transform(modeled_input).to_gdata(), None
+        return self.transform(modeled_input).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
 class L3VpnSite(ttt.TransformFunction):
     transform: mut(ietf_l3vpn_svc__l3vpn_svc__sites__site_entry) -> yadata.MNode
@@ -92,22 +92,22 @@ class L3VpnSite(ttt.TransformFunction):
         """Create modeled operational state for this transform path"""
         return ietf_l3vpn_svc__l3vpn_svc__sites__site_entry__oper.from_gdata(ttt.path_key_data(path))
 
-    mut def transform_wrapper(self, i: ygdata.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_wrapper(self, i: ygdata.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from gdata to
         modeled input and back to gdata
         """
         modeled_input = ietf_l3vpn_svc__l3vpn_svc__sites__site_entry.from_gdata(i)
 
-        return self.transform(modeled_input).to_gdata(), None
+        return self.transform(modeled_input).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
-    mut def transform_xml(self, i: xml.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_xml(self, i: xml.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from XML to
         modeled input and return gdata
         """
         gdata_input = yxml.from_xml(SRC_DNODE, i, loose=False, root_path=['ietf-l3vpn-svc:l3vpn-svc', 'sites', 'site'])
         modeled_input = ietf_l3vpn_svc__l3vpn_svc__sites__site_entry.from_gdata(gdata_input)
 
-        return self.transform(modeled_input).to_gdata(), None
+        return self.transform(modeled_input).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
 class Router(ttt.TransformFunction):
     transform: mut(netinfra__netinfra__router_entry, linked: ygdata.Node) -> yadata.MNode
@@ -117,22 +117,22 @@ class Router(ttt.TransformFunction):
         """Return the modeled input type for this transform"""
         return netinfra__netinfra__router_entry
 
-    mut def transform_wrapper(self, i: ygdata.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_wrapper(self, i: ygdata.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from gdata to
         modeled input and back to gdata
         """
         modeled_input = netinfra__netinfra__router_entry.from_gdata(i)
 
-        return self.transform(modeled_input, linked).to_gdata(), None
+        return self.transform(modeled_input, linked).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
-    mut def transform_xml(self, i: xml.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_xml(self, i: xml.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from XML to
         modeled input and return gdata
         """
         gdata_input = yxml.from_xml(SRC_DNODE, i, loose=False, root_path=['netinfra:netinfra', 'router'])
         modeled_input = netinfra__netinfra__router_entry.from_gdata(gdata_input)
 
-        return self.transform(modeled_input, linked).to_gdata(), None
+        return self.transform(modeled_input, linked).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
 class BBLink(ttt.TransformFunction):
     transform: mut(netinfra__netinfra__backbone_link_entry) -> yadata.MNode
@@ -152,22 +152,22 @@ class BBLink(ttt.TransformFunction):
         """Create modeled operational state for this transform path"""
         return netinfra__netinfra__backbone_link_entry__oper.from_gdata(ttt.path_key_data(path))
 
-    mut def transform_wrapper(self, i: ygdata.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_wrapper(self, i: ygdata.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from gdata to
         modeled input and back to gdata
         """
         modeled_input = netinfra__netinfra__backbone_link_entry.from_gdata(i)
 
-        return self.transform(modeled_input).to_gdata(), None
+        return self.transform(modeled_input).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
-    mut def transform_xml(self, i: xml.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_xml(self, i: xml.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from XML to
         modeled input and return gdata
         """
         gdata_input = yxml.from_xml(SRC_DNODE, i, loose=False, root_path=['netinfra:netinfra', 'backbone-link'])
         modeled_input = netinfra__netinfra__backbone_link_entry.from_gdata(gdata_input)
 
-        return self.transform(modeled_input).to_gdata(), None
+        return self.transform(modeled_input).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
 class GlobalSettings(ttt.TransformFunction):
     transform: mut(netinfra__netinfra__global_settings) -> yadata.MNode
@@ -177,19 +177,19 @@ class GlobalSettings(ttt.TransformFunction):
         """Return the modeled input type for this transform"""
         return netinfra__netinfra__global_settings
 
-    mut def transform_wrapper(self, i: ygdata.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_wrapper(self, i: ygdata.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from gdata to
         modeled input and back to gdata
         """
         modeled_input = netinfra__netinfra__global_settings.from_gdata(i)
 
-        return self.transform(modeled_input).to_gdata(), None
+        return self.transform(modeled_input).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
-    mut def transform_xml(self, i: xml.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_xml(self, i: xml.Node, linked: ygdata.Node, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from XML to
         modeled input and return gdata
         """
         gdata_input = yxml.from_xml(SRC_DNODE, i, loose=False, root_path=['netinfra:netinfra', 'global-settings'])
         modeled_input = netinfra__netinfra__global_settings.from_gdata(gdata_input)
 
-        return self.transform(modeled_input).to_gdata(), None
+        return self.transform(modeled_input).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None

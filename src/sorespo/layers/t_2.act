@@ -7,7 +7,6 @@ import logging
 import stratoweave.device as swdev
 import stratoweave.ttt as ttt
 import yang.gdata as ygdata
-import sorespo.layers.y_2_oper as y_2_oper
 
 import sorespo.rfs as rfs
 
@@ -19,16 +18,14 @@ def get_ttt(lower: ?ttt.Layer, dev_registry: swdev.DeviceRegistry, log_handler: 
     return r
 
 def EbgpCustomerTransformCtor(params: ttt.TransformActorParams) -> ttt.TransformActor:
-    def update_oper_type_wrapper(oper: ?y_2_oper.stratoweave_rfs__rfs__ebgp_customer_entry):
-        params.update_oper(oper.to_gdata() if oper is not None else None)
-    act = rfs.EbgpCustomerTransform(params.path, update_oper_type_wrapper, params.dev!)
+    update_oper_wrapper = ttt.ToGdataPrevWrapper(params.update_oper)
+    act = rfs.EbgpCustomerTransform(params.path, update_oper_wrapper.update, params.dev!)
     return ttt.TransformActor(lambda c, l, m: act.on_conf(stratoweave_rfs__rfs__ebgp_customer_entry.from_gdata(c)),
                               lambda m: act.shutdown())
 
 
 def BBInterfaceTransformCtor(params: ttt.TransformActorParams) -> ttt.TransformActor:
-    def update_oper_type_wrapper(oper: ?y_2_oper.stratoweave_rfs__rfs__backbone_interface_entry):
-        params.update_oper(oper.to_gdata() if oper is not None else None)
-    act = rfs.BBInterfaceTransform(params.path, update_oper_type_wrapper, params.dev!)
+    update_oper_wrapper = ttt.ToGdataPrevWrapper(params.update_oper)
+    act = rfs.BBInterfaceTransform(params.path, update_oper_wrapper.update, params.dev!)
     return ttt.TransformActor(lambda c, l, m: act.on_conf(stratoweave_rfs__rfs__backbone_interface_entry.from_gdata(c)),
                               lambda m: act.shutdown())

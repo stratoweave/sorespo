@@ -7,7 +7,6 @@ import logging
 import stratoweave.device as swdev
 import stratoweave.ttt as ttt
 import yang.gdata as ygdata
-import sorespo.layers.y_1_oper as y_1_oper
 
 import sorespo.inter as inter
 
@@ -19,16 +18,14 @@ def get_ttt(lower: ?ttt.Layer, dev_registry: swdev.DeviceRegistry, log_handler: 
     return r
 
 def BBLinkTransformCtor(params: ttt.TransformActorParams) -> ttt.TransformActor:
-    def update_oper_type_wrapper(oper: ?y_1_oper.netinfra_inter__netinfra__backbone_link_entry):
-        params.update_oper(oper.to_gdata() if oper is not None else None)
-    act = inter.BBLinkTransform(params.path, update_oper_type_wrapper, params.lower_tree_provider)
+    update_oper_wrapper = ttt.ToGdataPrevWrapper(params.update_oper)
+    act = inter.BBLinkTransform(params.path, update_oper_wrapper.update, params.lower_tree_provider)
     return ttt.TransformActor(lambda c, l, m: act.on_conf(netinfra_inter__netinfra__backbone_link_entry.from_gdata(c)),
                               lambda m: act.shutdown())
 
 
 def L3VpnTransformCtor(params: ttt.TransformActorParams) -> ttt.TransformActor:
-    def update_oper_type_wrapper(oper: ?y_1_oper.l3vpn_inter__l3vpns__l3vpn_entry):
-        params.update_oper(oper.to_gdata() if oper is not None else None)
-    act = inter.L3VpnTransform(params.path, update_oper_type_wrapper, params.lower_tree_provider)
+    update_oper_wrapper = ttt.ToGdataPrevWrapper(params.update_oper)
+    act = inter.L3VpnTransform(params.path, update_oper_wrapper.update, params.lower_tree_provider)
     return ttt.TransformActor(lambda c, l, m: act.on_conf(l3vpn_inter__l3vpns__l3vpn_entry.from_gdata(c)),
                               lambda m: act.shutdown())

@@ -262,8 +262,8 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import_
         self.asn2_index = asn2_index
         self.stitching = stitching
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:import', 'route-target', 'two-byte-as-route-targets', 'two-byte-as-route-target'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:import', 'route-target', 'two-byte-as-route-targets', 'two-byte-as-route-target'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import__route_target__two_byte_as_route_targets__two_byte_as_route_target_entry:
@@ -311,8 +311,8 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import_
     mut def __init__(self, two_byte_as_route_target: list[Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import__route_target__two_byte_as_route_targets__two_byte_as_route_target_entry]=[]) -> None:
         self.two_byte_as_route_target = Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import__route_target__two_byte_as_route_targets__two_byte_as_route_target(elements=two_byte_as_route_target)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:import', 'route-target', 'two-byte-as-route-targets'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:import', 'route-target', 'two-byte-as-route-targets'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import__route_target__two_byte_as_route_targets:
@@ -332,8 +332,8 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import_
     mut def __init__(self, two_byte_as_route_targets: ?Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import__route_target__two_byte_as_route_targets=None) -> None:
         self.two_byte_as_route_targets = two_byte_as_route_targets if two_byte_as_route_targets is not None else Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import__route_target__two_byte_as_route_targets()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:import', 'route-target'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:import', 'route-target'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import__route_target:
@@ -353,8 +353,8 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import(
     mut def __init__(self, route_target: ?Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import__route_target=None) -> None:
         self.route_target = route_target if route_target is not None else Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import__route_target()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:import'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:import'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import:
@@ -378,8 +378,8 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export_
         self.asn2_index = asn2_index
         self.stitching = stitching
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:export', 'route-target', 'two-byte-as-route-targets', 'two-byte-as-route-target'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:export', 'route-target', 'two-byte-as-route-targets', 'two-byte-as-route-target'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export__route_target__two_byte_as_route_targets__two_byte_as_route_target_entry:
@@ -427,8 +427,8 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export_
     mut def __init__(self, two_byte_as_route_target: list[Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export__route_target__two_byte_as_route_targets__two_byte_as_route_target_entry]=[]) -> None:
         self.two_byte_as_route_target = Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export__route_target__two_byte_as_route_targets__two_byte_as_route_target(elements=two_byte_as_route_target)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:export', 'route-target', 'two-byte-as-route-targets'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:export', 'route-target', 'two-byte-as-route-targets'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export__route_target__two_byte_as_route_targets:
@@ -448,8 +448,8 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export_
     mut def __init__(self, two_byte_as_route_targets: ?Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export__route_target__two_byte_as_route_targets=None) -> None:
         self.two_byte_as_route_targets = two_byte_as_route_targets if two_byte_as_route_targets is not None else Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export__route_target__two_byte_as_route_targets()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:export', 'route-target'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:export', 'route-target'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export__route_target:
@@ -469,8 +469,8 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export(
     mut def __init__(self, route_target: ?Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export__route_target=None) -> None:
         self.route_target = route_target if route_target is not None else Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export__route_target()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:export'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast', 'Cisco-IOS-XR-um-router-bgp-cfg:export'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export:
@@ -492,8 +492,8 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast(yadata.M
         self.import = import if import is not None else Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__import()
         self.export = export if export is not None else Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast__export()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4', 'unicast'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4__unicast:
@@ -524,8 +524,8 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4(yadata.MNode):
         self.unicast = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family', 'ipv4'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4:
@@ -545,8 +545,8 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family(yadata.MNode):
     mut def __init__(self, ipv4: ?Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4=None) -> None:
         self.ipv4 = ipv4 if ipv4 is not None else Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family__ipv4()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf', 'address-family'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family:
@@ -570,8 +570,8 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf_entry(yadata.MNode):
         self.address_family = address_family if address_family is not None else Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family()
         self.description = description
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs', 'vrf'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf_entry:
@@ -621,8 +621,8 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs(yadata.MNode):
     mut def __init__(self, vrf: list[Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf_entry]=[]) -> None:
         self.vrf = Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf(elements=vrf)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-vrf-cfg:vrfs'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_vrf_cfg__vrfs:
@@ -644,8 +644,8 @@ class Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4__addresses__add
         self.address = address
         self.netmask = netmask
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces', 'interface', 'ipv4', 'Cisco-IOS-XR-um-if-ip-address-cfg:addresses', 'address'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces', 'interface', 'ipv4', 'Cisco-IOS-XR-um-if-ip-address-cfg:addresses', 'address'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4__addresses__address:
@@ -680,8 +680,8 @@ class Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4__addresses(yada
         self.address = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces', 'interface', 'ipv4', 'Cisco-IOS-XR-um-if-ip-address-cfg:addresses'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces', 'interface', 'ipv4', 'Cisco-IOS-XR-um-if-ip-address-cfg:addresses'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4__addresses:
@@ -701,8 +701,8 @@ class Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4(yadata.MNode):
     mut def __init__(self, addresses: ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4__addresses=None) -> None:
         self.addresses = addresses if addresses is not None else Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4__addresses()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces', 'interface', 'ipv4'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces', 'interface', 'ipv4'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4:
@@ -721,8 +721,8 @@ class Cisco_IOS_XR_um_interface_cfg__interfaces__interface__shutdown(yadata.MNod
     mut def __init__(self) -> None:
         pass
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces', 'interface', 'shutdown'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces', 'interface', 'shutdown'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__shutdown:
@@ -745,8 +745,8 @@ class Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation__dot1q
     mut def __init__(self, vlan_id: ?u64) -> None:
         self.vlan_id = vlan_id
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces', 'interface', 'Cisco-IOS-XR-um-l2-ethernet-cfg:encapsulation', 'dot1q'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces', 'interface', 'Cisco-IOS-XR-um-l2-ethernet-cfg:encapsulation', 'dot1q'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation__dot1q:
@@ -766,8 +766,8 @@ class Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation(yadata
     mut def __init__(self, dot1q: ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation__dot1q=None) -> None:
         self.dot1q = dot1q if dot1q is not None else Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation__dot1q()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces', 'interface', 'Cisco-IOS-XR-um-l2-ethernet-cfg:encapsulation'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces', 'interface', 'Cisco-IOS-XR-um-l2-ethernet-cfg:encapsulation'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation:
@@ -805,8 +805,8 @@ class Cisco_IOS_XR_um_interface_cfg__interfaces__interface_entry(yadata.MNode):
         self.shutdown = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces', 'interface'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces', 'interface'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_interface_cfg__interfaces__interface_entry:
@@ -858,8 +858,8 @@ class Cisco_IOS_XR_um_interface_cfg__interfaces(yadata.MNode):
     mut def __init__(self, interface: list[Cisco_IOS_XR_um_interface_cfg__interfaces__interface_entry]=[]) -> None:
         self.interface = Cisco_IOS_XR_um_interface_cfg__interfaces__interface(elements=interface)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-interface-cfg:interfaces'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_interface_cfg__interfaces:
@@ -879,8 +879,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     mut def __init__(self, net_id: str) -> None:
         self.net_id = net_id
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'nets', 'net'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'nets', 'net'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__nets__net_entry:
@@ -928,8 +928,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     mut def __init__(self, net: list[Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__nets__net_entry]=[]) -> None:
         self.net = Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__nets__net(elements=net)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'nets'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'nets'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__nets:
@@ -951,8 +951,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
         self.level_number = level_number
         self.default_metric = default_metric
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'interfaces', 'interface', 'address-families', 'address-family', 'metric-levels', 'metric-level'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'interfaces', 'interface', 'address-families', 'address-family', 'metric-levels', 'metric-level'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family__metric_levels__metric_level_entry:
@@ -1002,8 +1002,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     mut def __init__(self, metric_level: list[Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family__metric_levels__metric_level_entry]=[]) -> None:
         self.metric_level = Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family__metric_levels__metric_level(elements=metric_level)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'interfaces', 'interface', 'address-families', 'address-family', 'metric-levels'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'interfaces', 'interface', 'address-families', 'address-family', 'metric-levels'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family__metric_levels:
@@ -1027,8 +1027,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
         self.saf_name = saf_name
         self.metric_levels = metric_levels if metric_levels is not None else Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family__metric_levels()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'interfaces', 'interface', 'address-families', 'address-family'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'interfaces', 'interface', 'address-families', 'address-family'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family_entry:
@@ -1076,8 +1076,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     mut def __init__(self, address_family: list[Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family_entry]=[]) -> None:
         self.address_family = Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families__address_family(elements=address_family)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'interfaces', 'interface', 'address-families'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'interfaces', 'interface', 'address-families'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families:
@@ -1105,8 +1105,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
         self.point_to_point = point_to_point
         self.address_families = address_families if address_families is not None else Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'interfaces', 'interface'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'interfaces', 'interface'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface_entry:
@@ -1160,8 +1160,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     mut def __init__(self, interface: list[Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface_entry]=[]) -> None:
         self.interface = Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface(elements=interface)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'interfaces'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'interfaces'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces:
@@ -1180,8 +1180,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     mut def __init__(self) -> None:
         pass
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'address-families', 'address-family', 'metric-style', 'wide'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'address-families', 'address-family', 'metric-style', 'wide'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__address_families__address_family__metric_style__wide:
@@ -1212,8 +1212,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
         self.wide = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'address-families', 'address-family', 'metric-style'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'address-families', 'address-family', 'metric-style'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__address_families__address_family__metric_style:
@@ -1237,8 +1237,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
         self.saf_name = saf_name
         self.metric_style = metric_style if metric_style is not None else Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__address_families__address_family__metric_style()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'address-families', 'address-family'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'address-families', 'address-family'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__address_families__address_family_entry:
@@ -1286,8 +1286,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     mut def __init__(self, address_family: list[Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__address_families__address_family_entry]=[]) -> None:
         self.address_family = Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__address_families__address_family(elements=address_family)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'address-families'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process', 'address-families'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__address_families:
@@ -1315,8 +1315,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
         self.interfaces = interfaces if interfaces is not None else Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces()
         self.address_families = address_families if address_families is not None else Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__address_families()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes', 'process'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process_entry:
@@ -1366,8 +1366,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     mut def __init__(self, process: list[Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process_entry]=[]) -> None:
         self.process = Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process(elements=process)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis', 'processes'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes:
@@ -1387,8 +1387,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis(yadata.MN
     mut def __init__(self, processes: ?Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes=None) -> None:
         self.processes = processes if processes is not None else Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router', 'isis'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis:
@@ -1408,8 +1408,8 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router(yadata.MNode):
     mut def __init__(self, isis: ?Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis=None) -> None:
         self.isis = isis if isis is not None else Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-isis-cfg:router'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router:
@@ -1429,8 +1429,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
     mut def __init__(self, neighbor_group: ?str) -> None:
         self.neighbor_group = neighbor_group
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbors', 'neighbor', 'use'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbors', 'neighbor', 'use'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor__use:
@@ -1454,8 +1454,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         self.use = use if use is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor__use()
         self.description = description
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbors', 'neighbor'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbors', 'neighbor'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor_entry:
@@ -1505,8 +1505,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
     mut def __init__(self, neighbor: list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor_entry]=[]) -> None:
         self.neighbor = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor(elements=neighbor)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbors'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbors'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors:
@@ -1526,8 +1526,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
     mut def __init__(self, encrypted: ?str) -> None:
         self.encrypted = encrypted
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbor-groups', 'neighbor-group', 'password'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbor-groups', 'neighbor-group', 'password'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password:
@@ -1547,8 +1547,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
     mut def __init__(self, af_name: str) -> None:
         self.af_name = af_name
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbor-groups', 'neighbor-group', 'address-families', 'address-family'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbor-groups', 'neighbor-group', 'address-families', 'address-family'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family_entry:
@@ -1596,8 +1596,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
     mut def __init__(self, address_family: list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family_entry]=[]) -> None:
         self.address_family = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families__address_family(elements=address_family)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbor-groups', 'neighbor-group', 'address-families'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbor-groups', 'neighbor-group', 'address-families'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families:
@@ -1625,8 +1625,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
         self.update_source = update_source
         self.address_families = address_families if address_families is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbor-groups', 'neighbor-group'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbor-groups', 'neighbor-group'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry:
@@ -1678,8 +1678,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
     mut def __init__(self, neighbor_group: list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group_entry]=[]) -> None:
         self.neighbor_group = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group(elements=neighbor_group)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbor-groups'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'neighbor-groups'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups:
@@ -1699,8 +1699,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address
     mut def __init__(self, af_name: str) -> None:
         self.af_name = af_name
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'address-families', 'address-family'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'address-families', 'address-family'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family_entry:
@@ -1748,8 +1748,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address
     mut def __init__(self, address_family: list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family_entry]=[]) -> None:
         self.address_family = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families__address_family(elements=address_family)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'address-families'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'address-families'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__address_families:
@@ -1769,8 +1769,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp(yad
     mut def __init__(self, router_id: ?str) -> None:
         self.router_id = router_id
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'bgp'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'bgp'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp:
@@ -1792,8 +1792,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         self.two_byte_as_number = two_byte_as_number
         self.asn2_index = asn2_index
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'rd', 'two-byte-as'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'rd', 'two-byte-as'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd__two_byte_as:
@@ -1828,8 +1828,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         self.two_byte_as = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'rd'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'rd'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__rd:
@@ -1849,8 +1849,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     mut def __init__(self, af_name: str) -> None:
         self.af_name = af_name
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'address-families', 'address-family'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'address-families', 'address-family'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family_entry:
@@ -1898,8 +1898,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     mut def __init__(self, address_family: list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family_entry]=[]) -> None:
         self.address_family = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families__address_family(elements=address_family)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'address-families'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'address-families'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families:
@@ -1919,8 +1919,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     mut def __init__(self, encrypted: ?str) -> None:
         self.encrypted = encrypted
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor', 'password'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor', 'password'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password:
@@ -1940,8 +1940,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     mut def __init__(self, holdtime_number: ?u64) -> None:
         self.holdtime_number = holdtime_number
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor', 'timers', 'holdtime'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor', 'timers', 'holdtime'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers__holdtime:
@@ -1976,8 +1976,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         self.holdtime = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor', 'timers'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor', 'timers'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers:
@@ -1999,8 +1999,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         self.out = out
         self.in_ = in_
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor', 'address-families', 'address-family', 'route-policy'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor', 'address-families', 'address-family', 'route-policy'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__route_policy:
@@ -2019,8 +2019,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     mut def __init__(self) -> None:
         pass
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor', 'address-families', 'address-family', 'as-override'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor', 'address-families', 'address-family', 'as-override'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family__as_override:
@@ -2055,8 +2055,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         self.as_override = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor', 'address-families', 'address-family'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor', 'address-families', 'address-family'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family_entry:
@@ -2104,8 +2104,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     mut def __init__(self, address_family: list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family_entry]=[]) -> None:
         self.address_family = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families__address_family(elements=address_family)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor', 'address-families'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor', 'address-families'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families:
@@ -2135,8 +2135,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         self.timers = timers if timers is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers()
         self.address_families = address_families if address_families is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors', 'neighbor'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry:
@@ -2188,8 +2188,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     mut def __init__(self, neighbor: list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor_entry]=[]) -> None:
         self.neighbor = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor(elements=neighbor)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf', 'neighbors'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors:
@@ -2215,8 +2215,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
         self.address_families = address_families if address_families is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__address_families()
         self.neighbors = neighbors if neighbors is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs', 'vrf'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf_entry:
@@ -2264,8 +2264,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs(ya
     mut def __init__(self, vrf: list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf_entry]=[]) -> None:
         self.vrf = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf(elements=vrf)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as', 'vrfs'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs:
@@ -2295,8 +2295,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry(ya
         self.bgp = bgp if bgp is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp()
         self.vrfs = vrfs if vrfs is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp', 'as'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry:
@@ -2344,8 +2344,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp(yadata.MNode
     mut def __init__(self, as_: list[Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as_entry]=[]) -> None:
         self.as_ = Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as(elements=as_)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router', 'bgp'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp:
@@ -2365,8 +2365,8 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router(yadata.MNode):
     mut def __init__(self, bgp: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp=None) -> None:
         self.bgp = bgp if bgp is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-router-bgp-cfg:router'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router:
@@ -2388,8 +2388,8 @@ class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies__route_po
         self.route_policy_name = route_policy_name
         self.rpl_route_policy = rpl_route_policy
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy', 'route-policies', 'route-policy'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy', 'route-policies', 'route-policy'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies__route_policy_entry:
@@ -2439,8 +2439,8 @@ class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies(yadata.MN
     mut def __init__(self, route_policy: list[Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies__route_policy_entry]=[]) -> None:
         self.route_policy = Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies__route_policy(elements=route_policy)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy', 'route-policies'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy', 'route-policies'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies:
@@ -2460,8 +2460,8 @@ class Cisco_IOS_XR_um_route_policy_cfg__routing_policy(yadata.MNode):
     mut def __init__(self, route_policies: ?Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies=None) -> None:
         self.route_policies = route_policies if route_policies is not None else Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-route-policy-cfg:routing-policy'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_route_policy_cfg__routing_policy:
@@ -2481,8 +2481,8 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family_
     mut def __init__(self, af_name: str) -> None:
         self.af_name = af_name
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-mpls-ldp-cfg:mpls', 'ldp', 'address-families', 'address-family'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-mpls-ldp-cfg:mpls', 'ldp', 'address-families', 'address-family'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family_entry:
@@ -2530,8 +2530,8 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families(yadata.MNode):
     mut def __init__(self, address_family: list[Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family_entry]=[]) -> None:
         self.address_family = Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families__address_family(elements=address_family)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-mpls-ldp-cfg:mpls', 'ldp', 'address-families'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-mpls-ldp-cfg:mpls', 'ldp', 'address-families'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families:
@@ -2551,8 +2551,8 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface_entry(yadat
     mut def __init__(self, interface_name: str) -> None:
         self.interface_name = interface_name
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-mpls-ldp-cfg:mpls', 'ldp', 'interfaces', 'interface'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-mpls-ldp-cfg:mpls', 'ldp', 'interfaces', 'interface'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface_entry:
@@ -2600,8 +2600,8 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces(yadata.MNode):
     mut def __init__(self, interface: list[Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface_entry]=[]) -> None:
         self.interface = Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces__interface(elements=interface)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-mpls-ldp-cfg:mpls', 'ldp', 'interfaces'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-mpls-ldp-cfg:mpls', 'ldp', 'interfaces'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces:
@@ -2623,8 +2623,8 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp(yadata.MNode):
         self.address_families = address_families if address_families is not None else Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__address_families()
         self.interfaces = interfaces if interfaces is not None else Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp__interfaces()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-mpls-ldp-cfg:mpls', 'ldp'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-mpls-ldp-cfg:mpls', 'ldp'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?Cisco_IOS_XR_um_mpls_ldp_cfg__mpls__ldp:
@@ -2655,8 +2655,8 @@ class Cisco_IOS_XR_um_mpls_ldp_cfg__mpls(yadata.MNode):
         self.ldp = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-mpls-ldp-cfg:mpls'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-mpls-ldp-cfg:mpls'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_mpls_ldp_cfg__mpls:
@@ -2676,8 +2676,8 @@ class Cisco_IOS_XR_um_hostname_cfg__hostname(yadata.MNode):
     mut def __init__(self, system_network_name: ?str) -> None:
         self.system_network_name = system_network_name
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-hostname-cfg:hostname'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['Cisco-IOS-XR-um-hostname-cfg:hostname'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> Cisco_IOS_XR_um_hostname_cfg__hostname:
@@ -2709,8 +2709,8 @@ class root(yadata.MNode):
         self.mpls = mpls if mpls is not None else Cisco_IOS_XR_um_mpls_ldp_cfg__mpls()
         self.hostname = hostname if hostname is not None else Cisco_IOS_XR_um_hostname_cfg__hostname()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True)
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> root:

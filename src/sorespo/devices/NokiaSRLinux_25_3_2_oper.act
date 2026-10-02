@@ -33991,8 +33991,8 @@ class srl_nokia_system__system__name(yadata.MNode):
     mut def __init__(self, host_name: ?str) -> None:
         self.host_name = host_name
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-system:system', 'srl_nokia-system-name:name'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-system:system', 'srl_nokia-system-name:name'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_system__system__name:
@@ -34012,8 +34012,8 @@ class srl_nokia_system__system(yadata.MNode):
     mut def __init__(self, name: ?srl_nokia_system__system__name=None) -> None:
         self.name = name if name is not None else srl_nokia_system__system__name()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-system:system'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-system:system'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_system__system:
@@ -34033,8 +34033,8 @@ class srl_nokia_interfaces__interface__subinterface__ipv4__address_entry(yadata.
     mut def __init__(self, ip_prefix: str) -> None:
         self.ip_prefix = ip_prefix
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface', 'subinterface', 'ipv4', 'address'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface', 'subinterface', 'ipv4', 'address'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_interfaces__interface__subinterface__ipv4__address_entry:
@@ -34084,8 +34084,8 @@ class srl_nokia_interfaces__interface__subinterface__ipv4(yadata.MNode):
         self.admin_state = admin_state
         self.address = srl_nokia_interfaces__interface__subinterface__ipv4__address(elements=address)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface', 'subinterface', 'ipv4'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface', 'subinterface', 'ipv4'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_interfaces__interface__subinterface__ipv4:
@@ -34105,8 +34105,8 @@ class srl_nokia_interfaces__interface__subinterface__ipv6(yadata.MNode):
     mut def __init__(self, admin_state: ?str) -> None:
         self.admin_state = admin_state
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface', 'subinterface', 'ipv6'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface', 'subinterface', 'ipv6'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_interfaces__interface__subinterface__ipv6:
@@ -34126,8 +34126,8 @@ class srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged(
     mut def __init__(self, vlan_id: ?atom) -> None:
         self.vlan_id = vlan_id
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface', 'subinterface', 'srl_nokia-interfaces-vlans:vlan', 'encap', 'single-tagged'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface', 'subinterface', 'srl_nokia-interfaces-vlans:vlan', 'encap', 'single-tagged'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged:
@@ -34160,8 +34160,8 @@ class srl_nokia_interfaces__interface__subinterface__vlan__encap(yadata.MNode):
         self.single_tagged = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface', 'subinterface', 'srl_nokia-interfaces-vlans:vlan', 'encap'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface', 'subinterface', 'srl_nokia-interfaces-vlans:vlan', 'encap'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_interfaces__interface__subinterface__vlan__encap:
@@ -34181,8 +34181,8 @@ class srl_nokia_interfaces__interface__subinterface__vlan(yadata.MNode):
     mut def __init__(self, encap: ?srl_nokia_interfaces__interface__subinterface__vlan__encap=None) -> None:
         self.encap = encap if encap is not None else srl_nokia_interfaces__interface__subinterface__vlan__encap()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface', 'subinterface', 'srl_nokia-interfaces-vlans:vlan'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface', 'subinterface', 'srl_nokia-interfaces-vlans:vlan'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_interfaces__interface__subinterface__vlan:
@@ -34212,8 +34212,8 @@ class srl_nokia_interfaces__interface__subinterface_entry(yadata.MNode):
         self.ipv6 = ipv6 if ipv6 is not None else srl_nokia_interfaces__interface__subinterface__ipv6()
         self.vlan = vlan if vlan is not None else srl_nokia_interfaces__interface__subinterface__vlan()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface', 'subinterface'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface', 'subinterface'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_interfaces__interface__subinterface_entry:
@@ -34275,8 +34275,8 @@ class srl_nokia_interfaces__interface_entry(yadata.MNode):
         self.subinterface = srl_nokia_interfaces__interface__subinterface(elements=subinterface)
         self.vlan_tagging = vlan_tagging
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-interfaces:interface'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_interfaces__interface_entry:
@@ -34332,8 +34332,8 @@ class srl_nokia_network_instance__network_instance__interface_entry(yadata.MNode
     mut def __init__(self, name: str) -> None:
         self.name = name
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'interface'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'interface'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__interface_entry:
@@ -34381,8 +34381,8 @@ class srl_nokia_network_instance__network_instance__vxlan_interface_entry(yadata
     mut def __init__(self, name: str) -> None:
         self.name = name
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'vxlan-interface'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'vxlan-interface'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__vxlan_interface_entry:
@@ -34436,8 +34436,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_ins
         self.vxlan_interface = vxlan_interface
         self.evi = evi
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'bgp-evpn', 'srl_nokia-bgp-evpn:bgp-instance'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'bgp-evpn', 'srl_nokia-bgp-evpn:bgp-instance'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_entry:
@@ -34491,8 +34491,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_evpn(yadata.M
     mut def __init__(self, bgp_instance: list[srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_entry]=[]) -> None:
         self.bgp_instance = srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance(elements=bgp_instance)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'bgp-evpn'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'bgp-evpn'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?srl_nokia_network_instance__network_instance__protocols__bgp_evpn:
@@ -34515,8 +34515,8 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance__i
     mut def __init__(self, admin_state: ?str) -> None:
         self.admin_state = admin_state
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-isis:isis', 'instance', 'ipv4-unicast'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-isis:isis', 'instance', 'ipv4-unicast'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast:
@@ -34538,8 +34538,8 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance__i
         self.level_number = level_number
         self.metric = metric
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-isis:isis', 'instance', 'interface', 'level'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-isis:isis', 'instance', 'interface', 'level'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry:
@@ -34597,8 +34597,8 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance__i
         self.passive = passive
         self.level = srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level(elements=level)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-isis:isis', 'instance', 'interface'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-isis:isis', 'instance', 'interface'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry:
@@ -34662,8 +34662,8 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance_en
         self.ipv4_unicast = ipv4_unicast if ipv4_unicast is not None else srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast()
         self.interface = srl_nokia_network_instance__network_instance__protocols__isis__instance__interface(elements=interface)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-isis:isis', 'instance'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-isis:isis', 'instance'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__isis__instance_entry:
@@ -34715,8 +34715,8 @@ class srl_nokia_network_instance__network_instance__protocols__isis(yadata.MNode
     mut def __init__(self, instance: list[srl_nokia_network_instance__network_instance__protocols__isis__instance_entry]=[]) -> None:
         self.instance = srl_nokia_network_instance__network_instance__protocols__isis__instance(elements=instance)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-isis:isis'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-isis:isis'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?srl_nokia_network_instance__network_instance__protocols__isis:
@@ -34741,8 +34741,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default
         self.import_reject_all = import_reject_all
         self.export_reject_all = export_reject_all
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'ebgp-default-policy'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'ebgp-default-policy'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default_policy:
@@ -34764,8 +34764,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_ent
         self.afi_safi_name = afi_safi_name
         self.admin_state = admin_state
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'afi-safi'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'afi-safi'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry:
@@ -34815,8 +34815,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__group__send_
     mut def __init__(self, ipv4_unicast: ?bool) -> None:
         self.ipv4_unicast = ipv4_unicast
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'group', 'send-default-route'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'group', 'send-default-route'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route:
@@ -34840,8 +34840,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__group_entry(
         self.peer_as = peer_as
         self.send_default_route = send_default_route if send_default_route is not None else srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'group'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'group'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__group_entry:
@@ -34891,8 +34891,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__au
     mut def __init__(self, password: ?str) -> None:
         self.password = password
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'neighbor', 'authentication'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'neighbor', 'authentication'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication:
@@ -34918,8 +34918,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__ti
         self.keepalive_interval = keepalive_interval
         self.negotiated_hold_time = negotiated_hold_time
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'neighbor', 'timers'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'neighbor', 'timers'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers:
@@ -34939,8 +34939,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__se
     mut def __init__(self, last_notification_error_code: ?str) -> None:
         self.last_notification_error_code = last_notification_error_code
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'neighbor', 'sent-messages'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'neighbor', 'sent-messages'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__sent_messages:
@@ -34960,8 +34960,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__re
     mut def __init__(self, last_notification_error_code: ?str) -> None:
         self.last_notification_error_code = last_notification_error_code
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'neighbor', 'received-messages'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'neighbor', 'received-messages'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages:
@@ -35003,8 +35003,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_ent
         self.sent_messages = sent_messages if sent_messages is not None else srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__sent_messages()
         self.received_messages = received_messages if received_messages is not None else srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'neighbor'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp', 'neighbor'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry:
@@ -35076,8 +35076,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp(yadata.MNode)
         self.group = srl_nokia_network_instance__network_instance__protocols__bgp__group(elements=group)
         self.neighbor = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor(elements=neighbor)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp:bgp'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?srl_nokia_network_instance__network_instance__protocols__bgp:
@@ -35102,8 +35102,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_inst
         self.export_rt = export_rt
         self.import_rt = import_rt
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp-vpn:bgp-vpn', 'bgp-instance', 'route-target'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp-vpn:bgp-vpn', 'bgp-instance', 'route-target'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target:
@@ -35125,8 +35125,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_inst
         self.id = id
         self.route_target = route_target if route_target is not None else srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp-vpn:bgp-vpn', 'bgp-instance'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp-vpn:bgp-vpn', 'bgp-instance'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_entry:
@@ -35174,8 +35174,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_vpn(yadata.MN
     mut def __init__(self, bgp_instance: list[srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_entry]=[]) -> None:
         self.bgp_instance = srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance(elements=bgp_instance)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp-vpn:bgp-vpn'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols', 'srl_nokia-bgp-vpn:bgp-vpn'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?srl_nokia_network_instance__network_instance__protocols__bgp_vpn:
@@ -35240,8 +35240,8 @@ class srl_nokia_network_instance__network_instance__protocols(yadata.MNode):
         self.bgp_vpn = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance', 'protocols'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols:
@@ -35273,8 +35273,8 @@ class srl_nokia_network_instance__network_instance_entry(yadata.MNode):
         self.vxlan_interface = srl_nokia_network_instance__network_instance__vxlan_interface(elements=vxlan_interface)
         self.protocols = protocols if protocols is not None else srl_nokia_network_instance__network_instance__protocols()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-network-instance:network-instance'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance_entry:
@@ -35328,8 +35328,8 @@ class srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress(ya
     mut def __init__(self, vni: ?u64) -> None:
         self.vni = vni
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-tunnel-interfaces:tunnel-interface', 'vxlan-interface', 'ingress'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-tunnel-interfaces:tunnel-interface', 'vxlan-interface', 'ingress'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress:
@@ -35353,8 +35353,8 @@ class srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry(yadat
         self.type = type
         self.ingress = ingress if ingress is not None else srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-tunnel-interfaces:tunnel-interface', 'vxlan-interface'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-tunnel-interfaces:tunnel-interface', 'vxlan-interface'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry:
@@ -35406,8 +35406,8 @@ class srl_nokia_tunnel_interfaces__tunnel_interface_entry(yadata.MNode):
         self.name = name
         self.vxlan_interface = srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface(elements=vxlan_interface)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-tunnel-interfaces:tunnel-interface'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, root_path=['srl_nokia-tunnel-interfaces:tunnel-interface'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_tunnel_interfaces__tunnel_interface_entry:
@@ -35461,8 +35461,8 @@ class root(yadata.MNode):
         self.network_instance = srl_nokia_network_instance__network_instance(elements=network_instance)
         self.tunnel_interface = srl_nokia_tunnel_interfaces__tunnel_interface(elements=tunnel_interface)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=True)
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=True, prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> root:

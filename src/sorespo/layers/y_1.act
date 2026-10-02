@@ -886,8 +886,8 @@ class netinfra_inter__netinfra__router__feature_flags(yadata.MNode):
     mut def __init__(self, runtime_schema_fetch: ?bool=None) -> None:
         self.runtime_schema_fetch = runtime_schema_fetch if runtime_schema_fetch is not None else False
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra', 'router', 'feature-flags'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra', 'router', 'feature-flags'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> netinfra_inter__netinfra__router__feature_flags:
@@ -911,8 +911,8 @@ class netinfra_inter__netinfra__router__base_config(yadata.MNode):
         self.ipv4_address = ipv4_address
         self.ipv6_address = ipv6_address
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra', 'router', 'base-config'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra', 'router', 'base-config'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> netinfra_inter__netinfra__router__base_config:
@@ -934,8 +934,8 @@ class netinfra_inter__netinfra__router__l3vpn_vrf_entry(yadata.MNode):
         self.vpn_id = vpn_id
         self.ebgp_customer_address = ebgp_customer_address if ebgp_customer_address is not None else []
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra', 'router', 'l3vpn-vrf'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra', 'router', 'l3vpn-vrf'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> netinfra_inter__netinfra__router__l3vpn_vrf_entry:
@@ -999,8 +999,8 @@ class netinfra_inter__netinfra__router_entry(yadata.MNode):
         self.base_config = base_config
         self.l3vpn_vrf = netinfra_inter__netinfra__router__l3vpn_vrf(elements=l3vpn_vrf)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra', 'router'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra', 'router'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> netinfra_inter__netinfra__router_entry:
@@ -1064,8 +1064,8 @@ class netinfra_inter__netinfra__backbone_link_entry(yadata.MNode):
         self.right_router = right_router
         self.right_interface = right_interface
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra', 'backbone-link'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra', 'backbone-link'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> netinfra_inter__netinfra__backbone_link_entry:
@@ -1115,8 +1115,8 @@ class netinfra_inter__netinfra__ibgp_fullmesh__router_entry(yadata.MNode):
         self.name = name
         self.ipv4_address = ipv4_address
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra', 'ibgp-fullmesh', 'router'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra', 'ibgp-fullmesh', 'router'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> netinfra_inter__netinfra__ibgp_fullmesh__router_entry:
@@ -1169,8 +1169,8 @@ class netinfra_inter__netinfra__ibgp_fullmesh_entry(yadata.MNode):
         self.authentication_key = authentication_key
         self.router = netinfra_inter__netinfra__ibgp_fullmesh__router(elements=router)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra', 'ibgp-fullmesh'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra', 'ibgp-fullmesh'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> netinfra_inter__netinfra__ibgp_fullmesh_entry:
@@ -1223,8 +1223,8 @@ class netinfra_inter__netinfra(yadata.MNode):
         self.backbone_link = netinfra_inter__netinfra__backbone_link(elements=backbone_link)
         self.ibgp_fullmesh = netinfra_inter__netinfra__ibgp_fullmesh(elements=ibgp_fullmesh)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['netinfra-inter:netinfra'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> netinfra_inter__netinfra:
@@ -1246,8 +1246,8 @@ class l3vpn_inter__l3vpns__l3vpn__endpoint__bgp(yadata.MNode):
         self.as_number = as_number
         self.authentication_key = authentication_key
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['l3vpn-inter:l3vpns', 'l3vpn', 'endpoint', 'bgp'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['l3vpn-inter:l3vpns', 'l3vpn', 'endpoint', 'bgp'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?l3vpn_inter__l3vpns__l3vpn__endpoint__bgp:
@@ -1295,8 +1295,8 @@ class l3vpn_inter__l3vpns__l3vpn__endpoint_entry(yadata.MNode):
         self.bgp = res
         return res
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['l3vpn-inter:l3vpns', 'l3vpn', 'endpoint'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['l3vpn-inter:l3vpns', 'l3vpn', 'endpoint'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> l3vpn_inter__l3vpns__l3vpn__endpoint_entry:
@@ -1354,8 +1354,8 @@ class l3vpn_inter__l3vpns__l3vpn_entry(yadata.MNode):
         self.description = description
         self.endpoint = l3vpn_inter__l3vpns__l3vpn__endpoint(elements=endpoint)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['l3vpn-inter:l3vpns', 'l3vpn'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['l3vpn-inter:l3vpns', 'l3vpn'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> l3vpn_inter__l3vpns__l3vpn_entry:
@@ -1405,8 +1405,8 @@ class l3vpn_inter__l3vpns(yadata.MNode):
     mut def __init__(self, l3vpn: list[l3vpn_inter__l3vpns__l3vpn_entry]=[]) -> None:
         self.l3vpn = l3vpn_inter__l3vpns__l3vpn(elements=l3vpn)
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['l3vpn-inter:l3vpns'])
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=False, root_path=['l3vpn-inter:l3vpns'], prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> l3vpn_inter__l3vpns:
@@ -1428,8 +1428,8 @@ class root(yadata.MNode):
         self.netinfra = netinfra if netinfra is not None else netinfra_inter__netinfra()
         self.l3vpns = l3vpns if l3vpns is not None else l3vpn_inter__l3vpns()
 
-    mut def to_gdata(self) -> ygdata.Node:
-        return yadata.from_adata(SRC_DNODE, self, loose=False)
+    mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
+        return yadata.from_adata(SRC_DNODE, self, loose=False, prev=prev)
 
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> root:

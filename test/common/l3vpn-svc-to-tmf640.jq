@@ -6,21 +6,13 @@ def characteristic($id; $value_type; $value):
     value: $value
   };
 
-def feature_relationship($parent_id):
-  {
-    id: $parent_id,
-    name: $parent_id,
-    relationshipType: "parent"
-  };
-
-def feature($id; $name; $characteristics; $parent_id):
+def feature($id; $name; $characteristics):
   {
     id: $id,
     isBundle: true,
     isEnabled: true,
     name: $name,
-    featureCharacteristic: $characteristics,
-    featureRelationship: (if $parent_id == null then [] else [feature_relationship($parent_id)] end)
+    featureCharacteristic: $characteristics
   };
 
 def service_spec_ref($id):
@@ -70,8 +62,7 @@ def location_feature($location):
     "location";
     [
       characteristic("location-id"; "string"; $location["location-id"])
-    ];
-    "locations"
+    ]
   );
 
 def site_network_access_base_id($access):
@@ -88,8 +79,7 @@ def service_feature($access; $base_id):
       characteristic("svc-input-bandwidth"; "integer"; ($access.service["svc-input-bandwidth"] | tonumber)),
       characteristic("svc-output-bandwidth"; "integer"; ($access.service["svc-output-bandwidth"] | tonumber)),
       characteristic("svc-mtu"; "integer"; $access.service["svc-mtu"])
-    ];
-    $base_id
+    ]
   );
 
 def vpn_attachment_feature($access; $base_id):
@@ -112,8 +102,7 @@ def vpn_attachment_feature($access; $base_id):
          [characteristic("site-role"; "string"; $access["vpn-attachment"]["site-role"])]
        else
          []
-       end);
-    $base_id
+       end)
   );
 
 def bearer_feature($access; $base_id):
@@ -131,8 +120,7 @@ def bearer_feature($access; $base_id):
          [characteristic("always-on"; "boolean"; $access.bearer["always-on"])]
        else
          []
-       end);
-    $base_id
+       end)
   );
 
 def ipv4_features($access; $base_id):
@@ -141,8 +129,7 @@ def ipv4_features($access; $base_id):
       feature(
         "\($base_id)/ip-connection";
         "ip-connection";
-        [];
-        $base_id
+        []
       ),
       feature(
         "\($base_id)/ip-connection/ipv4";
@@ -153,8 +140,7 @@ def ipv4_features($access; $base_id):
           else
             []
           end
-        );
-        "\($base_id)/ip-connection"
+        )
       )
     ]
     + (if $access["ip-connection"].ipv4.addresses? then
@@ -166,8 +152,7 @@ def ipv4_features($access; $base_id):
                characteristic("provider-address"; "string"; $access["ip-connection"].ipv4.addresses["provider-address"]),
                characteristic("customer-address"; "string"; $access["ip-connection"].ipv4.addresses["customer-address"]),
                characteristic("prefix-length"; "integer"; $access["ip-connection"].ipv4.addresses["prefix-length"])
-             ];
-             "\($base_id)/ip-connection/ipv4"
+             ]
            )
          ]
        else
@@ -185,8 +170,7 @@ def bgp_feature($access; $routing_protocol):
         "routing-protocol";
         [
           characteristic("type"; "string"; $routing_protocol.type)
-        ];
-        "\(site_network_access_base_id($access))/routing-protocols"
+        ]
       )
     ]
     + (if $routing_protocol.bgp? then
@@ -197,8 +181,7 @@ def bgp_feature($access; $routing_protocol):
              [
                characteristic("autonomous-system"; "integer"; $routing_protocol.bgp["autonomous-system"]),
                characteristic("address-family"; "stringArray"; $routing_protocol.bgp["address-family"])
-             ];
-             $base_id
+             ]
            )
          ]
        else
@@ -211,8 +194,7 @@ def routing_protocol_features($access; $base_id):
       feature(
         "\($base_id)/routing-protocols";
         "routing-protocols";
-        [];
-        $base_id
+        []
       )
     ]
     + [
@@ -236,8 +218,7 @@ def site_network_access_features($access):
              [characteristic("location-reference"; "string"; $access["location-reference"])]
            else
              []
-           end);
-        "site-network-accesses"
+           end)
       )
     ]
     + (if $access.service? then [service_feature($access; $base_id)] else [] end)
@@ -262,8 +243,7 @@ def site_service_object($site):
                [characteristic("type"; "string"; $site.management.type)]
              else
                []
-             end);
-            null
+             end)
           )
         ]
       else
@@ -271,7 +251,7 @@ def site_service_object($site):
       end
     )
     + (if ($site.locations.location? // []) != [] then
-         [feature("locations"; "locations"; []; null)]
+         [feature("locations"; "locations"; [])]
        else
          []
        end)
@@ -280,7 +260,7 @@ def site_service_object($site):
         | location_feature($location)
       ]
     + (if ($site["site-network-accesses"]["site-network-access"]? // []) != [] then
-         [feature("site-network-accesses"; "site-network-accesses"; []; null)]
+         [feature("site-network-accesses"; "site-network-accesses"; [])]
        else
          []
        end)

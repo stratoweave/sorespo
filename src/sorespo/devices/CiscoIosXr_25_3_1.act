@@ -565,7 +565,7 @@ class Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf_entry(yadata.MNode):
     address_family: Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family
     description: ?str
 
-    mut def __init__(self, vrf_name: str, address_family: ?Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family=None, description: ?str) -> None:
+    mut def __init__(self, vrf_name: str, address_family: ?Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family=None, description: ?str=None) -> None:
         self.vrf_name = vrf_name
         self.address_family = address_family if address_family is not None else Cisco_IOS_XR_um_vrf_cfg__vrfs__vrf__address_family()
         self.description = description
@@ -640,7 +640,7 @@ class Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4__addresses__add
     address: ?str
     netmask: ?str
 
-    mut def __init__(self, address: ?str, netmask: ?str) -> None:
+    mut def __init__(self, address: ?str=None, netmask: ?str=None) -> None:
         self.address = address
         self.netmask = netmask
 
@@ -742,7 +742,7 @@ _breaker21: None = None
 class Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation__dot1q(yadata.MNode):
     vlan_id: ?u64
 
-    mut def __init__(self, vlan_id: ?u64) -> None:
+    mut def __init__(self, vlan_id: ?u64=None) -> None:
         self.vlan_id = vlan_id
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -789,7 +789,7 @@ class Cisco_IOS_XR_um_interface_cfg__interfaces__interface_entry(yadata.MNode):
     encapsulation: Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation
     vrf: ?str
 
-    mut def __init__(self, interface_name: str, ipv4: ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4=None, shutdown: ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__shutdown=None, description: ?str, encapsulation: ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation=None, vrf: ?str) -> None:
+    mut def __init__(self, interface_name: str, ipv4: ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4=None, shutdown: ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__shutdown=None, description: ?str=None, encapsulation: ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation=None, vrf: ?str=None) -> None:
         self.interface_name = interface_name
         self.ipv4 = ipv4 if ipv4 is not None else Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4()
         self.shutdown = shutdown
@@ -947,7 +947,7 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     level_number: u64
     default_metric: ?u64
 
-    mut def __init__(self, level_number: u64, default_metric: ?u64) -> None:
+    mut def __init__(self, level_number: u64, default_metric: ?u64=None) -> None:
         self.level_number = level_number
         self.default_metric = default_metric
 
@@ -1098,7 +1098,7 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     point_to_point: ?bool
     address_families: Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families
 
-    mut def __init__(self, interface_name: str, state: ?str, circuit_type: ?str, point_to_point: ?bool, address_families: ?Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families=None) -> None:
+    mut def __init__(self, interface_name: str, state: ?str=None, circuit_type: ?str=None, point_to_point: ?bool=None, address_families: ?Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces__interface__address_families=None) -> None:
         self.interface_name = interface_name
         self.state = state
         self.circuit_type = circuit_type
@@ -1308,7 +1308,7 @@ class Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processe
     interfaces: Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces
     address_families: Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__address_families
 
-    mut def __init__(self, process_id: str, is_type: ?str, nets: ?Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__nets=None, interfaces: ?Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces=None, address_families: ?Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__address_families=None) -> None:
+    mut def __init__(self, process_id: str, is_type: ?str=None, nets: ?Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__nets=None, interfaces: ?Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__interfaces=None, address_families: ?Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__address_families=None) -> None:
         self.process_id = process_id
         self.is_type = is_type
         self.nets = nets if nets is not None else Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router__isis__processes__process__nets()
@@ -1426,7 +1426,7 @@ _breaker48: None = None
 class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor__use(yadata.MNode):
     neighbor_group: ?str
 
-    mut def __init__(self, neighbor_group: ?str) -> None:
+    mut def __init__(self, neighbor_group: ?str=None) -> None:
         self.neighbor_group = neighbor_group
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -1449,7 +1449,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
     use: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor__use
     description: ?str
 
-    mut def __init__(self, address: str, use: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor__use=None, description: ?str) -> None:
+    mut def __init__(self, address: str, use: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor__use=None, description: ?str=None) -> None:
         self.address = address
         self.use = use if use is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbors__neighbor__use()
         self.description = description
@@ -1523,7 +1523,7 @@ _breaker52: None = None
 class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password(yadata.MNode):
     encrypted: ?str
 
-    mut def __init__(self, encrypted: ?str) -> None:
+    mut def __init__(self, encrypted: ?str=None) -> None:
         self.encrypted = encrypted
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -1618,7 +1618,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbo
     update_source: ?str
     address_families: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families
 
-    mut def __init__(self, neighbor_group_name: str, remote_as: ?atom, password: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password=None, update_source: ?str, address_families: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families=None) -> None:
+    mut def __init__(self, neighbor_group_name: str, remote_as: ?atom=None, password: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password=None, update_source: ?str=None, address_families: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__address_families=None) -> None:
         self.neighbor_group_name = neighbor_group_name
         self.remote_as = remote_as
         self.password = password if password is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__neighbor_groups__neighbor_group__password()
@@ -1766,7 +1766,7 @@ _breaker62: None = None
 class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__bgp(yadata.MNode):
     router_id: ?str
 
-    mut def __init__(self, router_id: ?str) -> None:
+    mut def __init__(self, router_id: ?str=None) -> None:
         self.router_id = router_id
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -1788,7 +1788,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     two_byte_as_number: ?atom
     asn2_index: ?u64
 
-    mut def __init__(self, two_byte_as_number: ?atom, asn2_index: ?u64) -> None:
+    mut def __init__(self, two_byte_as_number: ?atom=None, asn2_index: ?u64=None) -> None:
         self.two_byte_as_number = two_byte_as_number
         self.asn2_index = asn2_index
 
@@ -1916,7 +1916,7 @@ _breaker68: None = None
 class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password(yadata.MNode):
     encrypted: ?str
 
-    mut def __init__(self, encrypted: ?str) -> None:
+    mut def __init__(self, encrypted: ?str=None) -> None:
         self.encrypted = encrypted
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -1937,7 +1937,7 @@ _breaker69: None = None
 class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers__holdtime(yadata.MNode):
     holdtime_number: ?u64
 
-    mut def __init__(self, holdtime_number: ?u64) -> None:
+    mut def __init__(self, holdtime_number: ?u64=None) -> None:
         self.holdtime_number = holdtime_number
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -1962,7 +1962,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     keepalive_interval: ?u64
     holdtime: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers__holdtime
 
-    mut def __init__(self, keepalive_interval: ?u64, holdtime: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers__holdtime=None) -> None:
+    mut def __init__(self, keepalive_interval: ?u64=None, holdtime: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers__holdtime=None) -> None:
         self.keepalive_interval = keepalive_interval
         self.holdtime = holdtime
 
@@ -1995,7 +1995,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     out: ?str
     in_: ?str
 
-    mut def __init__(self, out: ?str, in_: ?str) -> None:
+    mut def __init__(self, out: ?str=None, in_: ?str=None) -> None:
         self.out = out
         self.in_ = in_
 
@@ -2127,7 +2127,7 @@ class Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__v
     timers: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers
     address_families: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families
 
-    mut def __init__(self, address: str, remote_as: ?atom, description: ?str, password: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password=None, timers: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers=None, address_families: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families=None) -> None:
+    mut def __init__(self, address: str, remote_as: ?atom=None, description: ?str=None, password: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__password=None, timers: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__timers=None, address_families: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router__bgp__as__vrfs__vrf__neighbors__neighbor__address_families=None) -> None:
         self.address = address
         self.remote_as = remote_as
         self.description = description
@@ -2384,7 +2384,7 @@ class Cisco_IOS_XR_um_route_policy_cfg__routing_policy__route_policies__route_po
     route_policy_name: str
     rpl_route_policy: ?str
 
-    mut def __init__(self, route_policy_name: str, rpl_route_policy: ?str) -> None:
+    mut def __init__(self, route_policy_name: str, rpl_route_policy: ?str=None) -> None:
         self.route_policy_name = route_policy_name
         self.rpl_route_policy = rpl_route_policy
 
@@ -2673,7 +2673,7 @@ _breaker98: None = None
 class Cisco_IOS_XR_um_hostname_cfg__hostname(yadata.MNode):
     system_network_name: ?str
 
-    mut def __init__(self, system_network_name: ?str) -> None:
+    mut def __init__(self, system_network_name: ?str=None) -> None:
         self.system_network_name = system_network_name
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:

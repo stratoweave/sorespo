@@ -32,7 +32,7 @@ class BaseConfig(ttt.RFSFunction):
         """Return the modeled input type for this transform"""
         return stratoweave_rfs__rfs__base_config
 
-    mut def transform_wrapper(self, i: ygdata.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_wrapper(self, i: ygdata.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node=None, dynstate: ?ygdata.Node=None, prev_output: ?ygdata.Node=None) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from gdata to
         modeled input and back to gdata
         """
@@ -40,7 +40,7 @@ class BaseConfig(ttt.RFSFunction):
 
         return self.transform(modeled_input, device_info).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
-    mut def transform_xml(self, i: xml.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_xml(self, i: xml.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node=None, dynstate: ?ygdata.Node=None, prev_output: ?ygdata.Node=None) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from XML to
         modeled input and return gdata
         """
@@ -67,7 +67,7 @@ class BBInterface(ttt.RFSFunction):
         """Create modeled operational state for this transform path"""
         return stratoweave_rfs__rfs__backbone_interface_entry__oper.from_gdata(ttt.path_key_data(path))
 
-    mut def transform_wrapper(self, i: ygdata.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_wrapper(self, i: ygdata.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node=None, dynstate: ?ygdata.Node=None, prev_output: ?ygdata.Node=None) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from gdata to
         modeled input and back to gdata
         """
@@ -75,7 +75,7 @@ class BBInterface(ttt.RFSFunction):
 
         return self.transform(modeled_input, device_info).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
-    mut def transform_xml(self, i: xml.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_xml(self, i: xml.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node=None, dynstate: ?ygdata.Node=None, prev_output: ?ygdata.Node=None) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from XML to
         modeled input and return gdata
         """
@@ -92,7 +92,7 @@ class IbgpNeighbor(ttt.RFSFunction):
         """Return the modeled input type for this transform"""
         return stratoweave_rfs__rfs__ibgp_neighbor_entry
 
-    mut def transform_wrapper(self, i: ygdata.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_wrapper(self, i: ygdata.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node=None, dynstate: ?ygdata.Node=None, prev_output: ?ygdata.Node=None) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from gdata to
         modeled input and back to gdata
         """
@@ -100,7 +100,7 @@ class IbgpNeighbor(ttt.RFSFunction):
 
         return self.transform(modeled_input, device_info).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
-    mut def transform_xml(self, i: xml.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_xml(self, i: xml.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node=None, dynstate: ?ygdata.Node=None, prev_output: ?ygdata.Node=None) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from XML to
         modeled input and return gdata
         """
@@ -117,7 +117,7 @@ class Vrf(ttt.RFSFunction):
         """Return the modeled input type for this transform"""
         return stratoweave_rfs__rfs__vrf_entry
 
-    mut def transform_wrapper(self, i: ygdata.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_wrapper(self, i: ygdata.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node=None, dynstate: ?ygdata.Node=None, prev_output: ?ygdata.Node=None) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from gdata to
         modeled input and back to gdata
         """
@@ -125,7 +125,7 @@ class Vrf(ttt.RFSFunction):
 
         return self.transform(modeled_input, device_info).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
-    mut def transform_xml(self, i: xml.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_xml(self, i: xml.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node=None, dynstate: ?ygdata.Node=None, prev_output: ?ygdata.Node=None) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from XML to
         modeled input and return gdata
         """
@@ -142,7 +142,7 @@ class VrfInterface(ttt.RFSFunction):
         """Return the modeled input type for this transform"""
         return stratoweave_rfs__rfs__vrf_interface_entry
 
-    mut def transform_wrapper(self, i: ygdata.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_wrapper(self, i: ygdata.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node=None, dynstate: ?ygdata.Node=None, prev_output: ?ygdata.Node=None) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from gdata to
         modeled input and back to gdata
         """
@@ -150,7 +150,7 @@ class VrfInterface(ttt.RFSFunction):
 
         return self.transform(modeled_input, device_info).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
-    mut def transform_xml(self, i: xml.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_xml(self, i: xml.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node=None, dynstate: ?ygdata.Node=None, prev_output: ?ygdata.Node=None) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from XML to
         modeled input and return gdata
         """
@@ -177,7 +177,7 @@ class EbgpCustomer(ttt.RFSFunction):
         """Create modeled operational state for this transform path"""
         return stratoweave_rfs__rfs__ebgp_customer_entry__oper.from_gdata(ttt.path_key_data(path))
 
-    mut def transform_wrapper(self, i: ygdata.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_wrapper(self, i: ygdata.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node=None, dynstate: ?ygdata.Node=None, prev_output: ?ygdata.Node=None) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from gdata to
         modeled input and back to gdata
         """
@@ -185,7 +185,7 @@ class EbgpCustomer(ttt.RFSFunction):
 
         return self.transform(modeled_input, device_info).to_gdata(prev_output if isinstance(prev_output, ygdata.Container) else None), None
 
-    mut def transform_xml(self, i: xml.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node, dynstate: ?ygdata.Node, prev_output: ?ygdata.Node) -> (ygdata.Node, ?ygdata.Node):
+    mut def transform_xml(self, i: xml.Node, device_info: ttt.DeviceInfo, memory: ?ygdata.Node=None, dynstate: ?ygdata.Node=None, prev_output: ?ygdata.Node=None) -> (ygdata.Node, ?ygdata.Node):
         """Wrap the user provided transform method to convert from XML to
         modeled input and return gdata
         """

@@ -21,11 +21,11 @@ jobs:
         with:
           channel: ${{ env.ACTON_CHANNEL }}
       - name: "Check out repository code"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: "Check dependency consistency"
         run: make check-dep-consistency
       - name: "Cache acton stuff"
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         if: env.ACTON_CHANNEL == 'tip'
         with:
           path: |
@@ -42,17 +42,17 @@ jobs:
           git diff --exit-code
       - run: acton test
       - run: make build
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: sorespo-linux-x86_64
           path: out/bin/sorespo
       - run: make build-linux-aarch64
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: sorespo-linux-aarch64
           path: out/bin/sorespo
       - run: make build-macos-aarch64
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: sorespo-macos-aarch64
           path: out/bin/sorespo
@@ -63,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Check out repository code"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: "Set up Bun"
         uses: oven-sh/setup-bun@v2
         with:
@@ -89,13 +89,13 @@ jobs:
       TAG: tip
     steps:
       - name: "Check out repository code"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Delete tag
         run: gh release delete ${{ env.TAG }} --cleanup-tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: "Download all binary artifacts"
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           pattern: sorespo-*
       - name: "Compress binary artifacts"
@@ -147,15 +147,15 @@ jobs:
           sudo apt-get install -qy linux-modules-extra-$(uname -r)
           sudo modprobe mpls_router mpls_gso vrf
       - name: "Check out repository code"
-        uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+        uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
         with:
           name: sorespo-${{ matrix.ARCH }}
           path: out/bin/
       - run: chmod a+x out/bin/sorespo
       - name: "Check out licenses repo"
         if: ${{ matrix.TESTENV == 'quicklab' || matrix.TESTENV == 'quicklab-crpd' }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: ${{ github.repository_owner }}/licenses
           path: licenses
@@ -181,7 +181,7 @@ jobs:
       - run: |
           make -C test/${{ matrix.TESTENV }} save-logs
         if: ${{ always() }}
-      - uses : actions/upload-artifact@v4
+      - uses : actions/upload-artifact@v7
         with:
           name: logs-${{ matrix.TESTENV }}-${{ matrix.ARCH }}
           path: test/${{ matrix.TESTENV }}/logs

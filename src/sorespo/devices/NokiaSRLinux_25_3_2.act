@@ -356,7 +356,7 @@ _breaker1: None = None
 class srl_nokia_system__system__name(yadata.MNode):
     host_name: ?str
 
-    mut def __init__(self, host_name: ?str) -> None:
+    mut def __init__(self, host_name: ?str=None) -> None:
         self.host_name = host_name
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -448,7 +448,7 @@ class srl_nokia_interfaces__interface__subinterface__ipv4(yadata.MNode):
     admin_state: ?str
     address: srl_nokia_interfaces__interface__subinterface__ipv4__address
 
-    mut def __init__(self, admin_state: ?str, address: list[srl_nokia_interfaces__interface__subinterface__ipv4__address_entry]=[]) -> None:
+    mut def __init__(self, admin_state: ?str=None, address: list[srl_nokia_interfaces__interface__subinterface__ipv4__address_entry]=[]) -> None:
         self.admin_state = admin_state
         self.address = srl_nokia_interfaces__interface__subinterface__ipv4__address(elements=address)
 
@@ -470,7 +470,7 @@ _breaker6: None = None
 class srl_nokia_interfaces__interface__subinterface__ipv6(yadata.MNode):
     admin_state: ?str
 
-    mut def __init__(self, admin_state: ?str) -> None:
+    mut def __init__(self, admin_state: ?str=None) -> None:
         self.admin_state = admin_state
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -491,7 +491,7 @@ _breaker7: None = None
 class srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged(yadata.MNode):
     vlan_id: ?atom
 
-    mut def __init__(self, vlan_id: ?atom) -> None:
+    mut def __init__(self, vlan_id: ?atom=None) -> None:
         self.vlan_id = vlan_id
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -572,7 +572,7 @@ class srl_nokia_interfaces__interface__subinterface_entry(yadata.MNode):
     ipv6: srl_nokia_interfaces__interface__subinterface__ipv6
     vlan: srl_nokia_interfaces__interface__subinterface__vlan
 
-    mut def __init__(self, index: u64, description: ?str, admin_state: ?str, ipv4: ?srl_nokia_interfaces__interface__subinterface__ipv4=None, ipv6: ?srl_nokia_interfaces__interface__subinterface__ipv6=None, vlan: ?srl_nokia_interfaces__interface__subinterface__vlan=None) -> None:
+    mut def __init__(self, index: u64, description: ?str=None, admin_state: ?str=None, ipv4: ?srl_nokia_interfaces__interface__subinterface__ipv4=None, ipv6: ?srl_nokia_interfaces__interface__subinterface__ipv6=None, vlan: ?srl_nokia_interfaces__interface__subinterface__vlan=None) -> None:
         self.index = index
         self.description = description
         self.admin_state = admin_state
@@ -634,7 +634,7 @@ class srl_nokia_interfaces__interface_entry(yadata.MNode):
     subinterface: srl_nokia_interfaces__interface__subinterface
     vlan_tagging: ?bool
 
-    mut def __init__(self, name: str, description: ?str, admin_state: ?str, subinterface: list[srl_nokia_interfaces__interface__subinterface_entry]=[], vlan_tagging: ?bool) -> None:
+    mut def __init__(self, name: str, description: ?str=None, admin_state: ?str=None, subinterface: list[srl_nokia_interfaces__interface__subinterface_entry]=[], vlan_tagging: ?bool=None) -> None:
         self.name = name
         self.description = description
         self.admin_state = admin_state
@@ -794,7 +794,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_ins
     vxlan_interface: ?str
     evi: ?u64
 
-    mut def __init__(self, id: u64, admin_state: ?str, vxlan_interface: ?str, evi: ?u64) -> None:
+    mut def __init__(self, id: u64, admin_state: ?str=None, vxlan_interface: ?str=None, evi: ?u64=None) -> None:
         self.id = id
         self.admin_state = admin_state
         self.vxlan_interface = vxlan_interface
@@ -876,7 +876,7 @@ _breaker21: None = None
 class srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast(yadata.MNode):
     admin_state: ?str
 
-    mut def __init__(self, admin_state: ?str) -> None:
+    mut def __init__(self, admin_state: ?str=None) -> None:
         self.admin_state = admin_state
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -898,7 +898,7 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance__i
     level_number: u64
     metric: ?u64
 
-    mut def __init__(self, level_number: u64, metric: ?u64) -> None:
+    mut def __init__(self, level_number: u64, metric: ?u64=None) -> None:
         self.level_number = level_number
         self.metric = metric
 
@@ -954,7 +954,7 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance__i
     passive: ?bool
     level: srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level
 
-    mut def __init__(self, interface_name: str, admin_state: ?str, circuit_type: ?str, passive: ?bool, level: list[srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry]=[]) -> None:
+    mut def __init__(self, interface_name: str, admin_state: ?str=None, circuit_type: ?str=None, passive: ?bool=None, level: list[srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry]=[]) -> None:
         self.interface_name = interface_name
         self.admin_state = admin_state
         self.circuit_type = circuit_type
@@ -1018,7 +1018,7 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance_en
     ipv4_unicast: srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast
     interface: srl_nokia_network_instance__network_instance__protocols__isis__instance__interface
 
-    mut def __init__(self, name: str, admin_state: ?str, net: ?list[str]=None, level_capability: ?str, ipv4_unicast: ?srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast=None, interface: list[srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry]=[]) -> None:
+    mut def __init__(self, name: str, admin_state: ?str=None, net: ?list[str]=None, level_capability: ?str=None, ipv4_unicast: ?srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast=None, interface: list[srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry]=[]) -> None:
         self.name = name
         self.admin_state = admin_state
         self.net = net if net is not None else []
@@ -1101,7 +1101,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default
     import_reject_all: ?bool
     export_reject_all: ?bool
 
-    mut def __init__(self, import_reject_all: ?bool, export_reject_all: ?bool) -> None:
+    mut def __init__(self, import_reject_all: ?bool=None, export_reject_all: ?bool=None) -> None:
         self.import_reject_all = import_reject_all
         self.export_reject_all = export_reject_all
 
@@ -1124,7 +1124,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_ent
     afi_safi_name: Identityref
     admin_state: ?str
 
-    mut def __init__(self, afi_safi_name: Identityref, admin_state: ?str) -> None:
+    mut def __init__(self, afi_safi_name: Identityref, admin_state: ?str=None) -> None:
         self.afi_safi_name = afi_safi_name
         self.admin_state = admin_state
 
@@ -1176,7 +1176,7 @@ _breaker32: None = None
 class srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route(yadata.MNode):
     ipv4_unicast: ?bool
 
-    mut def __init__(self, ipv4_unicast: ?bool) -> None:
+    mut def __init__(self, ipv4_unicast: ?bool=None) -> None:
         self.ipv4_unicast = ipv4_unicast
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -1199,7 +1199,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__group_entry(
     peer_as: ?u64
     send_default_route: srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route
 
-    mut def __init__(self, group_name: str, peer_as: ?u64, send_default_route: ?srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route=None) -> None:
+    mut def __init__(self, group_name: str, peer_as: ?u64=None, send_default_route: ?srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route=None) -> None:
         self.group_name = group_name
         self.peer_as = peer_as
         self.send_default_route = send_default_route if send_default_route is not None else srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route()
@@ -1252,7 +1252,7 @@ _breaker35: None = None
 class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication(yadata.MNode):
     password: ?str
 
-    mut def __init__(self, password: ?str) -> None:
+    mut def __init__(self, password: ?str=None) -> None:
         self.password = password
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -1275,7 +1275,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__ti
     hold_time: ?u64
     keepalive_interval: ?u64
 
-    mut def __init__(self, connect_retry: ?u64, hold_time: ?u64, keepalive_interval: ?u64) -> None:
+    mut def __init__(self, connect_retry: ?u64=None, hold_time: ?u64=None, keepalive_interval: ?u64=None) -> None:
         self.connect_retry = connect_retry
         self.hold_time = hold_time
         self.keepalive_interval = keepalive_interval
@@ -1304,7 +1304,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_ent
     authentication: srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication
     timers: srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers
 
-    mut def __init__(self, peer_address: str, admin_state: ?str, description: ?str, peer_as: ?u64, peer_group: ?str, authentication: ?srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication=None, timers: ?srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers=None) -> None:
+    mut def __init__(self, peer_address: str, admin_state: ?str=None, description: ?str=None, peer_as: ?u64=None, peer_group: ?str=None, authentication: ?srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication=None, timers: ?srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers=None) -> None:
         self.peer_address = peer_address
         self.admin_state = admin_state
         self.description = description
@@ -1372,7 +1372,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp(yadata.MNode)
     group: srl_nokia_network_instance__network_instance__protocols__bgp__group
     neighbor: srl_nokia_network_instance__network_instance__protocols__bgp__neighbor
 
-    mut def __init__(self, autonomous_system: ?u64, router_id: ?str, ebgp_default_policy: ?srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default_policy=None, afi_safi: list[srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry]=[], group: list[srl_nokia_network_instance__network_instance__protocols__bgp__group_entry]=[], neighbor: list[srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry]=[]) -> None:
+    mut def __init__(self, autonomous_system: ?u64=None, router_id: ?str=None, ebgp_default_policy: ?srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default_policy=None, afi_safi: list[srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry]=[], group: list[srl_nokia_network_instance__network_instance__protocols__bgp__group_entry]=[], neighbor: list[srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry]=[]) -> None:
         self.autonomous_system = autonomous_system
         self.router_id = router_id
         self.ebgp_default_policy = ebgp_default_policy if ebgp_default_policy is not None else srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default_policy()
@@ -1402,7 +1402,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_inst
     export_rt: ?str
     import_rt: ?str
 
-    mut def __init__(self, export_rt: ?str, import_rt: ?str) -> None:
+    mut def __init__(self, export_rt: ?str=None, import_rt: ?str=None) -> None:
         self.export_rt = export_rt
         self.import_rt = import_rt
 
@@ -1568,7 +1568,7 @@ class srl_nokia_network_instance__network_instance_entry(yadata.MNode):
     vxlan_interface: srl_nokia_network_instance__network_instance__vxlan_interface
     protocols: srl_nokia_network_instance__network_instance__protocols
 
-    mut def __init__(self, name: str, type: ?Identityref, admin_state: ?str, description: ?str, interface: list[srl_nokia_network_instance__network_instance__interface_entry]=[], vxlan_interface: list[srl_nokia_network_instance__network_instance__vxlan_interface_entry]=[], protocols: ?srl_nokia_network_instance__network_instance__protocols=None) -> None:
+    mut def __init__(self, name: str, type: ?Identityref=None, admin_state: ?str=None, description: ?str=None, interface: list[srl_nokia_network_instance__network_instance__interface_entry]=[], vxlan_interface: list[srl_nokia_network_instance__network_instance__vxlan_interface_entry]=[], protocols: ?srl_nokia_network_instance__network_instance__protocols=None) -> None:
         self.name = name
         self.type = type
         self.admin_state = admin_state
@@ -1629,7 +1629,7 @@ _breaker47: None = None
 class srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress(yadata.MNode):
     vni: ?u64
 
-    mut def __init__(self, vni: ?u64) -> None:
+    mut def __init__(self, vni: ?u64=None) -> None:
         self.vni = vni
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -1652,7 +1652,7 @@ class srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry(yadat
     type: ?Identityref
     ingress: srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress
 
-    mut def __init__(self, index: u64, type: ?Identityref, ingress: ?srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress=None) -> None:
+    mut def __init__(self, index: u64, type: ?Identityref=None, ingress: ?srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress=None) -> None:
         self.index = index
         self.type = type
         self.ingress = ingress if ingress is not None else srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress()

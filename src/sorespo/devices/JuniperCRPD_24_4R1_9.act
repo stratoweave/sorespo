@@ -31,7 +31,7 @@ class junos_conf_root__configuration__system__services__netconf(yadata.MNode):
     rfc_compliant: ?bool
     yang_compliant: ?bool
 
-    mut def __init__(self, rfc_compliant: ?bool, yang_compliant: ?bool) -> None:
+    mut def __init__(self, rfc_compliant: ?bool=None, yang_compliant: ?bool=None) -> None:
         self.rfc_compliant = rfc_compliant
         self.yang_compliant = yang_compliant
 
@@ -78,7 +78,7 @@ class junos_conf_root__configuration__system(yadata.MNode):
     host_name: ?str
     services: ?junos_conf_root__configuration__system__services
 
-    mut def __init__(self, host_name: ?str, services: ?junos_conf_root__configuration__system__services=None) -> None:
+    mut def __init__(self, host_name: ?str=None, services: ?junos_conf_root__configuration__system__services=None) -> None:
         self.host_name = host_name
         self.services = services
 
@@ -383,7 +383,7 @@ class junos_conf_root__configuration__interfaces__interface__unit_entry(yadata.M
     mtu: ?atom
     mac: ?str
 
-    mut def __init__(self, name: str, alias: ?str, description: ?str, vlan_id: ?str, encapsulation: ?str, family: ?junos_conf_root__configuration__interfaces__interface__unit__family=None, mtu: ?atom, mac: ?str) -> None:
+    mut def __init__(self, name: str, alias: ?str=None, description: ?str=None, vlan_id: ?str=None, encapsulation: ?str=None, family: ?junos_conf_root__configuration__interfaces__interface__unit__family=None, mtu: ?atom=None, mac: ?str=None) -> None:
         self.name = name
         self.alias = alias
         self.description = description
@@ -456,7 +456,7 @@ class junos_conf_root__configuration__interfaces__interface_entry(yadata.MNode):
     native_vlan_id: ?atom
     unit: junos_conf_root__configuration__interfaces__interface__unit
 
-    mut def __init__(self, name: str, description: ?str, mtu: ?atom, mac: ?str, native_vlan_id: ?atom, unit: list[junos_conf_root__configuration__interfaces__interface__unit_entry]=[]) -> None:
+    mut def __init__(self, name: str, description: ?str=None, mtu: ?atom=None, mac: ?str=None, native_vlan_id: ?atom=None, unit: list[junos_conf_root__configuration__interfaces__interface__unit_entry]=[]) -> None:
         self.name = name
         self.description = description
         self.mtu = mtu
@@ -540,7 +540,7 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
     ttl: ?atom
     no_nexthop_change: ?bool
 
-    mut def __init__(self, ttl: ?atom, no_nexthop_change: ?bool) -> None:
+    mut def __init__(self, ttl: ?atom=None, no_nexthop_change: ?bool=None) -> None:
         self.ttl = ttl
         self.no_nexthop_change = no_nexthop_change
 
@@ -572,7 +572,7 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
     peer_as: ?str
     as_override: ?bool
 
-    mut def __init__(self, name: str, description: ?str, multihop: ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop=None, hold_time: ?atom, authentication_key: ?str, authentication_algorithm: ?str, peer_as: ?str, as_override: ?bool) -> None:
+    mut def __init__(self, name: str, description: ?str=None, multihop: ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop=None, hold_time: ?atom=None, authentication_key: ?str=None, authentication_algorithm: ?str=None, peer_as: ?str=None, as_override: ?bool=None) -> None:
         self.name = name
         self.description = description
         self.multihop = multihop
@@ -656,7 +656,7 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
     export: list[str]
     neighbor: junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor
 
-    mut def __init__(self, name: str, passive: ?bool, import: ?list[str]=None, export: ?list[str]=None, neighbor: list[junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry]=[]) -> None:
+    mut def __init__(self, name: str, passive: ?bool=None, import: ?list[str]=None, export: ?list[str]=None, neighbor: list[junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry]=[]) -> None:
         self.name = name
         self.passive = passive
         self.import = import if import is not None else []
@@ -757,7 +757,7 @@ class junos_conf_root__configuration__routing_instances__instance__interface_ent
     multicast: ?bool
     primary: ?bool
 
-    mut def __init__(self, name: str, any: ?bool, unicast: ?bool, multicast: ?bool, primary: ?bool) -> None:
+    mut def __init__(self, name: str, any: ?bool=None, unicast: ?bool=None, multicast: ?bool=None, primary: ?bool=None) -> None:
         self.name = name
         self.any = any
         self.unicast = unicast
@@ -818,7 +818,7 @@ _breaker28: None = None
 class junos_conf_root__configuration__routing_instances__instance__route_distinguisher(yadata.MNode):
     rd_type: ?str
 
-    mut def __init__(self, rd_type: ?str) -> None:
+    mut def __init__(self, rd_type: ?str=None) -> None:
         self.rd_type = rd_type
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -842,7 +842,7 @@ class junos_conf_root__configuration__routing_instances__instance__vrf_target(ya
     export: ?str
     auto: ?bool
 
-    mut def __init__(self, community: ?str, import: ?str, export: ?str, auto: ?bool) -> None:
+    mut def __init__(self, community: ?str=None, import: ?str=None, export: ?str=None, auto: ?bool=None) -> None:
         self.community = community
         self.import = import
         self.export = export
@@ -895,7 +895,7 @@ class junos_conf_root__configuration__routing_instances__instance_entry(yadata.M
     vrf_target: junos_conf_root__configuration__routing_instances__instance__vrf_target
     vrf_table_label: ?junos_conf_root__configuration__routing_instances__instance__vrf_table_label
 
-    mut def __init__(self, name: str, instance_type: ?str, protocols: ?junos_conf_root__configuration__routing_instances__instance__protocols=None, interface: list[junos_conf_root__configuration__routing_instances__instance__interface_entry]=[], route_distinguisher: ?junos_conf_root__configuration__routing_instances__instance__route_distinguisher=None, vrf_target: ?junos_conf_root__configuration__routing_instances__instance__vrf_target=None, vrf_table_label: ?junos_conf_root__configuration__routing_instances__instance__vrf_table_label=None) -> None:
+    mut def __init__(self, name: str, instance_type: ?str=None, protocols: ?junos_conf_root__configuration__routing_instances__instance__protocols=None, interface: list[junos_conf_root__configuration__routing_instances__instance__interface_entry]=[], route_distinguisher: ?junos_conf_root__configuration__routing_instances__instance__route_distinguisher=None, vrf_target: ?junos_conf_root__configuration__routing_instances__instance__vrf_target=None, vrf_table_label: ?junos_conf_root__configuration__routing_instances__instance__vrf_table_label=None) -> None:
         self.name = name
         self.instance_type = instance_type
         self.protocols = protocols if protocols is not None else junos_conf_root__configuration__routing_instances__instance__protocols()
@@ -981,7 +981,7 @@ _breaker34: None = None
 class junos_conf_root__configuration__routing_options__autonomous_system(yadata.MNode):
     as_number: ?str
 
-    mut def __init__(self, as_number: ?str) -> None:
+    mut def __init__(self, as_number: ?str=None) -> None:
         self.as_number = as_number
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -1239,7 +1239,7 @@ class junos_conf_root__configuration__protocols__bgp__group__neighbor_entry(yada
     description: ?str
     passive: ?bool
 
-    mut def __init__(self, name: str, description: ?str, passive: ?bool) -> None:
+    mut def __init__(self, name: str, description: ?str=None, passive: ?bool=None) -> None:
         self.name = name
         self.description = description
         self.passive = passive
@@ -1306,7 +1306,7 @@ class junos_conf_root__configuration__protocols__bgp__group_entry(yadata.MNode):
     tcp_mss: ?atom
     neighbor: junos_conf_root__configuration__protocols__bgp__group__neighbor
 
-    mut def __init__(self, name: str, type: ?str, description: ?str, local_address: ?str, hold_time: ?atom, family: ?junos_conf_root__configuration__protocols__bgp__group__family=None, authentication_key: ?str, authentication_algorithm: ?str, tcpao_auth_mismatch: ?str, authentication_key_chain: ?str, export: ?list[str]=None, tcp_mss: ?atom, neighbor: list[junos_conf_root__configuration__protocols__bgp__group__neighbor_entry]=[]) -> None:
+    mut def __init__(self, name: str, type: ?str=None, description: ?str=None, local_address: ?str=None, hold_time: ?atom=None, family: ?junos_conf_root__configuration__protocols__bgp__group__family=None, authentication_key: ?str=None, authentication_algorithm: ?str=None, tcpao_auth_mismatch: ?str=None, authentication_key_chain: ?str=None, export: ?list[str]=None, tcp_mss: ?atom=None, neighbor: list[junos_conf_root__configuration__protocols__bgp__group__neighbor_entry]=[]) -> None:
         self.name = name
         self.type = type
         self.description = description
@@ -1386,7 +1386,7 @@ class junos_conf_root__configuration__protocols__bgp(yadata.MNode):
     group: junos_conf_root__configuration__protocols__bgp__group
     log_updown: ?bool
 
-    mut def __init__(self, group: list[junos_conf_root__configuration__protocols__bgp__group_entry]=[], log_updown: ?bool) -> None:
+    mut def __init__(self, group: list[junos_conf_root__configuration__protocols__bgp__group_entry]=[], log_updown: ?bool=None) -> None:
         self.group = junos_conf_root__configuration__protocols__bgp__group(elements=group)
         self.log_updown = log_updown
 
@@ -1409,7 +1409,7 @@ class junos_conf_root__configuration__protocols__isis__interface__ldp_synchroniz
     disable: ?bool
     hold_time: ?atom
 
-    mut def __init__(self, disable: ?bool, hold_time: ?atom) -> None:
+    mut def __init__(self, disable: ?bool=None, hold_time: ?atom=None) -> None:
         self.disable = disable
         self.hold_time = hold_time
 
@@ -1436,7 +1436,7 @@ class junos_conf_root__configuration__protocols__isis__interface__level_entry(ya
     disable: ?bool
     metric: ?atom
 
-    mut def __init__(self, name: atom, disable: ?bool, metric: ?atom) -> None:
+    mut def __init__(self, name: atom, disable: ?bool=None, metric: ?atom=None) -> None:
         self.name = name
         self.disable = disable
         self.metric = metric
@@ -1492,7 +1492,7 @@ class junos_conf_root__configuration__protocols__isis__interface__passive(yadata
     remote_node_iso: ?str
     remote_node_id: ?str
 
-    mut def __init__(self, remote_node_iso: ?str, remote_node_id: ?str) -> None:
+    mut def __init__(self, remote_node_iso: ?str=None, remote_node_id: ?str=None) -> None:
         self.remote_node_iso = remote_node_iso
         self.remote_node_id = remote_node_id
 
@@ -1572,7 +1572,7 @@ class junos_conf_root__configuration__protocols__isis__interface_entry(yadata.MN
     passive: ?junos_conf_root__configuration__protocols__isis__interface__passive
     family: junos_conf_root__configuration__protocols__isis__interface__family
 
-    mut def __init__(self, name: str, ldp_synchronization: ?junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization=None, level: list[junos_conf_root__configuration__protocols__isis__interface__level_entry]=[], lsp_interval: ?atom, point_to_point: ?bool, passive: ?junos_conf_root__configuration__protocols__isis__interface__passive=None, family: list[junos_conf_root__configuration__protocols__isis__interface__family_entry]=[]) -> None:
+    mut def __init__(self, name: str, ldp_synchronization: ?junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization=None, level: list[junos_conf_root__configuration__protocols__isis__interface__level_entry]=[], lsp_interval: ?atom=None, point_to_point: ?bool=None, passive: ?junos_conf_root__configuration__protocols__isis__interface__passive=None, family: list[junos_conf_root__configuration__protocols__isis__interface__family_entry]=[]) -> None:
         self.name = name
         self.ldp_synchronization = ldp_synchronization
         self.level = junos_conf_root__configuration__protocols__isis__interface__level(elements=level)
@@ -1662,7 +1662,7 @@ class junos_conf_root__configuration__protocols__isis__level_entry(yadata.MNode)
     no_psnp_authentication: ?bool
     wide_metrics_only: ?bool
 
-    mut def __init__(self, name: atom, disable: ?bool, authentication_key: ?str, authentication_type: ?str, no_hello_authentication: ?bool, no_csnp_authentication: ?bool, no_psnp_authentication: ?bool, wide_metrics_only: ?bool) -> None:
+    mut def __init__(self, name: atom, disable: ?bool=None, authentication_key: ?str=None, authentication_type: ?str=None, no_hello_authentication: ?bool=None, no_csnp_authentication: ?bool=None, no_psnp_authentication: ?bool=None, wide_metrics_only: ?bool=None) -> None:
         self.name = name
         self.disable = disable
         self.authentication_key = authentication_key
@@ -1734,7 +1734,7 @@ class junos_conf_root__configuration__protocols__isis(yadata.MNode):
     level: junos_conf_root__configuration__protocols__isis__level
     lsp_lifetime: ?atom
 
-    mut def __init__(self, interface: list[junos_conf_root__configuration__protocols__isis__interface_entry]=[], level: list[junos_conf_root__configuration__protocols__isis__level_entry]=[], lsp_lifetime: ?atom) -> None:
+    mut def __init__(self, interface: list[junos_conf_root__configuration__protocols__isis__interface_entry]=[], level: list[junos_conf_root__configuration__protocols__isis__level_entry]=[], lsp_lifetime: ?atom=None) -> None:
         self.interface = junos_conf_root__configuration__protocols__isis__interface(elements=interface)
         self.level = junos_conf_root__configuration__protocols__isis__level(elements=level)
         self.lsp_lifetime = lsp_lifetime
@@ -1759,7 +1759,7 @@ class junos_conf_root__configuration__protocols__ldp__transport_address(yadata.M
     interface: ?bool
     address: ?str
 
-    mut def __init__(self, router_id: ?bool, interface: ?bool, address: ?str) -> None:
+    mut def __init__(self, router_id: ?bool=None, interface: ?bool=None, address: ?str=None) -> None:
         self.router_id = router_id
         self.interface = interface
         self.address = address
@@ -1784,7 +1784,7 @@ class junos_conf_root__configuration__protocols__ldp__interface__transport_addre
     interface: ?bool
     address: ?str
 
-    mut def __init__(self, router_id: ?bool, interface: ?bool, address: ?str) -> None:
+    mut def __init__(self, router_id: ?bool=None, interface: ?bool=None, address: ?str=None) -> None:
         self.router_id = router_id
         self.interface = interface
         self.address = address
@@ -1811,7 +1811,7 @@ class junos_conf_root__configuration__protocols__ldp__interface_entry(yadata.MNo
     hold_time: ?atom
     transport_address: junos_conf_root__configuration__protocols__ldp__interface__transport_address
 
-    mut def __init__(self, name: str, disable: ?bool, hello_interval: ?atom, hold_time: ?atom, transport_address: ?junos_conf_root__configuration__protocols__ldp__interface__transport_address=None) -> None:
+    mut def __init__(self, name: str, disable: ?bool=None, hello_interval: ?atom=None, hold_time: ?atom=None, transport_address: ?junos_conf_root__configuration__protocols__ldp__interface__transport_address=None) -> None:
         self.name = name
         self.disable = disable
         self.hello_interval = hello_interval
@@ -1872,7 +1872,7 @@ class junos_conf_root__configuration__protocols__ldp(yadata.MNode):
     transport_address: junos_conf_root__configuration__protocols__ldp__transport_address
     interface: junos_conf_root__configuration__protocols__ldp__interface
 
-    mut def __init__(self, preference: ?atom, transport_address: ?junos_conf_root__configuration__protocols__ldp__transport_address=None, interface: list[junos_conf_root__configuration__protocols__ldp__interface_entry]=[]) -> None:
+    mut def __init__(self, preference: ?atom=None, transport_address: ?junos_conf_root__configuration__protocols__ldp__transport_address=None, interface: list[junos_conf_root__configuration__protocols__ldp__interface_entry]=[]) -> None:
         self.preference = preference
         self.transport_address = transport_address if transport_address is not None else junos_conf_root__configuration__protocols__ldp__transport_address()
         self.interface = junos_conf_root__configuration__protocols__ldp__interface(elements=interface)
@@ -1896,7 +1896,7 @@ class junos_conf_root__configuration__protocols__mpls__interface_entry(yadata.MN
     name: str
     disable: ?bool
 
-    mut def __init__(self, name: str, disable: ?bool) -> None:
+    mut def __init__(self, name: str, disable: ?bool=None) -> None:
         self.name = name
         self.disable = disable
 
@@ -1949,7 +1949,7 @@ class junos_conf_root__configuration__protocols__mpls(yadata.MNode):
     no_propagate_ttl: ?bool
     interface: junos_conf_root__configuration__protocols__mpls__interface
 
-    mut def __init__(self, no_propagate_ttl: ?bool, interface: list[junos_conf_root__configuration__protocols__mpls__interface_entry]=[]) -> None:
+    mut def __init__(self, no_propagate_ttl: ?bool=None, interface: list[junos_conf_root__configuration__protocols__mpls__interface_entry]=[]) -> None:
         self.no_propagate_ttl = no_propagate_ttl
         self.interface = junos_conf_root__configuration__protocols__mpls__interface(elements=interface)
 
@@ -2004,7 +2004,7 @@ class junos_conf_root__configuration(yadata.MNode):
     routing_options: junos_conf_root__configuration__routing_options
     protocols: junos_conf_root__configuration__protocols
 
-    mut def __init__(self, rcsid: ?str, version: ?str, system: ?junos_conf_root__configuration__system=None, interfaces: ?junos_conf_root__configuration__interfaces=None, routing_instances: ?junos_conf_root__configuration__routing_instances=None, routing_options: ?junos_conf_root__configuration__routing_options=None, protocols: ?junos_conf_root__configuration__protocols=None) -> None:
+    mut def __init__(self, rcsid: ?str=None, version: ?str=None, system: ?junos_conf_root__configuration__system=None, interfaces: ?junos_conf_root__configuration__interfaces=None, routing_instances: ?junos_conf_root__configuration__routing_instances=None, routing_options: ?junos_conf_root__configuration__routing_options=None, protocols: ?junos_conf_root__configuration__protocols=None) -> None:
         self.rcsid = rcsid
         self.version = version
         self.system = system if system is not None else junos_conf_root__configuration__system()

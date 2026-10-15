@@ -24,7 +24,7 @@ proc def _test_rfs_bbinterface1(t: testing.SyncT):
     )
     transform = rfs.BBInterface(t.log_handler)
     out = transform.transform(modeled_input, mock_di).to_gdata()
-    return out.to_xmlstr()
+    return out.to_xmlstr(pretty=True)
 
 proc def _test_rfs_bbinterface2(t: testing.SyncT):
     xmlin = """<backbone-interface xmlns="http://example.com/sorespo-rfs">
@@ -42,4 +42,4 @@ proc def _test_rfs_bbinterface2(t: testing.SyncT):
     )
     transform = rfs.BBInterface(t.log_handler)
     out, _ = transform.transform_xml(xml.decode(xmlin), mock_di)
-    return out.to_xmlstr()
+    return out.to_xmlstr(pretty=True)

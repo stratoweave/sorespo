@@ -17,7 +17,7 @@ def _test_inter_bblink():
 </backbone-link>"""
     transform = inter.BBLink()
     out, _ = transform.transform_xml(xml.decode(xmlin), ygdata.Container())
-    return out.to_xmlstr()
+    return out.to_xmlstr(pretty=True)
 
 def _test_inter_ibgp_fullmesh():
     xmlin = """<ibgp-fullmesh>
@@ -42,4 +42,4 @@ def _test_inter_ibgp_fullmesh():
 </ibgp-fullmesh>"""
     transform = inter.IbgpFullmesh()
     out, _ = transform.transform_xml(xml.decode(xmlin), ygdata.Container())
-    return out.to_xmlstr()
+    return out.to_xmlstr(pretty=True)

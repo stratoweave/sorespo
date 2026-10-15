@@ -54,7 +54,7 @@ actor _test_netinfra1(t: testing.AsyncT):
         # TTT is valid and round-trips through XML serialization.
         ln_cfg = None
         for n in range(4):
-            ln_cfg = tr.layer_config(n).to_xmlstr(deterministic=True)
+            ln_cfg = tr.layer_config(n).to_xmlstr(pretty=True, deterministic=True)
         # Report the last (device) layer config.
         t.success(ln_cfg)
 
@@ -349,10 +349,10 @@ actor l3vpn_tester(t: testing.AsyncT, output_formatter: proc(swts.TestRig) -> st
     tr.edit_config_xml(l3vpn_in, cont)
 
 actor _test_l3vpn_svc(t: testing.AsyncT):
-    l3vpn_tester(t, lambda tr: tr.layer_config(-1).to_xmlstr(deterministic=True))
+    l3vpn_tester(t, lambda tr: tr.layer_config(-1).to_xmlstr(pretty=True, deterministic=True))
 
 actor _test_l3vpn_svc_json(t: testing.AsyncT):
-    l3vpn_tester(t, lambda tr: tr.layer_config(-1).to_yang_jsonstr(deterministic=True))
+    l3vpn_tester(t, lambda tr: tr.layer_config(-1).to_yang_jsonstr(pretty=True, deterministic=True))
 
 actor _test_l3vpn_svc_adata(t: testing.AsyncT):
     def _lambda_workaround(tr):

@@ -143,9 +143,15 @@ jobs:
           # IOS XRd
           sudo sysctl -w fs.inotify.max_user_instances=64000
           # cRPD
-          sudo apt-get update
-          sudo apt-get install -qy linux-modules-extra-$(uname -r)
-          sudo modprobe mpls_router mpls_gso vrf
+          # Starting with kernel 7.0.0, the modules are included in
+          # linux-modules, so there is no need to install. We keep the install
+          # step for backwards compatibility with 6.17, until all GitHub runners
+          # are upgraded.
+          if ! sudo modprobe -a mpls_router mpls_gso vrf; then
+            sudo apt-get update
+            sudo apt-get install -qy linux-modules-extra-$(uname -r)
+            sudo modprobe -a mpls_router mpls_gso vrf
+          fi
       - name: "Check out repository code"
         uses: actions/checkout@v7
       - uses: actions/download-artifact@v8

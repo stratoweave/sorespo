@@ -1,5 +1,4 @@
 import file
-import process
 
 import stratoweave.build
 import stratoweave.device_schema as swds
@@ -8,7 +7,6 @@ import tmf.tmf_yang as tmf_yang
 
 actor main(env):
     fc = file.FileCap(env.cap)
-    pc = process.ProcessCap(env.cap)
 
     # JUNOS marks lists "ordered-by user" in many places where the order has no
     # effect on the applied configuration.

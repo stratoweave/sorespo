@@ -660,7 +660,6 @@ class EbgpCustomer(base.EbgpCustomer):
 actor EbgpCustomerTransform(path, update_oper: proc(?y_2_oper.stratoweave_rfs__rfs__ebgp_customer_entry)->None, dev: swdev.DeviceMgr):
     # eBGP customer neighbor: a single-hop PE<->CE peer in the VRF network-instance.
     _subs = gdata.SubscriptionManager(dev.tree_provider(), str(path))
-    _oper = base.EbgpCustomer.new_state(path)
     var debug: bool = False
     var _addr: ?str = None
     var _vrf: ?str = None
@@ -718,32 +717,23 @@ actor EbgpCustomerTransform(path, update_oper: proc(?y_2_oper.stratoweave_rfs__r
         publish(s)
 
     def publish(s: BgpNeighborStats):
-        # Deliveries may contain only changed leaves; keep prior values when absent.
-        if s.session_state is not None:
-            _oper.state.session_state = s.session_state
-        ss = _oper.state.session_state
+        # Each delivery carries the full selected tree, so rebuild oper from it.
+        oper = base.EbgpCustomer.new_state(path)
+        ss = s.session_state
         new_debug = ss is not None and ss != "established"
+        st = oper.state
+        st.session_state = ss
+        st.debug_active = new_debug
         if new_debug:
-            # Fold in whatever detail this delivery carried.
-            if s.last_event is not None:
-                _oper.state.last_event = s.last_event
-            if s.established_transitions is not None:
-                _oper.state.established_transitions = s.established_transitions
-            if s.negotiated_hold_time is not None:
-                _oper.state.negotiated_hold_time = s.negotiated_hold_time
-            if s.last_notification is not None:
-                _oper.state.last_notification = s.last_notification
-        else:
-            # Clear details outside debug.
-            _oper.state.last_event = None
-            _oper.state.established_transitions = None
-            _oper.state.negotiated_hold_time = None
-            _oper.state.last_notification = None
-        _oper.state.debug_active = new_debug
+            # Detail metrics are exposed only while debug is active.
+            st.last_event = s.last_event
+            st.established_transitions = s.established_transitions
+            st.negotiated_hold_time = s.negotiated_hold_time
+            st.last_notification = s.last_notification
         if new_debug != debug:
             debug = new_debug
             declare()
-        update_oper(_oper)
+        update_oper(oper)
 
     def on_conf(conf: y_2.stratoweave_rfs__rfs__ebgp_customer_entry):
         _addr = conf.address

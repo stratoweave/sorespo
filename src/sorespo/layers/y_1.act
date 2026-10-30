@@ -97,7 +97,7 @@ SRC_DNODE: DRoot = DRoot(
     children=[SRC_DNODE_CHILD_0, SRC_DNODE_CHILD_4],
     identities=[],
     rpcs=[],
-    module_metadata={'urn:ietf:params:xml:ns:yang:ietf-inet-types':('ietf-inet-types', '2013-07-15'), 'http://stratoweave.org/yang/stratoweave':('stratoweave', '2026-04-01'), 'http://example.com/netinfra-inter':('netinfra-inter', '2019-01-01'), 'http://example.com/l3vpn-inter':('l3vpn-inter', '2019-01-01')},
+    module_metadata={'urn:ietf:params:xml:ns:yang:ietf-inet-types':('ietf-inet-types', '2013-07-15', [], False), 'http://stratoweave.org/yang/stratoweave':('stratoweave', '2026-04-01', [], False), 'http://example.com/netinfra-inter':('netinfra-inter', '2019-01-01', [], True), 'http://example.com/l3vpn-inter':('l3vpn-inter', '2019-01-01', [], True)},
 )
 
 SRC_YANG_0: str = r"""module l3vpn-inter {

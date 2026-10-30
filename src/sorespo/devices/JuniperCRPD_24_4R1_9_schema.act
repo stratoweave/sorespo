@@ -245,7 +245,7 @@ SRC_DNODE: DRoot = DRoot(
     children=[SRC_DNODE_CHILD_0],
     identities=[],
     rpcs=[],
-    module_metadata={'http://yang.juniper.net/junos/common/types':('junos-common-types', '2024-01-01'), 'http://yang.juniper.net/junos/conf/root':('junos-conf-root', '2024-01-01')},
+    module_metadata={'http://yang.juniper.net/junos/common/types':('junos-common-types', '2024-01-01', [], False), 'http://yang.juniper.net/junos/conf/root':('junos-conf-root', '2024-01-01', [], True)},
 )
 
 SRC_YANG_0: str = r"""

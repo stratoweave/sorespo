@@ -17,34 +17,34 @@ two_byte_as_route_target_element = unicast.import.route_target.two_byte_as_route
 two_byte_as_route_target_element_2 = unicast.export.route_target.two_byte_as_route_targets.two_byte_as_route_target.create((two_byte_as_number=u64(65001), asn2_index=u64(65501), stitching='disable'))
 
 # List /interfaces/interface element: 'GigabitEthernet0/0/0/0'
-interface_element = AMS_CORE_1.interfaces.interface.create('GigabitEthernet0/0/0/0', description='Link to FRA-CORE-1 [GigabitEthernet0/0/0/0]')
+interface_element = AMS_CORE_1.um_interface_cfg_interfaces.interface.create('GigabitEthernet0/0/0/0', description='Link to FRA-CORE-1 [GigabitEthernet0/0/0/0]')
 
 # P-container: /interfaces/interface[interface-name='GigabitEthernet0/0/0/0']/ipv4/addresses/address
-address = interface_element.ipv4.addresses.create_address(address='10.0.7.1', netmask='255.255.255.252')
+address = interface_element.um_interface_cfg_ipv4.addresses.create_address(address='10.0.7.1', netmask='255.255.255.252')
 
 # List /interfaces/interface element: 'GigabitEthernet0/0/0/1'
-interface_element = AMS_CORE_1.interfaces.interface.create('GigabitEthernet0/0/0/1', description='Link to STO-CORE-1 [eth1]')
+interface_element = AMS_CORE_1.um_interface_cfg_interfaces.interface.create('GigabitEthernet0/0/0/1', description='Link to STO-CORE-1 [eth1]')
 
 # P-container: /interfaces/interface[interface-name='GigabitEthernet0/0/0/1']/ipv4/addresses/address
-address = interface_element.ipv4.addresses.create_address(address='10.0.20.1', netmask='255.255.255.252')
+address = interface_element.um_interface_cfg_ipv4.addresses.create_address(address='10.0.20.1', netmask='255.255.255.252')
 
 # List /interfaces/interface element: 'GigabitEthernet0/0/0/2'
-interface_element = AMS_CORE_1.interfaces.interface.create('GigabitEthernet0/0/0/2', description='Customer access port')
+interface_element = AMS_CORE_1.um_interface_cfg_interfaces.interface.create('GigabitEthernet0/0/0/2', description='Customer access port')
 
 # List /interfaces/interface element: 'GigabitEthernet0/0/0/2.100'
-interface_element = AMS_CORE_1.interfaces.interface.create('GigabitEthernet0/0/0/2.100', description='Customer VPN access SITE-1 [SNA-1-1] in VPN acme-65501', vrf='acme-65501')
+interface_element = AMS_CORE_1.um_interface_cfg_interfaces.interface.create('GigabitEthernet0/0/0/2.100', description='Customer VPN access SITE-1 [SNA-1-1] in VPN acme-65501', vrf='acme-65501')
 
 # P-container: /interfaces/interface[interface-name='GigabitEthernet0/0/0/2.100']/ipv4/addresses/address
-address = interface_element.ipv4.addresses.create_address(address='10.201.1.1', netmask='255.255.255.252')
+address = interface_element.um_interface_cfg_ipv4.addresses.create_address(address='10.201.1.1', netmask='255.255.255.252')
 
 # Container: /interfaces/interface[interface-name='GigabitEthernet0/0/0/2.100']/encapsulation/dot1q
-interface_element.encapsulation.dot1q.vlan_id = u64(100)
+interface_element.um_l2_ethernet_cfg_encapsulation.dot1q.vlan_id = u64(100)
 
 # List /interfaces/interface element: 'Loopback0'
-interface_element = AMS_CORE_1.interfaces.interface.create('Loopback0')
+interface_element = AMS_CORE_1.um_interface_cfg_interfaces.interface.create('Loopback0')
 
 # P-container: /interfaces/interface[interface-name='Loopback0']/ipv4/addresses/address
-address = interface_element.ipv4.addresses.create_address(address='10.0.0.1', netmask='255.255.255.255')
+address = interface_element.um_interface_cfg_ipv4.addresses.create_address(address='10.0.0.1', netmask='255.255.255.255')
 
 # List /um-router-isis-cfg:router/isis/processes/process element: '1'
 process_element = AMS_CORE_1.um_router_isis_cfg_router.isis.processes.process.create('1', is_type='level-2-only')
@@ -156,7 +156,7 @@ as_override = address_family_element_6.create_as_override()
 route_policy_element = AMS_CORE_1.routing_policy.route_policies.route_policy.create('ACCEPT', rpl_route_policy='route-policy ACCEPT\n  done\nend-policy\n')
 
 # P-container: /mpls/ldp
-ldp = AMS_CORE_1.mpls.create_ldp()
+ldp = AMS_CORE_1.um_mpls_ldp_cfg_mpls.create_ldp()
 
 # List /mpls/ldp/address-families/address-family element: 'ipv4'
 address_family_element_7 = ldp.address_families.address_family.create('ipv4')
@@ -189,40 +189,40 @@ two_byte_as_route_target_element = unicast.import.route_target.two_byte_as_route
 two_byte_as_route_target_element_2 = unicast.export.route_target.two_byte_as_route_targets.two_byte_as_route_target.create((two_byte_as_number=u64(65001), asn2_index=u64(65501), stitching='disable'))
 
 # List /interfaces/interface element: 'GigabitEthernet0/0/0/0'
-interface_element = FRA_CORE_1.interfaces.interface.create('GigabitEthernet0/0/0/0', description='Link to AMS-CORE-1 [GigabitEthernet0/0/0/0]')
+interface_element = FRA_CORE_1.um_interface_cfg_interfaces.interface.create('GigabitEthernet0/0/0/0', description='Link to AMS-CORE-1 [GigabitEthernet0/0/0/0]')
 
 # P-container: /interfaces/interface[interface-name='GigabitEthernet0/0/0/0']/ipv4/addresses/address
-address = interface_element.ipv4.addresses.create_address(address='10.0.7.2', netmask='255.255.255.252')
+address = interface_element.um_interface_cfg_ipv4.addresses.create_address(address='10.0.7.2', netmask='255.255.255.252')
 
 # List /interfaces/interface element: 'GigabitEthernet0/0/0/1'
-interface_element = FRA_CORE_1.interfaces.interface.create('GigabitEthernet0/0/0/1', description='Link to STO-CORE-1 [eth2]')
+interface_element = FRA_CORE_1.um_interface_cfg_interfaces.interface.create('GigabitEthernet0/0/0/1', description='Link to STO-CORE-1 [eth2]')
 
 # P-container: /interfaces/interface[interface-name='GigabitEthernet0/0/0/1']/ipv4/addresses/address
-address = interface_element.ipv4.addresses.create_address(address='10.0.25.1', netmask='255.255.255.252')
+address = interface_element.um_interface_cfg_ipv4.addresses.create_address(address='10.0.25.1', netmask='255.255.255.252')
 
 # List /interfaces/interface element: 'GigabitEthernet0/0/0/2'
-interface_element = FRA_CORE_1.interfaces.interface.create('GigabitEthernet0/0/0/2', description='Link to LJU-CORE-1 [eth1]')
+interface_element = FRA_CORE_1.um_interface_cfg_interfaces.interface.create('GigabitEthernet0/0/0/2', description='Link to LJU-CORE-1 [eth1]')
 
 # P-container: /interfaces/interface[interface-name='GigabitEthernet0/0/0/2']/ipv4/addresses/address
-address = interface_element.ipv4.addresses.create_address(address='10.0.18.1', netmask='255.255.255.252')
+address = interface_element.um_interface_cfg_ipv4.addresses.create_address(address='10.0.18.1', netmask='255.255.255.252')
 
 # List /interfaces/interface element: 'GigabitEthernet0/0/0/3'
-interface_element = FRA_CORE_1.interfaces.interface.create('GigabitEthernet0/0/0/3', description='Customer access port')
+interface_element = FRA_CORE_1.um_interface_cfg_interfaces.interface.create('GigabitEthernet0/0/0/3', description='Customer access port')
 
 # List /interfaces/interface element: 'GigabitEthernet0/0/0/3.100'
-interface_element = FRA_CORE_1.interfaces.interface.create('GigabitEthernet0/0/0/3.100', description='Customer VPN access SITE-2 [SNA-2-1] in VPN acme-65501', vrf='acme-65501')
+interface_element = FRA_CORE_1.um_interface_cfg_interfaces.interface.create('GigabitEthernet0/0/0/3.100', description='Customer VPN access SITE-2 [SNA-2-1] in VPN acme-65501', vrf='acme-65501')
 
 # P-container: /interfaces/interface[interface-name='GigabitEthernet0/0/0/3.100']/ipv4/addresses/address
-address = interface_element.ipv4.addresses.create_address(address='10.202.1.1', netmask='255.255.255.252')
+address = interface_element.um_interface_cfg_ipv4.addresses.create_address(address='10.202.1.1', netmask='255.255.255.252')
 
 # Container: /interfaces/interface[interface-name='GigabitEthernet0/0/0/3.100']/encapsulation/dot1q
-interface_element.encapsulation.dot1q.vlan_id = u64(100)
+interface_element.um_l2_ethernet_cfg_encapsulation.dot1q.vlan_id = u64(100)
 
 # List /interfaces/interface element: 'Loopback0'
-interface_element = FRA_CORE_1.interfaces.interface.create('Loopback0')
+interface_element = FRA_CORE_1.um_interface_cfg_interfaces.interface.create('Loopback0')
 
 # P-container: /interfaces/interface[interface-name='Loopback0']/ipv4/addresses/address
-address = interface_element.ipv4.addresses.create_address(address='10.0.0.2', netmask='255.255.255.255')
+address = interface_element.um_interface_cfg_ipv4.addresses.create_address(address='10.0.0.2', netmask='255.255.255.255')
 
 # List /um-router-isis-cfg:router/isis/processes/process element: '1'
 process_element = FRA_CORE_1.um_router_isis_cfg_router.isis.processes.process.create('1', is_type='level-2-only')
@@ -343,7 +343,7 @@ as_override = address_family_element_6.create_as_override()
 route_policy_element = FRA_CORE_1.routing_policy.route_policies.route_policy.create('ACCEPT', rpl_route_policy='route-policy ACCEPT\n  done\nend-policy\n')
 
 # P-container: /mpls/ldp
-ldp = FRA_CORE_1.mpls.create_ldp()
+ldp = FRA_CORE_1.um_mpls_ldp_cfg_mpls.create_ldp()
 
 # List /mpls/ldp/address-families/address-family element: 'ipv4'
 address_family_element_7 = ldp.address_families.address_family.create('ipv4')

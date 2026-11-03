@@ -107,10 +107,10 @@ def _resolve_nokia_srl(encrypted: str, authentication_key_hints: list[str], what
 def discover_base_config(dev: gdata.Node, device_type: str, authentication_key_hints: list[str]) -> ?stratoweave_rfs__rfs__base_config:
     if device_type == DEV_TYPE_XR:
         xr_dev = xr25.root.from_gdata(dev)
-        loopback = xr_dev.interfaces.interface.get("Loopback0")
+        loopback = xr_dev.um_interface_cfg_interfaces.interface.get("Loopback0")
         if loopback is None:
             return None
-        addr = loopback!.ipv4.addresses.address
+        addr = loopback!.um_interface_cfg_ipv4.addresses.address
         ipv4_address: ?str = addr.address if addr is not None else None
 
         asn: ?u64 = None
@@ -305,11 +305,11 @@ def discover_bb_interfaces(dev: gdata.Node, device_type: str) -> list[stratoweav
     result: list[stratoweave_rfs__rfs__backbone_interface_entry] = []
     if device_type == DEV_TYPE_XR:
         xr_dev = xr25.root.from_gdata(dev)
-        for intf in xr_dev.interfaces.interface:
+        for intf in xr_dev.um_interface_cfg_interfaces.interface:
             (remote_device, remote_interface) = _parse_bb_description(intf.description)
             if remote_device is None or remote_interface is None:
                 continue
-            (ipv4_address, ipv4_prefix_length) = _xr_interface_ipv4(intf.ipv4.addresses.address)
+            (ipv4_address, ipv4_prefix_length) = _xr_interface_ipv4(intf.um_interface_cfg_ipv4.addresses.address)
             result.append(stratoweave_rfs__rfs__backbone_interface_entry(
                 name=intf.interface_name,
                 ipv4_address=ipv4_address,
@@ -412,10 +412,10 @@ def parse_ebgp_description(desc: ?str) -> (?str, ?str, ?str):
 def _append_vrf_interfaces(dev: gdata.Node, device_type: str, rfs_entry: rfs_layer.stratoweave_rfs__rfs_entry) -> None:
     if device_type == DEV_TYPE_XR:
         xr_dev = xr25.root.from_gdata(dev)
-        for intf in xr_dev.interfaces.interface:
+        for intf in xr_dev.um_interface_cfg_interfaces.interface:
             if intf.vrf is None:
                 continue
-            (ipv4_address, ipv4_prefix_length) = _xr_interface_ipv4(intf.ipv4.addresses.address)
+            (ipv4_address, ipv4_prefix_length) = _xr_interface_ipv4(intf.um_interface_cfg_ipv4.addresses.address)
             rfs_entry.vrf_interface.create(
                 intf.interface_name,
                 description=intf.description,

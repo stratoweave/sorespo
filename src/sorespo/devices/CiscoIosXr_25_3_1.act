@@ -783,18 +783,18 @@ class Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation(yadata
 _breaker23: None = None
 class Cisco_IOS_XR_um_interface_cfg__interfaces__interface_entry(yadata.MNode):
     interface_name: str
-    ipv4: Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4
+    um_interface_cfg_ipv4: Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4
     shutdown: ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__shutdown
     description: ?str
-    encapsulation: Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation
+    um_l2_ethernet_cfg_encapsulation: Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation
     vrf: ?str
 
-    mut def __init__(self, interface_name: str, ipv4: ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4=None, shutdown: ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__shutdown=None, description: ?str=None, encapsulation: ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation=None, vrf: ?str=None) -> None:
+    mut def __init__(self, interface_name: str, um_interface_cfg_ipv4: ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4=None, shutdown: ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__shutdown=None, description: ?str=None, um_l2_ethernet_cfg_encapsulation: ?Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation=None, vrf: ?str=None) -> None:
         self.interface_name = interface_name
-        self.ipv4 = ipv4 if ipv4 is not None else Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4()
+        self.um_interface_cfg_ipv4 = um_interface_cfg_ipv4 if um_interface_cfg_ipv4 is not None else Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4()
         self.shutdown = shutdown
         self.description = description
-        self.encapsulation = encapsulation if encapsulation is not None else Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation()
+        self.um_l2_ethernet_cfg_encapsulation = um_l2_ethernet_cfg_encapsulation if um_l2_ethernet_cfg_encapsulation is not None else Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation()
         self.vrf = vrf
 
     mut def create_shutdown(self) -> Cisco_IOS_XR_um_interface_cfg__interfaces__interface__shutdown:
@@ -810,7 +810,7 @@ class Cisco_IOS_XR_um_interface_cfg__interfaces__interface_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> Cisco_IOS_XR_um_interface_cfg__interfaces__interface_entry:
-        return Cisco_IOS_XR_um_interface_cfg__interfaces__interface_entry(interface_name=n.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_interface_cfg, 'interface-name')), ipv4=Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_interface_cfg, 'ipv4'))), shutdown=Cisco_IOS_XR_um_interface_cfg__interfaces__interface__shutdown.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_interface_cfg, 'shutdown'))), description=n.get_opt_str(ygdata.Id(NS_Cisco_IOS_XR_um_interface_cfg, 'description')), encapsulation=Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_l2_ethernet_cfg, 'encapsulation'))), vrf=n.get_opt_str(ygdata.Id(NS_Cisco_IOS_XR_um_if_vrf_cfg, 'vrf')))
+        return Cisco_IOS_XR_um_interface_cfg__interfaces__interface_entry(interface_name=n.get_str(ygdata.Id(NS_Cisco_IOS_XR_um_interface_cfg, 'interface-name')), um_interface_cfg_ipv4=Cisco_IOS_XR_um_interface_cfg__interfaces__interface__ipv4.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_interface_cfg, 'ipv4'))), shutdown=Cisco_IOS_XR_um_interface_cfg__interfaces__interface__shutdown.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_interface_cfg, 'shutdown'))), description=n.get_opt_str(ygdata.Id(NS_Cisco_IOS_XR_um_interface_cfg, 'description')), um_l2_ethernet_cfg_encapsulation=Cisco_IOS_XR_um_interface_cfg__interfaces__interface__encapsulation.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_l2_ethernet_cfg, 'encapsulation'))), vrf=n.get_opt_str(ygdata.Id(NS_Cisco_IOS_XR_um_if_vrf_cfg, 'vrf')))
 
     mut def copy(self) -> Cisco_IOS_XR_um_interface_cfg__interfaces__interface_entry:
         """Create a deep copy of this adata object"""
@@ -2693,20 +2693,20 @@ class Cisco_IOS_XR_um_hostname_cfg__hostname(yadata.MNode):
 _breaker99: None = None
 class root(yadata.MNode):
     vrfs: Cisco_IOS_XR_um_vrf_cfg__vrfs
-    interfaces: Cisco_IOS_XR_um_interface_cfg__interfaces
+    um_interface_cfg_interfaces: Cisco_IOS_XR_um_interface_cfg__interfaces
     um_router_isis_cfg_router: Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router
     um_router_bgp_cfg_router: Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router
     routing_policy: Cisco_IOS_XR_um_route_policy_cfg__routing_policy
-    mpls: Cisco_IOS_XR_um_mpls_ldp_cfg__mpls
+    um_mpls_ldp_cfg_mpls: Cisco_IOS_XR_um_mpls_ldp_cfg__mpls
     hostname: Cisco_IOS_XR_um_hostname_cfg__hostname
 
-    mut def __init__(self, vrfs: ?Cisco_IOS_XR_um_vrf_cfg__vrfs=None, interfaces: ?Cisco_IOS_XR_um_interface_cfg__interfaces=None, um_router_isis_cfg_router: ?Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router=None, um_router_bgp_cfg_router: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router=None, routing_policy: ?Cisco_IOS_XR_um_route_policy_cfg__routing_policy=None, mpls: ?Cisco_IOS_XR_um_mpls_ldp_cfg__mpls=None, hostname: ?Cisco_IOS_XR_um_hostname_cfg__hostname=None) -> None:
+    mut def __init__(self, vrfs: ?Cisco_IOS_XR_um_vrf_cfg__vrfs=None, um_interface_cfg_interfaces: ?Cisco_IOS_XR_um_interface_cfg__interfaces=None, um_router_isis_cfg_router: ?Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router=None, um_router_bgp_cfg_router: ?Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router=None, routing_policy: ?Cisco_IOS_XR_um_route_policy_cfg__routing_policy=None, um_mpls_ldp_cfg_mpls: ?Cisco_IOS_XR_um_mpls_ldp_cfg__mpls=None, hostname: ?Cisco_IOS_XR_um_hostname_cfg__hostname=None) -> None:
         self.vrfs = vrfs if vrfs is not None else Cisco_IOS_XR_um_vrf_cfg__vrfs()
-        self.interfaces = interfaces if interfaces is not None else Cisco_IOS_XR_um_interface_cfg__interfaces()
+        self.um_interface_cfg_interfaces = um_interface_cfg_interfaces if um_interface_cfg_interfaces is not None else Cisco_IOS_XR_um_interface_cfg__interfaces()
         self.um_router_isis_cfg_router = um_router_isis_cfg_router if um_router_isis_cfg_router is not None else Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router()
         self.um_router_bgp_cfg_router = um_router_bgp_cfg_router if um_router_bgp_cfg_router is not None else Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router()
         self.routing_policy = routing_policy if routing_policy is not None else Cisco_IOS_XR_um_route_policy_cfg__routing_policy()
-        self.mpls = mpls if mpls is not None else Cisco_IOS_XR_um_mpls_ldp_cfg__mpls()
+        self.um_mpls_ldp_cfg_mpls = um_mpls_ldp_cfg_mpls if um_mpls_ldp_cfg_mpls is not None else Cisco_IOS_XR_um_mpls_ldp_cfg__mpls()
         self.hostname = hostname if hostname is not None else Cisco_IOS_XR_um_hostname_cfg__hostname()
 
     mut def to_gdata(self, prev: ?ygdata.Container=None) -> ygdata.Node:
@@ -2715,7 +2715,7 @@ class root(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> root:
         if n is not None:
-            return root(vrfs=Cisco_IOS_XR_um_vrf_cfg__vrfs.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_vrf_cfg, 'vrfs'))), interfaces=Cisco_IOS_XR_um_interface_cfg__interfaces.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_interface_cfg, 'interfaces'))), um_router_isis_cfg_router=Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_isis_cfg, 'router'))), um_router_bgp_cfg_router=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'router'))), routing_policy=Cisco_IOS_XR_um_route_policy_cfg__routing_policy.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'routing-policy'))), mpls=Cisco_IOS_XR_um_mpls_ldp_cfg__mpls.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_mpls_ldp_cfg, 'mpls'))), hostname=Cisco_IOS_XR_um_hostname_cfg__hostname.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_hostname_cfg, 'hostname'))))
+            return root(vrfs=Cisco_IOS_XR_um_vrf_cfg__vrfs.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_vrf_cfg, 'vrfs'))), um_interface_cfg_interfaces=Cisco_IOS_XR_um_interface_cfg__interfaces.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_interface_cfg, 'interfaces'))), um_router_isis_cfg_router=Cisco_IOS_XR_um_router_isis_cfg__um_router_isis_cfg_router.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_isis_cfg, 'router'))), um_router_bgp_cfg_router=Cisco_IOS_XR_um_router_bgp_cfg__um_router_bgp_cfg_router.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_router_bgp_cfg, 'router'))), routing_policy=Cisco_IOS_XR_um_route_policy_cfg__routing_policy.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_route_policy_cfg, 'routing-policy'))), um_mpls_ldp_cfg_mpls=Cisco_IOS_XR_um_mpls_ldp_cfg__mpls.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_mpls_ldp_cfg, 'mpls'))), hostname=Cisco_IOS_XR_um_hostname_cfg__hostname.from_gdata(n.get_opt_cnt(ygdata.Id(NS_Cisco_IOS_XR_um_hostname_cfg, 'hostname'))))
         return root()
 
     mut def copy(self) -> root:

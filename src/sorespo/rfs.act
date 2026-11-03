@@ -164,8 +164,8 @@ class BaseConfig(base.BaseConfig):
             print("RFS /rfs{{{di.name}}}/base-config transform for Cisco IOS XR", err=True)
             dev = xr25.root()
             dev.hostname.system_network_name = di.name
-            intf = dev.interfaces.interface.create("Loopback0")
-            intf.ipv4.addresses.create_address(i.ipv4_address, "255.255.255.255")
+            intf = dev.um_interface_cfg_interfaces.interface.create("Loopback0")
+            intf.um_interface_cfg_ipv4.addresses.create_address(i.ipv4_address, "255.255.255.255")
 
             # IS-IS global config
             ip = dev.um_router_isis_cfg_router.isis.processes.process.create("1")
@@ -284,10 +284,10 @@ class BBInterface(base.BBInterface):
             dev = xr25.root()
 
             # Create the interface
-            intf = dev.interfaces.interface.create(i.name, description=if_description)
+            intf = dev.um_interface_cfg_interfaces.interface.create(i.name, description=if_description)
             ipv4_address = i.ipv4_address
             if ipv4_address is not None:
-                intf.ipv4.addresses.create_address(ipv4_address, prefix_length_to_netmask(int(i.ipv4_prefix_length)))
+                intf.um_interface_cfg_ipv4.addresses.create_address(ipv4_address, prefix_length_to_netmask(int(i.ipv4_prefix_length)))
 
             # IS-IS config for this interface
             ip = dev.um_router_isis_cfg_router.isis.processes.process.create("1")
@@ -296,7 +296,7 @@ class BBInterface(base.BBInterface):
             af.metric_levels.metric_level.create(2, default_metric=5000)
 
             # MPLS and LDP config for this interface
-            ldp = dev.mpls.create_ldp()
+            ldp = dev.um_mpls_ldp_cfg_mpls.create_ldp()
             ldp.interfaces.interface.create(i.name)
             ldp.address_families.address_family.create("ipv4")
 
@@ -549,12 +549,12 @@ class VrfInterface(base.VrfInterface):
             # Main interface config. The description also anchors the entry in
             # the XR running config: a default-only interface (just "no
             # shutdown") is not stored by XR
-            dev.interfaces.interface.create(main_intf, description="Customer access port")
-            sub_intf = dev.interfaces.interface.create(i.name, description=i.description, vrf=i.vrf)
+            dev.um_interface_cfg_interfaces.interface.create(main_intf, description="Customer access port")
+            sub_intf = dev.um_interface_cfg_interfaces.interface.create(i.name, description=i.description, vrf=i.vrf)
             ipv4_address = i.ipv4_address
             if ipv4_address is not None:
-                sub_intf.ipv4.addresses.create_address(ipv4_address, prefix_length_to_netmask(int(i.ipv4_prefix_length)))
-            sub_intf.encapsulation.dot1q.vlan_id = u64(vlan_id)
+                sub_intf.um_interface_cfg_ipv4.addresses.create_address(ipv4_address, prefix_length_to_netmask(int(i.ipv4_prefix_length)))
+            sub_intf.um_l2_ethernet_cfg_encapsulation.dot1q.vlan_id = u64(vlan_id)
             return dev
 
         elif "http://xml.juniper.net/netconf/junos/1.0" in di.modules or "junos-conf-root" in di.modules:

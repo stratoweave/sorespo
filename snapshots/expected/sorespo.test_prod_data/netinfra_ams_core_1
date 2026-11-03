@@ -5,10 +5,10 @@
 AMS_CORE_1 = root()
 
 # List /interfaces/interface element: 'Loopback0'
-interface_element = AMS_CORE_1.interfaces.interface.create('Loopback0')
+interface_element = AMS_CORE_1.um_interface_cfg_interfaces.interface.create('Loopback0')
 
 # P-container: /interfaces/interface[interface-name='Loopback0']/ipv4/addresses/address
-address = interface_element.ipv4.addresses.create_address(address='10.0.0.1', netmask='255.255.255.255')
+address = interface_element.um_interface_cfg_ipv4.addresses.create_address(address='10.0.0.1', netmask='255.255.255.255')
 
 # List /um-router-isis-cfg:router/isis/processes/process element: '1'
 process_element = AMS_CORE_1.um_router_isis_cfg_router.isis.processes.process.create('1', is_type='level-2-only')

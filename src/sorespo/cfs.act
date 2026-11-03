@@ -78,7 +78,7 @@ actor BBLinkTransform(path: ttt.Path,
         dst = y_1_oper.dst(lambda r, e: on_inter_state(r, e, lr, li, rr, ri))
         entry = y_1_oper.subs.netinfra.backbone_link.entry(lr, li, rr, ri)
         want: set[gdata.Delivery] = set()
-        want.add(dst.deliver({ entry.state.subscribe(period=5.0) }))
+        want.add(dst.deliver({ entry.state.subscribe() }))
         _subs.declare(want)
 
     def shutdown():
@@ -160,7 +160,7 @@ actor L3VpnSiteTransform(path: ttt.Path, update_oper: proc(y_0_oper.ietf_l3vpn_s
             device, interface = _endpoint(sna.bearer.bearer_reference)
             if vpn_id is not None and device is not None and interface is not None:
                 ep = y_1_oper.subs.l3vpns.l3vpn.entry(vpn_id).endpoint.entry(device, interface)
-                specs.add(ep.state.subscribe(period=2.0))
+                specs.add(ep.state.subscribe())
         if len(specs) > 0:
             want.add(dst.deliver(specs))
         _subs.declare(want)

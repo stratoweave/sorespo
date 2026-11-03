@@ -111,8 +111,8 @@ actor BBLinkTransform(path: ttt.Path,
         dst = y_2_oper.dst(lambda r, e: on_rfs_state(r, e, lr, li, rr, ri))
         want: set[gdata.Delivery] = set()
         want.add(dst.deliver({
-            y_2_oper.subs.rfs.entry(lr).backbone_interface.entry(li).state.subscribe(period=5.0),
-            y_2_oper.subs.rfs.entry(rr).backbone_interface.entry(ri).state.subscribe(period=5.0)
+            y_2_oper.subs.rfs.entry(lr).backbone_interface.entry(li).state.subscribe(),
+            y_2_oper.subs.rfs.entry(rr).backbone_interface.entry(ri).state.subscribe()
         }))
         _subs.declare(want)
 
@@ -198,7 +198,7 @@ actor L3VpnTransform(path: ttt.Path,
             addr = ep.customer_ipv4_address
             if ep.bgp is not None and addr is not None:
                 ec = y_2_oper.subs.rfs.entry(ep.device).ebgp_customer.entry(vpn, addr)
-                specs.add(ec.state.subscribe(period=2.0))
+                specs.add(ec.state.subscribe())
         if len(specs) > 0:
             want.add(dst.deliver(specs))
         _subs.declare(want)

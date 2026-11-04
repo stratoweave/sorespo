@@ -374,6 +374,7 @@ actor main(env):
         cfs_layer.models.extend([
             swyang.stratoweave,
             swyang.ietf_inet_types,
+            swyang.ietf_yang_types,
             tmf_yang.ietf_yang_tmf_map,
             tmf_yang.swtmf.replace("TMF640_STORE_TRANSFORM", "sorespo.tmf.Tmf640Store"),
             tmf_yang.swtmf640

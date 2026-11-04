@@ -273,7 +273,7 @@ SRC_DNODE_CHILD_5: DLeaf = DLeaf(module='stratoweave-tmf', namespace='http://str
 
 SRC_DNODE_CHILD_6: DLeaf = DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='description', config=True, description='Free-text description of the service', is_key=False, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]))
 
-SRC_DNODE_CHILD_7: DLeaf = DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='endDate', config=True, description='Date when the service ends', is_key=False, mandatory=False, type=DTypeString(name='yang:date-and-time', description="The date-and-time type is a profile of the ISO 8601\nstandard for representation of dates and times using the\nGregorian calendar.  The profile is defined by the\ndate-time production in Section 5.6 of RFC 3339.\n\nThe date-and-time type is compatible with the dateTime XML\nschema type with the following notable exceptions:\n\n(a) The date-and-time type does not allow negative years.\n\n(b) The date-and-time time-offset -00:00 indicates an unknown\n    time zone (see RFC 3339) while -00:00 and +00:00 and Z\n    all represent the same time zone in dateTime.\n\n(c) The canonical format (see below) of data-and-time values\n    differs from the canonical format used by the dateTime XML\n    schema type, which requires all times to be in UTC using\n    the time-offset 'Z'.\n\nThis type is not equivalent to the DateAndTime textual\nconvention of the SMIv2 since RFC 3339 uses a different\nseparator between full-date and full-time and provides\nhigher resolution of time-secfrac.\n\nThe canonical format for date-and-time values with a known time\nzone uses a numeric time zone offset that is calculated using\nthe device's configured known offset to UTC time.  A change of\nthe device's offset to UTC time will cause date-and-time values\nto change accordingly.  Such changes might happen periodically\nin case a server follows automatically daylight saving time\n(DST) time zone offset changes.  The canonical format for\ndate-and-time values with an unknown time zone (usually\nreferring to the notion of local time) uses the time-offset\n-00:00.", reference='RFC 3339: Date and Time on the Internet: Timestamps\nRFC 2579: Textual Conventions for SMIv2\nXSD-TYPES: XML Schema Part 2: Datatypes Second Edition', units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='\\\\d{{4}}-\\\\d{{2}}-\\\\d{{2}}T\\\\d{{2}}:\\\\d{{2}}:\\\\d{{2}}(\\\\.\\\\d+)?(Z|[\\\\+\\\\-]\\\\d{{2}}:\\\\d{{2}})', pcre='^(\\\\d{{4}}-\\\\d{{2}}-\\\\d{{2}}T\\\\d{{2}}:\\\\d{{2}}:\\\\d{{2}}(\\\\.\\\\d+)?(Z|[\\\\+\\\\-]\\\\d{{2}}:\\\\d{{2}}))$', invert=False)]))
+SRC_DNODE_CHILD_7: DLeaf = DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='endDate', config=True, description='Date when the service ends', is_key=False, mandatory=False, type=DTypeString(name='yang:date-and-time', description="The date-and-time type is a profile of the ISO 8601\nstandard for representation of dates and times using the\nGregorian calendar.  The profile is defined by the\ndate-time production in Section 5.6 of RFC 3339 and the\nupdate defined in Section 2 of RFC 9557.  The value of\n60 for seconds is allowed only in the case of leap seconds.\n\nThe date-and-time type is compatible with the dateTime XML\nschema dateTime type with the following notable exceptions:\n\n(a) The date-and-time type does not allow negative years.\n\n(b) The time-offset Z indicates that the date-and-time\n    value is reported in UTC and that the local time zone\n    reference point is unknown.  The time-offset +00:00\n    indicates that the date-and-time value is reported in\n    UTC and that the local time zone reference point is UTC\n    (see Section 2 of RFC 9557).\n\nThis type is not equivalent to the DateAndTime textual\nconvention of the SMIv2 since RFC 3339 uses a different\nseparator between full-date and full-time and provides\nhigher resolution of time-secfrac.\n\nThe canonical format for date-and-time values with a known\ntime zone uses a numeric time zone offset that is calculated\nusing the device's configured known offset to UTC time.  A\nchange of the device's offset to UTC time will cause\ndate-and-time values to change accordingly.  Such changes\nmight happen periodically if a server automatically follows\ndaylight saving time (DST) time zone offset changes.  The\ncanonical format for date-and-time values reported in UTC\nwith an unknown local time zone offset SHOULD use the\ntime-offset Z and MAY use -00:00 for backwards\ncompatibility.", reference='ISO 8601: Data elements and interchange formats -- Information\n          interchange -- Representation of dates and times\nRFC 3339: Date and Time on the Internet: Timestamps\nRFC 9557: Date and Time on the Internet: Timestamps\n          with Additional Information\nRFC 2579: Textual Conventions for SMIv2\nXSD-TYPES: XML Schema Definition Language (XSD) 1.1\n           Part 2: Datatypes', units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='[0-9]{{4}}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?', pcre='^([0-9]{{4}}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?)$', invert=False)]))
 
 SRC_DNODE_CHILD_8: DLeaf = DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='hasStarted', config=True, description='If TRUE, this Service has already been started', is_key=False, mandatory=False, type=DTypeBoolean(name='boolean', description=None, reference=None, units=None, exts=[], builtin_type='boolean', default=None))
 
@@ -289,7 +289,7 @@ SRC_DNODE_CHILD_13: DLeaf = DLeaf(module='stratoweave-tmf', namespace='http://st
 
 SRC_DNODE_CHILD_14: DLeaf = DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='serviceType', config=True, description='Business type of the service', is_key=False, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]))
 
-SRC_DNODE_CHILD_15: DLeaf = DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='startDate', config=True, description='Date when the service starts', is_key=False, mandatory=False, type=DTypeString(name='yang:date-and-time', description="The date-and-time type is a profile of the ISO 8601\nstandard for representation of dates and times using the\nGregorian calendar.  The profile is defined by the\ndate-time production in Section 5.6 of RFC 3339.\n\nThe date-and-time type is compatible with the dateTime XML\nschema type with the following notable exceptions:\n\n(a) The date-and-time type does not allow negative years.\n\n(b) The date-and-time time-offset -00:00 indicates an unknown\n    time zone (see RFC 3339) while -00:00 and +00:00 and Z\n    all represent the same time zone in dateTime.\n\n(c) The canonical format (see below) of data-and-time values\n    differs from the canonical format used by the dateTime XML\n    schema type, which requires all times to be in UTC using\n    the time-offset 'Z'.\n\nThis type is not equivalent to the DateAndTime textual\nconvention of the SMIv2 since RFC 3339 uses a different\nseparator between full-date and full-time and provides\nhigher resolution of time-secfrac.\n\nThe canonical format for date-and-time values with a known time\nzone uses a numeric time zone offset that is calculated using\nthe device's configured known offset to UTC time.  A change of\nthe device's offset to UTC time will cause date-and-time values\nto change accordingly.  Such changes might happen periodically\nin case a server follows automatically daylight saving time\n(DST) time zone offset changes.  The canonical format for\ndate-and-time values with an unknown time zone (usually\nreferring to the notion of local time) uses the time-offset\n-00:00.", reference='RFC 3339: Date and Time on the Internet: Timestamps\nRFC 2579: Textual Conventions for SMIv2\nXSD-TYPES: XML Schema Part 2: Datatypes Second Edition', units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='\\\\d{{4}}-\\\\d{{2}}-\\\\d{{2}}T\\\\d{{2}}:\\\\d{{2}}:\\\\d{{2}}(\\\\.\\\\d+)?(Z|[\\\\+\\\\-]\\\\d{{2}}:\\\\d{{2}})', pcre='^(\\\\d{{4}}-\\\\d{{2}}-\\\\d{{2}}T\\\\d{{2}}:\\\\d{{2}}:\\\\d{{2}}(\\\\.\\\\d+)?(Z|[\\\\+\\\\-]\\\\d{{2}}:\\\\d{{2}}))$', invert=False)]))
+SRC_DNODE_CHILD_15: DLeaf = DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='startDate', config=True, description='Date when the service starts', is_key=False, mandatory=False, type=DTypeString(name='yang:date-and-time', description="The date-and-time type is a profile of the ISO 8601\nstandard for representation of dates and times using the\nGregorian calendar.  The profile is defined by the\ndate-time production in Section 5.6 of RFC 3339 and the\nupdate defined in Section 2 of RFC 9557.  The value of\n60 for seconds is allowed only in the case of leap seconds.\n\nThe date-and-time type is compatible with the dateTime XML\nschema dateTime type with the following notable exceptions:\n\n(a) The date-and-time type does not allow negative years.\n\n(b) The time-offset Z indicates that the date-and-time\n    value is reported in UTC and that the local time zone\n    reference point is unknown.  The time-offset +00:00\n    indicates that the date-and-time value is reported in\n    UTC and that the local time zone reference point is UTC\n    (see Section 2 of RFC 9557).\n\nThis type is not equivalent to the DateAndTime textual\nconvention of the SMIv2 since RFC 3339 uses a different\nseparator between full-date and full-time and provides\nhigher resolution of time-secfrac.\n\nThe canonical format for date-and-time values with a known\ntime zone uses a numeric time zone offset that is calculated\nusing the device's configured known offset to UTC time.  A\nchange of the device's offset to UTC time will cause\ndate-and-time values to change accordingly.  Such changes\nmight happen periodically if a server automatically follows\ndaylight saving time (DST) time zone offset changes.  The\ncanonical format for date-and-time values reported in UTC\nwith an unknown local time zone offset SHOULD use the\ntime-offset Z and MAY use -00:00 for backwards\ncompatibility.", reference='ISO 8601: Data elements and interchange formats -- Information\n          interchange -- Representation of dates and times\nRFC 3339: Date and Time on the Internet: Timestamps\nRFC 9557: Date and Time on the Internet: Timestamps\n          with Additional Information\nRFC 2579: Textual Conventions for SMIv2\nXSD-TYPES: XML Schema Definition Language (XSD) 1.1\n           Part 2: Datatypes', units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='[0-9]{{4}}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?', pcre='^([0-9]{{4}}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?)$', invert=False)]))
 
 SRC_DNODE_CHILD_16: DLeaf = DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='startMode', config=True, description='This attribute is an enumerated integer that indicates how\nthe Service is started, such as: 0: Unknown; 1: Automatically\nby the managed environment; 2: Automatically by the owning\ndevice; 3: Manually by the Provider of the Service; 4:\nManually by a Customer of the Provider; 5: Any of the above', is_key=False, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]))
 
@@ -326,8 +326,8 @@ SRC_DNODE_CHILD_24: DList = DList(module='stratoweave-tmf', namespace='http://st
     DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='name', config=True, description='This is the name of the target feature.', is_key=False, mandatory=True, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[])),
     DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='relationshipType', config=True, description='This is the type of the feature relationship.', is_key=False, mandatory=True, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[])),
     DContainer(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='validFor', config=True, description='The period for which this feature relationship is valid.', presence=False, children=[
-        DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='endDateTime', config=True, description='End of the time period, using IETC-RFC-3339 format', is_key=False, mandatory=False, type=DTypeString(name='yang:date-and-time', description="The date-and-time type is a profile of the ISO 8601\nstandard for representation of dates and times using the\nGregorian calendar.  The profile is defined by the\ndate-time production in Section 5.6 of RFC 3339.\n\nThe date-and-time type is compatible with the dateTime XML\nschema type with the following notable exceptions:\n\n(a) The date-and-time type does not allow negative years.\n\n(b) The date-and-time time-offset -00:00 indicates an unknown\n    time zone (see RFC 3339) while -00:00 and +00:00 and Z\n    all represent the same time zone in dateTime.\n\n(c) The canonical format (see below) of data-and-time values\n    differs from the canonical format used by the dateTime XML\n    schema type, which requires all times to be in UTC using\n    the time-offset 'Z'.\n\nThis type is not equivalent to the DateAndTime textual\nconvention of the SMIv2 since RFC 3339 uses a different\nseparator between full-date and full-time and provides\nhigher resolution of time-secfrac.\n\nThe canonical format for date-and-time values with a known time\nzone uses a numeric time zone offset that is calculated using\nthe device's configured known offset to UTC time.  A change of\nthe device's offset to UTC time will cause date-and-time values\nto change accordingly.  Such changes might happen periodically\nin case a server follows automatically daylight saving time\n(DST) time zone offset changes.  The canonical format for\ndate-and-time values with an unknown time zone (usually\nreferring to the notion of local time) uses the time-offset\n-00:00.", reference='RFC 3339: Date and Time on the Internet: Timestamps\nRFC 2579: Textual Conventions for SMIv2\nXSD-TYPES: XML Schema Part 2: Datatypes Second Edition', units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='\\\\d{{4}}-\\\\d{{2}}-\\\\d{{2}}T\\\\d{{2}}:\\\\d{{2}}:\\\\d{{2}}(\\\\.\\\\d+)?(Z|[\\\\+\\\\-]\\\\d{{2}}:\\\\d{{2}})', pcre='^(\\\\d{{4}}-\\\\d{{2}}-\\\\d{{2}}T\\\\d{{2}}:\\\\d{{2}}:\\\\d{{2}}(\\\\.\\\\d+)?(Z|[\\\\+\\\\-]\\\\d{{2}}:\\\\d{{2}}))$', invert=False)])),
-        DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='startDateTime', config=True, description='Start of the time period, using IETC-RFC-3339 format. If you\ndefine a start, you must also define an end', is_key=False, mandatory=False, type=DTypeString(name='yang:date-and-time', description="The date-and-time type is a profile of the ISO 8601\nstandard for representation of dates and times using the\nGregorian calendar.  The profile is defined by the\ndate-time production in Section 5.6 of RFC 3339.\n\nThe date-and-time type is compatible with the dateTime XML\nschema type with the following notable exceptions:\n\n(a) The date-and-time type does not allow negative years.\n\n(b) The date-and-time time-offset -00:00 indicates an unknown\n    time zone (see RFC 3339) while -00:00 and +00:00 and Z\n    all represent the same time zone in dateTime.\n\n(c) The canonical format (see below) of data-and-time values\n    differs from the canonical format used by the dateTime XML\n    schema type, which requires all times to be in UTC using\n    the time-offset 'Z'.\n\nThis type is not equivalent to the DateAndTime textual\nconvention of the SMIv2 since RFC 3339 uses a different\nseparator between full-date and full-time and provides\nhigher resolution of time-secfrac.\n\nThe canonical format for date-and-time values with a known time\nzone uses a numeric time zone offset that is calculated using\nthe device's configured known offset to UTC time.  A change of\nthe device's offset to UTC time will cause date-and-time values\nto change accordingly.  Such changes might happen periodically\nin case a server follows automatically daylight saving time\n(DST) time zone offset changes.  The canonical format for\ndate-and-time values with an unknown time zone (usually\nreferring to the notion of local time) uses the time-offset\n-00:00.", reference='RFC 3339: Date and Time on the Internet: Timestamps\nRFC 2579: Textual Conventions for SMIv2\nXSD-TYPES: XML Schema Part 2: Datatypes Second Edition', units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='\\\\d{{4}}-\\\\d{{2}}-\\\\d{{2}}T\\\\d{{2}}:\\\\d{{2}}:\\\\d{{2}}(\\\\.\\\\d+)?(Z|[\\\\+\\\\-]\\\\d{{2}}:\\\\d{{2}})', pcre='^(\\\\d{{4}}-\\\\d{{2}}-\\\\d{{2}}T\\\\d{{2}}:\\\\d{{2}}:\\\\d{{2}}(\\\\.\\\\d+)?(Z|[\\\\+\\\\-]\\\\d{{2}}:\\\\d{{2}}))$', invert=False)])),
+        DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='endDateTime', config=True, description='End of the time period, using IETC-RFC-3339 format', is_key=False, mandatory=False, type=DTypeString(name='yang:date-and-time', description="The date-and-time type is a profile of the ISO 8601\nstandard for representation of dates and times using the\nGregorian calendar.  The profile is defined by the\ndate-time production in Section 5.6 of RFC 3339 and the\nupdate defined in Section 2 of RFC 9557.  The value of\n60 for seconds is allowed only in the case of leap seconds.\n\nThe date-and-time type is compatible with the dateTime XML\nschema dateTime type with the following notable exceptions:\n\n(a) The date-and-time type does not allow negative years.\n\n(b) The time-offset Z indicates that the date-and-time\n    value is reported in UTC and that the local time zone\n    reference point is unknown.  The time-offset +00:00\n    indicates that the date-and-time value is reported in\n    UTC and that the local time zone reference point is UTC\n    (see Section 2 of RFC 9557).\n\nThis type is not equivalent to the DateAndTime textual\nconvention of the SMIv2 since RFC 3339 uses a different\nseparator between full-date and full-time and provides\nhigher resolution of time-secfrac.\n\nThe canonical format for date-and-time values with a known\ntime zone uses a numeric time zone offset that is calculated\nusing the device's configured known offset to UTC time.  A\nchange of the device's offset to UTC time will cause\ndate-and-time values to change accordingly.  Such changes\nmight happen periodically if a server automatically follows\ndaylight saving time (DST) time zone offset changes.  The\ncanonical format for date-and-time values reported in UTC\nwith an unknown local time zone offset SHOULD use the\ntime-offset Z and MAY use -00:00 for backwards\ncompatibility.", reference='ISO 8601: Data elements and interchange formats -- Information\n          interchange -- Representation of dates and times\nRFC 3339: Date and Time on the Internet: Timestamps\nRFC 9557: Date and Time on the Internet: Timestamps\n          with Additional Information\nRFC 2579: Textual Conventions for SMIv2\nXSD-TYPES: XML Schema Definition Language (XSD) 1.1\n           Part 2: Datatypes', units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='[0-9]{{4}}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?', pcre='^([0-9]{{4}}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?)$', invert=False)])),
+        DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='startDateTime', config=True, description='Start of the time period, using IETC-RFC-3339 format. If you\ndefine a start, you must also define an end', is_key=False, mandatory=False, type=DTypeString(name='yang:date-and-time', description="The date-and-time type is a profile of the ISO 8601\nstandard for representation of dates and times using the\nGregorian calendar.  The profile is defined by the\ndate-time production in Section 5.6 of RFC 3339 and the\nupdate defined in Section 2 of RFC 9557.  The value of\n60 for seconds is allowed only in the case of leap seconds.\n\nThe date-and-time type is compatible with the dateTime XML\nschema dateTime type with the following notable exceptions:\n\n(a) The date-and-time type does not allow negative years.\n\n(b) The time-offset Z indicates that the date-and-time\n    value is reported in UTC and that the local time zone\n    reference point is unknown.  The time-offset +00:00\n    indicates that the date-and-time value is reported in\n    UTC and that the local time zone reference point is UTC\n    (see Section 2 of RFC 9557).\n\nThis type is not equivalent to the DateAndTime textual\nconvention of the SMIv2 since RFC 3339 uses a different\nseparator between full-date and full-time and provides\nhigher resolution of time-secfrac.\n\nThe canonical format for date-and-time values with a known\ntime zone uses a numeric time zone offset that is calculated\nusing the device's configured known offset to UTC time.  A\nchange of the device's offset to UTC time will cause\ndate-and-time values to change accordingly.  Such changes\nmight happen periodically if a server automatically follows\ndaylight saving time (DST) time zone offset changes.  The\ncanonical format for date-and-time values reported in UTC\nwith an unknown local time zone offset SHOULD use the\ntime-offset Z and MAY use -00:00 for backwards\ncompatibility.", reference='ISO 8601: Data elements and interchange formats -- Information\n          interchange -- Representation of dates and times\nRFC 3339: Date and Time on the Internet: Timestamps\nRFC 9557: Date and Time on the Internet: Timestamps\n          with Additional Information\nRFC 2579: Textual Conventions for SMIv2\nXSD-TYPES: XML Schema Definition Language (XSD) 1.1\n           Part 2: Datatypes', units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='[0-9]{{4}}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?', pcre='^([0-9]{{4}}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?)$', invert=False)])),
         DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='type', config=True, description='When sub-classing, this defines the sub-class entity name', is_key=False, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]))
     ]),
     DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='type', config=True, description='When sub-classing, this defines the sub-class entity name', is_key=False, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]))
@@ -340,7 +340,7 @@ SRC_DNODE_CHILD_17: DList = DList(module='stratoweave-tmf', namespace='http://st
 SRC_DNODE_CHILD_26: DList = DList(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='note', key=['id'], config=True, description='A list of notes made on this service', min_elements=0, ordered_by='system', children=[
     DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='id', config=True, description='Identifier of the note within its containing entity (may or\nmay not be globally unique, depending on provider\nimplementation)', is_key=True, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[])),
     DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='author', config=True, description='Author of the note', is_key=False, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[])),
-    DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='date', config=True, description='Date of the note', is_key=False, mandatory=False, type=DTypeString(name='yang:date-and-time', description="The date-and-time type is a profile of the ISO 8601\nstandard for representation of dates and times using the\nGregorian calendar.  The profile is defined by the\ndate-time production in Section 5.6 of RFC 3339.\n\nThe date-and-time type is compatible with the dateTime XML\nschema type with the following notable exceptions:\n\n(a) The date-and-time type does not allow negative years.\n\n(b) The date-and-time time-offset -00:00 indicates an unknown\n    time zone (see RFC 3339) while -00:00 and +00:00 and Z\n    all represent the same time zone in dateTime.\n\n(c) The canonical format (see below) of data-and-time values\n    differs from the canonical format used by the dateTime XML\n    schema type, which requires all times to be in UTC using\n    the time-offset 'Z'.\n\nThis type is not equivalent to the DateAndTime textual\nconvention of the SMIv2 since RFC 3339 uses a different\nseparator between full-date and full-time and provides\nhigher resolution of time-secfrac.\n\nThe canonical format for date-and-time values with a known time\nzone uses a numeric time zone offset that is calculated using\nthe device's configured known offset to UTC time.  A change of\nthe device's offset to UTC time will cause date-and-time values\nto change accordingly.  Such changes might happen periodically\nin case a server follows automatically daylight saving time\n(DST) time zone offset changes.  The canonical format for\ndate-and-time values with an unknown time zone (usually\nreferring to the notion of local time) uses the time-offset\n-00:00.", reference='RFC 3339: Date and Time on the Internet: Timestamps\nRFC 2579: Textual Conventions for SMIv2\nXSD-TYPES: XML Schema Part 2: Datatypes Second Edition', units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='\\\\d{{4}}-\\\\d{{2}}-\\\\d{{2}}T\\\\d{{2}}:\\\\d{{2}}:\\\\d{{2}}(\\\\.\\\\d+)?(Z|[\\\\+\\\\-]\\\\d{{2}}:\\\\d{{2}})', pcre='^(\\\\d{{4}}-\\\\d{{2}}-\\\\d{{2}}T\\\\d{{2}}:\\\\d{{2}}:\\\\d{{2}}(\\\\.\\\\d+)?(Z|[\\\\+\\\\-]\\\\d{{2}}:\\\\d{{2}}))$', invert=False)])),
+    DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='date', config=True, description='Date of the note', is_key=False, mandatory=False, type=DTypeString(name='yang:date-and-time', description="The date-and-time type is a profile of the ISO 8601\nstandard for representation of dates and times using the\nGregorian calendar.  The profile is defined by the\ndate-time production in Section 5.6 of RFC 3339 and the\nupdate defined in Section 2 of RFC 9557.  The value of\n60 for seconds is allowed only in the case of leap seconds.\n\nThe date-and-time type is compatible with the dateTime XML\nschema dateTime type with the following notable exceptions:\n\n(a) The date-and-time type does not allow negative years.\n\n(b) The time-offset Z indicates that the date-and-time\n    value is reported in UTC and that the local time zone\n    reference point is unknown.  The time-offset +00:00\n    indicates that the date-and-time value is reported in\n    UTC and that the local time zone reference point is UTC\n    (see Section 2 of RFC 9557).\n\nThis type is not equivalent to the DateAndTime textual\nconvention of the SMIv2 since RFC 3339 uses a different\nseparator between full-date and full-time and provides\nhigher resolution of time-secfrac.\n\nThe canonical format for date-and-time values with a known\ntime zone uses a numeric time zone offset that is calculated\nusing the device's configured known offset to UTC time.  A\nchange of the device's offset to UTC time will cause\ndate-and-time values to change accordingly.  Such changes\nmight happen periodically if a server automatically follows\ndaylight saving time (DST) time zone offset changes.  The\ncanonical format for date-and-time values reported in UTC\nwith an unknown local time zone offset SHOULD use the\ntime-offset Z and MAY use -00:00 for backwards\ncompatibility.", reference='ISO 8601: Data elements and interchange formats -- Information\n          interchange -- Representation of dates and times\nRFC 3339: Date and Time on the Internet: Timestamps\nRFC 9557: Date and Time on the Internet: Timestamps\n          with Additional Information\nRFC 2579: Textual Conventions for SMIv2\nXSD-TYPES: XML Schema Definition Language (XSD) 1.1\n           Part 2: Datatypes', units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='[0-9]{{4}}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?', pcre='^([0-9]{{4}}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?)$', invert=False)])),
     DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='text', config=True, description='Text of the note', is_key=False, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[])),
     DLeaf(module='stratoweave-tmf', namespace='http://stratoweave.org/yang/stratoweave-tmf', prefix='sw-tmf', name='type', config=True, description='When sub-classing, this defines the sub-class entity name', is_key=False, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]))
 ])
@@ -532,9 +532,9 @@ SRC_DNODE_CHILD_40: DContainer = DContainer(module='ietf-l3vpn-svc', namespace='
 
 SRC_DNODE_CHILD_54: DLeaf = DLeaf(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='site-id', config=True, description='Identifier of the site.', is_key=True, mandatory=False, type=DTypeString(name='svc-id', description='Defines a type of service component identifier.', reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]))
 
-SRC_DNODE_CHILD_55: DLeaf = DLeaf(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='requested-site-start', config=True, description='Optional leaf indicating requested date and\ntime when the service at a particular site is\nexpected to start.', is_key=False, mandatory=False, type=DTypeString(name='yang:date-and-time', description="The date-and-time type is a profile of the ISO 8601\nstandard for representation of dates and times using the\nGregorian calendar.  The profile is defined by the\ndate-time production in Section 5.6 of RFC 3339.\n\nThe date-and-time type is compatible with the dateTime XML\nschema type with the following notable exceptions:\n\n(a) The date-and-time type does not allow negative years.\n\n(b) The date-and-time time-offset -00:00 indicates an unknown\n    time zone (see RFC 3339) while -00:00 and +00:00 and Z\n    all represent the same time zone in dateTime.\n\n(c) The canonical format (see below) of data-and-time values\n    differs from the canonical format used by the dateTime XML\n    schema type, which requires all times to be in UTC using\n    the time-offset 'Z'.\n\nThis type is not equivalent to the DateAndTime textual\nconvention of the SMIv2 since RFC 3339 uses a different\nseparator between full-date and full-time and provides\nhigher resolution of time-secfrac.\n\nThe canonical format for date-and-time values with a known time\nzone uses a numeric time zone offset that is calculated using\nthe device's configured known offset to UTC time.  A change of\nthe device's offset to UTC time will cause date-and-time values\nto change accordingly.  Such changes might happen periodically\nin case a server follows automatically daylight saving time\n(DST) time zone offset changes.  The canonical format for\ndate-and-time values with an unknown time zone (usually\nreferring to the notion of local time) uses the time-offset\n-00:00.", reference='RFC 3339: Date and Time on the Internet: Timestamps\nRFC 2579: Textual Conventions for SMIv2\nXSD-TYPES: XML Schema Part 2: Datatypes Second Edition', units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='\\\\d{{4}}-\\\\d{{2}}-\\\\d{{2}}T\\\\d{{2}}:\\\\d{{2}}:\\\\d{{2}}(\\\\.\\\\d+)?(Z|[\\\\+\\\\-]\\\\d{{2}}:\\\\d{{2}})', pcre='^(\\\\d{{4}}-\\\\d{{2}}-\\\\d{{2}}T\\\\d{{2}}:\\\\d{{2}}:\\\\d{{2}}(\\\\.\\\\d+)?(Z|[\\\\+\\\\-]\\\\d{{2}}:\\\\d{{2}}))$', invert=False)]))
+SRC_DNODE_CHILD_55: DLeaf = DLeaf(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='requested-site-start', config=True, description='Optional leaf indicating requested date and\ntime when the service at a particular site is\nexpected to start.', is_key=False, mandatory=False, type=DTypeString(name='yang:date-and-time', description="The date-and-time type is a profile of the ISO 8601\nstandard for representation of dates and times using the\nGregorian calendar.  The profile is defined by the\ndate-time production in Section 5.6 of RFC 3339 and the\nupdate defined in Section 2 of RFC 9557.  The value of\n60 for seconds is allowed only in the case of leap seconds.\n\nThe date-and-time type is compatible with the dateTime XML\nschema dateTime type with the following notable exceptions:\n\n(a) The date-and-time type does not allow negative years.\n\n(b) The time-offset Z indicates that the date-and-time\n    value is reported in UTC and that the local time zone\n    reference point is unknown.  The time-offset +00:00\n    indicates that the date-and-time value is reported in\n    UTC and that the local time zone reference point is UTC\n    (see Section 2 of RFC 9557).\n\nThis type is not equivalent to the DateAndTime textual\nconvention of the SMIv2 since RFC 3339 uses a different\nseparator between full-date and full-time and provides\nhigher resolution of time-secfrac.\n\nThe canonical format for date-and-time values with a known\ntime zone uses a numeric time zone offset that is calculated\nusing the device's configured known offset to UTC time.  A\nchange of the device's offset to UTC time will cause\ndate-and-time values to change accordingly.  Such changes\nmight happen periodically if a server automatically follows\ndaylight saving time (DST) time zone offset changes.  The\ncanonical format for date-and-time values reported in UTC\nwith an unknown local time zone offset SHOULD use the\ntime-offset Z and MAY use -00:00 for backwards\ncompatibility.", reference='ISO 8601: Data elements and interchange formats -- Information\n          interchange -- Representation of dates and times\nRFC 3339: Date and Time on the Internet: Timestamps\nRFC 9557: Date and Time on the Internet: Timestamps\n          with Additional Information\nRFC 2579: Textual Conventions for SMIv2\nXSD-TYPES: XML Schema Definition Language (XSD) 1.1\n           Part 2: Datatypes', units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='[0-9]{{4}}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?', pcre='^([0-9]{{4}}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?)$', invert=False)]))
 
-SRC_DNODE_CHILD_56: DLeaf = DLeaf(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='requested-site-stop', config=True, description='Optional leaf indicating requested date and\ntime when the service at a particular site is\nexpected to stop.', is_key=False, mandatory=False, type=DTypeString(name='yang:date-and-time', description="The date-and-time type is a profile of the ISO 8601\nstandard for representation of dates and times using the\nGregorian calendar.  The profile is defined by the\ndate-time production in Section 5.6 of RFC 3339.\n\nThe date-and-time type is compatible with the dateTime XML\nschema type with the following notable exceptions:\n\n(a) The date-and-time type does not allow negative years.\n\n(b) The date-and-time time-offset -00:00 indicates an unknown\n    time zone (see RFC 3339) while -00:00 and +00:00 and Z\n    all represent the same time zone in dateTime.\n\n(c) The canonical format (see below) of data-and-time values\n    differs from the canonical format used by the dateTime XML\n    schema type, which requires all times to be in UTC using\n    the time-offset 'Z'.\n\nThis type is not equivalent to the DateAndTime textual\nconvention of the SMIv2 since RFC 3339 uses a different\nseparator between full-date and full-time and provides\nhigher resolution of time-secfrac.\n\nThe canonical format for date-and-time values with a known time\nzone uses a numeric time zone offset that is calculated using\nthe device's configured known offset to UTC time.  A change of\nthe device's offset to UTC time will cause date-and-time values\nto change accordingly.  Such changes might happen periodically\nin case a server follows automatically daylight saving time\n(DST) time zone offset changes.  The canonical format for\ndate-and-time values with an unknown time zone (usually\nreferring to the notion of local time) uses the time-offset\n-00:00.", reference='RFC 3339: Date and Time on the Internet: Timestamps\nRFC 2579: Textual Conventions for SMIv2\nXSD-TYPES: XML Schema Part 2: Datatypes Second Edition', units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='\\\\d{{4}}-\\\\d{{2}}-\\\\d{{2}}T\\\\d{{2}}:\\\\d{{2}}:\\\\d{{2}}(\\\\.\\\\d+)?(Z|[\\\\+\\\\-]\\\\d{{2}}:\\\\d{{2}})', pcre='^(\\\\d{{4}}-\\\\d{{2}}-\\\\d{{2}}T\\\\d{{2}}:\\\\d{{2}}:\\\\d{{2}}(\\\\.\\\\d+)?(Z|[\\\\+\\\\-]\\\\d{{2}}:\\\\d{{2}}))$', invert=False)]))
+SRC_DNODE_CHILD_56: DLeaf = DLeaf(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='requested-site-stop', config=True, description='Optional leaf indicating requested date and\ntime when the service at a particular site is\nexpected to stop.', is_key=False, mandatory=False, type=DTypeString(name='yang:date-and-time', description="The date-and-time type is a profile of the ISO 8601\nstandard for representation of dates and times using the\nGregorian calendar.  The profile is defined by the\ndate-time production in Section 5.6 of RFC 3339 and the\nupdate defined in Section 2 of RFC 9557.  The value of\n60 for seconds is allowed only in the case of leap seconds.\n\nThe date-and-time type is compatible with the dateTime XML\nschema dateTime type with the following notable exceptions:\n\n(a) The date-and-time type does not allow negative years.\n\n(b) The time-offset Z indicates that the date-and-time\n    value is reported in UTC and that the local time zone\n    reference point is unknown.  The time-offset +00:00\n    indicates that the date-and-time value is reported in\n    UTC and that the local time zone reference point is UTC\n    (see Section 2 of RFC 9557).\n\nThis type is not equivalent to the DateAndTime textual\nconvention of the SMIv2 since RFC 3339 uses a different\nseparator between full-date and full-time and provides\nhigher resolution of time-secfrac.\n\nThe canonical format for date-and-time values with a known\ntime zone uses a numeric time zone offset that is calculated\nusing the device's configured known offset to UTC time.  A\nchange of the device's offset to UTC time will cause\ndate-and-time values to change accordingly.  Such changes\nmight happen periodically if a server automatically follows\ndaylight saving time (DST) time zone offset changes.  The\ncanonical format for date-and-time values reported in UTC\nwith an unknown local time zone offset SHOULD use the\ntime-offset Z and MAY use -00:00 for backwards\ncompatibility.", reference='ISO 8601: Data elements and interchange formats -- Information\n          interchange -- Representation of dates and times\nRFC 3339: Date and Time on the Internet: Timestamps\nRFC 9557: Date and Time on the Internet: Timestamps\n          with Additional Information\nRFC 2579: Textual Conventions for SMIv2\nXSD-TYPES: XML Schema Definition Language (XSD) 1.1\n           Part 2: Datatypes', units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='[0-9]{{4}}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?', pcre='^([0-9]{{4}}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?)$', invert=False)]))
 
 SRC_DNODE_CHILD_57: DContainer = DContainer(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='locations', config=True, description='List of locations for the site.', presence=False, children=[
     DList(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='location', key=['location-id'], config=True, description='Location of the site.', min_elements=0, ordered_by='system', children=[
@@ -700,7 +700,7 @@ SRC_DNODE_CHILD_79: DLeaf = DLeaf(module='ietf-l3vpn-svc', namespace='urn:ietf:p
 
 SRC_DNODE_CHILD_80: DContainer = DContainer(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='ospf', config=True, description='OSPF-specific configuration.', if_feature=['rtg-ospf'], presence=True, when="derived-from-or-self(../type, 'l3vpn-svc:ospf')", children=[
     DLeafList(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='address-family', config=True, description='If OSPF is used on this site, this node\ncontains a configured value.  This node\ncontains at least one address family\nto be activated.', min_elements=1, ordered_by='system', type=DTypeEnum(name='address-family', description='Defines a type for the address family.', reference=None, units=None, exts=[], builtin_type='enumeration', default=None, name_to_val={'ipv4':0, 'ipv6':1})),
-    DLeaf(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='area-address', config=True, description='Area address.', is_key=False, mandatory=True, type=DTypeString(name='yang:dotted-quad', description="An unsigned 32-bit number expressed in the dotted-quad\nnotation, i.e., four octets written as decimal numbers\nand separated with the '.' (full stop) character.", reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\\\.){{3}}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])', pcre='^((([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\\\.){{3}}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]))$', invert=False)])),
+    DLeaf(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='area-address', config=True, description='Area address.', is_key=False, mandatory=True, type=DTypeString(name='yang:dotted-quad', description="An unsigned 32-bit number expressed in the dotted-quad\nnotation, i.e., four octets written as decimal numbers\nand separated with the '.' (full stop) character.", reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){{3}}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])', pcre='^((([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){{3}}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]))$', invert=False)])),
     DLeaf(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='metric', config=True, description='Metric of the PE-CE link.  It is used\nin the routing state calculation and\npath selection.', default='1', is_key=False, mandatory=False, type=DTypeIntegerUnsigned(name='uint16', description=None, reference=None, units=None, exts=[], builtin_type='uint16', default=None, ranges=Ranges([(0, 65535)]))),
     DContainer(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='sham-links', config=True, description='List of sham links.', if_feature=[
 'rtg-ospf-sham-link'
@@ -965,7 +965,7 @@ SRC_DNODE_CHILD_114: DLeaf = DLeaf(module='ietf-l3vpn-svc', namespace='urn:ietf:
 
 SRC_DNODE_CHILD_115: DContainer = DContainer(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='ospf', config=True, description='OSPF-specific configuration.', if_feature=['rtg-ospf'], presence=True, when="derived-from-or-self(../type, 'l3vpn-svc:ospf')", children=[
     DLeafList(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='address-family', config=True, description='If OSPF is used on this site, this node\ncontains a configured value.  This node\ncontains at least one address family\nto be activated.', min_elements=1, ordered_by='system', type=DTypeEnum(name='address-family', description='Defines a type for the address family.', reference=None, units=None, exts=[], builtin_type='enumeration', default=None, name_to_val={'ipv4':0, 'ipv6':1})),
-    DLeaf(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='area-address', config=True, description='Area address.', is_key=False, mandatory=True, type=DTypeString(name='yang:dotted-quad', description="An unsigned 32-bit number expressed in the dotted-quad\nnotation, i.e., four octets written as decimal numbers\nand separated with the '.' (full stop) character.", reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\\\.){{3}}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])', pcre='^((([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\\\.){{3}}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]))$', invert=False)])),
+    DLeaf(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='area-address', config=True, description='Area address.', is_key=False, mandatory=True, type=DTypeString(name='yang:dotted-quad', description="An unsigned 32-bit number expressed in the dotted-quad\nnotation, i.e., four octets written as decimal numbers\nand separated with the '.' (full stop) character.", reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){{3}}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])', pcre='^((([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){{3}}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]))$', invert=False)])),
     DLeaf(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='metric', config=True, description='Metric of the PE-CE link.  It is used\nin the routing state calculation and\npath selection.', default='1', is_key=False, mandatory=False, type=DTypeIntegerUnsigned(name='uint16', description=None, reference=None, units=None, exts=[], builtin_type='uint16', default=None, ranges=Ranges([(0, 65535)]))),
     DContainer(module='ietf-l3vpn-svc', namespace='urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc', prefix='l3vpn-svc', name='sham-links', config=True, description='List of sham links.', if_feature=[
 'rtg-ospf-sham-link'
@@ -1379,7 +1379,7 @@ SRC_DNODE: DRoot = DRoot(
     children=[SRC_DNODE_CHILD_0, SRC_DNODE_CHILD_38, SRC_DNODE_CHILD_122],
     identities=[SRC_DNODE_IDENTITY_0, SRC_DNODE_IDENTITY_1, SRC_DNODE_IDENTITY_2, SRC_DNODE_IDENTITY_3, SRC_DNODE_IDENTITY_4, SRC_DNODE_IDENTITY_5, SRC_DNODE_IDENTITY_6, SRC_DNODE_IDENTITY_7, SRC_DNODE_IDENTITY_8, SRC_DNODE_IDENTITY_9, SRC_DNODE_IDENTITY_10, SRC_DNODE_IDENTITY_11, SRC_DNODE_IDENTITY_12, SRC_DNODE_IDENTITY_13, SRC_DNODE_IDENTITY_14, SRC_DNODE_IDENTITY_15, SRC_DNODE_IDENTITY_16, SRC_DNODE_IDENTITY_17, SRC_DNODE_IDENTITY_18, SRC_DNODE_IDENTITY_19, SRC_DNODE_IDENTITY_20, SRC_DNODE_IDENTITY_21, SRC_DNODE_IDENTITY_22, SRC_DNODE_IDENTITY_23, SRC_DNODE_IDENTITY_24, SRC_DNODE_IDENTITY_25, SRC_DNODE_IDENTITY_26, SRC_DNODE_IDENTITY_27, SRC_DNODE_IDENTITY_28, SRC_DNODE_IDENTITY_29, SRC_DNODE_IDENTITY_30, SRC_DNODE_IDENTITY_31, SRC_DNODE_IDENTITY_32, SRC_DNODE_IDENTITY_33, SRC_DNODE_IDENTITY_34, SRC_DNODE_IDENTITY_35, SRC_DNODE_IDENTITY_36, SRC_DNODE_IDENTITY_37, SRC_DNODE_IDENTITY_38, SRC_DNODE_IDENTITY_39, SRC_DNODE_IDENTITY_40, SRC_DNODE_IDENTITY_41, SRC_DNODE_IDENTITY_42, SRC_DNODE_IDENTITY_43, SRC_DNODE_IDENTITY_44, SRC_DNODE_IDENTITY_45, SRC_DNODE_IDENTITY_46, SRC_DNODE_IDENTITY_47, SRC_DNODE_IDENTITY_48, SRC_DNODE_IDENTITY_49, SRC_DNODE_IDENTITY_50, SRC_DNODE_IDENTITY_51, SRC_DNODE_IDENTITY_52, SRC_DNODE_IDENTITY_53, SRC_DNODE_IDENTITY_54, SRC_DNODE_IDENTITY_55, SRC_DNODE_IDENTITY_56, SRC_DNODE_IDENTITY_57, SRC_DNODE_IDENTITY_58, SRC_DNODE_IDENTITY_59, SRC_DNODE_IDENTITY_60, SRC_DNODE_IDENTITY_61, SRC_DNODE_IDENTITY_62, SRC_DNODE_IDENTITY_63, SRC_DNODE_IDENTITY_64, SRC_DNODE_IDENTITY_65, SRC_DNODE_IDENTITY_66, SRC_DNODE_IDENTITY_67, SRC_DNODE_IDENTITY_68, SRC_DNODE_IDENTITY_69, SRC_DNODE_IDENTITY_70, SRC_DNODE_IDENTITY_71, SRC_DNODE_IDENTITY_72, SRC_DNODE_IDENTITY_73, SRC_DNODE_IDENTITY_74, SRC_DNODE_IDENTITY_75, SRC_DNODE_IDENTITY_76, SRC_DNODE_IDENTITY_77, SRC_DNODE_IDENTITY_78, SRC_DNODE_IDENTITY_79, SRC_DNODE_IDENTITY_80],
     rpcs=[],
-    module_metadata={'urn:ietf:params:xml:ns:yang:ietf-yang-types':('ietf-yang-types', '2013-07-15', [], False), 'urn:ietf:params:xml:ns:yang:ietf-inet-types':('ietf-inet-types', '2013-07-15', [], False), 'http://stratoweave.org/yang/stratoweave-tmf640':('stratoweave-tmf640', '2025-10-26', [], False), 'http://stratoweave.org/yang/stratoweave':('stratoweave', '2026-04-01', [], False), 'http://stratoweave.org/yang/stratoweave-tmf':('stratoweave-tmf', '2025-10-26', [], True), 'urn:ietf:params:xml:ns:yang:ietf-yang-tmf-map':('ietf-yang-tmf-map', '2026-02-23', [], False), 'urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc':('ietf-l3vpn-svc', '2018-01-19', [], True), 'http://example.com/sorespo-ietf-l3vpn-svc':('sorespo-ietf-l3vpn-svc', '2026-03-31', [], True), 'http://example.com/netinfra':('netinfra', '2019-01-01', [], True)},
+    module_metadata={'urn:ietf:params:xml:ns:yang:ietf-yang-types':('ietf-yang-types', '2025-12-22', [], False), 'urn:ietf:params:xml:ns:yang:ietf-inet-types':('ietf-inet-types', '2013-07-15', [], False), 'http://stratoweave.org/yang/stratoweave-tmf640':('stratoweave-tmf640', '2025-10-26', [], False), 'http://stratoweave.org/yang/stratoweave':('stratoweave', '2026-04-01', [], False), 'http://stratoweave.org/yang/stratoweave-tmf':('stratoweave-tmf', '2025-10-26', [], True), 'urn:ietf:params:xml:ns:yang:ietf-yang-tmf-map':('ietf-yang-tmf-map', '2026-02-23', [], False), 'urn:ietf:params:xml:ns:yang:ietf-l3vpn-svc':('ietf-l3vpn-svc', '2018-01-19', [], True), 'http://example.com/sorespo-ietf-l3vpn-svc':('sorespo-ietf-l3vpn-svc', '2026-03-31', [], True), 'http://example.com/netinfra':('netinfra', '2019-01-01', [], True)},
 )
 
 SRC_YANG_0: str = r"""module ietf-l3vpn-svc {
@@ -4181,483 +4181,7 @@ identity urllc {
 }
 """
 
-SRC_YANG_1: str = r"""module ietf-yang-types {
-
-  namespace "urn:ietf:params:xml:ns:yang:ietf-yang-types";
-  prefix "yang";
-
-  organization
-   "IETF NETMOD (NETCONF Data Modeling Language) Working Group";
-
-  contact
-   "WG Web:   <http://tools.ietf.org/wg/netmod/>
-    WG List:  <mailto:netmod@ietf.org>
-
-    WG Chair: David Kessens
-              <mailto:david.kessens@nsn.com>
-
-    WG Chair: Juergen Schoenwaelder
-              <mailto:j.schoenwaelder@jacobs-university.de>
-
-    Editor:   Juergen Schoenwaelder
-              <mailto:j.schoenwaelder@jacobs-university.de>";
-
-  description
-   "This module contains a collection of generally useful derived
-    YANG data types.
-
-    Copyright (c) 2013 IETF Trust and the persons identified as
-    authors of the code.  All rights reserved.
-
-    Redistribution and use in source and binary forms, with or
-    without modification, is permitted pursuant to, and subject
-    to the license terms contained in, the Simplified BSD License
-    set forth in Section 4.c of the IETF Trust's Legal Provisions
-    Relating to IETF Documents
-    (http://trustee.ietf.org/license-info).
-
-    This version of this YANG module is part of RFC 6991; see
-    the RFC itself for full legal notices.";
-
-  revision 2013-07-15 {
-    description
-     "This revision adds the following new data types:
-      - yang-identifier
-      - hex-string
-      - uuid
-      - dotted-quad";
-    reference
-     "RFC 6991: Common YANG Data Types";
-  }
-
-  revision 2010-09-24 {
-    description
-     "Initial revision.";
-    reference
-     "RFC 6021: Common YANG Data Types";
-  }
-
-  /*** collection of counter and gauge types ***/
-
-  typedef counter32 {
-    type uint32;
-    description
-     "The counter32 type represents a non-negative integer
-      that monotonically increases until it reaches a
-      maximum value of 2^32-1 (4294967295 decimal), when it
-      wraps around and starts increasing again from zero.
-
-      Counters have no defined 'initial' value, and thus, a
-      single value of a counter has (in general) no information
-      content.  Discontinuities in the monotonically increasing
-      value normally occur at re-initialization of the
-      management system, and at other times as specified in the
-      description of a schema node using this type.  If such
-      other times can occur, for example, the creation of
-      a schema node of type counter32 at times other than
-      re-initialization, then a corresponding schema node
-      should be defined, with an appropriate type, to indicate
-      the last discontinuity.
-
-      The counter32 type should not be used for configuration
-      schema nodes.  A default statement SHOULD NOT be used in
-      combination with the type counter32.
-
-      In the value set and its semantics, this type is equivalent
-      to the Counter32 type of the SMIv2.";
-    reference
-     "RFC 2578: Structure of Management Information Version 2
-                (SMIv2)";
-  }
-
-  typedef zero-based-counter32 {
-    type yang:counter32;
-    default "0";
-    description
-     "The zero-based-counter32 type represents a counter32
-      that has the defined 'initial' value zero.
-
-      A schema node of this type will be set to zero (0) on creation
-      and will thereafter increase monotonically until it reaches
-      a maximum value of 2^32-1 (4294967295 decimal), when it
-      wraps around and starts increasing again from zero.
-
-      Provided that an application discovers a new schema node
-      of this type within the minimum time to wrap, it can use the
-      'initial' value as a delta.  It is important for a management
-      station to be aware of this minimum time and the actual time
-      between polls, and to discard data if the actual time is too
-      long or there is no defined minimum time.
-
-      In the value set and its semantics, this type is equivalent
-      to the ZeroBasedCounter32 textual convention of the SMIv2.";
-    reference
-      "RFC 4502: Remote Network Monitoring Management Information
-                 Base Version 2";
-  }
-
-  typedef counter64 {
-    type uint64;
-    description
-     "The counter64 type represents a non-negative integer
-      that monotonically increases until it reaches a
-      maximum value of 2^64-1 (18446744073709551615 decimal),
-      when it wraps around and starts increasing again from zero.
-
-      Counters have no defined 'initial' value, and thus, a
-      single value of a counter has (in general) no information
-      content.  Discontinuities in the monotonically increasing
-      value normally occur at re-initialization of the
-      management system, and at other times as specified in the
-      description of a schema node using this type.  If such
-      other times can occur, for example, the creation of
-      a schema node of type counter64 at times other than
-      re-initialization, then a corresponding schema node
-      should be defined, with an appropriate type, to indicate
-      the last discontinuity.
-
-      The counter64 type should not be used for configuration
-      schema nodes.  A default statement SHOULD NOT be used in
-      combination with the type counter64.
-
-      In the value set and its semantics, this type is equivalent
-      to the Counter64 type of the SMIv2.";
-    reference
-     "RFC 2578: Structure of Management Information Version 2
-                (SMIv2)";
-  }
-
-  typedef zero-based-counter64 {
-    type yang:counter64;
-    default "0";
-    description
-     "The zero-based-counter64 type represents a counter64 that
-      has the defined 'initial' value zero.
-
-      A schema node of this type will be set to zero (0) on creation
-      and will thereafter increase monotonically until it reaches
-      a maximum value of 2^64-1 (18446744073709551615 decimal),
-      when it wraps around and starts increasing again from zero.
-
-      Provided that an application discovers a new schema node
-      of this type within the minimum time to wrap, it can use the
-      'initial' value as a delta.  It is important for a management
-      station to be aware of this minimum time and the actual time
-      between polls, and to discard data if the actual time is too
-      long or there is no defined minimum time.
-
-      In the value set and its semantics, this type is equivalent
-      to the ZeroBasedCounter64 textual convention of the SMIv2.";
-    reference
-     "RFC 2856: Textual Conventions for Additional High Capacity
-                Data Types";
-  }
-
-  typedef gauge32 {
-    type uint32;
-    description
-     "The gauge32 type represents a non-negative integer, which
-      may increase or decrease, but shall never exceed a maximum
-      value, nor fall below a minimum value.  The maximum value
-      cannot be greater than 2^32-1 (4294967295 decimal), and
-      the minimum value cannot be smaller than 0.  The value of
-      a gauge32 has its maximum value whenever the information
-      being modeled is greater than or equal to its maximum
-      value, and has its minimum value whenever the information
-      being modeled is smaller than or equal to its minimum value.
-      If the information being modeled subsequently decreases
-      below (increases above) the maximum (minimum) value, the
-      gauge32 also decreases (increases).
-
-      In the value set and its semantics, this type is equivalent
-      to the Gauge32 type of the SMIv2.";
-    reference
-     "RFC 2578: Structure of Management Information Version 2
-                (SMIv2)";
-  }
-
-  typedef gauge64 {
-    type uint64;
-    description
-     "The gauge64 type represents a non-negative integer, which
-      may increase or decrease, but shall never exceed a maximum
-      value, nor fall below a minimum value.  The maximum value
-      cannot be greater than 2^64-1 (18446744073709551615), and
-      the minimum value cannot be smaller than 0.  The value of
-      a gauge64 has its maximum value whenever the information
-      being modeled is greater than or equal to its maximum
-      value, and has its minimum value whenever the information
-      being modeled is smaller than or equal to its minimum value.
-      If the information being modeled subsequently decreases
-      below (increases above) the maximum (minimum) value, the
-      gauge64 also decreases (increases).
-
-      In the value set and its semantics, this type is equivalent
-      to the CounterBasedGauge64 SMIv2 textual convention defined
-      in RFC 2856";
-    reference
-     "RFC 2856: Textual Conventions for Additional High Capacity
-                Data Types";
-  }
-
-  /*** collection of identifier-related types ***/
-
-  typedef object-identifier {
-    type string {
-      pattern '(([0-1](\\.[1-3]?[0-9]))|(2\\.(0|([1-9]\\d*))))'
-            + '(\\.(0|([1-9]\\d*)))*';
-    }
-    description
-     "The object-identifier type represents administratively
-      assigned names in a registration-hierarchical-name tree.
-
-      Values of this type are denoted as a sequence of numerical
-      non-negative sub-identifier values.  Each sub-identifier
-      value MUST NOT exceed 2^32-1 (4294967295).  Sub-identifiers
-      are separated by single dots and without any intermediate
-      whitespace.
-
-      The ASN.1 standard restricts the value space of the first
-      sub-identifier to 0, 1, or 2.  Furthermore, the value space
-      of the second sub-identifier is restricted to the range
-      0 to 39 if the first sub-identifier is 0 or 1.  Finally,
-      the ASN.1 standard requires that an object identifier
-      has always at least two sub-identifiers.  The pattern
-      captures these restrictions.
-
-      Although the number of sub-identifiers is not limited,
-      module designers should realize that there may be
-      implementations that stick with the SMIv2 limit of 128
-      sub-identifiers.
-
-      This type is a superset of the SMIv2 OBJECT IDENTIFIER type
-      since it is not restricted to 128 sub-identifiers.  Hence,
-      this type SHOULD NOT be used to represent the SMIv2 OBJECT
-      IDENTIFIER type; the object-identifier-128 type SHOULD be
-      used instead.";
-    reference
-     "ISO9834-1: Information technology -- Open Systems
-      Interconnection -- Procedures for the operation of OSI
-      Registration Authorities: General procedures and top
-      arcs of the ASN.1 Object Identifier tree";
-  }
-
-  typedef object-identifier-128 {
-    type object-identifier {
-      pattern '\\d*(\\.\\d*){1,127}';
-    }
-    description
-     "This type represents object-identifiers restricted to 128
-      sub-identifiers.
-
-      In the value set and its semantics, this type is equivalent
-      to the OBJECT IDENTIFIER type of the SMIv2.";
-    reference
-     "RFC 2578: Structure of Management Information Version 2
-                (SMIv2)";
-  }
-
-  typedef yang-identifier {
-    type string {
-      length "1..max";
-      pattern '[a-zA-Z_][a-zA-Z0-9\\-_.]*';
-      pattern '.|..|[^xX].*|.[^mM].*|..[^lL].*';
-    }
-    description
-      "A YANG identifier string as defined by the 'identifier'
-       rule in Section 12 of RFC 6020.  An identifier must
-       start with an alphabetic character or an underscore
-       followed by an arbitrary sequence of alphabetic or
-       numeric characters, underscores, hyphens, or dots.
-
-       A YANG identifier MUST NOT start with any possible
-       combination of the lowercase or uppercase character
-       sequence 'xml'.";
-    reference
-      "RFC 6020: YANG - A Data Modeling Language for the Network
-                 Configuration Protocol (NETCONF)";
-  }
-
-  /*** collection of types related to date and time***/
-
-  typedef date-and-time {
-    type string {
-      pattern '\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?'
-            + '(Z|[\\+\\-]\\d{2}:\\d{2})';
-    }
-    description
-     "The date-and-time type is a profile of the ISO 8601
-      standard for representation of dates and times using the
-      Gregorian calendar.  The profile is defined by the
-      date-time production in Section 5.6 of RFC 3339.
-
-      The date-and-time type is compatible with the dateTime XML
-      schema type with the following notable exceptions:
-
-      (a) The date-and-time type does not allow negative years.
-
-      (b) The date-and-time time-offset -00:00 indicates an unknown
-          time zone (see RFC 3339) while -00:00 and +00:00 and Z
-          all represent the same time zone in dateTime.
-
-      (c) The canonical format (see below) of data-and-time values
-          differs from the canonical format used by the dateTime XML
-          schema type, which requires all times to be in UTC using
-          the time-offset 'Z'.
-
-      This type is not equivalent to the DateAndTime textual
-      convention of the SMIv2 since RFC 3339 uses a different
-      separator between full-date and full-time and provides
-      higher resolution of time-secfrac.
-
-      The canonical format for date-and-time values with a known time
-      zone uses a numeric time zone offset that is calculated using
-      the device's configured known offset to UTC time.  A change of
-      the device's offset to UTC time will cause date-and-time values
-      to change accordingly.  Such changes might happen periodically
-      in case a server follows automatically daylight saving time
-      (DST) time zone offset changes.  The canonical format for
-      date-and-time values with an unknown time zone (usually
-      referring to the notion of local time) uses the time-offset
-      -00:00.";
-    reference
-     "RFC 3339: Date and Time on the Internet: Timestamps
-      RFC 2579: Textual Conventions for SMIv2
-      XSD-TYPES: XML Schema Part 2: Datatypes Second Edition";
-  }
-
-  typedef timeticks {
-    type uint32;
-    description
-     "The timeticks type represents a non-negative integer that
-      represents the time, modulo 2^32 (4294967296 decimal), in
-      hundredths of a second between two epochs.  When a schema
-      node is defined that uses this type, the description of
-      the schema node identifies both of the reference epochs.
-
-      In the value set and its semantics, this type is equivalent
-      to the TimeTicks type of the SMIv2.";
-    reference
-     "RFC 2578: Structure of Management Information Version 2
-                (SMIv2)";
-  }
-
-  typedef timestamp {
-    type yang:timeticks;
-    description
-     "The timestamp type represents the value of an associated
-      timeticks schema node at which a specific occurrence
-      happened.  The specific occurrence must be defined in the
-      description of any schema node defined using this type.  When
-      the specific occurrence occurred prior to the last time the
-      associated timeticks attribute was zero, then the timestamp
-      value is zero.  Note that this requires all timestamp values
-      to be reset to zero when the value of the associated timeticks
-      attribute reaches 497+ days and wraps around to zero.
-
-      The associated timeticks schema node must be specified
-      in the description of any schema node using this type.
-
-      In the value set and its semantics, this type is equivalent
-      to the TimeStamp textual convention of the SMIv2.";
-    reference
-     "RFC 2579: Textual Conventions for SMIv2";
-  }
-
-  /*** collection of generic address types ***/
-
-  typedef phys-address {
-    type string {
-      pattern '([0-9a-fA-F]{2}(:[0-9a-fA-F]{2})*)?';
-    }
-
-    description
-     "Represents media- or physical-level addresses represented
-      as a sequence octets, each octet represented by two hexadecimal
-      numbers.  Octets are separated by colons.  The canonical
-      representation uses lowercase characters.
-
-      In the value set and its semantics, this type is equivalent
-      to the PhysAddress textual convention of the SMIv2.";
-    reference
-     "RFC 2579: Textual Conventions for SMIv2";
-  }
-
-  typedef mac-address {
-    type string {
-      pattern '[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}';
-    }
-    description
-     "The mac-address type represents an IEEE 802 MAC address.
-      The canonical representation uses lowercase characters.
-
-      In the value set and its semantics, this type is equivalent
-      to the MacAddress textual convention of the SMIv2.";
-    reference
-     "IEEE 802: IEEE Standard for Local and Metropolitan Area
-                Networks: Overview and Architecture
-      RFC 2579: Textual Conventions for SMIv2";
-  }
-
-  /*** collection of XML-specific types ***/
-
-  typedef xpath1.0 {
-    type string;
-    description
-     "This type represents an XPATH 1.0 expression.
-
-      When a schema node is defined that uses this type, the
-      description of the schema node MUST specify the XPath
-      context in which the XPath expression is evaluated.";
-    reference
-     "XPATH: XML Path Language (XPath) Version 1.0";
-  }
-
-  /*** collection of string types ***/
-
-  typedef hex-string {
-    type string {
-      pattern '([0-9a-fA-F]{2}(:[0-9a-fA-F]{2})*)?';
-    }
-    description
-     "A hexadecimal string with octets represented as hex digits
-      separated by colons.  The canonical representation uses
-      lowercase characters.";
-  }
-
-  typedef uuid {
-    type string {
-      pattern '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-'
-            + '[0-9a-fA-F]{4}-[0-9a-fA-F]{12}';
-    }
-    description
-     "A Universally Unique IDentifier in the string representation
-      defined in RFC 4122.  The canonical representation uses
-      lowercase characters.
-
-      The following is an example of a UUID in string representation:
-      f81d4fae-7dec-11d0-a765-00a0c91e6bf6
-      ";
-    reference
-     "RFC 4122: A Universally Unique IDentifier (UUID) URN
-                Namespace";
-  }
-
-  typedef dotted-quad {
-    type string {
-      pattern
-        '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}'
-      + '([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])';
-    }
-    description
-      "An unsigned 32-bit number expressed in the dotted-quad
-       notation, i.e., four octets written as decimal numbers
-       and separated with the '.' (full stop) character.";
-  }
-}
-"""
-
-SRC_YANG_2: str = r"""module netinfra {
+SRC_YANG_1: str = r"""module netinfra {
   yang-version "1.1";
   namespace "http://example.com/netinfra";
   prefix "netinfra";
@@ -4774,7 +4298,7 @@ SRC_YANG_2: str = r"""module netinfra {
 }
 """
 
-SRC_YANG_3: str = r"""module sorespo-ietf-l3vpn-svc {
+SRC_YANG_2: str = r"""module sorespo-ietf-l3vpn-svc {
   yang-version 1.1;
   namespace "http://example.com/sorespo-ietf-l3vpn-svc";
   prefix sorespo-l3vpn-svc;
@@ -4861,7 +4385,7 @@ SRC_YANG_3: str = r"""module sorespo-ietf-l3vpn-svc {
 }
 """
 
-SRC_YANG_4: str = r"""module stratoweave {
+SRC_YANG_3: str = r"""module stratoweave {
   yang-version "1.1";
   namespace "http://stratoweave.org/yang/stratoweave";
   prefix "sw";
@@ -4929,7 +4453,7 @@ SRC_YANG_4: str = r"""module stratoweave {
   }
 }"""
 
-SRC_YANG_5: str = r"""module ietf-inet-types {
+SRC_YANG_4: str = r"""module ietf-inet-types {
 
   namespace "urn:ietf:params:xml:ns:yang:ietf-inet-types";
   prefix "inet";
@@ -5386,6 +4910,772 @@ SRC_YANG_5: str = r"""module ietf-inet-types {
                 Identifiers (URIs)";
   }
 
+}
+"""
+
+SRC_YANG_5: str = r"""module ietf-yang-types {
+  namespace "urn:ietf:params:xml:ns:yang:ietf-yang-types";
+  prefix yang;
+
+  organization
+    "IETF Network Modeling (NETMOD) Working Group";
+  contact
+    "WG Web:   <https://datatracker.ietf.org/wg/netmod/>
+     WG List:  <mailto:netmod@ietf.org>
+
+     Editor:   JÃ¼rgen SchÃ¶nwÃ¤lder
+               <mailto:jschoenwaelder@constructor.university>";
+  description
+    "This module contains a collection of generally useful derived
+     YANG data types.
+
+     The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
+     NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
+     'MAY', and 'OPTIONAL' in this document are to be interpreted as
+     described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
+     they appear in all capitals, as shown here.
+
+     Copyright (c) 2025 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Revised BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC 9911;
+     see the RFC itself for full legal notices.";
+
+  revision 2025-12-22 {
+    description
+      "This revision adds the following new data types:
+       - yang:date
+       - yang:date-no-zone
+       - yang:time
+       - yang:time-no-zone
+       - yang:hours32
+       - yang:minutes32
+       - yang:seconds32
+       - yang:centiseconds32
+       - yang:milliseconds32
+       - yang:microseconds32
+       - yang:microseconds64
+       - yang:nanoseconds32
+       - yang:nanoseconds64
+       - yang:language-tag
+       The yang-identifier definition has been aligned with YANG
+       1.1, and types representing time support the representation
+       of leap seconds.  The representation of time zone offsets
+       has been aligned with RFC 9557.  Several description and
+       pattern statements have been improved.";
+    reference
+      "RFC 9911: Common YANG Data Types";
+  }
+  revision 2013-07-15 {
+    description
+      "This revision adds the following new data types:
+       - yang:yang-identifier
+       - yang:hex-string
+       - yang:uuid
+       - yang:dotted-quad";
+    reference
+      "RFC 6991: Common YANG Data Types";
+  }
+  revision 2010-09-24 {
+    description
+      "Initial revision.";
+    reference
+      "RFC 6021: Common YANG Data Types";
+  }
+
+  /*** collection of counter and gauge types ***/
+
+  typedef counter32 {
+    type uint32;
+    description
+      "The counter32 type represents a non-negative integer
+       that monotonically increases until it reaches a
+       maximum value of 2^32-1 (4294967295 decimal), when it
+       wraps around and starts increasing again from zero.
+
+       Counters have no defined 'initial' value, and thus, a
+       single value of a counter has (in general) no information
+       content.  Discontinuities in the monotonically increasing
+       value normally occur at re-initialization of the
+       management system and at other times as specified in the
+       description of a schema node using this type.  If
+       discontinuities occur at times other than re-initialization
+       (for example, at the instantiation of a schema node of type
+       counter32), then a corresponding schema node should be
+       defined, with an appropriate type, to indicate the last
+       discontinuity.
+
+       The counter32 type should not be used for configuration
+       schema nodes.  A default statement SHOULD NOT be used in
+       combination with the type counter32.
+
+       In the value set and its semantics, this type is equivalent
+       to the Counter32 type of the SMIv2.";
+    reference
+      "RFC 2578: Structure of Management Information Version 2
+                 (SMIv2)";
+  }
+
+  typedef zero-based-counter32 {
+    type counter32;
+    default "0";
+    description
+      "The zero-based-counter32 type represents a counter32
+       that has the defined 'initial' value zero.
+
+       A data tree node using this type will be set to zero (0)
+       on creation and will thereafter increase monotonically until
+       it reaches a maximum value of 2^32-1 (4294967295 decimal),
+       when it wraps around and starts increasing again from zero.
+
+       Provided that an application discovers a new data tree node
+       using this type within the minimum time to wrap, it can use
+       the 'initial' value as a delta.  It is important for a
+       management station to be aware of this minimum time and the
+       actual time between polls, and to discard data if the actual
+       time is too long or there is no defined minimum time.
+
+       In the value set and its semantics, this type is equivalent
+       to the ZeroBasedCounter32 textual convention of the SMIv2.";
+    reference
+      "RFC 4502: Remote Network Monitoring Management Information
+                 Base Version 2";
+  }
+
+  typedef counter64 {
+    type uint64;
+    description
+      "The counter64 type represents a non-negative integer
+       that monotonically increases until it reaches a
+       maximum value of 2^64-1 (18446744073709551615 decimal),
+       when it wraps around and starts increasing again from zero.
+
+       Counters have no defined 'initial' value, and thus, a
+       single value of a counter has (in general) no information
+       content.  Discontinuities in the monotonically increasing
+       value normally occur at re-initialization of the
+       management system and at other times as specified in the
+       description of a schema node using this type.  If
+       discontinuities occur at times other than re-initialization
+       (for example, at the instantiation of a schema node of type
+       counter64), then a corresponding schema node should be
+       defined, with an appropriate type, to indicate the last
+       discontinuity.
+
+       The counter64 type should not be used for configuration
+       schema nodes.  A default statement SHOULD NOT be used in
+       combination with the type counter64.
+
+       In the value set and its semantics, this type is equivalent
+       to the Counter64 type of the SMIv2.";
+    reference
+      "RFC 2578: Structure of Management Information Version 2
+                 (SMIv2)";
+  }
+
+  typedef zero-based-counter64 {
+    type counter64;
+    default "0";
+    description
+      "The zero-based-counter64 type represents a counter64 that
+       has the defined 'initial' value zero.
+
+       A data tree node using this type will be set to zero (0)
+       on creation and will thereafter increase monotonically until
+       it reaches a maximum value of 2^64-1 (18446744073709551615
+       decimal), when it wraps around and starts increasing again
+       from zero.
+
+       Provided that an application discovers a new data tree node
+       using this type within the minimum time to wrap, it can use
+       the 'initial' value as a delta.  It is important for a
+       management station to be aware of this minimum time and the
+       actual time between polls, and to discard data if the actual
+       time is too long or there is no defined minimum time.
+
+       In the value set and its semantics, this type is equivalent
+       to the ZeroBasedCounter64 textual convention of the SMIv2.";
+    reference
+      "RFC 2856: Textual Conventions for Additional High Capacity
+                 Data Types";
+  }
+
+  typedef gauge32 {
+    type uint32;
+    description
+      "The gauge32 type represents a non-negative integer, which
+       may increase or decrease, but shall never exceed a maximum
+       value, nor fall below a minimum value.  The maximum value
+       cannot be greater than 2^32-1 (4294967295 decimal), and
+       the minimum value cannot be smaller than 0.  The value of
+       a gauge32 has its maximum value whenever the information
+       being modeled is greater than or equal to its maximum
+       value, and has its minimum value whenever the information
+       being modeled is smaller than or equal to its minimum value.
+       If the information being modeled subsequently decreases below
+       the maximum value, the gauge32 also decreases; likewise, if
+       the information increases above the minimum value, the
+       gauge32 also increases.
+
+       In the value set and its semantics, this type is equivalent
+       to the Gauge32 type of the SMIv2.";
+    reference
+      "RFC 2578: Structure of Management Information Version 2
+                 (SMIv2)";
+  }
+
+  typedef gauge64 {
+    type uint64;
+    description
+      "The gauge64 type represents a non-negative integer, which
+       may increase or decrease, but shall never exceed a maximum
+       value, nor fall below a minimum value.  The maximum value
+       cannot be greater than 2^64-1 (18446744073709551615), and
+       the minimum value cannot be smaller than 0.  The value of
+       a gauge64 has its maximum value whenever the information
+       being modeled is greater than or equal to its maximum
+       value, and has its minimum value whenever the information
+       being modeled is smaller than or equal to its minimum value.
+       If the information being modeled subsequently decreases
+       below (increases above) the maximum (minimum) value, the
+       gauge64 also decreases (increases).
+
+       In the value set and its semantics, this type is equivalent
+       to the CounterBasedGauge64 SMIv2 textual convention defined
+       in RFC 2856";
+    reference
+      "RFC 2856: Textual Conventions for Additional High Capacity
+                 Data Types";
+  }
+
+  /*** collection of identifier-related types ***/
+
+  typedef object-identifier {
+    type string {
+      pattern '(([0-1](\.[1-3]?[0-9]))|(2\.(0|([1-9][0-9]*))))'
+            + '(\.(0|([1-9][0-9]*)))*';
+    }
+    description
+      "The object-identifier type represents administratively
+       assigned names in a registration-hierarchical-name tree.
+
+       Values of this type are denoted as a sequence of numerical
+       non-negative sub-identifier values.  Each sub-identifier
+       value MUST NOT exceed 2^32-1 (4294967295).  Sub-identifiers
+       are separated by single dots and without any intermediate
+       whitespace.
+
+       The ASN.1 standard restricts the value space of the first
+       sub-identifier to 0, 1, or 2.  Furthermore, the value space
+       of the second sub-identifier is restricted to the range
+       0 to 39 if the first sub-identifier is 0 or 1.  Finally,
+       the ASN.1 standard requires that an object identifier
+       has always at least two sub-identifiers.  The pattern
+       captures these restrictions.
+
+       Although the number of sub-identifiers is not limited,
+       module designers should realize that there may be
+       implementations that stick with the SMIv2 limit of 128
+       sub-identifiers.
+
+       This type is a superset of the SMIv2 OBJECT IDENTIFIER type
+       since it is not restricted to 128 sub-identifiers.  Hence,
+       this type SHOULD NOT be used to represent the SMIv2 OBJECT
+       IDENTIFIER type; the object-identifier-128 type SHOULD be
+       used instead.";
+    reference
+      "ISO 9834-1: Information technology -- Procedures for the
+       operation of object identifier registration authorities --
+       Part 1: General procedures and top arcs of the international
+       object identifier tree";
+  }
+
+  typedef object-identifier-128 {
+    type object-identifier {
+      pattern '[0-9]*(\.[0-9]*){1,127}';
+    }
+    description
+      "This type represents object-identifiers restricted to 128
+       sub-identifiers.
+
+       In the value set and its semantics, this type is equivalent
+       to the OBJECT IDENTIFIER type of the SMIv2.";
+    reference
+      "RFC 2578: Structure of Management Information Version 2
+                 (SMIv2)";
+  }
+
+  /*** collection of types related to date and time ***/
+
+  typedef date-and-time {
+    type string {
+      pattern
+        '[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])'
+      + 'T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)'
+      + '(\.[0-9]+)?'
+      + '(Z|[\+\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?';
+    }
+    description
+      "The date-and-time type is a profile of the ISO 8601
+       standard for representation of dates and times using the
+       Gregorian calendar.  The profile is defined by the
+       date-time production in Section 5.6 of RFC 3339 and the
+       update defined in Section 2 of RFC 9557.  The value of
+       60 for seconds is allowed only in the case of leap seconds.
+
+       The date-and-time type is compatible with the dateTime XML
+       schema dateTime type with the following notable exceptions:
+
+       (a) The date-and-time type does not allow negative years.
+
+       (b) The time-offset Z indicates that the date-and-time
+           value is reported in UTC and that the local time zone
+           reference point is unknown.  The time-offset +00:00
+           indicates that the date-and-time value is reported in
+           UTC and that the local time zone reference point is UTC
+           (see Section 2 of RFC 9557).
+
+       This type is not equivalent to the DateAndTime textual
+       convention of the SMIv2 since RFC 3339 uses a different
+       separator between full-date and full-time and provides
+       higher resolution of time-secfrac.
+
+       The canonical format for date-and-time values with a known
+       time zone uses a numeric time zone offset that is calculated
+       using the device's configured known offset to UTC time.  A
+       change of the device's offset to UTC time will cause
+       date-and-time values to change accordingly.  Such changes
+       might happen periodically if a server automatically follows
+       daylight saving time (DST) time zone offset changes.  The
+       canonical format for date-and-time values reported in UTC
+       with an unknown local time zone offset SHOULD use the
+       time-offset Z and MAY use -00:00 for backwards
+       compatibility.";
+    reference
+      "ISO 8601: Data elements and interchange formats -- Information
+                 interchange -- Representation of dates and times
+       RFC 3339: Date and Time on the Internet: Timestamps
+       RFC 9557: Date and Time on the Internet: Timestamps
+                 with Additional Information
+       RFC 2579: Textual Conventions for SMIv2
+       XSD-TYPES: XML Schema Definition Language (XSD) 1.1
+                  Part 2: Datatypes";
+  }
+
+  typedef date {
+    type string {
+      pattern '[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])'
+            + '(Z|[\+\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?';
+    }
+    description
+      "The date type represents a time-interval of the length
+       of a day, i.e., 24 hours.  It includes an optional time
+       zone offset.
+
+       The date type is compatible with the XML schema date
+       type with the following notable exceptions:
+
+       (a) The date type does not allow negative years.
+
+       (b) The time-offset Z indicates that the date value is
+           reported in UTC and that the local time zone reference
+           point is unknown.  The time-offset +00:00 indicates that
+           the date value is reported in UTC and that the local
+           time zone reference point is UTC (see Section 2 of
+           RFC 9557).
+
+       The canonical format for date values with a known time
+       zone uses a numeric time zone offset that is calculated using
+       the device's configured known offset to UTC time.  A change of
+       the device's offset to UTC time will cause date values
+       to change accordingly.  Such changes might happen periodically
+       if a server automatically follows daylight saving time
+       (DST) time zone offset changes.  The canonical format for
+       date values reported in UTC with an unknown local time zone
+       offset uses the time-offset Z.";
+    reference
+      "RFC 3339: Date and Time on the Internet: Timestamps
+       RFC 9557: Date and Time on the Internet: Timestamps
+                 with Additional Information
+       XSD-TYPES: XML Schema Definition Language (XSD) 1.1
+                  Part 2: Datatypes";
+  }
+
+  typedef date-no-zone {
+    type date {
+      pattern '[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])';
+    }
+    description
+      "The date-no-zone type represents a date without the optional
+       time zone offset information.";
+  }
+
+  typedef time {
+    type string {
+      pattern
+        '(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)'
+      + '(\.[0-9]+)?'
+      + '(Z|[\+\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?';
+    }
+    description
+      "The time type represents an instance of time of zero duration
+       that recurs every day.  It includes an optional time zone
+       offset.  The value of 60 for seconds is allowed only in the
+       case of leap seconds.
+
+       The time type is compatible with the XML schema time
+       type with the following notable exception:
+
+       (a) The time-offset Z indicates that the time value is
+           reported in UTC and that the local time zone reference
+           point is unknown.  The time-offset +00:00 indicates that
+           the time value is reported in UTC and that the local
+           time zone reference point is UTC (see Section 2 of
+           RFC 9557).
+
+       The canonical format for time values with a known time
+       zone uses a numeric time zone offset that is calculated using
+       the device's configured known offset to UTC time.  A change of
+       the device's offset to UTC time will cause time values
+       to change accordingly.  Such changes might happen periodically
+       if a server automatically follows daylight saving time
+       (DST) time zone offset changes.  The canonical format for
+       time values reported in UTC with an unknown local time zone
+       offset uses the time-offset Z.";
+    reference
+      "RFC 3339: Date and Time on the Internet: Timestamps
+       RFC 9557: Date and Time on the Internet: Timestamps
+                 with Additional Information
+       XSD-TYPES: XML Schema Definition Language (XSD) 1.1
+                  Part 2: Datatypes";
+  }
+
+  typedef time-no-zone {
+    type time {
+      pattern
+        '(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)'
+      + '(\.[0-9]+)?';
+    }
+    description
+      "The time-no-zone type represents a time without the optional
+       time zone offset information.";
+  }
+
+  typedef hours32 {
+    type int32;
+    units "hours";
+    description
+      "A period of time measured in units of hours.
+
+       The maximum time period that can be expressed is in the
+       range [-89478485 days 08:00:00 to 89478485 days 07:00:00].
+
+       This type should be range-restricted in situations
+       where only non-negative time periods are desirable
+       (i.e., range '0..max').";
+  }
+
+  typedef minutes32 {
+    type int32;
+    units "minutes";
+    description
+      "A period of time measured in units of minutes.
+
+       The maximum time period that can be expressed is in the
+       range [-1491308 days 2:08:00 to 1491308 days 2:07:00].
+
+       This type should be range-restricted in situations
+       where only non-negative time periods are desirable
+       (i.e., range '0..max').";
+  }
+
+  typedef seconds32 {
+    type int32;
+    units "seconds";
+    description
+      "A period of time measured in units of seconds.
+
+       The maximum time period that can be expressed is in the
+       range [-24855 days 03:14:08 to 24855 days 03:14:07].
+
+       This type should be range-restricted in situations
+       where only non-negative time periods are desirable
+       (i.e., range '0..max').";
+  }
+
+  typedef centiseconds32 {
+    type int32;
+    units "centiseconds";
+    description
+      "A period of time measured in units of 10^-2 seconds.
+
+       The maximum time period that can be expressed is in the
+       range [-248 days 13:13:56 to 248 days 13:13:56].
+
+       This type should be range-restricted in situations
+       where only non-negative time periods are desirable
+       (i.e., range '0..max').";
+  }
+
+  typedef milliseconds32 {
+    type int32;
+    units "milliseconds";
+    description
+      "A period of time measured in units of 10^-3 seconds.
+
+       The maximum time period that can be expressed is in the
+       range [-24 days 20:31:23 to 24 days 20:31:23].
+
+       This type should be range-restricted in situations
+       where only non-negative time periods are desirable
+       (i.e., range '0..max').";
+  }
+
+  typedef microseconds32 {
+    type int32;
+    units "microseconds";
+    description
+      "A period of time measured in units of 10^-6 seconds.
+
+       The maximum time period that can be expressed is in the
+       range [-00:35:47 to 00:35:47].
+
+       This type should be range-restricted in situations
+       where only non-negative time periods are desirable
+       (i.e., range '0..max').";
+  }
+
+  typedef microseconds64 {
+    type int64;
+    units "microseconds";
+    description
+      "A period of time measured in units of 10^-6 seconds.
+
+       The maximum time period that can be expressed is in the
+       range [-106751991 days 04:00:54 to 106751991 days 04:00:54].
+
+       This type should be range-restricted in situations
+       where only non-negative time periods are desirable
+       (i.e., range '0..max').";
+  }
+
+  typedef nanoseconds32 {
+    type int32;
+    units "nanoseconds";
+    description
+      "A period of time measured in units of 10^-9 seconds.
+
+       The maximum time period that can be expressed is in the
+       range [-00:00:02 to 00:00:02].
+
+       This type should be range-restricted in situations
+       where only non-negative time periods are desirable
+       (i.e., range '0..max').";
+  }
+
+  typedef nanoseconds64 {
+    type int64;
+    units "nanoseconds";
+    description
+      "A period of time measured in units of 10^-9 seconds.
+
+       The maximum time period that can be expressed is in the
+       range [-106753 days 23:12:44 to 106752 days 0:47:16].
+
+       This type should be range-restricted in situations
+       where only non-negative time periods are desirable
+       (i.e., range '0..max').";
+  }
+
+  typedef timeticks {
+    type uint32;
+    description
+      "The timeticks type represents a non-negative integer that
+       represents the time, modulo 2^32 (4294967296 decimal), in
+       hundredths of a second between two epochs.  When a schema
+       node is defined that uses this type, the description of
+       the schema node identifies both of the reference epochs.
+
+       In the value set and its semantics, this type is equivalent
+       to the TimeTicks type of the SMIv2.";
+    reference
+      "RFC 2578: Structure of Management Information Version 2
+                 (SMIv2)";
+  }
+
+  typedef timestamp {
+    type timeticks;
+    description
+      "The timestamp type represents the value of an associated
+       timeticks schema node instance at which a specific occurrence
+       happened.  The specific occurrence must be defined in the
+       description of any schema node defined using this type.  When
+       the specific occurrence occurred prior to the last time the
+       associated timeticks schema node instance was zero, then the
+       timestamp value is zero.
+
+       Note that this requires all timestamp values to be reset to
+       zero when the value of the associated timeticks schema node
+       instance reaches 497+ days and wraps around to zero.
+
+       The associated timeticks schema node must be specified
+       in the description of any schema node using this type.
+
+       In the value set and its semantics, this type is equivalent
+       to the TimeStamp textual convention of the SMIv2.";
+    reference
+      "RFC 2579: Textual Conventions for SMIv2";
+  }
+
+  /*** collection of generic address types ***/
+
+  typedef phys-address {
+    type string {
+      pattern '([0-9a-fA-F]{2}(:[0-9a-fA-F]{2})*)?';
+    }
+    description
+      "Represents media- or physical-level addresses represented
+       as a sequence of octets, each octet represented by two
+       hexadecimal numbers.  Octets are separated by colons.  The
+       canonical representation uses lowercase characters.
+
+       In the value set and its semantics, this type is equivalent
+       to the PhysAddress textual convention of the SMIv2.";
+    reference
+      "RFC 2579: Textual Conventions for SMIv2";
+  }
+
+  typedef mac-address {
+    type string {
+      pattern '[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}';
+    }
+    description
+      "The mac-address type represents a 48-bit IEEE 802 Media
+       Access Control (MAC) address.  The canonical representation
+       uses lowercase characters.  Note that there are IEEE 802 MAC
+       addresses with a different length that this type cannot
+       represent.  The phys-address type may be used to represent
+       physical addresses of varying length.
+
+       In the value set and its semantics, this type is equivalent
+       to the MacAddress textual convention of the SMIv2.";
+    reference
+      "IEEE 802: IEEE Standard for Local and Metropolitan Area
+                 Networks: Overview and Architecture
+       RFC 2579: Textual Conventions for SMIv2";
+  }
+
+  /*** collection of XML-specific types ***/
+
+  typedef xpath1.0 {
+    type string;
+    description
+      "This type represents an XPATH 1.0 expression.
+
+       When a schema node is defined that uses this type, the
+       description of the schema node MUST specify the XPath
+       context in which the XPath expression is evaluated.";
+    reference
+      "XPATH: XML Path Language (XPath) Version 1.0";
+  }
+
+  /*** collection of string types ***/
+
+  typedef hex-string {
+    type string {
+      pattern '([0-9a-fA-F]{2}(:[0-9a-fA-F]{2})*)?';
+    }
+    description
+      "A hexadecimal string with octets represented as hex digits
+       separated by colons.  The canonical representation uses
+       lowercase characters.";
+  }
+
+  typedef uuid {
+    type string {
+      pattern '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-'
+            + '[0-9a-fA-F]{4}-[0-9a-fA-F]{12}';
+    }
+    description
+      "A Universally Unique IDentifier in the string representation
+       defined in RFC 9562.  The canonical representation uses
+       lowercase characters.
+
+       The following is an example of a UUID in string
+       representation:
+       f81d4fae-7dec-11d0-a765-00a0c91e6bf6.
+      ";
+    reference
+      "RFC 9562: Universally Unique IDentifiers (UUIDs)";
+  }
+
+  typedef dotted-quad {
+    type string {
+      pattern
+        '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}'
+      + '([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])';
+    }
+    description
+      "An unsigned 32-bit number expressed in the dotted-quad
+       notation, i.e., four octets written as decimal numbers
+       and separated with the '.' (full stop) character.";
+  }
+
+  typedef language-tag {
+    type string;
+    description
+      "A language tag according to RFC 5646 (BCP 47).  The
+       canonical representation uses lowercase characters.
+
+       Values of this type must be well-formed language tags,
+       in conformance with the definition of well-formed tags
+       in BCP 47.  Implementations MAY further limit the values
+       they accept to those permitted by a 'validating'
+       processor, as defined in BCP 47.
+
+       The canonical representation of values of this type is
+       aligned with the SMIv2 LangTag textual convention for
+       language tags fitting the length constraints imposed
+       by the LangTag textual convention.";
+    reference
+      "RFC 5646: Tags for Identifying Languages
+       RFC 5131: A MIB Textual Convention for Language Tags";
+  }
+
+  /*** collection of YANG-specific types ***/
+
+  typedef yang-identifier {
+    type string {
+      length "1..max";
+      pattern '[a-zA-Z_][a-zA-Z0-9\-_.]*';
+    }
+    description
+      "A YANG identifier string as defined by the 'identifier'
+       rule in Section 14 of RFC 7950.  An identifier must
+       start with an alphabetic character or an underscore
+       followed by an arbitrary sequence of alphabetic or
+       numeric characters, underscores, hyphens, or dots.
+
+       This definition conforms to YANG 1.1 defined in RFC
+       7950.  In RFC 6991, this definition excluded
+       all identifiers starting with any possible combination
+       of the lowercase or uppercase character sequence 'xml',
+       as required by YANG 1 defined in RFC 6020.  If this type
+       is used in a YANG 1 context, then this restriction still
+       applies.";
+    reference
+      "RFC 7950: The YANG 1.1 Data Modeling Language
+       RFC 6991: Common YANG Data Types
+       RFC 6020: YANG - A Data Modeling Language for the
+                 Network Configuration Protocol (NETCONF)";
+  }
 }
 """
 

@@ -19,6 +19,13 @@ def letter_position(letter):
     return ord(letter) - ord('a') + 1
 
 
+def allocate_link_id(left_router, right_router):
+    """
+    Dummy allocation of link ID based on router names.
+    """
+    return letter_position(left_router[0]) + letter_position(right_router[0])
+
+
 class Router(base.Router):
     def transform(self, i):
         o = base.o_root()
@@ -60,7 +67,7 @@ class BBLink(base.BBLink):
     def transform(self, i):
         print("Intermediate backbonelink transform running %s [%s] <-> %s [%s]" % (i.left_router, i.left_interface, i.right_router, i.right_interface))
         o = base.o_root()
-        link_id = letter_position(i.left_router[0]) + letter_position(i.right_router[0])
+        link_id = allocate_link_id(i.left_router, i.right_router)
         left_rfs = o.rfs.create(i.left_router)
         li = left_rfs.backbone_interface.create(i.left_interface, ipv4_address="10.0.{link_id}.1")
         li.remote.device = i.right_router

@@ -76751,21 +76751,25 @@ def _present(n: ?ygdata.Node) -> ?ygdata.Node:
     return None
 
 _breaker71: None = None
-proc def junos_conf_root__configuration__system__services__netconf_deliver(cb: action(?junos_conf_root__configuration__system__services__netconf, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?junos_conf_root__configuration__system__services__netconf = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'system'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'services'))
-            c4 = _at(c3, ygdata.Id(NS_junos_conf_root, 'netconf'))
-            here = _present(c4)
-            if here is not None:
-                inst = junos_conf_root__configuration__system__services__netconf.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor junos_conf_root__configuration__system__services__netconf_dst(cb: action(?junos_conf_root__configuration__system__services__netconf, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?junos_conf_root__configuration__system__services__netconf = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'system'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'services'))
+                c4 = _at(c3, ygdata.Id(NS_junos_conf_root, 'netconf'))
+                here = _present(c4)
+                if here is not None:
+                    inst = junos_conf_root__configuration__system__services__netconf.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__system__services__netconf_subs(SubscriptionNode):
     rfc_compliant: SubscriptionNode
@@ -76780,27 +76784,32 @@ class junos_conf_root__configuration__system__services__netconf_subs(Subscriptio
         direct: list[SubscriptionNode] = [self.rfc_compliant, self.yang_compliant]
         return direct
 
-    def dst(self, cb: action(?junos_conf_root__configuration__system__services__netconf, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?junos_conf_root__configuration__system__services__netconf, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__system__services__netconf_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__system__services__netconf_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker72: None = None
-proc def junos_conf_root__configuration__system__services_deliver(cb: action(?junos_conf_root__configuration__system__services, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?junos_conf_root__configuration__system__services = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'system'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'services'))
-            here = _present(c3)
-            if here is not None:
-                inst = junos_conf_root__configuration__system__services.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor junos_conf_root__configuration__system__services_dst(cb: action(?junos_conf_root__configuration__system__services, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?junos_conf_root__configuration__system__services = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'system'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'services'))
+                here = _present(c3)
+                if here is not None:
+                    inst = junos_conf_root__configuration__system__services.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__system__services_subs(SubscriptionNode):
     netconf: junos_conf_root__configuration__system__services__netconf_subs
@@ -76813,26 +76822,31 @@ class junos_conf_root__configuration__system__services_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.netconf]
         return direct
 
-    def dst(self, cb: action(?junos_conf_root__configuration__system__services, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?junos_conf_root__configuration__system__services, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__system__services_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__system__services_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker73: None = None
-proc def junos_conf_root__configuration__system_deliver(cb: action(?junos_conf_root__configuration__system, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?junos_conf_root__configuration__system = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'system'))
-            here = _present(c2)
-            if here is not None:
-                inst = junos_conf_root__configuration__system.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor junos_conf_root__configuration__system_dst(cb: action(?junos_conf_root__configuration__system, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?junos_conf_root__configuration__system = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'system'))
+                here = _present(c2)
+                if here is not None:
+                    inst = junos_conf_root__configuration__system.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__system_subs(SubscriptionNode):
     host_name: SubscriptionNode
@@ -76847,11 +76861,12 @@ class junos_conf_root__configuration__system_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.host_name, self.services]
         return direct
 
-    def dst(self, cb: action(?junos_conf_root__configuration__system, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?junos_conf_root__configuration__system, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__system_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__system_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker74: None = None
 class junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry_subs(SubscriptionNode):
@@ -76866,26 +76881,30 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__inet_
         return direct
 
 _breaker75: None = None
-proc def junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_deliver(cb: action(?(interface_name: str, unit_name: str, address_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str, unit_name: str, address_name: str) = None
-    inst: ?junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
-            c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet'))
-            e7 = _one(_at(c6, ygdata.Id(NS_junos_conf_root, 'address')), 'address')
-            keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')), address_name=e7.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e7)
-            if here is not None:
-                inst = junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_dst(cb: action(?(interface_name: str, unit_name: str, address_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str, unit_name: str, address_name: str) = None
+        inst: ?junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
+                c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet'))
+                e7 = _one(_at(c6, ygdata.Id(NS_junos_conf_root, 'address')), 'address')
+                keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')), address_name=e7.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e7)
+                if here is not None:
+                    inst = junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -76900,36 +76919,41 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__inet_
         base_path = self._path!.parent
         return junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'address'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(interface_name: str, unit_name: str, address_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str, unit_name: str, address_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name]
         return direct
 
 _breaker76: None = None
-proc def junos_conf_root__configuration__interfaces__interface__unit__family__inet_deliver(cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str, unit_name: str) = None
-    inst: ?junos_conf_root__configuration__interfaces__interface__unit__family__inet = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
-            c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet'))
-            keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c6)
-            if here is not None:
-                inst = junos_conf_root__configuration__interfaces__interface__unit__family__inet.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__interfaces__interface__unit__family__inet_dst(cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str, unit_name: str) = None
+        inst: ?junos_conf_root__configuration__interfaces__interface__unit__family__inet = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
+                c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet'))
+                keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c6)
+                if here is not None:
+                    inst = junos_conf_root__configuration__interfaces__interface__unit__family__inet.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__interfaces__interface__unit__family__inet_subs(SubscriptionNode):
     address: junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_subs
@@ -76942,11 +76966,12 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__inet_
         direct: list[SubscriptionNode] = [self.address]
         return direct
 
-    def dst(self, cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__interfaces__interface__unit__family__inet_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__interfaces__interface__unit__family__inet_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker77: None = None
 class junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry_subs(SubscriptionNode):
@@ -76961,26 +76986,30 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__inet6
         return direct
 
 _breaker78: None = None
-proc def junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_deliver(cb: action(?(interface_name: str, unit_name: str, address_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str, unit_name: str, address_name: str) = None
-    inst: ?junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
-            c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet6'))
-            e7 = _one(_at(c6, ygdata.Id(NS_junos_conf_root, 'address')), 'address')
-            keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')), address_name=e7.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e7)
-            if here is not None:
-                inst = junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_dst(cb: action(?(interface_name: str, unit_name: str, address_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str, unit_name: str, address_name: str) = None
+        inst: ?junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
+                c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet6'))
+                e7 = _one(_at(c6, ygdata.Id(NS_junos_conf_root, 'address')), 'address')
+                keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')), address_name=e7.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e7)
+                if here is not None:
+                    inst = junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -76995,36 +77024,41 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__inet6
         base_path = self._path!.parent
         return junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'address'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(interface_name: str, unit_name: str, address_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str, unit_name: str, address_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name]
         return direct
 
 _breaker79: None = None
-proc def junos_conf_root__configuration__interfaces__interface__unit__family__inet6_deliver(cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet6, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str, unit_name: str) = None
-    inst: ?junos_conf_root__configuration__interfaces__interface__unit__family__inet6 = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
-            c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet6'))
-            keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c6)
-            if here is not None:
-                inst = junos_conf_root__configuration__interfaces__interface__unit__family__inet6.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__interfaces__interface__unit__family__inet6_dst(cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet6, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str, unit_name: str) = None
+        inst: ?junos_conf_root__configuration__interfaces__interface__unit__family__inet6 = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
+                c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet6'))
+                keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c6)
+                if here is not None:
+                    inst = junos_conf_root__configuration__interfaces__interface__unit__family__inet6.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__interfaces__interface__unit__family__inet6_subs(SubscriptionNode):
     address: junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_subs
@@ -77037,11 +77071,12 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__inet6
         direct: list[SubscriptionNode] = [self.address]
         return direct
 
-    def dst(self, cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet6, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__inet6, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__interfaces__interface__unit__family__inet6_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__interfaces__interface__unit__family__inet6_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker80: None = None
 class junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry_subs(SubscriptionNode):
@@ -77056,26 +77091,30 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__iso__
         return direct
 
 _breaker81: None = None
-proc def junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_deliver(cb: action(?(interface_name: str, unit_name: str, address_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str, unit_name: str, address_name: str) = None
-    inst: ?junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
-            c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'iso'))
-            e7 = _one(_at(c6, ygdata.Id(NS_junos_conf_root, 'address')), 'address')
-            keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')), address_name=e7.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e7)
-            if here is not None:
-                inst = junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_dst(cb: action(?(interface_name: str, unit_name: str, address_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str, unit_name: str, address_name: str) = None
+        inst: ?junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
+                c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'iso'))
+                e7 = _one(_at(c6, ygdata.Id(NS_junos_conf_root, 'address')), 'address')
+                keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')), address_name=e7.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e7)
+                if here is not None:
+                    inst = junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -77090,36 +77129,41 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__iso__
         base_path = self._path!.parent
         return junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'address'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(interface_name: str, unit_name: str, address_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str, unit_name: str, address_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name]
         return direct
 
 _breaker82: None = None
-proc def junos_conf_root__configuration__interfaces__interface__unit__family__iso_deliver(cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__iso, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str, unit_name: str) = None
-    inst: ?junos_conf_root__configuration__interfaces__interface__unit__family__iso = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
-            c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'iso'))
-            keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c6)
-            if here is not None:
-                inst = junos_conf_root__configuration__interfaces__interface__unit__family__iso.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__interfaces__interface__unit__family__iso_dst(cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__iso, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str, unit_name: str) = None
+        inst: ?junos_conf_root__configuration__interfaces__interface__unit__family__iso = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
+                c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'iso'))
+                keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c6)
+                if here is not None:
+                    inst = junos_conf_root__configuration__interfaces__interface__unit__family__iso.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__interfaces__interface__unit__family__iso_subs(SubscriptionNode):
     address: junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_subs
@@ -77132,31 +77176,36 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__iso_s
         direct: list[SubscriptionNode] = [self.address]
         return direct
 
-    def dst(self, cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__iso, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family__iso, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__interfaces__interface__unit__family__iso_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__interfaces__interface__unit__family__iso_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker83: None = None
-proc def junos_conf_root__configuration__interfaces__interface__unit__family_deliver(cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str, unit_name: str) = None
-    inst: ?junos_conf_root__configuration__interfaces__interface__unit__family = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
-            keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c5)
-            if here is not None:
-                inst = junos_conf_root__configuration__interfaces__interface__unit__family.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__interfaces__interface__unit__family_dst(cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str, unit_name: str) = None
+        inst: ?junos_conf_root__configuration__interfaces__interface__unit__family = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
+                keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c5)
+                if here is not None:
+                    inst = junos_conf_root__configuration__interfaces__interface__unit__family.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__interfaces__interface__unit__family_subs(SubscriptionNode):
     inet: junos_conf_root__configuration__interfaces__interface__unit__family__inet_subs
@@ -77173,11 +77222,12 @@ class junos_conf_root__configuration__interfaces__interface__unit__family_subs(S
         direct: list[SubscriptionNode] = [self.inet, self.inet6, self.iso]
         return direct
 
-    def dst(self, cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit__family, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__interfaces__interface__unit__family_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__interfaces__interface__unit__family_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker84: None = None
 class junos_conf_root__configuration__interfaces__interface__unit_entry_subs(SubscriptionNode):
@@ -77206,23 +77256,27 @@ class junos_conf_root__configuration__interfaces__interface__unit_entry_subs(Sub
         return direct
 
 _breaker85: None = None
-proc def junos_conf_root__configuration__interfaces__interface__unit_deliver(cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str, unit_name: str) = None
-    inst: ?junos_conf_root__configuration__interfaces__interface__unit_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
-            keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e4)
-            if here is not None:
-                inst = junos_conf_root__configuration__interfaces__interface__unit_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__interfaces__interface__unit_dst(cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str, unit_name: str) = None
+        inst: ?junos_conf_root__configuration__interfaces__interface__unit_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'unit')), 'unit')
+                keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), unit_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e4)
+                if here is not None:
+                    inst = junos_conf_root__configuration__interfaces__interface__unit_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__interfaces__interface__unit_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -77251,11 +77305,12 @@ class junos_conf_root__configuration__interfaces__interface__unit_subs(Subscript
         base_path = self._path!.parent
         return junos_conf_root__configuration__interfaces__interface__unit_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'unit'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str, unit_name: str), ?junos_conf_root__configuration__interfaces__interface__unit_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__interfaces__interface__unit_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__interfaces__interface__unit_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.alias, self.description, self.vlan_id, self.encapsulation, self.family, self.mtu, self.mac]
@@ -77284,22 +77339,26 @@ class junos_conf_root__configuration__interfaces__interface_entry_subs(Subscript
         return direct
 
 _breaker87: None = None
-proc def junos_conf_root__configuration__interfaces__interface_deliver(cb: action(?(interface_name: str), ?junos_conf_root__configuration__interfaces__interface_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str) = None
-    inst: ?junos_conf_root__configuration__interfaces__interface_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e3)
-            if here is not None:
-                inst = junos_conf_root__configuration__interfaces__interface_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__interfaces__interface_dst(cb: action(?(interface_name: str), ?junos_conf_root__configuration__interfaces__interface_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str) = None
+        inst: ?junos_conf_root__configuration__interfaces__interface_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                keys = (interface_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e3)
+                if here is not None:
+                    inst = junos_conf_root__configuration__interfaces__interface_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__interfaces__interface_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -77324,30 +77383,35 @@ class junos_conf_root__configuration__interfaces__interface_subs(SubscriptionNod
         base_path = self._path!.parent
         return junos_conf_root__configuration__interfaces__interface_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'interface'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(interface_name: str), ?junos_conf_root__configuration__interfaces__interface_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str), ?junos_conf_root__configuration__interfaces__interface_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__interfaces__interface_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__interfaces__interface_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.description, self.mtu, self.mac, self.native_vlan_id, self.unit]
         return direct
 
 _breaker88: None = None
-proc def junos_conf_root__configuration__interfaces_deliver(cb: action(?junos_conf_root__configuration__interfaces, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?junos_conf_root__configuration__interfaces = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
-            here = _present(c2)
-            if here is not None:
-                inst = junos_conf_root__configuration__interfaces.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor junos_conf_root__configuration__interfaces_dst(cb: action(?junos_conf_root__configuration__interfaces, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?junos_conf_root__configuration__interfaces = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'interfaces'))
+                here = _present(c2)
+                if here is not None:
+                    inst = junos_conf_root__configuration__interfaces.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__interfaces_subs(SubscriptionNode):
     interface: junos_conf_root__configuration__interfaces__interface_subs
@@ -77360,34 +77424,39 @@ class junos_conf_root__configuration__interfaces_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.interface]
         return direct
 
-    def dst(self, cb: action(?junos_conf_root__configuration__interfaces, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?junos_conf_root__configuration__interfaces, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__interfaces_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__interfaces_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker89: None = None
-proc def junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop_deliver(cb: action(?(instance_name: str, group_name: str, neighbor_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(instance_name: str, group_name: str, neighbor_name: str) = None
-    inst: ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
-            c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c5 = _at(c4, ygdata.Id(NS_junos_conf_root, 'bgp'))
-            e6 = _one(_at(c5, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
-            e7 = _one(_at(e6, ygdata.Id(NS_junos_conf_root, 'neighbor')), 'neighbor')
-            c8 = _at(e7, ygdata.Id(NS_junos_conf_root, 'multihop'))
-            keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), group_name=e6.get_str(ygdata.Id(NS_junos_conf_root, 'name')), neighbor_name=e7.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c8)
-            if here is not None:
-                inst = junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop_dst(cb: action(?(instance_name: str, group_name: str, neighbor_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(instance_name: str, group_name: str, neighbor_name: str) = None
+        inst: ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
+                c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c5 = _at(c4, ygdata.Id(NS_junos_conf_root, 'bgp'))
+                e6 = _one(_at(c5, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
+                e7 = _one(_at(e6, ygdata.Id(NS_junos_conf_root, 'neighbor')), 'neighbor')
+                c8 = _at(e7, ygdata.Id(NS_junos_conf_root, 'multihop'))
+                keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), group_name=e6.get_str(ygdata.Id(NS_junos_conf_root, 'name')), neighbor_name=e7.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c8)
+                if here is not None:
+                    inst = junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop_subs(SubscriptionNode):
     ttl: SubscriptionNode
@@ -77402,11 +77471,12 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
         direct: list[SubscriptionNode] = [self.ttl, self.no_nexthop_change]
         return direct
 
-    def dst(self, cb: action(?(instance_name: str, group_name: str, neighbor_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(instance_name: str, group_name: str, neighbor_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker90: None = None
 class junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry_subs(SubscriptionNode):
@@ -77435,26 +77505,30 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
         return direct
 
 _breaker91: None = None
-proc def junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_deliver(cb: action(?(instance_name: str, group_name: str, neighbor_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(instance_name: str, group_name: str, neighbor_name: str) = None
-    inst: ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
-            c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c5 = _at(c4, ygdata.Id(NS_junos_conf_root, 'bgp'))
-            e6 = _one(_at(c5, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
-            e7 = _one(_at(e6, ygdata.Id(NS_junos_conf_root, 'neighbor')), 'neighbor')
-            keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), group_name=e6.get_str(ygdata.Id(NS_junos_conf_root, 'name')), neighbor_name=e7.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e7)
-            if here is not None:
-                inst = junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_dst(cb: action(?(instance_name: str, group_name: str, neighbor_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(instance_name: str, group_name: str, neighbor_name: str) = None
+        inst: ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
+                c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c5 = _at(c4, ygdata.Id(NS_junos_conf_root, 'bgp'))
+                e6 = _one(_at(c5, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
+                e7 = _one(_at(e6, ygdata.Id(NS_junos_conf_root, 'neighbor')), 'neighbor')
+                keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), group_name=e6.get_str(ygdata.Id(NS_junos_conf_root, 'name')), neighbor_name=e7.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e7)
+                if here is not None:
+                    inst = junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -77483,11 +77557,12 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
         base_path = self._path!.parent
         return junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'neighbor'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(instance_name: str, group_name: str, neighbor_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(instance_name: str, group_name: str, neighbor_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.description, self.multihop, self.hold_time, self.authentication_key, self.authentication_algorithm, self.peer_as, self.as_override]
@@ -77514,25 +77589,29 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
         return direct
 
 _breaker93: None = None
-proc def junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_deliver(cb: action(?(instance_name: str, group_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(instance_name: str, group_name: str) = None
-    inst: ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
-            c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c5 = _at(c4, ygdata.Id(NS_junos_conf_root, 'bgp'))
-            e6 = _one(_at(c5, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
-            keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), group_name=e6.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e6)
-            if here is not None:
-                inst = junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_dst(cb: action(?(instance_name: str, group_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(instance_name: str, group_name: str) = None
+        inst: ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
+                c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c5 = _at(c4, ygdata.Id(NS_junos_conf_root, 'bgp'))
+                e6 = _one(_at(c5, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
+                keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), group_name=e6.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e6)
+                if here is not None:
+                    inst = junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -77555,35 +77634,40 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
         base_path = self._path!.parent
         return junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'group'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(instance_name: str, group_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(instance_name: str, group_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.passive, self.import, self.export, self.neighbor]
         return direct
 
 _breaker94: None = None
-proc def junos_conf_root__configuration__routing_instances__instance__protocols__bgp_deliver(cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(instance_name: str) = None
-    inst: ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
-            c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c5 = _at(c4, ygdata.Id(NS_junos_conf_root, 'bgp'))
-            keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c5)
-            if here is not None:
-                inst = junos_conf_root__configuration__routing_instances__instance__protocols__bgp.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__routing_instances__instance__protocols__bgp_dst(cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(instance_name: str) = None
+        inst: ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
+                c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c5 = _at(c4, ygdata.Id(NS_junos_conf_root, 'bgp'))
+                keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c5)
+                if here is not None:
+                    inst = junos_conf_root__configuration__routing_instances__instance__protocols__bgp.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__routing_instances__instance__protocols__bgp_subs(SubscriptionNode):
     group: junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_subs
@@ -77596,30 +77680,35 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
         direct: list[SubscriptionNode] = [self.group]
         return direct
 
-    def dst(self, cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__routing_instances__instance__protocols__bgp_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__routing_instances__instance__protocols__bgp_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker95: None = None
-proc def junos_conf_root__configuration__routing_instances__instance__protocols_deliver(cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(instance_name: str) = None
-    inst: ?junos_conf_root__configuration__routing_instances__instance__protocols = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
-            c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c4)
-            if here is not None:
-                inst = junos_conf_root__configuration__routing_instances__instance__protocols.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__routing_instances__instance__protocols_dst(cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(instance_name: str) = None
+        inst: ?junos_conf_root__configuration__routing_instances__instance__protocols = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
+                c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c4)
+                if here is not None:
+                    inst = junos_conf_root__configuration__routing_instances__instance__protocols.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__routing_instances__instance__protocols_subs(SubscriptionNode):
     bgp: junos_conf_root__configuration__routing_instances__instance__protocols__bgp_subs
@@ -77632,11 +77721,12 @@ class junos_conf_root__configuration__routing_instances__instance__protocols_sub
         direct: list[SubscriptionNode] = [self.bgp]
         return direct
 
-    def dst(self, cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__protocols, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__routing_instances__instance__protocols_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__routing_instances__instance__protocols_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker96: None = None
 class junos_conf_root__configuration__routing_instances__instance__interface_entry_subs(SubscriptionNode):
@@ -77659,23 +77749,27 @@ class junos_conf_root__configuration__routing_instances__instance__interface_ent
         return direct
 
 _breaker97: None = None
-proc def junos_conf_root__configuration__routing_instances__instance__interface_deliver(cb: action(?(instance_name: str, interface_name: str), ?junos_conf_root__configuration__routing_instances__instance__interface_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(instance_name: str, interface_name: str) = None
-    inst: ?junos_conf_root__configuration__routing_instances__instance__interface_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
-            e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e4)
-            if here is not None:
-                inst = junos_conf_root__configuration__routing_instances__instance__interface_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__routing_instances__instance__interface_dst(cb: action(?(instance_name: str, interface_name: str), ?junos_conf_root__configuration__routing_instances__instance__interface_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(instance_name: str, interface_name: str) = None
+        inst: ?junos_conf_root__configuration__routing_instances__instance__interface_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
+                e4 = _one(_at(e3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')), interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e4)
+                if here is not None:
+                    inst = junos_conf_root__configuration__routing_instances__instance__interface_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__routing_instances__instance__interface_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -77698,34 +77792,39 @@ class junos_conf_root__configuration__routing_instances__instance__interface_sub
         base_path = self._path!.parent
         return junos_conf_root__configuration__routing_instances__instance__interface_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'interface'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(instance_name: str, interface_name: str), ?junos_conf_root__configuration__routing_instances__instance__interface_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(instance_name: str, interface_name: str), ?junos_conf_root__configuration__routing_instances__instance__interface_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__routing_instances__instance__interface_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__routing_instances__instance__interface_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.any, self.unicast, self.multicast, self.primary]
         return direct
 
 _breaker98: None = None
-proc def junos_conf_root__configuration__routing_instances__instance__route_distinguisher_deliver(cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__route_distinguisher, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(instance_name: str) = None
-    inst: ?junos_conf_root__configuration__routing_instances__instance__route_distinguisher = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
-            c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'route-distinguisher'))
-            keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c4)
-            if here is not None:
-                inst = junos_conf_root__configuration__routing_instances__instance__route_distinguisher.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__routing_instances__instance__route_distinguisher_dst(cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__route_distinguisher, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(instance_name: str) = None
+        inst: ?junos_conf_root__configuration__routing_instances__instance__route_distinguisher = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
+                c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'route-distinguisher'))
+                keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c4)
+                if here is not None:
+                    inst = junos_conf_root__configuration__routing_instances__instance__route_distinguisher.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__routing_instances__instance__route_distinguisher_subs(SubscriptionNode):
     rd_type: SubscriptionNode
@@ -77738,30 +77837,35 @@ class junos_conf_root__configuration__routing_instances__instance__route_disting
         direct: list[SubscriptionNode] = [self.rd_type]
         return direct
 
-    def dst(self, cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__route_distinguisher, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__route_distinguisher, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__routing_instances__instance__route_distinguisher_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__routing_instances__instance__route_distinguisher_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker99: None = None
-proc def junos_conf_root__configuration__routing_instances__instance__vrf_target_deliver(cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__vrf_target, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(instance_name: str) = None
-    inst: ?junos_conf_root__configuration__routing_instances__instance__vrf_target = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
-            c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'vrf-target'))
-            keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c4)
-            if here is not None:
-                inst = junos_conf_root__configuration__routing_instances__instance__vrf_target.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__routing_instances__instance__vrf_target_dst(cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__vrf_target, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(instance_name: str) = None
+        inst: ?junos_conf_root__configuration__routing_instances__instance__vrf_target = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
+                c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'vrf-target'))
+                keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c4)
+                if here is not None:
+                    inst = junos_conf_root__configuration__routing_instances__instance__vrf_target.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__routing_instances__instance__vrf_target_subs(SubscriptionNode):
     community: SubscriptionNode
@@ -77780,30 +77884,35 @@ class junos_conf_root__configuration__routing_instances__instance__vrf_target_su
         direct: list[SubscriptionNode] = [self.community, self.import, self.export, self.auto]
         return direct
 
-    def dst(self, cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__vrf_target, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__vrf_target, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__routing_instances__instance__vrf_target_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__routing_instances__instance__vrf_target_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker100: None = None
-proc def junos_conf_root__configuration__routing_instances__instance__vrf_table_label_deliver(cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__vrf_table_label, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(instance_name: str) = None
-    inst: ?junos_conf_root__configuration__routing_instances__instance__vrf_table_label = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
-            c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'vrf-table-label'))
-            keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c4)
-            if here is not None:
-                inst = junos_conf_root__configuration__routing_instances__instance__vrf_table_label.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__routing_instances__instance__vrf_table_label_dst(cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__vrf_table_label, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(instance_name: str) = None
+        inst: ?junos_conf_root__configuration__routing_instances__instance__vrf_table_label = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
+                c4 = _at(e3, ygdata.Id(NS_junos_conf_root, 'vrf-table-label'))
+                keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c4)
+                if here is not None:
+                    inst = junos_conf_root__configuration__routing_instances__instance__vrf_table_label.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__routing_instances__instance__vrf_table_label_subs(SubscriptionNode):
 
@@ -77814,11 +77923,12 @@ class junos_conf_root__configuration__routing_instances__instance__vrf_table_lab
         direct: list[SubscriptionNode] = []
         return direct
 
-    def dst(self, cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__vrf_table_label, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance__vrf_table_label, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__routing_instances__instance__vrf_table_label_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__routing_instances__instance__vrf_table_label_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker101: None = None
 class junos_conf_root__configuration__routing_instances__instance_entry_subs(SubscriptionNode):
@@ -77845,22 +77955,26 @@ class junos_conf_root__configuration__routing_instances__instance_entry_subs(Sub
         return direct
 
 _breaker102: None = None
-proc def junos_conf_root__configuration__routing_instances__instance_deliver(cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(instance_name: str) = None
-    inst: ?junos_conf_root__configuration__routing_instances__instance_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
-            e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
-            keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e3)
-            if here is not None:
-                inst = junos_conf_root__configuration__routing_instances__instance_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__routing_instances__instance_dst(cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(instance_name: str) = None
+        inst: ?junos_conf_root__configuration__routing_instances__instance_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
+                e3 = _one(_at(c2, ygdata.Id(NS_junos_conf_root, 'instance')), 'instance')
+                keys = (instance_name=e3.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e3)
+                if here is not None:
+                    inst = junos_conf_root__configuration__routing_instances__instance_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__routing_instances__instance_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -77887,30 +78001,35 @@ class junos_conf_root__configuration__routing_instances__instance_subs(Subscript
         base_path = self._path!.parent
         return junos_conf_root__configuration__routing_instances__instance_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'instance'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(instance_name: str), ?junos_conf_root__configuration__routing_instances__instance_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__routing_instances__instance_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__routing_instances__instance_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.instance_type, self.protocols, self.interface, self.route_distinguisher, self.vrf_target, self.vrf_table_label]
         return direct
 
 _breaker103: None = None
-proc def junos_conf_root__configuration__routing_instances_deliver(cb: action(?junos_conf_root__configuration__routing_instances, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?junos_conf_root__configuration__routing_instances = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
-            here = _present(c2)
-            if here is not None:
-                inst = junos_conf_root__configuration__routing_instances.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor junos_conf_root__configuration__routing_instances_dst(cb: action(?junos_conf_root__configuration__routing_instances, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?junos_conf_root__configuration__routing_instances = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-instances'))
+                here = _present(c2)
+                if here is not None:
+                    inst = junos_conf_root__configuration__routing_instances.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__routing_instances_subs(SubscriptionNode):
     instance: junos_conf_root__configuration__routing_instances__instance_subs
@@ -77923,27 +78042,32 @@ class junos_conf_root__configuration__routing_instances_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.instance]
         return direct
 
-    def dst(self, cb: action(?junos_conf_root__configuration__routing_instances, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?junos_conf_root__configuration__routing_instances, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__routing_instances_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__routing_instances_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker104: None = None
-proc def junos_conf_root__configuration__routing_options__autonomous_system_deliver(cb: action(?junos_conf_root__configuration__routing_options__autonomous_system, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?junos_conf_root__configuration__routing_options__autonomous_system = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-options'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'autonomous-system'))
-            here = _present(c3)
-            if here is not None:
-                inst = junos_conf_root__configuration__routing_options__autonomous_system.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor junos_conf_root__configuration__routing_options__autonomous_system_dst(cb: action(?junos_conf_root__configuration__routing_options__autonomous_system, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?junos_conf_root__configuration__routing_options__autonomous_system = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-options'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'autonomous-system'))
+                here = _present(c3)
+                if here is not None:
+                    inst = junos_conf_root__configuration__routing_options__autonomous_system.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__routing_options__autonomous_system_subs(SubscriptionNode):
     as_number: SubscriptionNode
@@ -77956,26 +78080,31 @@ class junos_conf_root__configuration__routing_options__autonomous_system_subs(Su
         direct: list[SubscriptionNode] = [self.as_number]
         return direct
 
-    def dst(self, cb: action(?junos_conf_root__configuration__routing_options__autonomous_system, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?junos_conf_root__configuration__routing_options__autonomous_system, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__routing_options__autonomous_system_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__routing_options__autonomous_system_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker105: None = None
-proc def junos_conf_root__configuration__routing_options_deliver(cb: action(?junos_conf_root__configuration__routing_options, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?junos_conf_root__configuration__routing_options = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-options'))
-            here = _present(c2)
-            if here is not None:
-                inst = junos_conf_root__configuration__routing_options.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor junos_conf_root__configuration__routing_options_dst(cb: action(?junos_conf_root__configuration__routing_options, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?junos_conf_root__configuration__routing_options = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'routing-options'))
+                here = _present(c2)
+                if here is not None:
+                    inst = junos_conf_root__configuration__routing_options.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__routing_options_subs(SubscriptionNode):
     autonomous_system: junos_conf_root__configuration__routing_options__autonomous_system_subs
@@ -77988,33 +78117,38 @@ class junos_conf_root__configuration__routing_options_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.autonomous_system]
         return direct
 
-    def dst(self, cb: action(?junos_conf_root__configuration__routing_options, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?junos_conf_root__configuration__routing_options, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__routing_options_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__routing_options_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker106: None = None
-proc def junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast_deliver(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(group_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
-            c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet-vpn'))
-            c7 = _at(c6, ygdata.Id(NS_junos_conf_root, 'unicast'))
-            keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c7)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast_dst(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(group_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
+                c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet-vpn'))
+                c7 = _at(c6, ygdata.Id(NS_junos_conf_root, 'unicast'))
+                keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c7)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast_subs(SubscriptionNode):
 
@@ -78025,32 +78159,37 @@ class junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__u
         direct: list[SubscriptionNode] = []
         return direct
 
-    def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker107: None = None
-proc def junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn_deliver(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(group_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
-            c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet-vpn'))
-            keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c6)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn_dst(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(group_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
+                c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet-vpn'))
+                keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c6)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn_subs(SubscriptionNode):
     unicast: junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast_subs
@@ -78063,33 +78202,38 @@ class junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn_su
         direct: list[SubscriptionNode] = [self.unicast]
         return direct
 
-    def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker108: None = None
-proc def junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast_deliver(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(group_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
-            c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet6-vpn'))
-            c7 = _at(c6, ygdata.Id(NS_junos_conf_root, 'unicast'))
-            keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c7)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast_dst(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(group_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
+                c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet6-vpn'))
+                c7 = _at(c6, ygdata.Id(NS_junos_conf_root, 'unicast'))
+                keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c7)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast_subs(SubscriptionNode):
 
@@ -78100,32 +78244,37 @@ class junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__
         direct: list[SubscriptionNode] = []
         return direct
 
-    def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker109: None = None
-proc def junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn_deliver(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(group_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
-            c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet6-vpn'))
-            keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c6)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn_dst(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(group_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
+                c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'inet6-vpn'))
+                keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c6)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn_subs(SubscriptionNode):
     unicast: junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast_subs
@@ -78138,33 +78287,38 @@ class junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn_s
         direct: list[SubscriptionNode] = [self.unicast]
         return direct
 
-    def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker110: None = None
-proc def junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling_deliver(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(group_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
-            c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'evpn'))
-            c7 = _at(c6, ygdata.Id(NS_junos_conf_root, 'signaling'))
-            keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c7)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling_dst(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(group_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
+                c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'evpn'))
+                c7 = _at(c6, ygdata.Id(NS_junos_conf_root, 'signaling'))
+                keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c7)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling_subs(SubscriptionNode):
 
@@ -78175,32 +78329,37 @@ class junos_conf_root__configuration__protocols__bgp__group__family__evpn__signa
         direct: list[SubscriptionNode] = []
         return direct
 
-    def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker111: None = None
-proc def junos_conf_root__configuration__protocols__bgp__group__family__evpn_deliver(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__evpn, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(group_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__bgp__group__family__evpn = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
-            c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'evpn'))
-            keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c6)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__bgp__group__family__evpn.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__bgp__group__family__evpn_dst(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__evpn, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(group_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__bgp__group__family__evpn = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
+                c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'evpn'))
+                keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c6)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__bgp__group__family__evpn.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__bgp__group__family__evpn_subs(SubscriptionNode):
     signaling: junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling_subs
@@ -78213,32 +78372,37 @@ class junos_conf_root__configuration__protocols__bgp__group__family__evpn_subs(S
         direct: list[SubscriptionNode] = [self.signaling]
         return direct
 
-    def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__evpn, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__evpn, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__bgp__group__family__evpn_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__bgp__group__family__evpn_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker112: None = None
-proc def junos_conf_root__configuration__protocols__bgp__group__family__route_target_deliver(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__route_target, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(group_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__bgp__group__family__route_target = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
-            c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'route-target'))
-            keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c6)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__bgp__group__family__route_target.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__bgp__group__family__route_target_dst(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__route_target, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(group_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__bgp__group__family__route_target = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
+                c6 = _at(c5, ygdata.Id(NS_junos_conf_root, 'route-target'))
+                keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c6)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__bgp__group__family__route_target.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__bgp__group__family__route_target_subs(SubscriptionNode):
 
@@ -78249,31 +78413,36 @@ class junos_conf_root__configuration__protocols__bgp__group__family__route_targe
         direct: list[SubscriptionNode] = []
         return direct
 
-    def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__route_target, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family__route_target, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__bgp__group__family__route_target_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__bgp__group__family__route_target_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker113: None = None
-proc def junos_conf_root__configuration__protocols__bgp__group__family_deliver(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(group_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__bgp__group__family = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
-            keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c5)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__bgp__group__family.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__bgp__group__family_dst(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(group_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__bgp__group__family = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'family'))
+                keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c5)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__bgp__group__family.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__bgp__group__family_subs(SubscriptionNode):
     inet_vpn: junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn_subs
@@ -78292,11 +78461,12 @@ class junos_conf_root__configuration__protocols__bgp__group__family_subs(Subscri
         direct: list[SubscriptionNode] = [self.inet_vpn, self.inet6_vpn, self.evpn, self.route_target]
         return direct
 
-    def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group__family, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__bgp__group__family_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__bgp__group__family_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker114: None = None
 class junos_conf_root__configuration__protocols__bgp__group__neighbor_entry_subs(SubscriptionNode):
@@ -78315,24 +78485,28 @@ class junos_conf_root__configuration__protocols__bgp__group__neighbor_entry_subs
         return direct
 
 _breaker115: None = None
-proc def junos_conf_root__configuration__protocols__bgp__group__neighbor_deliver(cb: action(?(group_name: str, neighbor_name: str), ?junos_conf_root__configuration__protocols__bgp__group__neighbor_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(group_name: str, neighbor_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__bgp__group__neighbor_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
-            e5 = _one(_at(e4, ygdata.Id(NS_junos_conf_root, 'neighbor')), 'neighbor')
-            keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')), neighbor_name=e5.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e5)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__bgp__group__neighbor_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__bgp__group__neighbor_dst(cb: action(?(group_name: str, neighbor_name: str), ?junos_conf_root__configuration__protocols__bgp__group__neighbor_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(group_name: str, neighbor_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__bgp__group__neighbor_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
+                e5 = _one(_at(e4, ygdata.Id(NS_junos_conf_root, 'neighbor')), 'neighbor')
+                keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')), neighbor_name=e5.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e5)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__bgp__group__neighbor_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__bgp__group__neighbor_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -78351,11 +78525,12 @@ class junos_conf_root__configuration__protocols__bgp__group__neighbor_subs(Subsc
         base_path = self._path!.parent
         return junos_conf_root__configuration__protocols__bgp__group__neighbor_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'neighbor'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(group_name: str, neighbor_name: str), ?junos_conf_root__configuration__protocols__bgp__group__neighbor_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(group_name: str, neighbor_name: str), ?junos_conf_root__configuration__protocols__bgp__group__neighbor_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__bgp__group__neighbor_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__bgp__group__neighbor_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.description, self.passive]
@@ -78398,23 +78573,27 @@ class junos_conf_root__configuration__protocols__bgp__group_entry_subs(Subscript
         return direct
 
 _breaker117: None = None
-proc def junos_conf_root__configuration__protocols__bgp__group_deliver(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(group_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__bgp__group_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
-            keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e4)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__bgp__group_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__bgp__group_dst(cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(group_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__bgp__group_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'group')), 'group')
+                keys = (group_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e4)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__bgp__group_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__bgp__group_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -78453,31 +78632,36 @@ class junos_conf_root__configuration__protocols__bgp__group_subs(SubscriptionNod
         base_path = self._path!.parent
         return junos_conf_root__configuration__protocols__bgp__group_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'group'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(group_name: str), ?junos_conf_root__configuration__protocols__bgp__group_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__bgp__group_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__bgp__group_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.type, self.description, self.local_address, self.hold_time, self.family, self.authentication_key, self.authentication_algorithm, self.tcpao_auth_mismatch, self.authentication_key_chain, self.export, self.tcp_mss, self.neighbor]
         return direct
 
 _breaker118: None = None
-proc def junos_conf_root__configuration__protocols__bgp_deliver(cb: action(?junos_conf_root__configuration__protocols__bgp, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?junos_conf_root__configuration__protocols__bgp = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
-            here = _present(c3)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__bgp.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor junos_conf_root__configuration__protocols__bgp_dst(cb: action(?junos_conf_root__configuration__protocols__bgp, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?junos_conf_root__configuration__protocols__bgp = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'bgp'))
+                here = _present(c3)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__bgp.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__bgp_subs(SubscriptionNode):
     group: junos_conf_root__configuration__protocols__bgp__group_subs
@@ -78492,31 +78676,36 @@ class junos_conf_root__configuration__protocols__bgp_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.group, self.log_updown]
         return direct
 
-    def dst(self, cb: action(?junos_conf_root__configuration__protocols__bgp, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?junos_conf_root__configuration__protocols__bgp, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__bgp_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__bgp_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker119: None = None
-proc def junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization_deliver(cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'isis'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'ldp-synchronization'))
-            keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c5)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization_dst(cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'isis'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'ldp-synchronization'))
+                keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c5)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization_subs(SubscriptionNode):
     disable: SubscriptionNode
@@ -78531,11 +78720,12 @@ class junos_conf_root__configuration__protocols__isis__interface__ldp_synchroniz
         direct: list[SubscriptionNode] = [self.disable, self.hold_time]
         return direct
 
-    def dst(self, cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker120: None = None
 class junos_conf_root__configuration__protocols__isis__interface__level_entry_subs(SubscriptionNode):
@@ -78554,24 +78744,28 @@ class junos_conf_root__configuration__protocols__isis__interface__level_entry_su
         return direct
 
 _breaker121: None = None
-proc def junos_conf_root__configuration__protocols__isis__interface__level_deliver(cb: action(?(interface_name: str, level_name: atom), ?junos_conf_root__configuration__protocols__isis__interface__level_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str, level_name: atom) = None
-    inst: ?junos_conf_root__configuration__protocols__isis__interface__level_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'isis'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            e5 = _one(_at(e4, ygdata.Id(NS_junos_conf_root, 'level')), 'level')
-            keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')), level_name=e5.get_atom(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e5)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__isis__interface__level_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__isis__interface__level_dst(cb: action(?(interface_name: str, level_name: atom), ?junos_conf_root__configuration__protocols__isis__interface__level_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str, level_name: atom) = None
+        inst: ?junos_conf_root__configuration__protocols__isis__interface__level_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'isis'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                e5 = _one(_at(e4, ygdata.Id(NS_junos_conf_root, 'level')), 'level')
+                keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')), level_name=e5.get_atom(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e5)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__isis__interface__level_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__isis__interface__level_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -78590,35 +78784,40 @@ class junos_conf_root__configuration__protocols__isis__interface__level_subs(Sub
         base_path = self._path!.parent
         return junos_conf_root__configuration__protocols__isis__interface__level_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'level'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(interface_name: str, level_name: atom), ?junos_conf_root__configuration__protocols__isis__interface__level_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str, level_name: atom), ?junos_conf_root__configuration__protocols__isis__interface__level_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__isis__interface__level_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__isis__interface__level_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.disable, self.metric]
         return direct
 
 _breaker122: None = None
-proc def junos_conf_root__configuration__protocols__isis__interface__passive_deliver(cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__isis__interface__passive, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__isis__interface__passive = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'isis'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'passive'))
-            keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c5)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__isis__interface__passive.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__isis__interface__passive_dst(cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__isis__interface__passive, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__isis__interface__passive = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'isis'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'passive'))
+                keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c5)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__isis__interface__passive.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__isis__interface__passive_subs(SubscriptionNode):
     remote_node_iso: SubscriptionNode
@@ -78633,11 +78832,12 @@ class junos_conf_root__configuration__protocols__isis__interface__passive_subs(S
         direct: list[SubscriptionNode] = [self.remote_node_iso, self.remote_node_id]
         return direct
 
-    def dst(self, cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__isis__interface__passive, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__isis__interface__passive, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__isis__interface__passive_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__isis__interface__passive_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker123: None = None
 class junos_conf_root__configuration__protocols__isis__interface__family_entry_subs(SubscriptionNode):
@@ -78652,24 +78852,28 @@ class junos_conf_root__configuration__protocols__isis__interface__family_entry_s
         return direct
 
 _breaker124: None = None
-proc def junos_conf_root__configuration__protocols__isis__interface__family_deliver(cb: action(?(interface_name: str, family_name: str), ?junos_conf_root__configuration__protocols__isis__interface__family_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str, family_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__isis__interface__family_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'isis'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            e5 = _one(_at(e4, ygdata.Id(NS_junos_conf_root, 'family')), 'family')
-            keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')), family_name=e5.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e5)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__isis__interface__family_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__isis__interface__family_dst(cb: action(?(interface_name: str, family_name: str), ?junos_conf_root__configuration__protocols__isis__interface__family_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str, family_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__isis__interface__family_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'isis'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                e5 = _one(_at(e4, ygdata.Id(NS_junos_conf_root, 'family')), 'family')
+                keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')), family_name=e5.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e5)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__isis__interface__family_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__isis__interface__family_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -78684,11 +78888,12 @@ class junos_conf_root__configuration__protocols__isis__interface__family_subs(Su
         base_path = self._path!.parent
         return junos_conf_root__configuration__protocols__isis__interface__family_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'family'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(interface_name: str, family_name: str), ?junos_conf_root__configuration__protocols__isis__interface__family_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str, family_name: str), ?junos_conf_root__configuration__protocols__isis__interface__family_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__isis__interface__family_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__isis__interface__family_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name]
@@ -78719,23 +78924,27 @@ class junos_conf_root__configuration__protocols__isis__interface_entry_subs(Subs
         return direct
 
 _breaker126: None = None
-proc def junos_conf_root__configuration__protocols__isis__interface_deliver(cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__isis__interface_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__isis__interface_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'isis'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e4)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__isis__interface_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__isis__interface_dst(cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__isis__interface_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__isis__interface_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'isis'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e4)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__isis__interface_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__isis__interface_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -78762,11 +78971,12 @@ class junos_conf_root__configuration__protocols__isis__interface_subs(Subscripti
         base_path = self._path!.parent
         return junos_conf_root__configuration__protocols__isis__interface_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'interface'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__isis__interface_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__isis__interface_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__isis__interface_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__isis__interface_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.ldp_synchronization, self.level, self.lsp_interval, self.point_to_point, self.passive, self.family]
@@ -78799,23 +79009,27 @@ class junos_conf_root__configuration__protocols__isis__level_entry_subs(Subscrip
         return direct
 
 _breaker128: None = None
-proc def junos_conf_root__configuration__protocols__isis__level_deliver(cb: action(?(level_name: atom), ?junos_conf_root__configuration__protocols__isis__level_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(level_name: atom) = None
-    inst: ?junos_conf_root__configuration__protocols__isis__level_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'isis'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'level')), 'level')
-            keys = (level_name=e4.get_atom(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e4)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__isis__level_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__isis__level_dst(cb: action(?(level_name: atom), ?junos_conf_root__configuration__protocols__isis__level_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(level_name: atom) = None
+        inst: ?junos_conf_root__configuration__protocols__isis__level_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'isis'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'level')), 'level')
+                keys = (level_name=e4.get_atom(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e4)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__isis__level_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__isis__level_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -78844,31 +79058,36 @@ class junos_conf_root__configuration__protocols__isis__level_subs(SubscriptionNo
         base_path = self._path!.parent
         return junos_conf_root__configuration__protocols__isis__level_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'level'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(level_name: atom), ?junos_conf_root__configuration__protocols__isis__level_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(level_name: atom), ?junos_conf_root__configuration__protocols__isis__level_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__isis__level_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__isis__level_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.disable, self.authentication_key, self.authentication_type, self.no_hello_authentication, self.no_csnp_authentication, self.no_psnp_authentication, self.wide_metrics_only]
         return direct
 
 _breaker129: None = None
-proc def junos_conf_root__configuration__protocols__isis_deliver(cb: action(?junos_conf_root__configuration__protocols__isis, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?junos_conf_root__configuration__protocols__isis = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'isis'))
-            here = _present(c3)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__isis.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor junos_conf_root__configuration__protocols__isis_dst(cb: action(?junos_conf_root__configuration__protocols__isis, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?junos_conf_root__configuration__protocols__isis = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'isis'))
+                here = _present(c3)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__isis.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__isis_subs(SubscriptionNode):
     interface: junos_conf_root__configuration__protocols__isis__interface_subs
@@ -78885,28 +79104,33 @@ class junos_conf_root__configuration__protocols__isis_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.interface, self.level, self.lsp_lifetime]
         return direct
 
-    def dst(self, cb: action(?junos_conf_root__configuration__protocols__isis, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?junos_conf_root__configuration__protocols__isis, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__isis_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__isis_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker130: None = None
-proc def junos_conf_root__configuration__protocols__ldp__transport_address_deliver(cb: action(?junos_conf_root__configuration__protocols__ldp__transport_address, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?junos_conf_root__configuration__protocols__ldp__transport_address = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'ldp'))
-            c4 = _at(c3, ygdata.Id(NS_junos_conf_root, 'transport-address'))
-            here = _present(c4)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__ldp__transport_address.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor junos_conf_root__configuration__protocols__ldp__transport_address_dst(cb: action(?junos_conf_root__configuration__protocols__ldp__transport_address, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?junos_conf_root__configuration__protocols__ldp__transport_address = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'ldp'))
+                c4 = _at(c3, ygdata.Id(NS_junos_conf_root, 'transport-address'))
+                here = _present(c4)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__ldp__transport_address.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__ldp__transport_address_subs(SubscriptionNode):
     router_id: SubscriptionNode
@@ -78923,31 +79147,36 @@ class junos_conf_root__configuration__protocols__ldp__transport_address_subs(Sub
         direct: list[SubscriptionNode] = [self.router_id, self.interface, self.address]
         return direct
 
-    def dst(self, cb: action(?junos_conf_root__configuration__protocols__ldp__transport_address, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?junos_conf_root__configuration__protocols__ldp__transport_address, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__ldp__transport_address_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__ldp__transport_address_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker131: None = None
-proc def junos_conf_root__configuration__protocols__ldp__interface__transport_address_deliver(cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__ldp__interface__transport_address, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__ldp__interface__transport_address = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'ldp'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'transport-address'))
-            keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(c5)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__ldp__interface__transport_address.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__ldp__interface__transport_address_dst(cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__ldp__interface__transport_address, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__ldp__interface__transport_address = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'ldp'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                c5 = _at(e4, ygdata.Id(NS_junos_conf_root, 'transport-address'))
+                keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(c5)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__ldp__interface__transport_address.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__ldp__interface__transport_address_subs(SubscriptionNode):
     router_id: SubscriptionNode
@@ -78964,11 +79193,12 @@ class junos_conf_root__configuration__protocols__ldp__interface__transport_addre
         direct: list[SubscriptionNode] = [self.router_id, self.interface, self.address]
         return direct
 
-    def dst(self, cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__ldp__interface__transport_address, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__ldp__interface__transport_address, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__ldp__interface__transport_address_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__ldp__interface__transport_address_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker132: None = None
 class junos_conf_root__configuration__protocols__ldp__interface_entry_subs(SubscriptionNode):
@@ -78991,23 +79221,27 @@ class junos_conf_root__configuration__protocols__ldp__interface_entry_subs(Subsc
         return direct
 
 _breaker133: None = None
-proc def junos_conf_root__configuration__protocols__ldp__interface_deliver(cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__ldp__interface_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__ldp__interface_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'ldp'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e4)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__ldp__interface_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__ldp__interface_dst(cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__ldp__interface_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__ldp__interface_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'ldp'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e4)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__ldp__interface_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__ldp__interface_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -79030,31 +79264,36 @@ class junos_conf_root__configuration__protocols__ldp__interface_subs(Subscriptio
         base_path = self._path!.parent
         return junos_conf_root__configuration__protocols__ldp__interface_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'interface'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__ldp__interface_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__ldp__interface_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__ldp__interface_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__ldp__interface_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.disable, self.hello_interval, self.hold_time, self.transport_address]
         return direct
 
 _breaker134: None = None
-proc def junos_conf_root__configuration__protocols__ldp_deliver(cb: action(?junos_conf_root__configuration__protocols__ldp, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?junos_conf_root__configuration__protocols__ldp = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'ldp'))
-            here = _present(c3)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__ldp.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor junos_conf_root__configuration__protocols__ldp_dst(cb: action(?junos_conf_root__configuration__protocols__ldp, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?junos_conf_root__configuration__protocols__ldp = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'ldp'))
+                here = _present(c3)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__ldp.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__ldp_subs(SubscriptionNode):
     preference: SubscriptionNode
@@ -79071,11 +79310,12 @@ class junos_conf_root__configuration__protocols__ldp_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.preference, self.transport_address, self.interface]
         return direct
 
-    def dst(self, cb: action(?junos_conf_root__configuration__protocols__ldp, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?junos_conf_root__configuration__protocols__ldp, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__ldp_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__ldp_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker135: None = None
 class junos_conf_root__configuration__protocols__mpls__interface_entry_subs(SubscriptionNode):
@@ -79092,23 +79332,27 @@ class junos_conf_root__configuration__protocols__mpls__interface_entry_subs(Subs
         return direct
 
 _breaker136: None = None
-proc def junos_conf_root__configuration__protocols__mpls__interface_deliver(cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__mpls__interface_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(interface_name: str) = None
-    inst: ?junos_conf_root__configuration__protocols__mpls__interface_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'mpls'))
-            e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
-            keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
-            here = _present(e4)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__mpls__interface_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor junos_conf_root__configuration__protocols__mpls__interface_dst(cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__mpls__interface_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(interface_name: str) = None
+        inst: ?junos_conf_root__configuration__protocols__mpls__interface_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'mpls'))
+                e4 = _one(_at(c3, ygdata.Id(NS_junos_conf_root, 'interface')), 'interface')
+                keys = (interface_name=e4.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+                here = _present(e4)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__mpls__interface_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__mpls__interface_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -79125,31 +79369,36 @@ class junos_conf_root__configuration__protocols__mpls__interface_subs(Subscripti
         base_path = self._path!.parent
         return junos_conf_root__configuration__protocols__mpls__interface_entry_subs(SubscriptionPath(ygdata.Id(NS_junos_conf_root, 'interface'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__mpls__interface_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(interface_name: str), ?junos_conf_root__configuration__protocols__mpls__interface_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__mpls__interface_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__mpls__interface_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.disable]
         return direct
 
 _breaker137: None = None
-proc def junos_conf_root__configuration__protocols__mpls_deliver(cb: action(?junos_conf_root__configuration__protocols__mpls, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?junos_conf_root__configuration__protocols__mpls = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'mpls'))
-            here = _present(c3)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols__mpls.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor junos_conf_root__configuration__protocols__mpls_dst(cb: action(?junos_conf_root__configuration__protocols__mpls, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?junos_conf_root__configuration__protocols__mpls = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                c3 = _at(c2, ygdata.Id(NS_junos_conf_root, 'mpls'))
+                here = _present(c3)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols__mpls.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols__mpls_subs(SubscriptionNode):
     no_propagate_ttl: SubscriptionNode
@@ -79164,26 +79413,31 @@ class junos_conf_root__configuration__protocols__mpls_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.no_propagate_ttl, self.interface]
         return direct
 
-    def dst(self, cb: action(?junos_conf_root__configuration__protocols__mpls, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?junos_conf_root__configuration__protocols__mpls, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols__mpls_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols__mpls_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker138: None = None
-proc def junos_conf_root__configuration__protocols_deliver(cb: action(?junos_conf_root__configuration__protocols, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?junos_conf_root__configuration__protocols = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
-            here = _present(c2)
-            if here is not None:
-                inst = junos_conf_root__configuration__protocols.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor junos_conf_root__configuration__protocols_dst(cb: action(?junos_conf_root__configuration__protocols, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?junos_conf_root__configuration__protocols = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                c2 = _at(c1, ygdata.Id(NS_junos_conf_root, 'protocols'))
+                here = _present(c2)
+                if here is not None:
+                    inst = junos_conf_root__configuration__protocols.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration__protocols_subs(SubscriptionNode):
     bgp: junos_conf_root__configuration__protocols__bgp_subs
@@ -79202,25 +79456,30 @@ class junos_conf_root__configuration__protocols_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.bgp, self.isis, self.ldp, self.mpls]
         return direct
 
-    def dst(self, cb: action(?junos_conf_root__configuration__protocols, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?junos_conf_root__configuration__protocols, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration__protocols_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration__protocols_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker139: None = None
-proc def junos_conf_root__configuration_deliver(cb: action(?junos_conf_root__configuration, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?junos_conf_root__configuration = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
-            here = _present(c1)
-            if here is not None:
-                inst = junos_conf_root__configuration.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor junos_conf_root__configuration_dst(cb: action(?junos_conf_root__configuration, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?junos_conf_root__configuration = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_junos_conf_root, 'configuration'))
+                here = _present(c1)
+                if here is not None:
+                    inst = junos_conf_root__configuration.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class junos_conf_root__configuration_subs(SubscriptionNode):
     rcsid: SubscriptionNode
@@ -79245,11 +79504,12 @@ class junos_conf_root__configuration_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.rcsid, self.version, self.system, self.interfaces, self.routing_instances, self.routing_options, self.protocols]
         return direct
 
-    def dst(self, cb: action(?junos_conf_root__configuration, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?junos_conf_root__configuration, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: junos_conf_root__configuration_deliver(cb, n, err), root=self.filt())
+        a = junos_conf_root__configuration_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker140: None = None
 class root_subs(SubscriptionNode):
@@ -79265,15 +79525,20 @@ class root_subs(SubscriptionNode):
 
 subs: root_subs = root_subs()
 
-proc def _deliver_root(cb: action(?root, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    if err is not None:
-        cb(None, err)
-    elif n is not None:
-        cb(root.from_gdata(n), None)
-    else:
-        cb(None, None)
+actor _root_dst(cb: action(?root, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        if err is not None:
+            cb(None, err)
+        elif n is not None:
+            cb(root.from_gdata(n), None)
+        else:
+            cb(None, None)
 
-def dst(cb: action(?root, ?Exception) -> None) -> ygdata.Dst:
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
+
+proc def dst(cb: action(?root, ?Exception) -> None) -> ygdata.Dst:
     """A destination at the top of the tree: cb gets the whole subscribed
     tree on every delivery."""
-    return ygdata.Dst(lambda n, err: _deliver_root(cb, n, err))
+    a = _root_dst(cb)
+    return ygdata.Dst(a.on_update, synced=a.synced)

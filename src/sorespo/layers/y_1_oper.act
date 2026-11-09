@@ -1551,22 +1551,26 @@ def _present(n: ?ygdata.Node) -> ?ygdata.Node:
     return None
 
 _breaker23: None = None
-proc def netinfra_inter__netinfra__router__feature_flags_deliver(cb: action(?(router_name: str), ?netinfra_inter__netinfra__router__feature_flags, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(router_name: str) = None
-    inst: ?netinfra_inter__netinfra__router__feature_flags = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
-            e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'router')), 'router')
-            c3 = _at(e2, ygdata.Id(NS_netinfra_inter, 'feature-flags'))
-            keys = (router_name=e2.get_str(ygdata.Id(NS_netinfra_inter, 'name')))
-            here = _present(c3)
-            if here is not None:
-                inst = netinfra_inter__netinfra__router__feature_flags.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor netinfra_inter__netinfra__router__feature_flags_dst(cb: action(?(router_name: str), ?netinfra_inter__netinfra__router__feature_flags, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(router_name: str) = None
+        inst: ?netinfra_inter__netinfra__router__feature_flags = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
+                e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'router')), 'router')
+                c3 = _at(e2, ygdata.Id(NS_netinfra_inter, 'feature-flags'))
+                keys = (router_name=e2.get_str(ygdata.Id(NS_netinfra_inter, 'name')))
+                here = _present(c3)
+                if here is not None:
+                    inst = netinfra_inter__netinfra__router__feature_flags.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class netinfra_inter__netinfra__router__feature_flags_subs(SubscriptionNode):
     runtime_schema_fetch: SubscriptionNode
@@ -1579,29 +1583,34 @@ class netinfra_inter__netinfra__router__feature_flags_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.runtime_schema_fetch]
         return direct
 
-    def dst(self, cb: action(?(router_name: str), ?netinfra_inter__netinfra__router__feature_flags, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(router_name: str), ?netinfra_inter__netinfra__router__feature_flags, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: netinfra_inter__netinfra__router__feature_flags_deliver(cb, n, err), root=self.filt())
+        a = netinfra_inter__netinfra__router__feature_flags_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker24: None = None
-proc def netinfra_inter__netinfra__router__base_config_deliver(cb: action(?(router_name: str), ?netinfra_inter__netinfra__router__base_config, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(router_name: str) = None
-    inst: ?netinfra_inter__netinfra__router__base_config = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
-            e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'router')), 'router')
-            c3 = _at(e2, ygdata.Id(NS_netinfra_inter, 'base-config'))
-            keys = (router_name=e2.get_str(ygdata.Id(NS_netinfra_inter, 'name')))
-            here = _present(c3)
-            if here is not None:
-                inst = netinfra_inter__netinfra__router__base_config.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor netinfra_inter__netinfra__router__base_config_dst(cb: action(?(router_name: str), ?netinfra_inter__netinfra__router__base_config, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(router_name: str) = None
+        inst: ?netinfra_inter__netinfra__router__base_config = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
+                e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'router')), 'router')
+                c3 = _at(e2, ygdata.Id(NS_netinfra_inter, 'base-config'))
+                keys = (router_name=e2.get_str(ygdata.Id(NS_netinfra_inter, 'name')))
+                here = _present(c3)
+                if here is not None:
+                    inst = netinfra_inter__netinfra__router__base_config.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class netinfra_inter__netinfra__router__base_config_subs(SubscriptionNode):
     asn: SubscriptionNode
@@ -1618,11 +1627,12 @@ class netinfra_inter__netinfra__router__base_config_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.asn, self.ipv4_address, self.ipv6_address]
         return direct
 
-    def dst(self, cb: action(?(router_name: str), ?netinfra_inter__netinfra__router__base_config, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(router_name: str), ?netinfra_inter__netinfra__router__base_config, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: netinfra_inter__netinfra__router__base_config_deliver(cb, n, err), root=self.filt())
+        a = netinfra_inter__netinfra__router__base_config_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker25: None = None
 class netinfra_inter__netinfra__router__l3vpn_vrf_entry_subs(SubscriptionNode):
@@ -1639,22 +1649,26 @@ class netinfra_inter__netinfra__router__l3vpn_vrf_entry_subs(SubscriptionNode):
         return direct
 
 _breaker26: None = None
-proc def netinfra_inter__netinfra__router__l3vpn_vrf_deliver(cb: action(?(router_name: str, l3vpn_vrf_vpn_id: str), ?netinfra_inter__netinfra__router__l3vpn_vrf_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(router_name: str, l3vpn_vrf_vpn_id: str) = None
-    inst: ?netinfra_inter__netinfra__router__l3vpn_vrf_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
-            e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'router')), 'router')
-            e3 = _one(_at(e2, ygdata.Id(NS_netinfra_inter, 'l3vpn-vrf')), 'l3vpn-vrf')
-            keys = (router_name=e2.get_str(ygdata.Id(NS_netinfra_inter, 'name')), l3vpn_vrf_vpn_id=e3.get_str(ygdata.Id(NS_netinfra_inter, 'vpn-id')))
-            here = _present(e3)
-            if here is not None:
-                inst = netinfra_inter__netinfra__router__l3vpn_vrf_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor netinfra_inter__netinfra__router__l3vpn_vrf_dst(cb: action(?(router_name: str, l3vpn_vrf_vpn_id: str), ?netinfra_inter__netinfra__router__l3vpn_vrf_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(router_name: str, l3vpn_vrf_vpn_id: str) = None
+        inst: ?netinfra_inter__netinfra__router__l3vpn_vrf_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
+                e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'router')), 'router')
+                e3 = _one(_at(e2, ygdata.Id(NS_netinfra_inter, 'l3vpn-vrf')), 'l3vpn-vrf')
+                keys = (router_name=e2.get_str(ygdata.Id(NS_netinfra_inter, 'name')), l3vpn_vrf_vpn_id=e3.get_str(ygdata.Id(NS_netinfra_inter, 'vpn-id')))
+                here = _present(e3)
+                if here is not None:
+                    inst = netinfra_inter__netinfra__router__l3vpn_vrf_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class netinfra_inter__netinfra__router__l3vpn_vrf_subs(SubscriptionNode):
     vpn_id: SubscriptionNode
@@ -1671,11 +1685,12 @@ class netinfra_inter__netinfra__router__l3vpn_vrf_subs(SubscriptionNode):
         base_path = self._path!.parent
         return netinfra_inter__netinfra__router__l3vpn_vrf_entry_subs(SubscriptionPath(ygdata.Id(NS_netinfra_inter, 'l3vpn-vrf'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(router_name: str, l3vpn_vrf_vpn_id: str), ?netinfra_inter__netinfra__router__l3vpn_vrf_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(router_name: str, l3vpn_vrf_vpn_id: str), ?netinfra_inter__netinfra__router__l3vpn_vrf_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: netinfra_inter__netinfra__router__l3vpn_vrf_deliver(cb, n, err), root=self.filt())
+        a = netinfra_inter__netinfra__router__l3vpn_vrf_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.vpn_id, self.ebgp_customer_address]
@@ -1710,21 +1725,25 @@ class netinfra_inter__netinfra__router_entry_subs(SubscriptionNode):
         return direct
 
 _breaker28: None = None
-proc def netinfra_inter__netinfra__router_deliver(cb: action(?(router_name: str), ?netinfra_inter__netinfra__router_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(router_name: str) = None
-    inst: ?netinfra_inter__netinfra__router_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
-            e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'router')), 'router')
-            keys = (router_name=e2.get_str(ygdata.Id(NS_netinfra_inter, 'name')))
-            here = _present(e2)
-            if here is not None:
-                inst = netinfra_inter__netinfra__router_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor netinfra_inter__netinfra__router_dst(cb: action(?(router_name: str), ?netinfra_inter__netinfra__router_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(router_name: str) = None
+        inst: ?netinfra_inter__netinfra__router_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
+                e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'router')), 'router')
+                keys = (router_name=e2.get_str(ygdata.Id(NS_netinfra_inter, 'name')))
+                here = _present(e2)
+                if here is not None:
+                    inst = netinfra_inter__netinfra__router_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class netinfra_inter__netinfra__router_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -1755,33 +1774,38 @@ class netinfra_inter__netinfra__router_subs(SubscriptionNode):
         base_path = self._path!.parent
         return netinfra_inter__netinfra__router_entry_subs(SubscriptionPath(ygdata.Id(NS_netinfra_inter, 'router'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(router_name: str), ?netinfra_inter__netinfra__router_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(router_name: str), ?netinfra_inter__netinfra__router_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: netinfra_inter__netinfra__router_deliver(cb, n, err), root=self.filt())
+        a = netinfra_inter__netinfra__router_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.id, self.type, self.role, self.mock, self.approval_required, self.feature_flags, self.base_config, self.l3vpn_vrf]
         return direct
 
 _breaker29: None = None
-proc def netinfra_inter__netinfra__backbone_link__state_deliver(cb: action(?(backbone_link_left_router: str, backbone_link_left_interface: str, backbone_link_right_router: str, backbone_link_right_interface: str), ?netinfra_inter__netinfra__backbone_link__state, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(backbone_link_left_router: str, backbone_link_left_interface: str, backbone_link_right_router: str, backbone_link_right_interface: str) = None
-    inst: ?netinfra_inter__netinfra__backbone_link__state = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
-            e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'backbone-link')), 'backbone-link')
-            c3 = _at(e2, ygdata.Id(NS_netinfra_inter, 'state'))
-            keys = (backbone_link_left_router=e2.get_str(ygdata.Id(NS_netinfra_inter, 'left-router')), backbone_link_left_interface=e2.get_str(ygdata.Id(NS_netinfra_inter, 'left-interface')), backbone_link_right_router=e2.get_str(ygdata.Id(NS_netinfra_inter, 'right-router')), backbone_link_right_interface=e2.get_str(ygdata.Id(NS_netinfra_inter, 'right-interface')))
-            here = _present(c3)
-            if here is not None:
-                inst = netinfra_inter__netinfra__backbone_link__state.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor netinfra_inter__netinfra__backbone_link__state_dst(cb: action(?(backbone_link_left_router: str, backbone_link_left_interface: str, backbone_link_right_router: str, backbone_link_right_interface: str), ?netinfra_inter__netinfra__backbone_link__state, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(backbone_link_left_router: str, backbone_link_left_interface: str, backbone_link_right_router: str, backbone_link_right_interface: str) = None
+        inst: ?netinfra_inter__netinfra__backbone_link__state = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
+                e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'backbone-link')), 'backbone-link')
+                c3 = _at(e2, ygdata.Id(NS_netinfra_inter, 'state'))
+                keys = (backbone_link_left_router=e2.get_str(ygdata.Id(NS_netinfra_inter, 'left-router')), backbone_link_left_interface=e2.get_str(ygdata.Id(NS_netinfra_inter, 'left-interface')), backbone_link_right_router=e2.get_str(ygdata.Id(NS_netinfra_inter, 'right-router')), backbone_link_right_interface=e2.get_str(ygdata.Id(NS_netinfra_inter, 'right-interface')))
+                here = _present(c3)
+                if here is not None:
+                    inst = netinfra_inter__netinfra__backbone_link__state.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class netinfra_inter__netinfra__backbone_link__state_subs(SubscriptionNode):
     link_status: SubscriptionNode
@@ -1794,11 +1818,12 @@ class netinfra_inter__netinfra__backbone_link__state_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.link_status]
         return direct
 
-    def dst(self, cb: action(?(backbone_link_left_router: str, backbone_link_left_interface: str, backbone_link_right_router: str, backbone_link_right_interface: str), ?netinfra_inter__netinfra__backbone_link__state, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(backbone_link_left_router: str, backbone_link_left_interface: str, backbone_link_right_router: str, backbone_link_right_interface: str), ?netinfra_inter__netinfra__backbone_link__state, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: netinfra_inter__netinfra__backbone_link__state_deliver(cb, n, err), root=self.filt())
+        a = netinfra_inter__netinfra__backbone_link__state_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker30: None = None
 class netinfra_inter__netinfra__backbone_link_entry_subs(SubscriptionNode):
@@ -1821,21 +1846,25 @@ class netinfra_inter__netinfra__backbone_link_entry_subs(SubscriptionNode):
         return direct
 
 _breaker31: None = None
-proc def netinfra_inter__netinfra__backbone_link_deliver(cb: action(?(backbone_link_left_router: str, backbone_link_left_interface: str, backbone_link_right_router: str, backbone_link_right_interface: str), ?netinfra_inter__netinfra__backbone_link_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(backbone_link_left_router: str, backbone_link_left_interface: str, backbone_link_right_router: str, backbone_link_right_interface: str) = None
-    inst: ?netinfra_inter__netinfra__backbone_link_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
-            e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'backbone-link')), 'backbone-link')
-            keys = (backbone_link_left_router=e2.get_str(ygdata.Id(NS_netinfra_inter, 'left-router')), backbone_link_left_interface=e2.get_str(ygdata.Id(NS_netinfra_inter, 'left-interface')), backbone_link_right_router=e2.get_str(ygdata.Id(NS_netinfra_inter, 'right-router')), backbone_link_right_interface=e2.get_str(ygdata.Id(NS_netinfra_inter, 'right-interface')))
-            here = _present(e2)
-            if here is not None:
-                inst = netinfra_inter__netinfra__backbone_link_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor netinfra_inter__netinfra__backbone_link_dst(cb: action(?(backbone_link_left_router: str, backbone_link_left_interface: str, backbone_link_right_router: str, backbone_link_right_interface: str), ?netinfra_inter__netinfra__backbone_link_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(backbone_link_left_router: str, backbone_link_left_interface: str, backbone_link_right_router: str, backbone_link_right_interface: str) = None
+        inst: ?netinfra_inter__netinfra__backbone_link_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
+                e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'backbone-link')), 'backbone-link')
+                keys = (backbone_link_left_router=e2.get_str(ygdata.Id(NS_netinfra_inter, 'left-router')), backbone_link_left_interface=e2.get_str(ygdata.Id(NS_netinfra_inter, 'left-interface')), backbone_link_right_router=e2.get_str(ygdata.Id(NS_netinfra_inter, 'right-router')), backbone_link_right_interface=e2.get_str(ygdata.Id(NS_netinfra_inter, 'right-interface')))
+                here = _present(e2)
+                if here is not None:
+                    inst = netinfra_inter__netinfra__backbone_link_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class netinfra_inter__netinfra__backbone_link_subs(SubscriptionNode):
     left_router: SubscriptionNode
@@ -1861,11 +1890,12 @@ class netinfra_inter__netinfra__backbone_link_subs(SubscriptionNode):
         base_path = self._path!.parent
         return netinfra_inter__netinfra__backbone_link_entry_subs(SubscriptionPath(ygdata.Id(NS_netinfra_inter, 'backbone-link'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(backbone_link_left_router: str, backbone_link_left_interface: str, backbone_link_right_router: str, backbone_link_right_interface: str), ?netinfra_inter__netinfra__backbone_link_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(backbone_link_left_router: str, backbone_link_left_interface: str, backbone_link_right_router: str, backbone_link_right_interface: str), ?netinfra_inter__netinfra__backbone_link_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: netinfra_inter__netinfra__backbone_link_deliver(cb, n, err), root=self.filt())
+        a = netinfra_inter__netinfra__backbone_link_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.left_router, self.left_interface, self.right_router, self.right_interface, self.state]
@@ -1886,22 +1916,26 @@ class netinfra_inter__netinfra__ibgp_fullmesh__router_entry_subs(SubscriptionNod
         return direct
 
 _breaker33: None = None
-proc def netinfra_inter__netinfra__ibgp_fullmesh__router_deliver(cb: action(?(ibgp_fullmesh_asn: u64, router_name: str), ?netinfra_inter__netinfra__ibgp_fullmesh__router_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(ibgp_fullmesh_asn: u64, router_name: str) = None
-    inst: ?netinfra_inter__netinfra__ibgp_fullmesh__router_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
-            e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'ibgp-fullmesh')), 'ibgp-fullmesh')
-            e3 = _one(_at(e2, ygdata.Id(NS_netinfra_inter, 'router')), 'router')
-            keys = (ibgp_fullmesh_asn=e2.get_u64(ygdata.Id(NS_netinfra_inter, 'asn')), router_name=e3.get_str(ygdata.Id(NS_netinfra_inter, 'name')))
-            here = _present(e3)
-            if here is not None:
-                inst = netinfra_inter__netinfra__ibgp_fullmesh__router_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor netinfra_inter__netinfra__ibgp_fullmesh__router_dst(cb: action(?(ibgp_fullmesh_asn: u64, router_name: str), ?netinfra_inter__netinfra__ibgp_fullmesh__router_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(ibgp_fullmesh_asn: u64, router_name: str) = None
+        inst: ?netinfra_inter__netinfra__ibgp_fullmesh__router_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
+                e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'ibgp-fullmesh')), 'ibgp-fullmesh')
+                e3 = _one(_at(e2, ygdata.Id(NS_netinfra_inter, 'router')), 'router')
+                keys = (ibgp_fullmesh_asn=e2.get_u64(ygdata.Id(NS_netinfra_inter, 'asn')), router_name=e3.get_str(ygdata.Id(NS_netinfra_inter, 'name')))
+                here = _present(e3)
+                if here is not None:
+                    inst = netinfra_inter__netinfra__ibgp_fullmesh__router_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class netinfra_inter__netinfra__ibgp_fullmesh__router_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -1918,11 +1952,12 @@ class netinfra_inter__netinfra__ibgp_fullmesh__router_subs(SubscriptionNode):
         base_path = self._path!.parent
         return netinfra_inter__netinfra__ibgp_fullmesh__router_entry_subs(SubscriptionPath(ygdata.Id(NS_netinfra_inter, 'router'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(ibgp_fullmesh_asn: u64, router_name: str), ?netinfra_inter__netinfra__ibgp_fullmesh__router_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(ibgp_fullmesh_asn: u64, router_name: str), ?netinfra_inter__netinfra__ibgp_fullmesh__router_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: netinfra_inter__netinfra__ibgp_fullmesh__router_deliver(cb, n, err), root=self.filt())
+        a = netinfra_inter__netinfra__ibgp_fullmesh__router_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.ipv4_address]
@@ -1945,21 +1980,25 @@ class netinfra_inter__netinfra__ibgp_fullmesh_entry_subs(SubscriptionNode):
         return direct
 
 _breaker35: None = None
-proc def netinfra_inter__netinfra__ibgp_fullmesh_deliver(cb: action(?(ibgp_fullmesh_asn: u64), ?netinfra_inter__netinfra__ibgp_fullmesh_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(ibgp_fullmesh_asn: u64) = None
-    inst: ?netinfra_inter__netinfra__ibgp_fullmesh_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
-            e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'ibgp-fullmesh')), 'ibgp-fullmesh')
-            keys = (ibgp_fullmesh_asn=e2.get_u64(ygdata.Id(NS_netinfra_inter, 'asn')))
-            here = _present(e2)
-            if here is not None:
-                inst = netinfra_inter__netinfra__ibgp_fullmesh_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor netinfra_inter__netinfra__ibgp_fullmesh_dst(cb: action(?(ibgp_fullmesh_asn: u64), ?netinfra_inter__netinfra__ibgp_fullmesh_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(ibgp_fullmesh_asn: u64) = None
+        inst: ?netinfra_inter__netinfra__ibgp_fullmesh_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
+                e2 = _one(_at(c1, ygdata.Id(NS_netinfra_inter, 'ibgp-fullmesh')), 'ibgp-fullmesh')
+                keys = (ibgp_fullmesh_asn=e2.get_u64(ygdata.Id(NS_netinfra_inter, 'asn')))
+                here = _present(e2)
+                if here is not None:
+                    inst = netinfra_inter__netinfra__ibgp_fullmesh_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class netinfra_inter__netinfra__ibgp_fullmesh_subs(SubscriptionNode):
     asn: SubscriptionNode
@@ -1978,29 +2017,34 @@ class netinfra_inter__netinfra__ibgp_fullmesh_subs(SubscriptionNode):
         base_path = self._path!.parent
         return netinfra_inter__netinfra__ibgp_fullmesh_entry_subs(SubscriptionPath(ygdata.Id(NS_netinfra_inter, 'ibgp-fullmesh'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(ibgp_fullmesh_asn: u64), ?netinfra_inter__netinfra__ibgp_fullmesh_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(ibgp_fullmesh_asn: u64), ?netinfra_inter__netinfra__ibgp_fullmesh_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: netinfra_inter__netinfra__ibgp_fullmesh_deliver(cb, n, err), root=self.filt())
+        a = netinfra_inter__netinfra__ibgp_fullmesh_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.asn, self.authentication_key, self.router]
         return direct
 
 _breaker36: None = None
-proc def netinfra_inter__netinfra_deliver(cb: action(?netinfra_inter__netinfra, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?netinfra_inter__netinfra = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
-            here = _present(c1)
-            if here is not None:
-                inst = netinfra_inter__netinfra.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor netinfra_inter__netinfra_dst(cb: action(?netinfra_inter__netinfra, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?netinfra_inter__netinfra = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_netinfra_inter, 'netinfra'))
+                here = _present(c1)
+                if here is not None:
+                    inst = netinfra_inter__netinfra.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class netinfra_inter__netinfra_subs(SubscriptionNode):
     router: netinfra_inter__netinfra__router_subs
@@ -2017,30 +2061,35 @@ class netinfra_inter__netinfra_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.router, self.backbone_link, self.ibgp_fullmesh]
         return direct
 
-    def dst(self, cb: action(?netinfra_inter__netinfra, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?netinfra_inter__netinfra, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: netinfra_inter__netinfra_deliver(cb, n, err), root=self.filt())
+        a = netinfra_inter__netinfra_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker37: None = None
-proc def l3vpn_inter__l3vpns__l3vpn__endpoint__bgp_deliver(cb: action(?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str), ?l3vpn_inter__l3vpns__l3vpn__endpoint__bgp, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str) = None
-    inst: ?l3vpn_inter__l3vpns__l3vpn__endpoint__bgp = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_l3vpn_inter, 'l3vpns'))
-            e2 = _one(_at(c1, ygdata.Id(NS_l3vpn_inter, 'l3vpn')), 'l3vpn')
-            e3 = _one(_at(e2, ygdata.Id(NS_l3vpn_inter, 'endpoint')), 'endpoint')
-            c4 = _at(e3, ygdata.Id(NS_l3vpn_inter, 'bgp'))
-            keys = (l3vpn_name=e2.get_str(ygdata.Id(NS_l3vpn_inter, 'name')), endpoint_device=e3.get_str(ygdata.Id(NS_l3vpn_inter, 'device')), endpoint_interface=e3.get_str(ygdata.Id(NS_l3vpn_inter, 'interface')))
-            here = _present(c4)
-            if here is not None:
-                inst = l3vpn_inter__l3vpns__l3vpn__endpoint__bgp.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor l3vpn_inter__l3vpns__l3vpn__endpoint__bgp_dst(cb: action(?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str), ?l3vpn_inter__l3vpns__l3vpn__endpoint__bgp, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str) = None
+        inst: ?l3vpn_inter__l3vpns__l3vpn__endpoint__bgp = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_l3vpn_inter, 'l3vpns'))
+                e2 = _one(_at(c1, ygdata.Id(NS_l3vpn_inter, 'l3vpn')), 'l3vpn')
+                e3 = _one(_at(e2, ygdata.Id(NS_l3vpn_inter, 'endpoint')), 'endpoint')
+                c4 = _at(e3, ygdata.Id(NS_l3vpn_inter, 'bgp'))
+                keys = (l3vpn_name=e2.get_str(ygdata.Id(NS_l3vpn_inter, 'name')), endpoint_device=e3.get_str(ygdata.Id(NS_l3vpn_inter, 'device')), endpoint_interface=e3.get_str(ygdata.Id(NS_l3vpn_inter, 'interface')))
+                here = _present(c4)
+                if here is not None:
+                    inst = l3vpn_inter__l3vpns__l3vpn__endpoint__bgp.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class l3vpn_inter__l3vpns__l3vpn__endpoint__bgp_subs(SubscriptionNode):
     as_number: SubscriptionNode
@@ -2055,30 +2104,35 @@ class l3vpn_inter__l3vpns__l3vpn__endpoint__bgp_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.as_number, self.authentication_key]
         return direct
 
-    def dst(self, cb: action(?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str), ?l3vpn_inter__l3vpns__l3vpn__endpoint__bgp, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str), ?l3vpn_inter__l3vpns__l3vpn__endpoint__bgp, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: l3vpn_inter__l3vpns__l3vpn__endpoint__bgp_deliver(cb, n, err), root=self.filt())
+        a = l3vpn_inter__l3vpns__l3vpn__endpoint__bgp_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker38: None = None
-proc def l3vpn_inter__l3vpns__l3vpn__endpoint__state_deliver(cb: action(?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str), ?l3vpn_inter__l3vpns__l3vpn__endpoint__state, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str) = None
-    inst: ?l3vpn_inter__l3vpns__l3vpn__endpoint__state = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_l3vpn_inter, 'l3vpns'))
-            e2 = _one(_at(c1, ygdata.Id(NS_l3vpn_inter, 'l3vpn')), 'l3vpn')
-            e3 = _one(_at(e2, ygdata.Id(NS_l3vpn_inter, 'endpoint')), 'endpoint')
-            c4 = _at(e3, ygdata.Id(NS_l3vpn_inter, 'state'))
-            keys = (l3vpn_name=e2.get_str(ygdata.Id(NS_l3vpn_inter, 'name')), endpoint_device=e3.get_str(ygdata.Id(NS_l3vpn_inter, 'device')), endpoint_interface=e3.get_str(ygdata.Id(NS_l3vpn_inter, 'interface')))
-            here = _present(c4)
-            if here is not None:
-                inst = l3vpn_inter__l3vpns__l3vpn__endpoint__state.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor l3vpn_inter__l3vpns__l3vpn__endpoint__state_dst(cb: action(?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str), ?l3vpn_inter__l3vpns__l3vpn__endpoint__state, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str) = None
+        inst: ?l3vpn_inter__l3vpns__l3vpn__endpoint__state = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_l3vpn_inter, 'l3vpns'))
+                e2 = _one(_at(c1, ygdata.Id(NS_l3vpn_inter, 'l3vpn')), 'l3vpn')
+                e3 = _one(_at(e2, ygdata.Id(NS_l3vpn_inter, 'endpoint')), 'endpoint')
+                c4 = _at(e3, ygdata.Id(NS_l3vpn_inter, 'state'))
+                keys = (l3vpn_name=e2.get_str(ygdata.Id(NS_l3vpn_inter, 'name')), endpoint_device=e3.get_str(ygdata.Id(NS_l3vpn_inter, 'device')), endpoint_interface=e3.get_str(ygdata.Id(NS_l3vpn_inter, 'interface')))
+                here = _present(c4)
+                if here is not None:
+                    inst = l3vpn_inter__l3vpns__l3vpn__endpoint__state.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class l3vpn_inter__l3vpns__l3vpn__endpoint__state_subs(SubscriptionNode):
     session_state: SubscriptionNode
@@ -2101,11 +2155,12 @@ class l3vpn_inter__l3vpns__l3vpn__endpoint__state_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.session_state, self.last_event, self.established_transitions, self.debug_active, self.negotiated_hold_time, self.last_notification]
         return direct
 
-    def dst(self, cb: action(?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str), ?l3vpn_inter__l3vpns__l3vpn__endpoint__state, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str), ?l3vpn_inter__l3vpns__l3vpn__endpoint__state, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this container as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: l3vpn_inter__l3vpns__l3vpn__endpoint__state_deliver(cb, n, err), root=self.filt())
+        a = l3vpn_inter__l3vpns__l3vpn__endpoint__state_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker39: None = None
 class l3vpn_inter__l3vpns__l3vpn__endpoint_entry_subs(SubscriptionNode):
@@ -2136,22 +2191,26 @@ class l3vpn_inter__l3vpns__l3vpn__endpoint_entry_subs(SubscriptionNode):
         return direct
 
 _breaker40: None = None
-proc def l3vpn_inter__l3vpns__l3vpn__endpoint_deliver(cb: action(?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str), ?l3vpn_inter__l3vpns__l3vpn__endpoint_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str) = None
-    inst: ?l3vpn_inter__l3vpns__l3vpn__endpoint_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_l3vpn_inter, 'l3vpns'))
-            e2 = _one(_at(c1, ygdata.Id(NS_l3vpn_inter, 'l3vpn')), 'l3vpn')
-            e3 = _one(_at(e2, ygdata.Id(NS_l3vpn_inter, 'endpoint')), 'endpoint')
-            keys = (l3vpn_name=e2.get_str(ygdata.Id(NS_l3vpn_inter, 'name')), endpoint_device=e3.get_str(ygdata.Id(NS_l3vpn_inter, 'device')), endpoint_interface=e3.get_str(ygdata.Id(NS_l3vpn_inter, 'interface')))
-            here = _present(e3)
-            if here is not None:
-                inst = l3vpn_inter__l3vpns__l3vpn__endpoint_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor l3vpn_inter__l3vpns__l3vpn__endpoint_dst(cb: action(?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str), ?l3vpn_inter__l3vpns__l3vpn__endpoint_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str) = None
+        inst: ?l3vpn_inter__l3vpns__l3vpn__endpoint_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_l3vpn_inter, 'l3vpns'))
+                e2 = _one(_at(c1, ygdata.Id(NS_l3vpn_inter, 'l3vpn')), 'l3vpn')
+                e3 = _one(_at(e2, ygdata.Id(NS_l3vpn_inter, 'endpoint')), 'endpoint')
+                keys = (l3vpn_name=e2.get_str(ygdata.Id(NS_l3vpn_inter, 'name')), endpoint_device=e3.get_str(ygdata.Id(NS_l3vpn_inter, 'device')), endpoint_interface=e3.get_str(ygdata.Id(NS_l3vpn_inter, 'interface')))
+                here = _present(e3)
+                if here is not None:
+                    inst = l3vpn_inter__l3vpns__l3vpn__endpoint_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class l3vpn_inter__l3vpns__l3vpn__endpoint_subs(SubscriptionNode):
     device: SubscriptionNode
@@ -2183,11 +2242,12 @@ class l3vpn_inter__l3vpns__l3vpn__endpoint_subs(SubscriptionNode):
         base_path = self._path!.parent
         return l3vpn_inter__l3vpns__l3vpn__endpoint_entry_subs(SubscriptionPath(ygdata.Id(NS_l3vpn_inter, 'endpoint'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str), ?l3vpn_inter__l3vpns__l3vpn__endpoint_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(l3vpn_name: str, endpoint_device: str, endpoint_interface: str), ?l3vpn_inter__l3vpns__l3vpn__endpoint_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: l3vpn_inter__l3vpns__l3vpn__endpoint_deliver(cb, n, err), root=self.filt())
+        a = l3vpn_inter__l3vpns__l3vpn__endpoint_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.device, self.interface, self.site, self.site_network_access, self.provider_ipv4_address, self.customer_ipv4_address, self.ipv4_prefix_length, self.bgp, self.state]
@@ -2210,21 +2270,25 @@ class l3vpn_inter__l3vpns__l3vpn_entry_subs(SubscriptionNode):
         return direct
 
 _breaker42: None = None
-proc def l3vpn_inter__l3vpns__l3vpn_deliver(cb: action(?(l3vpn_name: str), ?l3vpn_inter__l3vpns__l3vpn_entry, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    keys: ?(l3vpn_name: str) = None
-    inst: ?l3vpn_inter__l3vpns__l3vpn_entry = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_l3vpn_inter, 'l3vpns'))
-            e2 = _one(_at(c1, ygdata.Id(NS_l3vpn_inter, 'l3vpn')), 'l3vpn')
-            keys = (l3vpn_name=e2.get_str(ygdata.Id(NS_l3vpn_inter, 'name')))
-            here = _present(e2)
-            if here is not None:
-                inst = l3vpn_inter__l3vpns__l3vpn_entry.from_gdata(here)
-        except Exception as e:
-            cb(None, None, e)
-            return
-    cb(keys, inst, err)
+actor l3vpn_inter__l3vpns__l3vpn_dst(cb: action(?(l3vpn_name: str), ?l3vpn_inter__l3vpns__l3vpn_entry, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        keys: ?(l3vpn_name: str) = None
+        inst: ?l3vpn_inter__l3vpns__l3vpn_entry = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_l3vpn_inter, 'l3vpns'))
+                e2 = _one(_at(c1, ygdata.Id(NS_l3vpn_inter, 'l3vpn')), 'l3vpn')
+                keys = (l3vpn_name=e2.get_str(ygdata.Id(NS_l3vpn_inter, 'name')))
+                here = _present(e2)
+                if here is not None:
+                    inst = l3vpn_inter__l3vpns__l3vpn_entry.from_gdata(here)
+            except Exception as e:
+                cb(None, None, e)
+                return
+        cb(keys, inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class l3vpn_inter__l3vpns__l3vpn_subs(SubscriptionNode):
     name: SubscriptionNode
@@ -2243,29 +2307,34 @@ class l3vpn_inter__l3vpns__l3vpn_subs(SubscriptionNode):
         base_path = self._path!.parent
         return l3vpn_inter__l3vpns__l3vpn_entry_subs(SubscriptionPath(ygdata.Id(NS_l3vpn_inter, 'l3vpn'), predicates=predicates, parent=base_path))
 
-    def dst(self, cb: action(?(l3vpn_name: str), ?l3vpn_inter__l3vpns__l3vpn_entry, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?(l3vpn_name: str), ?l3vpn_inter__l3vpns__l3vpn_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         the keys of the lists on the way down, this entry as it is
         after a change or None when it is gone, and an error."""
-        return ygdata.Dst(lambda n, err: l3vpn_inter__l3vpns__l3vpn_deliver(cb, n, err), root=self.filt())
+        a = l3vpn_inter__l3vpns__l3vpn_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.description, self.endpoint]
         return direct
 
 _breaker43: None = None
-proc def l3vpn_inter__l3vpns_deliver(cb: action(?l3vpn_inter__l3vpns, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    inst: ?l3vpn_inter__l3vpns = None
-    if n is not None:
-        try:
-            c1 = _at(n, ygdata.Id(NS_l3vpn_inter, 'l3vpns'))
-            here = _present(c1)
-            if here is not None:
-                inst = l3vpn_inter__l3vpns.from_gdata(here)
-        except Exception as e:
-            cb(None, e)
-            return
-    cb(inst, err)
+actor l3vpn_inter__l3vpns_dst(cb: action(?l3vpn_inter__l3vpns, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        inst: ?l3vpn_inter__l3vpns = None
+        if n is not None:
+            try:
+                c1 = _at(n, ygdata.Id(NS_l3vpn_inter, 'l3vpns'))
+                here = _present(c1)
+                if here is not None:
+                    inst = l3vpn_inter__l3vpns.from_gdata(here)
+            except Exception as e:
+                cb(None, e)
+                return
+        cb(inst, err)
+
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
 
 class l3vpn_inter__l3vpns_subs(SubscriptionNode):
     l3vpn: l3vpn_inter__l3vpns__l3vpn_subs
@@ -2278,11 +2347,12 @@ class l3vpn_inter__l3vpns_subs(SubscriptionNode):
         direct: list[SubscriptionNode] = [self.l3vpn]
         return direct
 
-    def dst(self, cb: action(?l3vpn_inter__l3vpns, ?Exception) -> None) -> ygdata.Dst:
+    proc def dst(self, cb: action(?l3vpn_inter__l3vpns, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
         this container as it is after a change or None when it is gone,
         and an error."""
-        return ygdata.Dst(lambda n, err: l3vpn_inter__l3vpns_deliver(cb, n, err), root=self.filt())
+        a = l3vpn_inter__l3vpns_dst(cb)
+        return ygdata.Dst(a.on_update, root=self.filt(), synced=a.synced)
 
 _breaker44: None = None
 class root_subs(SubscriptionNode):
@@ -2300,15 +2370,20 @@ class root_subs(SubscriptionNode):
 
 subs: root_subs = root_subs()
 
-proc def _deliver_root(cb: action(?root, ?Exception) -> None, n: ?ygdata.Node, err: ?Exception) -> None:
-    if err is not None:
-        cb(None, err)
-    elif n is not None:
-        cb(root.from_gdata(n), None)
-    else:
-        cb(None, None)
+actor _root_dst(cb: action(?root, ?Exception) -> None):
+    def on_update(n: ?ygdata.Node, err: ?Exception) -> None:
+        if err is not None:
+            cb(None, err)
+        elif n is not None:
+            cb(root.from_gdata(n), None)
+        else:
+            cb(None, None)
 
-def dst(cb: action(?root, ?Exception) -> None) -> ygdata.Dst:
+    def synced(done: action(str) -> None, owner_id: str) -> None:
+        done(owner_id)
+
+proc def dst(cb: action(?root, ?Exception) -> None) -> ygdata.Dst:
     """A destination at the top of the tree: cb gets the whole subscribed
     tree on every delivery."""
-    return ygdata.Dst(lambda n, err: _deliver_root(cb, n, err))
+    a = _root_dst(cb)
+    return ygdata.Dst(a.on_update, synced=a.synced)

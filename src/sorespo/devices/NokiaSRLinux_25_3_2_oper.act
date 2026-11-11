@@ -33983,6 +33983,98 @@ NS_srl_nokia_traffic_engineering: str = 'urn:nokia.com:srlinux:te:traffic-engine
 NS_srl_nokia_tunnel: str = 'urn:nokia.com:srlinux:vxlan:tunnel'
 NS_srl_nokia_tunnel_interfaces: str = 'urn:nokia.com:srlinux:vxlan:tunnel-interfaces'
 
+_ID_srl_nokia_bgp__admin_state: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'admin-state')
+_ID_srl_nokia_bgp__afi_safi: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'afi-safi')
+_ID_srl_nokia_bgp__afi_safi_name: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'afi-safi-name')
+_ID_srl_nokia_bgp__authentication: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'authentication')
+_ID_srl_nokia_bgp__autonomous_system: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'autonomous-system')
+_ID_srl_nokia_bgp__bgp: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'bgp')
+_ID_srl_nokia_bgp__connect_retry: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'connect-retry')
+_ID_srl_nokia_bgp__description: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'description')
+_ID_srl_nokia_bgp__ebgp_default_policy: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'ebgp-default-policy')
+_ID_srl_nokia_bgp__established_transitions: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'established-transitions')
+_ID_srl_nokia_bgp__export_reject_all: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'export-reject-all')
+_ID_srl_nokia_bgp__group: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'group')
+_ID_srl_nokia_bgp__group_name: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'group-name')
+_ID_srl_nokia_bgp__hold_time: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'hold-time')
+_ID_srl_nokia_bgp__import_reject_all: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'import-reject-all')
+_ID_srl_nokia_bgp__ipv4_unicast: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'ipv4-unicast')
+_ID_srl_nokia_bgp__keepalive_interval: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'keepalive-interval')
+_ID_srl_nokia_bgp__last_event: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'last-event')
+_ID_srl_nokia_bgp__last_notification_error_code: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'last-notification-error-code')
+_ID_srl_nokia_bgp__negotiated_hold_time: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'negotiated-hold-time')
+_ID_srl_nokia_bgp__neighbor: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'neighbor')
+_ID_srl_nokia_bgp__password: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'password')
+_ID_srl_nokia_bgp__peer_address: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'peer-address')
+_ID_srl_nokia_bgp__peer_as: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'peer-as')
+_ID_srl_nokia_bgp__peer_group: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'peer-group')
+_ID_srl_nokia_bgp__received_messages: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'received-messages')
+_ID_srl_nokia_bgp__router_id: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'router-id')
+_ID_srl_nokia_bgp__send_default_route: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'send-default-route')
+_ID_srl_nokia_bgp__sent_messages: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'sent-messages')
+_ID_srl_nokia_bgp__session_state: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'session-state')
+_ID_srl_nokia_bgp__timers: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp, 'timers')
+_ID_srl_nokia_bgp_evpn__admin_state: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp_evpn, 'admin-state')
+_ID_srl_nokia_bgp_evpn__bgp_instance: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp_evpn, 'bgp-instance')
+_ID_srl_nokia_bgp_evpn__evi: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp_evpn, 'evi')
+_ID_srl_nokia_bgp_evpn__id: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp_evpn, 'id')
+_ID_srl_nokia_bgp_evpn__vxlan_interface: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp_evpn, 'vxlan-interface')
+_ID_srl_nokia_bgp_vpn__bgp_instance: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp_vpn, 'bgp-instance')
+_ID_srl_nokia_bgp_vpn__bgp_vpn: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp_vpn, 'bgp-vpn')
+_ID_srl_nokia_bgp_vpn__export_rt: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp_vpn, 'export-rt')
+_ID_srl_nokia_bgp_vpn__id: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp_vpn, 'id')
+_ID_srl_nokia_bgp_vpn__import_rt: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp_vpn, 'import-rt')
+_ID_srl_nokia_bgp_vpn__route_target: ygdata.Id = ygdata.Id(NS_srl_nokia_bgp_vpn, 'route-target')
+_ID_srl_nokia_interfaces__address: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces, 'address')
+_ID_srl_nokia_interfaces__admin_state: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces, 'admin-state')
+_ID_srl_nokia_interfaces__description: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces, 'description')
+_ID_srl_nokia_interfaces__index: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces, 'index')
+_ID_srl_nokia_interfaces__interface: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces, 'interface')
+_ID_srl_nokia_interfaces__ip_prefix: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces, 'ip-prefix')
+_ID_srl_nokia_interfaces__ipv4: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces, 'ipv4')
+_ID_srl_nokia_interfaces__ipv6: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces, 'ipv6')
+_ID_srl_nokia_interfaces__name: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces, 'name')
+_ID_srl_nokia_interfaces__oper_state: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces, 'oper-state')
+_ID_srl_nokia_interfaces__subinterface: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces, 'subinterface')
+_ID_srl_nokia_interfaces_vlans__encap: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces_vlans, 'encap')
+_ID_srl_nokia_interfaces_vlans__single_tagged: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces_vlans, 'single-tagged')
+_ID_srl_nokia_interfaces_vlans__vlan: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan')
+_ID_srl_nokia_interfaces_vlans__vlan_id: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan-id')
+_ID_srl_nokia_interfaces_vlans__vlan_tagging: ygdata.Id = ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan-tagging')
+_ID_srl_nokia_isis__admin_state: ygdata.Id = ygdata.Id(NS_srl_nokia_isis, 'admin-state')
+_ID_srl_nokia_isis__circuit_type: ygdata.Id = ygdata.Id(NS_srl_nokia_isis, 'circuit-type')
+_ID_srl_nokia_isis__instance: ygdata.Id = ygdata.Id(NS_srl_nokia_isis, 'instance')
+_ID_srl_nokia_isis__interface: ygdata.Id = ygdata.Id(NS_srl_nokia_isis, 'interface')
+_ID_srl_nokia_isis__interface_name: ygdata.Id = ygdata.Id(NS_srl_nokia_isis, 'interface-name')
+_ID_srl_nokia_isis__ipv4_unicast: ygdata.Id = ygdata.Id(NS_srl_nokia_isis, 'ipv4-unicast')
+_ID_srl_nokia_isis__isis: ygdata.Id = ygdata.Id(NS_srl_nokia_isis, 'isis')
+_ID_srl_nokia_isis__level: ygdata.Id = ygdata.Id(NS_srl_nokia_isis, 'level')
+_ID_srl_nokia_isis__level_capability: ygdata.Id = ygdata.Id(NS_srl_nokia_isis, 'level-capability')
+_ID_srl_nokia_isis__level_number: ygdata.Id = ygdata.Id(NS_srl_nokia_isis, 'level-number')
+_ID_srl_nokia_isis__metric: ygdata.Id = ygdata.Id(NS_srl_nokia_isis, 'metric')
+_ID_srl_nokia_isis__name: ygdata.Id = ygdata.Id(NS_srl_nokia_isis, 'name')
+_ID_srl_nokia_isis__net: ygdata.Id = ygdata.Id(NS_srl_nokia_isis, 'net')
+_ID_srl_nokia_isis__passive: ygdata.Id = ygdata.Id(NS_srl_nokia_isis, 'passive')
+_ID_srl_nokia_network_instance__admin_state: ygdata.Id = ygdata.Id(NS_srl_nokia_network_instance, 'admin-state')
+_ID_srl_nokia_network_instance__bgp_evpn: ygdata.Id = ygdata.Id(NS_srl_nokia_network_instance, 'bgp-evpn')
+_ID_srl_nokia_network_instance__description: ygdata.Id = ygdata.Id(NS_srl_nokia_network_instance, 'description')
+_ID_srl_nokia_network_instance__interface: ygdata.Id = ygdata.Id(NS_srl_nokia_network_instance, 'interface')
+_ID_srl_nokia_network_instance__name: ygdata.Id = ygdata.Id(NS_srl_nokia_network_instance, 'name')
+_ID_srl_nokia_network_instance__network_instance: ygdata.Id = ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')
+_ID_srl_nokia_network_instance__protocols: ygdata.Id = ygdata.Id(NS_srl_nokia_network_instance, 'protocols')
+_ID_srl_nokia_network_instance__type: ygdata.Id = ygdata.Id(NS_srl_nokia_network_instance, 'type')
+_ID_srl_nokia_network_instance__vxlan_interface: ygdata.Id = ygdata.Id(NS_srl_nokia_network_instance, 'vxlan-interface')
+_ID_srl_nokia_system__system: ygdata.Id = ygdata.Id(NS_srl_nokia_system, 'system')
+_ID_srl_nokia_system_name__host_name: ygdata.Id = ygdata.Id(NS_srl_nokia_system_name, 'host-name')
+_ID_srl_nokia_system_name__name: ygdata.Id = ygdata.Id(NS_srl_nokia_system_name, 'name')
+_ID_srl_nokia_tunnel_interfaces__index: ygdata.Id = ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'index')
+_ID_srl_nokia_tunnel_interfaces__ingress: ygdata.Id = ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'ingress')
+_ID_srl_nokia_tunnel_interfaces__name: ygdata.Id = ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'name')
+_ID_srl_nokia_tunnel_interfaces__tunnel_interface: ygdata.Id = ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'tunnel-interface')
+_ID_srl_nokia_tunnel_interfaces__type: ygdata.Id = ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'type')
+_ID_srl_nokia_tunnel_interfaces__vni: ygdata.Id = ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'vni')
+_ID_srl_nokia_tunnel_interfaces__vxlan_interface: ygdata.Id = ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'vxlan-interface')
+
 
 _breaker1: None = None
 class srl_nokia_system__system__name(yadata.MNode):
@@ -33997,7 +34089,7 @@ class srl_nokia_system__system__name(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_system__system__name:
         if n is not None:
-            return srl_nokia_system__system__name(host_name=n.get_opt_str(ygdata.Id(NS_srl_nokia_system_name, 'host-name')))
+            return srl_nokia_system__system__name(host_name=n.get_opt_str(_ID_srl_nokia_system_name__host_name))
         return srl_nokia_system__system__name()
 
     mut def copy(self) -> srl_nokia_system__system__name:
@@ -34018,7 +34110,7 @@ class srl_nokia_system__system(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_system__system:
         if n is not None:
-            return srl_nokia_system__system(name=srl_nokia_system__system__name.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_system_name, 'name'))))
+            return srl_nokia_system__system(name=srl_nokia_system__system__name.from_gdata(n.get_opt_cnt(_ID_srl_nokia_system_name__name)))
         return srl_nokia_system__system()
 
     mut def copy(self) -> srl_nokia_system__system:
@@ -34038,7 +34130,7 @@ class srl_nokia_interfaces__interface__subinterface__ipv4__address_entry(yadata.
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_interfaces__interface__subinterface__ipv4__address_entry:
-        return srl_nokia_interfaces__interface__subinterface__ipv4__address_entry(ip_prefix=n.get_str(ygdata.Id(NS_srl_nokia_interfaces, 'ip-prefix')))
+        return srl_nokia_interfaces__interface__subinterface__ipv4__address_entry(ip_prefix=n.get_str(_ID_srl_nokia_interfaces__ip_prefix))
 
     mut def copy(self) -> srl_nokia_interfaces__interface__subinterface__ipv4__address_entry:
         """Create a deep copy of this adata object"""
@@ -34090,7 +34182,7 @@ class srl_nokia_interfaces__interface__subinterface__ipv4(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_interfaces__interface__subinterface__ipv4:
         if n is not None:
-            return srl_nokia_interfaces__interface__subinterface__ipv4(admin_state=n.get_opt_str(ygdata.Id(NS_srl_nokia_interfaces, 'admin-state')), address=srl_nokia_interfaces__interface__subinterface__ipv4__address.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_interfaces, 'address'))))
+            return srl_nokia_interfaces__interface__subinterface__ipv4(admin_state=n.get_opt_str(_ID_srl_nokia_interfaces__admin_state), address=srl_nokia_interfaces__interface__subinterface__ipv4__address.from_gdata(n.get_opt_list(_ID_srl_nokia_interfaces__address)))
         return srl_nokia_interfaces__interface__subinterface__ipv4()
 
     mut def copy(self) -> srl_nokia_interfaces__interface__subinterface__ipv4:
@@ -34111,7 +34203,7 @@ class srl_nokia_interfaces__interface__subinterface__ipv6(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_interfaces__interface__subinterface__ipv6:
         if n is not None:
-            return srl_nokia_interfaces__interface__subinterface__ipv6(admin_state=n.get_opt_str(ygdata.Id(NS_srl_nokia_interfaces, 'admin-state')))
+            return srl_nokia_interfaces__interface__subinterface__ipv6(admin_state=n.get_opt_str(_ID_srl_nokia_interfaces__admin_state))
         return srl_nokia_interfaces__interface__subinterface__ipv6()
 
     mut def copy(self) -> srl_nokia_interfaces__interface__subinterface__ipv6:
@@ -34132,7 +34224,7 @@ class srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged(
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged:
         if n is not None:
-            return srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged(vlan_id=n.get_opt_atom(ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan-id')))
+            return srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged(vlan_id=n.get_opt_atom(_ID_srl_nokia_interfaces_vlans__vlan_id))
         return None
 
     mut def copy(self) -> srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged:
@@ -34166,7 +34258,7 @@ class srl_nokia_interfaces__interface__subinterface__vlan__encap(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_interfaces__interface__subinterface__vlan__encap:
         if n is not None:
-            return srl_nokia_interfaces__interface__subinterface__vlan__encap(single_tagged=srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_interfaces_vlans, 'single-tagged'))))
+            return srl_nokia_interfaces__interface__subinterface__vlan__encap(single_tagged=srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged.from_gdata(n.get_opt_cnt(_ID_srl_nokia_interfaces_vlans__single_tagged)))
         return srl_nokia_interfaces__interface__subinterface__vlan__encap()
 
     mut def copy(self) -> srl_nokia_interfaces__interface__subinterface__vlan__encap:
@@ -34187,7 +34279,7 @@ class srl_nokia_interfaces__interface__subinterface__vlan(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_interfaces__interface__subinterface__vlan:
         if n is not None:
-            return srl_nokia_interfaces__interface__subinterface__vlan(encap=srl_nokia_interfaces__interface__subinterface__vlan__encap.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_interfaces_vlans, 'encap'))))
+            return srl_nokia_interfaces__interface__subinterface__vlan(encap=srl_nokia_interfaces__interface__subinterface__vlan__encap.from_gdata(n.get_opt_cnt(_ID_srl_nokia_interfaces_vlans__encap)))
         return srl_nokia_interfaces__interface__subinterface__vlan()
 
     mut def copy(self) -> srl_nokia_interfaces__interface__subinterface__vlan:
@@ -34217,7 +34309,7 @@ class srl_nokia_interfaces__interface__subinterface_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_interfaces__interface__subinterface_entry:
-        return srl_nokia_interfaces__interface__subinterface_entry(index=n.get_u64(ygdata.Id(NS_srl_nokia_interfaces, 'index')), description=n.get_opt_str(ygdata.Id(NS_srl_nokia_interfaces, 'description')), admin_state=n.get_opt_str(ygdata.Id(NS_srl_nokia_interfaces, 'admin-state')), ipv4=srl_nokia_interfaces__interface__subinterface__ipv4.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_interfaces, 'ipv4'))), ipv6=srl_nokia_interfaces__interface__subinterface__ipv6.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_interfaces, 'ipv6'))), vlan=srl_nokia_interfaces__interface__subinterface__vlan.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan'))))
+        return srl_nokia_interfaces__interface__subinterface_entry(index=n.get_u64(_ID_srl_nokia_interfaces__index), description=n.get_opt_str(_ID_srl_nokia_interfaces__description), admin_state=n.get_opt_str(_ID_srl_nokia_interfaces__admin_state), ipv4=srl_nokia_interfaces__interface__subinterface__ipv4.from_gdata(n.get_opt_cnt(_ID_srl_nokia_interfaces__ipv4)), ipv6=srl_nokia_interfaces__interface__subinterface__ipv6.from_gdata(n.get_opt_cnt(_ID_srl_nokia_interfaces__ipv6)), vlan=srl_nokia_interfaces__interface__subinterface__vlan.from_gdata(n.get_opt_cnt(_ID_srl_nokia_interfaces_vlans__vlan)))
 
     mut def copy(self) -> srl_nokia_interfaces__interface__subinterface_entry:
         """Create a deep copy of this adata object"""
@@ -34280,7 +34372,7 @@ class srl_nokia_interfaces__interface_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_interfaces__interface_entry:
-        return srl_nokia_interfaces__interface_entry(name=n.get_str(ygdata.Id(NS_srl_nokia_interfaces, 'name')), description=n.get_opt_str(ygdata.Id(NS_srl_nokia_interfaces, 'description')), admin_state=n.get_opt_str(ygdata.Id(NS_srl_nokia_interfaces, 'admin-state')), oper_state=n.get_opt_str(ygdata.Id(NS_srl_nokia_interfaces, 'oper-state')), subinterface=srl_nokia_interfaces__interface__subinterface.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_interfaces, 'subinterface'))), vlan_tagging=n.get_opt_bool(ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan-tagging')))
+        return srl_nokia_interfaces__interface_entry(name=n.get_str(_ID_srl_nokia_interfaces__name), description=n.get_opt_str(_ID_srl_nokia_interfaces__description), admin_state=n.get_opt_str(_ID_srl_nokia_interfaces__admin_state), oper_state=n.get_opt_str(_ID_srl_nokia_interfaces__oper_state), subinterface=srl_nokia_interfaces__interface__subinterface.from_gdata(n.get_opt_list(_ID_srl_nokia_interfaces__subinterface)), vlan_tagging=n.get_opt_bool(_ID_srl_nokia_interfaces_vlans__vlan_tagging))
 
     mut def copy(self) -> srl_nokia_interfaces__interface_entry:
         """Create a deep copy of this adata object"""
@@ -34337,7 +34429,7 @@ class srl_nokia_network_instance__network_instance__interface_entry(yadata.MNode
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__interface_entry:
-        return srl_nokia_network_instance__network_instance__interface_entry(name=n.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')))
+        return srl_nokia_network_instance__network_instance__interface_entry(name=n.get_str(_ID_srl_nokia_network_instance__name))
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__interface_entry:
         """Create a deep copy of this adata object"""
@@ -34386,7 +34478,7 @@ class srl_nokia_network_instance__network_instance__vxlan_interface_entry(yadata
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__vxlan_interface_entry:
-        return srl_nokia_network_instance__network_instance__vxlan_interface_entry(name=n.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')))
+        return srl_nokia_network_instance__network_instance__vxlan_interface_entry(name=n.get_str(_ID_srl_nokia_network_instance__name))
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__vxlan_interface_entry:
         """Create a deep copy of this adata object"""
@@ -34441,7 +34533,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_ins
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_entry:
-        return srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_entry(id=n.get_u64(ygdata.Id(NS_srl_nokia_bgp_evpn, 'id')), admin_state=n.get_opt_str(ygdata.Id(NS_srl_nokia_bgp_evpn, 'admin-state')), vxlan_interface=n.get_opt_str(ygdata.Id(NS_srl_nokia_bgp_evpn, 'vxlan-interface')), evi=n.get_opt_u64(ygdata.Id(NS_srl_nokia_bgp_evpn, 'evi')))
+        return srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_entry(id=n.get_u64(_ID_srl_nokia_bgp_evpn__id), admin_state=n.get_opt_str(_ID_srl_nokia_bgp_evpn__admin_state), vxlan_interface=n.get_opt_str(_ID_srl_nokia_bgp_evpn__vxlan_interface), evi=n.get_opt_u64(_ID_srl_nokia_bgp_evpn__evi))
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_entry:
         """Create a deep copy of this adata object"""
@@ -34497,7 +34589,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_evpn(yadata.M
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?srl_nokia_network_instance__network_instance__protocols__bgp_evpn:
         if n is not None:
-            return srl_nokia_network_instance__network_instance__protocols__bgp_evpn(bgp_instance=srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_bgp_evpn, 'bgp-instance'))))
+            return srl_nokia_network_instance__network_instance__protocols__bgp_evpn(bgp_instance=srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance.from_gdata(n.get_opt_list(_ID_srl_nokia_bgp_evpn__bgp_instance)))
         return None
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp_evpn:
@@ -34521,7 +34613,7 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance__i
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast:
         if n is not None:
-            return srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast(admin_state=n.get_opt_str(ygdata.Id(NS_srl_nokia_isis, 'admin-state')))
+            return srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast(admin_state=n.get_opt_str(_ID_srl_nokia_isis__admin_state))
         return srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast()
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast:
@@ -34543,7 +34635,7 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance__i
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry:
-        return srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry(level_number=n.get_u64(ygdata.Id(NS_srl_nokia_isis, 'level-number')), metric=n.get_opt_u64(ygdata.Id(NS_srl_nokia_isis, 'metric')))
+        return srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry(level_number=n.get_u64(_ID_srl_nokia_isis__level_number), metric=n.get_opt_u64(_ID_srl_nokia_isis__metric))
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry:
         """Create a deep copy of this adata object"""
@@ -34602,7 +34694,7 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance__i
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry:
-        return srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry(interface_name=n.get_str(ygdata.Id(NS_srl_nokia_isis, 'interface-name')), admin_state=n.get_opt_str(ygdata.Id(NS_srl_nokia_isis, 'admin-state')), circuit_type=n.get_opt_str(ygdata.Id(NS_srl_nokia_isis, 'circuit-type')), passive=n.get_opt_bool(ygdata.Id(NS_srl_nokia_isis, 'passive')), level=srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_isis, 'level'))))
+        return srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry(interface_name=n.get_str(_ID_srl_nokia_isis__interface_name), admin_state=n.get_opt_str(_ID_srl_nokia_isis__admin_state), circuit_type=n.get_opt_str(_ID_srl_nokia_isis__circuit_type), passive=n.get_opt_bool(_ID_srl_nokia_isis__passive), level=srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level.from_gdata(n.get_opt_list(_ID_srl_nokia_isis__level)))
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry:
         """Create a deep copy of this adata object"""
@@ -34667,7 +34759,7 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance_en
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__isis__instance_entry:
-        return srl_nokia_network_instance__network_instance__protocols__isis__instance_entry(name=n.get_str(ygdata.Id(NS_srl_nokia_isis, 'name')), admin_state=n.get_opt_str(ygdata.Id(NS_srl_nokia_isis, 'admin-state')), net=n.get_opt_strs(ygdata.Id(NS_srl_nokia_isis, 'net')), level_capability=n.get_opt_str(ygdata.Id(NS_srl_nokia_isis, 'level-capability')), ipv4_unicast=srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_isis, 'ipv4-unicast'))), interface=srl_nokia_network_instance__network_instance__protocols__isis__instance__interface.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_isis, 'interface'))))
+        return srl_nokia_network_instance__network_instance__protocols__isis__instance_entry(name=n.get_str(_ID_srl_nokia_isis__name), admin_state=n.get_opt_str(_ID_srl_nokia_isis__admin_state), net=n.get_opt_strs(_ID_srl_nokia_isis__net), level_capability=n.get_opt_str(_ID_srl_nokia_isis__level_capability), ipv4_unicast=srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast.from_gdata(n.get_opt_cnt(_ID_srl_nokia_isis__ipv4_unicast)), interface=srl_nokia_network_instance__network_instance__protocols__isis__instance__interface.from_gdata(n.get_opt_list(_ID_srl_nokia_isis__interface)))
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__isis__instance_entry:
         """Create a deep copy of this adata object"""
@@ -34721,7 +34813,7 @@ class srl_nokia_network_instance__network_instance__protocols__isis(yadata.MNode
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?srl_nokia_network_instance__network_instance__protocols__isis:
         if n is not None:
-            return srl_nokia_network_instance__network_instance__protocols__isis(instance=srl_nokia_network_instance__network_instance__protocols__isis__instance.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_isis, 'instance'))))
+            return srl_nokia_network_instance__network_instance__protocols__isis(instance=srl_nokia_network_instance__network_instance__protocols__isis__instance.from_gdata(n.get_opt_list(_ID_srl_nokia_isis__instance)))
         return None
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__isis:
@@ -34747,7 +34839,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default_policy:
         if n is not None:
-            return srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default_policy(import_reject_all=n.get_opt_bool(ygdata.Id(NS_srl_nokia_bgp, 'import-reject-all')), export_reject_all=n.get_opt_bool(ygdata.Id(NS_srl_nokia_bgp, 'export-reject-all')))
+            return srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default_policy(import_reject_all=n.get_opt_bool(_ID_srl_nokia_bgp__import_reject_all), export_reject_all=n.get_opt_bool(_ID_srl_nokia_bgp__export_reject_all))
         return srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default_policy()
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default_policy:
@@ -34769,7 +34861,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_ent
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry:
-        return srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry(afi_safi_name=n.get_Identityref(ygdata.Id(NS_srl_nokia_bgp, 'afi-safi-name')), admin_state=n.get_opt_str(ygdata.Id(NS_srl_nokia_bgp, 'admin-state')))
+        return srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry(afi_safi_name=n.get_Identityref(_ID_srl_nokia_bgp__afi_safi_name), admin_state=n.get_opt_str(_ID_srl_nokia_bgp__admin_state))
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry:
         """Create a deep copy of this adata object"""
@@ -34821,7 +34913,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__group__send_
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route:
         if n is not None:
-            return srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route(ipv4_unicast=n.get_opt_bool(ygdata.Id(NS_srl_nokia_bgp, 'ipv4-unicast')))
+            return srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route(ipv4_unicast=n.get_opt_bool(_ID_srl_nokia_bgp__ipv4_unicast))
         return srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route()
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route:
@@ -34845,7 +34937,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__group_entry(
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__group_entry:
-        return srl_nokia_network_instance__network_instance__protocols__bgp__group_entry(group_name=n.get_str(ygdata.Id(NS_srl_nokia_bgp, 'group-name')), peer_as=n.get_opt_u64(ygdata.Id(NS_srl_nokia_bgp, 'peer-as')), send_default_route=srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_bgp, 'send-default-route'))))
+        return srl_nokia_network_instance__network_instance__protocols__bgp__group_entry(group_name=n.get_str(_ID_srl_nokia_bgp__group_name), peer_as=n.get_opt_u64(_ID_srl_nokia_bgp__peer_as), send_default_route=srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route.from_gdata(n.get_opt_cnt(_ID_srl_nokia_bgp__send_default_route)))
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp__group_entry:
         """Create a deep copy of this adata object"""
@@ -34897,7 +34989,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__au
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication:
         if n is not None:
-            return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication(password=n.get_opt_str(ygdata.Id(NS_srl_nokia_bgp, 'password')))
+            return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication(password=n.get_opt_str(_ID_srl_nokia_bgp__password))
         return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication()
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication:
@@ -34924,7 +35016,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__ti
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers:
         if n is not None:
-            return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers(connect_retry=n.get_opt_u64(ygdata.Id(NS_srl_nokia_bgp, 'connect-retry')), hold_time=n.get_opt_u64(ygdata.Id(NS_srl_nokia_bgp, 'hold-time')), keepalive_interval=n.get_opt_u64(ygdata.Id(NS_srl_nokia_bgp, 'keepalive-interval')), negotiated_hold_time=n.get_opt_u64(ygdata.Id(NS_srl_nokia_bgp, 'negotiated-hold-time')))
+            return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers(connect_retry=n.get_opt_u64(_ID_srl_nokia_bgp__connect_retry), hold_time=n.get_opt_u64(_ID_srl_nokia_bgp__hold_time), keepalive_interval=n.get_opt_u64(_ID_srl_nokia_bgp__keepalive_interval), negotiated_hold_time=n.get_opt_u64(_ID_srl_nokia_bgp__negotiated_hold_time))
         return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers()
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers:
@@ -34945,7 +35037,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__se
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__sent_messages:
         if n is not None:
-            return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__sent_messages(last_notification_error_code=n.get_opt_str(ygdata.Id(NS_srl_nokia_bgp, 'last-notification-error-code')))
+            return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__sent_messages(last_notification_error_code=n.get_opt_str(_ID_srl_nokia_bgp__last_notification_error_code))
         return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__sent_messages()
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__sent_messages:
@@ -34966,7 +35058,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__re
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages:
         if n is not None:
-            return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages(last_notification_error_code=n.get_opt_str(ygdata.Id(NS_srl_nokia_bgp, 'last-notification-error-code')))
+            return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages(last_notification_error_code=n.get_opt_str(_ID_srl_nokia_bgp__last_notification_error_code))
         return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages()
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages:
@@ -35008,7 +35100,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_ent
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry:
-        return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry(peer_address=n.get_str(ygdata.Id(NS_srl_nokia_bgp, 'peer-address')), admin_state=n.get_opt_str(ygdata.Id(NS_srl_nokia_bgp, 'admin-state')), description=n.get_opt_str(ygdata.Id(NS_srl_nokia_bgp, 'description')), peer_as=n.get_opt_u64(ygdata.Id(NS_srl_nokia_bgp, 'peer-as')), peer_group=n.get_opt_str(ygdata.Id(NS_srl_nokia_bgp, 'peer-group')), authentication=srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_bgp, 'authentication'))), timers=srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_bgp, 'timers'))), session_state=n.get_opt_str(ygdata.Id(NS_srl_nokia_bgp, 'session-state')), last_event=n.get_opt_str(ygdata.Id(NS_srl_nokia_bgp, 'last-event')), established_transitions=n.get_opt_u64(ygdata.Id(NS_srl_nokia_bgp, 'established-transitions')), sent_messages=srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__sent_messages.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_bgp, 'sent-messages'))), received_messages=srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_bgp, 'received-messages'))))
+        return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry(peer_address=n.get_str(_ID_srl_nokia_bgp__peer_address), admin_state=n.get_opt_str(_ID_srl_nokia_bgp__admin_state), description=n.get_opt_str(_ID_srl_nokia_bgp__description), peer_as=n.get_opt_u64(_ID_srl_nokia_bgp__peer_as), peer_group=n.get_opt_str(_ID_srl_nokia_bgp__peer_group), authentication=srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication.from_gdata(n.get_opt_cnt(_ID_srl_nokia_bgp__authentication)), timers=srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers.from_gdata(n.get_opt_cnt(_ID_srl_nokia_bgp__timers)), session_state=n.get_opt_str(_ID_srl_nokia_bgp__session_state), last_event=n.get_opt_str(_ID_srl_nokia_bgp__last_event), established_transitions=n.get_opt_u64(_ID_srl_nokia_bgp__established_transitions), sent_messages=srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__sent_messages.from_gdata(n.get_opt_cnt(_ID_srl_nokia_bgp__sent_messages)), received_messages=srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages.from_gdata(n.get_opt_cnt(_ID_srl_nokia_bgp__received_messages)))
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry:
         """Create a deep copy of this adata object"""
@@ -35082,7 +35174,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp(yadata.MNode)
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?srl_nokia_network_instance__network_instance__protocols__bgp:
         if n is not None:
-            return srl_nokia_network_instance__network_instance__protocols__bgp(autonomous_system=n.get_opt_u64(ygdata.Id(NS_srl_nokia_bgp, 'autonomous-system')), router_id=n.get_opt_str(ygdata.Id(NS_srl_nokia_bgp, 'router-id')), ebgp_default_policy=srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default_policy.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_bgp, 'ebgp-default-policy'))), afi_safi=srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_bgp, 'afi-safi'))), group=srl_nokia_network_instance__network_instance__protocols__bgp__group.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_bgp, 'group'))), neighbor=srl_nokia_network_instance__network_instance__protocols__bgp__neighbor.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_bgp, 'neighbor'))))
+            return srl_nokia_network_instance__network_instance__protocols__bgp(autonomous_system=n.get_opt_u64(_ID_srl_nokia_bgp__autonomous_system), router_id=n.get_opt_str(_ID_srl_nokia_bgp__router_id), ebgp_default_policy=srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default_policy.from_gdata(n.get_opt_cnt(_ID_srl_nokia_bgp__ebgp_default_policy)), afi_safi=srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi.from_gdata(n.get_opt_list(_ID_srl_nokia_bgp__afi_safi)), group=srl_nokia_network_instance__network_instance__protocols__bgp__group.from_gdata(n.get_opt_list(_ID_srl_nokia_bgp__group)), neighbor=srl_nokia_network_instance__network_instance__protocols__bgp__neighbor.from_gdata(n.get_opt_list(_ID_srl_nokia_bgp__neighbor)))
         return None
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp:
@@ -35108,7 +35200,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_inst
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target:
         if n is not None:
-            return srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target(export_rt=n.get_opt_str(ygdata.Id(NS_srl_nokia_bgp_vpn, 'export-rt')), import_rt=n.get_opt_str(ygdata.Id(NS_srl_nokia_bgp_vpn, 'import-rt')))
+            return srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target(export_rt=n.get_opt_str(_ID_srl_nokia_bgp_vpn__export_rt), import_rt=n.get_opt_str(_ID_srl_nokia_bgp_vpn__import_rt))
         return srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target()
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target:
@@ -35130,7 +35222,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_inst
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_entry:
-        return srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_entry(id=n.get_u64(ygdata.Id(NS_srl_nokia_bgp_vpn, 'id')), route_target=srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_bgp_vpn, 'route-target'))))
+        return srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_entry(id=n.get_u64(_ID_srl_nokia_bgp_vpn__id), route_target=srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target.from_gdata(n.get_opt_cnt(_ID_srl_nokia_bgp_vpn__route_target)))
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_entry:
         """Create a deep copy of this adata object"""
@@ -35180,7 +35272,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_vpn(yadata.MN
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?srl_nokia_network_instance__network_instance__protocols__bgp_vpn:
         if n is not None:
-            return srl_nokia_network_instance__network_instance__protocols__bgp_vpn(bgp_instance=srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_bgp_vpn, 'bgp-instance'))))
+            return srl_nokia_network_instance__network_instance__protocols__bgp_vpn(bgp_instance=srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance.from_gdata(n.get_opt_list(_ID_srl_nokia_bgp_vpn__bgp_instance)))
         return None
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols__bgp_vpn:
@@ -35246,7 +35338,7 @@ class srl_nokia_network_instance__network_instance__protocols(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_network_instance__network_instance__protocols:
         if n is not None:
-            return srl_nokia_network_instance__network_instance__protocols(bgp_evpn=srl_nokia_network_instance__network_instance__protocols__bgp_evpn.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_network_instance, 'bgp-evpn'))), isis=srl_nokia_network_instance__network_instance__protocols__isis.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_isis, 'isis'))), bgp=srl_nokia_network_instance__network_instance__protocols__bgp.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_bgp, 'bgp'))), bgp_vpn=srl_nokia_network_instance__network_instance__protocols__bgp_vpn.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_bgp_vpn, 'bgp-vpn'))))
+            return srl_nokia_network_instance__network_instance__protocols(bgp_evpn=srl_nokia_network_instance__network_instance__protocols__bgp_evpn.from_gdata(n.get_opt_cnt(_ID_srl_nokia_network_instance__bgp_evpn)), isis=srl_nokia_network_instance__network_instance__protocols__isis.from_gdata(n.get_opt_cnt(_ID_srl_nokia_isis__isis)), bgp=srl_nokia_network_instance__network_instance__protocols__bgp.from_gdata(n.get_opt_cnt(_ID_srl_nokia_bgp__bgp)), bgp_vpn=srl_nokia_network_instance__network_instance__protocols__bgp_vpn.from_gdata(n.get_opt_cnt(_ID_srl_nokia_bgp_vpn__bgp_vpn)))
         return srl_nokia_network_instance__network_instance__protocols()
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance__protocols:
@@ -35278,7 +35370,7 @@ class srl_nokia_network_instance__network_instance_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_network_instance__network_instance_entry:
-        return srl_nokia_network_instance__network_instance_entry(name=n.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), type=n.get_opt_Identityref(ygdata.Id(NS_srl_nokia_network_instance, 'type')), admin_state=n.get_opt_str(ygdata.Id(NS_srl_nokia_network_instance, 'admin-state')), description=n.get_opt_str(ygdata.Id(NS_srl_nokia_network_instance, 'description')), interface=srl_nokia_network_instance__network_instance__interface.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_network_instance, 'interface'))), vxlan_interface=srl_nokia_network_instance__network_instance__vxlan_interface.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_network_instance, 'vxlan-interface'))), protocols=srl_nokia_network_instance__network_instance__protocols.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))))
+        return srl_nokia_network_instance__network_instance_entry(name=n.get_str(_ID_srl_nokia_network_instance__name), type=n.get_opt_Identityref(_ID_srl_nokia_network_instance__type), admin_state=n.get_opt_str(_ID_srl_nokia_network_instance__admin_state), description=n.get_opt_str(_ID_srl_nokia_network_instance__description), interface=srl_nokia_network_instance__network_instance__interface.from_gdata(n.get_opt_list(_ID_srl_nokia_network_instance__interface)), vxlan_interface=srl_nokia_network_instance__network_instance__vxlan_interface.from_gdata(n.get_opt_list(_ID_srl_nokia_network_instance__vxlan_interface)), protocols=srl_nokia_network_instance__network_instance__protocols.from_gdata(n.get_opt_cnt(_ID_srl_nokia_network_instance__protocols)))
 
     mut def copy(self) -> srl_nokia_network_instance__network_instance_entry:
         """Create a deep copy of this adata object"""
@@ -35334,7 +35426,7 @@ class srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress(ya
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress:
         if n is not None:
-            return srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress(vni=n.get_opt_u64(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'vni')))
+            return srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress(vni=n.get_opt_u64(_ID_srl_nokia_tunnel_interfaces__vni))
         return srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress()
 
     mut def copy(self) -> srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress:
@@ -35358,7 +35450,7 @@ class srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry(yadat
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry:
-        return srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry(index=n.get_u64(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'index')), type=n.get_opt_Identityref(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'type')), ingress=srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'ingress'))))
+        return srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry(index=n.get_u64(_ID_srl_nokia_tunnel_interfaces__index), type=n.get_opt_Identityref(_ID_srl_nokia_tunnel_interfaces__type), ingress=srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress.from_gdata(n.get_opt_cnt(_ID_srl_nokia_tunnel_interfaces__ingress)))
 
     mut def copy(self) -> srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry:
         """Create a deep copy of this adata object"""
@@ -35411,7 +35503,7 @@ class srl_nokia_tunnel_interfaces__tunnel_interface_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> srl_nokia_tunnel_interfaces__tunnel_interface_entry:
-        return srl_nokia_tunnel_interfaces__tunnel_interface_entry(name=n.get_str(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'name')), vxlan_interface=srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'vxlan-interface'))))
+        return srl_nokia_tunnel_interfaces__tunnel_interface_entry(name=n.get_str(_ID_srl_nokia_tunnel_interfaces__name), vxlan_interface=srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface.from_gdata(n.get_opt_list(_ID_srl_nokia_tunnel_interfaces__vxlan_interface)))
 
     mut def copy(self) -> srl_nokia_tunnel_interfaces__tunnel_interface_entry:
         """Create a deep copy of this adata object"""
@@ -35467,7 +35559,7 @@ class root(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> root:
         if n is not None:
-            return root(system=srl_nokia_system__system.from_gdata(n.get_opt_cnt(ygdata.Id(NS_srl_nokia_system, 'system'))), interface=srl_nokia_interfaces__interface.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_interfaces, 'interface'))), network_instance=srl_nokia_network_instance__network_instance.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_network_instance, 'network-instance'))), tunnel_interface=srl_nokia_tunnel_interfaces__tunnel_interface.from_gdata(n.get_opt_list(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'tunnel-interface'))))
+            return root(system=srl_nokia_system__system.from_gdata(n.get_opt_cnt(_ID_srl_nokia_system__system)), interface=srl_nokia_interfaces__interface.from_gdata(n.get_opt_list(_ID_srl_nokia_interfaces__interface)), network_instance=srl_nokia_network_instance__network_instance.from_gdata(n.get_opt_list(_ID_srl_nokia_network_instance__network_instance)), tunnel_interface=srl_nokia_tunnel_interfaces__tunnel_interface.from_gdata(n.get_opt_list(_ID_srl_nokia_tunnel_interfaces__tunnel_interface)))
         return root()
 
     mut def copy(self) -> root:
@@ -35507,8 +35599,8 @@ actor srl_nokia_system__system__name_dst(cb: action(?srl_nokia_system__system__n
         inst: ?srl_nokia_system__system__name = None
         if n is not None:
             try:
-                c1 = _at(n, ygdata.Id(NS_srl_nokia_system, 'system'))
-                c2 = _at(c1, ygdata.Id(NS_srl_nokia_system_name, 'name'))
+                c1 = _at(n, _ID_srl_nokia_system__system)
+                c2 = _at(c1, _ID_srl_nokia_system_name__name)
                 here = _present(c2)
                 if here is not None:
                     inst = srl_nokia_system__system__name.from_gdata(here)
@@ -35525,7 +35617,7 @@ class srl_nokia_system__system__name_subs(SubscriptionNode):
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.host_name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_system_name, 'host-name'), parent=path))
+        self.host_name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_system_name__host_name, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.host_name]
@@ -35544,7 +35636,7 @@ actor srl_nokia_system__system_dst(cb: action(?srl_nokia_system__system, ?Except
         inst: ?srl_nokia_system__system = None
         if n is not None:
             try:
-                c1 = _at(n, ygdata.Id(NS_srl_nokia_system, 'system'))
+                c1 = _at(n, _ID_srl_nokia_system__system)
                 here = _present(c1)
                 if here is not None:
                     inst = srl_nokia_system__system.from_gdata(here)
@@ -35561,7 +35653,7 @@ class srl_nokia_system__system_subs(SubscriptionNode):
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.name = srl_nokia_system__system__name_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_system_name, 'name'), parent=path))
+        self.name = srl_nokia_system__system__name_subs(SubscriptionPath(_ID_srl_nokia_system_name__name, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name]
@@ -35580,7 +35672,7 @@ class srl_nokia_interfaces__interface__subinterface__ipv4__address_entry_subs(Su
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.ip_prefix = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'ip-prefix'), parent=path))
+        self.ip_prefix = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__ip_prefix, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.ip_prefix]
@@ -35593,11 +35685,11 @@ actor srl_nokia_interfaces__interface__subinterface__ipv4__address_dst(cb: actio
         inst: ?srl_nokia_interfaces__interface__subinterface__ipv4__address_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_interfaces, 'interface')), 'interface')
-                e2 = _one(_at(e1, ygdata.Id(NS_srl_nokia_interfaces, 'subinterface')), 'subinterface')
-                c3 = _at(e2, ygdata.Id(NS_srl_nokia_interfaces, 'ipv4'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_interfaces, 'address')), 'address')
-                keys = (interface_name=e1.get_str(ygdata.Id(NS_srl_nokia_interfaces, 'name')), subinterface_index=e2.get_u64(ygdata.Id(NS_srl_nokia_interfaces, 'index')), address_ip_prefix=e4.get_str(ygdata.Id(NS_srl_nokia_interfaces, 'ip-prefix')))
+                e1 = _one(_at(n, _ID_srl_nokia_interfaces__interface), 'interface')
+                e2 = _one(_at(e1, _ID_srl_nokia_interfaces__subinterface), 'subinterface')
+                c3 = _at(e2, _ID_srl_nokia_interfaces__ipv4)
+                e4 = _one(_at(c3, _ID_srl_nokia_interfaces__address), 'address')
+                keys = (interface_name=e1.get_str(_ID_srl_nokia_interfaces__name), subinterface_index=e2.get_u64(_ID_srl_nokia_interfaces__index), address_ip_prefix=e4.get_str(_ID_srl_nokia_interfaces__ip_prefix))
                 here = _present(e4)
                 if here is not None:
                     inst = srl_nokia_interfaces__interface__subinterface__ipv4__address_entry.from_gdata(here)
@@ -35613,14 +35705,14 @@ class srl_nokia_interfaces__interface__subinterface__ipv4__address_subs(Subscrip
     ip_prefix: SubscriptionNode
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.ip_prefix = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'ip-prefix'), parent=path))
+        self.ip_prefix = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__ip_prefix, parent=path))
 
     pure def entry(self, ip_prefix: str) -> srl_nokia_interfaces__interface__subinterface__ipv4__address_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_interfaces, 'ip-prefix'), value_match=ip_prefix),
+            ygdata.FNode(_ID_srl_nokia_interfaces__ip_prefix, value_match=ip_prefix),
         ]
         base_path = self._path!.parent
-        return srl_nokia_interfaces__interface__subinterface__ipv4__address_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'address'), predicates=predicates, parent=base_path))
+        return srl_nokia_interfaces__interface__subinterface__ipv4__address_entry_subs(SubscriptionPath(_ID_srl_nokia_interfaces__address, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(interface_name: str, subinterface_index: u64, address_ip_prefix: str), ?srl_nokia_interfaces__interface__subinterface__ipv4__address_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -35640,10 +35732,10 @@ actor srl_nokia_interfaces__interface__subinterface__ipv4_dst(cb: action(?(inter
         inst: ?srl_nokia_interfaces__interface__subinterface__ipv4 = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_interfaces, 'interface')), 'interface')
-                e2 = _one(_at(e1, ygdata.Id(NS_srl_nokia_interfaces, 'subinterface')), 'subinterface')
-                c3 = _at(e2, ygdata.Id(NS_srl_nokia_interfaces, 'ipv4'))
-                keys = (interface_name=e1.get_str(ygdata.Id(NS_srl_nokia_interfaces, 'name')), subinterface_index=e2.get_u64(ygdata.Id(NS_srl_nokia_interfaces, 'index')))
+                e1 = _one(_at(n, _ID_srl_nokia_interfaces__interface), 'interface')
+                e2 = _one(_at(e1, _ID_srl_nokia_interfaces__subinterface), 'subinterface')
+                c3 = _at(e2, _ID_srl_nokia_interfaces__ipv4)
+                keys = (interface_name=e1.get_str(_ID_srl_nokia_interfaces__name), subinterface_index=e2.get_u64(_ID_srl_nokia_interfaces__index))
                 here = _present(c3)
                 if here is not None:
                     inst = srl_nokia_interfaces__interface__subinterface__ipv4.from_gdata(here)
@@ -35661,8 +35753,8 @@ class srl_nokia_interfaces__interface__subinterface__ipv4_subs(SubscriptionNode)
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'admin-state'), parent=path))
-        self.address = srl_nokia_interfaces__interface__subinterface__ipv4__address_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'address'), parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__admin_state, parent=path))
+        self.address = srl_nokia_interfaces__interface__subinterface__ipv4__address_subs(SubscriptionPath(_ID_srl_nokia_interfaces__address, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.admin_state, self.address]
@@ -35682,10 +35774,10 @@ actor srl_nokia_interfaces__interface__subinterface__ipv6_dst(cb: action(?(inter
         inst: ?srl_nokia_interfaces__interface__subinterface__ipv6 = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_interfaces, 'interface')), 'interface')
-                e2 = _one(_at(e1, ygdata.Id(NS_srl_nokia_interfaces, 'subinterface')), 'subinterface')
-                c3 = _at(e2, ygdata.Id(NS_srl_nokia_interfaces, 'ipv6'))
-                keys = (interface_name=e1.get_str(ygdata.Id(NS_srl_nokia_interfaces, 'name')), subinterface_index=e2.get_u64(ygdata.Id(NS_srl_nokia_interfaces, 'index')))
+                e1 = _one(_at(n, _ID_srl_nokia_interfaces__interface), 'interface')
+                e2 = _one(_at(e1, _ID_srl_nokia_interfaces__subinterface), 'subinterface')
+                c3 = _at(e2, _ID_srl_nokia_interfaces__ipv6)
+                keys = (interface_name=e1.get_str(_ID_srl_nokia_interfaces__name), subinterface_index=e2.get_u64(_ID_srl_nokia_interfaces__index))
                 here = _present(c3)
                 if here is not None:
                     inst = srl_nokia_interfaces__interface__subinterface__ipv6.from_gdata(here)
@@ -35702,7 +35794,7 @@ class srl_nokia_interfaces__interface__subinterface__ipv6_subs(SubscriptionNode)
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'admin-state'), parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__admin_state, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.admin_state]
@@ -35722,12 +35814,12 @@ actor srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged_
         inst: ?srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_interfaces, 'interface')), 'interface')
-                e2 = _one(_at(e1, ygdata.Id(NS_srl_nokia_interfaces, 'subinterface')), 'subinterface')
-                c3 = _at(e2, ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan'))
-                c4 = _at(c3, ygdata.Id(NS_srl_nokia_interfaces_vlans, 'encap'))
-                c5 = _at(c4, ygdata.Id(NS_srl_nokia_interfaces_vlans, 'single-tagged'))
-                keys = (interface_name=e1.get_str(ygdata.Id(NS_srl_nokia_interfaces, 'name')), subinterface_index=e2.get_u64(ygdata.Id(NS_srl_nokia_interfaces, 'index')))
+                e1 = _one(_at(n, _ID_srl_nokia_interfaces__interface), 'interface')
+                e2 = _one(_at(e1, _ID_srl_nokia_interfaces__subinterface), 'subinterface')
+                c3 = _at(e2, _ID_srl_nokia_interfaces_vlans__vlan)
+                c4 = _at(c3, _ID_srl_nokia_interfaces_vlans__encap)
+                c5 = _at(c4, _ID_srl_nokia_interfaces_vlans__single_tagged)
+                keys = (interface_name=e1.get_str(_ID_srl_nokia_interfaces__name), subinterface_index=e2.get_u64(_ID_srl_nokia_interfaces__index))
                 here = _present(c5)
                 if here is not None:
                     inst = srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged.from_gdata(here)
@@ -35744,7 +35836,7 @@ class srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged_
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.vlan_id = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan-id'), parent=path))
+        self.vlan_id = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces_vlans__vlan_id, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.vlan_id]
@@ -35764,11 +35856,11 @@ actor srl_nokia_interfaces__interface__subinterface__vlan__encap_dst(cb: action(
         inst: ?srl_nokia_interfaces__interface__subinterface__vlan__encap = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_interfaces, 'interface')), 'interface')
-                e2 = _one(_at(e1, ygdata.Id(NS_srl_nokia_interfaces, 'subinterface')), 'subinterface')
-                c3 = _at(e2, ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan'))
-                c4 = _at(c3, ygdata.Id(NS_srl_nokia_interfaces_vlans, 'encap'))
-                keys = (interface_name=e1.get_str(ygdata.Id(NS_srl_nokia_interfaces, 'name')), subinterface_index=e2.get_u64(ygdata.Id(NS_srl_nokia_interfaces, 'index')))
+                e1 = _one(_at(n, _ID_srl_nokia_interfaces__interface), 'interface')
+                e2 = _one(_at(e1, _ID_srl_nokia_interfaces__subinterface), 'subinterface')
+                c3 = _at(e2, _ID_srl_nokia_interfaces_vlans__vlan)
+                c4 = _at(c3, _ID_srl_nokia_interfaces_vlans__encap)
+                keys = (interface_name=e1.get_str(_ID_srl_nokia_interfaces__name), subinterface_index=e2.get_u64(_ID_srl_nokia_interfaces__index))
                 here = _present(c4)
                 if here is not None:
                     inst = srl_nokia_interfaces__interface__subinterface__vlan__encap.from_gdata(here)
@@ -35785,7 +35877,7 @@ class srl_nokia_interfaces__interface__subinterface__vlan__encap_subs(Subscripti
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.single_tagged = srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces_vlans, 'single-tagged'), parent=path))
+        self.single_tagged = srl_nokia_interfaces__interface__subinterface__vlan__encap__single_tagged_subs(SubscriptionPath(_ID_srl_nokia_interfaces_vlans__single_tagged, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.single_tagged]
@@ -35805,10 +35897,10 @@ actor srl_nokia_interfaces__interface__subinterface__vlan_dst(cb: action(?(inter
         inst: ?srl_nokia_interfaces__interface__subinterface__vlan = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_interfaces, 'interface')), 'interface')
-                e2 = _one(_at(e1, ygdata.Id(NS_srl_nokia_interfaces, 'subinterface')), 'subinterface')
-                c3 = _at(e2, ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan'))
-                keys = (interface_name=e1.get_str(ygdata.Id(NS_srl_nokia_interfaces, 'name')), subinterface_index=e2.get_u64(ygdata.Id(NS_srl_nokia_interfaces, 'index')))
+                e1 = _one(_at(n, _ID_srl_nokia_interfaces__interface), 'interface')
+                e2 = _one(_at(e1, _ID_srl_nokia_interfaces__subinterface), 'subinterface')
+                c3 = _at(e2, _ID_srl_nokia_interfaces_vlans__vlan)
+                keys = (interface_name=e1.get_str(_ID_srl_nokia_interfaces__name), subinterface_index=e2.get_u64(_ID_srl_nokia_interfaces__index))
                 here = _present(c3)
                 if here is not None:
                     inst = srl_nokia_interfaces__interface__subinterface__vlan.from_gdata(here)
@@ -35825,7 +35917,7 @@ class srl_nokia_interfaces__interface__subinterface__vlan_subs(SubscriptionNode)
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.encap = srl_nokia_interfaces__interface__subinterface__vlan__encap_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces_vlans, 'encap'), parent=path))
+        self.encap = srl_nokia_interfaces__interface__subinterface__vlan__encap_subs(SubscriptionPath(_ID_srl_nokia_interfaces_vlans__encap, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.encap]
@@ -35849,12 +35941,12 @@ class srl_nokia_interfaces__interface__subinterface_entry_subs(SubscriptionNode)
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.index = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'index'), parent=path))
-        self.description = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'description'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'admin-state'), parent=path))
-        self.ipv4 = srl_nokia_interfaces__interface__subinterface__ipv4_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'ipv4'), parent=path))
-        self.ipv6 = srl_nokia_interfaces__interface__subinterface__ipv6_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'ipv6'), parent=path))
-        self.vlan = srl_nokia_interfaces__interface__subinterface__vlan_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan'), parent=path))
+        self.index = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__index, parent=path))
+        self.description = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__description, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__admin_state, parent=path))
+        self.ipv4 = srl_nokia_interfaces__interface__subinterface__ipv4_subs(SubscriptionPath(_ID_srl_nokia_interfaces__ipv4, parent=path))
+        self.ipv6 = srl_nokia_interfaces__interface__subinterface__ipv6_subs(SubscriptionPath(_ID_srl_nokia_interfaces__ipv6, parent=path))
+        self.vlan = srl_nokia_interfaces__interface__subinterface__vlan_subs(SubscriptionPath(_ID_srl_nokia_interfaces_vlans__vlan, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.index, self.description, self.admin_state, self.ipv4, self.ipv6, self.vlan]
@@ -35867,9 +35959,9 @@ actor srl_nokia_interfaces__interface__subinterface_dst(cb: action(?(interface_n
         inst: ?srl_nokia_interfaces__interface__subinterface_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_interfaces, 'interface')), 'interface')
-                e2 = _one(_at(e1, ygdata.Id(NS_srl_nokia_interfaces, 'subinterface')), 'subinterface')
-                keys = (interface_name=e1.get_str(ygdata.Id(NS_srl_nokia_interfaces, 'name')), subinterface_index=e2.get_u64(ygdata.Id(NS_srl_nokia_interfaces, 'index')))
+                e1 = _one(_at(n, _ID_srl_nokia_interfaces__interface), 'interface')
+                e2 = _one(_at(e1, _ID_srl_nokia_interfaces__subinterface), 'subinterface')
+                keys = (interface_name=e1.get_str(_ID_srl_nokia_interfaces__name), subinterface_index=e2.get_u64(_ID_srl_nokia_interfaces__index))
                 here = _present(e2)
                 if here is not None:
                     inst = srl_nokia_interfaces__interface__subinterface_entry.from_gdata(here)
@@ -35890,19 +35982,19 @@ class srl_nokia_interfaces__interface__subinterface_subs(SubscriptionNode):
     vlan: srl_nokia_interfaces__interface__subinterface__vlan_subs
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.index = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'index'), parent=path))
-        self.description = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'description'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'admin-state'), parent=path))
-        self.ipv4 = srl_nokia_interfaces__interface__subinterface__ipv4_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'ipv4'), parent=path))
-        self.ipv6 = srl_nokia_interfaces__interface__subinterface__ipv6_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'ipv6'), parent=path))
-        self.vlan = srl_nokia_interfaces__interface__subinterface__vlan_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan'), parent=path))
+        self.index = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__index, parent=path))
+        self.description = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__description, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__admin_state, parent=path))
+        self.ipv4 = srl_nokia_interfaces__interface__subinterface__ipv4_subs(SubscriptionPath(_ID_srl_nokia_interfaces__ipv4, parent=path))
+        self.ipv6 = srl_nokia_interfaces__interface__subinterface__ipv6_subs(SubscriptionPath(_ID_srl_nokia_interfaces__ipv6, parent=path))
+        self.vlan = srl_nokia_interfaces__interface__subinterface__vlan_subs(SubscriptionPath(_ID_srl_nokia_interfaces_vlans__vlan, parent=path))
 
     pure def entry(self, index: u64) -> srl_nokia_interfaces__interface__subinterface_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_interfaces, 'index'), value_match=index),
+            ygdata.FNode(_ID_srl_nokia_interfaces__index, value_match=index),
         ]
         base_path = self._path!.parent
-        return srl_nokia_interfaces__interface__subinterface_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'subinterface'), predicates=predicates, parent=base_path))
+        return srl_nokia_interfaces__interface__subinterface_entry_subs(SubscriptionPath(_ID_srl_nokia_interfaces__subinterface, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(interface_name: str, subinterface_index: u64), ?srl_nokia_interfaces__interface__subinterface_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -35926,12 +36018,12 @@ class srl_nokia_interfaces__interface_entry_subs(SubscriptionNode):
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'name'), parent=path))
-        self.description = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'description'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'admin-state'), parent=path))
-        self.oper_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'oper-state'), parent=path))
-        self.subinterface = srl_nokia_interfaces__interface__subinterface_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'subinterface'), parent=path))
-        self.vlan_tagging = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan-tagging'), parent=path))
+        self.name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__name, parent=path))
+        self.description = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__description, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__admin_state, parent=path))
+        self.oper_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__oper_state, parent=path))
+        self.subinterface = srl_nokia_interfaces__interface__subinterface_subs(SubscriptionPath(_ID_srl_nokia_interfaces__subinterface, parent=path))
+        self.vlan_tagging = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces_vlans__vlan_tagging, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.description, self.admin_state, self.oper_state, self.subinterface, self.vlan_tagging]
@@ -35944,8 +36036,8 @@ actor srl_nokia_interfaces__interface_dst(cb: action(?(interface_name: str), ?sr
         inst: ?srl_nokia_interfaces__interface_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_interfaces, 'interface')), 'interface')
-                keys = (interface_name=e1.get_str(ygdata.Id(NS_srl_nokia_interfaces, 'name')))
+                e1 = _one(_at(n, _ID_srl_nokia_interfaces__interface), 'interface')
+                keys = (interface_name=e1.get_str(_ID_srl_nokia_interfaces__name))
                 here = _present(e1)
                 if here is not None:
                     inst = srl_nokia_interfaces__interface_entry.from_gdata(here)
@@ -35966,19 +36058,19 @@ class srl_nokia_interfaces__interface_subs(SubscriptionNode):
     vlan_tagging: SubscriptionNode
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'name'), parent=path))
-        self.description = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'description'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'admin-state'), parent=path))
-        self.oper_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'oper-state'), parent=path))
-        self.subinterface = srl_nokia_interfaces__interface__subinterface_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'subinterface'), parent=path))
-        self.vlan_tagging = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces_vlans, 'vlan-tagging'), parent=path))
+        self.name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__name, parent=path))
+        self.description = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__description, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__admin_state, parent=path))
+        self.oper_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces__oper_state, parent=path))
+        self.subinterface = srl_nokia_interfaces__interface__subinterface_subs(SubscriptionPath(_ID_srl_nokia_interfaces__subinterface, parent=path))
+        self.vlan_tagging = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_interfaces_vlans__vlan_tagging, parent=path))
 
     pure def entry(self, name: str) -> srl_nokia_interfaces__interface_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_interfaces, 'name'), value_match=name),
+            ygdata.FNode(_ID_srl_nokia_interfaces__name, value_match=name),
         ]
         base_path = self._path!.parent
-        return srl_nokia_interfaces__interface_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'interface'), predicates=predicates, parent=base_path))
+        return srl_nokia_interfaces__interface_entry_subs(SubscriptionPath(_ID_srl_nokia_interfaces__interface, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(interface_name: str), ?srl_nokia_interfaces__interface_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -35997,7 +36089,7 @@ class srl_nokia_network_instance__network_instance__interface_entry_subs(Subscri
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'name'), parent=path))
+        self.name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_network_instance__name, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name]
@@ -36010,9 +36102,9 @@ actor srl_nokia_network_instance__network_instance__interface_dst(cb: action(?(n
         inst: ?srl_nokia_network_instance__network_instance__interface_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                e2 = _one(_at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'interface')), 'interface')
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), interface_name=e2.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                e2 = _one(_at(e1, _ID_srl_nokia_network_instance__interface), 'interface')
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), interface_name=e2.get_str(_ID_srl_nokia_network_instance__name))
                 here = _present(e2)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__interface_entry.from_gdata(here)
@@ -36028,14 +36120,14 @@ class srl_nokia_network_instance__network_instance__interface_subs(SubscriptionN
     name: SubscriptionNode
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'name'), parent=path))
+        self.name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_network_instance__name, parent=path))
 
     pure def entry(self, name: str) -> srl_nokia_network_instance__network_instance__interface_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_network_instance, 'name'), value_match=name),
+            ygdata.FNode(_ID_srl_nokia_network_instance__name, value_match=name),
         ]
         base_path = self._path!.parent
-        return srl_nokia_network_instance__network_instance__interface_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'interface'), predicates=predicates, parent=base_path))
+        return srl_nokia_network_instance__network_instance__interface_entry_subs(SubscriptionPath(_ID_srl_nokia_network_instance__interface, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(network_instance_name: str, interface_name: str), ?srl_nokia_network_instance__network_instance__interface_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -36054,7 +36146,7 @@ class srl_nokia_network_instance__network_instance__vxlan_interface_entry_subs(S
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'name'), parent=path))
+        self.name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_network_instance__name, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name]
@@ -36067,9 +36159,9 @@ actor srl_nokia_network_instance__network_instance__vxlan_interface_dst(cb: acti
         inst: ?srl_nokia_network_instance__network_instance__vxlan_interface_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                e2 = _one(_at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'vxlan-interface')), 'vxlan-interface')
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), vxlan_interface_name=e2.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                e2 = _one(_at(e1, _ID_srl_nokia_network_instance__vxlan_interface), 'vxlan-interface')
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), vxlan_interface_name=e2.get_str(_ID_srl_nokia_network_instance__name))
                 here = _present(e2)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__vxlan_interface_entry.from_gdata(here)
@@ -36085,14 +36177,14 @@ class srl_nokia_network_instance__network_instance__vxlan_interface_subs(Subscri
     name: SubscriptionNode
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'name'), parent=path))
+        self.name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_network_instance__name, parent=path))
 
     pure def entry(self, name: str) -> srl_nokia_network_instance__network_instance__vxlan_interface_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_network_instance, 'name'), value_match=name),
+            ygdata.FNode(_ID_srl_nokia_network_instance__name, value_match=name),
         ]
         base_path = self._path!.parent
-        return srl_nokia_network_instance__network_instance__vxlan_interface_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'vxlan-interface'), predicates=predicates, parent=base_path))
+        return srl_nokia_network_instance__network_instance__vxlan_interface_entry_subs(SubscriptionPath(_ID_srl_nokia_network_instance__vxlan_interface, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(network_instance_name: str, vxlan_interface_name: str), ?srl_nokia_network_instance__network_instance__vxlan_interface_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -36114,10 +36206,10 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_ins
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.id = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_evpn, 'id'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_evpn, 'admin-state'), parent=path))
-        self.vxlan_interface = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_evpn, 'vxlan-interface'), parent=path))
-        self.evi = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_evpn, 'evi'), parent=path))
+        self.id = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp_evpn__id, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp_evpn__admin_state, parent=path))
+        self.vxlan_interface = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp_evpn__vxlan_interface, parent=path))
+        self.evi = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp_evpn__evi, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.id, self.admin_state, self.vxlan_interface, self.evi]
@@ -36130,11 +36222,11 @@ actor srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_ins
         inst: ?srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_network_instance, 'bgp-evpn'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_bgp_evpn, 'bgp-instance')), 'bgp-instance')
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), bgp_instance_id=e4.get_u64(ygdata.Id(NS_srl_nokia_bgp_evpn, 'id')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_network_instance__bgp_evpn)
+                e4 = _one(_at(c3, _ID_srl_nokia_bgp_evpn__bgp_instance), 'bgp-instance')
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), bgp_instance_id=e4.get_u64(_ID_srl_nokia_bgp_evpn__id))
                 here = _present(e4)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_entry.from_gdata(here)
@@ -36153,17 +36245,17 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_ins
     evi: SubscriptionNode
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.id = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_evpn, 'id'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_evpn, 'admin-state'), parent=path))
-        self.vxlan_interface = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_evpn, 'vxlan-interface'), parent=path))
-        self.evi = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_evpn, 'evi'), parent=path))
+        self.id = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp_evpn__id, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp_evpn__admin_state, parent=path))
+        self.vxlan_interface = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp_evpn__vxlan_interface, parent=path))
+        self.evi = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp_evpn__evi, parent=path))
 
     pure def entry(self, id: u64) -> srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_bgp_evpn, 'id'), value_match=id),
+            ygdata.FNode(_ID_srl_nokia_bgp_evpn__id, value_match=id),
         ]
         base_path = self._path!.parent
-        return srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_evpn, 'bgp-instance'), predicates=predicates, parent=base_path))
+        return srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_entry_subs(SubscriptionPath(_ID_srl_nokia_bgp_evpn__bgp_instance, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(network_instance_name: str, bgp_instance_id: u64), ?srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -36183,10 +36275,10 @@ actor srl_nokia_network_instance__network_instance__protocols__bgp_evpn_dst(cb: 
         inst: ?srl_nokia_network_instance__network_instance__protocols__bgp_evpn = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_network_instance, 'bgp-evpn'))
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_network_instance__bgp_evpn)
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name))
                 here = _present(c3)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__bgp_evpn.from_gdata(here)
@@ -36203,7 +36295,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_evpn_subs(Sub
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.bgp_instance = srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_evpn, 'bgp-instance'), parent=path))
+        self.bgp_instance = srl_nokia_network_instance__network_instance__protocols__bgp_evpn__bgp_instance_subs(SubscriptionPath(_ID_srl_nokia_bgp_evpn__bgp_instance, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.bgp_instance]
@@ -36223,12 +36315,12 @@ actor srl_nokia_network_instance__network_instance__protocols__isis__instance__i
         inst: ?srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_isis, 'isis'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_isis, 'instance')), 'instance')
-                c5 = _at(e4, ygdata.Id(NS_srl_nokia_isis, 'ipv4-unicast'))
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), instance_name=e4.get_str(ygdata.Id(NS_srl_nokia_isis, 'name')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_isis__isis)
+                e4 = _one(_at(c3, _ID_srl_nokia_isis__instance), 'instance')
+                c5 = _at(e4, _ID_srl_nokia_isis__ipv4_unicast)
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), instance_name=e4.get_str(_ID_srl_nokia_isis__name))
                 here = _present(c5)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast.from_gdata(here)
@@ -36245,7 +36337,7 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance__i
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'admin-state'), parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__admin_state, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.admin_state]
@@ -36265,8 +36357,8 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance__i
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.level_number = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'level-number'), parent=path))
-        self.metric = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'metric'), parent=path))
+        self.level_number = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__level_number, parent=path))
+        self.metric = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__metric, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.level_number, self.metric]
@@ -36279,13 +36371,13 @@ actor srl_nokia_network_instance__network_instance__protocols__isis__instance__i
         inst: ?srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_isis, 'isis'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_isis, 'instance')), 'instance')
-                e5 = _one(_at(e4, ygdata.Id(NS_srl_nokia_isis, 'interface')), 'interface')
-                e6 = _one(_at(e5, ygdata.Id(NS_srl_nokia_isis, 'level')), 'level')
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), instance_name=e4.get_str(ygdata.Id(NS_srl_nokia_isis, 'name')), interface_interface_name=e5.get_str(ygdata.Id(NS_srl_nokia_isis, 'interface-name')), level_level_number=e6.get_u64(ygdata.Id(NS_srl_nokia_isis, 'level-number')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_isis__isis)
+                e4 = _one(_at(c3, _ID_srl_nokia_isis__instance), 'instance')
+                e5 = _one(_at(e4, _ID_srl_nokia_isis__interface), 'interface')
+                e6 = _one(_at(e5, _ID_srl_nokia_isis__level), 'level')
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), instance_name=e4.get_str(_ID_srl_nokia_isis__name), interface_interface_name=e5.get_str(_ID_srl_nokia_isis__interface_name), level_level_number=e6.get_u64(_ID_srl_nokia_isis__level_number))
                 here = _present(e6)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry.from_gdata(here)
@@ -36302,15 +36394,15 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance__i
     metric: SubscriptionNode
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.level_number = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'level-number'), parent=path))
-        self.metric = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'metric'), parent=path))
+        self.level_number = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__level_number, parent=path))
+        self.metric = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__metric, parent=path))
 
     pure def entry(self, level_number: u64) -> srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_isis, 'level-number'), value_match=level_number),
+            ygdata.FNode(_ID_srl_nokia_isis__level_number, value_match=level_number),
         ]
         base_path = self._path!.parent
-        return srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'level'), predicates=predicates, parent=base_path))
+        return srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry_subs(SubscriptionPath(_ID_srl_nokia_isis__level, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(network_instance_name: str, instance_name: str, interface_interface_name: str, level_level_number: u64), ?srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -36333,11 +36425,11 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance__i
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.interface_name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'interface-name'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'admin-state'), parent=path))
-        self.circuit_type = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'circuit-type'), parent=path))
-        self.passive = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'passive'), parent=path))
-        self.level = srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'level'), parent=path))
+        self.interface_name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__interface_name, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__admin_state, parent=path))
+        self.circuit_type = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__circuit_type, parent=path))
+        self.passive = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__passive, parent=path))
+        self.level = srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_subs(SubscriptionPath(_ID_srl_nokia_isis__level, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.interface_name, self.admin_state, self.circuit_type, self.passive, self.level]
@@ -36350,12 +36442,12 @@ actor srl_nokia_network_instance__network_instance__protocols__isis__instance__i
         inst: ?srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_isis, 'isis'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_isis, 'instance')), 'instance')
-                e5 = _one(_at(e4, ygdata.Id(NS_srl_nokia_isis, 'interface')), 'interface')
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), instance_name=e4.get_str(ygdata.Id(NS_srl_nokia_isis, 'name')), interface_interface_name=e5.get_str(ygdata.Id(NS_srl_nokia_isis, 'interface-name')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_isis__isis)
+                e4 = _one(_at(c3, _ID_srl_nokia_isis__instance), 'instance')
+                e5 = _one(_at(e4, _ID_srl_nokia_isis__interface), 'interface')
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), instance_name=e4.get_str(_ID_srl_nokia_isis__name), interface_interface_name=e5.get_str(_ID_srl_nokia_isis__interface_name))
                 here = _present(e5)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry.from_gdata(here)
@@ -36375,18 +36467,18 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance__i
     level: srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_subs
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.interface_name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'interface-name'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'admin-state'), parent=path))
-        self.circuit_type = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'circuit-type'), parent=path))
-        self.passive = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'passive'), parent=path))
-        self.level = srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'level'), parent=path))
+        self.interface_name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__interface_name, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__admin_state, parent=path))
+        self.circuit_type = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__circuit_type, parent=path))
+        self.passive = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__passive, parent=path))
+        self.level = srl_nokia_network_instance__network_instance__protocols__isis__instance__interface__level_subs(SubscriptionPath(_ID_srl_nokia_isis__level, parent=path))
 
     pure def entry(self, interface_name: str) -> srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_isis, 'interface-name'), value_match=interface_name),
+            ygdata.FNode(_ID_srl_nokia_isis__interface_name, value_match=interface_name),
         ]
         base_path = self._path!.parent
-        return srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'interface'), predicates=predicates, parent=base_path))
+        return srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry_subs(SubscriptionPath(_ID_srl_nokia_isis__interface, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(network_instance_name: str, instance_name: str, interface_interface_name: str), ?srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -36410,12 +36502,12 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance_en
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'name'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'admin-state'), parent=path))
-        self.net = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'net'), parent=path))
-        self.level_capability = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'level-capability'), parent=path))
-        self.ipv4_unicast = srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'ipv4-unicast'), parent=path))
-        self.interface = srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'interface'), parent=path))
+        self.name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__name, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__admin_state, parent=path))
+        self.net = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__net, parent=path))
+        self.level_capability = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__level_capability, parent=path))
+        self.ipv4_unicast = srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast_subs(SubscriptionPath(_ID_srl_nokia_isis__ipv4_unicast, parent=path))
+        self.interface = srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_subs(SubscriptionPath(_ID_srl_nokia_isis__interface, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.admin_state, self.net, self.level_capability, self.ipv4_unicast, self.interface]
@@ -36428,11 +36520,11 @@ actor srl_nokia_network_instance__network_instance__protocols__isis__instance_ds
         inst: ?srl_nokia_network_instance__network_instance__protocols__isis__instance_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_isis, 'isis'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_isis, 'instance')), 'instance')
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), instance_name=e4.get_str(ygdata.Id(NS_srl_nokia_isis, 'name')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_isis__isis)
+                e4 = _one(_at(c3, _ID_srl_nokia_isis__instance), 'instance')
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), instance_name=e4.get_str(_ID_srl_nokia_isis__name))
                 here = _present(e4)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__isis__instance_entry.from_gdata(here)
@@ -36453,19 +36545,19 @@ class srl_nokia_network_instance__network_instance__protocols__isis__instance_su
     interface: srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_subs
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'name'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'admin-state'), parent=path))
-        self.net = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'net'), parent=path))
-        self.level_capability = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'level-capability'), parent=path))
-        self.ipv4_unicast = srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'ipv4-unicast'), parent=path))
-        self.interface = srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'interface'), parent=path))
+        self.name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__name, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__admin_state, parent=path))
+        self.net = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__net, parent=path))
+        self.level_capability = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_isis__level_capability, parent=path))
+        self.ipv4_unicast = srl_nokia_network_instance__network_instance__protocols__isis__instance__ipv4_unicast_subs(SubscriptionPath(_ID_srl_nokia_isis__ipv4_unicast, parent=path))
+        self.interface = srl_nokia_network_instance__network_instance__protocols__isis__instance__interface_subs(SubscriptionPath(_ID_srl_nokia_isis__interface, parent=path))
 
     pure def entry(self, name: str) -> srl_nokia_network_instance__network_instance__protocols__isis__instance_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_isis, 'name'), value_match=name),
+            ygdata.FNode(_ID_srl_nokia_isis__name, value_match=name),
         ]
         base_path = self._path!.parent
-        return srl_nokia_network_instance__network_instance__protocols__isis__instance_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'instance'), predicates=predicates, parent=base_path))
+        return srl_nokia_network_instance__network_instance__protocols__isis__instance_entry_subs(SubscriptionPath(_ID_srl_nokia_isis__instance, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(network_instance_name: str, instance_name: str), ?srl_nokia_network_instance__network_instance__protocols__isis__instance_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -36485,10 +36577,10 @@ actor srl_nokia_network_instance__network_instance__protocols__isis_dst(cb: acti
         inst: ?srl_nokia_network_instance__network_instance__protocols__isis = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_isis, 'isis'))
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_isis__isis)
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name))
                 here = _present(c3)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__isis.from_gdata(here)
@@ -36505,7 +36597,7 @@ class srl_nokia_network_instance__network_instance__protocols__isis_subs(Subscri
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.instance = srl_nokia_network_instance__network_instance__protocols__isis__instance_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'instance'), parent=path))
+        self.instance = srl_nokia_network_instance__network_instance__protocols__isis__instance_subs(SubscriptionPath(_ID_srl_nokia_isis__instance, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.instance]
@@ -36525,11 +36617,11 @@ actor srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default
         inst: ?srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default_policy = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_bgp, 'bgp'))
-                c4 = _at(c3, ygdata.Id(NS_srl_nokia_bgp, 'ebgp-default-policy'))
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_bgp__bgp)
+                c4 = _at(c3, _ID_srl_nokia_bgp__ebgp_default_policy)
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name))
                 here = _present(c4)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default_policy.from_gdata(here)
@@ -36547,8 +36639,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.import_reject_all = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'import-reject-all'), parent=path))
-        self.export_reject_all = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'export-reject-all'), parent=path))
+        self.import_reject_all = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__import_reject_all, parent=path))
+        self.export_reject_all = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__export_reject_all, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.import_reject_all, self.export_reject_all]
@@ -36568,8 +36660,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_ent
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.afi_safi_name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'afi-safi-name'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'admin-state'), parent=path))
+        self.afi_safi_name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__afi_safi_name, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__admin_state, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.afi_safi_name, self.admin_state]
@@ -36582,11 +36674,11 @@ actor srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_dst
         inst: ?srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_bgp, 'bgp'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_bgp, 'afi-safi')), 'afi-safi')
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), afi_safi_afi_safi_name=e4.get_Identityref(ygdata.Id(NS_srl_nokia_bgp, 'afi-safi-name')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_bgp__bgp)
+                e4 = _one(_at(c3, _ID_srl_nokia_bgp__afi_safi), 'afi-safi')
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), afi_safi_afi_safi_name=e4.get_Identityref(_ID_srl_nokia_bgp__afi_safi_name))
                 here = _present(e4)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry.from_gdata(here)
@@ -36603,15 +36695,15 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_sub
     admin_state: SubscriptionNode
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.afi_safi_name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'afi-safi-name'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'admin-state'), parent=path))
+        self.afi_safi_name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__afi_safi_name, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__admin_state, parent=path))
 
     pure def entry(self, afi_safi_name: Identityref) -> srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_bgp, 'afi-safi-name'), value_match=afi_safi_name),
+            ygdata.FNode(_ID_srl_nokia_bgp__afi_safi_name, value_match=afi_safi_name),
         ]
         base_path = self._path!.parent
-        return srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'afi-safi'), predicates=predicates, parent=base_path))
+        return srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry_subs(SubscriptionPath(_ID_srl_nokia_bgp__afi_safi, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(network_instance_name: str, afi_safi_afi_safi_name: Identityref), ?srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -36631,12 +36723,12 @@ actor srl_nokia_network_instance__network_instance__protocols__bgp__group__send_
         inst: ?srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_bgp, 'bgp'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_bgp, 'group')), 'group')
-                c5 = _at(e4, ygdata.Id(NS_srl_nokia_bgp, 'send-default-route'))
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), group_group_name=e4.get_str(ygdata.Id(NS_srl_nokia_bgp, 'group-name')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_bgp__bgp)
+                e4 = _one(_at(c3, _ID_srl_nokia_bgp__group), 'group')
+                c5 = _at(e4, _ID_srl_nokia_bgp__send_default_route)
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), group_group_name=e4.get_str(_ID_srl_nokia_bgp__group_name))
                 here = _present(c5)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route.from_gdata(here)
@@ -36653,7 +36745,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__group__send_
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.ipv4_unicast = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'ipv4-unicast'), parent=path))
+        self.ipv4_unicast = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__ipv4_unicast, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.ipv4_unicast]
@@ -36674,9 +36766,9 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__group_entry_
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.group_name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'group-name'), parent=path))
-        self.peer_as = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'peer-as'), parent=path))
-        self.send_default_route = srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'send-default-route'), parent=path))
+        self.group_name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__group_name, parent=path))
+        self.peer_as = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__peer_as, parent=path))
+        self.send_default_route = srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route_subs(SubscriptionPath(_ID_srl_nokia_bgp__send_default_route, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.group_name, self.peer_as, self.send_default_route]
@@ -36689,11 +36781,11 @@ actor srl_nokia_network_instance__network_instance__protocols__bgp__group_dst(cb
         inst: ?srl_nokia_network_instance__network_instance__protocols__bgp__group_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_bgp, 'bgp'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_bgp, 'group')), 'group')
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), group_group_name=e4.get_str(ygdata.Id(NS_srl_nokia_bgp, 'group-name')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_bgp__bgp)
+                e4 = _one(_at(c3, _ID_srl_nokia_bgp__group), 'group')
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), group_group_name=e4.get_str(_ID_srl_nokia_bgp__group_name))
                 here = _present(e4)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__bgp__group_entry.from_gdata(here)
@@ -36711,16 +36803,16 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__group_subs(S
     send_default_route: srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route_subs
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.group_name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'group-name'), parent=path))
-        self.peer_as = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'peer-as'), parent=path))
-        self.send_default_route = srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'send-default-route'), parent=path))
+        self.group_name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__group_name, parent=path))
+        self.peer_as = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__peer_as, parent=path))
+        self.send_default_route = srl_nokia_network_instance__network_instance__protocols__bgp__group__send_default_route_subs(SubscriptionPath(_ID_srl_nokia_bgp__send_default_route, parent=path))
 
     pure def entry(self, group_name: str) -> srl_nokia_network_instance__network_instance__protocols__bgp__group_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_bgp, 'group-name'), value_match=group_name),
+            ygdata.FNode(_ID_srl_nokia_bgp__group_name, value_match=group_name),
         ]
         base_path = self._path!.parent
-        return srl_nokia_network_instance__network_instance__protocols__bgp__group_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'group'), predicates=predicates, parent=base_path))
+        return srl_nokia_network_instance__network_instance__protocols__bgp__group_entry_subs(SubscriptionPath(_ID_srl_nokia_bgp__group, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(network_instance_name: str, group_group_name: str), ?srl_nokia_network_instance__network_instance__protocols__bgp__group_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -36740,12 +36832,12 @@ actor srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__au
         inst: ?srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_bgp, 'bgp'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_bgp, 'neighbor')), 'neighbor')
-                c5 = _at(e4, ygdata.Id(NS_srl_nokia_bgp, 'authentication'))
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), neighbor_peer_address=e4.get_str(ygdata.Id(NS_srl_nokia_bgp, 'peer-address')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_bgp__bgp)
+                e4 = _one(_at(c3, _ID_srl_nokia_bgp__neighbor), 'neighbor')
+                c5 = _at(e4, _ID_srl_nokia_bgp__authentication)
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), neighbor_peer_address=e4.get_str(_ID_srl_nokia_bgp__peer_address))
                 here = _present(c5)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication.from_gdata(here)
@@ -36762,7 +36854,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__au
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.password = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'password'), parent=path))
+        self.password = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__password, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.password]
@@ -36782,12 +36874,12 @@ actor srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__ti
         inst: ?srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_bgp, 'bgp'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_bgp, 'neighbor')), 'neighbor')
-                c5 = _at(e4, ygdata.Id(NS_srl_nokia_bgp, 'timers'))
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), neighbor_peer_address=e4.get_str(ygdata.Id(NS_srl_nokia_bgp, 'peer-address')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_bgp__bgp)
+                e4 = _one(_at(c3, _ID_srl_nokia_bgp__neighbor), 'neighbor')
+                c5 = _at(e4, _ID_srl_nokia_bgp__timers)
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), neighbor_peer_address=e4.get_str(_ID_srl_nokia_bgp__peer_address))
                 here = _present(c5)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers.from_gdata(here)
@@ -36807,10 +36899,10 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__ti
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.connect_retry = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'connect-retry'), parent=path))
-        self.hold_time = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'hold-time'), parent=path))
-        self.keepalive_interval = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'keepalive-interval'), parent=path))
-        self.negotiated_hold_time = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'negotiated-hold-time'), parent=path))
+        self.connect_retry = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__connect_retry, parent=path))
+        self.hold_time = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__hold_time, parent=path))
+        self.keepalive_interval = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__keepalive_interval, parent=path))
+        self.negotiated_hold_time = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__negotiated_hold_time, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.connect_retry, self.hold_time, self.keepalive_interval, self.negotiated_hold_time]
@@ -36830,12 +36922,12 @@ actor srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__se
         inst: ?srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__sent_messages = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_bgp, 'bgp'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_bgp, 'neighbor')), 'neighbor')
-                c5 = _at(e4, ygdata.Id(NS_srl_nokia_bgp, 'sent-messages'))
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), neighbor_peer_address=e4.get_str(ygdata.Id(NS_srl_nokia_bgp, 'peer-address')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_bgp__bgp)
+                e4 = _one(_at(c3, _ID_srl_nokia_bgp__neighbor), 'neighbor')
+                c5 = _at(e4, _ID_srl_nokia_bgp__sent_messages)
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), neighbor_peer_address=e4.get_str(_ID_srl_nokia_bgp__peer_address))
                 here = _present(c5)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__sent_messages.from_gdata(here)
@@ -36852,7 +36944,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__se
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.last_notification_error_code = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'last-notification-error-code'), parent=path))
+        self.last_notification_error_code = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__last_notification_error_code, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.last_notification_error_code]
@@ -36872,12 +36964,12 @@ actor srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__re
         inst: ?srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_bgp, 'bgp'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_bgp, 'neighbor')), 'neighbor')
-                c5 = _at(e4, ygdata.Id(NS_srl_nokia_bgp, 'received-messages'))
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), neighbor_peer_address=e4.get_str(ygdata.Id(NS_srl_nokia_bgp, 'peer-address')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_bgp__bgp)
+                e4 = _one(_at(c3, _ID_srl_nokia_bgp__neighbor), 'neighbor')
+                c5 = _at(e4, _ID_srl_nokia_bgp__received_messages)
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), neighbor_peer_address=e4.get_str(_ID_srl_nokia_bgp__peer_address))
                 here = _present(c5)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages.from_gdata(here)
@@ -36894,7 +36986,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__re
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.last_notification_error_code = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'last-notification-error-code'), parent=path))
+        self.last_notification_error_code = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__last_notification_error_code, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.last_notification_error_code]
@@ -36924,18 +37016,18 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_ent
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.peer_address = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'peer-address'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'admin-state'), parent=path))
-        self.description = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'description'), parent=path))
-        self.peer_as = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'peer-as'), parent=path))
-        self.peer_group = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'peer-group'), parent=path))
-        self.authentication = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'authentication'), parent=path))
-        self.timers = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'timers'), parent=path))
-        self.session_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'session-state'), parent=path))
-        self.last_event = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'last-event'), parent=path))
-        self.established_transitions = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'established-transitions'), parent=path))
-        self.sent_messages = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__sent_messages_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'sent-messages'), parent=path))
-        self.received_messages = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'received-messages'), parent=path))
+        self.peer_address = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__peer_address, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__admin_state, parent=path))
+        self.description = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__description, parent=path))
+        self.peer_as = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__peer_as, parent=path))
+        self.peer_group = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__peer_group, parent=path))
+        self.authentication = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication_subs(SubscriptionPath(_ID_srl_nokia_bgp__authentication, parent=path))
+        self.timers = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers_subs(SubscriptionPath(_ID_srl_nokia_bgp__timers, parent=path))
+        self.session_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__session_state, parent=path))
+        self.last_event = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__last_event, parent=path))
+        self.established_transitions = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__established_transitions, parent=path))
+        self.sent_messages = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__sent_messages_subs(SubscriptionPath(_ID_srl_nokia_bgp__sent_messages, parent=path))
+        self.received_messages = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages_subs(SubscriptionPath(_ID_srl_nokia_bgp__received_messages, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.peer_address, self.admin_state, self.description, self.peer_as, self.peer_group, self.authentication, self.timers, self.session_state, self.last_event, self.established_transitions, self.sent_messages, self.received_messages]
@@ -36948,11 +37040,11 @@ actor srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_dst
         inst: ?srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_bgp, 'bgp'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_bgp, 'neighbor')), 'neighbor')
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), neighbor_peer_address=e4.get_str(ygdata.Id(NS_srl_nokia_bgp, 'peer-address')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_bgp__bgp)
+                e4 = _one(_at(c3, _ID_srl_nokia_bgp__neighbor), 'neighbor')
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), neighbor_peer_address=e4.get_str(_ID_srl_nokia_bgp__peer_address))
                 here = _present(e4)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry.from_gdata(here)
@@ -36979,25 +37071,25 @@ class srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_sub
     received_messages: srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages_subs
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.peer_address = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'peer-address'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'admin-state'), parent=path))
-        self.description = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'description'), parent=path))
-        self.peer_as = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'peer-as'), parent=path))
-        self.peer_group = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'peer-group'), parent=path))
-        self.authentication = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'authentication'), parent=path))
-        self.timers = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'timers'), parent=path))
-        self.session_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'session-state'), parent=path))
-        self.last_event = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'last-event'), parent=path))
-        self.established_transitions = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'established-transitions'), parent=path))
-        self.sent_messages = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__sent_messages_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'sent-messages'), parent=path))
-        self.received_messages = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'received-messages'), parent=path))
+        self.peer_address = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__peer_address, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__admin_state, parent=path))
+        self.description = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__description, parent=path))
+        self.peer_as = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__peer_as, parent=path))
+        self.peer_group = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__peer_group, parent=path))
+        self.authentication = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__authentication_subs(SubscriptionPath(_ID_srl_nokia_bgp__authentication, parent=path))
+        self.timers = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__timers_subs(SubscriptionPath(_ID_srl_nokia_bgp__timers, parent=path))
+        self.session_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__session_state, parent=path))
+        self.last_event = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__last_event, parent=path))
+        self.established_transitions = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__established_transitions, parent=path))
+        self.sent_messages = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__sent_messages_subs(SubscriptionPath(_ID_srl_nokia_bgp__sent_messages, parent=path))
+        self.received_messages = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor__received_messages_subs(SubscriptionPath(_ID_srl_nokia_bgp__received_messages, parent=path))
 
     pure def entry(self, peer_address: str) -> srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_bgp, 'peer-address'), value_match=peer_address),
+            ygdata.FNode(_ID_srl_nokia_bgp__peer_address, value_match=peer_address),
         ]
         base_path = self._path!.parent
-        return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'neighbor'), predicates=predicates, parent=base_path))
+        return srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry_subs(SubscriptionPath(_ID_srl_nokia_bgp__neighbor, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(network_instance_name: str, neighbor_peer_address: str), ?srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -37017,10 +37109,10 @@ actor srl_nokia_network_instance__network_instance__protocols__bgp_dst(cb: actio
         inst: ?srl_nokia_network_instance__network_instance__protocols__bgp = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_bgp, 'bgp'))
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_bgp__bgp)
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name))
                 here = _present(c3)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__bgp.from_gdata(here)
@@ -37042,12 +37134,12 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_subs(Subscrip
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.autonomous_system = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'autonomous-system'), parent=path))
-        self.router_id = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'router-id'), parent=path))
-        self.ebgp_default_policy = srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default_policy_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'ebgp-default-policy'), parent=path))
-        self.afi_safi = srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'afi-safi'), parent=path))
-        self.group = srl_nokia_network_instance__network_instance__protocols__bgp__group_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'group'), parent=path))
-        self.neighbor = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'neighbor'), parent=path))
+        self.autonomous_system = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__autonomous_system, parent=path))
+        self.router_id = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp__router_id, parent=path))
+        self.ebgp_default_policy = srl_nokia_network_instance__network_instance__protocols__bgp__ebgp_default_policy_subs(SubscriptionPath(_ID_srl_nokia_bgp__ebgp_default_policy, parent=path))
+        self.afi_safi = srl_nokia_network_instance__network_instance__protocols__bgp__afi_safi_subs(SubscriptionPath(_ID_srl_nokia_bgp__afi_safi, parent=path))
+        self.group = srl_nokia_network_instance__network_instance__protocols__bgp__group_subs(SubscriptionPath(_ID_srl_nokia_bgp__group, parent=path))
+        self.neighbor = srl_nokia_network_instance__network_instance__protocols__bgp__neighbor_subs(SubscriptionPath(_ID_srl_nokia_bgp__neighbor, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.autonomous_system, self.router_id, self.ebgp_default_policy, self.afi_safi, self.group, self.neighbor]
@@ -37067,12 +37159,12 @@ actor srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_inst
         inst: ?srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_bgp_vpn, 'bgp-vpn'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_bgp_vpn, 'bgp-instance')), 'bgp-instance')
-                c5 = _at(e4, ygdata.Id(NS_srl_nokia_bgp_vpn, 'route-target'))
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), bgp_instance_id=e4.get_u64(ygdata.Id(NS_srl_nokia_bgp_vpn, 'id')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_bgp_vpn__bgp_vpn)
+                e4 = _one(_at(c3, _ID_srl_nokia_bgp_vpn__bgp_instance), 'bgp-instance')
+                c5 = _at(e4, _ID_srl_nokia_bgp_vpn__route_target)
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), bgp_instance_id=e4.get_u64(_ID_srl_nokia_bgp_vpn__id))
                 here = _present(c5)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target.from_gdata(here)
@@ -37090,8 +37182,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_inst
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.export_rt = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_vpn, 'export-rt'), parent=path))
-        self.import_rt = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_vpn, 'import-rt'), parent=path))
+        self.export_rt = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp_vpn__export_rt, parent=path))
+        self.import_rt = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp_vpn__import_rt, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.export_rt, self.import_rt]
@@ -37111,8 +37203,8 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_inst
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.id = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_vpn, 'id'), parent=path))
-        self.route_target = srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_vpn, 'route-target'), parent=path))
+        self.id = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp_vpn__id, parent=path))
+        self.route_target = srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target_subs(SubscriptionPath(_ID_srl_nokia_bgp_vpn__route_target, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.id, self.route_target]
@@ -37125,11 +37217,11 @@ actor srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_inst
         inst: ?srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_bgp_vpn, 'bgp-vpn'))
-                e4 = _one(_at(c3, ygdata.Id(NS_srl_nokia_bgp_vpn, 'bgp-instance')), 'bgp-instance')
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')), bgp_instance_id=e4.get_u64(ygdata.Id(NS_srl_nokia_bgp_vpn, 'id')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_bgp_vpn__bgp_vpn)
+                e4 = _one(_at(c3, _ID_srl_nokia_bgp_vpn__bgp_instance), 'bgp-instance')
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name), bgp_instance_id=e4.get_u64(_ID_srl_nokia_bgp_vpn__id))
                 here = _present(e4)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_entry.from_gdata(here)
@@ -37146,15 +37238,15 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_inst
     route_target: srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target_subs
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.id = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_vpn, 'id'), parent=path))
-        self.route_target = srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_vpn, 'route-target'), parent=path))
+        self.id = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_bgp_vpn__id, parent=path))
+        self.route_target = srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance__route_target_subs(SubscriptionPath(_ID_srl_nokia_bgp_vpn__route_target, parent=path))
 
     pure def entry(self, id: u64) -> srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_bgp_vpn, 'id'), value_match=id),
+            ygdata.FNode(_ID_srl_nokia_bgp_vpn__id, value_match=id),
         ]
         base_path = self._path!.parent
-        return srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_vpn, 'bgp-instance'), predicates=predicates, parent=base_path))
+        return srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_entry_subs(SubscriptionPath(_ID_srl_nokia_bgp_vpn__bgp_instance, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(network_instance_name: str, bgp_instance_id: u64), ?srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -37174,10 +37266,10 @@ actor srl_nokia_network_instance__network_instance__protocols__bgp_vpn_dst(cb: a
         inst: ?srl_nokia_network_instance__network_instance__protocols__bgp_vpn = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                c3 = _at(c2, ygdata.Id(NS_srl_nokia_bgp_vpn, 'bgp-vpn'))
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                c3 = _at(c2, _ID_srl_nokia_bgp_vpn__bgp_vpn)
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name))
                 here = _present(c3)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols__bgp_vpn.from_gdata(here)
@@ -37194,7 +37286,7 @@ class srl_nokia_network_instance__network_instance__protocols__bgp_vpn_subs(Subs
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.bgp_instance = srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_vpn, 'bgp-instance'), parent=path))
+        self.bgp_instance = srl_nokia_network_instance__network_instance__protocols__bgp_vpn__bgp_instance_subs(SubscriptionPath(_ID_srl_nokia_bgp_vpn__bgp_instance, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.bgp_instance]
@@ -37214,9 +37306,9 @@ actor srl_nokia_network_instance__network_instance__protocols_dst(cb: action(?(n
         inst: ?srl_nokia_network_instance__network_instance__protocols = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                c2 = _at(e1, ygdata.Id(NS_srl_nokia_network_instance, 'protocols'))
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                c2 = _at(e1, _ID_srl_nokia_network_instance__protocols)
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name))
                 here = _present(c2)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance__protocols.from_gdata(here)
@@ -37236,10 +37328,10 @@ class srl_nokia_network_instance__network_instance__protocols_subs(SubscriptionN
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.bgp_evpn = srl_nokia_network_instance__network_instance__protocols__bgp_evpn_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'bgp-evpn'), parent=path))
-        self.isis = srl_nokia_network_instance__network_instance__protocols__isis_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_isis, 'isis'), parent=path))
-        self.bgp = srl_nokia_network_instance__network_instance__protocols__bgp_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp, 'bgp'), parent=path))
-        self.bgp_vpn = srl_nokia_network_instance__network_instance__protocols__bgp_vpn_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_bgp_vpn, 'bgp-vpn'), parent=path))
+        self.bgp_evpn = srl_nokia_network_instance__network_instance__protocols__bgp_evpn_subs(SubscriptionPath(_ID_srl_nokia_network_instance__bgp_evpn, parent=path))
+        self.isis = srl_nokia_network_instance__network_instance__protocols__isis_subs(SubscriptionPath(_ID_srl_nokia_isis__isis, parent=path))
+        self.bgp = srl_nokia_network_instance__network_instance__protocols__bgp_subs(SubscriptionPath(_ID_srl_nokia_bgp__bgp, parent=path))
+        self.bgp_vpn = srl_nokia_network_instance__network_instance__protocols__bgp_vpn_subs(SubscriptionPath(_ID_srl_nokia_bgp_vpn__bgp_vpn, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.bgp_evpn, self.isis, self.bgp, self.bgp_vpn]
@@ -37264,13 +37356,13 @@ class srl_nokia_network_instance__network_instance_entry_subs(SubscriptionNode):
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'name'), parent=path))
-        self.type = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'type'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'admin-state'), parent=path))
-        self.description = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'description'), parent=path))
-        self.interface = srl_nokia_network_instance__network_instance__interface_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'interface'), parent=path))
-        self.vxlan_interface = srl_nokia_network_instance__network_instance__vxlan_interface_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'vxlan-interface'), parent=path))
-        self.protocols = srl_nokia_network_instance__network_instance__protocols_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'protocols'), parent=path))
+        self.name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_network_instance__name, parent=path))
+        self.type = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_network_instance__type, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_network_instance__admin_state, parent=path))
+        self.description = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_network_instance__description, parent=path))
+        self.interface = srl_nokia_network_instance__network_instance__interface_subs(SubscriptionPath(_ID_srl_nokia_network_instance__interface, parent=path))
+        self.vxlan_interface = srl_nokia_network_instance__network_instance__vxlan_interface_subs(SubscriptionPath(_ID_srl_nokia_network_instance__vxlan_interface, parent=path))
+        self.protocols = srl_nokia_network_instance__network_instance__protocols_subs(SubscriptionPath(_ID_srl_nokia_network_instance__protocols, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.type, self.admin_state, self.description, self.interface, self.vxlan_interface, self.protocols]
@@ -37283,8 +37375,8 @@ actor srl_nokia_network_instance__network_instance_dst(cb: action(?(network_inst
         inst: ?srl_nokia_network_instance__network_instance_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_network_instance, 'network-instance')), 'network-instance')
-                keys = (network_instance_name=e1.get_str(ygdata.Id(NS_srl_nokia_network_instance, 'name')))
+                e1 = _one(_at(n, _ID_srl_nokia_network_instance__network_instance), 'network-instance')
+                keys = (network_instance_name=e1.get_str(_ID_srl_nokia_network_instance__name))
                 here = _present(e1)
                 if here is not None:
                     inst = srl_nokia_network_instance__network_instance_entry.from_gdata(here)
@@ -37306,20 +37398,20 @@ class srl_nokia_network_instance__network_instance_subs(SubscriptionNode):
     protocols: srl_nokia_network_instance__network_instance__protocols_subs
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'name'), parent=path))
-        self.type = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'type'), parent=path))
-        self.admin_state = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'admin-state'), parent=path))
-        self.description = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'description'), parent=path))
-        self.interface = srl_nokia_network_instance__network_instance__interface_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'interface'), parent=path))
-        self.vxlan_interface = srl_nokia_network_instance__network_instance__vxlan_interface_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'vxlan-interface'), parent=path))
-        self.protocols = srl_nokia_network_instance__network_instance__protocols_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'protocols'), parent=path))
+        self.name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_network_instance__name, parent=path))
+        self.type = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_network_instance__type, parent=path))
+        self.admin_state = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_network_instance__admin_state, parent=path))
+        self.description = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_network_instance__description, parent=path))
+        self.interface = srl_nokia_network_instance__network_instance__interface_subs(SubscriptionPath(_ID_srl_nokia_network_instance__interface, parent=path))
+        self.vxlan_interface = srl_nokia_network_instance__network_instance__vxlan_interface_subs(SubscriptionPath(_ID_srl_nokia_network_instance__vxlan_interface, parent=path))
+        self.protocols = srl_nokia_network_instance__network_instance__protocols_subs(SubscriptionPath(_ID_srl_nokia_network_instance__protocols, parent=path))
 
     pure def entry(self, name: str) -> srl_nokia_network_instance__network_instance_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_network_instance, 'name'), value_match=name),
+            ygdata.FNode(_ID_srl_nokia_network_instance__name, value_match=name),
         ]
         base_path = self._path!.parent
-        return srl_nokia_network_instance__network_instance_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'network-instance'), predicates=predicates, parent=base_path))
+        return srl_nokia_network_instance__network_instance_entry_subs(SubscriptionPath(_ID_srl_nokia_network_instance__network_instance, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(network_instance_name: str), ?srl_nokia_network_instance__network_instance_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -37339,10 +37431,10 @@ actor srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress_ds
         inst: ?srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'tunnel-interface')), 'tunnel-interface')
-                e2 = _one(_at(e1, ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'vxlan-interface')), 'vxlan-interface')
-                c3 = _at(e2, ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'ingress'))
-                keys = (tunnel_interface_name=e1.get_str(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'name')), vxlan_interface_index=e2.get_u64(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'index')))
+                e1 = _one(_at(n, _ID_srl_nokia_tunnel_interfaces__tunnel_interface), 'tunnel-interface')
+                e2 = _one(_at(e1, _ID_srl_nokia_tunnel_interfaces__vxlan_interface), 'vxlan-interface')
+                c3 = _at(e2, _ID_srl_nokia_tunnel_interfaces__ingress)
+                keys = (tunnel_interface_name=e1.get_str(_ID_srl_nokia_tunnel_interfaces__name), vxlan_interface_index=e2.get_u64(_ID_srl_nokia_tunnel_interfaces__index))
                 here = _present(c3)
                 if here is not None:
                     inst = srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress.from_gdata(here)
@@ -37359,7 +37451,7 @@ class srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress_su
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.vni = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'vni'), parent=path))
+        self.vni = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_tunnel_interfaces__vni, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.vni]
@@ -37380,9 +37472,9 @@ class srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry_subs(
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.index = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'index'), parent=path))
-        self.type = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'type'), parent=path))
-        self.ingress = srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'ingress'), parent=path))
+        self.index = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_tunnel_interfaces__index, parent=path))
+        self.type = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_tunnel_interfaces__type, parent=path))
+        self.ingress = srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress_subs(SubscriptionPath(_ID_srl_nokia_tunnel_interfaces__ingress, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.index, self.type, self.ingress]
@@ -37395,9 +37487,9 @@ actor srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_dst(cb: act
         inst: ?srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'tunnel-interface')), 'tunnel-interface')
-                e2 = _one(_at(e1, ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'vxlan-interface')), 'vxlan-interface')
-                keys = (tunnel_interface_name=e1.get_str(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'name')), vxlan_interface_index=e2.get_u64(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'index')))
+                e1 = _one(_at(n, _ID_srl_nokia_tunnel_interfaces__tunnel_interface), 'tunnel-interface')
+                e2 = _one(_at(e1, _ID_srl_nokia_tunnel_interfaces__vxlan_interface), 'vxlan-interface')
+                keys = (tunnel_interface_name=e1.get_str(_ID_srl_nokia_tunnel_interfaces__name), vxlan_interface_index=e2.get_u64(_ID_srl_nokia_tunnel_interfaces__index))
                 here = _present(e2)
                 if here is not None:
                     inst = srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry.from_gdata(here)
@@ -37415,16 +37507,16 @@ class srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_subs(Subscr
     ingress: srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress_subs
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.index = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'index'), parent=path))
-        self.type = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'type'), parent=path))
-        self.ingress = srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'ingress'), parent=path))
+        self.index = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_tunnel_interfaces__index, parent=path))
+        self.type = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_tunnel_interfaces__type, parent=path))
+        self.ingress = srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface__ingress_subs(SubscriptionPath(_ID_srl_nokia_tunnel_interfaces__ingress, parent=path))
 
     pure def entry(self, index: u64) -> srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'index'), value_match=index),
+            ygdata.FNode(_ID_srl_nokia_tunnel_interfaces__index, value_match=index),
         ]
         base_path = self._path!.parent
-        return srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'vxlan-interface'), predicates=predicates, parent=base_path))
+        return srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry_subs(SubscriptionPath(_ID_srl_nokia_tunnel_interfaces__vxlan_interface, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(tunnel_interface_name: str, vxlan_interface_index: u64), ?srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -37444,8 +37536,8 @@ class srl_nokia_tunnel_interfaces__tunnel_interface_entry_subs(SubscriptionNode)
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'name'), parent=path))
-        self.vxlan_interface = srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'vxlan-interface'), parent=path))
+        self.name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_tunnel_interfaces__name, parent=path))
+        self.vxlan_interface = srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_subs(SubscriptionPath(_ID_srl_nokia_tunnel_interfaces__vxlan_interface, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.name, self.vxlan_interface]
@@ -37458,8 +37550,8 @@ actor srl_nokia_tunnel_interfaces__tunnel_interface_dst(cb: action(?(tunnel_inte
         inst: ?srl_nokia_tunnel_interfaces__tunnel_interface_entry = None
         if n is not None:
             try:
-                e1 = _one(_at(n, ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'tunnel-interface')), 'tunnel-interface')
-                keys = (tunnel_interface_name=e1.get_str(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'name')))
+                e1 = _one(_at(n, _ID_srl_nokia_tunnel_interfaces__tunnel_interface), 'tunnel-interface')
+                keys = (tunnel_interface_name=e1.get_str(_ID_srl_nokia_tunnel_interfaces__name))
                 here = _present(e1)
                 if here is not None:
                     inst = srl_nokia_tunnel_interfaces__tunnel_interface_entry.from_gdata(here)
@@ -37476,15 +37568,15 @@ class srl_nokia_tunnel_interfaces__tunnel_interface_subs(SubscriptionNode):
     vxlan_interface: srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_subs
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.name = SubscriptionNode(SubscriptionPath(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'name'), parent=path))
-        self.vxlan_interface = srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'vxlan-interface'), parent=path))
+        self.name = SubscriptionNode(SubscriptionPath(_ID_srl_nokia_tunnel_interfaces__name, parent=path))
+        self.vxlan_interface = srl_nokia_tunnel_interfaces__tunnel_interface__vxlan_interface_subs(SubscriptionPath(_ID_srl_nokia_tunnel_interfaces__vxlan_interface, parent=path))
 
     pure def entry(self, name: str) -> srl_nokia_tunnel_interfaces__tunnel_interface_entry_subs:
         predicates = [
-            ygdata.FNode(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'name'), value_match=name),
+            ygdata.FNode(_ID_srl_nokia_tunnel_interfaces__name, value_match=name),
         ]
         base_path = self._path!.parent
-        return srl_nokia_tunnel_interfaces__tunnel_interface_entry_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'tunnel-interface'), predicates=predicates, parent=base_path))
+        return srl_nokia_tunnel_interfaces__tunnel_interface_entry_subs(SubscriptionPath(_ID_srl_nokia_tunnel_interfaces__tunnel_interface, predicates=predicates, parent=base_path))
 
     proc def dst(self, cb: action(?(tunnel_interface_name: str), ?srl_nokia_tunnel_interfaces__tunnel_interface_entry, ?Exception) -> None) -> ygdata.Dst:
         """A destination rooted here: cb gets, one instance at a time,
@@ -37506,10 +37598,10 @@ class root_subs(SubscriptionNode):
 
     pure def __init__(self, path: ?SubscriptionPath=None) -> None:
         SubscriptionNode.__init__(self, path)
-        self.system = srl_nokia_system__system_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_system, 'system'), parent=path))
-        self.interface = srl_nokia_interfaces__interface_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_interfaces, 'interface'), parent=path))
-        self.network_instance = srl_nokia_network_instance__network_instance_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_network_instance, 'network-instance'), parent=path))
-        self.tunnel_interface = srl_nokia_tunnel_interfaces__tunnel_interface_subs(SubscriptionPath(ygdata.Id(NS_srl_nokia_tunnel_interfaces, 'tunnel-interface'), parent=path))
+        self.system = srl_nokia_system__system_subs(SubscriptionPath(_ID_srl_nokia_system__system, parent=path))
+        self.interface = srl_nokia_interfaces__interface_subs(SubscriptionPath(_ID_srl_nokia_interfaces__interface, parent=path))
+        self.network_instance = srl_nokia_network_instance__network_instance_subs(SubscriptionPath(_ID_srl_nokia_network_instance__network_instance, parent=path))
+        self.tunnel_interface = srl_nokia_tunnel_interfaces__tunnel_interface_subs(SubscriptionPath(_ID_srl_nokia_tunnel_interfaces__tunnel_interface, parent=path))
 
     pure def _direct_children(self) -> list[SubscriptionNode]:
         direct: list[SubscriptionNode] = [self.system, self.interface, self.network_instance, self.tunnel_interface]

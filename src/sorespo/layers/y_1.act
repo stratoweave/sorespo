@@ -883,6 +883,46 @@ NS_netinfra_inter: str = 'http://example.com/netinfra-inter'
 NS_stratoweave: str = 'http://stratoweave.org/yang/stratoweave'
 NS_ietf_inet_types: str = 'urn:ietf:params:xml:ns:yang:ietf-inet-types'
 
+_ID_l3vpn_inter__as_number: ygdata.Id = ygdata.Id(NS_l3vpn_inter, 'as-number')
+_ID_l3vpn_inter__authentication_key: ygdata.Id = ygdata.Id(NS_l3vpn_inter, 'authentication-key')
+_ID_l3vpn_inter__bgp: ygdata.Id = ygdata.Id(NS_l3vpn_inter, 'bgp')
+_ID_l3vpn_inter__customer_ipv4_address: ygdata.Id = ygdata.Id(NS_l3vpn_inter, 'customer-ipv4-address')
+_ID_l3vpn_inter__description: ygdata.Id = ygdata.Id(NS_l3vpn_inter, 'description')
+_ID_l3vpn_inter__device: ygdata.Id = ygdata.Id(NS_l3vpn_inter, 'device')
+_ID_l3vpn_inter__endpoint: ygdata.Id = ygdata.Id(NS_l3vpn_inter, 'endpoint')
+_ID_l3vpn_inter__interface: ygdata.Id = ygdata.Id(NS_l3vpn_inter, 'interface')
+_ID_l3vpn_inter__ipv4_prefix_length: ygdata.Id = ygdata.Id(NS_l3vpn_inter, 'ipv4-prefix-length')
+_ID_l3vpn_inter__l3vpn: ygdata.Id = ygdata.Id(NS_l3vpn_inter, 'l3vpn')
+_ID_l3vpn_inter__l3vpns: ygdata.Id = ygdata.Id(NS_l3vpn_inter, 'l3vpns')
+_ID_l3vpn_inter__name: ygdata.Id = ygdata.Id(NS_l3vpn_inter, 'name')
+_ID_l3vpn_inter__provider_ipv4_address: ygdata.Id = ygdata.Id(NS_l3vpn_inter, 'provider-ipv4-address')
+_ID_l3vpn_inter__site: ygdata.Id = ygdata.Id(NS_l3vpn_inter, 'site')
+_ID_l3vpn_inter__site_network_access: ygdata.Id = ygdata.Id(NS_l3vpn_inter, 'site-network-access')
+_ID_netinfra_inter__approval_required: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'approval-required')
+_ID_netinfra_inter__asn: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'asn')
+_ID_netinfra_inter__authentication_key: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'authentication-key')
+_ID_netinfra_inter__backbone_link: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'backbone-link')
+_ID_netinfra_inter__base_config: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'base-config')
+_ID_netinfra_inter__ebgp_customer_address: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'ebgp-customer-address')
+_ID_netinfra_inter__feature_flags: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'feature-flags')
+_ID_netinfra_inter__ibgp_fullmesh: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'ibgp-fullmesh')
+_ID_netinfra_inter__id: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'id')
+_ID_netinfra_inter__ipv4_address: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'ipv4-address')
+_ID_netinfra_inter__ipv6_address: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'ipv6-address')
+_ID_netinfra_inter__l3vpn_vrf: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'l3vpn-vrf')
+_ID_netinfra_inter__left_interface: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'left-interface')
+_ID_netinfra_inter__left_router: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'left-router')
+_ID_netinfra_inter__mock: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'mock')
+_ID_netinfra_inter__name: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'name')
+_ID_netinfra_inter__netinfra: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'netinfra')
+_ID_netinfra_inter__right_interface: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'right-interface')
+_ID_netinfra_inter__right_router: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'right-router')
+_ID_netinfra_inter__role: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'role')
+_ID_netinfra_inter__router: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'router')
+_ID_netinfra_inter__runtime_schema_fetch: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'runtime-schema-fetch')
+_ID_netinfra_inter__type: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'type')
+_ID_netinfra_inter__vpn_id: ygdata.Id = ygdata.Id(NS_netinfra_inter, 'vpn-id')
+
 
 _breaker1: None = None
 class netinfra_inter__netinfra__router__feature_flags(yadata.MNode):
@@ -897,7 +937,7 @@ class netinfra_inter__netinfra__router__feature_flags(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> netinfra_inter__netinfra__router__feature_flags:
         if n is not None:
-            return netinfra_inter__netinfra__router__feature_flags(runtime_schema_fetch=n.get_opt_bool(ygdata.Id(NS_netinfra_inter, 'runtime-schema-fetch')))
+            return netinfra_inter__netinfra__router__feature_flags(runtime_schema_fetch=n.get_opt_bool(_ID_netinfra_inter__runtime_schema_fetch))
         return netinfra_inter__netinfra__router__feature_flags()
 
     mut def copy(self) -> netinfra_inter__netinfra__router__feature_flags:
@@ -922,7 +962,7 @@ class netinfra_inter__netinfra__router__base_config(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> netinfra_inter__netinfra__router__base_config:
         if n is not None:
-            return netinfra_inter__netinfra__router__base_config(asn=n.get_u64(ygdata.Id(NS_netinfra_inter, 'asn')), ipv4_address=n.get_str(ygdata.Id(NS_netinfra_inter, 'ipv4-address')), ipv6_address=n.get_str(ygdata.Id(NS_netinfra_inter, 'ipv6-address')))
+            return netinfra_inter__netinfra__router__base_config(asn=n.get_u64(_ID_netinfra_inter__asn), ipv4_address=n.get_str(_ID_netinfra_inter__ipv4_address), ipv6_address=n.get_str(_ID_netinfra_inter__ipv6_address))
         raise ValueError('Missing required subtree netinfra_inter__netinfra__router__base_config')
 
     mut def copy(self) -> netinfra_inter__netinfra__router__base_config:
@@ -944,7 +984,7 @@ class netinfra_inter__netinfra__router__l3vpn_vrf_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> netinfra_inter__netinfra__router__l3vpn_vrf_entry:
-        return netinfra_inter__netinfra__router__l3vpn_vrf_entry(vpn_id=n.get_str(ygdata.Id(NS_netinfra_inter, 'vpn-id')), ebgp_customer_address=n.get_opt_strs(ygdata.Id(NS_netinfra_inter, 'ebgp-customer-address')))
+        return netinfra_inter__netinfra__router__l3vpn_vrf_entry(vpn_id=n.get_str(_ID_netinfra_inter__vpn_id), ebgp_customer_address=n.get_opt_strs(_ID_netinfra_inter__ebgp_customer_address))
 
     mut def copy(self) -> netinfra_inter__netinfra__router__l3vpn_vrf_entry:
         """Create a deep copy of this adata object"""
@@ -1009,7 +1049,7 @@ class netinfra_inter__netinfra__router_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> netinfra_inter__netinfra__router_entry:
-        return netinfra_inter__netinfra__router_entry(name=n.get_str(ygdata.Id(NS_netinfra_inter, 'name')), id=n.get_u64(ygdata.Id(NS_netinfra_inter, 'id')), type=n.get_opt_str(ygdata.Id(NS_netinfra_inter, 'type')), role=n.get_opt_str(ygdata.Id(NS_netinfra_inter, 'role')), mock=n.get_opt_bool(ygdata.Id(NS_netinfra_inter, 'mock')), approval_required=n.get_opt_bool(ygdata.Id(NS_netinfra_inter, 'approval-required')), feature_flags=netinfra_inter__netinfra__router__feature_flags.from_gdata(n.get_opt_cnt(ygdata.Id(NS_netinfra_inter, 'feature-flags'))), base_config=netinfra_inter__netinfra__router__base_config.from_gdata(n.get_cnt(ygdata.Id(NS_netinfra_inter, 'base-config'))), l3vpn_vrf=netinfra_inter__netinfra__router__l3vpn_vrf.from_gdata(n.get_opt_list(ygdata.Id(NS_netinfra_inter, 'l3vpn-vrf'))))
+        return netinfra_inter__netinfra__router_entry(name=n.get_str(_ID_netinfra_inter__name), id=n.get_u64(_ID_netinfra_inter__id), type=n.get_opt_str(_ID_netinfra_inter__type), role=n.get_opt_str(_ID_netinfra_inter__role), mock=n.get_opt_bool(_ID_netinfra_inter__mock), approval_required=n.get_opt_bool(_ID_netinfra_inter__approval_required), feature_flags=netinfra_inter__netinfra__router__feature_flags.from_gdata(n.get_opt_cnt(_ID_netinfra_inter__feature_flags)), base_config=netinfra_inter__netinfra__router__base_config.from_gdata(n.get_cnt(_ID_netinfra_inter__base_config)), l3vpn_vrf=netinfra_inter__netinfra__router__l3vpn_vrf.from_gdata(n.get_opt_list(_ID_netinfra_inter__l3vpn_vrf)))
 
     mut def copy(self) -> netinfra_inter__netinfra__router_entry:
         """Create a deep copy of this adata object"""
@@ -1074,7 +1114,7 @@ class netinfra_inter__netinfra__backbone_link_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> netinfra_inter__netinfra__backbone_link_entry:
-        return netinfra_inter__netinfra__backbone_link_entry(left_router=n.get_str(ygdata.Id(NS_netinfra_inter, 'left-router')), left_interface=n.get_str(ygdata.Id(NS_netinfra_inter, 'left-interface')), right_router=n.get_str(ygdata.Id(NS_netinfra_inter, 'right-router')), right_interface=n.get_str(ygdata.Id(NS_netinfra_inter, 'right-interface')))
+        return netinfra_inter__netinfra__backbone_link_entry(left_router=n.get_str(_ID_netinfra_inter__left_router), left_interface=n.get_str(_ID_netinfra_inter__left_interface), right_router=n.get_str(_ID_netinfra_inter__right_router), right_interface=n.get_str(_ID_netinfra_inter__right_interface))
 
     mut def copy(self) -> netinfra_inter__netinfra__backbone_link_entry:
         """Create a deep copy of this adata object"""
@@ -1125,7 +1165,7 @@ class netinfra_inter__netinfra__ibgp_fullmesh__router_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> netinfra_inter__netinfra__ibgp_fullmesh__router_entry:
-        return netinfra_inter__netinfra__ibgp_fullmesh__router_entry(name=n.get_str(ygdata.Id(NS_netinfra_inter, 'name')), ipv4_address=n.get_str(ygdata.Id(NS_netinfra_inter, 'ipv4-address')))
+        return netinfra_inter__netinfra__ibgp_fullmesh__router_entry(name=n.get_str(_ID_netinfra_inter__name), ipv4_address=n.get_str(_ID_netinfra_inter__ipv4_address))
 
     mut def copy(self) -> netinfra_inter__netinfra__ibgp_fullmesh__router_entry:
         """Create a deep copy of this adata object"""
@@ -1179,7 +1219,7 @@ class netinfra_inter__netinfra__ibgp_fullmesh_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> netinfra_inter__netinfra__ibgp_fullmesh_entry:
-        return netinfra_inter__netinfra__ibgp_fullmesh_entry(asn=n.get_u64(ygdata.Id(NS_netinfra_inter, 'asn')), authentication_key=n.get_str(ygdata.Id(NS_netinfra_inter, 'authentication-key')), router=netinfra_inter__netinfra__ibgp_fullmesh__router.from_gdata(n.get_opt_list(ygdata.Id(NS_netinfra_inter, 'router'))))
+        return netinfra_inter__netinfra__ibgp_fullmesh_entry(asn=n.get_u64(_ID_netinfra_inter__asn), authentication_key=n.get_str(_ID_netinfra_inter__authentication_key), router=netinfra_inter__netinfra__ibgp_fullmesh__router.from_gdata(n.get_opt_list(_ID_netinfra_inter__router)))
 
     mut def copy(self) -> netinfra_inter__netinfra__ibgp_fullmesh_entry:
         """Create a deep copy of this adata object"""
@@ -1234,7 +1274,7 @@ class netinfra_inter__netinfra(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> netinfra_inter__netinfra:
         if n is not None:
-            return netinfra_inter__netinfra(router=netinfra_inter__netinfra__router.from_gdata(n.get_opt_list(ygdata.Id(NS_netinfra_inter, 'router'))), backbone_link=netinfra_inter__netinfra__backbone_link.from_gdata(n.get_opt_list(ygdata.Id(NS_netinfra_inter, 'backbone-link'))), ibgp_fullmesh=netinfra_inter__netinfra__ibgp_fullmesh.from_gdata(n.get_opt_list(ygdata.Id(NS_netinfra_inter, 'ibgp-fullmesh'))))
+            return netinfra_inter__netinfra(router=netinfra_inter__netinfra__router.from_gdata(n.get_opt_list(_ID_netinfra_inter__router)), backbone_link=netinfra_inter__netinfra__backbone_link.from_gdata(n.get_opt_list(_ID_netinfra_inter__backbone_link)), ibgp_fullmesh=netinfra_inter__netinfra__ibgp_fullmesh.from_gdata(n.get_opt_list(_ID_netinfra_inter__ibgp_fullmesh)))
         return netinfra_inter__netinfra()
 
     mut def copy(self) -> netinfra_inter__netinfra:
@@ -1257,7 +1297,7 @@ class l3vpn_inter__l3vpns__l3vpn__endpoint__bgp(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?l3vpn_inter__l3vpns__l3vpn__endpoint__bgp:
         if n is not None:
-            return l3vpn_inter__l3vpns__l3vpn__endpoint__bgp(as_number=n.get_u64(ygdata.Id(NS_l3vpn_inter, 'as-number')), authentication_key=n.get_opt_str(ygdata.Id(NS_l3vpn_inter, 'authentication-key')))
+            return l3vpn_inter__l3vpns__l3vpn__endpoint__bgp(as_number=n.get_u64(_ID_l3vpn_inter__as_number), authentication_key=n.get_opt_str(_ID_l3vpn_inter__authentication_key))
         return None
 
     mut def copy(self) -> l3vpn_inter__l3vpns__l3vpn__endpoint__bgp:
@@ -1305,7 +1345,7 @@ class l3vpn_inter__l3vpns__l3vpn__endpoint_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> l3vpn_inter__l3vpns__l3vpn__endpoint_entry:
-        return l3vpn_inter__l3vpns__l3vpn__endpoint_entry(device=n.get_str(ygdata.Id(NS_l3vpn_inter, 'device')), interface=n.get_str(ygdata.Id(NS_l3vpn_inter, 'interface')), site=n.get_str(ygdata.Id(NS_l3vpn_inter, 'site')), site_network_access=n.get_str(ygdata.Id(NS_l3vpn_inter, 'site-network-access')), provider_ipv4_address=n.get_str(ygdata.Id(NS_l3vpn_inter, 'provider-ipv4-address')), customer_ipv4_address=n.get_opt_str(ygdata.Id(NS_l3vpn_inter, 'customer-ipv4-address')), ipv4_prefix_length=n.get_u64(ygdata.Id(NS_l3vpn_inter, 'ipv4-prefix-length')), bgp=l3vpn_inter__l3vpns__l3vpn__endpoint__bgp.from_gdata(n.get_opt_cnt(ygdata.Id(NS_l3vpn_inter, 'bgp'))))
+        return l3vpn_inter__l3vpns__l3vpn__endpoint_entry(device=n.get_str(_ID_l3vpn_inter__device), interface=n.get_str(_ID_l3vpn_inter__interface), site=n.get_str(_ID_l3vpn_inter__site), site_network_access=n.get_str(_ID_l3vpn_inter__site_network_access), provider_ipv4_address=n.get_str(_ID_l3vpn_inter__provider_ipv4_address), customer_ipv4_address=n.get_opt_str(_ID_l3vpn_inter__customer_ipv4_address), ipv4_prefix_length=n.get_u64(_ID_l3vpn_inter__ipv4_prefix_length), bgp=l3vpn_inter__l3vpns__l3vpn__endpoint__bgp.from_gdata(n.get_opt_cnt(_ID_l3vpn_inter__bgp)))
 
     mut def copy(self) -> l3vpn_inter__l3vpns__l3vpn__endpoint_entry:
         """Create a deep copy of this adata object"""
@@ -1364,7 +1404,7 @@ class l3vpn_inter__l3vpns__l3vpn_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> l3vpn_inter__l3vpns__l3vpn_entry:
-        return l3vpn_inter__l3vpns__l3vpn_entry(name=n.get_str(ygdata.Id(NS_l3vpn_inter, 'name')), description=n.get_opt_str(ygdata.Id(NS_l3vpn_inter, 'description')), endpoint=l3vpn_inter__l3vpns__l3vpn__endpoint.from_gdata(n.get_opt_list(ygdata.Id(NS_l3vpn_inter, 'endpoint'))))
+        return l3vpn_inter__l3vpns__l3vpn_entry(name=n.get_str(_ID_l3vpn_inter__name), description=n.get_opt_str(_ID_l3vpn_inter__description), endpoint=l3vpn_inter__l3vpns__l3vpn__endpoint.from_gdata(n.get_opt_list(_ID_l3vpn_inter__endpoint)))
 
     mut def copy(self) -> l3vpn_inter__l3vpns__l3vpn_entry:
         """Create a deep copy of this adata object"""
@@ -1416,7 +1456,7 @@ class l3vpn_inter__l3vpns(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> l3vpn_inter__l3vpns:
         if n is not None:
-            return l3vpn_inter__l3vpns(l3vpn=l3vpn_inter__l3vpns__l3vpn.from_gdata(n.get_opt_list(ygdata.Id(NS_l3vpn_inter, 'l3vpn'))))
+            return l3vpn_inter__l3vpns(l3vpn=l3vpn_inter__l3vpns__l3vpn.from_gdata(n.get_opt_list(_ID_l3vpn_inter__l3vpn)))
         return l3vpn_inter__l3vpns()
 
     mut def copy(self) -> l3vpn_inter__l3vpns:
@@ -1439,7 +1479,7 @@ class root(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> root:
         if n is not None:
-            return root(netinfra=netinfra_inter__netinfra.from_gdata(n.get_opt_cnt(ygdata.Id(NS_netinfra_inter, 'netinfra'))), l3vpns=l3vpn_inter__l3vpns.from_gdata(n.get_opt_cnt(ygdata.Id(NS_l3vpn_inter, 'l3vpns'))))
+            return root(netinfra=netinfra_inter__netinfra.from_gdata(n.get_opt_cnt(_ID_netinfra_inter__netinfra)), l3vpns=l3vpn_inter__l3vpns.from_gdata(n.get_opt_cnt(_ID_l3vpn_inter__l3vpns)))
         return root()
 
     mut def copy(self) -> root:

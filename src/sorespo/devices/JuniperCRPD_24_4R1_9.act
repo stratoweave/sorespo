@@ -25,6 +25,96 @@ pure def src_yang() -> list[str]:
 NS_junos_common_types: str = 'http://yang.juniper.net/junos/common/types'
 NS_junos_conf_root: str = 'http://yang.juniper.net/junos/conf/root'
 
+_ID_junos_conf_root__address: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'address')
+_ID_junos_conf_root__alias: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'alias')
+_ID_junos_conf_root__any: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'any')
+_ID_junos_conf_root__as_number: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'as-number')
+_ID_junos_conf_root__as_override: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'as-override')
+_ID_junos_conf_root__authentication_algorithm: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'authentication-algorithm')
+_ID_junos_conf_root__authentication_key: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'authentication-key')
+_ID_junos_conf_root__authentication_key_chain: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'authentication-key-chain')
+_ID_junos_conf_root__authentication_type: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'authentication-type')
+_ID_junos_conf_root__auto: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'auto')
+_ID_junos_conf_root__autonomous_system: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'autonomous-system')
+_ID_junos_conf_root__bgp: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'bgp')
+_ID_junos_conf_root__community: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'community')
+_ID_junos_conf_root__configuration: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'configuration')
+_ID_junos_conf_root__description: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'description')
+_ID_junos_conf_root__disable: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'disable')
+_ID_junos_conf_root__encapsulation: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'encapsulation')
+_ID_junos_conf_root__evpn: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'evpn')
+_ID_junos_conf_root__export: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'export')
+_ID_junos_conf_root__family: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'family')
+_ID_junos_conf_root__group: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'group')
+_ID_junos_conf_root__hello_interval: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'hello-interval')
+_ID_junos_conf_root__hold_time: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'hold-time')
+_ID_junos_conf_root__host_name: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'host-name')
+_ID_junos_conf_root__import: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'import')
+_ID_junos_conf_root__inet: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'inet')
+_ID_junos_conf_root__inet_vpn: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'inet-vpn')
+_ID_junos_conf_root__inet6: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'inet6')
+_ID_junos_conf_root__inet6_vpn: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'inet6-vpn')
+_ID_junos_conf_root__instance: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'instance')
+_ID_junos_conf_root__instance_type: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'instance-type')
+_ID_junos_conf_root__interface: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'interface')
+_ID_junos_conf_root__interfaces: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'interfaces')
+_ID_junos_conf_root__isis: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'isis')
+_ID_junos_conf_root__iso: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'iso')
+_ID_junos_conf_root__ldp: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'ldp')
+_ID_junos_conf_root__ldp_synchronization: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'ldp-synchronization')
+_ID_junos_conf_root__level: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'level')
+_ID_junos_conf_root__local_address: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'local-address')
+_ID_junos_conf_root__log_updown: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'log-updown')
+_ID_junos_conf_root__lsp_interval: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'lsp-interval')
+_ID_junos_conf_root__lsp_lifetime: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'lsp-lifetime')
+_ID_junos_conf_root__mac: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'mac')
+_ID_junos_conf_root__metric: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'metric')
+_ID_junos_conf_root__mpls: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'mpls')
+_ID_junos_conf_root__mtu: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'mtu')
+_ID_junos_conf_root__multicast: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'multicast')
+_ID_junos_conf_root__multihop: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'multihop')
+_ID_junos_conf_root__name: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'name')
+_ID_junos_conf_root__native_vlan_id: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'native-vlan-id')
+_ID_junos_conf_root__neighbor: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'neighbor')
+_ID_junos_conf_root__netconf: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'netconf')
+_ID_junos_conf_root__no_csnp_authentication: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'no-csnp-authentication')
+_ID_junos_conf_root__no_hello_authentication: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'no-hello-authentication')
+_ID_junos_conf_root__no_nexthop_change: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'no-nexthop-change')
+_ID_junos_conf_root__no_propagate_ttl: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'no-propagate-ttl')
+_ID_junos_conf_root__no_psnp_authentication: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'no-psnp-authentication')
+_ID_junos_conf_root__passive: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'passive')
+_ID_junos_conf_root__peer_as: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'peer-as')
+_ID_junos_conf_root__point_to_point: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'point-to-point')
+_ID_junos_conf_root__preference: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'preference')
+_ID_junos_conf_root__primary: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'primary')
+_ID_junos_conf_root__protocols: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'protocols')
+_ID_junos_conf_root__rcsid: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'rcsid')
+_ID_junos_conf_root__rd_type: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'rd-type')
+_ID_junos_conf_root__remote_node_id: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'remote-node-id')
+_ID_junos_conf_root__remote_node_iso: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'remote-node-iso')
+_ID_junos_conf_root__rfc_compliant: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'rfc-compliant')
+_ID_junos_conf_root__route_distinguisher: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'route-distinguisher')
+_ID_junos_conf_root__route_target: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'route-target')
+_ID_junos_conf_root__router_id: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'router-id')
+_ID_junos_conf_root__routing_instances: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'routing-instances')
+_ID_junos_conf_root__routing_options: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'routing-options')
+_ID_junos_conf_root__services: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'services')
+_ID_junos_conf_root__signaling: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'signaling')
+_ID_junos_conf_root__system: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'system')
+_ID_junos_conf_root__tcp_mss: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'tcp-mss')
+_ID_junos_conf_root__tcpao_auth_mismatch: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'tcpao-auth-mismatch')
+_ID_junos_conf_root__transport_address: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'transport-address')
+_ID_junos_conf_root__ttl: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'ttl')
+_ID_junos_conf_root__type: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'type')
+_ID_junos_conf_root__unicast: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'unicast')
+_ID_junos_conf_root__unit: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'unit')
+_ID_junos_conf_root__version: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'version')
+_ID_junos_conf_root__vlan_id: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'vlan-id')
+_ID_junos_conf_root__vrf_table_label: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'vrf-table-label')
+_ID_junos_conf_root__vrf_target: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'vrf-target')
+_ID_junos_conf_root__wide_metrics_only: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'wide-metrics-only')
+_ID_junos_conf_root__yang_compliant: ygdata.Id = ygdata.Id(NS_junos_conf_root, 'yang-compliant')
+
 
 _breaker1: None = None
 class junos_conf_root__configuration__system__services__netconf(yadata.MNode):
@@ -41,7 +131,7 @@ class junos_conf_root__configuration__system__services__netconf(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__system__services__netconf:
         if n is not None:
-            return junos_conf_root__configuration__system__services__netconf(rfc_compliant=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'rfc-compliant')), yang_compliant=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'yang-compliant')))
+            return junos_conf_root__configuration__system__services__netconf(rfc_compliant=n.get_opt_empty(_ID_junos_conf_root__rfc_compliant), yang_compliant=n.get_opt_empty(_ID_junos_conf_root__yang_compliant))
         return junos_conf_root__configuration__system__services__netconf()
 
     mut def copy(self) -> junos_conf_root__configuration__system__services__netconf:
@@ -62,7 +152,7 @@ class junos_conf_root__configuration__system__services(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__system__services:
         if n is not None:
-            return junos_conf_root__configuration__system__services(netconf=junos_conf_root__configuration__system__services__netconf.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'netconf'))))
+            return junos_conf_root__configuration__system__services(netconf=junos_conf_root__configuration__system__services__netconf.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__netconf)))
         return None
 
     mut def copy(self) -> junos_conf_root__configuration__system__services:
@@ -96,7 +186,7 @@ class junos_conf_root__configuration__system(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__system:
         if n is not None:
-            return junos_conf_root__configuration__system(host_name=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'host-name')), services=junos_conf_root__configuration__system__services.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'services'))))
+            return junos_conf_root__configuration__system(host_name=n.get_opt_str(_ID_junos_conf_root__host_name), services=junos_conf_root__configuration__system__services.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__services)))
         return junos_conf_root__configuration__system()
 
     mut def copy(self) -> junos_conf_root__configuration__system:
@@ -116,7 +206,7 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__inet_
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry:
-        return junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry(name=n.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+        return junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry(name=n.get_str(_ID_junos_conf_root__name))
 
     mut def copy(self) -> junos_conf_root__configuration__interfaces__interface__unit__family__inet__address_entry:
         """Create a deep copy of this adata object"""
@@ -166,7 +256,7 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__inet(
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__interfaces__interface__unit__family__inet:
         if n is not None:
-            return junos_conf_root__configuration__interfaces__interface__unit__family__inet(address=junos_conf_root__configuration__interfaces__interface__unit__family__inet__address.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'address'))))
+            return junos_conf_root__configuration__interfaces__interface__unit__family__inet(address=junos_conf_root__configuration__interfaces__interface__unit__family__inet__address.from_gdata(n.get_opt_list(_ID_junos_conf_root__address)))
         return None
 
     mut def copy(self) -> junos_conf_root__configuration__interfaces__interface__unit__family__inet:
@@ -189,7 +279,7 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__inet6
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry:
-        return junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry(name=n.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+        return junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry(name=n.get_str(_ID_junos_conf_root__name))
 
     mut def copy(self) -> junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address_entry:
         """Create a deep copy of this adata object"""
@@ -239,7 +329,7 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__inet6
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__interfaces__interface__unit__family__inet6:
         if n is not None:
-            return junos_conf_root__configuration__interfaces__interface__unit__family__inet6(address=junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'address'))))
+            return junos_conf_root__configuration__interfaces__interface__unit__family__inet6(address=junos_conf_root__configuration__interfaces__interface__unit__family__inet6__address.from_gdata(n.get_opt_list(_ID_junos_conf_root__address)))
         return None
 
     mut def copy(self) -> junos_conf_root__configuration__interfaces__interface__unit__family__inet6:
@@ -262,7 +352,7 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__iso__
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry:
-        return junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry(name=n.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+        return junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry(name=n.get_str(_ID_junos_conf_root__name))
 
     mut def copy(self) -> junos_conf_root__configuration__interfaces__interface__unit__family__iso__address_entry:
         """Create a deep copy of this adata object"""
@@ -312,7 +402,7 @@ class junos_conf_root__configuration__interfaces__interface__unit__family__iso(y
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__interfaces__interface__unit__family__iso:
         if n is not None:
-            return junos_conf_root__configuration__interfaces__interface__unit__family__iso(address=junos_conf_root__configuration__interfaces__interface__unit__family__iso__address.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'address'))))
+            return junos_conf_root__configuration__interfaces__interface__unit__family__iso(address=junos_conf_root__configuration__interfaces__interface__unit__family__iso__address.from_gdata(n.get_opt_list(_ID_junos_conf_root__address)))
         return None
 
     mut def copy(self) -> junos_conf_root__configuration__interfaces__interface__unit__family__iso:
@@ -364,7 +454,7 @@ class junos_conf_root__configuration__interfaces__interface__unit__family(yadata
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__interfaces__interface__unit__family:
         if n is not None:
-            return junos_conf_root__configuration__interfaces__interface__unit__family(inet=junos_conf_root__configuration__interfaces__interface__unit__family__inet.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'inet'))), inet6=junos_conf_root__configuration__interfaces__interface__unit__family__inet6.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'inet6'))), iso=junos_conf_root__configuration__interfaces__interface__unit__family__iso.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'iso'))))
+            return junos_conf_root__configuration__interfaces__interface__unit__family(inet=junos_conf_root__configuration__interfaces__interface__unit__family__inet.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__inet)), inet6=junos_conf_root__configuration__interfaces__interface__unit__family__inet6.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__inet6)), iso=junos_conf_root__configuration__interfaces__interface__unit__family__iso.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__iso)))
         return junos_conf_root__configuration__interfaces__interface__unit__family()
 
     mut def copy(self) -> junos_conf_root__configuration__interfaces__interface__unit__family:
@@ -398,7 +488,7 @@ class junos_conf_root__configuration__interfaces__interface__unit_entry(yadata.M
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__interfaces__interface__unit_entry:
-        return junos_conf_root__configuration__interfaces__interface__unit_entry(name=n.get_str(ygdata.Id(NS_junos_conf_root, 'name')), alias=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'alias')), description=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'description')), vlan_id=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'vlan-id')), encapsulation=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'encapsulation')), family=junos_conf_root__configuration__interfaces__interface__unit__family.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'family'))), mtu=n.get_opt_atom(ygdata.Id(NS_junos_conf_root, 'mtu')), mac=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'mac')))
+        return junos_conf_root__configuration__interfaces__interface__unit_entry(name=n.get_str(_ID_junos_conf_root__name), alias=n.get_opt_str(_ID_junos_conf_root__alias), description=n.get_opt_str(_ID_junos_conf_root__description), vlan_id=n.get_opt_str(_ID_junos_conf_root__vlan_id), encapsulation=n.get_opt_str(_ID_junos_conf_root__encapsulation), family=junos_conf_root__configuration__interfaces__interface__unit__family.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__family)), mtu=n.get_opt_atom(_ID_junos_conf_root__mtu), mac=n.get_opt_str(_ID_junos_conf_root__mac))
 
     mut def copy(self) -> junos_conf_root__configuration__interfaces__interface__unit_entry:
         """Create a deep copy of this adata object"""
@@ -469,7 +559,7 @@ class junos_conf_root__configuration__interfaces__interface_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__interfaces__interface_entry:
-        return junos_conf_root__configuration__interfaces__interface_entry(name=n.get_str(ygdata.Id(NS_junos_conf_root, 'name')), description=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'description')), mtu=n.get_opt_atom(ygdata.Id(NS_junos_conf_root, 'mtu')), mac=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'mac')), native_vlan_id=n.get_opt_atom(ygdata.Id(NS_junos_conf_root, 'native-vlan-id')), unit=junos_conf_root__configuration__interfaces__interface__unit.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'unit'))))
+        return junos_conf_root__configuration__interfaces__interface_entry(name=n.get_str(_ID_junos_conf_root__name), description=n.get_opt_str(_ID_junos_conf_root__description), mtu=n.get_opt_atom(_ID_junos_conf_root__mtu), mac=n.get_opt_str(_ID_junos_conf_root__mac), native_vlan_id=n.get_opt_atom(_ID_junos_conf_root__native_vlan_id), unit=junos_conf_root__configuration__interfaces__interface__unit.from_gdata(n.get_opt_list(_ID_junos_conf_root__unit)))
 
     mut def copy(self) -> junos_conf_root__configuration__interfaces__interface_entry:
         """Create a deep copy of this adata object"""
@@ -527,7 +617,7 @@ class junos_conf_root__configuration__interfaces(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__interfaces:
         if n is not None:
-            return junos_conf_root__configuration__interfaces(interface=junos_conf_root__configuration__interfaces__interface.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'interface'))))
+            return junos_conf_root__configuration__interfaces(interface=junos_conf_root__configuration__interfaces__interface.from_gdata(n.get_opt_list(_ID_junos_conf_root__interface)))
         return junos_conf_root__configuration__interfaces()
 
     mut def copy(self) -> junos_conf_root__configuration__interfaces:
@@ -550,7 +640,7 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop:
         if n is not None:
-            return junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop(ttl=n.get_opt_atom(ygdata.Id(NS_junos_conf_root, 'ttl')), no_nexthop_change=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'no-nexthop-change')))
+            return junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop(ttl=n.get_opt_atom(_ID_junos_conf_root__ttl), no_nexthop_change=n.get_opt_empty(_ID_junos_conf_root__no_nexthop_change))
         return None
 
     mut def copy(self) -> junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop:
@@ -599,7 +689,7 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry:
-        return junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry(name=n.get_str(ygdata.Id(NS_junos_conf_root, 'name')), description=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'description')), multihop=junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'multihop'))), hold_time=n.get_opt_atom(ygdata.Id(NS_junos_conf_root, 'hold-time')), authentication_key=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'authentication-key')), authentication_algorithm=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'authentication-algorithm')), peer_as=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'peer-as')), as_override=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'as-override')))
+        return junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry(name=n.get_str(_ID_junos_conf_root__name), description=n.get_opt_str(_ID_junos_conf_root__description), multihop=junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor__multihop.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__multihop)), hold_time=n.get_opt_atom(_ID_junos_conf_root__hold_time), authentication_key=n.get_opt_str(_ID_junos_conf_root__authentication_key), authentication_algorithm=n.get_opt_str(_ID_junos_conf_root__authentication_algorithm), peer_as=n.get_opt_str(_ID_junos_conf_root__peer_as), as_override=n.get_opt_empty(_ID_junos_conf_root__as_override))
 
     mut def copy(self) -> junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor_entry:
         """Create a deep copy of this adata object"""
@@ -668,7 +758,7 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_entry:
-        return junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_entry(name=n.get_str(ygdata.Id(NS_junos_conf_root, 'name')), passive=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'passive')), import=n.get_opt_strs(ygdata.Id(NS_junos_conf_root, 'import')), export=n.get_opt_strs(ygdata.Id(NS_junos_conf_root, 'export')), neighbor=junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'neighbor'))))
+        return junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_entry(name=n.get_str(_ID_junos_conf_root__name), passive=n.get_opt_empty(_ID_junos_conf_root__passive), import=n.get_opt_strs(_ID_junos_conf_root__import), export=n.get_opt_strs(_ID_junos_conf_root__export), neighbor=junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group__neighbor.from_gdata(n.get_opt_list(_ID_junos_conf_root__neighbor)))
 
     mut def copy(self) -> junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group_entry:
         """Create a deep copy of this adata object"""
@@ -720,7 +810,7 @@ class junos_conf_root__configuration__routing_instances__instance__protocols__bg
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance__protocols__bgp:
         if n is not None:
-            return junos_conf_root__configuration__routing_instances__instance__protocols__bgp(group=junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'group'))))
+            return junos_conf_root__configuration__routing_instances__instance__protocols__bgp(group=junos_conf_root__configuration__routing_instances__instance__protocols__bgp__group.from_gdata(n.get_opt_list(_ID_junos_conf_root__group)))
         return junos_conf_root__configuration__routing_instances__instance__protocols__bgp()
 
     mut def copy(self) -> junos_conf_root__configuration__routing_instances__instance__protocols__bgp:
@@ -741,7 +831,7 @@ class junos_conf_root__configuration__routing_instances__instance__protocols(yad
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance__protocols:
         if n is not None:
-            return junos_conf_root__configuration__routing_instances__instance__protocols(bgp=junos_conf_root__configuration__routing_instances__instance__protocols__bgp.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'bgp'))))
+            return junos_conf_root__configuration__routing_instances__instance__protocols(bgp=junos_conf_root__configuration__routing_instances__instance__protocols__bgp.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__bgp)))
         return junos_conf_root__configuration__routing_instances__instance__protocols()
 
     mut def copy(self) -> junos_conf_root__configuration__routing_instances__instance__protocols:
@@ -769,7 +859,7 @@ class junos_conf_root__configuration__routing_instances__instance__interface_ent
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance__interface_entry:
-        return junos_conf_root__configuration__routing_instances__instance__interface_entry(name=n.get_str(ygdata.Id(NS_junos_conf_root, 'name')), any=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'any')), unicast=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'unicast')), multicast=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'multicast')), primary=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'primary')))
+        return junos_conf_root__configuration__routing_instances__instance__interface_entry(name=n.get_str(_ID_junos_conf_root__name), any=n.get_opt_empty(_ID_junos_conf_root__any), unicast=n.get_opt_empty(_ID_junos_conf_root__unicast), multicast=n.get_opt_empty(_ID_junos_conf_root__multicast), primary=n.get_opt_empty(_ID_junos_conf_root__primary))
 
     mut def copy(self) -> junos_conf_root__configuration__routing_instances__instance__interface_entry:
         """Create a deep copy of this adata object"""
@@ -827,7 +917,7 @@ class junos_conf_root__configuration__routing_instances__instance__route_disting
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance__route_distinguisher:
         if n is not None:
-            return junos_conf_root__configuration__routing_instances__instance__route_distinguisher(rd_type=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'rd-type')))
+            return junos_conf_root__configuration__routing_instances__instance__route_distinguisher(rd_type=n.get_opt_str(_ID_junos_conf_root__rd_type))
         return junos_conf_root__configuration__routing_instances__instance__route_distinguisher()
 
     mut def copy(self) -> junos_conf_root__configuration__routing_instances__instance__route_distinguisher:
@@ -854,7 +944,7 @@ class junos_conf_root__configuration__routing_instances__instance__vrf_target(ya
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance__vrf_target:
         if n is not None:
-            return junos_conf_root__configuration__routing_instances__instance__vrf_target(community=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'community')), import=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'import')), export=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'export')), auto=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'auto')))
+            return junos_conf_root__configuration__routing_instances__instance__vrf_target(community=n.get_opt_str(_ID_junos_conf_root__community), import=n.get_opt_str(_ID_junos_conf_root__import), export=n.get_opt_str(_ID_junos_conf_root__export), auto=n.get_opt_empty(_ID_junos_conf_root__auto))
         return junos_conf_root__configuration__routing_instances__instance__vrf_target()
 
     mut def copy(self) -> junos_conf_root__configuration__routing_instances__instance__vrf_target:
@@ -917,7 +1007,7 @@ class junos_conf_root__configuration__routing_instances__instance_entry(yadata.M
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__routing_instances__instance_entry:
-        return junos_conf_root__configuration__routing_instances__instance_entry(name=n.get_str(ygdata.Id(NS_junos_conf_root, 'name')), instance_type=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'instance-type')), protocols=junos_conf_root__configuration__routing_instances__instance__protocols.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'protocols'))), interface=junos_conf_root__configuration__routing_instances__instance__interface.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'interface'))), route_distinguisher=junos_conf_root__configuration__routing_instances__instance__route_distinguisher.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'route-distinguisher'))), vrf_target=junos_conf_root__configuration__routing_instances__instance__vrf_target.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'vrf-target'))), vrf_table_label=junos_conf_root__configuration__routing_instances__instance__vrf_table_label.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'vrf-table-label'))))
+        return junos_conf_root__configuration__routing_instances__instance_entry(name=n.get_str(_ID_junos_conf_root__name), instance_type=n.get_opt_str(_ID_junos_conf_root__instance_type), protocols=junos_conf_root__configuration__routing_instances__instance__protocols.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__protocols)), interface=junos_conf_root__configuration__routing_instances__instance__interface.from_gdata(n.get_opt_list(_ID_junos_conf_root__interface)), route_distinguisher=junos_conf_root__configuration__routing_instances__instance__route_distinguisher.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__route_distinguisher)), vrf_target=junos_conf_root__configuration__routing_instances__instance__vrf_target.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__vrf_target)), vrf_table_label=junos_conf_root__configuration__routing_instances__instance__vrf_table_label.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__vrf_table_label)))
 
     mut def copy(self) -> junos_conf_root__configuration__routing_instances__instance_entry:
         """Create a deep copy of this adata object"""
@@ -969,7 +1059,7 @@ class junos_conf_root__configuration__routing_instances(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__routing_instances:
         if n is not None:
-            return junos_conf_root__configuration__routing_instances(instance=junos_conf_root__configuration__routing_instances__instance.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'instance'))))
+            return junos_conf_root__configuration__routing_instances(instance=junos_conf_root__configuration__routing_instances__instance.from_gdata(n.get_opt_list(_ID_junos_conf_root__instance)))
         return junos_conf_root__configuration__routing_instances()
 
     mut def copy(self) -> junos_conf_root__configuration__routing_instances:
@@ -990,7 +1080,7 @@ class junos_conf_root__configuration__routing_options__autonomous_system(yadata.
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__routing_options__autonomous_system:
         if n is not None:
-            return junos_conf_root__configuration__routing_options__autonomous_system(as_number=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'as-number')))
+            return junos_conf_root__configuration__routing_options__autonomous_system(as_number=n.get_opt_str(_ID_junos_conf_root__as_number))
         return junos_conf_root__configuration__routing_options__autonomous_system()
 
     mut def copy(self) -> junos_conf_root__configuration__routing_options__autonomous_system:
@@ -1011,7 +1101,7 @@ class junos_conf_root__configuration__routing_options(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__routing_options:
         if n is not None:
-            return junos_conf_root__configuration__routing_options(autonomous_system=junos_conf_root__configuration__routing_options__autonomous_system.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'autonomous-system'))))
+            return junos_conf_root__configuration__routing_options(autonomous_system=junos_conf_root__configuration__routing_options__autonomous_system.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__autonomous_system)))
         return junos_conf_root__configuration__routing_options()
 
     mut def copy(self) -> junos_conf_root__configuration__routing_options:
@@ -1063,7 +1153,7 @@ class junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn(ya
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn:
         if n is not None:
-            return junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn(unicast=junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'unicast'))))
+            return junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn(unicast=junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn__unicast.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__unicast)))
         return junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn()
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn:
@@ -1115,7 +1205,7 @@ class junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn(y
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn:
         if n is not None:
-            return junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn(unicast=junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'unicast'))))
+            return junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn(unicast=junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn__unicast.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__unicast)))
         return junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn()
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn:
@@ -1167,7 +1257,7 @@ class junos_conf_root__configuration__protocols__bgp__group__family__evpn(yadata
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__bgp__group__family__evpn:
         if n is not None:
-            return junos_conf_root__configuration__protocols__bgp__group__family__evpn(signaling=junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'signaling'))))
+            return junos_conf_root__configuration__protocols__bgp__group__family__evpn(signaling=junos_conf_root__configuration__protocols__bgp__group__family__evpn__signaling.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__signaling)))
         return junos_conf_root__configuration__protocols__bgp__group__family__evpn()
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__bgp__group__family__evpn:
@@ -1225,7 +1315,7 @@ class junos_conf_root__configuration__protocols__bgp__group__family(yadata.MNode
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__bgp__group__family:
         if n is not None:
-            return junos_conf_root__configuration__protocols__bgp__group__family(inet_vpn=junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'inet-vpn'))), inet6_vpn=junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'inet6-vpn'))), evpn=junos_conf_root__configuration__protocols__bgp__group__family__evpn.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'evpn'))), route_target=junos_conf_root__configuration__protocols__bgp__group__family__route_target.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'route-target'))))
+            return junos_conf_root__configuration__protocols__bgp__group__family(inet_vpn=junos_conf_root__configuration__protocols__bgp__group__family__inet_vpn.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__inet_vpn)), inet6_vpn=junos_conf_root__configuration__protocols__bgp__group__family__inet6_vpn.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__inet6_vpn)), evpn=junos_conf_root__configuration__protocols__bgp__group__family__evpn.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__evpn)), route_target=junos_conf_root__configuration__protocols__bgp__group__family__route_target.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__route_target)))
         return junos_conf_root__configuration__protocols__bgp__group__family()
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__bgp__group__family:
@@ -1249,7 +1339,7 @@ class junos_conf_root__configuration__protocols__bgp__group__neighbor_entry(yada
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__bgp__group__neighbor_entry:
-        return junos_conf_root__configuration__protocols__bgp__group__neighbor_entry(name=n.get_str(ygdata.Id(NS_junos_conf_root, 'name')), description=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'description')), passive=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'passive')))
+        return junos_conf_root__configuration__protocols__bgp__group__neighbor_entry(name=n.get_str(_ID_junos_conf_root__name), description=n.get_opt_str(_ID_junos_conf_root__description), passive=n.get_opt_empty(_ID_junos_conf_root__passive))
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__bgp__group__neighbor_entry:
         """Create a deep copy of this adata object"""
@@ -1326,7 +1416,7 @@ class junos_conf_root__configuration__protocols__bgp__group_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__bgp__group_entry:
-        return junos_conf_root__configuration__protocols__bgp__group_entry(name=n.get_str(ygdata.Id(NS_junos_conf_root, 'name')), type=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'type')), description=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'description')), local_address=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'local-address')), hold_time=n.get_opt_atom(ygdata.Id(NS_junos_conf_root, 'hold-time')), family=junos_conf_root__configuration__protocols__bgp__group__family.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'family'))), authentication_key=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'authentication-key')), authentication_algorithm=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'authentication-algorithm')), tcpao_auth_mismatch=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'tcpao-auth-mismatch')), authentication_key_chain=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'authentication-key-chain')), export=n.get_opt_strs(ygdata.Id(NS_junos_conf_root, 'export')), tcp_mss=n.get_opt_atom(ygdata.Id(NS_junos_conf_root, 'tcp-mss')), neighbor=junos_conf_root__configuration__protocols__bgp__group__neighbor.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'neighbor'))))
+        return junos_conf_root__configuration__protocols__bgp__group_entry(name=n.get_str(_ID_junos_conf_root__name), type=n.get_opt_str(_ID_junos_conf_root__type), description=n.get_opt_str(_ID_junos_conf_root__description), local_address=n.get_opt_str(_ID_junos_conf_root__local_address), hold_time=n.get_opt_atom(_ID_junos_conf_root__hold_time), family=junos_conf_root__configuration__protocols__bgp__group__family.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__family)), authentication_key=n.get_opt_str(_ID_junos_conf_root__authentication_key), authentication_algorithm=n.get_opt_str(_ID_junos_conf_root__authentication_algorithm), tcpao_auth_mismatch=n.get_opt_str(_ID_junos_conf_root__tcpao_auth_mismatch), authentication_key_chain=n.get_opt_str(_ID_junos_conf_root__authentication_key_chain), export=n.get_opt_strs(_ID_junos_conf_root__export), tcp_mss=n.get_opt_atom(_ID_junos_conf_root__tcp_mss), neighbor=junos_conf_root__configuration__protocols__bgp__group__neighbor.from_gdata(n.get_opt_list(_ID_junos_conf_root__neighbor)))
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__bgp__group_entry:
         """Create a deep copy of this adata object"""
@@ -1396,7 +1486,7 @@ class junos_conf_root__configuration__protocols__bgp(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__bgp:
         if n is not None:
-            return junos_conf_root__configuration__protocols__bgp(group=junos_conf_root__configuration__protocols__bgp__group.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'group'))), log_updown=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'log-updown')))
+            return junos_conf_root__configuration__protocols__bgp(group=junos_conf_root__configuration__protocols__bgp__group.from_gdata(n.get_opt_list(_ID_junos_conf_root__group)), log_updown=n.get_opt_empty(_ID_junos_conf_root__log_updown))
         return junos_conf_root__configuration__protocols__bgp()
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__bgp:
@@ -1419,7 +1509,7 @@ class junos_conf_root__configuration__protocols__isis__interface__ldp_synchroniz
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization:
         if n is not None:
-            return junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization(disable=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'disable')), hold_time=n.get_opt_atom(ygdata.Id(NS_junos_conf_root, 'hold-time')))
+            return junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization(disable=n.get_opt_empty(_ID_junos_conf_root__disable), hold_time=n.get_opt_atom(_ID_junos_conf_root__hold_time))
         return None
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization:
@@ -1446,7 +1536,7 @@ class junos_conf_root__configuration__protocols__isis__interface__level_entry(ya
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__isis__interface__level_entry:
-        return junos_conf_root__configuration__protocols__isis__interface__level_entry(name=n.get_atom(ygdata.Id(NS_junos_conf_root, 'name')), disable=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'disable')), metric=n.get_opt_atom(ygdata.Id(NS_junos_conf_root, 'metric')))
+        return junos_conf_root__configuration__protocols__isis__interface__level_entry(name=n.get_atom(_ID_junos_conf_root__name), disable=n.get_opt_empty(_ID_junos_conf_root__disable), metric=n.get_opt_atom(_ID_junos_conf_root__metric))
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__isis__interface__level_entry:
         """Create a deep copy of this adata object"""
@@ -1502,7 +1592,7 @@ class junos_conf_root__configuration__protocols__isis__interface__passive(yadata
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?junos_conf_root__configuration__protocols__isis__interface__passive:
         if n is not None:
-            return junos_conf_root__configuration__protocols__isis__interface__passive(remote_node_iso=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'remote-node-iso')), remote_node_id=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'remote-node-id')))
+            return junos_conf_root__configuration__protocols__isis__interface__passive(remote_node_iso=n.get_opt_str(_ID_junos_conf_root__remote_node_iso), remote_node_id=n.get_opt_str(_ID_junos_conf_root__remote_node_id))
         return None
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__isis__interface__passive:
@@ -1525,7 +1615,7 @@ class junos_conf_root__configuration__protocols__isis__interface__family_entry(y
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__isis__interface__family_entry:
-        return junos_conf_root__configuration__protocols__isis__interface__family_entry(name=n.get_str(ygdata.Id(NS_junos_conf_root, 'name')))
+        return junos_conf_root__configuration__protocols__isis__interface__family_entry(name=n.get_str(_ID_junos_conf_root__name))
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__isis__interface__family_entry:
         """Create a deep copy of this adata object"""
@@ -1610,7 +1700,7 @@ class junos_conf_root__configuration__protocols__isis__interface_entry(yadata.MN
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__isis__interface_entry:
-        return junos_conf_root__configuration__protocols__isis__interface_entry(name=n.get_str(ygdata.Id(NS_junos_conf_root, 'name')), ldp_synchronization=junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'ldp-synchronization'))), level=junos_conf_root__configuration__protocols__isis__interface__level.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'level'))), lsp_interval=n.get_opt_atom(ygdata.Id(NS_junos_conf_root, 'lsp-interval')), point_to_point=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'point-to-point')), passive=junos_conf_root__configuration__protocols__isis__interface__passive.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'passive'))), family=junos_conf_root__configuration__protocols__isis__interface__family.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'family'))))
+        return junos_conf_root__configuration__protocols__isis__interface_entry(name=n.get_str(_ID_junos_conf_root__name), ldp_synchronization=junos_conf_root__configuration__protocols__isis__interface__ldp_synchronization.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__ldp_synchronization)), level=junos_conf_root__configuration__protocols__isis__interface__level.from_gdata(n.get_opt_list(_ID_junos_conf_root__level)), lsp_interval=n.get_opt_atom(_ID_junos_conf_root__lsp_interval), point_to_point=n.get_opt_empty(_ID_junos_conf_root__point_to_point), passive=junos_conf_root__configuration__protocols__isis__interface__passive.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__passive)), family=junos_conf_root__configuration__protocols__isis__interface__family.from_gdata(n.get_opt_list(_ID_junos_conf_root__family)))
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__isis__interface_entry:
         """Create a deep copy of this adata object"""
@@ -1677,7 +1767,7 @@ class junos_conf_root__configuration__protocols__isis__level_entry(yadata.MNode)
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__isis__level_entry:
-        return junos_conf_root__configuration__protocols__isis__level_entry(name=n.get_atom(ygdata.Id(NS_junos_conf_root, 'name')), disable=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'disable')), authentication_key=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'authentication-key')), authentication_type=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'authentication-type')), no_hello_authentication=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'no-hello-authentication')), no_csnp_authentication=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'no-csnp-authentication')), no_psnp_authentication=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'no-psnp-authentication')), wide_metrics_only=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'wide-metrics-only')))
+        return junos_conf_root__configuration__protocols__isis__level_entry(name=n.get_atom(_ID_junos_conf_root__name), disable=n.get_opt_empty(_ID_junos_conf_root__disable), authentication_key=n.get_opt_str(_ID_junos_conf_root__authentication_key), authentication_type=n.get_opt_str(_ID_junos_conf_root__authentication_type), no_hello_authentication=n.get_opt_empty(_ID_junos_conf_root__no_hello_authentication), no_csnp_authentication=n.get_opt_empty(_ID_junos_conf_root__no_csnp_authentication), no_psnp_authentication=n.get_opt_empty(_ID_junos_conf_root__no_psnp_authentication), wide_metrics_only=n.get_opt_empty(_ID_junos_conf_root__wide_metrics_only))
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__isis__level_entry:
         """Create a deep copy of this adata object"""
@@ -1745,7 +1835,7 @@ class junos_conf_root__configuration__protocols__isis(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__isis:
         if n is not None:
-            return junos_conf_root__configuration__protocols__isis(interface=junos_conf_root__configuration__protocols__isis__interface.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'interface'))), level=junos_conf_root__configuration__protocols__isis__level.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'level'))), lsp_lifetime=n.get_opt_atom(ygdata.Id(NS_junos_conf_root, 'lsp-lifetime')))
+            return junos_conf_root__configuration__protocols__isis(interface=junos_conf_root__configuration__protocols__isis__interface.from_gdata(n.get_opt_list(_ID_junos_conf_root__interface)), level=junos_conf_root__configuration__protocols__isis__level.from_gdata(n.get_opt_list(_ID_junos_conf_root__level)), lsp_lifetime=n.get_opt_atom(_ID_junos_conf_root__lsp_lifetime))
         return junos_conf_root__configuration__protocols__isis()
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__isis:
@@ -1770,7 +1860,7 @@ class junos_conf_root__configuration__protocols__ldp__transport_address(yadata.M
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__ldp__transport_address:
         if n is not None:
-            return junos_conf_root__configuration__protocols__ldp__transport_address(router_id=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'router-id')), interface=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'interface')), address=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'address')))
+            return junos_conf_root__configuration__protocols__ldp__transport_address(router_id=n.get_opt_empty(_ID_junos_conf_root__router_id), interface=n.get_opt_empty(_ID_junos_conf_root__interface), address=n.get_opt_str(_ID_junos_conf_root__address))
         return junos_conf_root__configuration__protocols__ldp__transport_address()
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__ldp__transport_address:
@@ -1795,7 +1885,7 @@ class junos_conf_root__configuration__protocols__ldp__interface__transport_addre
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__ldp__interface__transport_address:
         if n is not None:
-            return junos_conf_root__configuration__protocols__ldp__interface__transport_address(router_id=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'router-id')), interface=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'interface')), address=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'address')))
+            return junos_conf_root__configuration__protocols__ldp__interface__transport_address(router_id=n.get_opt_empty(_ID_junos_conf_root__router_id), interface=n.get_opt_empty(_ID_junos_conf_root__interface), address=n.get_opt_str(_ID_junos_conf_root__address))
         return junos_conf_root__configuration__protocols__ldp__interface__transport_address()
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__ldp__interface__transport_address:
@@ -1823,7 +1913,7 @@ class junos_conf_root__configuration__protocols__ldp__interface_entry(yadata.MNo
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__ldp__interface_entry:
-        return junos_conf_root__configuration__protocols__ldp__interface_entry(name=n.get_str(ygdata.Id(NS_junos_conf_root, 'name')), disable=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'disable')), hello_interval=n.get_opt_atom(ygdata.Id(NS_junos_conf_root, 'hello-interval')), hold_time=n.get_opt_atom(ygdata.Id(NS_junos_conf_root, 'hold-time')), transport_address=junos_conf_root__configuration__protocols__ldp__interface__transport_address.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'transport-address'))))
+        return junos_conf_root__configuration__protocols__ldp__interface_entry(name=n.get_str(_ID_junos_conf_root__name), disable=n.get_opt_empty(_ID_junos_conf_root__disable), hello_interval=n.get_opt_atom(_ID_junos_conf_root__hello_interval), hold_time=n.get_opt_atom(_ID_junos_conf_root__hold_time), transport_address=junos_conf_root__configuration__protocols__ldp__interface__transport_address.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__transport_address)))
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__ldp__interface_entry:
         """Create a deep copy of this adata object"""
@@ -1883,7 +1973,7 @@ class junos_conf_root__configuration__protocols__ldp(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__ldp:
         if n is not None:
-            return junos_conf_root__configuration__protocols__ldp(preference=n.get_opt_atom(ygdata.Id(NS_junos_conf_root, 'preference')), transport_address=junos_conf_root__configuration__protocols__ldp__transport_address.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'transport-address'))), interface=junos_conf_root__configuration__protocols__ldp__interface.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'interface'))))
+            return junos_conf_root__configuration__protocols__ldp(preference=n.get_opt_atom(_ID_junos_conf_root__preference), transport_address=junos_conf_root__configuration__protocols__ldp__transport_address.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__transport_address)), interface=junos_conf_root__configuration__protocols__ldp__interface.from_gdata(n.get_opt_list(_ID_junos_conf_root__interface)))
         return junos_conf_root__configuration__protocols__ldp()
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__ldp:
@@ -1905,7 +1995,7 @@ class junos_conf_root__configuration__protocols__mpls__interface_entry(yadata.MN
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> junos_conf_root__configuration__protocols__mpls__interface_entry:
-        return junos_conf_root__configuration__protocols__mpls__interface_entry(name=n.get_str(ygdata.Id(NS_junos_conf_root, 'name')), disable=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'disable')))
+        return junos_conf_root__configuration__protocols__mpls__interface_entry(name=n.get_str(_ID_junos_conf_root__name), disable=n.get_opt_empty(_ID_junos_conf_root__disable))
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__mpls__interface_entry:
         """Create a deep copy of this adata object"""
@@ -1959,7 +2049,7 @@ class junos_conf_root__configuration__protocols__mpls(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols__mpls:
         if n is not None:
-            return junos_conf_root__configuration__protocols__mpls(no_propagate_ttl=n.get_opt_empty(ygdata.Id(NS_junos_conf_root, 'no-propagate-ttl')), interface=junos_conf_root__configuration__protocols__mpls__interface.from_gdata(n.get_opt_list(ygdata.Id(NS_junos_conf_root, 'interface'))))
+            return junos_conf_root__configuration__protocols__mpls(no_propagate_ttl=n.get_opt_empty(_ID_junos_conf_root__no_propagate_ttl), interface=junos_conf_root__configuration__protocols__mpls__interface.from_gdata(n.get_opt_list(_ID_junos_conf_root__interface)))
         return junos_conf_root__configuration__protocols__mpls()
 
     mut def copy(self) -> junos_conf_root__configuration__protocols__mpls:
@@ -1986,7 +2076,7 @@ class junos_conf_root__configuration__protocols(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration__protocols:
         if n is not None:
-            return junos_conf_root__configuration__protocols(bgp=junos_conf_root__configuration__protocols__bgp.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'bgp'))), isis=junos_conf_root__configuration__protocols__isis.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'isis'))), ldp=junos_conf_root__configuration__protocols__ldp.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'ldp'))), mpls=junos_conf_root__configuration__protocols__mpls.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'mpls'))))
+            return junos_conf_root__configuration__protocols(bgp=junos_conf_root__configuration__protocols__bgp.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__bgp)), isis=junos_conf_root__configuration__protocols__isis.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__isis)), ldp=junos_conf_root__configuration__protocols__ldp.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__ldp)), mpls=junos_conf_root__configuration__protocols__mpls.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__mpls)))
         return junos_conf_root__configuration__protocols()
 
     mut def copy(self) -> junos_conf_root__configuration__protocols:
@@ -2019,7 +2109,7 @@ class junos_conf_root__configuration(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> junos_conf_root__configuration:
         if n is not None:
-            return junos_conf_root__configuration(rcsid=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'rcsid')), version=n.get_opt_str(ygdata.Id(NS_junos_conf_root, 'version')), system=junos_conf_root__configuration__system.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'system'))), interfaces=junos_conf_root__configuration__interfaces.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'interfaces'))), routing_instances=junos_conf_root__configuration__routing_instances.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'routing-instances'))), routing_options=junos_conf_root__configuration__routing_options.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'routing-options'))), protocols=junos_conf_root__configuration__protocols.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'protocols'))))
+            return junos_conf_root__configuration(rcsid=n.get_opt_str(_ID_junos_conf_root__rcsid), version=n.get_opt_str(_ID_junos_conf_root__version), system=junos_conf_root__configuration__system.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__system)), interfaces=junos_conf_root__configuration__interfaces.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__interfaces)), routing_instances=junos_conf_root__configuration__routing_instances.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__routing_instances)), routing_options=junos_conf_root__configuration__routing_options.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__routing_options)), protocols=junos_conf_root__configuration__protocols.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__protocols)))
         return junos_conf_root__configuration()
 
     mut def copy(self) -> junos_conf_root__configuration:
@@ -2040,7 +2130,7 @@ class root(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> root:
         if n is not None:
-            return root(configuration=junos_conf_root__configuration.from_gdata(n.get_opt_cnt(ygdata.Id(NS_junos_conf_root, 'configuration'))))
+            return root(configuration=junos_conf_root__configuration.from_gdata(n.get_opt_cnt(_ID_junos_conf_root__configuration)))
         return root()
 
     mut def copy(self) -> root:

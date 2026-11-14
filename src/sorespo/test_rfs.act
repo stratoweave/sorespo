@@ -93,3 +93,50 @@ proc def _test_rfs_bbinterface_huawei(t: testing.SyncT):
     transform = rfs.BBInterface(t.log_handler)
     out = transform.transform(modeled_input, mock_di).to_gdata()
     return out.to_xmlstr(pretty=True)
+
+proc def _test_rfs_vrf_huawei(t: testing.SyncT):
+    modeled_input = rfs.Vrf.input_type()(
+        name="ACME",
+        id=100,
+        router_id=4,
+        asn=65001
+    )
+
+    mock_di = stratoweave.ttt.DeviceInfo("LJU-CORE-1",
+        {"huawei-ifm": stratoweave.adapters.adapter.ModCap("huawei-ifm", "urn:huawei:yang:huawei-ifm")}
+    )
+    transform = rfs.Vrf(t.log_handler)
+    out = transform.transform(modeled_input, mock_di).to_gdata()
+    return out.to_xmlstr(pretty=True)
+
+proc def _test_rfs_ibgp_neighbor_huawei(t: testing.SyncT):
+    modeled_input = rfs.IbgpNeighbor.input_type()(
+        address="10.0.0.5",
+        asn=65001,
+        description="iBGP Peer",
+        ibgp_authentication_key="ibgp-authentication-key"
+    )
+
+    mock_di = stratoweave.ttt.DeviceInfo("LJU-CORE-1",
+        {"huawei-ifm": stratoweave.adapters.adapter.ModCap("huawei-ifm", "urn:huawei:yang:huawei-ifm")}
+    )
+    transform = rfs.IbgpNeighbor(t.log_handler)
+    out = transform.transform(modeled_input, mock_di).to_gdata()
+    return out.to_xmlstr(pretty=True)
+
+proc def _test_rfs_ebgp_customer_huawei(t: testing.SyncT):
+    modeled_input = rfs.EbgpCustomer.input_type()(
+        vrf="ACME",
+        address="10.200.1.5",
+        local_asn=65001,
+        peer_asn=65002,
+        description="Customer eBGP Peer",
+        authentication_key="ebgp-auth-key"
+    )
+
+    mock_di = stratoweave.ttt.DeviceInfo("LJU-CORE-1",
+        {"huawei-ifm": stratoweave.adapters.adapter.ModCap("huawei-ifm", "urn:huawei:yang:huawei-ifm")}
+    )
+    transform = rfs.EbgpCustomer(t.log_handler)
+    out = transform.transform(modeled_input, mock_di).to_gdata()
+    return out.to_xmlstr(pretty=True)

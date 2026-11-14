@@ -59,3 +59,19 @@ proc def _test_rfs_vrfinterface_huawei(t: testing.SyncT):
     transform = rfs.VrfInterface(t.log_handler)
     out = transform.transform(modeled_input, mock_di).to_gdata()
     return out.to_xmlstr(pretty=True)
+
+proc def _test_rfs_baseconfig_huawei(t: testing.SyncT):
+    modeled_input = rfs.BaseConfig.input_type()(
+        role="edge",
+        ipv4_address="10.0.0.4",
+        ipv6_address="2001:db8::4",
+        asn=65001,
+        ibgp_authentication_key="ibgp-authentication-key"
+    )
+
+    mock_di = stratoweave.ttt.DeviceInfo("LJU-CORE-1",
+        {"huawei-ifm": stratoweave.adapters.adapter.ModCap("huawei-ifm", "urn:huawei:yang:huawei-ifm")}
+    )
+    transform = rfs.BaseConfig(t.log_handler)
+    out = transform.transform(modeled_input, mock_di).to_gdata()
+    return out.to_xmlstr(pretty=True)

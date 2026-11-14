@@ -273,6 +273,50 @@ end-policy
 
             return dev
 
+        elif "huawei-ifm" in di.modules:
+            print("RFS /rfs{{{di.name}}}/base-config transform for Huawei VRP", err=True)
+            dev = hw822.root()
+            dev.system.system_info.sys_name = di.name
+
+            lo0 = dev.ifm.interfaces.interface.create("LoopBack0", class="main-interface", type="LoopBack")
+            lo0.ipv4.addresses.address.create(i.ipv4_address, mask="255.255.255.255", type="main")
+
+            # On Huawei, IS-IS, MPLS/LDP and BGP live under the global network
+            # instance "_public_", which IS-IS requires to have the IPv4 AF
+            pub = dev.network_instance.instances.instance.create("_public_")
+            pub.afs.af.create("ipv4-unicast")
+
+            # IS-IS global config
+            site = pub.isis.sites.site.create(u64(1), level="level-2", cost_style="wide")
+            site.net_entitys.net_entity.create(net_clns_address)
+            site.afs.af.create("afipv4")
+            # The default for timer/spf/max is a Huawei proprietary
+            # ext:dynamic-default that generic YANG tooling (libyang) ignores,
+            # which then fails a must on timer/spf/incr: set it explicitly
+            site.timer.spf.max = u64(5)
+
+            # LoopBack0 IS-IS interface config
+            lo0_circuit = site.circuits.circuit.create("LoopBack0", silent_enable=True)
+            lo0_circuit.afs.af.create("afipv4")
+
+            # MPLS and LDP global config
+            dev.mpls.common.global.lsr_id = i.ipv4_address
+            dev.mpls.common.global.mpls_enable = True
+            dev.mpls.ldp.enable = True
+            pub.mpls.ldp.create_instance(lsr_id=i.ipv4_address)
+
+            # BGP global config
+            dev.bgp.global.yang_enable = True
+            dev.bgp.base_process.enable = True
+            dev.bgp.base_process.as_ = str(i.asn)
+            bgp = pub.bgp.create_base_process(router_id=i.ipv4_address)
+            bgp.afs.af.create("ipv4vpn")
+            # Peer group: IPV4-IBGP
+            pg = bgp.peer_groups.peer_group.create("IPV4-IBGP", type="ibgp", local_if_name="LoopBack0", password_type="cipher", password_text=i.ibgp_authentication_key)
+            pg.afs.af.create("ipv4vpn")
+
+            return dev
+
         raise UnsupportedDevice()
 
 class BBInterface(base.BBInterface):

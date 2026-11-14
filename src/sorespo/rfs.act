@@ -526,6 +526,14 @@ class IbgpNeighbor(base.IbgpNeighbor):
                 n.authentication.password = nokia_srl_aes1_encrypt(i.ibgp_authentication_key!, _SRL_AES1_SALT)
             return dev
 
+        elif "huawei-ifm" in di.modules:
+            print("RFS /rfs{{{di.name}}}/ibgp-neighbor transform running {i.address} for Huawei VRP", err=True)
+            dev = hw822.root()
+            pub = dev.network_instance.instances.instance.create("_public_")
+            bgp = pub.bgp.create_base_process()
+            bgp.peers.peer.create(i.address, group_name="IPV4-IBGP", description=i.description)
+            return dev
+
         raise UnsupportedDevice()
 
 
@@ -597,6 +605,16 @@ class Vrf(base.Vrf):
             bgp.afi_safi.create(srl25.srl_nokia_common_ipv4_unicast, admin_state="enable")
             group = bgp.group.create("customer")
             group.send_default_route.ipv4_unicast = True
+
+            return dev
+
+        elif "huawei-ifm" in di.modules:
+            print("RFS /rfs{{{di.name}}}/vrf transform running {i.name} for Huawei VRP", err=True)
+            dev = hw822.root()
+            ni = dev.network_instance.instances.instance.create(i.name)
+            af = ni.afs.af.create("ipv4-unicast", route_distinguisher="{i.asn}:{route_distinguisher_id}")
+            af.vpn_targets.vpn_target.create(("{i.asn}:{i.id}", "export-extcommunity"))
+            af.vpn_targets.vpn_target.create(("{i.asn}:{i.id}", "import-extcommunity"))
 
             return dev
 
@@ -741,6 +759,20 @@ class EbgpCustomer(base.EbgpCustomer):
             neighbor.timers.connect_retry = 3
             neighbor.timers.hold_time = 3
             neighbor.timers.keepalive_interval = 1
+
+            return dev
+
+        elif "huawei-ifm" in di.modules:
+            print("RFS /rfs{{{di.name}}}/ebgp-customer transform running {i.address} for Huawei VRP", err=True)
+            dev = hw822.root()
+            ni = dev.network_instance.instances.instance.create(i.vrf)
+            bgp = ni.bgp.create_base_process()
+            bgp.afs.af.create("ipv4uni")
+            peer = bgp.peers.peer.create(i.address, remote_as=str(i.peer_asn), description=i.description)
+            peer.afs.af.create("ipv4uni")
+            if i.authentication_key is not None:
+                peer.password_type = "cipher"
+                peer.password_text = i.authentication_key!
 
             return dev
 

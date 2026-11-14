@@ -1,0 +1,18 @@
+<network-instance xmlns="urn:huawei:yang:huawei-network-instance">
+  <instances>
+    <instance>
+      <name>_public_</name>
+      <bgp xmlns="urn:huawei:yang:huawei-bgp">
+        <base-process>
+          <peers>
+            <peer>
+              <address>10.0.0.5</address>
+              <group-name>IPV4-IBGP</group-name>
+              <description>iBGP Peer</description>
+            </peer>
+          </peers>
+        </base-process>
+      </bgp>
+    </instance>
+  </instances>
+</network-instance>

@@ -1,0 +1,121 @@
+<network-instance xmlns="urn:huawei:yang:huawei-network-instance">
+  <instances>
+    <instance>
+      <name>_public_</name>
+      <afs xmlns="urn:huawei:yang:huawei-l3vpn">
+        <af>
+          <type>ipv4-unicast</type>
+        </af>
+      </afs>
+      <mpls xmlns="urn:huawei:yang:huawei-mpls">
+        <ldp xmlns="urn:huawei:yang:huawei-mpls-ldp">
+          <instance>
+            <lsr-id>10.0.0.4</lsr-id>
+          </instance>
+        </ldp>
+      </mpls>
+      <isis xmlns="urn:huawei:yang:huawei-isis">
+        <sites>
+          <site>
+            <id>1</id>
+            <level>level-2</level>
+            <cost-style>wide</cost-style>
+            <timer>
+              <spf>
+                <max>5</max>
+              </spf>
+            </timer>
+            <net-entitys>
+              <net-entity>
+                <value>49.0001.0100.0000.0004.00</value>
+              </net-entity>
+            </net-entitys>
+            <circuits>
+              <circuit>
+                <name>LoopBack0</name>
+                <silent-enable>true</silent-enable>
+                <afs>
+                  <af>
+                    <type>afipv4</type>
+                  </af>
+                </afs>
+              </circuit>
+            </circuits>
+            <afs>
+              <af>
+                <type>afipv4</type>
+              </af>
+            </afs>
+          </site>
+        </sites>
+      </isis>
+      <bgp xmlns="urn:huawei:yang:huawei-bgp">
+        <base-process>
+          <router-id>10.0.0.4</router-id>
+          <afs>
+            <af>
+              <type>ipv4vpn</type>
+            </af>
+          </afs>
+          <peer-groups>
+            <peer-group>
+              <name>IPV4-IBGP</name>
+              <type>ibgp</type>
+              <local-if-name>LoopBack0</local-if-name>
+              <password-type>cipher</password-type>
+              <password-text>ibgp-authentication-key</password-text>
+              <afs>
+                <af>
+                  <type>ipv4vpn</type>
+                </af>
+              </afs>
+            </peer-group>
+          </peer-groups>
+        </base-process>
+      </bgp>
+    </instance>
+  </instances>
+</network-instance>
+<ifm xmlns="urn:huawei:yang:huawei-ifm">
+  <interfaces>
+    <interface>
+      <name>LoopBack0</name>
+      <class>main-interface</class>
+      <type>LoopBack</type>
+      <ipv4 xmlns="urn:huawei:yang:huawei-ip">
+        <addresses>
+          <address>
+            <ip>10.0.0.4</ip>
+            <mask>255.255.255.255</mask>
+            <type>main</type>
+          </address>
+        </addresses>
+      </ipv4>
+    </interface>
+  </interfaces>
+</ifm>
+<system xmlns="urn:huawei:yang:huawei-system">
+  <system-info>
+    <sys-name>LJU-CORE-1</sys-name>
+  </system-info>
+</system>
+<mpls xmlns="urn:huawei:yang:huawei-mpls">
+  <common>
+    <global>
+      <mpls-enable>true</mpls-enable>
+      <lsr-id>10.0.0.4</lsr-id>
+    </global>
+  </common>
+  <ldp xmlns="urn:huawei:yang:huawei-mpls-ldp">
+    <enable>true</enable>
+  </ldp>
+</mpls>
+<bgp xmlns="urn:huawei:yang:huawei-bgp">
+  <global>
+    <yang-enable>true</yang-enable>
+  </global>
+  <base-process>
+    <enable>true</enable>
+    <as>65001</as>
+  </base-process>
+</bgp>

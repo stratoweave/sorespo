@@ -8,6 +8,7 @@ import sorespo.translations.translation_data as data
 import sorespo.translations.network_data as network_data
 import sorespo.translations.ietf_xr25 as xr
 import sorespo.translations.ietf_crpd24 as junos
+import sorespo.translations.ietf_arcos82 as arcos
 
 
 mut def xr_network_config(tree: ietf_dm.root) -> MNode:
@@ -67,6 +68,33 @@ mut def junos_network_config(tree: ietf_dm.root) -> MNode:
     return merge(parts)
 
 
+mut def arcos_network_config(tree: ietf_dm.root) -> MNode:
+    network_data.validate(tree)
+    parts: list[MNode] = []
+    for interface in tree.interfaces.interface:
+        parts.append(arcos.interface(interface))
+    for instance in tree.network_instances.network_instance:
+        parts.append(arcos.vpn(tree, instance))
+    for interface in tree.routing.mpls.interfaces.interface:
+        parts.append(arcos.mpls_interface(tree, interface))
+    for protocol in tree.routing.control_plane_protocols.control_plane_protocol:
+        if protocol.type == ietf_dm.ietf_bgp_bgp:
+            parts.append(arcos.bgp(tree, protocol))
+            for group in protocol.bgp.peer_groups.peer_group:
+                parts.append(arcos.bgp_peer_group(tree, protocol, group))
+            for peer in protocol.bgp.neighbors.neighbor:
+                parts.append(arcos.bgp_neighbor(tree, protocol, peer))
+        elif protocol.type == ietf_dm.ietf_isis_isis:
+            parts.append(arcos.isis(tree, protocol))
+            for interface in protocol.isis.interfaces.interface:
+                parts.append(arcos.isis_interface(tree, protocol, interface))
+        elif protocol.type == ietf_dm.ietf_mpls_ldp_mpls_ldp:
+            parts.append(arcos.ldp(tree, protocol))
+            for interface in protocol.mpls_ldp.discovery.interfaces.interface:
+                parts.append(arcos.ldp_interface(tree, protocol, interface))
+    return merge(parts)
+
+
 mut def xr_system_config(tree: ietf_dm.root) -> MNode:
     parts: list[MNode] = [xr.system(tree)]
     ntp = tree.system.ntp
@@ -120,10 +148,22 @@ mut def junos_routing_policy_config(tree: ietf_dm.root) -> MNode:
     return merge(parts)
 
 
+mut def arcos_routing_policy_config(tree: ietf_dm.root) -> MNode:
+    source = data.policy_input(tree)
+    parts: list[MNode] = []
+    if len(source.defined_sets.prefix_sets.prefix_set) > 0 or len(source.defined_sets.tag_sets.tag_set) > 0 or len(source.defined_sets.bgp_defined_sets.community_sets.community_set) > 0 or len(source.defined_sets.bgp_defined_sets.as_path_sets.as_path_set) > 0:
+        raise ValueError("ArcOS IETF translation currently supports policy definitions only")
+    for item in source.policy_definitions.policy_definition:
+        parts.append(arcos.routing_policy(item))
+    return merge(parts)
+
+
 xr_system = adata_translation("ietf-system", ietf_dm.SRC_DNODE, [Id(data.SYS_NS, "system")], ietf_dm.root.from_gdata, xr_system_config)
 xr_routing_policy = adata_translation("ietf-routing-policy", ietf_dm.SRC_DNODE, [Id(data.RP_NS, "routing-policy")], ietf_dm.root.from_gdata, xr_routing_policy_config)
 junos_system = adata_translation("ietf-system", ietf_dm.SRC_DNODE, [Id(data.SYS_NS, "system")], ietf_dm.root.from_gdata, junos.system)
 junos_routing_policy = adata_translation("ietf-routing-policy", ietf_dm.SRC_DNODE, [Id(data.RP_NS, "routing-policy")], ietf_dm.root.from_gdata, junos_routing_policy_config)
+arcos_system = adata_translation("ietf-system", ietf_dm.SRC_DNODE, [Id(data.SYS_NS, "system")], ietf_dm.root.from_gdata, arcos.system)
+arcos_routing_policy = adata_translation("ietf-routing-policy", ietf_dm.SRC_DNODE, [Id(data.RP_NS, "routing-policy")], ietf_dm.root.from_gdata, arcos_routing_policy_config)
 
 # These models reference each other and share /routing. Pass all four roots
 # together, once, after the RFS contributions have merged.
@@ -133,3 +173,4 @@ network_roots = [Id(ietf_dm.NS_ietf_interfaces, "interfaces"),
                  Id(ietf_dm.NS_ietf_key_chain, "key-chains")]
 xr_network = adata_translation("ietf-network", ietf_dm.SRC_DNODE, network_roots, ietf_dm.root.from_gdata, xr_network_config)
 junos_network = adata_translation("ietf-network", ietf_dm.SRC_DNODE, network_roots, ietf_dm.root.from_gdata, junos_network_config)
+arcos_network = adata_translation("ietf-network", ietf_dm.SRC_DNODE, network_roots, ietf_dm.root.from_gdata, arcos_network_config)

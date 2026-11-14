@@ -8,6 +8,7 @@ import sorespo.layers.y_2 as inputs
 import sorespo.devices.ietf_dm as m
 import sorespo.devices.CiscoIosXr_25_3_1 as x
 import sorespo.devices.JuniperCRPD_24_4R1_9 as j
+import sorespo.devices.ArcOS_8_2_1 as a
 import sorespo.translations.ietf_xr25 as xr
 import sorespo.translations.ietf_crpd24 as junos
 import sorespo.translations.model_translations as mappings
@@ -19,6 +20,10 @@ mut def xr_network(tree: m.root) -> x.root:
 
 mut def junos_network(tree: m.root) -> j.root:
     return j.root.from_gdata(mappings.junos_network_config(tree).to_gdata())
+
+
+mut def arcos_network(tree: m.root) -> a.root:
+    return a.root.from_gdata(mappings.arcos_network_config(tree).to_gdata())
 
 
 proc def fixture(t: testing.SyncT, is_junos: bool) -> m.root:
@@ -34,6 +39,30 @@ proc def fixture(t: testing.SyncT, is_junos: bool) -> m.root:
     attachment = inputs.stratoweave_rfs__rfs__vrf_interface_entry(name="{access}.100", description="Customer", vrf="blue", ipv4_address="192.0.2.1", ipv4_prefix_length=30)
     ebgp = inputs.stratoweave_rfs__rfs__ebgp_customer_entry(vrf="blue", address="192.0.2.2", local_asn=65000, peer_asn=65100, description="CE", authentication_key="fixture-ebgp")
     # Exercise cross-RFS references and merging, with consumers before providers.
+    parts = [rfs.EbgpCustomer(t.log_handler).transform(ebgp, di),
+             rfs.VrfInterface(t.log_handler).transform(attachment, di),
+             rfs.IbgpNeighbor(t.log_handler).transform(ibgp, di),
+             rfs.Vrf(t.log_handler).transform(vrf, di),
+             rfs.BBInterface(t.log_handler).transform(backbone, di),
+             rfs.BaseConfig(t.log_handler).transform(base, di)]
+    for part in parts:
+        node = part.to_gdata()
+        if isinstance(node, g.Container):
+            for root in node.children:
+                testing.assertTrue(root.q.startswith("urn:ietf:params:xml:ns:yang:"))
+    return m.root.from_gdata(merge(parts).to_gdata())
+
+
+proc def arcos_fixture(t: testing.SyncT) -> m.root:
+    module = "arcos-system"
+    di = ttt.DeviceInfo("pe-1", {module: ModCap(module, "test")})
+    base = inputs.stratoweave_rfs__rfs__base_config(role="PE", ipv4_address="10.0.0.1", ipv6_address="2001:db8::1", asn=65000, ibgp_authentication_key="fixture-ibgp")
+    backbone = inputs.stratoweave_rfs__rfs__backbone_interface_entry(name="swp0", ipv4_address="10.0.1.1", ipv4_prefix_length=30,
+        remote=inputs.stratoweave_rfs__rfs__backbone_interface__remote(device="pe-2", interface="swp0"))
+    ibgp = inputs.stratoweave_rfs__rfs__ibgp_neighbor_entry(address="10.0.0.2", asn=65000, description="peer PE")
+    vrf = inputs.stratoweave_rfs__rfs__vrf_entry(name="blue", id=100, router_id=1, asn=65000)
+    attachment = inputs.stratoweave_rfs__rfs__vrf_interface_entry(name="swp2.100", description="Customer", vrf="blue", ipv4_address="192.0.2.1", ipv4_prefix_length=30)
+    ebgp = inputs.stratoweave_rfs__rfs__ebgp_customer_entry(vrf="blue", address="192.0.2.2", local_asn=65000, peer_asn=65100, description="CE", authentication_key="fixture-ebgp")
     parts = [rfs.EbgpCustomer(t.log_handler).transform(ebgp, di),
              rfs.VrfInterface(t.log_handler).transform(attachment, di),
              rfs.IbgpNeighbor(t.log_handler).transform(ibgp, di),
@@ -121,6 +150,73 @@ proc def _test_junos_network_rfs(t: testing.SyncT):
     testing.assertEqual(peer.hold_time, u64(3))
     testing.assertEqual(peer.as_override, True)
     testing.assertFalse("urn:ietf:params:xml:ns:yang:" in result.to_xmlstr())
+
+
+proc def _test_arcos_network_rfs(t: testing.SyncT):
+    intent = arcos_fixture(t)
+    before = intent.to_gdata()
+    result = render(before, a.SRC_DNODE, [mappings.arcos_system, mappings.arcos_routing_policy, mappings.arcos_network])
+    native = a.root.from_gdata(result)
+    testing.assertEqual(native.to_gdata(), result)
+    testing.assertEqual(intent.to_gdata(), before)
+    testing.assertEqual(native.system.config.hostname, "pe-1")
+    testing.assertEqual(native.system.netconf_server.transport.ssh.config.port, u64(830))
+    testing.assertEqual(native.system.aaa.authentication.users.user.get("clab")!.config.role, a.openconfig_aaa_types_SYSTEM_ROLE_ADMIN)
+    testing.assertEqual(len(native.features.feature), 6)
+    loopback = native.interfaces.interface.get("loopback0")!
+    testing.assertEqual(loopback.subinterfaces.subinterface.get(u64(0))!.ipv4.addresses.address.get("10.0.0.1")!.config.prefix_length, u64(32))
+    backbone = native.interfaces.interface.get("swp0")!.subinterfaces.subinterface.get(u64(0))!
+    testing.assertEqual(backbone.ipv4.addresses.address.get("10.0.1.1")!.config.prefix_length, u64(30))
+    default_ni = native.network_instances.network_instance.get("default")!
+    isis = default_ni.protocols.protocol.get((a.openconfig_policy_types_ISIS, "1"))!.isis
+    testing.assertEqual(isis.global.config.net, ["49.0001.0100.0000.0001.00"])
+    testing.assertEqual(isis.interfaces.interface.get("swp0")!.levels.level.get(u64(2))!.config.metric, u64(5000))
+    testing.assertTrue(default_ni.mpls.signaling_protocols.ldp.interface_attributes.interfaces.interface.get("swp0") is not None)
+    bgp = default_ni.protocols.protocol.get((a.openconfig_policy_types_BGP, "default"))!.bgp
+    testing.assertEqual(bgp.global.config.as_, u64(65000))
+    testing.assertEqual(bgp.peer_groups.peer_group.get("IPV4-IBGP")!.config.auth_password, "fixture-ibgp")
+    testing.assertEqual(bgp.neighbors.neighbor.get("10.0.0.2")!.config.peer_group, "IPV4-IBGP")
+    instance = native.network_instances.network_instance.get("blue")!
+    testing.assertTrue(instance.interfaces.interface.get("swp2.100") is not None)
+    testing.assertEqual(native.interfaces.interface.get("swp2")!.subinterfaces.subinterface.get(u64(100))!.vlan.config.vlan_id, u64(100))
+    vrf_bgp = instance.protocols.protocol.get((a.openconfig_policy_types_BGP, "default"))!.bgp
+    testing.assertEqual(vrf_bgp.global.config.label_allocation_mode, a.openconfig_network_instance_types_INSTANCE_LABEL)
+    rt = vrf_bgp.global.afi_safis.afi_safi.get(a.openconfig_bgp_types_IPV4_UNICAST)!.rt_afi_safis.rt_afi_safi.get(a.openconfig_bgp_types_L3VPN_IPV4_UNICAST)!
+    testing.assertTrue(rt.route_targets.route_target.get(("65000:100", "both")) is not None)
+    peer = vrf_bgp.neighbors.neighbor.get("192.0.2.2")!
+    testing.assertEqual(peer.config.peer_as, u64(65100))
+    testing.assertEqual(peer.config.auth_password, "fixture-ebgp")
+    testing.assertTrue(peer.as_path_options.config.replace_peer_as!)
+    af = peer.afi_safis.afi_safi.get(a.openconfig_bgp_types_IPV4_UNICAST)!
+    testing.assertEqual(af.apply_policy.config.import_policy, ["ACCEPT"])
+    testing.assertEqual(af.apply_policy.config.export_policy, ["ACCEPT"])
+    testing.assertTrue(native.routing_policy.policy_definitions.policy_definition.get("ACCEPT") is not None)
+    xml = result.to_xmlstr()
+    # ArcOS uses the IANA interface-type identities, whose namespace is also an
+    # IETF URN.  Check that the source data-model roots were consumed instead
+    # of rejecting that legitimate identity namespace.
+    for namespace in [m.NS_ietf_system, m.NS_ietf_interfaces,
+                      m.NS_ietf_network_instance, m.NS_ietf_routing,
+                      m.NS_ietf_routing_policy, m.NS_ietf_key_chain]:
+        testing.assertFalse(namespace in xml)
+
+
+proc def _test_arcos_rejects_unrepresentable_intent(t: testing.SyncT):
+    intent = arcos_fixture(t)
+    vpn = intent.network_instances.network_instance.get("blue")!.vpn!
+    vpn.label_allocation = None
+    rejects(arcos_network, intent, "per-vrf label allocation")
+
+    intent = arcos_fixture(t)
+    neighbor = intent.routing.control_plane_protocols.control_plane_protocol.get((m.ietf_bgp_bgp, "blue"))!.bgp.neighbors.neighbor.get("192.0.2.2")!
+    neighbor.timers.hold_time = 3
+    rejects(arcos_network, intent, "neighbor timers")
+
+    intent = arcos_fixture(t)
+    policy = intent.routing_policy.policy_definitions.policy_definition.get("ACCEPT")!
+    statement = policy.statements.statement.get("accept")!
+    statement.conditions.source_protocol = m.ietf_routing_direct
+    rejects(mappings.arcos_routing_policy_config, intent, "/conditions")
 
 
 def rejects(fn, tree: m.root, message: str):

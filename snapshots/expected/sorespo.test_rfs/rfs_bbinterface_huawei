@@ -1,0 +1,63 @@
+<network-instance xmlns="urn:huawei:yang:huawei-network-instance">
+  <instances>
+    <instance>
+      <name>_public_</name>
+      <mpls xmlns="urn:huawei:yang:huawei-mpls">
+        <common>
+          <mpls-interfaces>
+            <mpls-interface>
+              <name>GigabitEthernet0/1/0</name>
+            </mpls-interface>
+          </mpls-interfaces>
+        </common>
+        <ldp xmlns="urn:huawei:yang:huawei-mpls-ldp">
+          <instance>
+            <interfaces>
+              <interface>
+                <name>GigabitEthernet0/1/0</name>
+              </interface>
+            </interfaces>
+          </instance>
+        </ldp>
+      </mpls>
+      <isis xmlns="urn:huawei:yang:huawei-isis">
+        <sites>
+          <site>
+            <id>1</id>
+            <circuits>
+              <circuit>
+                <name>GigabitEthernet0/1/0</name>
+                <level>level-2</level>
+                <p2p-enable>true</p2p-enable>
+                <afs>
+                  <af>
+                    <type>afipv4</type>
+                    <cost-level2>5000</cost-level2>
+                  </af>
+                </afs>
+              </circuit>
+            </circuits>
+          </site>
+        </sites>
+      </isis>
+    </instance>
+  </instances>
+</network-instance>
+<ifm xmlns="urn:huawei:yang:huawei-ifm">
+  <interfaces>
+    <interface>
+      <name>GigabitEthernet0/1/0</name>
+      <class>main-interface</class>
+      <description>Link to FRA-CORE-1 [GigabitEthernet0/0/0/2]</description>
+      <ipv4 xmlns="urn:huawei:yang:huawei-ip">
+        <addresses>
+          <address>
+            <ip>10.0.26.2</ip>
+            <mask>255.255.255.252</mask>
+            <type>main</type>
+          </address>
+        </addresses>
+      </ipv4>
+    </interface>
+  </interfaces>
+</ifm>

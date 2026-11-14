@@ -75,3 +75,21 @@ proc def _test_rfs_baseconfig_huawei(t: testing.SyncT):
     transform = rfs.BaseConfig(t.log_handler)
     out = transform.transform(modeled_input, mock_di).to_gdata()
     return out.to_xmlstr(pretty=True)
+
+proc def _test_rfs_bbinterface_huawei(t: testing.SyncT):
+    modeled_input = rfs.BBInterface.input_type()(
+        name="GigabitEthernet0/1/0",
+        ipv4_address="10.0.26.2",
+        ipv4_prefix_length=30,
+        remote=stratoweave_rfs__rfs__backbone_interface__remote(
+            device="FRA-CORE-1",
+            interface="GigabitEthernet0/0/0/2"
+        )
+    )
+
+    mock_di = stratoweave.ttt.DeviceInfo("LJU-CORE-1",
+        {"huawei-ifm": stratoweave.adapters.adapter.ModCap("huawei-ifm", "urn:huawei:yang:huawei-ifm")}
+    )
+    transform = rfs.BBInterface(t.log_handler)
+    out = transform.transform(modeled_input, mock_di).to_gdata()
+    return out.to_xmlstr(pretty=True)

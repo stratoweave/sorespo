@@ -406,6 +406,29 @@ class BBInterface(base.BBInterface):
 
             return dev
 
+        elif "huawei-ifm" in di.modules:
+            print("RFS /rfs{{{di.name}}}/backbone-interface transform running [{i.name}] <-> {i.remote.device} [{i.remote.interface}] for Huawei VRP", err=True)
+            dev = hw822.root()
+
+            # Create the interface
+            intf = dev.ifm.interfaces.interface.create(i.name, class="main-interface", description=if_description)
+            ipv4_address = i.ipv4_address
+            if ipv4_address is not None:
+                intf.ipv4.addresses.address.create(ipv4_address, mask=prefix_length_to_netmask(int(i.ipv4_prefix_length)), type="main")
+
+            pub = dev.network_instance.instances.instance.create("_public_")
+
+            # IS-IS config for this interface
+            site = pub.isis.sites.site.create(u64(1))
+            circuit = site.circuits.circuit.create(i.name, level="level-2", p2p_enable=True)
+            circuit.afs.af.create("afipv4", cost_level2=u64(5000))
+
+            # MPLS and LDP config for this interface
+            pub.mpls.common.mpls_interfaces.mpls_interface.create(i.name)
+            pub.mpls.ldp.create_instance().interfaces.interface.create(i.name)
+
+            return dev
+
         raise UnsupportedDevice()
 
 

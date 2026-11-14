@@ -22,6 +22,7 @@ from sorespo.devices.CiscoIosXr_25_3_1_oper import root as xr25_oper_root
 import sorespo.devices.JuniperCRPD_24_4R1_9 as crpd24
 import sorespo.devices.NokiaSRLinux_25_3_2 as srl25
 import sorespo.devices.NokiaSRLinux_25_3_2_oper as srl25_oper
+import sorespo.devices.HuaweiNE40E_8_22_0 as hw822
 from sorespo.devices.NokiaSRLinux_25_3_2_oper import root as srl25_oper_root
 
 CRPD = True
@@ -594,6 +595,28 @@ class VrfInterface(base.VrfInterface):
             # Add interface to the correct network-instance (VRF)
             ni = dev.network_instance.create(i.vrf)
             ni.interface.create("%s.%s" % (main_intf, vlan_id))
+
+            return dev
+
+        elif "huawei-ifm" in di.modules:
+            print("RFS /rfs{{{di.name}}}/vrf-interface transform running {i.name} for Huawei VRP", err=True)
+            dev = hw822.root()
+
+            # Main interface. Unlike SR Linux, a Huawei sub-interface is its own
+            # entry in the interface list, linked to the main one by parent-name
+            dev.ifm.interfaces.interface.create(main_intf, class="main-interface", description="Customer access port")
+
+            sub_intf = dev.ifm.interfaces.interface.create(i.name, class="sub-interface", parent_name=main_intf, number=vlan_id, description=i.description, vrf_name=i.vrf)
+            sub_intf.ethernet.l3_sub_interface.create_vlan_type_dot1q(u64(vlan_id))
+
+            # Huawei takes a dotted netmask (like IOS XR), plus the address type
+            ipv4_address = i.ipv4_address
+            if ipv4_address is not None:
+                sub_intf.ipv4.addresses.address.create(ipv4_address, mask=prefix_length_to_netmask(int(i.ipv4_prefix_length)), type="main")
+
+            # The VRF is bound on the interface (vrf-name is a leafref to the
+            # network instance), so make sure the instance exists
+            dev.network_instance.instances.instance.create(i.vrf)
 
             return dev
 

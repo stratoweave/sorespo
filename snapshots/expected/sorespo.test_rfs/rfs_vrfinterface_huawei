@@ -1,0 +1,40 @@
+<network-instance xmlns="urn:huawei:yang:huawei-network-instance">
+  <instances>
+    <instance>
+      <name>ACME</name>
+    </instance>
+  </instances>
+</network-instance>
+<ifm xmlns="urn:huawei:yang:huawei-ifm">
+  <interfaces>
+    <interface>
+      <name>GigabitEthernet0/1/2</name>
+      <class>main-interface</class>
+      <description>Customer access port</description>
+    </interface>
+    <interface>
+      <name>GigabitEthernet0/1/2.100</name>
+      <class>sub-interface</class>
+      <parent-name>GigabitEthernet0/1/2</parent-name>
+      <number>100</number>
+      <description>VRF Interface for customer connections</description>
+      <vrf-name>ACME</vrf-name>
+      <ipv4 xmlns="urn:huawei:yang:huawei-ip">
+        <addresses>
+          <address>
+            <ip>10.200.1.4</ip>
+            <mask>255.255.255.0</mask>
+            <type>main</type>
+          </address>
+        </addresses>
+      </ipv4>
+      <ethernet xmlns="urn:huawei:yang:huawei-ethernet">
+        <l3-sub-interface>
+          <vlan-type-dot1q>
+            <vlan-type-vid>100</vlan-type-vid>
+          </vlan-type-dot1q>
+        </l3-sub-interface>
+      </ethernet>
+    </interface>
+  </interfaces>
+</ifm>

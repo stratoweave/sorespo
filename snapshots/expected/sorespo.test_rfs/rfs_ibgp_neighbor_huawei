@@ -7,6 +7,7 @@
           <peers>
             <peer>
               <address>10.0.0.5</address>
+              <remote-as>65001</remote-as>
               <group-name>IPV4-IBGP</group-name>
               <description>iBGP Peer</description>
             </peer>

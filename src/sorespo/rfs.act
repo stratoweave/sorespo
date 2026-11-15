@@ -531,7 +531,7 @@ class IbgpNeighbor(base.IbgpNeighbor):
             dev = hw822.root()
             pub = dev.network_instance.instances.instance.create("_public_")
             bgp = pub.bgp.create_base_process()
-            bgp.peers.peer.create(i.address, group_name="IPV4-IBGP", description=i.description)
+            bgp.peers.peer.create(i.address, remote_as=str(i.asn), group_name="IPV4-IBGP", description=i.description)
             return dev
 
         raise UnsupportedDevice()

@@ -18,7 +18,7 @@ import sorespo.devices.JuniperCRPD_24_4R1_9_schema
 
 SRC_DNODE: DRoot = sorespo.devices.JuniperCRPD_24_4R1_9_schema.SRC_DNODE
 
-pure def src_yang() -> list[str]:
+pure def src_yang() -> list[YangSource]:
     return sorespo.devices.JuniperCRPD_24_4R1_9_schema.src_yang()
 
 

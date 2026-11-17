@@ -18,7 +18,7 @@ import sorespo.devices.CiscoIosXr_25_3_1_schema
 
 SRC_DNODE: DRoot = sorespo.devices.CiscoIosXr_25_3_1_schema.SRC_DNODE
 
-pure def src_yang() -> list[str]:
+pure def src_yang() -> list[YangSource]:
     return sorespo.devices.CiscoIosXr_25_3_1_schema.src_yang()
 
 

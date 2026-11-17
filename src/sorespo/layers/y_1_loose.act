@@ -869,12 +869,12 @@ SRC_YANG_3: str = r"""module ietf-inet-types {
 }
 """
 
-pure def src_yang() -> list[str]:
+pure def src_yang() -> list[YangSource]:
     return [
-        SRC_YANG_0,
-        SRC_YANG_1,
-        SRC_YANG_2,
-        SRC_YANG_3,
+        (name='l3vpn-inter', revision='2019-01-01', src=SRC_YANG_0),
+        (name='netinfra-inter', revision='2019-01-01', src=SRC_YANG_1),
+        (name='stratoweave', revision='2026-04-01', src=SRC_YANG_2),
+        (name='ietf-inet-types', revision='2013-07-15', src=SRC_YANG_3),
     ]
 
 

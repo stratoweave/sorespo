@@ -304,7 +304,7 @@ srl_nokia_interfaces_vlans_TPID_ANY: Identityref = Identityref('TPID_ANY', ns='u
 
 SRC_DNODE: DRoot = sorespo.devices.NokiaSRLinux_25_3_2_schema.SRC_DNODE
 
-pure def src_yang() -> list[str]:
+pure def src_yang() -> list[YangSource]:
     return sorespo.devices.NokiaSRLinux_25_3_2_schema.src_yang()
 
 

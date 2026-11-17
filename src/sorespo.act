@@ -5,4 +5,8 @@ import sorespo.webui_assets as webui_assets
 
 
 actor main(env):
-    stratoweave.main(sysspec.SYSSPEC, env, static_assets=webui_assets.ASSETS)
+
+    proc def __startup__():
+        stratoweave.main(sysspec.SYSSPEC, env, static_assets=webui_assets.ASSETS)
+
+    __startup__()

@@ -58,7 +58,10 @@ actor _test_netinfra1(t: testing.AsyncT):
         # Report the last (device) layer config.
         t.success(ln_cfg)
 
-    tr.edit_config_xml(netinfra1_in, cont)
+    proc def __startup__():
+        tr.edit_config_xml(netinfra1_in, cont)
+
+    __startup__()
 
 
 l3vpn_in = """<data>
@@ -346,7 +349,11 @@ actor l3vpn_tester(t: testing.AsyncT, output_formatter: proc(swts.TestRig) -> st
             return
         t.success(output_formatter(tr))
 
-    tr.edit_config_xml(l3vpn_in, cont)
+    proc def __startup__():
+        tr.edit_config_xml(l3vpn_in, cont)
+
+    __startup__()
+
 
 actor _test_l3vpn_svc(t: testing.AsyncT):
     l3vpn_tester(t, lambda tr: tr.layer_config(-1).to_xmlstr(pretty=True, deterministic=True))

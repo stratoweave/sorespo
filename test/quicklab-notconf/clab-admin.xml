@@ -4,15 +4,14 @@
       <endpoint>
         <name>default-ssh</name>
         <ssh>
-          <tcp-server-parameters>
-            <local-address>::</local-address>
-          </tcp-server-parameters>
           <ssh-server-parameters>
             <client-authentication>
               <users>
                 <user>
                   <name>clab</name>
-                  <password>$0$clab@123</password>
+                  <password>
+                    <hashed-password>$0$clab@123</hashed-password>
+                  </password>
                 </user>
               </users>
             </client-authentication>

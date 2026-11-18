@@ -64,14 +64,11 @@ regenerate the embedded-assets module and commit it:
 make gen-webui   # builds webui/ and rewrites src/sorespo/webui_assets.act
 ```
 
-The module is a single `ASSETS: dict[str, str]` constant (URL path -> file
-content) with every file embedded verbatim as a raw string literal.
+The module is a single `ASSETS: dict[str, bytes]` constant (URL path -> file
+content) with every file embedded as a bytes literal.
 
 CI regenerates the module and fails on any diff, so the build must stay
-deterministic (see `kit.version` in `svelte.config.js`). Only text assets can
-be embedded (the HTTP server sends `str` bodies); binary files such as images
-must be inlined into the bundle — the logo is imported in Svelte and inlined
-as a data URI via `assetsInlineLimit` in `vite.config.ts`.
+deterministic (see `kit.version` in `svelte.config.js`).
 
 ## Demo
 

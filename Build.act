@@ -3,8 +3,8 @@ fingerprint = 0x9221cfef6ab1263c
 dependencies = {
     "rtrsecrets": (
         repo_url="https://github.com/stratoweave/rtrsecrets.git",
-        url="https://github.com/stratoweave/rtrsecrets/archive/a8bdd0c0c95f8cd4fca127b4542d4bceb66b01e7.zip",
-        hash="N-V-__8AAJVvAACW9_ppVgv42fp7QhCFMXXrnldaTT56lav2"
+        url="https://github.com/stratoweave/rtrsecrets/archive/e3cc887051e2f7ca3d8137838059a958cde094e4.zip",
+        hash="N-V-__8AAHNwAABDcwwGf2VFKSGDKxpYyNTTnEfovJaDNsfc"
     ),
     "spec": (
         path="spec"

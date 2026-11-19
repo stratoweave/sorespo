@@ -61,7 +61,7 @@ class BBLink(ttt.TransformFunction):
         return netinfra_inter__netinfra__backbone_link_entry__oper
 
     @staticmethod
-    def new_state(path: ttt.Path):
+    pure def new_state(path: ttt.Path):
         """Create modeled operational state for this transform path"""
         return netinfra_inter__netinfra__backbone_link_entry__oper.from_gdata(ttt.path_key_data(path))
 
@@ -121,7 +121,7 @@ class L3Vpn(ttt.TransformFunction):
         return l3vpn_inter__l3vpns__l3vpn_entry__oper
 
     @staticmethod
-    def new_state(path: ttt.Path):
+    pure def new_state(path: ttt.Path):
         """Create modeled operational state for this transform path"""
         return l3vpn_inter__l3vpns__l3vpn_entry__oper.from_gdata(ttt.path_key_data(path))
 

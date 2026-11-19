@@ -118,11 +118,11 @@ jobs:
   net-test:
     # Local push + fork PRs only (local PRs are skipped because push ran them).
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+    needs: build-and-test
     strategy:
       fail-fast: false
       matrix:
-        # Fork PRs have no access to secrets / private registry, so only run with public images
-        TESTENV: ${{ fromJSON(github.event_name == 'push' && '["quicklab","quicklab-xrd","quicklab-crpd","quicklab-notconf","quicklab-srl"]' || '["quicklab-notconf","quicklab-srl"]') }}
+        TESTENV: [quicklab, quicklab-xrd, quicklab-crpd, quicklab-notconf, quicklab-srl]
         ARCH: [linux-x86_64, linux-aarch64]
         exclude:
           # No Cisco IOS XRd support for aarch64 :/
@@ -130,65 +130,15 @@ jobs:
             ARCH: linux-aarch64
           - TESTENV: quicklab-xrd
             ARCH: linux-aarch64
-    runs-on: ${{ matrix.arch == 'linux-x86_64' && 'ubuntu-24.04' || 'ubuntu-24.04-arm' }}
     permissions:
       contents: read
       packages: read
-    env:
-      IMAGE_PATH: ${{ secrets.IMAGE_PATH || format('ghcr.io/{0}/', github.repository) }}
-    needs: build-and-test
-    steps:
-      - name: Set up env for containers
-        run: |
-          # IOS XRd
-          sudo sysctl -w fs.inotify.max_user_instances=64000
-          # cRPD
-          # Starting with kernel 7.0.0, the modules are included in
-          # linux-modules, so there is no need to install. We keep the install
-          # step for backwards compatibility with 6.17, until all GitHub runners
-          # are upgraded.
-          if ! sudo modprobe -a mpls_router mpls_gso vrf; then
-            sudo apt-get update
-            sudo apt-get install -qy linux-modules-extra-$(uname -r)
-            sudo modprobe -a mpls_router mpls_gso vrf
-          fi
-      - name: "Check out repository code"
-        uses: actions/checkout@v7
-      - uses: actions/download-artifact@v8
-        with:
-          name: sorespo-${{ matrix.ARCH }}
-          path: out/bin/
-      - run: chmod a+x out/bin/sorespo
-      - name: "Check out licenses repo"
-        if: ${{ matrix.TESTENV == 'quicklab' || matrix.TESTENV == 'quicklab-crpd' }}
-        uses: actions/checkout@v7
-        with:
-          repository: ${{ github.repository_owner }}/licenses
-          path: licenses
-          ssh-key: ${{ secrets.LICENSES_PRIVATE_KEY }}
-      # If we're using IMAGE_PATH=ghcr.io/... login to ghcr.io using GITHUB_TOKEN
-      # TODO: what about other (external) registries that require login?
-      - name: Login to ghcr.io
-        if: ${{ startsWith(env.IMAGE_PATH, 'ghcr.io') && (matrix.TESTENV == 'quicklab' || matrix.TESTENV == 'quicklab-crpd' || matrix.TESTENV == 'quicklab-xrd') }}
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-      - name: "Start quicklab"
-        run: |
-          make -C test/${{ matrix.TESTENV }} start
-      - name: "Configure quicklab"
-        run: |
-          make -C test/${{ matrix.TESTENV }} copy run-and-configure
-      - name: "Get device configs"
-        run: |
-          make -C test/${{ matrix.TESTENV }} test-get-config
-      - name: "Run quicklab tests"
-        run: |
-          make -C test/${{ matrix.TESTENV }} test-ping
-      - run: |
-          make -C test/${{ matrix.TESTENV }} save-logs
-        if: ${{ always() }}
-      - uses : actions/upload-artifact@v7
-        with:
-          name: logs-${{ matrix.TESTENV }}-${{ matrix.ARCH }}
-          path: test/${{ matrix.TESTENV }}/logs
-        if: ${{ always() }}
+    uses: ./.github/workflows/net-test.yml
+    with:
+      testenv: ${{ matrix.TESTENV }}
+      arch: ${{ matrix.ARCH }}
+      # Fork PRs have no access to secrets / private registry, so they only run
+      # the test environments with public images. The others are skipped inside
+      # net-test.yml, so every matrix entry still reports a check.
+      run: ${{ github.event_name == 'push' || matrix.TESTENV == 'quicklab-notconf' || matrix.TESTENV == 'quicklab-srl' }}
+    secrets: inherit

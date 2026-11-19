@@ -1,0 +1,78 @@
+name: Network test
+
+# Called by test.yml, once per test environment and architecture.
+on:
+  workflow_call:
+    inputs:
+      testenv:
+        required: true
+        type: string
+      arch:
+        required: true
+        type: string
+      run:
+        description: "Run the test; when false, the job is skipped"
+        required: true
+        type: boolean
+
+jobs:
+  test:
+    if: inputs.run
+    runs-on: ${{ inputs.arch == 'linux-x86_64' && 'ubuntu-24.04' || 'ubuntu-24.04-arm' }}
+    env:
+      IMAGE_PATH: ${{ secrets.IMAGE_PATH || format('ghcr.io/{0}/', github.repository) }}
+    steps:
+      - name: Set up env for containers
+        run: |
+          # IOS XRd
+          sudo sysctl -w fs.inotify.max_user_instances=64000
+          # cRPD
+          # Starting with kernel 7.0.0, the modules are included in
+          # linux-modules, so there is no need to install. We keep the install
+          # step for backwards compatibility with 6.17, until all GitHub runners
+          # are upgraded.
+          if ! sudo modprobe -a mpls_router mpls_gso vrf; then
+            sudo apt-get update
+            sudo apt-get install -qy linux-modules-extra-$(uname -r)
+            sudo modprobe -a mpls_router mpls_gso vrf
+          fi
+      - name: "Check out repository code"
+        uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with:
+          name: sorespo-${{ inputs.arch }}
+          path: out/bin/
+      - run: chmod a+x out/bin/sorespo
+      - name: "Check out licenses repo"
+        if: ${{ inputs.testenv == 'quicklab' || inputs.testenv == 'quicklab-crpd' }}
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ github.repository_owner }}/licenses
+          path: licenses
+          ssh-key: ${{ secrets.LICENSES_PRIVATE_KEY }}
+      # If we're using IMAGE_PATH=ghcr.io/... login to ghcr.io using GITHUB_TOKEN
+      # TODO: what about other (external) registries that require login?
+      - name: Login to ghcr.io
+        if: ${{ startsWith(env.IMAGE_PATH, 'ghcr.io') && (inputs.testenv == 'quicklab' || inputs.testenv == 'quicklab-crpd' || inputs.testenv == 'quicklab-xrd') }}
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: "Start quicklab"
+        run: |
+          make -C test/${{ inputs.testenv }} start
+      - name: "Configure quicklab"
+        run: |
+          make -C test/${{ inputs.testenv }} copy run-and-configure
+      - name: "Get device configs"
+        run: |
+          make -C test/${{ inputs.testenv }} test-get-config
+      - name: "Run quicklab tests"
+        run: |
+          make -C test/${{ inputs.testenv }} test-ping
+      - run: |
+          make -C test/${{ inputs.testenv }} save-logs
+        if: ${{ always() }}
+      - uses : actions/upload-artifact@v7
+        with:
+          name: logs-${{ inputs.testenv }}-${{ inputs.arch }}
+          path: test/${{ inputs.testenv }}/logs
+        if: ${{ always() }}

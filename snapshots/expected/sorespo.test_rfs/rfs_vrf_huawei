@@ -1,0 +1,23 @@
+<network-instance xmlns="urn:huawei:yang:huawei-network-instance">
+  <instances>
+    <instance>
+      <name>ACME</name>
+      <afs xmlns="urn:huawei:yang:huawei-l3vpn">
+        <af>
+          <type>ipv4-unicast</type>
+          <route-distinguisher>65001:1004</route-distinguisher>
+          <vpn-targets>
+            <vpn-target>
+              <value>65001:100</value>
+              <type>export-extcommunity</type>
+            </vpn-target>
+            <vpn-target>
+              <value>65001:100</value>
+              <type>import-extcommunity</type>
+            </vpn-target>
+          </vpn-targets>
+        </af>
+      </afs>
+    </instance>
+  </instances>
+</network-instance>

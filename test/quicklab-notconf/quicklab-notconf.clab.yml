@@ -42,9 +42,10 @@ topology:
         - clab-admin.xml:/yang-modules/startup/clab-admin.xml
     lju-core-1:
       kind: linux
+      # Simulated Huawei NE40E (VRP 8.22.0) using the native Huawei YANG modules
       image: ghcr.io/notconf/notconf
       binds:
-        - ../../spec/yang/JuniperCRPD_24_4R1_9:/yang-modules
+        - ../../spec/yang/HuaweiNE40E_8_22_0:/yang-modules
         - clab-admin.xml:/yang-modules/startup/clab-admin.xml
     sweave:
       kind: linux

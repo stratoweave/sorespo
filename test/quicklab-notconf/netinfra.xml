@@ -28,7 +28,7 @@
         <router>
             <name>LJU-CORE-1</name>
             <id>4</id>
-            <type>JuniperCRPD_24_4R1_9</type>
+            <type>HuaweiNE40E_8_22_0</type>
             <role>edge</role>
             <asn>65001</asn>
         </router>
@@ -54,13 +54,13 @@
             <left-router>FRA-CORE-1</left-router>
             <left-interface>GigabitEthernet0/0/0/2</left-interface>
             <right-router>LJU-CORE-1</right-router>
-            <right-interface>eth1</right-interface>
+            <right-interface>GigabitEthernet0/1/0</right-interface>
         </backbone-link>
         <backbone-link>
             <left-router>STO-CORE-1</left-router>
             <left-interface>eth3</left-interface>
             <right-router>LJU-CORE-1</right-router>
-            <right-interface>eth2</right-interface>
+            <right-interface>GigabitEthernet0/1/1</right-interface>
         </backbone-link>
     </netinfra>
 </data>

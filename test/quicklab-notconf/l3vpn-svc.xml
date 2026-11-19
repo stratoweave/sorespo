@@ -185,7 +185,7 @@
                             </ipv4>
                         </ip-connection>
                         <bearer>
-                            <bearer-reference>LJU-CORE-1,eth3.100</bearer-reference>
+                            <bearer-reference>LJU-CORE-1,GigabitEthernet0/1/2.100</bearer-reference>
                         </bearer>
                         <routing-protocols>
                             <routing-protocol>

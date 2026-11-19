@@ -1,5 +1,5 @@
-import base64
-import json
+import std.base64
+import std.json
 import std.xml as xml
 import yang.adata as yadata
 import yang.gdata as ygdata
@@ -18,7 +18,7 @@ import sorespo.devices.HuaweiNE40E_8_22_0_schema
 
 SRC_DNODE: DRoot = sorespo.devices.HuaweiNE40E_8_22_0_schema.SRC_DNODE
 
-pure def src_yang() -> list[str]:
+pure def src_yang() -> list[YangSource]:
     return sorespo.devices.HuaweiNE40E_8_22_0_schema.src_yang()
 
 
@@ -48,6 +48,209 @@ NS_huawei_xpl: str = 'urn:huawei:yang:huawei-xpl'
 NS_ietf_inet_types: str = 'urn:ietf:params:xml:ns:yang:ietf-inet-types'
 NS_ietf_yang_types: str = 'urn:ietf:params:xml:ns:yang:ietf-yang-types'
 
+_ID_huawei_bfd__change_session_board: ygdata.Id = ygdata.Id(NS_huawei_bfd, 'change-session-board')
+_ID_huawei_bfd__local_discriminator: ygdata.Id = ygdata.Id(NS_huawei_bfd, 'local-discriminator')
+_ID_huawei_bfd__reset_bfd_statistics: ygdata.Id = ygdata.Id(NS_huawei_bfd, 'reset-bfd-statistics')
+_ID_huawei_bfd__reset_type: ygdata.Id = ygdata.Id(NS_huawei_bfd, 'reset-type')
+_ID_huawei_bfd__select_slot_id: ygdata.Id = ygdata.Id(NS_huawei_bfd, 'select-slot-id')
+_ID_huawei_bgp__address: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'address')
+_ID_huawei_bgp__af: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'af')
+_ID_huawei_bgp__afs: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'afs')
+_ID_huawei_bgp__as: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'as')
+_ID_huawei_bgp__base_process: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'base-process')
+_ID_huawei_bgp__bgp: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'bgp')
+_ID_huawei_bgp__description: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'description')
+_ID_huawei_bgp__enable: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'enable')
+_ID_huawei_bgp__global: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'global')
+_ID_huawei_bgp__group_name: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'group-name')
+_ID_huawei_bgp__local_if_name: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'local-if-name')
+_ID_huawei_bgp__name: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'name')
+_ID_huawei_bgp__password_text: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'password-text')
+_ID_huawei_bgp__password_type: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'password-type')
+_ID_huawei_bgp__peer: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'peer')
+_ID_huawei_bgp__peer_group: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'peer-group')
+_ID_huawei_bgp__peer_groups: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'peer-groups')
+_ID_huawei_bgp__peers: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'peers')
+_ID_huawei_bgp__remote_as: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'remote-as')
+_ID_huawei_bgp__router_id: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'router-id')
+_ID_huawei_bgp__type: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'type')
+_ID_huawei_bgp__yang_enable: ygdata.Id = ygdata.Id(NS_huawei_bgp, 'yang-enable')
+_ID_huawei_ethernet__ce_vlan_begin: ygdata.Id = ygdata.Id(NS_huawei_ethernet, 'ce-vlan-begin')
+_ID_huawei_ethernet__ce_vlan_end: ygdata.Id = ygdata.Id(NS_huawei_ethernet, 'ce-vlan-end')
+_ID_huawei_ethernet__create_qinq_termination: ygdata.Id = ygdata.Id(NS_huawei_ethernet, 'create-qinq-termination')
+_ID_huawei_ethernet__create_user_vlan_qinq: ygdata.Id = ygdata.Id(NS_huawei_ethernet, 'create-user-vlan-qinq')
+_ID_huawei_ethernet__delete_qinq_termination: ygdata.Id = ygdata.Id(NS_huawei_ethernet, 'delete-qinq-termination')
+_ID_huawei_ethernet__delete_user_vlan_qinq: ygdata.Id = ygdata.Id(NS_huawei_ethernet, 'delete-user-vlan-qinq')
+_ID_huawei_ethernet__ethernet: ygdata.Id = ygdata.Id(NS_huawei_ethernet, 'ethernet')
+_ID_huawei_ethernet__group_id: ygdata.Id = ygdata.Id(NS_huawei_ethernet, 'group-id')
+_ID_huawei_ethernet__interface_name: ygdata.Id = ygdata.Id(NS_huawei_ethernet, 'interface-name')
+_ID_huawei_ethernet__l3_sub_interface: ygdata.Id = ygdata.Id(NS_huawei_ethernet, 'l3-sub-interface')
+_ID_huawei_ethernet__pe_vlan_begin: ygdata.Id = ygdata.Id(NS_huawei_ethernet, 'pe-vlan-begin')
+_ID_huawei_ethernet__pe_vlan_end: ygdata.Id = ygdata.Id(NS_huawei_ethernet, 'pe-vlan-end')
+_ID_huawei_ethernet__vlan_type_dot1q: ygdata.Id = ygdata.Id(NS_huawei_ethernet, 'vlan-type-dot1q')
+_ID_huawei_ethernet__vlan_type_vid: ygdata.Id = ygdata.Id(NS_huawei_ethernet, 'vlan-type-vid')
+_ID_huawei_ifm__admin_status: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'admin-status')
+_ID_huawei_ifm__all_if: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'all-if')
+_ID_huawei_ifm__class: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'class')
+_ID_huawei_ifm__description: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'description')
+_ID_huawei_ifm__if_name: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'if-name')
+_ID_huawei_ifm__if_type: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'if-type')
+_ID_huawei_ifm__ifm: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'ifm')
+_ID_huawei_ifm__interface: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'interface')
+_ID_huawei_ifm__interfaces: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'interfaces')
+_ID_huawei_ifm__name: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'name')
+_ID_huawei_ifm__number: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'number')
+_ID_huawei_ifm__parent_name: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'parent-name')
+_ID_huawei_ifm__reset_if_control_flap_counts: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'reset-if-control-flap-counts')
+_ID_huawei_ifm__reset_if_control_flap_penalty: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'reset-if-control-flap-penalty')
+_ID_huawei_ifm__reset_if_counters_all: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'reset-if-counters-all')
+_ID_huawei_ifm__reset_if_counters_by_name: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'reset-if-counters-by-name')
+_ID_huawei_ifm__reset_if_counters_by_type: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'reset-if-counters-by-type')
+_ID_huawei_ifm__reset_if_mib_counters_all: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'reset-if-mib-counters-all')
+_ID_huawei_ifm__reset_if_mib_counters_by_name: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'reset-if-mib-counters-by-name')
+_ID_huawei_ifm__reset_if_mib_counters_by_type: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'reset-if-mib-counters-by-type')
+_ID_huawei_ifm__reset_remote_if_counters: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'reset-remote-if-counters')
+_ID_huawei_ifm__restart_if: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'restart-if')
+_ID_huawei_ifm__type: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'type')
+_ID_huawei_ifm__vrf_name: ygdata.Id = ygdata.Id(NS_huawei_ifm, 'vrf-name')
+_ID_huawei_ifm_trunk__if_name: ygdata.Id = ygdata.Id(NS_huawei_ifm_trunk, 'if-name')
+_ID_huawei_ifm_trunk__trunk_switch: ygdata.Id = ygdata.Id(NS_huawei_ifm_trunk, 'trunk-switch')
+_ID_huawei_ip__address: ygdata.Id = ygdata.Id(NS_huawei_ip, 'address')
+_ID_huawei_ip__addresses: ygdata.Id = ygdata.Id(NS_huawei_ip, 'addresses')
+_ID_huawei_ip__ip: ygdata.Id = ygdata.Id(NS_huawei_ip, 'ip')
+_ID_huawei_ip__ipv4: ygdata.Id = ygdata.Id(NS_huawei_ip, 'ipv4')
+_ID_huawei_ip__mask: ygdata.Id = ygdata.Id(NS_huawei_ip, 'mask')
+_ID_huawei_ip__type: ygdata.Id = ygdata.Id(NS_huawei_ip, 'type')
+_ID_huawei_isis__af: ygdata.Id = ygdata.Id(NS_huawei_isis, 'af')
+_ID_huawei_isis__afs: ygdata.Id = ygdata.Id(NS_huawei_isis, 'afs')
+_ID_huawei_isis__circuit: ygdata.Id = ygdata.Id(NS_huawei_isis, 'circuit')
+_ID_huawei_isis__circuits: ygdata.Id = ygdata.Id(NS_huawei_isis, 'circuits')
+_ID_huawei_isis__clear_loop_detect_alarm_state: ygdata.Id = ygdata.Id(NS_huawei_isis, 'clear-loop-detect-alarm-state')
+_ID_huawei_isis__cost_level2: ygdata.Id = ygdata.Id(NS_huawei_isis, 'cost-level2')
+_ID_huawei_isis__cost_style: ygdata.Id = ygdata.Id(NS_huawei_isis, 'cost-style')
+_ID_huawei_isis__id: ygdata.Id = ygdata.Id(NS_huawei_isis, 'id')
+_ID_huawei_isis__interface: ygdata.Id = ygdata.Id(NS_huawei_isis, 'interface')
+_ID_huawei_isis__isis: ygdata.Id = ygdata.Id(NS_huawei_isis, 'isis')
+_ID_huawei_isis__level: ygdata.Id = ygdata.Id(NS_huawei_isis, 'level')
+_ID_huawei_isis__max: ygdata.Id = ygdata.Id(NS_huawei_isis, 'max')
+_ID_huawei_isis__name: ygdata.Id = ygdata.Id(NS_huawei_isis, 'name')
+_ID_huawei_isis__net_entity: ygdata.Id = ygdata.Id(NS_huawei_isis, 'net-entity')
+_ID_huawei_isis__net_entitys: ygdata.Id = ygdata.Id(NS_huawei_isis, 'net-entitys')
+_ID_huawei_isis__notify_peer: ygdata.Id = ygdata.Id(NS_huawei_isis, 'notify-peer')
+_ID_huawei_isis__p2p_enable: ygdata.Id = ygdata.Id(NS_huawei_isis, 'p2p-enable')
+_ID_huawei_isis__process_id: ygdata.Id = ygdata.Id(NS_huawei_isis, 'process-id')
+_ID_huawei_isis__reset_isis_all: ygdata.Id = ygdata.Id(NS_huawei_isis, 'reset-isis-all')
+_ID_huawei_isis__reset_isis_peer: ygdata.Id = ygdata.Id(NS_huawei_isis, 'reset-isis-peer')
+_ID_huawei_isis__reset_suppress_flapping_peer: ygdata.Id = ygdata.Id(NS_huawei_isis, 'reset-suppress-flapping-peer')
+_ID_huawei_isis__silent_enable: ygdata.Id = ygdata.Id(NS_huawei_isis, 'silent-enable')
+_ID_huawei_isis__site: ygdata.Id = ygdata.Id(NS_huawei_isis, 'site')
+_ID_huawei_isis__sites: ygdata.Id = ygdata.Id(NS_huawei_isis, 'sites')
+_ID_huawei_isis__spf: ygdata.Id = ygdata.Id(NS_huawei_isis, 'spf')
+_ID_huawei_isis__system_id: ygdata.Id = ygdata.Id(NS_huawei_isis, 'system-id')
+_ID_huawei_isis__timer: ygdata.Id = ygdata.Id(NS_huawei_isis, 'timer')
+_ID_huawei_isis__type: ygdata.Id = ygdata.Id(NS_huawei_isis, 'type')
+_ID_huawei_isis__value: ygdata.Id = ygdata.Id(NS_huawei_isis, 'value')
+_ID_huawei_l3vpn__af: ygdata.Id = ygdata.Id(NS_huawei_l3vpn, 'af')
+_ID_huawei_l3vpn__afs: ygdata.Id = ygdata.Id(NS_huawei_l3vpn, 'afs')
+_ID_huawei_l3vpn__reset_traffic_statistics: ygdata.Id = ygdata.Id(NS_huawei_l3vpn, 'reset-traffic-statistics')
+_ID_huawei_l3vpn__route_distinguisher: ygdata.Id = ygdata.Id(NS_huawei_l3vpn, 'route-distinguisher')
+_ID_huawei_l3vpn__type: ygdata.Id = ygdata.Id(NS_huawei_l3vpn, 'type')
+_ID_huawei_l3vpn__value: ygdata.Id = ygdata.Id(NS_huawei_l3vpn, 'value')
+_ID_huawei_l3vpn__vpn_target: ygdata.Id = ygdata.Id(NS_huawei_l3vpn, 'vpn-target')
+_ID_huawei_l3vpn__vpn_targets: ygdata.Id = ygdata.Id(NS_huawei_l3vpn, 'vpn-targets')
+_ID_huawei_l3vpn__vrf_name: ygdata.Id = ygdata.Id(NS_huawei_l3vpn, 'vrf-name')
+_ID_huawei_mpls__common: ygdata.Id = ygdata.Id(NS_huawei_mpls, 'common')
+_ID_huawei_mpls__global: ygdata.Id = ygdata.Id(NS_huawei_mpls, 'global')
+_ID_huawei_mpls__lsr_id: ygdata.Id = ygdata.Id(NS_huawei_mpls, 'lsr-id')
+_ID_huawei_mpls__mpls: ygdata.Id = ygdata.Id(NS_huawei_mpls, 'mpls')
+_ID_huawei_mpls__mpls_enable: ygdata.Id = ygdata.Id(NS_huawei_mpls, 'mpls-enable')
+_ID_huawei_mpls__mpls_interface: ygdata.Id = ygdata.Id(NS_huawei_mpls, 'mpls-interface')
+_ID_huawei_mpls__mpls_interfaces: ygdata.Id = ygdata.Id(NS_huawei_mpls, 'mpls-interfaces')
+_ID_huawei_mpls__name: ygdata.Id = ygdata.Id(NS_huawei_mpls, 'name')
+_ID_huawei_mpls_ldp__adjacency_down: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'adjacency-down')
+_ID_huawei_mpls_ldp__all_error_packet: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'all-error-packet')
+_ID_huawei_mpls_ldp__destination_address: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'destination-address')
+_ID_huawei_mpls_ldp__diagnose_lsp_establishment: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'diagnose-lsp-establishment')
+_ID_huawei_mpls_ldp__egress_check_limit: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'egress-check-limit')
+_ID_huawei_mpls_ldp__egress_check_policy: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'egress-check-policy')
+_ID_huawei_mpls_ldp__egress_check_resource: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'egress-check-resource')
+_ID_huawei_mpls_ldp__egress_check_route: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'egress-check-route')
+_ID_huawei_mpls_ldp__egress_check_upstream_request: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'egress-check-upstream-request')
+_ID_huawei_mpls_ldp__egress_state: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'egress-state')
+_ID_huawei_mpls_ldp__enable: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'enable')
+_ID_huawei_mpls_ldp__graceful: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'graceful')
+_ID_huawei_mpls_ldp__ingress_check_downstream_mapping: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'ingress-check-downstream-mapping')
+_ID_huawei_mpls_ldp__ingress_check_downstream_session: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'ingress-check-downstream-session')
+_ID_huawei_mpls_ldp__ingress_check_limit: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'ingress-check-limit')
+_ID_huawei_mpls_ldp__ingress_check_policy: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'ingress-check-policy')
+_ID_huawei_mpls_ldp__ingress_check_resource: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'ingress-check-resource')
+_ID_huawei_mpls_ldp__ingress_check_route: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'ingress-check-route')
+_ID_huawei_mpls_ldp__ingress_state: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'ingress-state')
+_ID_huawei_mpls_ldp__instance: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'instance')
+_ID_huawei_mpls_ldp__interface: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'interface')
+_ID_huawei_mpls_ldp__interfaces: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'interfaces')
+_ID_huawei_mpls_ldp__ipv4_dest_address: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'ipv4-dest-address')
+_ID_huawei_mpls_ldp__ipv4_masklen: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'ipv4-masklen')
+_ID_huawei_mpls_ldp__is_all: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'is-all')
+_ID_huawei_mpls_ldp__ldp: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'ldp')
+_ID_huawei_mpls_ldp__lsp_id: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'lsp-id')
+_ID_huawei_mpls_ldp__lsr_id: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'lsr-id')
+_ID_huawei_mpls_ldp__name: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'name')
+_ID_huawei_mpls_ldp__peer_id: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'peer-id')
+_ID_huawei_mpls_ldp__prefix_length: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'prefix-length')
+_ID_huawei_mpls_ldp__reset_all_ldp: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'reset-all-ldp')
+_ID_huawei_mpls_ldp__reset_ldp_error_packet: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'reset-ldp-error-packet')
+_ID_huawei_mpls_ldp__reset_ldp_event_records: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'reset-ldp-event-records')
+_ID_huawei_mpls_ldp__reset_ldp_session: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'reset-ldp-session')
+_ID_huawei_mpls_ldp__reset_ldp_traffic_statistics: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'reset-ldp-traffic-statistics')
+_ID_huawei_mpls_ldp__reset_mldp_all_traffic_statistics: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'reset-mldp-all-traffic-statistics')
+_ID_huawei_mpls_ldp__reset_mldp_traffic_statistics: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'reset-mldp-traffic-statistics')
+_ID_huawei_mpls_ldp__root_ip: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'root-ip')
+_ID_huawei_mpls_ldp__session_down: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'session-down')
+_ID_huawei_mpls_ldp__tcp_error_packet: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'tcp-error-packet')
+_ID_huawei_mpls_ldp__transit_check_downstream_mapping: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'transit-check-downstream-mapping')
+_ID_huawei_mpls_ldp__transit_check_downstream_session: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'transit-check-downstream-session')
+_ID_huawei_mpls_ldp__transit_check_limit: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'transit-check-limit')
+_ID_huawei_mpls_ldp__transit_check_policy: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'transit-check-policy')
+_ID_huawei_mpls_ldp__transit_check_resource: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'transit-check-resource')
+_ID_huawei_mpls_ldp__transit_check_route: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'transit-check-route')
+_ID_huawei_mpls_ldp__transit_check_upstream_request: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'transit-check-upstream-request')
+_ID_huawei_mpls_ldp__transit_state: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'transit-state')
+_ID_huawei_mpls_ldp__udp_error_packet: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'udp-error-packet')
+_ID_huawei_mpls_ldp__vrfname: ygdata.Id = ygdata.Id(NS_huawei_mpls_ldp, 'vrfname')
+_ID_huawei_network_instance__description: ygdata.Id = ygdata.Id(NS_huawei_network_instance, 'description')
+_ID_huawei_network_instance__instance: ygdata.Id = ygdata.Id(NS_huawei_network_instance, 'instance')
+_ID_huawei_network_instance__instances: ygdata.Id = ygdata.Id(NS_huawei_network_instance, 'instances')
+_ID_huawei_network_instance__name: ygdata.Id = ygdata.Id(NS_huawei_network_instance, 'name')
+_ID_huawei_network_instance__network_instance: ygdata.Id = ygdata.Id(NS_huawei_network_instance, 'network-instance')
+_ID_huawei_routing__address_family: ygdata.Id = ygdata.Id(NS_huawei_routing, 'address-family')
+_ID_huawei_routing__ipv4_unicast_route_number: ygdata.Id = ygdata.Id(NS_huawei_routing, 'ipv4-unicast-route-number')
+_ID_huawei_routing__ipv6_unicast_route_number: ygdata.Id = ygdata.Id(NS_huawei_routing, 'ipv6-unicast-route-number')
+_ID_huawei_routing__mask_length: ygdata.Id = ygdata.Id(NS_huawei_routing, 'mask-length')
+_ID_huawei_routing__prefix: ygdata.Id = ygdata.Id(NS_huawei_routing, 'prefix')
+_ID_huawei_routing__protocol_type: ygdata.Id = ygdata.Id(NS_huawei_routing, 'protocol-type')
+_ID_huawei_routing__reset_all_route_statistics: ygdata.Id = ygdata.Id(NS_huawei_routing, 'reset-all-route-statistics')
+_ID_huawei_routing__reset_all_vpn_route_statistics: ygdata.Id = ygdata.Id(NS_huawei_routing, 'reset-all-vpn-route-statistics')
+_ID_huawei_routing__reset_route_statistics: ygdata.Id = ygdata.Id(NS_huawei_routing, 'reset-route-statistics')
+_ID_huawei_routing__route_number: ygdata.Id = ygdata.Id(NS_huawei_routing, 'route-number')
+_ID_huawei_routing__static_unicast_route_number: ygdata.Id = ygdata.Id(NS_huawei_routing, 'static-unicast-route-number')
+_ID_huawei_routing__vpn_instance_name: ygdata.Id = ygdata.Id(NS_huawei_routing, 'vpn-instance-name')
+_ID_huawei_routing_policy__name: ygdata.Id = ygdata.Id(NS_huawei_routing_policy, 'name')
+_ID_huawei_routing_policy__reset_ipv4_prefix: ygdata.Id = ygdata.Id(NS_huawei_routing_policy, 'reset-ipv4-prefix')
+_ID_huawei_routing_policy__reset_ipv6_prefix: ygdata.Id = ygdata.Id(NS_huawei_routing_policy, 'reset-ipv6-prefix')
+_ID_huawei_routing_policy__reset_route_policy_counters: ygdata.Id = ygdata.Id(NS_huawei_routing_policy, 'reset-route-policy-counters')
+_ID_huawei_socket__family: ygdata.Id = ygdata.Id(NS_huawei_socket, 'family')
+_ID_huawei_socket__reset_rawip_stats: ygdata.Id = ygdata.Id(NS_huawei_socket, 'reset-rawip-stats')
+_ID_huawei_socket__reset_rawlink_stats: ygdata.Id = ygdata.Id(NS_huawei_socket, 'reset-rawlink-stats')
+_ID_huawei_socket__reset_tcp_stats: ygdata.Id = ygdata.Id(NS_huawei_socket, 'reset-tcp-stats')
+_ID_huawei_socket__reset_udp_stats: ygdata.Id = ygdata.Id(NS_huawei_socket, 'reset-udp-stats')
+_ID_huawei_system__filename: ygdata.Id = ygdata.Id(NS_huawei_system, 'filename')
+_ID_huawei_system__load_weak_password_dictionary: ygdata.Id = ygdata.Id(NS_huawei_system, 'load-weak-password-dictionary')
+_ID_huawei_system__sys_name: ygdata.Id = ygdata.Id(NS_huawei_system, 'sys-name')
+_ID_huawei_system__system: ygdata.Id = ygdata.Id(NS_huawei_system, 'system')
+_ID_huawei_system__system_info: ygdata.Id = ygdata.Id(NS_huawei_system, 'system-info')
+_ID_huawei_system__unload_weak_password_dictionary: ygdata.Id = ygdata.Id(NS_huawei_system, 'unload-weak-password-dictionary')
+
 
 _breaker1: None = None
 class huawei_network_instance__network_instance__instances__instance__afs__af__vpn_targets__vpn_target_entry(yadata.MNode):
@@ -63,7 +266,7 @@ class huawei_network_instance__network_instance__instances__instance__afs__af__v
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__afs__af__vpn_targets__vpn_target_entry:
-        return huawei_network_instance__network_instance__instances__instance__afs__af__vpn_targets__vpn_target_entry(value=n.get_str(ygdata.Id(NS_huawei_l3vpn, 'value')), type=n.get_str(ygdata.Id(NS_huawei_l3vpn, 'type')))
+        return huawei_network_instance__network_instance__instances__instance__afs__af__vpn_targets__vpn_target_entry(value=n.get_str(_ID_huawei_l3vpn__value), type=n.get_str(_ID_huawei_l3vpn__type))
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__afs__af__vpn_targets__vpn_target_entry:
         """Create a deep copy of this adata object"""
@@ -113,7 +316,7 @@ class huawei_network_instance__network_instance__instances__instance__afs__af__v
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__afs__af__vpn_targets:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__afs__af__vpn_targets(vpn_target=huawei_network_instance__network_instance__instances__instance__afs__af__vpn_targets__vpn_target.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_l3vpn, 'vpn-target'))))
+            return huawei_network_instance__network_instance__instances__instance__afs__af__vpn_targets(vpn_target=huawei_network_instance__network_instance__instances__instance__afs__af__vpn_targets__vpn_target.from_gdata(n.get_opt_list(_ID_huawei_l3vpn__vpn_target)))
         return huawei_network_instance__network_instance__instances__instance__afs__af__vpn_targets()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__afs__af__vpn_targets:
@@ -137,7 +340,7 @@ class huawei_network_instance__network_instance__instances__instance__afs__af_en
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__afs__af_entry:
-        return huawei_network_instance__network_instance__instances__instance__afs__af_entry(type=n.get_str(ygdata.Id(NS_huawei_l3vpn, 'type')), route_distinguisher=n.get_opt_str(ygdata.Id(NS_huawei_l3vpn, 'route-distinguisher')), vpn_targets=huawei_network_instance__network_instance__instances__instance__afs__af__vpn_targets.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_l3vpn, 'vpn-targets'))))
+        return huawei_network_instance__network_instance__instances__instance__afs__af_entry(type=n.get_str(_ID_huawei_l3vpn__type), route_distinguisher=n.get_opt_str(_ID_huawei_l3vpn__route_distinguisher), vpn_targets=huawei_network_instance__network_instance__instances__instance__afs__af__vpn_targets.from_gdata(n.get_opt_cnt(_ID_huawei_l3vpn__vpn_targets)))
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__afs__af_entry:
         """Create a deep copy of this adata object"""
@@ -189,7 +392,7 @@ class huawei_network_instance__network_instance__instances__instance__afs(yadata
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__afs:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__afs(af=huawei_network_instance__network_instance__instances__instance__afs__af.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_l3vpn, 'af'))))
+            return huawei_network_instance__network_instance__instances__instance__afs(af=huawei_network_instance__network_instance__instances__instance__afs__af.from_gdata(n.get_opt_list(_ID_huawei_l3vpn__af)))
         return huawei_network_instance__network_instance__instances__instance__afs()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__afs:
@@ -209,7 +412,7 @@ class huawei_network_instance__network_instance__instances__instance__mpls__comm
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__mpls__common__mpls_interfaces__mpls_interface_entry:
-        return huawei_network_instance__network_instance__instances__instance__mpls__common__mpls_interfaces__mpls_interface_entry(name=n.get_str(ygdata.Id(NS_huawei_mpls, 'name')))
+        return huawei_network_instance__network_instance__instances__instance__mpls__common__mpls_interfaces__mpls_interface_entry(name=n.get_str(_ID_huawei_mpls__name))
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__mpls__common__mpls_interfaces__mpls_interface_entry:
         """Create a deep copy of this adata object"""
@@ -259,7 +462,7 @@ class huawei_network_instance__network_instance__instances__instance__mpls__comm
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__mpls__common__mpls_interfaces:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__mpls__common__mpls_interfaces(mpls_interface=huawei_network_instance__network_instance__instances__instance__mpls__common__mpls_interfaces__mpls_interface.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_mpls, 'mpls-interface'))))
+            return huawei_network_instance__network_instance__instances__instance__mpls__common__mpls_interfaces(mpls_interface=huawei_network_instance__network_instance__instances__instance__mpls__common__mpls_interfaces__mpls_interface.from_gdata(n.get_opt_list(_ID_huawei_mpls__mpls_interface)))
         return huawei_network_instance__network_instance__instances__instance__mpls__common__mpls_interfaces()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__mpls__common__mpls_interfaces:
@@ -280,7 +483,7 @@ class huawei_network_instance__network_instance__instances__instance__mpls__comm
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__mpls__common:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__mpls__common(mpls_interfaces=huawei_network_instance__network_instance__instances__instance__mpls__common__mpls_interfaces.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_mpls, 'mpls-interfaces'))))
+            return huawei_network_instance__network_instance__instances__instance__mpls__common(mpls_interfaces=huawei_network_instance__network_instance__instances__instance__mpls__common__mpls_interfaces.from_gdata(n.get_opt_cnt(_ID_huawei_mpls__mpls_interfaces)))
         return huawei_network_instance__network_instance__instances__instance__mpls__common()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__mpls__common:
@@ -300,7 +503,7 @@ class huawei_network_instance__network_instance__instances__instance__mpls__ldp_
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance__interfaces__interface_entry:
-        return huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance__interfaces__interface_entry(name=n.get_str(ygdata.Id(NS_huawei_mpls_ldp, 'name')))
+        return huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance__interfaces__interface_entry(name=n.get_str(_ID_huawei_mpls_ldp__name))
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance__interfaces__interface_entry:
         """Create a deep copy of this adata object"""
@@ -350,7 +553,7 @@ class huawei_network_instance__network_instance__instances__instance__mpls__ldp_
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance__interfaces:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance__interfaces(interface=huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance__interfaces__interface.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_mpls_ldp, 'interface'))))
+            return huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance__interfaces(interface=huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance__interfaces__interface.from_gdata(n.get_opt_list(_ID_huawei_mpls_ldp__interface)))
         return huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance__interfaces()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance__interfaces:
@@ -373,7 +576,7 @@ class huawei_network_instance__network_instance__instances__instance__mpls__ldp_
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance(lsr_id=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'lsr-id')), interfaces=huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance__interfaces.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_mpls_ldp, 'interfaces'))))
+            return huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance(lsr_id=n.get_opt_str(_ID_huawei_mpls_ldp__lsr_id), interfaces=huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance__interfaces.from_gdata(n.get_opt_cnt(_ID_huawei_mpls_ldp__interfaces)))
         return None
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance:
@@ -407,7 +610,7 @@ class huawei_network_instance__network_instance__instances__instance__mpls__ldp(
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__mpls__ldp:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__mpls__ldp(instance=huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_mpls_ldp, 'instance'))))
+            return huawei_network_instance__network_instance__instances__instance__mpls__ldp(instance=huawei_network_instance__network_instance__instances__instance__mpls__ldp__instance.from_gdata(n.get_opt_cnt(_ID_huawei_mpls_ldp__instance)))
         return huawei_network_instance__network_instance__instances__instance__mpls__ldp()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__mpls__ldp:
@@ -430,7 +633,7 @@ class huawei_network_instance__network_instance__instances__instance__mpls(yadat
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__mpls:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__mpls(common=huawei_network_instance__network_instance__instances__instance__mpls__common.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_mpls, 'common'))), ldp=huawei_network_instance__network_instance__instances__instance__mpls__ldp.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_mpls_ldp, 'ldp'))))
+            return huawei_network_instance__network_instance__instances__instance__mpls(common=huawei_network_instance__network_instance__instances__instance__mpls__common.from_gdata(n.get_opt_cnt(_ID_huawei_mpls__common)), ldp=huawei_network_instance__network_instance__instances__instance__mpls__ldp.from_gdata(n.get_opt_cnt(_ID_huawei_mpls_ldp__ldp)))
         return huawei_network_instance__network_instance__instances__instance__mpls()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__mpls:
@@ -451,7 +654,7 @@ class huawei_network_instance__network_instance__instances__instance__isis__site
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__timer__spf:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__isis__sites__site__timer__spf(max=n.get_opt_u64(ygdata.Id(NS_huawei_isis, 'max')))
+            return huawei_network_instance__network_instance__instances__instance__isis__sites__site__timer__spf(max=n.get_opt_u64(_ID_huawei_isis__max))
         return huawei_network_instance__network_instance__instances__instance__isis__sites__site__timer__spf()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__timer__spf:
@@ -472,7 +675,7 @@ class huawei_network_instance__network_instance__instances__instance__isis__site
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__timer:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__isis__sites__site__timer(spf=huawei_network_instance__network_instance__instances__instance__isis__sites__site__timer__spf.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_isis, 'spf'))))
+            return huawei_network_instance__network_instance__instances__instance__isis__sites__site__timer(spf=huawei_network_instance__network_instance__instances__instance__isis__sites__site__timer__spf.from_gdata(n.get_opt_cnt(_ID_huawei_isis__spf)))
         return huawei_network_instance__network_instance__instances__instance__isis__sites__site__timer()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__timer:
@@ -492,7 +695,7 @@ class huawei_network_instance__network_instance__instances__instance__isis__site
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__net_entitys__net_entity_entry:
-        return huawei_network_instance__network_instance__instances__instance__isis__sites__site__net_entitys__net_entity_entry(value=n.get_str(ygdata.Id(NS_huawei_isis, 'value')))
+        return huawei_network_instance__network_instance__instances__instance__isis__sites__site__net_entitys__net_entity_entry(value=n.get_str(_ID_huawei_isis__value))
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__net_entitys__net_entity_entry:
         """Create a deep copy of this adata object"""
@@ -542,7 +745,7 @@ class huawei_network_instance__network_instance__instances__instance__isis__site
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__net_entitys:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__isis__sites__site__net_entitys(net_entity=huawei_network_instance__network_instance__instances__instance__isis__sites__site__net_entitys__net_entity.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_isis, 'net-entity'))))
+            return huawei_network_instance__network_instance__instances__instance__isis__sites__site__net_entitys(net_entity=huawei_network_instance__network_instance__instances__instance__isis__sites__site__net_entitys__net_entity.from_gdata(n.get_opt_list(_ID_huawei_isis__net_entity)))
         return huawei_network_instance__network_instance__instances__instance__isis__sites__site__net_entitys()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__net_entitys:
@@ -564,7 +767,7 @@ class huawei_network_instance__network_instance__instances__instance__isis__site
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit__afs__af_entry:
-        return huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit__afs__af_entry(type=n.get_str(ygdata.Id(NS_huawei_isis, 'type')), cost_level2=n.get_opt_u64(ygdata.Id(NS_huawei_isis, 'cost-level2')))
+        return huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit__afs__af_entry(type=n.get_str(_ID_huawei_isis__type), cost_level2=n.get_opt_u64(_ID_huawei_isis__cost_level2))
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit__afs__af_entry:
         """Create a deep copy of this adata object"""
@@ -616,7 +819,7 @@ class huawei_network_instance__network_instance__instances__instance__isis__site
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit__afs:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit__afs(af=huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit__afs__af.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_isis, 'af'))))
+            return huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit__afs(af=huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit__afs__af.from_gdata(n.get_opt_list(_ID_huawei_isis__af)))
         return huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit__afs()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit__afs:
@@ -644,7 +847,7 @@ class huawei_network_instance__network_instance__instances__instance__isis__site
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit_entry:
-        return huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit_entry(name=n.get_str(ygdata.Id(NS_huawei_isis, 'name')), level=n.get_opt_str(ygdata.Id(NS_huawei_isis, 'level')), p2p_enable=n.get_opt_bool(ygdata.Id(NS_huawei_isis, 'p2p-enable')), silent_enable=n.get_opt_bool(ygdata.Id(NS_huawei_isis, 'silent-enable')), afs=huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit__afs.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_isis, 'afs'))))
+        return huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit_entry(name=n.get_str(_ID_huawei_isis__name), level=n.get_opt_str(_ID_huawei_isis__level), p2p_enable=n.get_opt_bool(_ID_huawei_isis__p2p_enable), silent_enable=n.get_opt_bool(_ID_huawei_isis__silent_enable), afs=huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit__afs.from_gdata(n.get_opt_cnt(_ID_huawei_isis__afs)))
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit_entry:
         """Create a deep copy of this adata object"""
@@ -700,7 +903,7 @@ class huawei_network_instance__network_instance__instances__instance__isis__site
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits(circuit=huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_isis, 'circuit'))))
+            return huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits(circuit=huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits__circuit.from_gdata(n.get_opt_list(_ID_huawei_isis__circuit)))
         return huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits:
@@ -720,7 +923,7 @@ class huawei_network_instance__network_instance__instances__instance__isis__site
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__afs__af_entry:
-        return huawei_network_instance__network_instance__instances__instance__isis__sites__site__afs__af_entry(type=n.get_str(ygdata.Id(NS_huawei_isis, 'type')))
+        return huawei_network_instance__network_instance__instances__instance__isis__sites__site__afs__af_entry(type=n.get_str(_ID_huawei_isis__type))
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__afs__af_entry:
         """Create a deep copy of this adata object"""
@@ -770,7 +973,7 @@ class huawei_network_instance__network_instance__instances__instance__isis__site
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__afs:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__isis__sites__site__afs(af=huawei_network_instance__network_instance__instances__instance__isis__sites__site__afs__af.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_isis, 'af'))))
+            return huawei_network_instance__network_instance__instances__instance__isis__sites__site__afs(af=huawei_network_instance__network_instance__instances__instance__isis__sites__site__afs__af.from_gdata(n.get_opt_list(_ID_huawei_isis__af)))
         return huawei_network_instance__network_instance__instances__instance__isis__sites__site__afs()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site__afs:
@@ -802,7 +1005,7 @@ class huawei_network_instance__network_instance__instances__instance__isis__site
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site_entry:
-        return huawei_network_instance__network_instance__instances__instance__isis__sites__site_entry(id=n.get_u64(ygdata.Id(NS_huawei_isis, 'id')), level=n.get_opt_str(ygdata.Id(NS_huawei_isis, 'level')), cost_style=n.get_opt_str(ygdata.Id(NS_huawei_isis, 'cost-style')), timer=huawei_network_instance__network_instance__instances__instance__isis__sites__site__timer.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_isis, 'timer'))), net_entitys=huawei_network_instance__network_instance__instances__instance__isis__sites__site__net_entitys.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_isis, 'net-entitys'))), circuits=huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_isis, 'circuits'))), afs=huawei_network_instance__network_instance__instances__instance__isis__sites__site__afs.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_isis, 'afs'))))
+        return huawei_network_instance__network_instance__instances__instance__isis__sites__site_entry(id=n.get_u64(_ID_huawei_isis__id), level=n.get_opt_str(_ID_huawei_isis__level), cost_style=n.get_opt_str(_ID_huawei_isis__cost_style), timer=huawei_network_instance__network_instance__instances__instance__isis__sites__site__timer.from_gdata(n.get_opt_cnt(_ID_huawei_isis__timer)), net_entitys=huawei_network_instance__network_instance__instances__instance__isis__sites__site__net_entitys.from_gdata(n.get_opt_cnt(_ID_huawei_isis__net_entitys)), circuits=huawei_network_instance__network_instance__instances__instance__isis__sites__site__circuits.from_gdata(n.get_opt_cnt(_ID_huawei_isis__circuits)), afs=huawei_network_instance__network_instance__instances__instance__isis__sites__site__afs.from_gdata(n.get_opt_cnt(_ID_huawei_isis__afs)))
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__isis__sites__site_entry:
         """Create a deep copy of this adata object"""
@@ -856,7 +1059,7 @@ class huawei_network_instance__network_instance__instances__instance__isis__site
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__isis__sites:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__isis__sites(site=huawei_network_instance__network_instance__instances__instance__isis__sites__site.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_isis, 'site'))))
+            return huawei_network_instance__network_instance__instances__instance__isis__sites(site=huawei_network_instance__network_instance__instances__instance__isis__sites__site.from_gdata(n.get_opt_list(_ID_huawei_isis__site)))
         return huawei_network_instance__network_instance__instances__instance__isis__sites()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__isis__sites:
@@ -877,7 +1080,7 @@ class huawei_network_instance__network_instance__instances__instance__isis(yadat
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__isis:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__isis(sites=huawei_network_instance__network_instance__instances__instance__isis__sites.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_isis, 'sites'))))
+            return huawei_network_instance__network_instance__instances__instance__isis(sites=huawei_network_instance__network_instance__instances__instance__isis__sites.from_gdata(n.get_opt_cnt(_ID_huawei_isis__sites)))
         return huawei_network_instance__network_instance__instances__instance__isis()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__isis:
@@ -897,7 +1100,7 @@ class huawei_network_instance__network_instance__instances__instance__bgp__base_
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__afs__af_entry:
-        return huawei_network_instance__network_instance__instances__instance__bgp__base_process__afs__af_entry(type=n.get_str(ygdata.Id(NS_huawei_bgp, 'type')))
+        return huawei_network_instance__network_instance__instances__instance__bgp__base_process__afs__af_entry(type=n.get_str(_ID_huawei_bgp__type))
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__afs__af_entry:
         """Create a deep copy of this adata object"""
@@ -947,7 +1150,7 @@ class huawei_network_instance__network_instance__instances__instance__bgp__base_
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__afs:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__bgp__base_process__afs(af=huawei_network_instance__network_instance__instances__instance__bgp__base_process__afs__af.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_bgp, 'af'))))
+            return huawei_network_instance__network_instance__instances__instance__bgp__base_process__afs(af=huawei_network_instance__network_instance__instances__instance__bgp__base_process__afs__af.from_gdata(n.get_opt_list(_ID_huawei_bgp__af)))
         return huawei_network_instance__network_instance__instances__instance__bgp__base_process__afs()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__afs:
@@ -967,7 +1170,7 @@ class huawei_network_instance__network_instance__instances__instance__bgp__base_
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group__afs__af_entry:
-        return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group__afs__af_entry(type=n.get_str(ygdata.Id(NS_huawei_bgp, 'type')))
+        return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group__afs__af_entry(type=n.get_str(_ID_huawei_bgp__type))
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group__afs__af_entry:
         """Create a deep copy of this adata object"""
@@ -1017,7 +1220,7 @@ class huawei_network_instance__network_instance__instances__instance__bgp__base_
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group__afs:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group__afs(af=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group__afs__af.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_bgp, 'af'))))
+            return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group__afs(af=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group__afs__af.from_gdata(n.get_opt_list(_ID_huawei_bgp__af)))
         return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group__afs()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group__afs:
@@ -1047,7 +1250,7 @@ class huawei_network_instance__network_instance__instances__instance__bgp__base_
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group_entry:
-        return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group_entry(name=n.get_str(ygdata.Id(NS_huawei_bgp, 'name')), type=n.get_opt_str(ygdata.Id(NS_huawei_bgp, 'type')), local_if_name=n.get_opt_str(ygdata.Id(NS_huawei_bgp, 'local-if-name')), password_type=n.get_opt_str(ygdata.Id(NS_huawei_bgp, 'password-type')), password_text=n.get_opt_str(ygdata.Id(NS_huawei_bgp, 'password-text')), afs=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group__afs.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_bgp, 'afs'))))
+        return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group_entry(name=n.get_str(_ID_huawei_bgp__name), type=n.get_opt_str(_ID_huawei_bgp__type), local_if_name=n.get_opt_str(_ID_huawei_bgp__local_if_name), password_type=n.get_opt_str(_ID_huawei_bgp__password_type), password_text=n.get_opt_str(_ID_huawei_bgp__password_text), afs=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group__afs.from_gdata(n.get_opt_cnt(_ID_huawei_bgp__afs)))
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group_entry:
         """Create a deep copy of this adata object"""
@@ -1105,7 +1308,7 @@ class huawei_network_instance__network_instance__instances__instance__bgp__base_
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups(peer_group=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_bgp, 'peer-group'))))
+            return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups(peer_group=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups__peer_group.from_gdata(n.get_opt_list(_ID_huawei_bgp__peer_group)))
         return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups:
@@ -1125,7 +1328,7 @@ class huawei_network_instance__network_instance__instances__instance__bgp__base_
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer__afs__af_entry:
-        return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer__afs__af_entry(type=n.get_str(ygdata.Id(NS_huawei_bgp, 'type')))
+        return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer__afs__af_entry(type=n.get_str(_ID_huawei_bgp__type))
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer__afs__af_entry:
         """Create a deep copy of this adata object"""
@@ -1175,7 +1378,7 @@ class huawei_network_instance__network_instance__instances__instance__bgp__base_
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer__afs:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer__afs(af=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer__afs__af.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_bgp, 'af'))))
+            return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer__afs(af=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer__afs__af.from_gdata(n.get_opt_list(_ID_huawei_bgp__af)))
         return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer__afs()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer__afs:
@@ -1209,7 +1412,7 @@ class huawei_network_instance__network_instance__instances__instance__bgp__base_
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer_entry:
-        return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer_entry(address=n.get_str(ygdata.Id(NS_huawei_bgp, 'address')), remote_as=n.get_opt_str(ygdata.Id(NS_huawei_bgp, 'remote-as')), group_name=n.get_opt_str(ygdata.Id(NS_huawei_bgp, 'group-name')), local_if_name=n.get_opt_str(ygdata.Id(NS_huawei_bgp, 'local-if-name')), password_type=n.get_opt_str(ygdata.Id(NS_huawei_bgp, 'password-type')), password_text=n.get_opt_str(ygdata.Id(NS_huawei_bgp, 'password-text')), description=n.get_opt_str(ygdata.Id(NS_huawei_bgp, 'description')), afs=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer__afs.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_bgp, 'afs'))))
+        return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer_entry(address=n.get_str(_ID_huawei_bgp__address), remote_as=n.get_opt_str(_ID_huawei_bgp__remote_as), group_name=n.get_opt_str(_ID_huawei_bgp__group_name), local_if_name=n.get_opt_str(_ID_huawei_bgp__local_if_name), password_type=n.get_opt_str(_ID_huawei_bgp__password_type), password_text=n.get_opt_str(_ID_huawei_bgp__password_text), description=n.get_opt_str(_ID_huawei_bgp__description), afs=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer__afs.from_gdata(n.get_opt_cnt(_ID_huawei_bgp__afs)))
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer_entry:
         """Create a deep copy of this adata object"""
@@ -1271,7 +1474,7 @@ class huawei_network_instance__network_instance__instances__instance__bgp__base_
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers(peer=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_bgp, 'peer'))))
+            return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers(peer=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers__peer.from_gdata(n.get_opt_list(_ID_huawei_bgp__peer)))
         return huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers:
@@ -1298,7 +1501,7 @@ class huawei_network_instance__network_instance__instances__instance__bgp__base_
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?huawei_network_instance__network_instance__instances__instance__bgp__base_process:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__bgp__base_process(router_id=n.get_opt_str(ygdata.Id(NS_huawei_bgp, 'router-id')), afs=huawei_network_instance__network_instance__instances__instance__bgp__base_process__afs.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_bgp, 'afs'))), peer_groups=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_bgp, 'peer-groups'))), peers=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_bgp, 'peers'))))
+            return huawei_network_instance__network_instance__instances__instance__bgp__base_process(router_id=n.get_opt_str(_ID_huawei_bgp__router_id), afs=huawei_network_instance__network_instance__instances__instance__bgp__base_process__afs.from_gdata(n.get_opt_cnt(_ID_huawei_bgp__afs)), peer_groups=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peer_groups.from_gdata(n.get_opt_cnt(_ID_huawei_bgp__peer_groups)), peers=huawei_network_instance__network_instance__instances__instance__bgp__base_process__peers.from_gdata(n.get_opt_cnt(_ID_huawei_bgp__peers)))
         return None
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__bgp__base_process:
@@ -1332,7 +1535,7 @@ class huawei_network_instance__network_instance__instances__instance__bgp(yadata
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances__instance__bgp:
         if n is not None:
-            return huawei_network_instance__network_instance__instances__instance__bgp(base_process=huawei_network_instance__network_instance__instances__instance__bgp__base_process.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_bgp, 'base-process'))))
+            return huawei_network_instance__network_instance__instances__instance__bgp(base_process=huawei_network_instance__network_instance__instances__instance__bgp__base_process.from_gdata(n.get_opt_cnt(_ID_huawei_bgp__base_process)))
         return huawei_network_instance__network_instance__instances__instance__bgp()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance__bgp:
@@ -1362,7 +1565,7 @@ class huawei_network_instance__network_instance__instances__instance_entry(yadat
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_network_instance__network_instance__instances__instance_entry:
-        return huawei_network_instance__network_instance__instances__instance_entry(name=n.get_str(ygdata.Id(NS_huawei_network_instance, 'name')), description=n.get_opt_str(ygdata.Id(NS_huawei_network_instance, 'description')), afs=huawei_network_instance__network_instance__instances__instance__afs.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_l3vpn, 'afs'))), mpls=huawei_network_instance__network_instance__instances__instance__mpls.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_mpls, 'mpls'))), isis=huawei_network_instance__network_instance__instances__instance__isis.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_isis, 'isis'))), bgp=huawei_network_instance__network_instance__instances__instance__bgp.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_bgp, 'bgp'))))
+        return huawei_network_instance__network_instance__instances__instance_entry(name=n.get_str(_ID_huawei_network_instance__name), description=n.get_opt_str(_ID_huawei_network_instance__description), afs=huawei_network_instance__network_instance__instances__instance__afs.from_gdata(n.get_opt_cnt(_ID_huawei_l3vpn__afs)), mpls=huawei_network_instance__network_instance__instances__instance__mpls.from_gdata(n.get_opt_cnt(_ID_huawei_mpls__mpls)), isis=huawei_network_instance__network_instance__instances__instance__isis.from_gdata(n.get_opt_cnt(_ID_huawei_isis__isis)), bgp=huawei_network_instance__network_instance__instances__instance__bgp.from_gdata(n.get_opt_cnt(_ID_huawei_bgp__bgp)))
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances__instance_entry:
         """Create a deep copy of this adata object"""
@@ -1414,7 +1617,7 @@ class huawei_network_instance__network_instance__instances(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance__instances:
         if n is not None:
-            return huawei_network_instance__network_instance__instances(instance=huawei_network_instance__network_instance__instances__instance.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_network_instance, 'instance'))))
+            return huawei_network_instance__network_instance__instances(instance=huawei_network_instance__network_instance__instances__instance.from_gdata(n.get_opt_list(_ID_huawei_network_instance__instance)))
         return huawei_network_instance__network_instance__instances()
 
     mut def copy(self) -> huawei_network_instance__network_instance__instances:
@@ -1435,7 +1638,7 @@ class huawei_network_instance__network_instance(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_network_instance__network_instance:
         if n is not None:
-            return huawei_network_instance__network_instance(instances=huawei_network_instance__network_instance__instances.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_network_instance, 'instances'))))
+            return huawei_network_instance__network_instance(instances=huawei_network_instance__network_instance__instances.from_gdata(n.get_opt_cnt(_ID_huawei_network_instance__instances)))
         return huawei_network_instance__network_instance()
 
     mut def copy(self) -> huawei_network_instance__network_instance:
@@ -1459,7 +1662,7 @@ class huawei_ifm__ifm__interfaces__interface__ipv4__addresses__address_entry(yad
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_ifm__ifm__interfaces__interface__ipv4__addresses__address_entry:
-        return huawei_ifm__ifm__interfaces__interface__ipv4__addresses__address_entry(ip=n.get_str(ygdata.Id(NS_huawei_ip, 'ip')), mask=n.get_opt_str(ygdata.Id(NS_huawei_ip, 'mask')), type=n.get_opt_str(ygdata.Id(NS_huawei_ip, 'type')))
+        return huawei_ifm__ifm__interfaces__interface__ipv4__addresses__address_entry(ip=n.get_str(_ID_huawei_ip__ip), mask=n.get_opt_str(_ID_huawei_ip__mask), type=n.get_opt_str(_ID_huawei_ip__type))
 
     mut def copy(self) -> huawei_ifm__ifm__interfaces__interface__ipv4__addresses__address_entry:
         """Create a deep copy of this adata object"""
@@ -1513,7 +1716,7 @@ class huawei_ifm__ifm__interfaces__interface__ipv4__addresses(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__ifm__interfaces__interface__ipv4__addresses:
         if n is not None:
-            return huawei_ifm__ifm__interfaces__interface__ipv4__addresses(address=huawei_ifm__ifm__interfaces__interface__ipv4__addresses__address.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_ip, 'address'))))
+            return huawei_ifm__ifm__interfaces__interface__ipv4__addresses(address=huawei_ifm__ifm__interfaces__interface__ipv4__addresses__address.from_gdata(n.get_opt_list(_ID_huawei_ip__address)))
         return huawei_ifm__ifm__interfaces__interface__ipv4__addresses()
 
     mut def copy(self) -> huawei_ifm__ifm__interfaces__interface__ipv4__addresses:
@@ -1534,7 +1737,7 @@ class huawei_ifm__ifm__interfaces__interface__ipv4(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__ifm__interfaces__interface__ipv4:
         if n is not None:
-            return huawei_ifm__ifm__interfaces__interface__ipv4(addresses=huawei_ifm__ifm__interfaces__interface__ipv4__addresses.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_ip, 'addresses'))))
+            return huawei_ifm__ifm__interfaces__interface__ipv4(addresses=huawei_ifm__ifm__interfaces__interface__ipv4__addresses.from_gdata(n.get_opt_cnt(_ID_huawei_ip__addresses)))
         return huawei_ifm__ifm__interfaces__interface__ipv4()
 
     mut def copy(self) -> huawei_ifm__ifm__interfaces__interface__ipv4:
@@ -1555,7 +1758,7 @@ class huawei_ifm__ifm__interfaces__interface__ethernet__l3_sub_interface__vlan_t
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> ?huawei_ifm__ifm__interfaces__interface__ethernet__l3_sub_interface__vlan_type_dot1q:
         if n is not None:
-            return huawei_ifm__ifm__interfaces__interface__ethernet__l3_sub_interface__vlan_type_dot1q(vlan_type_vid=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'vlan-type-vid')))
+            return huawei_ifm__ifm__interfaces__interface__ethernet__l3_sub_interface__vlan_type_dot1q(vlan_type_vid=n.get_opt_u64(_ID_huawei_ethernet__vlan_type_vid))
         return None
 
     mut def copy(self) -> huawei_ifm__ifm__interfaces__interface__ethernet__l3_sub_interface__vlan_type_dot1q:
@@ -1589,7 +1792,7 @@ class huawei_ifm__ifm__interfaces__interface__ethernet__l3_sub_interface(yadata.
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__ifm__interfaces__interface__ethernet__l3_sub_interface:
         if n is not None:
-            return huawei_ifm__ifm__interfaces__interface__ethernet__l3_sub_interface(vlan_type_dot1q=huawei_ifm__ifm__interfaces__interface__ethernet__l3_sub_interface__vlan_type_dot1q.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_ethernet, 'vlan-type-dot1q'))))
+            return huawei_ifm__ifm__interfaces__interface__ethernet__l3_sub_interface(vlan_type_dot1q=huawei_ifm__ifm__interfaces__interface__ethernet__l3_sub_interface__vlan_type_dot1q.from_gdata(n.get_opt_cnt(_ID_huawei_ethernet__vlan_type_dot1q)))
         return huawei_ifm__ifm__interfaces__interface__ethernet__l3_sub_interface()
 
     mut def copy(self) -> huawei_ifm__ifm__interfaces__interface__ethernet__l3_sub_interface:
@@ -1610,7 +1813,7 @@ class huawei_ifm__ifm__interfaces__interface__ethernet(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__ifm__interfaces__interface__ethernet:
         if n is not None:
-            return huawei_ifm__ifm__interfaces__interface__ethernet(l3_sub_interface=huawei_ifm__ifm__interfaces__interface__ethernet__l3_sub_interface.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_ethernet, 'l3-sub-interface'))))
+            return huawei_ifm__ifm__interfaces__interface__ethernet(l3_sub_interface=huawei_ifm__ifm__interfaces__interface__ethernet__l3_sub_interface.from_gdata(n.get_opt_cnt(_ID_huawei_ethernet__l3_sub_interface)))
         return huawei_ifm__ifm__interfaces__interface__ethernet()
 
     mut def copy(self) -> huawei_ifm__ifm__interfaces__interface__ethernet:
@@ -1648,7 +1851,7 @@ class huawei_ifm__ifm__interfaces__interface_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> huawei_ifm__ifm__interfaces__interface_entry:
-        return huawei_ifm__ifm__interfaces__interface_entry(name=n.get_str(ygdata.Id(NS_huawei_ifm, 'name')), class=n.get_opt_str(ygdata.Id(NS_huawei_ifm, 'class')), type=n.get_opt_str(ygdata.Id(NS_huawei_ifm, 'type')), parent_name=n.get_opt_str(ygdata.Id(NS_huawei_ifm, 'parent-name')), number=n.get_opt_str(ygdata.Id(NS_huawei_ifm, 'number')), description=n.get_opt_str(ygdata.Id(NS_huawei_ifm, 'description')), admin_status=n.get_opt_str(ygdata.Id(NS_huawei_ifm, 'admin-status')), vrf_name=n.get_opt_str(ygdata.Id(NS_huawei_ifm, 'vrf-name')), ipv4=huawei_ifm__ifm__interfaces__interface__ipv4.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_ip, 'ipv4'))), ethernet=huawei_ifm__ifm__interfaces__interface__ethernet.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_ethernet, 'ethernet'))))
+        return huawei_ifm__ifm__interfaces__interface_entry(name=n.get_str(_ID_huawei_ifm__name), class=n.get_opt_str(_ID_huawei_ifm__class), type=n.get_opt_str(_ID_huawei_ifm__type), parent_name=n.get_opt_str(_ID_huawei_ifm__parent_name), number=n.get_opt_str(_ID_huawei_ifm__number), description=n.get_opt_str(_ID_huawei_ifm__description), admin_status=n.get_opt_str(_ID_huawei_ifm__admin_status), vrf_name=n.get_opt_str(_ID_huawei_ifm__vrf_name), ipv4=huawei_ifm__ifm__interfaces__interface__ipv4.from_gdata(n.get_opt_cnt(_ID_huawei_ip__ipv4)), ethernet=huawei_ifm__ifm__interfaces__interface__ethernet.from_gdata(n.get_opt_cnt(_ID_huawei_ethernet__ethernet)))
 
     mut def copy(self) -> huawei_ifm__ifm__interfaces__interface_entry:
         """Create a deep copy of this adata object"""
@@ -1712,7 +1915,7 @@ class huawei_ifm__ifm__interfaces(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__ifm__interfaces:
         if n is not None:
-            return huawei_ifm__ifm__interfaces(interface=huawei_ifm__ifm__interfaces__interface.from_gdata(n.get_opt_list(ygdata.Id(NS_huawei_ifm, 'interface'))))
+            return huawei_ifm__ifm__interfaces(interface=huawei_ifm__ifm__interfaces__interface.from_gdata(n.get_opt_list(_ID_huawei_ifm__interface)))
         return huawei_ifm__ifm__interfaces()
 
     mut def copy(self) -> huawei_ifm__ifm__interfaces:
@@ -1733,7 +1936,7 @@ class huawei_ifm__ifm(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__ifm:
         if n is not None:
-            return huawei_ifm__ifm(interfaces=huawei_ifm__ifm__interfaces.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_ifm, 'interfaces'))))
+            return huawei_ifm__ifm(interfaces=huawei_ifm__ifm__interfaces.from_gdata(n.get_opt_cnt(_ID_huawei_ifm__interfaces)))
         return huawei_ifm__ifm()
 
     mut def copy(self) -> huawei_ifm__ifm:
@@ -1754,7 +1957,7 @@ class huawei_system__system__system_info(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_system__system__system_info:
         if n is not None:
-            return huawei_system__system__system_info(sys_name=n.get_opt_str(ygdata.Id(NS_huawei_system, 'sys-name')))
+            return huawei_system__system__system_info(sys_name=n.get_opt_str(_ID_huawei_system__sys_name))
         return huawei_system__system__system_info()
 
     mut def copy(self) -> huawei_system__system__system_info:
@@ -1775,7 +1978,7 @@ class huawei_system__system(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_system__system:
         if n is not None:
-            return huawei_system__system(system_info=huawei_system__system__system_info.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_system, 'system-info'))))
+            return huawei_system__system(system_info=huawei_system__system__system_info.from_gdata(n.get_opt_cnt(_ID_huawei_system__system_info)))
         return huawei_system__system()
 
     mut def copy(self) -> huawei_system__system:
@@ -1798,7 +2001,7 @@ class huawei_mpls__mpls__common__global(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_mpls__mpls__common__global:
         if n is not None:
-            return huawei_mpls__mpls__common__global(mpls_enable=n.get_opt_bool(ygdata.Id(NS_huawei_mpls, 'mpls-enable')), lsr_id=n.get_opt_str(ygdata.Id(NS_huawei_mpls, 'lsr-id')))
+            return huawei_mpls__mpls__common__global(mpls_enable=n.get_opt_bool(_ID_huawei_mpls__mpls_enable), lsr_id=n.get_opt_str(_ID_huawei_mpls__lsr_id))
         return huawei_mpls__mpls__common__global()
 
     mut def copy(self) -> huawei_mpls__mpls__common__global:
@@ -1819,7 +2022,7 @@ class huawei_mpls__mpls__common(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_mpls__mpls__common:
         if n is not None:
-            return huawei_mpls__mpls__common(global=huawei_mpls__mpls__common__global.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_mpls, 'global'))))
+            return huawei_mpls__mpls__common(global=huawei_mpls__mpls__common__global.from_gdata(n.get_opt_cnt(_ID_huawei_mpls__global)))
         return huawei_mpls__mpls__common()
 
     mut def copy(self) -> huawei_mpls__mpls__common:
@@ -1840,7 +2043,7 @@ class huawei_mpls__mpls__ldp(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_mpls__mpls__ldp:
         if n is not None:
-            return huawei_mpls__mpls__ldp(enable=n.get_opt_bool(ygdata.Id(NS_huawei_mpls_ldp, 'enable')))
+            return huawei_mpls__mpls__ldp(enable=n.get_opt_bool(_ID_huawei_mpls_ldp__enable))
         return huawei_mpls__mpls__ldp()
 
     mut def copy(self) -> huawei_mpls__mpls__ldp:
@@ -1863,7 +2066,7 @@ class huawei_mpls__mpls(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_mpls__mpls:
         if n is not None:
-            return huawei_mpls__mpls(common=huawei_mpls__mpls__common.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_mpls, 'common'))), ldp=huawei_mpls__mpls__ldp.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_mpls_ldp, 'ldp'))))
+            return huawei_mpls__mpls(common=huawei_mpls__mpls__common.from_gdata(n.get_opt_cnt(_ID_huawei_mpls__common)), ldp=huawei_mpls__mpls__ldp.from_gdata(n.get_opt_cnt(_ID_huawei_mpls_ldp__ldp)))
         return huawei_mpls__mpls()
 
     mut def copy(self) -> huawei_mpls__mpls:
@@ -1884,7 +2087,7 @@ class huawei_bgp__bgp__global(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_bgp__bgp__global:
         if n is not None:
-            return huawei_bgp__bgp__global(yang_enable=n.get_opt_bool(ygdata.Id(NS_huawei_bgp, 'yang-enable')))
+            return huawei_bgp__bgp__global(yang_enable=n.get_opt_bool(_ID_huawei_bgp__yang_enable))
         return huawei_bgp__bgp__global()
 
     mut def copy(self) -> huawei_bgp__bgp__global:
@@ -1907,7 +2110,7 @@ class huawei_bgp__bgp__base_process(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_bgp__bgp__base_process:
         if n is not None:
-            return huawei_bgp__bgp__base_process(enable=n.get_opt_bool(ygdata.Id(NS_huawei_bgp, 'enable')), as_=n.get_opt_str(ygdata.Id(NS_huawei_bgp, 'as')))
+            return huawei_bgp__bgp__base_process(enable=n.get_opt_bool(_ID_huawei_bgp__enable), as_=n.get_opt_str(_ID_huawei_bgp__as))
         return huawei_bgp__bgp__base_process()
 
     mut def copy(self) -> huawei_bgp__bgp__base_process:
@@ -1930,7 +2133,7 @@ class huawei_bgp__bgp(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_bgp__bgp:
         if n is not None:
-            return huawei_bgp__bgp(global=huawei_bgp__bgp__global.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_bgp, 'global'))), base_process=huawei_bgp__bgp__base_process.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_bgp, 'base-process'))))
+            return huawei_bgp__bgp(global=huawei_bgp__bgp__global.from_gdata(n.get_opt_cnt(_ID_huawei_bgp__global)), base_process=huawei_bgp__bgp__base_process.from_gdata(n.get_opt_cnt(_ID_huawei_bgp__base_process)))
         return huawei_bgp__bgp()
 
     mut def copy(self) -> huawei_bgp__bgp:
@@ -1959,7 +2162,7 @@ class root(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> root:
         if n is not None:
-            return root(network_instance=huawei_network_instance__network_instance.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_network_instance, 'network-instance'))), ifm=huawei_ifm__ifm.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_ifm, 'ifm'))), system=huawei_system__system.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_system, 'system'))), mpls=huawei_mpls__mpls.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_mpls, 'mpls'))), bgp=huawei_bgp__bgp.from_gdata(n.get_opt_cnt(ygdata.Id(NS_huawei_bgp, 'bgp'))))
+            return root(network_instance=huawei_network_instance__network_instance.from_gdata(n.get_opt_cnt(_ID_huawei_network_instance__network_instance)), ifm=huawei_ifm__ifm.from_gdata(n.get_opt_cnt(_ID_huawei_ifm__ifm)), system=huawei_system__system.from_gdata(n.get_opt_cnt(_ID_huawei_system__system)), mpls=huawei_mpls__mpls.from_gdata(n.get_opt_cnt(_ID_huawei_mpls__mpls)), bgp=huawei_bgp__bgp.from_gdata(n.get_opt_cnt(_ID_huawei_bgp__bgp)))
         return root()
 
     mut def copy(self) -> root:
@@ -1980,7 +2183,7 @@ class huawei_ifm__reset_if_counters_by_name__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__reset_if_counters_by_name__input:
         if n is not None:
-            return huawei_ifm__reset_if_counters_by_name__input(if_name=n.get_opt_str(ygdata.Id(NS_huawei_ifm, 'if-name')))
+            return huawei_ifm__reset_if_counters_by_name__input(if_name=n.get_opt_str(_ID_huawei_ifm__if_name))
         return huawei_ifm__reset_if_counters_by_name__input()
 
     mut def copy(self) -> huawei_ifm__reset_if_counters_by_name__input:
@@ -2001,7 +2204,7 @@ class huawei_ifm__reset_if_counters_by_type__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__reset_if_counters_by_type__input:
         if n is not None:
-            return huawei_ifm__reset_if_counters_by_type__input(if_type=n.get_opt_str(ygdata.Id(NS_huawei_ifm, 'if-type')))
+            return huawei_ifm__reset_if_counters_by_type__input(if_type=n.get_opt_str(_ID_huawei_ifm__if_type))
         return huawei_ifm__reset_if_counters_by_type__input()
 
     mut def copy(self) -> huawei_ifm__reset_if_counters_by_type__input:
@@ -2022,7 +2225,7 @@ class huawei_ifm__reset_if_counters_all__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__reset_if_counters_all__input:
         if n is not None:
-            return huawei_ifm__reset_if_counters_all__input(all_if=n.get_opt_bool(ygdata.Id(NS_huawei_ifm, 'all-if')))
+            return huawei_ifm__reset_if_counters_all__input(all_if=n.get_opt_bool(_ID_huawei_ifm__all_if))
         return huawei_ifm__reset_if_counters_all__input()
 
     mut def copy(self) -> huawei_ifm__reset_if_counters_all__input:
@@ -2043,7 +2246,7 @@ class huawei_ifm__reset_if_mib_counters_by_name__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__reset_if_mib_counters_by_name__input:
         if n is not None:
-            return huawei_ifm__reset_if_mib_counters_by_name__input(if_name=n.get_opt_str(ygdata.Id(NS_huawei_ifm, 'if-name')))
+            return huawei_ifm__reset_if_mib_counters_by_name__input(if_name=n.get_opt_str(_ID_huawei_ifm__if_name))
         return huawei_ifm__reset_if_mib_counters_by_name__input()
 
     mut def copy(self) -> huawei_ifm__reset_if_mib_counters_by_name__input:
@@ -2064,7 +2267,7 @@ class huawei_ifm__reset_if_mib_counters_by_type__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__reset_if_mib_counters_by_type__input:
         if n is not None:
-            return huawei_ifm__reset_if_mib_counters_by_type__input(if_type=n.get_opt_str(ygdata.Id(NS_huawei_ifm, 'if-type')))
+            return huawei_ifm__reset_if_mib_counters_by_type__input(if_type=n.get_opt_str(_ID_huawei_ifm__if_type))
         return huawei_ifm__reset_if_mib_counters_by_type__input()
 
     mut def copy(self) -> huawei_ifm__reset_if_mib_counters_by_type__input:
@@ -2085,7 +2288,7 @@ class huawei_ifm__reset_if_mib_counters_all__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__reset_if_mib_counters_all__input:
         if n is not None:
-            return huawei_ifm__reset_if_mib_counters_all__input(all_if=n.get_opt_bool(ygdata.Id(NS_huawei_ifm, 'all-if')))
+            return huawei_ifm__reset_if_mib_counters_all__input(all_if=n.get_opt_bool(_ID_huawei_ifm__all_if))
         return huawei_ifm__reset_if_mib_counters_all__input()
 
     mut def copy(self) -> huawei_ifm__reset_if_mib_counters_all__input:
@@ -2106,7 +2309,7 @@ class huawei_ifm__reset_if_control_flap_penalty__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__reset_if_control_flap_penalty__input:
         if n is not None:
-            return huawei_ifm__reset_if_control_flap_penalty__input(if_name=n.get_opt_str(ygdata.Id(NS_huawei_ifm, 'if-name')))
+            return huawei_ifm__reset_if_control_flap_penalty__input(if_name=n.get_opt_str(_ID_huawei_ifm__if_name))
         return huawei_ifm__reset_if_control_flap_penalty__input()
 
     mut def copy(self) -> huawei_ifm__reset_if_control_flap_penalty__input:
@@ -2127,7 +2330,7 @@ class huawei_ifm__reset_if_control_flap_counts__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__reset_if_control_flap_counts__input:
         if n is not None:
-            return huawei_ifm__reset_if_control_flap_counts__input(if_name=n.get_opt_str(ygdata.Id(NS_huawei_ifm, 'if-name')))
+            return huawei_ifm__reset_if_control_flap_counts__input(if_name=n.get_opt_str(_ID_huawei_ifm__if_name))
         return huawei_ifm__reset_if_control_flap_counts__input()
 
     mut def copy(self) -> huawei_ifm__reset_if_control_flap_counts__input:
@@ -2148,7 +2351,7 @@ class huawei_ifm__reset_remote_if_counters__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__reset_remote_if_counters__input:
         if n is not None:
-            return huawei_ifm__reset_remote_if_counters__input(if_name=n.get_opt_str(ygdata.Id(NS_huawei_ifm, 'if-name')))
+            return huawei_ifm__reset_remote_if_counters__input(if_name=n.get_opt_str(_ID_huawei_ifm__if_name))
         return huawei_ifm__reset_remote_if_counters__input()
 
     mut def copy(self) -> huawei_ifm__reset_remote_if_counters__input:
@@ -2169,7 +2372,7 @@ class huawei_ifm__restart_if__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm__restart_if__input:
         if n is not None:
-            return huawei_ifm__restart_if__input(if_name=n.get_opt_str(ygdata.Id(NS_huawei_ifm, 'if-name')))
+            return huawei_ifm__restart_if__input(if_name=n.get_opt_str(_ID_huawei_ifm__if_name))
         return huawei_ifm__restart_if__input()
 
     mut def copy(self) -> huawei_ifm__restart_if__input:
@@ -2190,7 +2393,7 @@ class huawei_system__load_weak_password_dictionary__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_system__load_weak_password_dictionary__input:
         if n is not None:
-            return huawei_system__load_weak_password_dictionary__input(filename=n.get_opt_str(ygdata.Id(NS_huawei_system, 'filename')))
+            return huawei_system__load_weak_password_dictionary__input(filename=n.get_opt_str(_ID_huawei_system__filename))
         return huawei_system__load_weak_password_dictionary__input()
 
     mut def copy(self) -> huawei_system__load_weak_password_dictionary__input:
@@ -2211,7 +2414,7 @@ class huawei_socket__reset_tcp_stats__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_socket__reset_tcp_stats__input:
         if n is not None:
-            return huawei_socket__reset_tcp_stats__input(family=n.get_opt_str(ygdata.Id(NS_huawei_socket, 'family')))
+            return huawei_socket__reset_tcp_stats__input(family=n.get_opt_str(_ID_huawei_socket__family))
         return huawei_socket__reset_tcp_stats__input()
 
     mut def copy(self) -> huawei_socket__reset_tcp_stats__input:
@@ -2232,7 +2435,7 @@ class huawei_socket__reset_udp_stats__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_socket__reset_udp_stats__input:
         if n is not None:
-            return huawei_socket__reset_udp_stats__input(family=n.get_opt_str(ygdata.Id(NS_huawei_socket, 'family')))
+            return huawei_socket__reset_udp_stats__input(family=n.get_opt_str(_ID_huawei_socket__family))
         return huawei_socket__reset_udp_stats__input()
 
     mut def copy(self) -> huawei_socket__reset_udp_stats__input:
@@ -2253,7 +2456,7 @@ class huawei_socket__reset_rawip_stats__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_socket__reset_rawip_stats__input:
         if n is not None:
-            return huawei_socket__reset_rawip_stats__input(family=n.get_opt_str(ygdata.Id(NS_huawei_socket, 'family')))
+            return huawei_socket__reset_rawip_stats__input(family=n.get_opt_str(_ID_huawei_socket__family))
         return huawei_socket__reset_rawip_stats__input()
 
     mut def copy(self) -> huawei_socket__reset_rawip_stats__input:
@@ -2274,7 +2477,7 @@ class huawei_routing_policy__reset_ipv4_prefix__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_routing_policy__reset_ipv4_prefix__input:
         if n is not None:
-            return huawei_routing_policy__reset_ipv4_prefix__input(name=n.get_opt_str(ygdata.Id(NS_huawei_routing_policy, 'name')))
+            return huawei_routing_policy__reset_ipv4_prefix__input(name=n.get_opt_str(_ID_huawei_routing_policy__name))
         return huawei_routing_policy__reset_ipv4_prefix__input()
 
     mut def copy(self) -> huawei_routing_policy__reset_ipv4_prefix__input:
@@ -2295,7 +2498,7 @@ class huawei_routing_policy__reset_ipv6_prefix__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_routing_policy__reset_ipv6_prefix__input:
         if n is not None:
-            return huawei_routing_policy__reset_ipv6_prefix__input(name=n.get_opt_str(ygdata.Id(NS_huawei_routing_policy, 'name')))
+            return huawei_routing_policy__reset_ipv6_prefix__input(name=n.get_opt_str(_ID_huawei_routing_policy__name))
         return huawei_routing_policy__reset_ipv6_prefix__input()
 
     mut def copy(self) -> huawei_routing_policy__reset_ipv6_prefix__input:
@@ -2316,7 +2519,7 @@ class huawei_routing_policy__reset_route_policy_counters__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_routing_policy__reset_route_policy_counters__input:
         if n is not None:
-            return huawei_routing_policy__reset_route_policy_counters__input(name=n.get_opt_str(ygdata.Id(NS_huawei_routing_policy, 'name')))
+            return huawei_routing_policy__reset_route_policy_counters__input(name=n.get_opt_str(_ID_huawei_routing_policy__name))
         return huawei_routing_policy__reset_route_policy_counters__input()
 
     mut def copy(self) -> huawei_routing_policy__reset_route_policy_counters__input:
@@ -2337,7 +2540,7 @@ class huawei_l3vpn__reset_traffic_statistics__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_l3vpn__reset_traffic_statistics__input:
         if n is not None:
-            return huawei_l3vpn__reset_traffic_statistics__input(vrf_name=n.get_opt_str(ygdata.Id(NS_huawei_l3vpn, 'vrf-name')))
+            return huawei_l3vpn__reset_traffic_statistics__input(vrf_name=n.get_opt_str(_ID_huawei_l3vpn__vrf_name))
         return huawei_l3vpn__reset_traffic_statistics__input()
 
     mut def copy(self) -> huawei_l3vpn__reset_traffic_statistics__input:
@@ -2358,7 +2561,7 @@ class huawei_ifm_trunk__trunk_switch__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ifm_trunk__trunk_switch__input:
         if n is not None:
-            return huawei_ifm_trunk__trunk_switch__input(if_name=n.get_opt_str(ygdata.Id(NS_huawei_ifm_trunk, 'if-name')))
+            return huawei_ifm_trunk__trunk_switch__input(if_name=n.get_opt_str(_ID_huawei_ifm_trunk__if_name))
         return huawei_ifm_trunk__trunk_switch__input()
 
     mut def copy(self) -> huawei_ifm_trunk__trunk_switch__input:
@@ -2389,7 +2592,7 @@ class huawei_ethernet__create_qinq_termination__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ethernet__create_qinq_termination__input:
         if n is not None:
-            return huawei_ethernet__create_qinq_termination__input(interface_name=n.get_opt_str(ygdata.Id(NS_huawei_ethernet, 'interface-name')), pe_vlan_begin=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'pe-vlan-begin')), pe_vlan_end=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'pe-vlan-end')), ce_vlan_begin=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'ce-vlan-begin')), ce_vlan_end=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'ce-vlan-end')), group_id=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'group-id')))
+            return huawei_ethernet__create_qinq_termination__input(interface_name=n.get_opt_str(_ID_huawei_ethernet__interface_name), pe_vlan_begin=n.get_opt_u64(_ID_huawei_ethernet__pe_vlan_begin), pe_vlan_end=n.get_opt_u64(_ID_huawei_ethernet__pe_vlan_end), ce_vlan_begin=n.get_opt_u64(_ID_huawei_ethernet__ce_vlan_begin), ce_vlan_end=n.get_opt_u64(_ID_huawei_ethernet__ce_vlan_end), group_id=n.get_opt_u64(_ID_huawei_ethernet__group_id))
         return huawei_ethernet__create_qinq_termination__input()
 
     mut def copy(self) -> huawei_ethernet__create_qinq_termination__input:
@@ -2420,7 +2623,7 @@ class huawei_ethernet__delete_qinq_termination__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ethernet__delete_qinq_termination__input:
         if n is not None:
-            return huawei_ethernet__delete_qinq_termination__input(interface_name=n.get_opt_str(ygdata.Id(NS_huawei_ethernet, 'interface-name')), pe_vlan_begin=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'pe-vlan-begin')), pe_vlan_end=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'pe-vlan-end')), ce_vlan_begin=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'ce-vlan-begin')), ce_vlan_end=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'ce-vlan-end')), group_id=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'group-id')))
+            return huawei_ethernet__delete_qinq_termination__input(interface_name=n.get_opt_str(_ID_huawei_ethernet__interface_name), pe_vlan_begin=n.get_opt_u64(_ID_huawei_ethernet__pe_vlan_begin), pe_vlan_end=n.get_opt_u64(_ID_huawei_ethernet__pe_vlan_end), ce_vlan_begin=n.get_opt_u64(_ID_huawei_ethernet__ce_vlan_begin), ce_vlan_end=n.get_opt_u64(_ID_huawei_ethernet__ce_vlan_end), group_id=n.get_opt_u64(_ID_huawei_ethernet__group_id))
         return huawei_ethernet__delete_qinq_termination__input()
 
     mut def copy(self) -> huawei_ethernet__delete_qinq_termination__input:
@@ -2449,7 +2652,7 @@ class huawei_ethernet__create_user_vlan_qinq__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ethernet__create_user_vlan_qinq__input:
         if n is not None:
-            return huawei_ethernet__create_user_vlan_qinq__input(interface_name=n.get_opt_str(ygdata.Id(NS_huawei_ethernet, 'interface-name')), pe_vlan_begin=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'pe-vlan-begin')), pe_vlan_end=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'pe-vlan-end')), ce_vlan_begin=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'ce-vlan-begin')), ce_vlan_end=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'ce-vlan-end')))
+            return huawei_ethernet__create_user_vlan_qinq__input(interface_name=n.get_opt_str(_ID_huawei_ethernet__interface_name), pe_vlan_begin=n.get_opt_u64(_ID_huawei_ethernet__pe_vlan_begin), pe_vlan_end=n.get_opt_u64(_ID_huawei_ethernet__pe_vlan_end), ce_vlan_begin=n.get_opt_u64(_ID_huawei_ethernet__ce_vlan_begin), ce_vlan_end=n.get_opt_u64(_ID_huawei_ethernet__ce_vlan_end))
         return huawei_ethernet__create_user_vlan_qinq__input()
 
     mut def copy(self) -> huawei_ethernet__create_user_vlan_qinq__input:
@@ -2478,7 +2681,7 @@ class huawei_ethernet__delete_user_vlan_qinq__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_ethernet__delete_user_vlan_qinq__input:
         if n is not None:
-            return huawei_ethernet__delete_user_vlan_qinq__input(interface_name=n.get_opt_str(ygdata.Id(NS_huawei_ethernet, 'interface-name')), pe_vlan_begin=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'pe-vlan-begin')), pe_vlan_end=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'pe-vlan-end')), ce_vlan_begin=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'ce-vlan-begin')), ce_vlan_end=n.get_opt_u64(ygdata.Id(NS_huawei_ethernet, 'ce-vlan-end')))
+            return huawei_ethernet__delete_user_vlan_qinq__input(interface_name=n.get_opt_str(_ID_huawei_ethernet__interface_name), pe_vlan_begin=n.get_opt_u64(_ID_huawei_ethernet__pe_vlan_begin), pe_vlan_end=n.get_opt_u64(_ID_huawei_ethernet__pe_vlan_end), ce_vlan_begin=n.get_opt_u64(_ID_huawei_ethernet__ce_vlan_begin), ce_vlan_end=n.get_opt_u64(_ID_huawei_ethernet__ce_vlan_end))
         return huawei_ethernet__delete_user_vlan_qinq__input()
 
     mut def copy(self) -> huawei_ethernet__delete_user_vlan_qinq__input:
@@ -2501,7 +2704,7 @@ class huawei_bfd__change_session_board__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_bfd__change_session_board__input:
         if n is not None:
-            return huawei_bfd__change_session_board__input(local_discriminator=n.get_opt_u64(ygdata.Id(NS_huawei_bfd, 'local-discriminator')), select_slot_id=n.get_opt_str(ygdata.Id(NS_huawei_bfd, 'select-slot-id')))
+            return huawei_bfd__change_session_board__input(local_discriminator=n.get_opt_u64(_ID_huawei_bfd__local_discriminator), select_slot_id=n.get_opt_str(_ID_huawei_bfd__select_slot_id))
         return huawei_bfd__change_session_board__input()
 
     mut def copy(self) -> huawei_bfd__change_session_board__input:
@@ -2524,7 +2727,7 @@ class huawei_bfd__reset_bfd_statistics__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_bfd__reset_bfd_statistics__input:
         if n is not None:
-            return huawei_bfd__reset_bfd_statistics__input(local_discriminator=n.get_opt_u64(ygdata.Id(NS_huawei_bfd, 'local-discriminator')), reset_type=n.get_opt_str(ygdata.Id(NS_huawei_bfd, 'reset-type')))
+            return huawei_bfd__reset_bfd_statistics__input(local_discriminator=n.get_opt_u64(_ID_huawei_bfd__local_discriminator), reset_type=n.get_opt_str(_ID_huawei_bfd__reset_type))
         return huawei_bfd__reset_bfd_statistics__input()
 
     mut def copy(self) -> huawei_bfd__reset_bfd_statistics__input:
@@ -2547,7 +2750,7 @@ class huawei_routing__reset_all_route_statistics__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_routing__reset_all_route_statistics__input:
         if n is not None:
-            return huawei_routing__reset_all_route_statistics__input(address_family=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'address-family')), protocol_type=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'protocol-type')))
+            return huawei_routing__reset_all_route_statistics__input(address_family=n.get_opt_str(_ID_huawei_routing__address_family), protocol_type=n.get_opt_str(_ID_huawei_routing__protocol_type))
         return huawei_routing__reset_all_route_statistics__input()
 
     mut def copy(self) -> huawei_routing__reset_all_route_statistics__input:
@@ -2570,7 +2773,7 @@ class huawei_routing__reset_all_vpn_route_statistics__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_routing__reset_all_vpn_route_statistics__input:
         if n is not None:
-            return huawei_routing__reset_all_vpn_route_statistics__input(address_family=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'address-family')), protocol_type=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'protocol-type')))
+            return huawei_routing__reset_all_vpn_route_statistics__input(address_family=n.get_opt_str(_ID_huawei_routing__address_family), protocol_type=n.get_opt_str(_ID_huawei_routing__protocol_type))
         return huawei_routing__reset_all_vpn_route_statistics__input()
 
     mut def copy(self) -> huawei_routing__reset_all_vpn_route_statistics__input:
@@ -2595,7 +2798,7 @@ class huawei_routing__reset_route_statistics__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_routing__reset_route_statistics__input:
         if n is not None:
-            return huawei_routing__reset_route_statistics__input(address_family=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'address-family')), vpn_instance_name=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'vpn-instance-name')), protocol_type=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'protocol-type')))
+            return huawei_routing__reset_route_statistics__input(address_family=n.get_opt_str(_ID_huawei_routing__address_family), vpn_instance_name=n.get_opt_str(_ID_huawei_routing__vpn_instance_name), protocol_type=n.get_opt_str(_ID_huawei_routing__protocol_type))
         return huawei_routing__reset_route_statistics__input()
 
     mut def copy(self) -> huawei_routing__reset_route_statistics__input:
@@ -2622,7 +2825,7 @@ class huawei_routing__static_unicast_route_number__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_routing__static_unicast_route_number__input:
         if n is not None:
-            return huawei_routing__static_unicast_route_number__input(vpn_instance_name=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'vpn-instance-name')), address_family=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'address-family')), prefix=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'prefix')), mask_length=n.get_opt_u64(ygdata.Id(NS_huawei_routing, 'mask-length')))
+            return huawei_routing__static_unicast_route_number__input(vpn_instance_name=n.get_opt_str(_ID_huawei_routing__vpn_instance_name), address_family=n.get_opt_str(_ID_huawei_routing__address_family), prefix=n.get_opt_str(_ID_huawei_routing__prefix), mask_length=n.get_opt_u64(_ID_huawei_routing__mask_length))
         return huawei_routing__static_unicast_route_number__input()
 
     mut def copy(self) -> huawei_routing__static_unicast_route_number__input:
@@ -2643,7 +2846,7 @@ class huawei_routing__static_unicast_route_number__output(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_routing__static_unicast_route_number__output:
         if n is not None:
-            return huawei_routing__static_unicast_route_number__output(route_number=n.get_opt_u64(ygdata.Id(NS_huawei_routing, 'route-number')))
+            return huawei_routing__static_unicast_route_number__output(route_number=n.get_opt_u64(_ID_huawei_routing__route_number))
         return huawei_routing__static_unicast_route_number__output()
 
     mut def copy(self) -> huawei_routing__static_unicast_route_number__output:
@@ -2670,7 +2873,7 @@ class huawei_routing__ipv4_unicast_route_number__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_routing__ipv4_unicast_route_number__input:
         if n is not None:
-            return huawei_routing__ipv4_unicast_route_number__input(vpn_instance_name=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'vpn-instance-name')), prefix=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'prefix')), mask_length=n.get_opt_u64(ygdata.Id(NS_huawei_routing, 'mask-length')), protocol_type=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'protocol-type')))
+            return huawei_routing__ipv4_unicast_route_number__input(vpn_instance_name=n.get_opt_str(_ID_huawei_routing__vpn_instance_name), prefix=n.get_opt_str(_ID_huawei_routing__prefix), mask_length=n.get_opt_u64(_ID_huawei_routing__mask_length), protocol_type=n.get_opt_str(_ID_huawei_routing__protocol_type))
         return huawei_routing__ipv4_unicast_route_number__input()
 
     mut def copy(self) -> huawei_routing__ipv4_unicast_route_number__input:
@@ -2691,7 +2894,7 @@ class huawei_routing__ipv4_unicast_route_number__output(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_routing__ipv4_unicast_route_number__output:
         if n is not None:
-            return huawei_routing__ipv4_unicast_route_number__output(route_number=n.get_opt_u64(ygdata.Id(NS_huawei_routing, 'route-number')))
+            return huawei_routing__ipv4_unicast_route_number__output(route_number=n.get_opt_u64(_ID_huawei_routing__route_number))
         return huawei_routing__ipv4_unicast_route_number__output()
 
     mut def copy(self) -> huawei_routing__ipv4_unicast_route_number__output:
@@ -2718,7 +2921,7 @@ class huawei_routing__ipv6_unicast_route_number__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_routing__ipv6_unicast_route_number__input:
         if n is not None:
-            return huawei_routing__ipv6_unicast_route_number__input(vpn_instance_name=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'vpn-instance-name')), prefix=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'prefix')), mask_length=n.get_opt_u64(ygdata.Id(NS_huawei_routing, 'mask-length')), protocol_type=n.get_opt_str(ygdata.Id(NS_huawei_routing, 'protocol-type')))
+            return huawei_routing__ipv6_unicast_route_number__input(vpn_instance_name=n.get_opt_str(_ID_huawei_routing__vpn_instance_name), prefix=n.get_opt_str(_ID_huawei_routing__prefix), mask_length=n.get_opt_u64(_ID_huawei_routing__mask_length), protocol_type=n.get_opt_str(_ID_huawei_routing__protocol_type))
         return huawei_routing__ipv6_unicast_route_number__input()
 
     mut def copy(self) -> huawei_routing__ipv6_unicast_route_number__input:
@@ -2739,7 +2942,7 @@ class huawei_routing__ipv6_unicast_route_number__output(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_routing__ipv6_unicast_route_number__output:
         if n is not None:
-            return huawei_routing__ipv6_unicast_route_number__output(route_number=n.get_opt_u64(ygdata.Id(NS_huawei_routing, 'route-number')))
+            return huawei_routing__ipv6_unicast_route_number__output(route_number=n.get_opt_u64(_ID_huawei_routing__route_number))
         return huawei_routing__ipv6_unicast_route_number__output()
 
     mut def copy(self) -> huawei_routing__ipv6_unicast_route_number__output:
@@ -2764,7 +2967,7 @@ class huawei_mpls_ldp__reset_ldp_session__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_mpls_ldp__reset_ldp_session__input:
         if n is not None:
-            return huawei_mpls_ldp__reset_ldp_session__input(peer_id=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'peer-id')), graceful=n.get_opt_bool(ygdata.Id(NS_huawei_mpls_ldp, 'graceful')), vrfname=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'vrfname')))
+            return huawei_mpls_ldp__reset_ldp_session__input(peer_id=n.get_opt_str(_ID_huawei_mpls_ldp__peer_id), graceful=n.get_opt_bool(_ID_huawei_mpls_ldp__graceful), vrfname=n.get_opt_str(_ID_huawei_mpls_ldp__vrfname))
         return huawei_mpls_ldp__reset_ldp_session__input()
 
     mut def copy(self) -> huawei_mpls_ldp__reset_ldp_session__input:
@@ -2787,7 +2990,7 @@ class huawei_mpls_ldp__reset_all_ldp__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_mpls_ldp__reset_all_ldp__input:
         if n is not None:
-            return huawei_mpls_ldp__reset_all_ldp__input(graceful=n.get_opt_bool(ygdata.Id(NS_huawei_mpls_ldp, 'graceful')), vrfname=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'vrfname')))
+            return huawei_mpls_ldp__reset_all_ldp__input(graceful=n.get_opt_bool(_ID_huawei_mpls_ldp__graceful), vrfname=n.get_opt_str(_ID_huawei_mpls_ldp__vrfname))
         return huawei_mpls_ldp__reset_all_ldp__input()
 
     mut def copy(self) -> huawei_mpls_ldp__reset_all_ldp__input:
@@ -2810,7 +3013,7 @@ class huawei_mpls_ldp__reset_ldp_traffic_statistics__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_mpls_ldp__reset_ldp_traffic_statistics__input:
         if n is not None:
-            return huawei_mpls_ldp__reset_ldp_traffic_statistics__input(ipv4_dest_address=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'ipv4-dest-address')), ipv4_masklen=n.get_opt_u64(ygdata.Id(NS_huawei_mpls_ldp, 'ipv4-masklen')))
+            return huawei_mpls_ldp__reset_ldp_traffic_statistics__input(ipv4_dest_address=n.get_opt_str(_ID_huawei_mpls_ldp__ipv4_dest_address), ipv4_masklen=n.get_opt_u64(_ID_huawei_mpls_ldp__ipv4_masklen))
         return huawei_mpls_ldp__reset_ldp_traffic_statistics__input()
 
     mut def copy(self) -> huawei_mpls_ldp__reset_ldp_traffic_statistics__input:
@@ -2833,7 +3036,7 @@ class huawei_mpls_ldp__reset_mldp_traffic_statistics__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_mpls_ldp__reset_mldp_traffic_statistics__input:
         if n is not None:
-            return huawei_mpls_ldp__reset_mldp_traffic_statistics__input(root_ip=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'root-ip')), lsp_id=n.get_opt_u64(ygdata.Id(NS_huawei_mpls_ldp, 'lsp-id')))
+            return huawei_mpls_ldp__reset_mldp_traffic_statistics__input(root_ip=n.get_opt_str(_ID_huawei_mpls_ldp__root_ip), lsp_id=n.get_opt_u64(_ID_huawei_mpls_ldp__lsp_id))
         return huawei_mpls_ldp__reset_mldp_traffic_statistics__input()
 
     mut def copy(self) -> huawei_mpls_ldp__reset_mldp_traffic_statistics__input:
@@ -2854,7 +3057,7 @@ class huawei_mpls_ldp__reset_mldp_all_traffic_statistics__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_mpls_ldp__reset_mldp_all_traffic_statistics__input:
         if n is not None:
-            return huawei_mpls_ldp__reset_mldp_all_traffic_statistics__input(is_all=n.get_opt_bool(ygdata.Id(NS_huawei_mpls_ldp, 'is-all')))
+            return huawei_mpls_ldp__reset_mldp_all_traffic_statistics__input(is_all=n.get_opt_bool(_ID_huawei_mpls_ldp__is_all))
         return huawei_mpls_ldp__reset_mldp_all_traffic_statistics__input()
 
     mut def copy(self) -> huawei_mpls_ldp__reset_mldp_all_traffic_statistics__input:
@@ -2879,7 +3082,7 @@ class huawei_mpls_ldp__diagnose_lsp_establishment__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_mpls_ldp__diagnose_lsp_establishment__input:
         if n is not None:
-            return huawei_mpls_ldp__diagnose_lsp_establishment__input(destination_address=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'destination-address')), prefix_length=n.get_opt_u64(ygdata.Id(NS_huawei_mpls_ldp, 'prefix-length')), vrfname=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'vrfname')))
+            return huawei_mpls_ldp__diagnose_lsp_establishment__input(destination_address=n.get_opt_str(_ID_huawei_mpls_ldp__destination_address), prefix_length=n.get_opt_u64(_ID_huawei_mpls_ldp__prefix_length), vrfname=n.get_opt_str(_ID_huawei_mpls_ldp__vrfname))
         return huawei_mpls_ldp__diagnose_lsp_establishment__input()
 
     mut def copy(self) -> huawei_mpls_ldp__diagnose_lsp_establishment__input:
@@ -2940,7 +3143,7 @@ class huawei_mpls_ldp__diagnose_lsp_establishment__output(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_mpls_ldp__diagnose_lsp_establishment__output:
         if n is not None:
-            return huawei_mpls_ldp__diagnose_lsp_establishment__output(ingress_state=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'ingress-state')), ingress_check_route=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'ingress-check-route')), ingress_check_policy=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'ingress-check-policy')), ingress_check_downstream_session=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'ingress-check-downstream-session')), ingress_check_downstream_mapping=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'ingress-check-downstream-mapping')), ingress_check_limit=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'ingress-check-limit')), ingress_check_resource=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'ingress-check-resource')), transit_state=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'transit-state')), transit_check_route=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'transit-check-route')), transit_check_policy=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'transit-check-policy')), transit_check_downstream_session=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'transit-check-downstream-session')), transit_check_downstream_mapping=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'transit-check-downstream-mapping')), transit_check_upstream_request=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'transit-check-upstream-request')), transit_check_limit=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'transit-check-limit')), transit_check_resource=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'transit-check-resource')), egress_state=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'egress-state')), egress_check_route=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'egress-check-route')), egress_check_policy=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'egress-check-policy')), egress_check_upstream_request=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'egress-check-upstream-request')), egress_check_limit=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'egress-check-limit')), egress_check_resource=n.get_opt_str(ygdata.Id(NS_huawei_mpls_ldp, 'egress-check-resource')))
+            return huawei_mpls_ldp__diagnose_lsp_establishment__output(ingress_state=n.get_opt_str(_ID_huawei_mpls_ldp__ingress_state), ingress_check_route=n.get_opt_str(_ID_huawei_mpls_ldp__ingress_check_route), ingress_check_policy=n.get_opt_str(_ID_huawei_mpls_ldp__ingress_check_policy), ingress_check_downstream_session=n.get_opt_str(_ID_huawei_mpls_ldp__ingress_check_downstream_session), ingress_check_downstream_mapping=n.get_opt_str(_ID_huawei_mpls_ldp__ingress_check_downstream_mapping), ingress_check_limit=n.get_opt_str(_ID_huawei_mpls_ldp__ingress_check_limit), ingress_check_resource=n.get_opt_str(_ID_huawei_mpls_ldp__ingress_check_resource), transit_state=n.get_opt_str(_ID_huawei_mpls_ldp__transit_state), transit_check_route=n.get_opt_str(_ID_huawei_mpls_ldp__transit_check_route), transit_check_policy=n.get_opt_str(_ID_huawei_mpls_ldp__transit_check_policy), transit_check_downstream_session=n.get_opt_str(_ID_huawei_mpls_ldp__transit_check_downstream_session), transit_check_downstream_mapping=n.get_opt_str(_ID_huawei_mpls_ldp__transit_check_downstream_mapping), transit_check_upstream_request=n.get_opt_str(_ID_huawei_mpls_ldp__transit_check_upstream_request), transit_check_limit=n.get_opt_str(_ID_huawei_mpls_ldp__transit_check_limit), transit_check_resource=n.get_opt_str(_ID_huawei_mpls_ldp__transit_check_resource), egress_state=n.get_opt_str(_ID_huawei_mpls_ldp__egress_state), egress_check_route=n.get_opt_str(_ID_huawei_mpls_ldp__egress_check_route), egress_check_policy=n.get_opt_str(_ID_huawei_mpls_ldp__egress_check_policy), egress_check_upstream_request=n.get_opt_str(_ID_huawei_mpls_ldp__egress_check_upstream_request), egress_check_limit=n.get_opt_str(_ID_huawei_mpls_ldp__egress_check_limit), egress_check_resource=n.get_opt_str(_ID_huawei_mpls_ldp__egress_check_resource))
         return huawei_mpls_ldp__diagnose_lsp_establishment__output()
 
     mut def copy(self) -> huawei_mpls_ldp__diagnose_lsp_establishment__output:
@@ -2963,7 +3166,7 @@ class huawei_mpls_ldp__reset_ldp_event_records__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_mpls_ldp__reset_ldp_event_records__input:
         if n is not None:
-            return huawei_mpls_ldp__reset_ldp_event_records__input(session_down=n.get_opt_bool(ygdata.Id(NS_huawei_mpls_ldp, 'session-down')), adjacency_down=n.get_opt_bool(ygdata.Id(NS_huawei_mpls_ldp, 'adjacency-down')))
+            return huawei_mpls_ldp__reset_ldp_event_records__input(session_down=n.get_opt_bool(_ID_huawei_mpls_ldp__session_down), adjacency_down=n.get_opt_bool(_ID_huawei_mpls_ldp__adjacency_down))
         return huawei_mpls_ldp__reset_ldp_event_records__input()
 
     mut def copy(self) -> huawei_mpls_ldp__reset_ldp_event_records__input:
@@ -2988,7 +3191,7 @@ class huawei_mpls_ldp__reset_ldp_error_packet__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_mpls_ldp__reset_ldp_error_packet__input:
         if n is not None:
-            return huawei_mpls_ldp__reset_ldp_error_packet__input(tcp_error_packet=n.get_opt_bool(ygdata.Id(NS_huawei_mpls_ldp, 'tcp-error-packet')), udp_error_packet=n.get_opt_bool(ygdata.Id(NS_huawei_mpls_ldp, 'udp-error-packet')), all_error_packet=n.get_opt_bool(ygdata.Id(NS_huawei_mpls_ldp, 'all-error-packet')))
+            return huawei_mpls_ldp__reset_ldp_error_packet__input(tcp_error_packet=n.get_opt_bool(_ID_huawei_mpls_ldp__tcp_error_packet), udp_error_packet=n.get_opt_bool(_ID_huawei_mpls_ldp__udp_error_packet), all_error_packet=n.get_opt_bool(_ID_huawei_mpls_ldp__all_error_packet))
         return huawei_mpls_ldp__reset_ldp_error_packet__input()
 
     mut def copy(self) -> huawei_mpls_ldp__reset_ldp_error_packet__input:
@@ -3009,7 +3212,7 @@ class huawei_isis__reset_isis_all__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_isis__reset_isis_all__input:
         if n is not None:
-            return huawei_isis__reset_isis_all__input(process_id=n.get_opt_u64(ygdata.Id(NS_huawei_isis, 'process-id')))
+            return huawei_isis__reset_isis_all__input(process_id=n.get_opt_u64(_ID_huawei_isis__process_id))
         return huawei_isis__reset_isis_all__input()
 
     mut def copy(self) -> huawei_isis__reset_isis_all__input:
@@ -3032,7 +3235,7 @@ class huawei_isis__reset_isis_peer__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_isis__reset_isis_peer__input:
         if n is not None:
-            return huawei_isis__reset_isis_peer__input(system_id=n.get_opt_str(ygdata.Id(NS_huawei_isis, 'system-id')), process_id=n.get_opt_u64(ygdata.Id(NS_huawei_isis, 'process-id')))
+            return huawei_isis__reset_isis_peer__input(system_id=n.get_opt_str(_ID_huawei_isis__system_id), process_id=n.get_opt_u64(_ID_huawei_isis__process_id))
         return huawei_isis__reset_isis_peer__input()
 
     mut def copy(self) -> huawei_isis__reset_isis_peer__input:
@@ -3057,7 +3260,7 @@ class huawei_isis__reset_suppress_flapping_peer__input(yadata.MNode):
     @staticmethod
     mut def from_gdata(n: ?ygdata.Node) -> huawei_isis__reset_suppress_flapping_peer__input:
         if n is not None:
-            return huawei_isis__reset_suppress_flapping_peer__input(process_id=n.get_opt_u64(ygdata.Id(NS_huawei_isis, 'process-id')), interface=n.get_opt_str(ygdata.Id(NS_huawei_isis, 'interface')), notify_peer=n.get_opt_bool(ygdata.Id(NS_huawei_isis, 'notify-peer')))
+            return huawei_isis__reset_suppress_flapping_peer__input(process_id=n.get_opt_u64(_ID_huawei_isis__process_id), interface=n.get_opt_str(_ID_huawei_isis__interface), notify_peer=n.get_opt_bool(_ID_huawei_isis__notify_peer))
         return huawei_isis__reset_suppress_flapping_peer__input()
 
     mut def copy(self) -> huawei_isis__reset_suppress_flapping_peer__input:
@@ -3071,7 +3274,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-ifm:reset-if-counters-by-name", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-ifm', 'reset-if-counters-by-name'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_ifm__reset_if_counters_by_name: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_if_counters_by_type: action(cb: action(?Exception) -> None, inp: huawei_ifm__reset_if_counters_by_type__input) -> None
@@ -3079,7 +3282,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-ifm:reset-if-counters-by-type", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-ifm', 'reset-if-counters-by-type'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_ifm__reset_if_counters_by_type: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_if_counters_all: action(cb: action(?Exception) -> None, inp: huawei_ifm__reset_if_counters_all__input) -> None
@@ -3087,7 +3290,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-ifm:reset-if-counters-all", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-ifm', 'reset-if-counters-all'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_ifm__reset_if_counters_all: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_if_mib_counters_by_name: action(cb: action(?Exception) -> None, inp: huawei_ifm__reset_if_mib_counters_by_name__input) -> None
@@ -3095,7 +3298,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-ifm:reset-if-mib-counters-by-name", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-ifm', 'reset-if-mib-counters-by-name'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_ifm__reset_if_mib_counters_by_name: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_if_mib_counters_by_type: action(cb: action(?Exception) -> None, inp: huawei_ifm__reset_if_mib_counters_by_type__input) -> None
@@ -3103,7 +3306,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-ifm:reset-if-mib-counters-by-type", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-ifm', 'reset-if-mib-counters-by-type'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_ifm__reset_if_mib_counters_by_type: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_if_mib_counters_all: action(cb: action(?Exception) -> None, inp: huawei_ifm__reset_if_mib_counters_all__input) -> None
@@ -3111,7 +3314,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-ifm:reset-if-mib-counters-all", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-ifm', 'reset-if-mib-counters-all'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_ifm__reset_if_mib_counters_all: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_if_control_flap_penalty: action(cb: action(?Exception) -> None, inp: huawei_ifm__reset_if_control_flap_penalty__input) -> None
@@ -3119,7 +3322,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-ifm:reset-if-control-flap-penalty", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-ifm', 'reset-if-control-flap-penalty'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_ifm__reset_if_control_flap_penalty: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_if_control_flap_counts: action(cb: action(?Exception) -> None, inp: huawei_ifm__reset_if_control_flap_counts__input) -> None
@@ -3127,7 +3330,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-ifm:reset-if-control-flap-counts", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-ifm', 'reset-if-control-flap-counts'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_ifm__reset_if_control_flap_counts: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_remote_if_counters: action(cb: action(?Exception) -> None, inp: huawei_ifm__reset_remote_if_counters__input) -> None
@@ -3135,7 +3338,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-ifm:reset-remote-if-counters", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-ifm', 'reset-remote-if-counters'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_ifm__reset_remote_if_counters: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     restart_if: action(cb: action(?Exception) -> None, inp: huawei_ifm__restart_if__input) -> None
@@ -3143,7 +3346,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-ifm:restart-if", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-ifm', 'restart-if'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_ifm__restart_if: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     load_weak_password_dictionary: action(cb: action(?Exception) -> None, inp: ?huawei_system__load_weak_password_dictionary__input) -> None
@@ -3151,13 +3354,13 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-system:load-weak-password-dictionary", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-system', 'load-weak-password-dictionary'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_system__load_weak_password_dictionary: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     unload_weak_password_dictionary: action(cb: action(?Exception) -> None) -> None
     def unload_weak_password_dictionary(cb):
         rpc_input = ygdata.Container()
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-system', 'unload-weak-password-dictionary'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_system__unload_weak_password_dictionary: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_tcp_stats: action(cb: action(?Exception) -> None, inp: ?huawei_socket__reset_tcp_stats__input) -> None
@@ -3165,7 +3368,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-socket:reset-tcp-stats", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-socket', 'reset-tcp-stats'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_socket__reset_tcp_stats: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_udp_stats: action(cb: action(?Exception) -> None, inp: ?huawei_socket__reset_udp_stats__input) -> None
@@ -3173,7 +3376,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-socket:reset-udp-stats", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-socket', 'reset-udp-stats'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_socket__reset_udp_stats: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_rawip_stats: action(cb: action(?Exception) -> None, inp: ?huawei_socket__reset_rawip_stats__input) -> None
@@ -3181,13 +3384,13 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-socket:reset-rawip-stats", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-socket', 'reset-rawip-stats'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_socket__reset_rawip_stats: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_rawlink_stats: action(cb: action(?Exception) -> None) -> None
     def reset_rawlink_stats(cb):
         rpc_input = ygdata.Container()
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-socket', 'reset-rawlink-stats'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_socket__reset_rawlink_stats: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_ipv4_prefix: action(cb: action(?Exception) -> None, inp: ?huawei_routing_policy__reset_ipv4_prefix__input) -> None
@@ -3195,7 +3398,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-routing-policy:reset-ipv4-prefix", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-routing-policy', 'reset-ipv4-prefix'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_routing_policy__reset_ipv4_prefix: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_ipv6_prefix: action(cb: action(?Exception) -> None, inp: ?huawei_routing_policy__reset_ipv6_prefix__input) -> None
@@ -3203,7 +3406,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-routing-policy:reset-ipv6-prefix", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-routing-policy', 'reset-ipv6-prefix'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_routing_policy__reset_ipv6_prefix: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_route_policy_counters: action(cb: action(?Exception) -> None, inp: huawei_routing_policy__reset_route_policy_counters__input) -> None
@@ -3211,7 +3414,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-routing-policy:reset-route-policy-counters", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-routing-policy', 'reset-route-policy-counters'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_routing_policy__reset_route_policy_counters: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_traffic_statistics: action(cb: action(?Exception) -> None, inp: huawei_l3vpn__reset_traffic_statistics__input) -> None
@@ -3219,7 +3422,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-l3vpn:reset-traffic-statistics", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-l3vpn', 'reset-traffic-statistics'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_l3vpn__reset_traffic_statistics: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     trunk_switch: action(cb: action(?Exception) -> None, inp: huawei_ifm_trunk__trunk_switch__input) -> None
@@ -3227,7 +3430,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-ifm-trunk:trunk-switch", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-ifm-trunk', 'trunk-switch'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_ifm_trunk__trunk_switch: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     create_qinq_termination: action(cb: action(?Exception) -> None, inp: huawei_ethernet__create_qinq_termination__input) -> None
@@ -3235,7 +3438,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-ethernet:create-qinq-termination", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-ethernet', 'create-qinq-termination'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_ethernet__create_qinq_termination: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     delete_qinq_termination: action(cb: action(?Exception) -> None, inp: huawei_ethernet__delete_qinq_termination__input) -> None
@@ -3243,7 +3446,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-ethernet:delete-qinq-termination", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-ethernet', 'delete-qinq-termination'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_ethernet__delete_qinq_termination: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     create_user_vlan_qinq: action(cb: action(?Exception) -> None, inp: huawei_ethernet__create_user_vlan_qinq__input) -> None
@@ -3251,7 +3454,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-ethernet:create-user-vlan-qinq", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-ethernet', 'create-user-vlan-qinq'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_ethernet__create_user_vlan_qinq: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     delete_user_vlan_qinq: action(cb: action(?Exception) -> None, inp: huawei_ethernet__delete_user_vlan_qinq__input) -> None
@@ -3259,7 +3462,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-ethernet:delete-user-vlan-qinq", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-ethernet', 'delete-user-vlan-qinq'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_ethernet__delete_user_vlan_qinq: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     change_session_board: action(cb: action(?Exception) -> None, inp: huawei_bfd__change_session_board__input) -> None
@@ -3267,7 +3470,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-bfd:change-session-board", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-bfd', 'change-session-board'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_bfd__change_session_board: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_bfd_statistics: action(cb: action(?Exception) -> None, inp: huawei_bfd__reset_bfd_statistics__input) -> None
@@ -3275,7 +3478,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-bfd:reset-bfd-statistics", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-bfd', 'reset-bfd-statistics'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_bfd__reset_bfd_statistics: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_all_route_statistics: action(cb: action(?Exception) -> None, inp: huawei_routing__reset_all_route_statistics__input) -> None
@@ -3283,7 +3486,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-routing:reset-all-route-statistics", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-routing', 'reset-all-route-statistics'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_routing__reset_all_route_statistics: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_all_vpn_route_statistics: action(cb: action(?Exception) -> None, inp: huawei_routing__reset_all_vpn_route_statistics__input) -> None
@@ -3291,7 +3494,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-routing:reset-all-vpn-route-statistics", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-routing', 'reset-all-vpn-route-statistics'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_routing__reset_all_vpn_route_statistics: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_route_statistics: action(cb: action(?Exception) -> None, inp: huawei_routing__reset_route_statistics__input) -> None
@@ -3299,7 +3502,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-routing:reset-route-statistics", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-routing', 'reset-route-statistics'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_routing__reset_route_statistics: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     static_unicast_route_number: action(cb: action(?huawei_routing__static_unicast_route_number__output, ?Exception) -> None, inp: huawei_routing__static_unicast_route_number__input) -> None
@@ -3314,7 +3517,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-routing:static-unicast-route-number", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-routing', 'static-unicast-route-number'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_routing__static_unicast_route_number: rpc_input})
         tp.rpc(cb_wrap, rpc_gdata)
 
     ipv4_unicast_route_number: action(cb: action(?huawei_routing__ipv4_unicast_route_number__output, ?Exception) -> None, inp: huawei_routing__ipv4_unicast_route_number__input) -> None
@@ -3329,7 +3532,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-routing:ipv4-unicast-route-number", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-routing', 'ipv4-unicast-route-number'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_routing__ipv4_unicast_route_number: rpc_input})
         tp.rpc(cb_wrap, rpc_gdata)
 
     ipv6_unicast_route_number: action(cb: action(?huawei_routing__ipv6_unicast_route_number__output, ?Exception) -> None, inp: huawei_routing__ipv6_unicast_route_number__input) -> None
@@ -3344,7 +3547,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-routing:ipv6-unicast-route-number", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-routing', 'ipv6-unicast-route-number'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_routing__ipv6_unicast_route_number: rpc_input})
         tp.rpc(cb_wrap, rpc_gdata)
 
     reset_ldp_session: action(cb: action(?Exception) -> None, inp: ?huawei_mpls_ldp__reset_ldp_session__input) -> None
@@ -3352,7 +3555,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-mpls-ldp:reset-ldp-session", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-mpls-ldp', 'reset-ldp-session'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_mpls_ldp__reset_ldp_session: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_all_ldp: action(cb: action(?Exception) -> None, inp: ?huawei_mpls_ldp__reset_all_ldp__input) -> None
@@ -3360,7 +3563,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-mpls-ldp:reset-all-ldp", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-mpls-ldp', 'reset-all-ldp'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_mpls_ldp__reset_all_ldp: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_ldp_traffic_statistics: action(cb: action(?Exception) -> None, inp: ?huawei_mpls_ldp__reset_ldp_traffic_statistics__input) -> None
@@ -3368,7 +3571,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-mpls-ldp:reset-ldp-traffic-statistics", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-mpls-ldp', 'reset-ldp-traffic-statistics'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_mpls_ldp__reset_ldp_traffic_statistics: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_mldp_traffic_statistics: action(cb: action(?Exception) -> None, inp: ?huawei_mpls_ldp__reset_mldp_traffic_statistics__input) -> None
@@ -3376,7 +3579,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-mpls-ldp:reset-mldp-traffic-statistics", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-mpls-ldp', 'reset-mldp-traffic-statistics'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_mpls_ldp__reset_mldp_traffic_statistics: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_mldp_all_traffic_statistics: action(cb: action(?Exception) -> None, inp: ?huawei_mpls_ldp__reset_mldp_all_traffic_statistics__input) -> None
@@ -3384,7 +3587,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-mpls-ldp:reset-mldp-all-traffic-statistics", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-mpls-ldp', 'reset-mldp-all-traffic-statistics'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_mpls_ldp__reset_mldp_all_traffic_statistics: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     diagnose_lsp_establishment: action(cb: action(?huawei_mpls_ldp__diagnose_lsp_establishment__output, ?Exception) -> None, inp: huawei_mpls_ldp__diagnose_lsp_establishment__input) -> None
@@ -3399,7 +3602,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-mpls-ldp:diagnose-lsp-establishment", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-mpls-ldp', 'diagnose-lsp-establishment'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_mpls_ldp__diagnose_lsp_establishment: rpc_input})
         tp.rpc(cb_wrap, rpc_gdata)
 
     reset_ldp_event_records: action(cb: action(?Exception) -> None, inp: ?huawei_mpls_ldp__reset_ldp_event_records__input) -> None
@@ -3407,7 +3610,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-mpls-ldp:reset-ldp-event-records", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-mpls-ldp', 'reset-ldp-event-records'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_mpls_ldp__reset_ldp_event_records: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_ldp_error_packet: action(cb: action(?Exception) -> None, inp: ?huawei_mpls_ldp__reset_ldp_error_packet__input) -> None
@@ -3415,7 +3618,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-mpls-ldp:reset-ldp-error-packet", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-mpls-ldp', 'reset-ldp-error-packet'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_mpls_ldp__reset_ldp_error_packet: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_isis_all: action(cb: action(?Exception) -> None, inp: ?huawei_isis__reset_isis_all__input) -> None
@@ -3423,7 +3626,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-isis:reset-isis-all", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-isis', 'reset-isis-all'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_isis__reset_isis_all: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_isis_peer: action(cb: action(?Exception) -> None, inp: huawei_isis__reset_isis_peer__input) -> None
@@ -3431,7 +3634,7 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-isis:reset-isis-peer", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-isis', 'reset-isis-peer'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_isis__reset_isis_peer: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     reset_suppress_flapping_peer: action(cb: action(?Exception) -> None, inp: huawei_isis__reset_suppress_flapping_peer__input) -> None
@@ -3439,13 +3642,13 @@ actor rpc_root(tp: ygdata.TreeProvider):
         rpc_input = ygdata.Container()
         if inp is not None:
             rpc_input = yadata.from_adata(SRC_DNODE, inp, True, ["huawei-isis:reset-suppress-flapping-peer", "input"])
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-isis', 'reset-suppress-flapping-peer'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_isis__reset_suppress_flapping_peer: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
     clear_loop_detect_alarm_state: action(cb: action(?Exception) -> None) -> None
     def clear_loop_detect_alarm_state(cb):
         rpc_input = ygdata.Container()
-        rpc_gdata = ygdata.Container({ygdata.Id('urn:huawei:yang:huawei-isis', 'clear-loop-detect-alarm-state'): rpc_input})
+        rpc_gdata = ygdata.Container({_ID_huawei_isis__clear_loop_detect_alarm_state: rpc_input})
         tp.rpc(lambda _, err: cb(err), rpc_gdata)
 
 

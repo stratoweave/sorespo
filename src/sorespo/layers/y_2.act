@@ -105,7 +105,9 @@ SRC_DNODE_CHILD_14: DLeaf = DLeaf(module='stratoweave-rfs', namespace='http://st
 
 SRC_DNODE_CHILD_15: DLeaf = DLeaf(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='sync-check', config=True, description='Check that the device configuration is in sync before applying edits.', default='true', is_key=False, mandatory=False, type=DTypeBoolean(name='boolean', description=None, reference=None, units=None, exts=[], builtin_type='boolean', default=None), adata_name='sync_check')
 
-SRC_DNODE_CHILD_16: DContainer = DContainer(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='mock', config=True, presence=False, adata_name='mock', children=[
+SRC_DNODE_CHILD_16: DLeaf = DLeaf(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='telemetry', config=True, description='How the adapter receives the data of the subscriptions to this\ndevice. Absent means push, except on IOS XR and ArcOS, which are\npolled.', is_key=False, mandatory=False, type=DTypeEnum(name='enumeration', description=None, reference=None, units=None, exts=[], builtin_type='enumeration', default=None, name_to_val={'push':0, 'poll':1}), adata_name='telemetry')
+
+SRC_DNODE_CHILD_17: DContainer = DContainer(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='mock', config=True, presence=False, adata_name='mock', children=[
     DLeaf(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='enabled', config=True, default='false', is_key=False, mandatory=False, type=DTypeBoolean(name='boolean', description=None, reference=None, units=None, exts=[], builtin_type='boolean', default=None), adata_name='enabled'),
     DContainer(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='software', config=True, description='How the mock behaves during a software upgrade.', presence=False, adata_name='software', children=[
         DLeaf(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='upgrade-duration', config=True, description='Seconds a whole mock software upgrade takes, spread over its\noperations as measured on a real device. Absent or 0 completes\neach operation at once.', is_key=False, mandatory=False, type=DTypeIntegerUnsigned(name='uint16', description=None, reference=None, units=None, exts=[], builtin_type='uint16', default=None, ranges=Ranges([(0, 65535)])), units='seconds', adata_name='upgrade_duration'),
@@ -125,16 +127,16 @@ SRC_DNODE_CHILD_16: DContainer = DContainer(module='stratoweave-rfs', namespace=
     ])
 ])
 
-SRC_DNODE_CHILD_17: DContainer = DContainer(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='debug', config=True, presence=False, adata_name='debug', children=[
+SRC_DNODE_CHILD_18: DContainer = DContainer(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='debug', config=True, presence=False, adata_name='debug', children=[
     DLeaf(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='connection', config=True, default='false', is_key=False, mandatory=False, type=DTypeBoolean(name='boolean', description=None, reference=None, units=None, exts=[], builtin_type='boolean', default=None), adata_name='connection'),
     DLeaf(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='log-level', config=True, description='Log level for this device. Overrides the log.device.level system\nsetting. When connection is true, the device logs at trace.', is_key=False, mandatory=False, type=DTypeEnum(name='enumeration', description=None, reference=None, units=None, exts=[], builtin_type='enumeration', default=None, name_to_val={'off':0, 'error':1, 'warning':2, 'info':3, 'debug':4, 'trace':5}), adata_name='log_level')
 ])
 
-SRC_DNODE_CHILD_18: DContainer = DContainer(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='feature-flags', config=True, presence=False, adata_name='feature_flags', children=[
+SRC_DNODE_CHILD_19: DContainer = DContainer(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='feature-flags', config=True, presence=False, adata_name='feature_flags', children=[
     DLeaf(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='runtime-schema-fetch', config=True, default='false', is_key=False, mandatory=False, type=DTypeBoolean(name='boolean', description=None, reference=None, units=None, exts=[], builtin_type='boolean', default=None), adata_name='runtime_schema_fetch')
 ])
 
-SRC_DNODE_CHILD_19: DContainer = DContainer(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='software', config=True, description='Per-device software management. Input comes from an upgrade\ncampaign or an operator; everything under state/ is reported by\nthe SoftwareManager.', presence=False, adata_name='software', children=[
+SRC_DNODE_CHILD_20: DContainer = DContainer(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='software', config=True, description='Per-device software management. Input comes from an upgrade\ncampaign or an operator; everything under state/ is reported by\nthe SoftwareManager.', presence=False, adata_name='software', children=[
     DLeaf(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='upgrade-campaign', config=True, description='The upgrade campaign whose intent this is. With target-release and\nattempt it is the intent that the manager answers, as an entry\nof state/attempt.', is_key=False, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]), adata_name='upgrade_campaign'),
     DLeaf(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='target-release', config=True, description="Name of the software release this device should be running, e.g.\n'17.18.03a'. Absent means no upgrade is intended and the manager\nstays idle. The manager reads the release the device runs. Under a\nveto it reads it and, with allow-staging, prepares the target;\nwithout one it installs the target when the device runs another\nrelease.", is_key=False, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]), adata_name='target_release'),
     DLeaf(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='attempt', config=True, description='The attempt at the target. Change it to try the device again: the\nmanager answers the new attempt as a new intent. It reads the\nrelease the device runs, runs a failed upgrade again when no veto\nholds the install, and answers up-to-date when the device runs\nthe target. A run of another attempt that is under way finishes\nfirst. When that run fails its rollback, the attempt does not\nstart: it answers not-started. A final status stands for its\nattempt: setting an earlier attempt again starts nothing.', default='0', is_key=False, mandatory=False, type=DTypeIntegerUnsigned(name='uint32', description=None, reference=None, units=None, exts=[], builtin_type='uint32', default=None, ranges=Ranges([(0, 4294967295)])), adata_name='attempt'),
@@ -153,11 +155,11 @@ SRC_DNODE_CHILD_19: DContainer = DContainer(module='stratoweave-rfs', namespace=
 
 SRC_DNODE_CHILD_0: DList = DList(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='device', key=['name'], config=True, min_elements=0, ordered_by='system', exts=[
         DExt(module='stratoweave', namespace='http://stratoweave.org/yang/stratoweave', prefix='sw', name='device', arg=None, exts=[])
-    ], adata_name='device', children=[SRC_DNODE_CHILD_1, SRC_DNODE_CHILD_2, SRC_DNODE_CHILD_3, SRC_DNODE_CHILD_4, SRC_DNODE_CHILD_5, SRC_DNODE_CHILD_6, SRC_DNODE_CHILD_7, SRC_DNODE_CHILD_13, SRC_DNODE_CHILD_14, SRC_DNODE_CHILD_15, SRC_DNODE_CHILD_16, SRC_DNODE_CHILD_17, SRC_DNODE_CHILD_18, SRC_DNODE_CHILD_19])
+    ], adata_name='device', children=[SRC_DNODE_CHILD_1, SRC_DNODE_CHILD_2, SRC_DNODE_CHILD_3, SRC_DNODE_CHILD_4, SRC_DNODE_CHILD_5, SRC_DNODE_CHILD_6, SRC_DNODE_CHILD_7, SRC_DNODE_CHILD_13, SRC_DNODE_CHILD_14, SRC_DNODE_CHILD_15, SRC_DNODE_CHILD_16, SRC_DNODE_CHILD_17, SRC_DNODE_CHILD_18, SRC_DNODE_CHILD_19, SRC_DNODE_CHILD_20])
 
-SRC_DNODE_CHILD_21: DLeaf = DLeaf(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='name', config=True, description='Device name', is_key=True, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]), adata_name='name')
+SRC_DNODE_CHILD_22: DLeaf = DLeaf(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='name', config=True, description='Device name', is_key=True, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]), adata_name='name')
 
-SRC_DNODE_CHILD_22: DContainer = DContainer(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='base-config', config=True, presence=False, exts=[
+SRC_DNODE_CHILD_23: DContainer = DContainer(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='base-config', config=True, presence=False, exts=[
         DExt(module='stratoweave', namespace='http://stratoweave.org/yang/stratoweave', prefix='sw', name='rfs-transform', arg='sorespo.rfs.BaseConfig', exts=[])
     ], adata_name='base_config', children=[
     DLeaf(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='role', config=True, is_key=False, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]), adata_name='role'),
@@ -167,7 +169,7 @@ SRC_DNODE_CHILD_22: DContainer = DContainer(module='sorespo-rfs', namespace='htt
     DLeaf(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='ibgp-authentication-key', config=True, is_key=False, mandatory=True, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]), adata_name='ibgp_authentication_key')
 ])
 
-SRC_DNODE_CHILD_23: DList = DList(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='backbone-interface', key=['name'], config=True, min_elements=0, ordered_by='system', exts=[
+SRC_DNODE_CHILD_24: DList = DList(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='backbone-interface', key=['name'], config=True, min_elements=0, ordered_by='system', exts=[
         DExt(module='stratoweave', namespace='http://stratoweave.org/yang/stratoweave', prefix='sw', name='rfs-transform', arg='sorespo.rfs.BBInterface', exts=[])
     ], adata_name='backbone_interface', children=[
     DLeaf(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='name', config=True, is_key=True, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]), adata_name='name'),
@@ -181,7 +183,7 @@ SRC_DNODE_CHILD_23: DList = DList(module='sorespo-rfs', namespace='http://exampl
     ])
 ])
 
-SRC_DNODE_CHILD_24: DList = DList(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='ibgp-neighbor', key=['address'], config=True, min_elements=0, ordered_by='system', exts=[
+SRC_DNODE_CHILD_25: DList = DList(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='ibgp-neighbor', key=['address'], config=True, min_elements=0, ordered_by='system', exts=[
         DExt(module='stratoweave', namespace='http://stratoweave.org/yang/stratoweave', prefix='sw', name='rfs-transform', arg='sorespo.rfs.IbgpNeighbor', exts=[])
     ], adata_name='ibgp_neighbor', children=[
     DLeaf(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='address', config=True, is_key=True, mandatory=False, type=DTypeUnion(name='inet:ip-address', description='The ip-address type represents an IP address and is IP\nversion neutral.  The format of the textual representation\nimplies the IP version.  This type supports scoped addresses\nby allowing zone identifiers in the address format.', reference='RFC 4007: IPv6 Scoped Address Architecture', units=None, exts=[], builtin_type='union', default=None, types=[DTypeString(name='inet:ipv4-address', description='The ipv4-address type represents an IPv4 address in\ndotted-quad notation.  The IPv4 address may include a zone\nindex, separated by a % sign.\n\nThe zone index is used to disambiguate identical address\nvalues.  For link-local addresses, the zone index will\ntypically be the interface index number or the name of an\ninterface.  If the zone index is not present, the default\nzone of the device will be used.\n\nThe canonical format for the zone index is the numerical\nformat', reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){{3}}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\\p{{N}}\\p{{L}}]+)?', pcre='^((([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){{3}}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\\p{{N}}\\p{{L}}]+)?)$', invert=False)]), DTypeString(name='inet:ipv6-address', description='The ipv6-address type represents an IPv6 address in full,\nmixed, shortened, and shortened-mixed notation.  The IPv6\naddress may include a zone index, separated by a % sign.\n\nThe zone index is used to disambiguate identical address\nvalues.  For link-local addresses, the zone index will\ntypically be the interface index number or the name of an\ninterface.  If the zone index is not present, the default\nzone of the device will be used.\n\nThe canonical format of IPv6 addresses uses the textual\nrepresentation defined in Section 4 of RFC 5952.  The\ncanonical format for the zone index is the numerical\nformat as described in Section 11.2 of RFC 4007.', reference='RFC 4291: IP Version 6 Addressing Architecture\nRFC 4007: IPv6 Scoped Address Architecture\nRFC 5952: A Recommendation for IPv6 Address Text\n          Representation', units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[YangPattern(yang_regex='((:|[0-9a-fA-F]{{0,4}}):)([0-9a-fA-F]{{0,4}}:){{0,5}}((([0-9a-fA-F]{{0,4}}:)?(:|[0-9a-fA-F]{{0,4}}))|(((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\.){{3}}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])))(%[\\p{{N}}\\p{{L}}]+)?', pcre='^(((:|[0-9a-fA-F]{{0,4}}):)([0-9a-fA-F]{{0,4}}:){{0,5}}((([0-9a-fA-F]{{0,4}}:)?(:|[0-9a-fA-F]{{0,4}}))|(((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\.){{3}}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])))(%[\\p{{N}}\\p{{L}}]+)?)$', invert=False), YangPattern(yang_regex='(([^:]+:){{6}}(([^:]+:[^:]+)|(.*\\..*)))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?)(%.+)?', pcre='^((([^\\:]+:){{6}}(([^\\:]+:[^\\:]+)|(.*\\..*)))|((([^\\:]+:)*[^\\:]+)?::(([^\\:]+:)*[^\\:]+)?)(%.+)?)$', invert=False)])]), adata_name='address'),
@@ -190,7 +192,7 @@ SRC_DNODE_CHILD_24: DList = DList(module='sorespo-rfs', namespace='http://exampl
     DLeaf(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='ibgp-authentication-key', config=True, is_key=False, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]), adata_name='ibgp_authentication_key')
 ])
 
-SRC_DNODE_CHILD_25: DList = DList(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='vrf', key=['name'], config=True, min_elements=0, ordered_by='system', exts=[
+SRC_DNODE_CHILD_26: DList = DList(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='vrf', key=['name'], config=True, min_elements=0, ordered_by='system', exts=[
         DExt(module='stratoweave', namespace='http://stratoweave.org/yang/stratoweave', prefix='sw', name='rfs-transform', arg='sorespo.rfs.Vrf', exts=[])
     ], adata_name='vrf', children=[
     DLeaf(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='name', config=True, is_key=True, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]), adata_name='name'),
@@ -200,7 +202,7 @@ SRC_DNODE_CHILD_25: DList = DList(module='sorespo-rfs', namespace='http://exampl
     DLeaf(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='asn', config=True, is_key=False, mandatory=True, type=DTypeIntegerUnsigned(name='inet:as-number', description='The as-number type represents autonomous system numbers\nwhich identify an Autonomous System (AS).  An AS is a set\nof routers under a single technical administration, using\nan interior gateway protocol and common metrics to route\npackets within the AS, and using an exterior gateway\nprotocol to route packets to other ASes.  IANA maintains\nthe AS number space and has delegated large parts to the\nregional registries.\n\nAutonomous system numbers were originally limited to 16\nbits.  BGP extensions have enlarged the autonomous system\nnumber space to 32 bits.  This type therefore uses an uint32\nbase type without a range restriction in order to support\na larger autonomous system number space.\n\nIn the value set and its semantics, this type is equivalent\nto the InetAutonomousSystemNumber textual convention of\nthe SMIv2.', reference='RFC 1930: Guidelines for creation, selection, and registration\n          of an Autonomous System (AS)\nRFC 4271: A Border Gateway Protocol 4 (BGP-4)\nRFC 4001: Textual Conventions for Internet Network Addresses\nRFC 6793: BGP Support for Four-Octet Autonomous System (AS)\n          Number Space', units=None, exts=[], builtin_type='uint32', default=None, ranges=Ranges([(0, 4294967295)])), adata_name='asn')
 ])
 
-SRC_DNODE_CHILD_26: DList = DList(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='vrf-interface', key=['name'], config=True, min_elements=0, ordered_by='system', exts=[
+SRC_DNODE_CHILD_27: DList = DList(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='vrf-interface', key=['name'], config=True, min_elements=0, ordered_by='system', exts=[
         DExt(module='stratoweave', namespace='http://stratoweave.org/yang/stratoweave', prefix='sw', name='rfs-transform', arg='sorespo.rfs.VrfInterface', exts=[])
     ], adata_name='vrf_interface', children=[
     DLeaf(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='name', config=True, is_key=True, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]), adata_name='name'),
@@ -210,7 +212,7 @@ SRC_DNODE_CHILD_26: DList = DList(module='sorespo-rfs', namespace='http://exampl
     DLeaf(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='ipv4-prefix-length', config=True, default='30', is_key=False, mandatory=False, type=DTypeIntegerUnsigned(name='uint8', description=None, reference=None, units=None, exts=[], builtin_type='uint8', default=None, ranges=Ranges([(1, 31)])), adata_name='ipv4_prefix_length')
 ])
 
-SRC_DNODE_CHILD_27: DList = DList(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='ebgp-customer', key=[
+SRC_DNODE_CHILD_28: DList = DList(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='ebgp-customer', key=[
 'vrf',
 'address'
     ], config=True, min_elements=0, ordered_by='system', exts=[
@@ -224,10 +226,10 @@ SRC_DNODE_CHILD_27: DList = DList(module='sorespo-rfs', namespace='http://exampl
     DLeaf(module='sorespo-rfs', namespace='http://example.com/sorespo-rfs', prefix='sorespo-rfs', name='authentication-key', config=True, description='Optional eBGP session authentication key (MD5/TCP-AO). Absent when\nthe customer session has no authentication configured.', is_key=False, mandatory=False, type=DTypeString(name='string', description=None, reference=None, units=None, exts=[], builtin_type='string', default=None, length=None, patterns=[]), adata_name='authentication_key')
 ])
 
-SRC_DNODE_CHILD_20: DList = DList(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='rfs', key=['name'], config=True, min_elements=0, ordered_by='system', adata_name='rfs', children=[SRC_DNODE_CHILD_21, SRC_DNODE_CHILD_22, SRC_DNODE_CHILD_23, SRC_DNODE_CHILD_24, SRC_DNODE_CHILD_25, SRC_DNODE_CHILD_26, SRC_DNODE_CHILD_27])
+SRC_DNODE_CHILD_21: DList = DList(module='stratoweave-rfs', namespace='http://stratoweave.org/yang/stratoweave-rfs', prefix='sw-rfs', name='rfs', key=['name'], config=True, min_elements=0, ordered_by='system', adata_name='rfs', children=[SRC_DNODE_CHILD_22, SRC_DNODE_CHILD_23, SRC_DNODE_CHILD_24, SRC_DNODE_CHILD_25, SRC_DNODE_CHILD_26, SRC_DNODE_CHILD_27, SRC_DNODE_CHILD_28])
 
 SRC_DNODE: DRoot = DRoot(
-    children=[SRC_DNODE_CHILD_0, SRC_DNODE_CHILD_20],
+    children=[SRC_DNODE_CHILD_0, SRC_DNODE_CHILD_21],
     identities=[],
     rpcs=[],
     module_metadata={'urn:ietf:params:xml:ns:yang:ietf-yang-types':('ietf-yang-types', '2025-12-22', [], False), 'urn:ietf:params:xml:ns:yang:ietf-inet-types':('ietf-inet-types', '2013-07-15', [], False), 'http://stratoweave.org/yang/stratoweave-ssh':('stratoweave-ssh', None, [], False), 'http://stratoweave.org/yang/stratoweave':('stratoweave', '2026-04-01', [], False), 'http://stratoweave.org/yang/stratoweave-rfs':('stratoweave-rfs', None, [], True), 'http://example.com/sorespo-rfs':('sorespo-rfs', None, [], True)},
@@ -706,6 +708,26 @@ SRC_YANG_2: str = r"""module stratoweave-rfs {
         "Check that the device configuration is in sync before applying edits.";
     }
 
+    leaf telemetry {
+      description
+        "How the adapter receives the data of the subscriptions to this
+         device. Absent means push, except on IOS XR and ArcOS, which are
+         polled.";
+      type enumeration {
+        enum push {
+          description
+            "The device pushes the data, with YANG-push over NETCONF. A
+             device that cannot push is polled.";
+        }
+        enum poll {
+          description
+            "The adapter reads the data with a periodic get. Event
+             notifications arrive through RFC 5277 create-subscription. An
+             on-change subscription fails.";
+        }
+      }
+    }
+
     container mock {
       leaf enabled {
         type boolean;
@@ -1148,6 +1170,13 @@ SRC_YANG_2: str = r"""module stratoweave-rfs {
           description
             "Chassis serial number.";
           type string;
+        }
+        leaf last-boot {
+          description
+            "When the device last booted, as seconds since the Unix epoch by
+             the device's clock. Absent when the device does not report it.";
+          type uint64;
+          units "seconds";
         }
         leaf probe {
           description
@@ -2720,6 +2749,7 @@ _ID_stratoweave_rfs__software: ygdata.Id = ygdata.Id(NS_stratoweave_rfs, 'softwa
 _ID_stratoweave_rfs__ssh: ygdata.Id = ygdata.Id(NS_stratoweave_rfs, 'ssh')
 _ID_stratoweave_rfs__sync_check: ygdata.Id = ygdata.Id(NS_stratoweave_rfs, 'sync-check')
 _ID_stratoweave_rfs__target_release: ygdata.Id = ygdata.Id(NS_stratoweave_rfs, 'target-release')
+_ID_stratoweave_rfs__telemetry: ygdata.Id = ygdata.Id(NS_stratoweave_rfs, 'telemetry')
 _ID_stratoweave_rfs__type: ygdata.Id = ygdata.Id(NS_stratoweave_rfs, 'type')
 _ID_stratoweave_rfs__upgrade_campaign: ygdata.Id = ygdata.Id(NS_stratoweave_rfs, 'upgrade-campaign')
 _ID_stratoweave_rfs__upgrade_duration: ygdata.Id = ygdata.Id(NS_stratoweave_rfs, 'upgrade-duration')
@@ -3552,12 +3582,13 @@ class stratoweave_rfs__device_entry(yadata.MNode):
     ssh: stratoweave_rfs__device__ssh
     approval_required: bool
     sync_check: bool
+    telemetry: ?str
     mock: stratoweave_rfs__device__mock
     debug: stratoweave_rfs__device__debug
     feature_flags: stratoweave_rfs__device__feature_flags
     software: stratoweave_rfs__device__software
 
-    mut def __init__(self, name: str, credentials: stratoweave_rfs__device__credentials, description: ?str=None, type: ?str=None, address: list[stratoweave_rfs__device__address_entry]=[], initial_credentials: list[stratoweave_rfs__device__initial_credentials_entry]=[], extra_adapter: list[stratoweave_rfs__device__extra_adapter_entry]=[], ssh: ?stratoweave_rfs__device__ssh=None, approval_required: ?bool=None, sync_check: ?bool=None, mock: ?stratoweave_rfs__device__mock=None, debug: ?stratoweave_rfs__device__debug=None, feature_flags: ?stratoweave_rfs__device__feature_flags=None, software: ?stratoweave_rfs__device__software=None) -> None:
+    mut def __init__(self, name: str, credentials: stratoweave_rfs__device__credentials, description: ?str=None, type: ?str=None, address: list[stratoweave_rfs__device__address_entry]=[], initial_credentials: list[stratoweave_rfs__device__initial_credentials_entry]=[], extra_adapter: list[stratoweave_rfs__device__extra_adapter_entry]=[], ssh: ?stratoweave_rfs__device__ssh=None, approval_required: ?bool=None, sync_check: ?bool=None, telemetry: ?str=None, mock: ?stratoweave_rfs__device__mock=None, debug: ?stratoweave_rfs__device__debug=None, feature_flags: ?stratoweave_rfs__device__feature_flags=None, software: ?stratoweave_rfs__device__software=None) -> None:
         self.name = name
         self.description = description
         self.type = type
@@ -3568,6 +3599,7 @@ class stratoweave_rfs__device_entry(yadata.MNode):
         self.ssh = ssh if ssh is not None else stratoweave_rfs__device__ssh()
         self.approval_required = approval_required if approval_required is not None else False
         self.sync_check = sync_check if sync_check is not None else True
+        self.telemetry = telemetry
         self.mock = mock if mock is not None else stratoweave_rfs__device__mock()
         self.debug = debug if debug is not None else stratoweave_rfs__device__debug()
         self.feature_flags = feature_flags if feature_flags is not None else stratoweave_rfs__device__feature_flags()
@@ -3578,7 +3610,7 @@ class stratoweave_rfs__device_entry(yadata.MNode):
 
     @staticmethod
     mut def from_gdata(n: ygdata.Node) -> stratoweave_rfs__device_entry:
-        return stratoweave_rfs__device_entry(name=n.get_str(_ID_stratoweave_rfs__name), description=n.get_opt_str(_ID_stratoweave_rfs__description), type=n.get_opt_str(_ID_stratoweave_rfs__type), address=stratoweave_rfs__device__address.from_gdata(n.get_opt_list(_ID_stratoweave_rfs__address)), credentials=stratoweave_rfs__device__credentials.from_gdata(n.get_cnt(_ID_stratoweave_rfs__credentials)), initial_credentials=stratoweave_rfs__device__initial_credentials.from_gdata(n.get_opt_list(_ID_stratoweave_rfs__initial_credentials)), extra_adapter=stratoweave_rfs__device__extra_adapter.from_gdata(n.get_opt_list(_ID_stratoweave_rfs__extra_adapter)), ssh=stratoweave_rfs__device__ssh.from_gdata(n.get_opt_cnt(_ID_stratoweave_rfs__ssh)), approval_required=n.get_opt_bool(_ID_stratoweave_rfs__approval_required), sync_check=n.get_opt_bool(_ID_stratoweave_rfs__sync_check), mock=stratoweave_rfs__device__mock.from_gdata(n.get_opt_cnt(_ID_stratoweave_rfs__mock)), debug=stratoweave_rfs__device__debug.from_gdata(n.get_opt_cnt(_ID_stratoweave_rfs__debug)), feature_flags=stratoweave_rfs__device__feature_flags.from_gdata(n.get_opt_cnt(_ID_stratoweave_rfs__feature_flags)), software=stratoweave_rfs__device__software.from_gdata(n.get_opt_cnt(_ID_stratoweave_rfs__software)))
+        return stratoweave_rfs__device_entry(name=n.get_str(_ID_stratoweave_rfs__name), description=n.get_opt_str(_ID_stratoweave_rfs__description), type=n.get_opt_str(_ID_stratoweave_rfs__type), address=stratoweave_rfs__device__address.from_gdata(n.get_opt_list(_ID_stratoweave_rfs__address)), credentials=stratoweave_rfs__device__credentials.from_gdata(n.get_cnt(_ID_stratoweave_rfs__credentials)), initial_credentials=stratoweave_rfs__device__initial_credentials.from_gdata(n.get_opt_list(_ID_stratoweave_rfs__initial_credentials)), extra_adapter=stratoweave_rfs__device__extra_adapter.from_gdata(n.get_opt_list(_ID_stratoweave_rfs__extra_adapter)), ssh=stratoweave_rfs__device__ssh.from_gdata(n.get_opt_cnt(_ID_stratoweave_rfs__ssh)), approval_required=n.get_opt_bool(_ID_stratoweave_rfs__approval_required), sync_check=n.get_opt_bool(_ID_stratoweave_rfs__sync_check), telemetry=n.get_opt_str(_ID_stratoweave_rfs__telemetry), mock=stratoweave_rfs__device__mock.from_gdata(n.get_opt_cnt(_ID_stratoweave_rfs__mock)), debug=stratoweave_rfs__device__debug.from_gdata(n.get_opt_cnt(_ID_stratoweave_rfs__debug)), feature_flags=stratoweave_rfs__device__feature_flags.from_gdata(n.get_opt_cnt(_ID_stratoweave_rfs__feature_flags)), software=stratoweave_rfs__device__software.from_gdata(n.get_opt_cnt(_ID_stratoweave_rfs__software)))
 
     mut def copy(self) -> stratoweave_rfs__device_entry:
         """Create a deep copy of this adata object"""
@@ -3589,7 +3621,7 @@ class stratoweave_rfs__device(yadata.MKeyedList[str, stratoweave_rfs__device_ent
     mut def __init__(self, elements: list[stratoweave_rfs__device_entry]=[]) -> None:
         yadata.MKeyedList.__init__(self, lambda e: e.name, elements)
 
-    mut def create(self, key: str, credentials: stratoweave_rfs__device__credentials, description: ?str=None, type: ?str=None, approval_required: ?bool=None, sync_check: ?bool=None) -> stratoweave_rfs__device_entry:
+    mut def create(self, key: str, credentials: stratoweave_rfs__device__credentials, description: ?str=None, type: ?str=None, approval_required: ?bool=None, sync_check: ?bool=None, telemetry: ?str=None) -> stratoweave_rfs__device_entry:
         e = self.get(key)
         if e is not None:
             e.credentials = credentials
@@ -3601,9 +3633,11 @@ class stratoweave_rfs__device(yadata.MKeyedList[str, stratoweave_rfs__device_ent
                 e.approval_required = approval_required
             if sync_check is not None:
                 e.sync_check = sync_check
+            if telemetry is not None:
+                e.telemetry = telemetry
             return e
         name = key
-        res = stratoweave_rfs__device_entry(name=name, credentials=credentials, description=description, type=type, approval_required=approval_required, sync_check=sync_check)
+        res = stratoweave_rfs__device_entry(name=name, credentials=credentials, description=description, type=type, approval_required=approval_required, sync_check=sync_check, telemetry=telemetry)
         self._append(res)
         return res
 

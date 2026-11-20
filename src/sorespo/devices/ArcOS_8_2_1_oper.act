@@ -17953,7 +17953,6 @@ SRC_YANG_5: str = r"""module arcos-acl-clear {
       }
     }
 
-    /*
     action set {
       description
         "Clear stats counters for a specific ACL set or entry";
@@ -18000,7 +17999,6 @@ SRC_YANG_5: str = r"""module arcos-acl-clear {
         }
       }
     }
-    */
   }
 }
 """
@@ -115327,7 +115325,7 @@ SRC_YANG_246: str = r"""module arcos-runtime {
 SRC_YANG_247: str = r"""module arcos-service-policy {
   yang-version 1.1;
   namespace "http://yang.arrcus.com/arcos/service-policy";
-  prefix arc-svc-plc;
+  prefix arc-svc-pol;
 
   organization
     "Arrcus, Inc.";

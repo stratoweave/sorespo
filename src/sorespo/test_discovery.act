@@ -25,14 +25,12 @@ actor _test_sd_to_cfs_quicklab(t: testing.EnvT):
     proc def __startup__():
         swts.ServiceDiscoveryTester(t, sysspec.SYSSPEC, "test/sd-quicklab", _discover_cfs)
 
-    __startup__()
 
 
 actor _test_sd_to_rfs_quicklab(t: testing.EnvT):
     proc def __startup__():
         swts.ServiceDiscoveryTester(t, sysspec.SYSSPEC, "test/sd-quicklab", _discover_rfs, layer_depth=2)
 
-    __startup__()
 
 
 # quicklab-srl service discovery
@@ -42,11 +40,8 @@ actor _test_sd_to_cfs_quicklab_srl(t: testing.EnvT):
     proc def __startup__():
         swts.ServiceDiscoveryTester(t, sysspec.SYSSPEC, "test/sd-quicklab-srl", _discover_cfs)
 
-    __startup__()
 
 
 actor _test_sd_to_rfs_quicklab_srl(t: testing.EnvT):
     proc def __startup__():
         swts.ServiceDiscoveryTester(t, sysspec.SYSSPEC, "test/sd-quicklab-srl", _discover_rfs, layer_depth=2)
-
-    __startup__()

@@ -61,7 +61,6 @@ actor _test_netinfra1(t: testing.AsyncT):
 
         tr.edit_config_xml(netinfra1_in, cont)
 
-    __startup__()
 
 
 l3vpn_in = """<data>
@@ -352,21 +351,18 @@ actor l3vpn_tester(t: testing.AsyncT, output_formatter: proc(swts.TestRig) -> st
 
         tr.edit_config_xml(l3vpn_in, cont)
 
-    __startup__()
 
 
 actor _test_l3vpn_svc(t: testing.AsyncT):
     proc def __startup__():
         l3vpn_tester(t, lambda tr: tr.layer_config(-1).to_xmlstr(pretty=True, deterministic=True))
 
-    __startup__()
 
 
 actor _test_l3vpn_svc_json(t: testing.AsyncT):
     proc def __startup__():
         l3vpn_tester(t, lambda tr: tr.layer_config(-1).to_yang_jsonstr(pretty=True, deterministic=True))
 
-    __startup__()
 
 
 actor _test_l3vpn_svc_adata(t: testing.AsyncT):
@@ -378,5 +374,3 @@ actor _test_l3vpn_svc_adata(t: testing.AsyncT):
     # TODO: enable once gdata after transform is valid (= sorted where it needs to be)
     # def _test_l3vpn_svc_gdata(t: testing.AsyncT):
     #     l3vpn_tester(t, lambda tr: tr.layer_config(3).prsrc())
-
-    __startup__()

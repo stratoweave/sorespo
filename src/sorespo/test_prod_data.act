@@ -130,7 +130,6 @@ actor _test_complete_prod_data(t: testing.AsyncT):
 
         swts.TransformTester(t, sysspec.SYSSPEC, root.to_gdata())
 
-    __startup__()
 
 
 actor _test_netinfra_ams_core_1(t: testing.AsyncT):
@@ -144,7 +143,6 @@ actor _test_netinfra_ams_core_1(t: testing.AsyncT):
 
         swts.TransformTester(t, sysspec.SYSSPEC, root.to_gdata())
 
-    __startup__()
 
 
 actor _test_netinfra_fra_core_1(t: testing.AsyncT):
@@ -158,7 +156,6 @@ actor _test_netinfra_fra_core_1(t: testing.AsyncT):
 
         swts.TransformTester(t, sysspec.SYSSPEC, root.to_gdata())
 
-    __startup__()
 
 
 actor _test_netinfra_sto_core_1(t: testing.AsyncT):
@@ -172,7 +169,6 @@ actor _test_netinfra_sto_core_1(t: testing.AsyncT):
 
         swts.TransformTester(t, sysspec.SYSSPEC, root.to_gdata())
 
-    __startup__()
 
 
 actor _test_netinfra_lju_core_1(t: testing.AsyncT):
@@ -185,5 +181,3 @@ actor _test_netinfra_lju_core_1(t: testing.AsyncT):
         router.mock = True
 
         swts.TransformTester(t, sysspec.SYSSPEC, root.to_gdata())
-
-    __startup__()

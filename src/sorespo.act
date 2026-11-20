@@ -8,5 +8,3 @@ actor main(env):
 
     proc def __startup__():
         stratoweave.main(sysspec.SYSSPEC, env, static_assets=webui_assets.ASSETS)
-
-    __startup__()

@@ -1,0 +1,69 @@
+{
+    "netinfra:netinfra": {
+        "global-settings": {
+            "ibgp-authentication-key": "ibgp-authentication-key"
+        },
+        "router": [
+            {
+                "name": "AMS-CORE-1",
+                "id": 1,
+                "type": "ArcOS_8_2_1",
+                "role": "edge",
+                "asn": 65001
+            },
+            {
+                "name": "FRA-CORE-1",
+                "id": 2,
+                "type": "ArcOS_8_2_1",
+                "role": "edge",
+                "asn": 65001
+            },
+            {
+                "name": "STO-CORE-1",
+                "id": 3,
+                "type": "ArcOS_8_2_1",
+                "role": "edge",
+                "asn": 65001
+            },
+            {
+                "name": "LJU-CORE-1",
+                "id": 4,
+                "type": "ArcOS_8_2_1",
+                "role": "edge",
+                "asn": 65001
+            }
+        ],
+        "backbone-link": [
+            {
+                "left-router": "AMS-CORE-1",
+                "left-interface": "swp0",
+                "right-router": "FRA-CORE-1",
+                "right-interface": "swp0"
+            },
+            {
+                "left-router": "AMS-CORE-1",
+                "left-interface": "swp1",
+                "right-router": "STO-CORE-1",
+                "right-interface": "swp0"
+            },
+            {
+                "left-router": "FRA-CORE-1",
+                "left-interface": "swp1",
+                "right-router": "STO-CORE-1",
+                "right-interface": "swp1"
+            },
+            {
+                "left-router": "FRA-CORE-1",
+                "left-interface": "swp2",
+                "right-router": "LJU-CORE-1",
+                "right-interface": "swp0"
+            },
+            {
+                "left-router": "STO-CORE-1",
+                "left-interface": "swp2",
+                "right-router": "LJU-CORE-1",
+                "right-interface": "swp1"
+            }
+        ]
+    }
+}

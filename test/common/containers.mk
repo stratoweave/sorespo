@@ -1,4 +1,4 @@
-.PHONY: $(addprefix platform-wait-,$(ROUTERS_XR) $(ROUTERS_CRPD) $(ROUTERS_SRL))
+.PHONY: $(addprefix platform-wait-,$(ROUTERS_XR) $(ROUTERS_CRPD) $(ROUTERS_SRL) $(ROUTERS_ARCOS))
 
 $(addprefix platform-wait-,$(ROUTERS_XR)):
 # Wait for "smartlicserver[212]: %LICENSE-SMART_LIC-3-COMM_FAILED : Communications failure with the Cisco Smart License Utility (CSLU) : Unable to resolve server hostname/domain name" to appear in the container logs
@@ -13,6 +13,11 @@ $(addprefix platform-wait-,$(ROUTERS_CRPD)):
 $(addprefix platform-wait-,$(ROUTERS_SRL)):
 # Wait for "Application license_mgr is running" to appear in the container logs
 	timeout --foreground $(WAIT) bash -c "until docker logs $(TESTENV)-$(@:platform-wait-%=%) 2>&1 | grep -q 'Application license_mgr is running'; do sleep 1; done"
+	docker run $(INTERACTIVE) --rm --network container:$(TESTENV)-sweave ghcr.io/stratoweave/ncurl --host $(@:platform-wait-%=%) --port 830 --username clab --password clab@123 hello
+
+$(addprefix platform-wait-,$(ROUTERS_ARCOS)):
+# Wait for the startup configuration to finish loading before probing NETCONF.
+	timeout --foreground $(WAIT) bash -c "until docker logs $(TESTENV)-$(@:platform-wait-%=%) 2>&1 | grep -Fq 'Loading startup config file /mnt/onl/config/.system/startup_config.xml succeeded'; do sleep 1; done"
 	docker run $(INTERACTIVE) --rm --network container:$(TESTENV)-sweave ghcr.io/stratoweave/ncurl --host $(@:platform-wait-%=%) --port 830 --username clab --password clab@123 hello
 
 .PHONY: cli $(addprefix platform-cli-,$(ROUTERS_XR) $(ROUTERS_CRPD) $(ROUTERS_SRL) $(ROUTERS_ARCOS) $(ROUTERS_FRR))

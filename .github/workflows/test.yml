@@ -122,13 +122,16 @@ jobs:
       fail-fast: false
       matrix:
         # Fork PRs have no access to secrets / private registry, so only run with public images
-        TESTENV: ${{ fromJSON(github.event_name == 'push' && '["quicklab","quicklab-xrd","quicklab-crpd","quicklab-notconf","quicklab-srl"]' || '["quicklab-notconf","quicklab-srl"]') }}
+        TESTENV: ${{ fromJSON(github.event_name == 'push' && '["quicklab","quicklab-xrd","quicklab-crpd","quicklab-notconf","quicklab-srl","quicklab-arcos"]' || '["quicklab-notconf","quicklab-srl"]') }}
         ARCH: [linux-x86_64, linux-aarch64]
         exclude:
           # No Cisco IOS XRd support for aarch64 :/
           - TESTENV: quicklab
             ARCH: linux-aarch64
           - TESTENV: quicklab-xrd
+            ARCH: linux-aarch64
+          # The ArcOS test image is amd64.
+          - TESTENV: quicklab-arcos
             ARCH: linux-aarch64
     runs-on: ${{ matrix.arch == 'linux-x86_64' && 'ubuntu-24.04' || 'ubuntu-24.04-arm' }}
     permissions:
@@ -169,7 +172,7 @@ jobs:
       # If we're using IMAGE_PATH=ghcr.io/... login to ghcr.io using GITHUB_TOKEN
       # TODO: what about other (external) registries that require login?
       - name: Login to ghcr.io
-        if: ${{ startsWith(env.IMAGE_PATH, 'ghcr.io') && (matrix.TESTENV == 'quicklab' || matrix.TESTENV == 'quicklab-crpd' || matrix.TESTENV == 'quicklab-xrd') }}
+        if: ${{ startsWith(env.IMAGE_PATH, 'ghcr.io') && (matrix.TESTENV == 'quicklab' || matrix.TESTENV == 'quicklab-crpd' || matrix.TESTENV == 'quicklab-xrd' || matrix.TESTENV == 'quicklab-arcos') }}
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: "Start quicklab"

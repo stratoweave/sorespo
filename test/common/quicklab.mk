@@ -130,9 +130,9 @@ stop-dev-webui:
 stop:
 	$(CLAB_BIN) destroy --topo $(TESTENV:sorespo-%=%).clab.yml --log-level debug
 
-.PHONY: wait $(addprefix wait-,$(ROUTERS_XR) $(ROUTERS_CRPD) $(ROUTERS_SRL))
+.PHONY: wait $(addprefix wait-,$(ROUTERS_XR) $(ROUTERS_CRPD) $(ROUTERS_SRL) $(ROUTERS_ARCOS))
 WAIT?=60
-wait: $(addprefix platform-wait-,$(ROUTERS_XR) $(ROUTERS_CRPD) $(ROUTERS_SRL))
+wait: $(addprefix platform-wait-,$(ROUTERS_XR) $(ROUTERS_CRPD) $(ROUTERS_SRL) $(ROUTERS_ARCOS))
 
 .PHONY: copy
 copy:

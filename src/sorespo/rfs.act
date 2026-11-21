@@ -369,7 +369,7 @@ class BBInterface(base.BBInterface):
 # BBLinkTransform lift combines the two endpoints into a link-status (up only
 # when both ends are up). SR Linux and IOS XR expose interface oper-state.
 actor BBInterfaceTransform(path, update_oper: proc(?y_2_oper.stratoweave_rfs__rfs__backbone_interface_entry)->None, dev: swdev.DeviceMgr):
-    _subs = gdata.SubscriptionManager(dev.tree_provider(), str(path))
+    _subs = gdata.SubscriptionManager(swdev.DeviceTreeProvider(dev), str(path))
     _oper = base.BBInterface.new_state(path)
 
     def publish(oper_status: ?str):
@@ -659,7 +659,7 @@ class EbgpCustomer(base.EbgpCustomer):
 
 actor EbgpCustomerTransform(path, update_oper: proc(?y_2_oper.stratoweave_rfs__rfs__ebgp_customer_entry)->None, dev: swdev.DeviceMgr):
     # eBGP customer neighbor: a single-hop PE<->CE peer in the VRF network-instance.
-    _subs = gdata.SubscriptionManager(dev.tree_provider(), str(path))
+    _subs = gdata.SubscriptionManager(swdev.DeviceTreeProvider(dev), str(path))
     var debug: bool = False
     var _addr: ?str = None
     var _vrf: ?str = None

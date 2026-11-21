@@ -6,165 +6,178 @@ import stratoweave.test_rig as swts
 
 
 actor _test_complete_prod_data(t: testing.AsyncT):
-    # Test input config
-    gs = cfs_layer.netinfra__netinfra__global_settings('ibgp-authentication-key')
-    root = cfs_layer.root(cfs_layer.netinfra__netinfra(gs))
+    proc def __startup__():
+        # Test input config
+        gs = cfs_layer.netinfra__netinfra__global_settings('ibgp-authentication-key')
+        root = cfs_layer.root(cfs_layer.netinfra__netinfra(gs))
 
-    ###################################
-    # Core routers
-    ###################################
-    ams = root.netinfra.router.create('AMS-CORE-1', 1, 'CiscoIosXr_25_3_1', 65001)
-    ams.role = 'edge'
-    ams.mock = True
+        ###################################
+        # Core routers
+        ###################################
+        ams = root.netinfra.router.create('AMS-CORE-1', 1, 'CiscoIosXr_25_3_1', 65001)
+        ams.role = 'edge'
+        ams.mock = True
 
-    fra = root.netinfra.router.create('FRA-CORE-1', 2, 'CiscoIosXr_25_3_1', 65001)
-    fra.role = 'edge'
-    fra.mock = True
+        fra = root.netinfra.router.create('FRA-CORE-1', 2, 'CiscoIosXr_25_3_1', 65001)
+        fra.role = 'edge'
+        fra.mock = True
 
-    sto = root.netinfra.router.create('STO-CORE-1', 3, 'JuniperCRPD_24_4R1_9', 65001)
-    sto.role = 'edge'
-    sto.mock = True
+        sto = root.netinfra.router.create('STO-CORE-1', 3, 'JuniperCRPD_24_4R1_9', 65001)
+        sto.role = 'edge'
+        sto.mock = True
 
-    lju = root.netinfra.router.create('LJU-CORE-1', 4, 'JuniperCRPD_24_4R1_9', 65001)
-    lju.role = 'edge'
-    lju.mock = True
+        lju = root.netinfra.router.create('LJU-CORE-1', 4, 'JuniperCRPD_24_4R1_9', 65001)
+        lju.role = 'edge'
+        lju.mock = True
 
-    ###################################
-    # Backbone links
-    ###################################
+        ###################################
+        # Backbone links
+        ###################################
 
-    root.netinfra.backbone_link.create(('FRA-CORE-1', 'GigabitEthernet0/0/0/1', 'STO-CORE-1', 'eth2'))
-    root.netinfra.backbone_link.create(('AMS-CORE-1', 'GigabitEthernet0/0/0/0', 'FRA-CORE-1', 'GigabitEthernet0/0/0/0'))
-    root.netinfra.backbone_link.create(('AMS-CORE-1', 'GigabitEthernet0/0/0/1', 'STO-CORE-1', 'eth1'))
-    root.netinfra.backbone_link.create(('STO-CORE-1', 'eth3', 'LJU-CORE-1', 'eth2'))
-    root.netinfra.backbone_link.create(('FRA-CORE-1', 'GigabitEthernet0/0/0/2', 'LJU-CORE-1', 'eth1'))
+        root.netinfra.backbone_link.create(('FRA-CORE-1', 'GigabitEthernet0/0/0/1', 'STO-CORE-1', 'eth2'))
+        root.netinfra.backbone_link.create(('AMS-CORE-1', 'GigabitEthernet0/0/0/0', 'FRA-CORE-1', 'GigabitEthernet0/0/0/0'))
+        root.netinfra.backbone_link.create(('AMS-CORE-1', 'GigabitEthernet0/0/0/1', 'STO-CORE-1', 'eth1'))
+        root.netinfra.backbone_link.create(('STO-CORE-1', 'eth3', 'LJU-CORE-1', 'eth2'))
+        root.netinfra.backbone_link.create(('FRA-CORE-1', 'GigabitEthernet0/0/0/2', 'LJU-CORE-1', 'eth1'))
 
-    ###################################
-    # ACME VPN
-    ###################################
-    acme_vpn = root.l3vpn_svc.vpn_services.vpn_service.create('acme-65501')
-    acme_vpn.customer_name = 'CUSTOMER-1'
-    mgmt = cfs_layer.ietf_l3vpn_svc__l3vpn_svc__sites__site__management(cfs_layer.ietf_l3vpn_svc_provider_managed)
-    service = cfs_layer.ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service(1000000000, 1000000000, 9000)
+        ###################################
+        # ACME VPN
+        ###################################
+        acme_vpn = root.l3vpn_svc.vpn_services.vpn_service.create('acme-65501')
+        acme_vpn.customer_name = 'CUSTOMER-1'
+        mgmt = cfs_layer.ietf_l3vpn_svc__l3vpn_svc__sites__site__management(cfs_layer.ietf_l3vpn_svc_provider_managed)
+        service = cfs_layer.ietf_l3vpn_svc__l3vpn_svc__sites__site__site_network_accesses__site_network_access__service(1000000000, 1000000000, 9000)
 
-    ###################################
-    # Site 1
-    ###################################
-    site_1 = root.l3vpn_svc.sites.site.create('SITE-1', mgmt)
-    site_1.locations.location.create('MAIN')
-    sna_1 = site_1.site_network_accesses.site_network_access.create('SNA-1-1', service)
-    sna_1.location_reference = 'MAIN'
-    sna_1.bearer.bearer_reference = 'AMS-CORE-1,GigabitEthernet0/0/0/2.100'
+        ###################################
+        # Site 1
+        ###################################
+        site_1 = root.l3vpn_svc.sites.site.create('SITE-1', mgmt)
+        site_1.locations.location.create('MAIN')
+        sna_1 = site_1.site_network_accesses.site_network_access.create('SNA-1-1', service)
+        sna_1.location_reference = 'MAIN'
+        sna_1.bearer.bearer_reference = 'AMS-CORE-1,GigabitEthernet0/0/0/2.100'
 
-    sna_1.ip_connection.ipv4.address_allocation_type = cfs_layer.ietf_l3vpn_svc_static_address
-    sna_1.ip_connection.ipv4.addresses.provider_address = '10.201.1.1'
-    sna_1.ip_connection.ipv4.addresses.customer_address = '10.201.1.2'
-    sna_1.ip_connection.ipv4.addresses.prefix_length = 30
+        sna_1.ip_connection.ipv4.address_allocation_type = cfs_layer.ietf_l3vpn_svc_static_address
+        sna_1.ip_connection.ipv4.addresses.provider_address = '10.201.1.1'
+        sna_1.ip_connection.ipv4.addresses.customer_address = '10.201.1.2'
+        sna_1.ip_connection.ipv4.addresses.prefix_length = 30
 
-    sna_1_rp = sna_1.routing_protocols.routing_protocol.create(cfs_layer.ietf_l3vpn_svc_bgp)
-    bgp = sna_1_rp.create_bgp(65501)
-    bgp.address_family = ['ipv4']
+        sna_1_rp = sna_1.routing_protocols.routing_protocol.create(cfs_layer.ietf_l3vpn_svc_bgp)
+        bgp = sna_1_rp.create_bgp(65501)
+        bgp.address_family = ['ipv4']
 
-    sna_1.vpn_attachment.vpn_id = 'acme-65501'
+        sna_1.vpn_attachment.vpn_id = 'acme-65501'
 
-    ###################################
-    # Site 2
-    ###################################
-    site_2 = root.l3vpn_svc.sites.site.create('SITE-2', mgmt)
-    site_2.locations.location.create('MAIN')
-    sna_2 = site_2.site_network_accesses.site_network_access.create('SNA-2-1', service)
-    sna_2.location_reference = 'MAIN'
-    sna_2.bearer.bearer_reference = 'FRA-CORE-1,GigabitEthernet0/0/0/3.100'
+        ###################################
+        # Site 2
+        ###################################
+        site_2 = root.l3vpn_svc.sites.site.create('SITE-2', mgmt)
+        site_2.locations.location.create('MAIN')
+        sna_2 = site_2.site_network_accesses.site_network_access.create('SNA-2-1', service)
+        sna_2.location_reference = 'MAIN'
+        sna_2.bearer.bearer_reference = 'FRA-CORE-1,GigabitEthernet0/0/0/3.100'
 
-    sna_2.ip_connection.ipv4.address_allocation_type = cfs_layer.ietf_l3vpn_svc_static_address
-    sna_2.ip_connection.ipv4.addresses.provider_address = '10.202.1.1'
-    sna_2.ip_connection.ipv4.addresses.customer_address = '10.202.1.2'
-    sna_2.ip_connection.ipv4.addresses.prefix_length = 30
+        sna_2.ip_connection.ipv4.address_allocation_type = cfs_layer.ietf_l3vpn_svc_static_address
+        sna_2.ip_connection.ipv4.addresses.provider_address = '10.202.1.1'
+        sna_2.ip_connection.ipv4.addresses.customer_address = '10.202.1.2'
+        sna_2.ip_connection.ipv4.addresses.prefix_length = 30
 
-    sna_2_rp = sna_2.routing_protocols.routing_protocol.create(cfs_layer.ietf_l3vpn_svc_bgp)
-    bgp = sna_2_rp.create_bgp(65501)
-    bgp.address_family = ['ipv4']
+        sna_2_rp = sna_2.routing_protocols.routing_protocol.create(cfs_layer.ietf_l3vpn_svc_bgp)
+        bgp = sna_2_rp.create_bgp(65501)
+        bgp.address_family = ['ipv4']
 
-    sna_2.vpn_attachment.vpn_id = 'acme-65501'
+        sna_2.vpn_attachment.vpn_id = 'acme-65501'
 
-    ###################################
-    # Site 3
-    ###################################
-    site_3 = root.l3vpn_svc.sites.site.create('SITE-3', mgmt)
-    site_3.locations.location.create('MAIN')
-    sna_3 = site_3.site_network_accesses.site_network_access.create('SNA-3-1', service)
-    sna_3.location_reference = 'MAIN'
-    sna_3.bearer.bearer_reference = 'STO-CORE-1,eth4.100'
+        ###################################
+        # Site 3
+        ###################################
+        site_3 = root.l3vpn_svc.sites.site.create('SITE-3', mgmt)
+        site_3.locations.location.create('MAIN')
+        sna_3 = site_3.site_network_accesses.site_network_access.create('SNA-3-1', service)
+        sna_3.location_reference = 'MAIN'
+        sna_3.bearer.bearer_reference = 'STO-CORE-1,eth4.100'
 
-    sna_3.ip_connection.ipv4.address_allocation_type = cfs_layer.ietf_l3vpn_svc_static_address
-    sna_3.ip_connection.ipv4.addresses.provider_address = '10.203.1.1'
-    sna_3.ip_connection.ipv4.addresses.customer_address = '10.203.1.2'
-    sna_3.ip_connection.ipv4.addresses.prefix_length = 30
+        sna_3.ip_connection.ipv4.address_allocation_type = cfs_layer.ietf_l3vpn_svc_static_address
+        sna_3.ip_connection.ipv4.addresses.provider_address = '10.203.1.1'
+        sna_3.ip_connection.ipv4.addresses.customer_address = '10.203.1.2'
+        sna_3.ip_connection.ipv4.addresses.prefix_length = 30
 
-    sna_3_rp = sna_3.routing_protocols.routing_protocol.create(cfs_layer.ietf_l3vpn_svc_bgp)
-    bgp = sna_3_rp.create_bgp(65501)
-    bgp.address_family = ['ipv4']
+        sna_3_rp = sna_3.routing_protocols.routing_protocol.create(cfs_layer.ietf_l3vpn_svc_bgp)
+        bgp = sna_3_rp.create_bgp(65501)
+        bgp.address_family = ['ipv4']
 
-    sna_3.vpn_attachment.vpn_id = 'acme-65501'
+        sna_3.vpn_attachment.vpn_id = 'acme-65501'
 
-    ###################################
-    # Site 4
-    ###################################
-    site_4 = root.l3vpn_svc.sites.site.create('SITE-4', mgmt)
-    site_4.locations.location.create('MAIN')
-    sna_4 = site_4.site_network_accesses.site_network_access.create('SNA-4-1', service)
-    sna_4.location_reference = 'MAIN'
-    sna_4.bearer.bearer_reference = 'LJU-CORE-1,eth3.100'
+        ###################################
+        # Site 4
+        ###################################
+        site_4 = root.l3vpn_svc.sites.site.create('SITE-4', mgmt)
+        site_4.locations.location.create('MAIN')
+        sna_4 = site_4.site_network_accesses.site_network_access.create('SNA-4-1', service)
+        sna_4.location_reference = 'MAIN'
+        sna_4.bearer.bearer_reference = 'LJU-CORE-1,eth3.100'
 
-    sna_4.ip_connection.ipv4.address_allocation_type = cfs_layer.ietf_l3vpn_svc_static_address
-    sna_4.ip_connection.ipv4.addresses.provider_address = '10.204.1.1'
-    sna_4.ip_connection.ipv4.addresses.customer_address = '10.204.1.2'
-    sna_4.ip_connection.ipv4.addresses.prefix_length = 30
+        sna_4.ip_connection.ipv4.address_allocation_type = cfs_layer.ietf_l3vpn_svc_static_address
+        sna_4.ip_connection.ipv4.addresses.provider_address = '10.204.1.1'
+        sna_4.ip_connection.ipv4.addresses.customer_address = '10.204.1.2'
+        sna_4.ip_connection.ipv4.addresses.prefix_length = 30
 
-    sna_4_rp = sna_4.routing_protocols.routing_protocol.create(cfs_layer.ietf_l3vpn_svc_bgp)
-    bgp = sna_4_rp.create_bgp(65501)
-    bgp.address_family = ['ipv4']
+        sna_4_rp = sna_4.routing_protocols.routing_protocol.create(cfs_layer.ietf_l3vpn_svc_bgp)
+        bgp = sna_4_rp.create_bgp(65501)
+        bgp.address_family = ['ipv4']
 
-    sna_4.vpn_attachment.vpn_id = 'acme-65501'
+        sna_4.vpn_attachment.vpn_id = 'acme-65501'
 
-    swts.TransformTester(t, sysspec.SYSSPEC, root.to_gdata())
+        swts.TransformTester(t, sysspec.SYSSPEC, root.to_gdata())
+
+
 
 actor _test_netinfra_ams_core_1(t: testing.AsyncT):
-    # Test input config
-    gs = cfs_layer.netinfra__netinfra__global_settings('ibgp-authentication-key')
-    root = cfs_layer.root(cfs_layer.netinfra__netinfra(gs))
-    router = root.netinfra.router.create("AMS-CORE-1", 1, "CiscoIosXr_25_3_1", 65001)
-    router.role = "edge"
-    router.mock = True
+    proc def __startup__():
+        # Test input config
+        gs = cfs_layer.netinfra__netinfra__global_settings('ibgp-authentication-key')
+        root = cfs_layer.root(cfs_layer.netinfra__netinfra(gs))
+        router = root.netinfra.router.create("AMS-CORE-1", 1, "CiscoIosXr_25_3_1", 65001)
+        router.role = "edge"
+        router.mock = True
 
-    swts.TransformTester(t, sysspec.SYSSPEC, root.to_gdata())
+        swts.TransformTester(t, sysspec.SYSSPEC, root.to_gdata())
+
+
 
 actor _test_netinfra_fra_core_1(t: testing.AsyncT):
-    # Test input config
-    gs = cfs_layer.netinfra__netinfra__global_settings('ibgp-authentication-key')
-    root = cfs_layer.root(cfs_layer.netinfra__netinfra(gs))
-    router = root.netinfra.router.create("FRA-CORE-1", 1, "CiscoIosXr_25_3_1", 65001)
-    router.role = "edge"
-    router.mock = True
+    proc def __startup__():
+        # Test input config
+        gs = cfs_layer.netinfra__netinfra__global_settings('ibgp-authentication-key')
+        root = cfs_layer.root(cfs_layer.netinfra__netinfra(gs))
+        router = root.netinfra.router.create("FRA-CORE-1", 1, "CiscoIosXr_25_3_1", 65001)
+        router.role = "edge"
+        router.mock = True
 
-    swts.TransformTester(t, sysspec.SYSSPEC, root.to_gdata())
+        swts.TransformTester(t, sysspec.SYSSPEC, root.to_gdata())
+
+
 
 actor _test_netinfra_sto_core_1(t: testing.AsyncT):
-    # Test input config
-    gs = cfs_layer.netinfra__netinfra__global_settings('ibgp-authentication-key')
-    root = cfs_layer.root(cfs_layer.netinfra__netinfra(gs))
-    router = root.netinfra.router.create("STO-CORE-1", 1, "JuniperCRPD_24_4R1_9", 65001)
-    router.role = "edge"
-    router.mock = True
+    proc def __startup__():
+        # Test input config
+        gs = cfs_layer.netinfra__netinfra__global_settings('ibgp-authentication-key')
+        root = cfs_layer.root(cfs_layer.netinfra__netinfra(gs))
+        router = root.netinfra.router.create("STO-CORE-1", 1, "JuniperCRPD_24_4R1_9", 65001)
+        router.role = "edge"
+        router.mock = True
 
-    swts.TransformTester(t, sysspec.SYSSPEC, root.to_gdata())
+        swts.TransformTester(t, sysspec.SYSSPEC, root.to_gdata())
+
+
 
 actor _test_netinfra_lju_core_1(t: testing.AsyncT):
-    # Test input config
-    gs = cfs_layer.netinfra__netinfra__global_settings('ibgp-authentication-key')
-    root = cfs_layer.root(cfs_layer.netinfra__netinfra(gs))
-    router = root.netinfra.router.create("LJU-CORE-1", 1, "JuniperCRPD_24_4R1_9", 65001)
-    router.role = "edge"
-    router.mock = True
+    proc def __startup__():
+        # Test input config
+        gs = cfs_layer.netinfra__netinfra__global_settings('ibgp-authentication-key')
+        root = cfs_layer.root(cfs_layer.netinfra__netinfra(gs))
+        router = root.netinfra.router.create("LJU-CORE-1", 1, "JuniperCRPD_24_4R1_9", 65001)
+        router.role = "edge"
+        router.mock = True
 
-    swts.TransformTester(t, sysspec.SYSSPEC, root.to_gdata())
+        swts.TransformTester(t, sysspec.SYSSPEC, root.to_gdata())

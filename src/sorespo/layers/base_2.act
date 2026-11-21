@@ -63,7 +63,7 @@ class BBInterface(ttt.RFSFunction):
         return stratoweave_rfs__rfs__backbone_interface_entry__oper
 
     @staticmethod
-    def new_state(path: ttt.Path):
+    pure def new_state(path: ttt.Path):
         """Create modeled operational state for this transform path"""
         return stratoweave_rfs__rfs__backbone_interface_entry__oper.from_gdata(ttt.path_key_data(path))
 
@@ -173,7 +173,7 @@ class EbgpCustomer(ttt.RFSFunction):
         return stratoweave_rfs__rfs__ebgp_customer_entry__oper
 
     @staticmethod
-    def new_state(path: ttt.Path):
+    pure def new_state(path: ttt.Path):
         """Create modeled operational state for this transform path"""
         return stratoweave_rfs__rfs__ebgp_customer_entry__oper.from_gdata(ttt.path_key_data(path))
 

@@ -12,25 +12,36 @@ import sorespo.discovery.rfs_discovery as rfsd
 _AUTHENTICATION_KEY_HINTS: list[str] = ["ibgp-authentication-key", "acme-bgp-md5", "acme-65501"]
 
 
-def _discover_cfs(devices):
+proc def _discover_cfs(devices):
     return cfsd.discover(devices, _AUTHENTICATION_KEY_HINTS)
 
 
-def _discover_rfs(devices):
+proc def _discover_rfs(devices):
     return rfsd.discover_rfs(devices, _AUTHENTICATION_KEY_HINTS)
 
 
 # quicklab service discovery
 actor _test_sd_to_cfs_quicklab(t: testing.EnvT):
-    swts.ServiceDiscoveryTester(t, sysspec.SYSSPEC, "test/sd-quicklab", _discover_cfs)
+    proc def __startup__():
+        swts.ServiceDiscoveryTester(t, sysspec.SYSSPEC, "test/sd-quicklab", _discover_cfs)
+
+
 
 actor _test_sd_to_rfs_quicklab(t: testing.EnvT):
-    swts.ServiceDiscoveryTester(t, sysspec.SYSSPEC, "test/sd-quicklab", _discover_rfs, layer_depth=2)
+    proc def __startup__():
+        swts.ServiceDiscoveryTester(t, sysspec.SYSSPEC, "test/sd-quicklab", _discover_rfs, layer_depth=2)
+
 
 
 # quicklab-srl service discovery
+
+
 actor _test_sd_to_cfs_quicklab_srl(t: testing.EnvT):
-    swts.ServiceDiscoveryTester(t, sysspec.SYSSPEC, "test/sd-quicklab-srl", _discover_cfs)
+    proc def __startup__():
+        swts.ServiceDiscoveryTester(t, sysspec.SYSSPEC, "test/sd-quicklab-srl", _discover_cfs)
+
+
 
 actor _test_sd_to_rfs_quicklab_srl(t: testing.EnvT):
-    swts.ServiceDiscoveryTester(t, sysspec.SYSSPEC, "test/sd-quicklab-srl", _discover_rfs, layer_depth=2)
+    proc def __startup__():
+        swts.ServiceDiscoveryTester(t, sysspec.SYSSPEC, "test/sd-quicklab-srl", _discover_rfs, layer_depth=2)

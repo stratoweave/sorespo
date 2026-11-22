@@ -44,21 +44,23 @@ netinfra1_in = """<data>
 </data>"""
 
 actor _test_netinfra1(t: testing.AsyncT):
-    tr = stratoweave.test_main(sysspec.SYSSPEC, t.log_handler)
+    proc def __startup__():
+        tr = stratoweave.test_main(sysspec.SYSSPEC, t.log_handler)
 
-    def cont(r: value):
-        if isinstance(r, Exception):
-            t.failure(r)
-            return
-        # Convert every layer's config to XML to confirm the gdata produced by
-        # TTT is valid and round-trips through XML serialization.
-        ln_cfg = None
-        for n in range(4):
-            ln_cfg = tr.layer_config(n).to_xmlstr(pretty=True, deterministic=True)
-        # Report the last (device) layer config.
-        t.success(ln_cfg)
+        def cont(r: value):
+            if isinstance(r, Exception):
+                t.failure(r)
+                return
+            # Convert every layer's config to XML to confirm the gdata produced by
+            # TTT is valid and round-trips through XML serialization.
+            ln_cfg = None
+            for n in range(4):
+                ln_cfg = tr.layer_config(n).to_xmlstr(pretty=True, deterministic=True)
+            # Report the last (device) layer config.
+            t.success(ln_cfg)
 
-    tr.edit_config_xml(netinfra1_in, cont)
+        tr.edit_config_xml(netinfra1_in, cont)
+
 
 
 l3vpn_in = """<data>
@@ -338,27 +340,37 @@ l3vpn_in = """<data>
 """
 
 actor l3vpn_tester(t: testing.AsyncT, output_formatter: proc(swts.TestRig) -> str):
-    tr = stratoweave.test_main(sysspec.SYSSPEC, t.log_handler)
+    proc def __startup__():
+        tr = stratoweave.test_main(sysspec.SYSSPEC, t.log_handler)
 
-    def cont(r: value):
-        if isinstance(r, Exception):
-            t.failure(r)
-            return
-        t.success(output_formatter(tr))
+        def cont(r: value):
+            if isinstance(r, Exception):
+                t.failure(r)
+                return
+            t.success(output_formatter(tr))
 
-    tr.edit_config_xml(l3vpn_in, cont)
+        tr.edit_config_xml(l3vpn_in, cont)
+
+
 
 actor _test_l3vpn_svc(t: testing.AsyncT):
-    l3vpn_tester(t, lambda tr: tr.layer_config(-1).to_xmlstr(pretty=True, deterministic=True))
+    proc def __startup__():
+        l3vpn_tester(t, lambda tr: tr.layer_config(-1).to_xmlstr(pretty=True, deterministic=True))
+
+
 
 actor _test_l3vpn_svc_json(t: testing.AsyncT):
-    l3vpn_tester(t, lambda tr: tr.layer_config(-1).to_yang_jsonstr(pretty=True, deterministic=True))
+    proc def __startup__():
+        l3vpn_tester(t, lambda tr: tr.layer_config(-1).to_yang_jsonstr(pretty=True, deterministic=True))
+
+
 
 actor _test_l3vpn_svc_adata(t: testing.AsyncT):
-    def _lambda_workaround(tr):
-        return tr.device_adata_snapshot()
-    l3vpn_tester(t, _lambda_workaround)
+    proc def __startup__():
+        def _lambda_workaround(tr):
+            return tr.device_adata_snapshot()
+        l3vpn_tester(t, _lambda_workaround)
 
-# TODO: enable once gdata after transform is valid (= sorted where it needs to be)
-# def _test_l3vpn_svc_gdata(t: testing.AsyncT):
-#     l3vpn_tester(t, lambda tr: tr.layer_config(3).prsrc())
+    # TODO: enable once gdata after transform is valid (= sorted where it needs to be)
+    # def _test_l3vpn_svc_gdata(t: testing.AsyncT):
+    #     l3vpn_tester(t, lambda tr: tr.layer_config(3).prsrc())

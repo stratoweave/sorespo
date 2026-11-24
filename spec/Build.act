@@ -3,8 +3,8 @@ fingerprint = 0xcb43a968b1316986
 dependencies = {
     "stratoweave": (
         repo_url="https://github.com/stratoweave/stratoweave",
-        url="https://github.com/stratoweave/stratoweave/archive/0d5eb9b37ac6559045298ec440441b9e482705e7.zip",
-        hash="N-V-__8AABR0AAHAMxXdHAVZFTijQdCGMXGtCnvc5dcnNXk3"
+        url="https://github.com/stratoweave/stratoweave/archive/6c2684391c92a3a02588c5dec52a0b9ea3347473.zip",
+        hash="N-V-__8AAKLEDQEeMi1Q5gRN6Amsw9Kt6FdFJTY4DeCtEU7X"
     ),
     "tmf": (
         follows="stratoweave.actmf"

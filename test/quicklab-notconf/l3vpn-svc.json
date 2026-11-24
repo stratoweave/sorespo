@@ -211,7 +211,7 @@
                                     }
                                 },
                                 "bearer": {
-                                    "bearer-reference": "LJU-CORE-1,eth3.100"
+                                    "bearer-reference": "LJU-CORE-1,GigabitEthernet0/1/2.100"
                                 },
                                 "routing-protocols": {
                                     "routing-protocol": [

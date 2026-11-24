@@ -22,6 +22,7 @@ from sorespo.devices.CiscoIosXr_25_3_1_oper import root as xr25_oper_root
 import sorespo.devices.JuniperCRPD_24_4R1_9 as crpd24
 import sorespo.devices.NokiaSRLinux_25_3_2 as srl25
 import sorespo.devices.NokiaSRLinux_25_3_2_oper as srl25_oper
+import sorespo.devices.HuaweiNE40E_8_22_0 as hw822
 from sorespo.devices.NokiaSRLinux_25_3_2_oper import root as srl25_oper_root
 
 CRPD = True
@@ -272,6 +273,50 @@ end-policy
 
             return dev
 
+        elif "huawei-ifm" in di.modules:
+            print("RFS /rfs{{{di.name}}}/base-config transform for Huawei VRP", err=True)
+            dev = hw822.root()
+            dev.system.system_info.sys_name = di.name
+
+            lo0 = dev.ifm.interfaces.interface.create("LoopBack0", class="main-interface", type="LoopBack")
+            lo0.ipv4.addresses.address.create(i.ipv4_address, mask="255.255.255.255", type="main")
+
+            # On Huawei, IS-IS, MPLS/LDP and BGP live under the global network
+            # instance "_public_", which IS-IS requires to have the IPv4 AF
+            pub = dev.network_instance.instances.instance.create("_public_")
+            pub.afs.af.create("ipv4-unicast")
+
+            # IS-IS global config
+            site = pub.isis.sites.site.create(u64(1), level="level-2", cost_style="wide")
+            site.net_entitys.net_entity.create(net_clns_address)
+            site.afs.af.create("afipv4")
+            # The default for timer/spf/max is a Huawei proprietary
+            # ext:dynamic-default that generic YANG tooling (libyang) ignores,
+            # which then fails a must on timer/spf/incr: set it explicitly
+            site.timer.spf.max = u64(5)
+
+            # LoopBack0 IS-IS interface config
+            lo0_circuit = site.circuits.circuit.create("LoopBack0", silent_enable=True)
+            lo0_circuit.afs.af.create("afipv4")
+
+            # MPLS and LDP global config
+            dev.mpls.common.global.lsr_id = i.ipv4_address
+            dev.mpls.common.global.mpls_enable = True
+            dev.mpls.ldp.enable = True
+            pub.mpls.ldp.create_instance(lsr_id=i.ipv4_address)
+
+            # BGP global config
+            dev.bgp.global.yang_enable = True
+            dev.bgp.base_process.enable = True
+            dev.bgp.base_process.as_ = str(i.asn)
+            bgp = pub.bgp.create_base_process(router_id=i.ipv4_address)
+            bgp.afs.af.create("ipv4vpn")
+            # Peer group: IPV4-IBGP
+            pg = bgp.peer_groups.peer_group.create("IPV4-IBGP", type="ibgp", local_if_name="LoopBack0", password_type="cipher", password_text=i.ibgp_authentication_key)
+            pg.afs.af.create("ipv4vpn")
+
+            return dev
+
         raise UnsupportedDevice()
 
 class BBInterface(base.BBInterface):
@@ -358,6 +403,29 @@ class BBInterface(base.BBInterface):
             isis_intf.circuit_type = "point-to-point"
             il2 = isis_intf.level.create(2)
             il2.metric = 5000
+
+            return dev
+
+        elif "huawei-ifm" in di.modules:
+            print("RFS /rfs{{{di.name}}}/backbone-interface transform running [{i.name}] <-> {i.remote.device} [{i.remote.interface}] for Huawei VRP", err=True)
+            dev = hw822.root()
+
+            # Create the interface
+            intf = dev.ifm.interfaces.interface.create(i.name, class="main-interface", description=if_description)
+            ipv4_address = i.ipv4_address
+            if ipv4_address is not None:
+                intf.ipv4.addresses.address.create(ipv4_address, mask=prefix_length_to_netmask(int(i.ipv4_prefix_length)), type="main")
+
+            pub = dev.network_instance.instances.instance.create("_public_")
+
+            # IS-IS config for this interface
+            site = pub.isis.sites.site.create(u64(1))
+            circuit = site.circuits.circuit.create(i.name, level="level-2", p2p_enable=True)
+            circuit.afs.af.create("afipv4", cost_level2=u64(5000))
+
+            # MPLS and LDP config for this interface
+            pub.mpls.common.mpls_interfaces.mpls_interface.create(i.name)
+            pub.mpls.ldp.create_instance().interfaces.interface.create(i.name)
 
             return dev
 
@@ -458,6 +526,14 @@ class IbgpNeighbor(base.IbgpNeighbor):
                 n.authentication.password = nokia_srl_aes1_encrypt(i.ibgp_authentication_key!, _SRL_AES1_SALT)
             return dev
 
+        elif "huawei-ifm" in di.modules:
+            print("RFS /rfs{{{di.name}}}/ibgp-neighbor transform running {i.address} for Huawei VRP", err=True)
+            dev = hw822.root()
+            pub = dev.network_instance.instances.instance.create("_public_")
+            bgp = pub.bgp.create_base_process()
+            bgp.peers.peer.create(i.address, remote_as=str(i.asn), group_name="IPV4-IBGP", description=i.description)
+            return dev
+
         raise UnsupportedDevice()
 
 
@@ -532,6 +608,16 @@ class Vrf(base.Vrf):
 
             return dev
 
+        elif "huawei-ifm" in di.modules:
+            print("RFS /rfs{{{di.name}}}/vrf transform running {i.name} for Huawei VRP", err=True)
+            dev = hw822.root()
+            ni = dev.network_instance.instances.instance.create(i.name)
+            af = ni.afs.af.create("ipv4-unicast", route_distinguisher="{i.asn}:{route_distinguisher_id}")
+            af.vpn_targets.vpn_target.create(("{i.asn}:{i.id}", "export-extcommunity"))
+            af.vpn_targets.vpn_target.create(("{i.asn}:{i.id}", "import-extcommunity"))
+
+            return dev
+
         raise UnsupportedDevice()
 
 
@@ -597,6 +683,28 @@ class VrfInterface(base.VrfInterface):
 
             return dev
 
+        elif "huawei-ifm" in di.modules:
+            print("RFS /rfs{{{di.name}}}/vrf-interface transform running {i.name} for Huawei VRP", err=True)
+            dev = hw822.root()
+
+            # Main interface. Unlike SR Linux, a Huawei sub-interface is its own
+            # entry in the interface list, linked to the main one by parent-name
+            dev.ifm.interfaces.interface.create(main_intf, class="main-interface", description="Customer access port")
+
+            sub_intf = dev.ifm.interfaces.interface.create(i.name, class="sub-interface", parent_name=main_intf, number=vlan_id, description=i.description, vrf_name=i.vrf)
+            sub_intf.ethernet.l3_sub_interface.create_vlan_type_dot1q(u64(vlan_id))
+
+            # Huawei takes a dotted netmask (like IOS XR), plus the address type
+            ipv4_address = i.ipv4_address
+            if ipv4_address is not None:
+                sub_intf.ipv4.addresses.address.create(ipv4_address, mask=prefix_length_to_netmask(int(i.ipv4_prefix_length)), type="main")
+
+            # The VRF is bound on the interface (vrf-name is a leafref to the
+            # network instance), so make sure the instance exists
+            dev.network_instance.instances.instance.create(i.vrf)
+
+            return dev
+
         raise UnsupportedDevice()
 
 class EbgpCustomer(base.EbgpCustomer):
@@ -651,6 +759,20 @@ class EbgpCustomer(base.EbgpCustomer):
             neighbor.timers.connect_retry = 3
             neighbor.timers.hold_time = 3
             neighbor.timers.keepalive_interval = 1
+
+            return dev
+
+        elif "huawei-ifm" in di.modules:
+            print("RFS /rfs{{{di.name}}}/ebgp-customer transform running {i.address} for Huawei VRP", err=True)
+            dev = hw822.root()
+            ni = dev.network_instance.instances.instance.create(i.vrf)
+            bgp = ni.bgp.create_base_process()
+            bgp.afs.af.create("ipv4uni")
+            peer = bgp.peers.peer.create(i.address, remote_as=str(i.peer_asn), description=i.description)
+            peer.afs.af.create("ipv4uni")
+            if i.authentication_key is not None:
+                peer.password_type = "cipher"
+                peer.password_text = i.authentication_key!
 
             return dev
 

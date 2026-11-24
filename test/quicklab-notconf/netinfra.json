@@ -28,7 +28,7 @@
             {
                 "name": "LJU-CORE-1",
                 "id": 4,
-                "type": "JuniperCRPD_24_4R1_9",
+                "type": "HuaweiNE40E_8_22_0",
                 "role": "edge",
                 "asn": 65001
             }
@@ -56,13 +56,13 @@
                 "left-router": "FRA-CORE-1",
                 "left-interface": "GigabitEthernet0/0/0/2",
                 "right-router": "LJU-CORE-1",
-                "right-interface": "eth1"
+                "right-interface": "GigabitEthernet0/1/0"
             },
             {
                 "left-router": "STO-CORE-1",
                 "left-interface": "eth3",
                 "right-router": "LJU-CORE-1",
-                "right-interface": "eth2"
+                "right-interface": "GigabitEthernet0/1/1"
             }
         ]
     }

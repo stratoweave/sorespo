@@ -1,0 +1,30 @@
+<network-instance xmlns="urn:huawei:yang:huawei-network-instance">
+  <instances>
+    <instance>
+      <name>ACME</name>
+      <bgp xmlns="urn:huawei:yang:huawei-bgp">
+        <base-process>
+          <afs>
+            <af>
+              <type>ipv4uni</type>
+            </af>
+          </afs>
+          <peers>
+            <peer>
+              <address>10.200.1.5</address>
+              <remote-as>65002</remote-as>
+              <password-type>cipher</password-type>
+              <password-text>ebgp-auth-key</password-text>
+              <description>Customer eBGP Peer</description>
+              <afs>
+                <af>
+                  <type>ipv4uni</type>
+                </af>
+              </afs>
+            </peer>
+          </peers>
+        </base-process>
+      </bgp>
+    </instance>
+  </instances>
+</network-instance>

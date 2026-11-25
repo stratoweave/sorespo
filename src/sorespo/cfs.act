@@ -53,7 +53,7 @@ class BBLink(base.BBLink):
 # Lift the inter backbone-link link-status onto the CFS backbone-link so it is
 # served at data/netinfra:netinfra/backbone-link
 actor BBLinkTransform(path: ttt.Path,
-                      update_oper: proc(?y_0_oper.netinfra__netinfra__backbone_link_entry)->None,
+                      update_oper: action(?y_0_oper.netinfra__netinfra__backbone_link_entry)->None,
                       lower_tree_provider: ?gdata.TreeProvider):
     _oper = base.BBLink.new_state(path)
     _subs = gdata.SubscriptionManager(lower_tree_provider!, str(path))
@@ -94,7 +94,7 @@ class L3VpnVpnService(base.L3VpnVpnService):
         return o
 
 
-actor L3VpnSiteTransform(path: ttt.Path, update_oper: proc(y_0_oper.ietf_l3vpn_svc__l3vpn_svc__sites__site_entry) -> None, lower_tree_provider: ?gdata.TreeProvider):
+actor L3VpnSiteTransform(path: ttt.Path, update_oper: action(y_0_oper.ietf_l3vpn_svc__l3vpn_svc__sites__site_entry) -> None, lower_tree_provider: ?gdata.TreeProvider):
     # Lift inter endpoint telemetry into per-SNA site BGP session state.
     var _oper = base.L3VpnSite.new_state(path)
     _subs = gdata.SubscriptionManager(lower_tree_provider!, str(path))

@@ -44,7 +44,7 @@ netinfra1_in = """<data>
 </data>"""
 
 actor _test_netinfra1(t: testing.AsyncT):
-    proc def __startup__():
+    def __startup__():
         tr = stratoweave.test_main(sysspec.SYSSPEC, t.log_handler)
 
         def cont(r: value):
@@ -339,8 +339,8 @@ l3vpn_in = """<data>
 </data>
 """
 
-actor l3vpn_tester(t: testing.AsyncT, output_formatter: proc(swts.TestRig) -> str):
-    proc def __startup__():
+actor l3vpn_tester(t: testing.AsyncT, output_formatter: action(swts.TestRig) -> str):
+    def __startup__():
         tr = stratoweave.test_main(sysspec.SYSSPEC, t.log_handler)
 
         def cont(r: value):
@@ -354,22 +354,26 @@ actor l3vpn_tester(t: testing.AsyncT, output_formatter: proc(swts.TestRig) -> st
 
 
 actor _test_l3vpn_svc(t: testing.AsyncT):
-    proc def __startup__():
-        l3vpn_tester(t, lambda tr: tr.layer_config(-1).to_xmlstr(pretty=True, deterministic=True))
+    def __startup__():
+        proc def format_output(tr: swts.TestRig) -> str:
+            return tr.layer_config(-1).to_xmlstr(pretty=True, deterministic=True)
+        l3vpn_tester(t, format_output)
 
 
 
 actor _test_l3vpn_svc_json(t: testing.AsyncT):
-    proc def __startup__():
-        l3vpn_tester(t, lambda tr: tr.layer_config(-1).to_yang_jsonstr(pretty=True, deterministic=True))
+    def __startup__():
+        proc def format_output(tr: swts.TestRig) -> str:
+            return tr.layer_config(-1).to_yang_jsonstr(pretty=True, deterministic=True)
+        l3vpn_tester(t, format_output)
 
 
 
 actor _test_l3vpn_svc_adata(t: testing.AsyncT):
-    proc def __startup__():
-        def _lambda_workaround(tr):
+    def __startup__():
+        proc def format_output(tr: swts.TestRig) -> str:
             return tr.device_adata_snapshot()
-        l3vpn_tester(t, _lambda_workaround)
+        l3vpn_tester(t, format_output)
 
     # TODO: enable once gdata after transform is valid (= sorted where it needs to be)
     # def _test_l3vpn_svc_gdata(t: testing.AsyncT):

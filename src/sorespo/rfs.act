@@ -436,7 +436,7 @@ class BBInterface(base.BBInterface):
 # Poll each backbone interface's oper-state from the device. The inter/CFS
 # BBLinkTransform lift combines the two endpoints into a link-status (up only
 # when both ends are up). SR Linux and IOS XR expose interface oper-state.
-actor BBInterfaceTransform(path, update_oper: proc(?y_2_oper.stratoweave_rfs__rfs__backbone_interface_entry)->None, dev: swdev.DeviceMgr):
+actor BBInterfaceTransform(path, update_oper: action(?y_2_oper.stratoweave_rfs__rfs__backbone_interface_entry)->None, dev: swdev.DeviceMgr):
     _subs = gdata.SubscriptionManager(swdev.DeviceTreeProvider(dev), str(path))
     _oper = base.BBInterface.new_state(path)
 
@@ -779,7 +779,7 @@ class EbgpCustomer(base.EbgpCustomer):
         raise UnsupportedDevice()
 
 
-actor EbgpCustomerTransform(path, update_oper: proc(?y_2_oper.stratoweave_rfs__rfs__ebgp_customer_entry)->None, dev: swdev.DeviceMgr):
+actor EbgpCustomerTransform(path, update_oper: action(?y_2_oper.stratoweave_rfs__rfs__ebgp_customer_entry)->None, dev: swdev.DeviceMgr):
     # eBGP customer neighbor: a single-hop PE<->CE peer in the VRF network-instance.
     _subs = gdata.SubscriptionManager(swdev.DeviceTreeProvider(dev), str(path))
     var debug: bool = False

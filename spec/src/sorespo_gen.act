@@ -431,7 +431,7 @@ actor main(env):
         "/network-instance/protocols/bgp/neighbor/send-default-route/export-policy",
     ]
 
-    proc def __startup__():
+    def __startup__():
         try:
             cfs_layer = stratoweave.build.Layer.from_dir(fc, "yang/cfs")
             cfs_layer.models.extend([

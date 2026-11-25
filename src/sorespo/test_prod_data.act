@@ -6,7 +6,7 @@ import stratoweave.test_rig as swts
 
 
 actor _test_complete_prod_data(t: testing.AsyncT):
-    proc def __startup__():
+    def __startup__():
         # Test input config
         gs = cfs_layer.netinfra__netinfra__global_settings('ibgp-authentication-key')
         root = cfs_layer.root(cfs_layer.netinfra__netinfra(gs))
@@ -133,7 +133,7 @@ actor _test_complete_prod_data(t: testing.AsyncT):
 
 
 actor _test_netinfra_ams_core_1(t: testing.AsyncT):
-    proc def __startup__():
+    def __startup__():
         # Test input config
         gs = cfs_layer.netinfra__netinfra__global_settings('ibgp-authentication-key')
         root = cfs_layer.root(cfs_layer.netinfra__netinfra(gs))
@@ -146,7 +146,7 @@ actor _test_netinfra_ams_core_1(t: testing.AsyncT):
 
 
 actor _test_netinfra_fra_core_1(t: testing.AsyncT):
-    proc def __startup__():
+    def __startup__():
         # Test input config
         gs = cfs_layer.netinfra__netinfra__global_settings('ibgp-authentication-key')
         root = cfs_layer.root(cfs_layer.netinfra__netinfra(gs))
@@ -159,7 +159,7 @@ actor _test_netinfra_fra_core_1(t: testing.AsyncT):
 
 
 actor _test_netinfra_sto_core_1(t: testing.AsyncT):
-    proc def __startup__():
+    def __startup__():
         # Test input config
         gs = cfs_layer.netinfra__netinfra__global_settings('ibgp-authentication-key')
         root = cfs_layer.root(cfs_layer.netinfra__netinfra(gs))
@@ -172,7 +172,7 @@ actor _test_netinfra_sto_core_1(t: testing.AsyncT):
 
 
 actor _test_netinfra_lju_core_1(t: testing.AsyncT):
-    proc def __startup__():
+    def __startup__():
         # Test input config
         gs = cfs_layer.netinfra__netinfra__global_settings('ibgp-authentication-key')
         root = cfs_layer.root(cfs_layer.netinfra__netinfra(gs))

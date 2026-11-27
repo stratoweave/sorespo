@@ -63,7 +63,18 @@ jobs:
           make -C test/${{ inputs.testenv }} start
       - name: "Configure quicklab"
         run: |
-          make -C test/${{ inputs.testenv }} copy run-and-configure
+          timeout --foreground 180s make -C test/${{ inputs.testenv }} copy run-and-configure
+      - name: "Capture stalled process backtraces"
+        if: ${{ failure() }}
+        continue-on-error: true
+        timeout-minutes: 2
+        run: |
+          docker exec --privileged sorespo-quicklab-sweave sh -c '
+            pid=$(pidof sorespo)
+            if [ -n "$pid" ]; then
+              gdb --batch -n -ex "set pagination off" -ex "set debuginfod enabled off" -ex "thread apply all bt" /sorespo "$pid"
+            fi
+          '
       - name: "Get device configs"
         run: |
           make -C test/${{ inputs.testenv }} test-get-config

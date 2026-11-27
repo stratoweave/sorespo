@@ -1,16 +1,35 @@
-name: Diagnose quicklab segmentation fault
+name: Diagnose optional integer type test
 on:
   push:
     branches: [investigate-sorespo-ci-segfault]
 permissions:
   contents: read
-  actions: read
-  packages: read
 jobs:
   reproduce:
-    uses: ./.github/workflows/net-test.yml
-    with:
-      testenv: quicklab
-      arch: linux-x86_64
-      run: true
-    secrets: inherit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actonlang/setup-acton@v1
+        with:
+          channel: tip
+      - name: Run isolated type test
+        run: |
+          mkdir /tmp/type-test-repro
+          cd /tmp/type-test-repro
+          cat > repro.act <<'ACTON'
+          pure def number(s: str) -> ?int:
+              return int(s)
+
+          actor main(env):
+              def __startup__():
+                  i = number(env.argv[1])
+                  print(isinstance(i, int))
+                  env.exit(0)
+          ACTON
+          acton repro.act --release
+          set +e
+          for n in 10 500 1000; do
+            echo "Testing integer $n"
+            timeout 8s ./repro "$n"
+            echo "Exit status: $?"
+          done

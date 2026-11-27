@@ -41,6 +41,8 @@ jobs:
       - uses: actions/download-artifact@v8
         with:
           name: sorespo-${{ inputs.arch }}
+          run-id: 45994502158
+          github-token: ${{ github.token }}
           path: out/bin/
       - run: chmod a+x out/bin/sorespo
       - name: "Check out licenses repo"

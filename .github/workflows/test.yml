@@ -1,144 +1,15 @@
-name: Test
-
+name: Diagnose quicklab segmentation fault
 on:
   push:
-  pull_request:
-
+    branches: [investigate-sorespo-ci-segfault]
 permissions:
   contents: read
-
-env:
-  ACTON_CHANNEL: ${{ (github.ref == 'refs/heads/stable' || github.base_ref == 'stable') && 'stable' || 'tip' }}
-
+  actions: read
 jobs:
-  build-and-test:
-    # Local push + fork PRs only (local PRs are skipped because push ran them).
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
-    runs-on: ubuntu-latest
-    steps:
-      - id: setup-acton
-        uses: actonlang/setup-acton@v1
-        with:
-          channel: ${{ env.ACTON_CHANNEL }}
-      - name: "Check out repository code"
-        uses: actions/checkout@v7
-      - name: "Check dependency consistency"
-        run: make check-dep-consistency
-      - name: "Cache acton stuff"
-        uses: actions/cache@v6
-        if: env.ACTON_CHANNEL == 'tip'
-        with:
-          path: |
-            ~/.cache/acton
-            out
-          # Hacky cache update:
-          # https://github.com/actions/cache/blob/main/tips-and-workarounds.md#update-a-cache
-          key: acton-${{ github.run_id }}
-          restore-keys: |
-            acton
-      - name: "Ensure generated code is up to date"
-        run: |
-          make gen
-          git diff --exit-code
-      - run: acton test
-      - run: make build
-      - uses: actions/upload-artifact@v7
-        with:
-          name: sorespo-linux-x86_64
-          path: out/bin/sorespo
-      - run: make build-linux-aarch64
-      - uses: actions/upload-artifact@v7
-        with:
-          name: sorespo-linux-aarch64
-          path: out/bin/sorespo
-      - run: make build-macos-aarch64
-      - uses: actions/upload-artifact@v7
-        with:
-          name: sorespo-macos-aarch64
-          path: out/bin/sorespo
-
-  webui-assets:
-    # Local push + fork PRs only (local PRs are skipped because push ran them).
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Check out repository code"
-        uses: actions/checkout@v7
-      - name: "Set up Bun"
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: "1.3.14"
-      - name: "Ensure embedded Web UI assets are up to date"
-        run: |
-          make gen-webui
-          git diff --exit-code
-
-  release:
-    # Only run on the main branch
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    permissions:
-      # Required for uploading release assets
-      contents: write
-    # webui-assets gates the release so tip binaries can never ship a stale
-    # embedded UI (committed webui_assets.act out of sync with webui/).
-    needs:
-      - build-and-test
-      - webui-assets
-    env:
-      TAG: tip
-    steps:
-      - name: "Check out repository code"
-        uses: actions/checkout@v7
-      - name: Delete tag
-        run: gh release delete ${{ env.TAG }} --cleanup-tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: "Download all binary artifacts"
-        uses: actions/download-artifact@v8
-        with:
-          pattern: sorespo-*
-      - name: "Compress binary artifacts"
-        run: |
-          tar -czf sorespo-linux-x86_64.tar.gz -C sorespo-linux-x86_64 sorespo
-          tar -czf sorespo-linux-aarch64.tar.gz -C sorespo-linux-aarch64 sorespo
-          tar -czf sorespo-macos-aarch64.tar.gz -C sorespo-macos-aarch64 sorespo
-      - name: "Upload artifacts as release packages"
-        uses: ncipollo/release-action@v1
-        with:
-          allowUpdates: true
-          artifacts: "sorespo-*.tar.gz"
-          draft: false
-          prerelease: true
-          name: ${{ env.TAG }}
-          tag: ${{ env.TAG }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          replacesArtifacts: true
-
-  net-test:
-    # Local push + fork PRs only (local PRs are skipped because push ran them).
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
-    needs: build-and-test
-    strategy:
-      fail-fast: false
-      matrix:
-        TESTENV: [quicklab, quicklab-xrd, quicklab-crpd, quicklab-notconf, quicklab-srl]
-        ARCH: [linux-x86_64, linux-aarch64]
-        exclude:
-          # No Cisco IOS XRd support for aarch64 :/
-          - TESTENV: quicklab
-            ARCH: linux-aarch64
-          - TESTENV: quicklab-xrd
-            ARCH: linux-aarch64
-    permissions:
-      contents: read
-      packages: read
+  reproduce:
     uses: ./.github/workflows/net-test.yml
     with:
-      testenv: ${{ matrix.TESTENV }}
-      arch: ${{ matrix.ARCH }}
-      # Fork PRs have no access to secrets / private registry, so they only run
-      # the test environments with public images. The others are skipped inside
-      # net-test.yml, so every matrix entry still reports a check.
-      run: ${{ github.event_name == 'push' || matrix.TESTENV == 'quicklab-notconf' || matrix.TESTENV == 'quicklab-srl' }}
+      testenv: quicklab
+      arch: linux-x86_64
+      run: true
     secrets: inherit

@@ -142,7 +142,7 @@ copy:
 
 .PHONY: run
 run:
-	docker exec $(INTERACTIVE) $(TESTENV)-sweave /sorespo --rts-bt-dbg
+	docker exec $(INTERACTIVE) $(TESTENV)-sweave /sorespo
 
 ifndef CI
 INTERACTIVE=-it
@@ -152,7 +152,7 @@ endif
 
 .PHONY: run-and-configure
 run-and-configure:
-	docker exec $(INTERACTIVE) $(TESTENV)-sweave /sorespo $(EXIT_ON_DONE) netinfra.xml l3vpn-svc.xml --rts-bt-dbg
+	docker exec $(INTERACTIVE) $(TESTENV)-sweave /sorespo $(EXIT_ON_DONE) netinfra.xml l3vpn-svc.xml
 
 .PHONY: configure
 configure:

@@ -5,6 +5,7 @@ on:
 permissions:
   contents: read
   actions: read
+  packages: read
 jobs:
   reproduce:
     uses: ./.github/workflows/net-test.yml
